@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'Pragmatica';
+  src: url('font/Pragmatica-Book.eot');
+  src: url('font/Pragmatica-Book.eot') format('embedded-opentype'),
+    url('font/Pragmatica-Book.woff2') format('woff2'),
+    url('font/Pragmatica-Book.woff') format('woff'),
+    url('font/Pragmatica-Book.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pragmatica';
+  src: url('font/Pragmatica-Book.eot');
+  src: url('font/Pragmatica-Medium.eot') format('embedded-opentype'),
+    url('font/Pragmatica-Medium.woff2') format('woff2'),
+    url('font/Pragmatica-Medium.woff') format('woff'),
+    url('font/Pragmatica-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pragmatica';
+  src: url('font/Pragmatica-Black.eot');
+  src: url('font/Pragmatica-Black.eot') format('embedded-opentype'),
+    url('font/Pragmatica-Black.woff2') format('woff2'),
+    url('font/Pragmatica-Black.woff') format('woff'),
+    url('font/Pragmatica-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}

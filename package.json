@@ -1,0 +1,15 @@
+{
+  "name": "mono-repo",
+  "private": true,
+  "version": "1.0.0",
+  "main": "package.json",
+  "license": "UNLICENSED",
+  "scripts": {
+    "main": "cd site && npm run dev",
+    "cms": "cd cms && npm run dev",
+    "update-cms": "cd cms && npm install",
+    "update-main": "cd site && npm install",
+    "build-cms": "cd cms &&npm run build",
+    "build-main": "cd site && npm run build"
+  }
+}
