@@ -6,6 +6,8 @@ import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 import {languages} from './../languages'
 import {projectId} from './environment'
 
+const langByDefault = languages.find((lang) => lang.default)?.id || languages[0].id
+
 export default defineConfig({
   name: 'default',
   title: 'Horowitz dev',
@@ -18,7 +20,7 @@ export default defineConfig({
     visionTool(),
     internationalizedArray({
       languages: languages,
-      defaultLanguages: [languages[0].id],
+      defaultLanguages: [langByDefault],
       buttonAddAll: false,
       fieldTypes: ['string', 'text', 'content'],
     }),

@@ -2,37 +2,54 @@ import { PaletteOptions } from '@mui/material';
 
 declare module '@mui/material/styles' {
   interface Palette {
-    gray: {
-      main: string;
-      dark: string;
-      light: string;
+    neutral: {
+      100: string;
+      90: string;
+      80: string;
+      70: string;
+      60: string;
+      50: string;
+      40: string;
+      30: string;
+      20: string;
+      10: string;
     };
   }
   interface PaletteOptions {
-    gray: {
-      main: string;
-      dark: string;
-      light: string;
+    neutral: {
+      100: string;
+      90: string;
+      80: string;
+      70: string;
+      60: string;
+      50: string;
+      40: string;
+      30: string;
+      20: string;
+      10: string;
     };
   }
 }
 
 export const palette: PaletteOptions = {
   common: {
-    black: '#000000',
-    white: '#F2F2F2',
+    black: '#050505',
+    white: '#F5F5F5',
   },
   primary: {
+    light: '#F9B33F',
     main: '#D9A145',
-    contrastText: '#000000',
+    dark: '#CB8D2A',
+    contrastText: '#050505',
   },
-
-  secondary: {
-    main: '#F2F2F2',
-    contrastText: '#000000',
+  action: {
+    hover: '#F9B33F',
+    focus: '#D9A145',
+    active: '#CB8D2A',
+    disabled: '#E0E0E0',
   },
   text: {
-    primary: '#131333',
+    primary: '#050505',
     secondary: '#F5F5F5',
   },
   background: {
@@ -40,9 +57,16 @@ export const palette: PaletteOptions = {
     paper: '#F5F5F5',
   },
   // divider: '#F2F2F2',
-  gray: {
-    light: 'rgba(255, 255, 255, 0.30)',
-    main: 'rgba(0,0,0,0.5)',
-    dark: '#000000',
+  neutral: {
+    100: '#050505',
+    90: '#141414',
+    80: '#292929',
+    70: '#525252',
+    60: '#666',
+    50: '#7A7A7A',
+    40: '#999',
+    30: '#C2C2C2',
+    20: '#E0E0E0',
+    10: '#F5F5F5',
   },
 };

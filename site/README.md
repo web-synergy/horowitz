@@ -31,3 +31,18 @@
         - components -  компоненти додатку
         - types - всі типи
         - fonts - шрифти
+
+    4. Використання кнопок та посилань:
+        -primary button:
+            <Button>Заявка на участь</Button>
+
+        -secondary button with icon:
+            <Button variant="secondary" endIcon={<SvgSpriteIcon icon="phone" />}>
+                Підтримати проєкт
+            </Button>
+
+        - link (на макеті має тип tertiary) => Link - це компонент Link з бібліотеки MaterialUI, RouterLink - це Link з бібліотеки react-router-dom:
+            <Link component={RouterLink} to="/about">
+                Переглянути всі
+                <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(-90deg)' }} />
+            </Link>
