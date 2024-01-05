@@ -5,6 +5,9 @@ import enLocale from './locales/en/translation.json';
 import uaLocale from './locales/ua/translation.json';
 import { localeLocalStorageKey } from '../../libs/localStorageKeys';
 import { lang } from '../../libs/searchParamsKey';
+import { languages } from './../../../../languages';
+
+const langByDefault = languages.find((lang) => lang.default)?.title || 'ua';
 
 const customPath = {
   name: 'fromPath',
@@ -24,7 +27,7 @@ const customPath = {
 const defaultLang = {
   name: 'defaultLang',
   lookup() {
-    return 'ua';
+    return langByDefault;
   },
 };
 

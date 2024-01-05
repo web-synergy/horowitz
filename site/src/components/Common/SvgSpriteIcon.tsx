@@ -1,6 +1,6 @@
 import { SvgIcon, SvgIconProps } from '@mui/material';
 import { FC } from 'react';
-import sprite from '../../../public/sprite.svg';
+import sprite from '../../assets/images/sprite.svg';
 
 interface SvgSpriteIconProps extends SvgIconProps {
   icon: string;
