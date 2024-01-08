@@ -1,14 +1,15 @@
-import { Components } from '@mui/material';
-import { MuiContainer } from './themed-components/container.modifier';
-import { MuiButton } from './themed-components/button.modifier';
-import { MuiSvgIcon } from './themed-components/svgIcon.modifier';
-import { MuiIconButton } from './themed-components/iconButton.modifier';
-import { MuiCssBaseline } from './themed-components/cssBaseline.modifier';
-import { MuiTypography } from './themed-components/typography.modifier';
-import { MuiLink } from './themed-components/link.modifier';
-import { MuiBreadcrumbs } from './themed-components/breadcumbs.modifier';
+import { Components } from '@mui/material'
+import { MuiContainer } from './themed-components/container.modifier'
+import { MuiButton } from './themed-components/button.modifier'
+import { MuiSvgIcon } from './themed-components/svgIcon.modifier'
+import { MuiIconButton } from './themed-components/iconButton.modifier'
+import { MuiCssBaseline } from './themed-components/cssBaseline.modifier'
+import { MuiTypography } from './themed-components/typography.modifier'
+import { MuiLink } from './themed-components/link.modifier'
+import { MuiBreadcrumbs } from './themed-components/breadcrumbs.modifier'
+import { MuiDivider } from './themed-components/divider.modifier'
 
-import { Theme } from '@mui/material/styles';
+import { Theme } from '@mui/material/styles'
 
 export const components: Components<Theme> = {
   MuiContainer,
@@ -19,4 +20,5 @@ export const components: Components<Theme> = {
   MuiTypography,
   MuiLink,
   MuiBreadcrumbs,
-};
+  MuiDivider,
+}
