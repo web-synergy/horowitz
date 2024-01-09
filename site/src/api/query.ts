@@ -42,3 +42,8 @@ export const settingsQuery = groq`*[_type == 'settings']{
      pressCenter
   }
 }`;
+
+export const competitionQuery = groq`*[_type == 'competitions']{
+ 'slug':slug.current,
+  'title':title[_key ==$language].value,
+  }`;
