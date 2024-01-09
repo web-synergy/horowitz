@@ -1,5 +1,6 @@
-import { Box, Stack, StackProps, styled } from '@mui/material'
+import { Box, Link, Stack, StackProps, styled, useMediaQuery, useTheme } from '@mui/material'
 import { FC } from 'react'
+
 import { phoneNumberFormatting } from '../helpers'
 import { BoldText, InfoDivider, RegularText } from '../styled'
 
@@ -38,8 +39,8 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
   pressCenterPhone,
   pressCenterEmail,
 }) => {
-  if (phone) phone = phoneNumberFormatting(phone)
-  if (pressCenterPhone) pressCenterPhone = phoneNumberFormatting(pressCenterPhone)
+  const { breakpoints } = useTheme()
+  const isMobile = useMediaQuery(breakpoints.down('md'))
 
   return (
     <Box>
@@ -53,25 +54,41 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
         {phone && (
           <StyledStack>
             <BoldText>Телефон:</BoldText>
-            <RegularText component={'p'}>{phone}</RegularText>
+            <Link
+              onClick={e => !isMobile && e.preventDefault()} // щоб запобігти перезавантаженню сторінки
+              href={isMobile ? `tel:${phone}` : ''}
+              sx={{ color: 'inherit' }}
+            >
+              <RegularText component={'p'}>{phoneNumberFormatting(phone)}</RegularText>
+            </Link>
           </StyledStack>
         )}
         {email && (
           <StyledStack>
             <BoldText>E-mail:</BoldText>
-            <RegularText component={'p'}>{email}</RegularText>
+            <Link href={`mailto:${email}`} sx={{ color: 'inherit' }}>
+              <RegularText component={'p'}>{email}</RegularText>
+            </Link>
           </StyledStack>
         )}
         {pressCenterPhone && (
           <StyledStack>
             <BoldText>Прес-центр:</BoldText>
-            <RegularText component={'p'}>{pressCenterPhone}</RegularText>
+            <Link
+              onClick={e => !isMobile && e.preventDefault()}
+              href={isMobile ? `tel:${pressCenterPhone}` : ''}
+              sx={{ color: 'inherit' }}
+            >
+              <RegularText component={'p'}>{phoneNumberFormatting(pressCenterPhone)}</RegularText>
+            </Link>
           </StyledStack>
         )}
         {pressCenterEmail && (
           <StyledStack>
             <BoldText>E-mail:</BoldText>
-            <RegularText component={'p'}>{pressCenterEmail}</RegularText>
+            <Link href={`mailto:${pressCenterEmail}`} sx={{ color: 'inherit' }}>
+              <RegularText component={'p'}>{pressCenterEmail}</RegularText>
+            </Link>
           </StyledStack>
         )}
       </ContentStack>
