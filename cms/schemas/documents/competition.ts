@@ -7,14 +7,14 @@ export default defineType({
   icon,
   fields: [
     defineField({
-      name: 'competition',
+      name: 'title',
       title: 'Заголовок',
-      type: 'string',
+      type: 'internationalizedArrayString',
     }),
     defineField({
       name: 'slug',
       type: 'slug',
-      options: {source: 'competition'},
+      options: {source: 'competition[1].value'},
     }),
     defineField({
       name: 'junior',
