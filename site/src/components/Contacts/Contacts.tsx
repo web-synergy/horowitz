@@ -1,9 +1,9 @@
-import { Box, Container, Stack } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import { FC } from 'react'
 import Breadcrumbs from '../Common/Breadcrumbs'
 import ContactsDetails from './parts/ContactsDetails'
 import Section from './parts/Section'
-import { ContentWrapper, InfoDivider, MainTitle, RegularText } from './styled'
+import { ContentWrapper, InfoDivider, MainTitle, SubTitle } from './styled'
 
 const Contacts: FC = () => {
   const { location, phone, email, pressCenterEmail, pressCenterPhone } = {
@@ -20,25 +20,24 @@ const Contacts: FC = () => {
         <Breadcrumbs title="Контакти" mode="dark" />
         <ContentWrapper>
           <MainTitle component={'h1'}>Контакти</MainTitle>
-          <Stack sx={{ rowGap: '48px' }}>
-            <Box>
-              <Box sx={{ display: 'inline-block' }}>
-                <RegularText component={'p'} sx={{ marginBottom: '16px' }}>
-                  Київська муніципальна академія музики імені Р. М. Глієра
-                </RegularText>
-                <RegularText component={'p'}>
-                  Адміністрація міжнародного конкурсу молодих піаністів пам'яті Володимира Горовиця
-                </RegularText>
-                <InfoDivider />
-              </Box>
-            </Box>
-            <Box>
-              <ContactsDetails {...{ location, phone, email }} />
-            </Box>
-            <Box>
-              <ContactsDetails {...{ pressCenterPhone, pressCenterEmail }} />
-            </Box>
-          </Stack>
+          <Box>
+            <SubTitle component={'p'} sx={{ marginBottom: '16px' }}>
+              Київська муніципальна академія музики імені Р. М. Глієра
+            </SubTitle>
+            <SubTitle component={'p'}>
+              Адміністрація міжнародного конкурсу молодих піаністів пам'яті Володимира Горовиця
+            </SubTitle>
+            <InfoDivider variant="light" />
+          </Box>
+          <Box sx={{ width: '100%' }}>
+            <ContactsDetails {...{ location, phone, email }} />
+          </Box>
+          <Box sx={{ width: '100%' }}>
+            <ContactsDetails {...{ pressCenterPhone, pressCenterEmail }} />
+          </Box>
+          <Typography textTransform={'uppercase'}>
+            There should be icons for social networks{' '}
+          </Typography>
         </ContentWrapper>
       </Container>
     </Section>
