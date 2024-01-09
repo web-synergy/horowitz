@@ -22,7 +22,7 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType}
   // Only show preview pane on `movie` schema type documents
 
   switch (schemaType) {
-    case `news`:
+    case `aboutCompetition`:
       return S.document().views([
         S.view.form(),
         S.view

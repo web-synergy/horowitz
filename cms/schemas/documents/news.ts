@@ -19,7 +19,7 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Опис новини',
-      type: 'internationalizedArrayString',
+      type: 'internationalizedArrayContent',
     }),
 
     defineField({

@@ -1,13 +1,7 @@
-import {defineField, defineType} from 'sanity'
+import {defineType} from 'sanity'
 
 export const content = defineType({
   name: 'content',
-  type: 'object',
-  fields: [
-    defineField({
-      name: 'content',
-      type: 'array',
-      of: [{type: 'block'}],
-    }),
-  ],
+  type: 'array',
+  of: [{type: 'block'}],
 })
