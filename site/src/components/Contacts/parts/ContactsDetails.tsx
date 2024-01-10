@@ -8,7 +8,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { FC } from 'react';
-import { phoneNumberFormatting } from '../../../utils/phoneNumberFormatting';
+import { phoneNumberFormatting } from '@/utils/phoneNumberFormatting';
 import { BoldText, InfoDivider, RegularText } from '../styled';
 
 interface ContactsDetailsProps {
