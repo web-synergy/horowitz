@@ -3,7 +3,7 @@ import { FC } from 'react'
 import Breadcrumbs from '../Common/Breadcrumbs'
 import ContactsDetails from './parts/ContactsDetails'
 import Section from './parts/Section'
-import { ContentWrapper, InfoDivider, MainTitle, SubTitle } from './styled'
+import { ContentWrapper, InfoDivider } from './styled'
 
 const Contacts: FC = () => {
   const { location, phone, email, pressCenterEmail, pressCenterPhone } = {
@@ -19,14 +19,16 @@ const Contacts: FC = () => {
       <Container>
         <Breadcrumbs title="Контакти" mode="dark" />
         <ContentWrapper>
-          <MainTitle component={'h1'}>Контакти</MainTitle>
+          <Typography variant="h2" component={'h1'}>
+            Контакти
+          </Typography>
           <Box>
-            <SubTitle component={'p'} sx={{ marginBottom: '16px' }}>
+            <Typography variant="bodyRegular" component={'p'} sx={{ marginBottom: '16px' }}>
               Київська муніципальна академія музики імені Р. М. Глієра
-            </SubTitle>
-            <SubTitle component={'p'}>
+            </Typography>
+            <Typography variant="bodyRegular" component={'p'}>
               Адміністрація міжнародного конкурсу молодих піаністів пам'яті Володимира Горовиця
-            </SubTitle>
+            </Typography>
             <InfoDivider variant="light" />
           </Box>
           <Box sx={{ width: '100%' }}>
