@@ -36,7 +36,7 @@ export default defineType({
       type: 'string',
       validation: (Rule) => [
         Rule.error('Обовʼязкове поле').required(),
-        Rule.regex(patternEmail).error('Перевірте правильність написання.'),
+        Rule.regex(patternEmail).error('Перевірте правильність написання'),
       ],
     }),
     defineField({
@@ -59,7 +59,7 @@ export default defineType({
           type: 'string',
           validation: (Rule) => [
             Rule.error('Обовʼязкове поле').required(),
-            Rule.regex(patternEmail).error('Перевірте правильність написання.'),
+            Rule.regex(patternEmail).error('Перевірте правильність написання'),
           ],
         }),
       ],
