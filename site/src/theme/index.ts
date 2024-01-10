@@ -4,30 +4,20 @@ import { breakpoints } from './breakpoints';
 import { palette } from './palette';
 import { typography } from './typography';
 
-declare module '@mui/material/styles' {
-  interface Theme {
-    header: {
-      mobile: { minHeight: number };
-      desktop: { minHeight: number };
-    };
-  }
-  interface ThemeOptions {
-    header: {
-      mobile: { minHeight: number };
-      desktop: { minHeight: number };
-    };
-  }
-}
-
 export const theme = createTheme({
   breakpoints,
   palette,
   components,
   typography,
-  header: {
-    mobile: { minHeight: 102 },
-    desktop: {
-      minHeight: 102,
+  mixins: {
+    toolbar: {
+      minHeight: 64,
+      '@media (min-width:0px) and (orientation: landscape)': {
+        minHeight: 64,
+      },
+      [`@media (min-width:${breakpoints.values.lg}px)`]: {
+        minHeight: 102,
+      },
     },
   },
 });

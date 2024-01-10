@@ -1,8 +1,8 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import enLocale from './locales/en/translation.json';
-import uaLocale from './locales/ua/translation.json';
+import enLocale from './locales/en/translation';
+import uaLocale from './locales/ua/translation';
 import { localeLocalStorageKey } from '../../libs/localStorageKeys';
 import { lang } from '../../libs/searchParamsKey';
 import { languages } from './../../../../languages';

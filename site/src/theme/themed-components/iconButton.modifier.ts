@@ -6,4 +6,21 @@ export const MuiIconButton: Components<Theme>['MuiIconButton'] = {
     disableTouchRipple: true,
     disableFocusRipple: true,
   },
+  styleOverrides: {
+    root: ({ theme }) => ({
+      color: 'inherit',
+
+      '&:hover': {
+        color: theme.palette.action.hover,
+      },
+
+      '&:focus-visible': {
+        color: theme.palette.action.focus,
+      },
+
+      '&:active': {
+        color: theme.palette.action.active,
+      },
+    }),
+  },
 };
