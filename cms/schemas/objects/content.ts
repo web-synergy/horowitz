@@ -1,9 +1,7 @@
 import {defineType} from 'sanity'
 
-const content = defineType({
+export const content = defineType({
   name: 'content',
   type: 'array',
   of: [{type: 'block'}],
 })
-
-export default content
