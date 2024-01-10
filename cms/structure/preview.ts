@@ -11,7 +11,7 @@ interface DocProps extends SanityDocument {
 
 export function getPreviewUrl(doc: DocProps, add: string) {
   const slug = doc?.slug?.current
-  const result = slug ? `${previewUrl}/${add}/${slug}?draft=true` : `${previewUrl}`
+  const result = slug ? `${previewUrl}${add}/${slug}?draft=true` : `${previewUrl}${add}?draft=true`
 
   return result
 }

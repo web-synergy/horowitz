@@ -29,7 +29,7 @@ const structure = (S: StructureBuilder) =>
           S.list()
             .title('Налаштування')
             .items([
-              singleDocument(S, 'contacts', 'Контактна інформація'),
+              singleDocument(S, 'contacts', 'Контактна інформація', 'contacts'),
               singleDocument(S, 'settings', 'Загальні налаштування'),
               singleDocument(S, 'social', 'Соцмережі'),
             ]),
