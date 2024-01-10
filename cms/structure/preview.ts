@@ -1,26 +1,22 @@
 import {DefaultDocumentNodeResolver} from 'sanity/desk'
 import {Iframe} from 'sanity-plugin-iframe-pane'
 import {SanityDocument} from 'sanity'
-// import {previewUrl} from '../environment'
+import {previewUrl} from '../environment'
 
 interface DocProps extends SanityDocument {
   slug?: {
     current: string
   }
 }
-const previewUrl = ' '
+
 export function getPreviewUrl(doc: DocProps, add: string) {
   const slug = doc?.slug?.current
-  const result = slug ? `${previewUrl}/ua/${add}/${slug}?draft=true` : `${previewUrl}/ua/`
+  const result = slug ? `${previewUrl}/${add}/${slug}?draft=true` : `${previewUrl}`
 
-  console.log(previewUrl)
-  console.log(result)
   return result
 }
-// Import this into the deskTool() plugin
-export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType}) => {
-  // Only show preview pane on `movie` schema type documents
 
+export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType}) => {
   switch (schemaType) {
     case `aboutCompetition`:
       return S.document().views([

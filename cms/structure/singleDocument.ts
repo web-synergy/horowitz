@@ -1,5 +1,8 @@
 import {Iframe} from 'sanity-plugin-iframe-pane'
 import {StructureBuilder} from 'sanity/desk'
+import {previewUrl} from '../environment'
+import {SanityDocument} from 'sanity'
+import {getPreviewUrl} from './preview'
 
 export const singleDocument = (S: StructureBuilder, id: string, title: string) => {
   return S.listItem()
@@ -16,7 +19,7 @@ export const singleDocument = (S: StructureBuilder, id: string, title: string) =
             .component(Iframe)
             .title('Preview')
             .options({
-              url: `${''}/ua/?draft=true`,
+              url: (doc: SanityDocument) => getPreviewUrl(doc, '/'),
               defaultSize: 'desktop',
             }),
         ]),
