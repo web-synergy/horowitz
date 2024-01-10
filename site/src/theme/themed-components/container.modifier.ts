@@ -5,6 +5,8 @@ export const MuiContainer: Components<Theme>['MuiContainer'] = {
     root: ({ theme }) => ({
       maxWidth: 1280,
       [theme.breakpoints.up('xs')]: {
+        padding: '0 16px',
+
         //settings for tablet container: 0px - 767px
         minWidth: 320,
         paddingLeft: 16,
@@ -19,6 +21,7 @@ export const MuiContainer: Components<Theme>['MuiContainer'] = {
 
       [theme.breakpoints.up('lg')]: {
         //settings for desktop container: 1280px+
+        padding: '0 80px',
         maxWidth: 1280,
         margin: '0 auto',
         paddingLeft: 80,

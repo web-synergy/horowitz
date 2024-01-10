@@ -6,8 +6,9 @@ import { MuiIconButton } from './themed-components/iconButton.modifier';
 import { MuiCssBaseline } from './themed-components/cssBaseline.modifier';
 import { MuiTypography } from './themed-components/typography.modifier';
 import { MuiLink } from './themed-components/link.modifier';
-import { MuiBreadcrumbs } from './themed-components/breadcumbs.modifier';
 import { MuiAppBar } from './themed-components/appbar.modifier';
+import { MuiBreadcrumbs } from './themed-components/breadcrumbs.modifier';
+import { MuiDivider } from './themed-components/divider.modifier';
 
 import { Theme } from '@mui/material/styles';
 
@@ -21,4 +22,5 @@ export const components: Components<Theme> = {
   MuiLink,
   MuiBreadcrumbs,
   MuiAppBar,
+  MuiDivider,
 };
