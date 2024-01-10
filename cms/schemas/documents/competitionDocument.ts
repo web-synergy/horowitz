@@ -7,19 +7,31 @@ export default defineType({
 
   fields: [
     defineField({
-      name: 'ruls',
-      title: 'Правила',
-      type: 'text',
+      name: 'title',
+      title: 'Заголовок',
+      type: 'internationalizedArrayString',
     }),
     defineField({
-      name: 'facebook',
+      name: 'rule',
+      title: 'Правила',
+      type: 'internationalizedArrayContent',
+    }),
+    defineField({
+      name: 'img',
       title: 'Фото',
       type: 'image',
     }),
     defineField({
-      name: 'youTube',
-      title: 'YouTube',
-      type: 'text',
+      name: 'about',
+      title: 'Опис',
+      type: 'internationalizedArrayContent',
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      img: 'img',
+    },
+    prepare: ({title, img}) => ({title: title[0].value, media: img}),
+  },
 })

@@ -44,4 +44,10 @@ export default defineType({
       },
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+    },
+    prepare: ({title}) => ({title: title[0].value}),
+  },
 })
