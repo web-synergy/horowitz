@@ -1,15 +1,22 @@
-import { Box, Link, Stack, StackProps, styled, useMediaQuery, useTheme } from '@mui/material'
-import { FC } from 'react'
-
-import { phoneNumberFormatting } from '../helpers'
-import { BoldText, InfoDivider, RegularText } from '../styled'
+import {
+  Box,
+  Link,
+  Stack,
+  StackProps,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
+import { FC } from 'react';
+import { phoneNumberFormatting } from '../../../utils/phoneNumberFormatting';
+import { BoldText, InfoDivider, RegularText } from '../styled';
 
 interface ContactsDetailsProps {
-  location?: string
-  phone?: string
-  email?: string
-  pressCenterPhone?: string
-  pressCenterEmail?: string
+  location?: string;
+  phone?: string;
+  email?: string;
+  pressCenterPhone?: string;
+  pressCenterEmail?: string;
 }
 
 const StyledStack = styled(Stack)<StackProps>(({ theme }) => ({
@@ -21,7 +28,7 @@ const StyledStack = styled(Stack)<StackProps>(({ theme }) => ({
     flexDirection: 'row',
     columnGap: '24px',
   },
-}))
+}));
 
 const ContentStack = styled(Stack)<StackProps>(({ theme }) => ({
   [theme.breakpoints.up('xs')]: {
@@ -30,7 +37,7 @@ const ContentStack = styled(Stack)<StackProps>(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     rowGap: '18px',
   },
-}))
+}));
 
 const ContactsDetails: FC<ContactsDetailsProps> = ({
   location,
@@ -39,8 +46,8 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
   pressCenterPhone,
   pressCenterEmail,
 }) => {
-  const { breakpoints } = useTheme()
-  const isMobile = useMediaQuery(breakpoints.down('md'))
+  const { breakpoints } = useTheme();
+  const isMobile = useMediaQuery(breakpoints.down('md'));
 
   return (
     <Box>
@@ -55,11 +62,13 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
           <StyledStack>
             <BoldText>Телефон:</BoldText>
             <Link
-              onClick={e => !isMobile && e.preventDefault()} // щоб запобігти перезавантаженню сторінки
+              onClick={(e) => !isMobile && e.preventDefault()} // щоб запобігти перезавантаженню сторінки
               href={isMobile ? `tel:${phone}` : ''}
               sx={{ color: 'inherit' }}
             >
-              <RegularText component={'p'}>{phoneNumberFormatting(phone)}</RegularText>
+              <RegularText component={'p'}>
+                {phoneNumberFormatting(phone)}
+              </RegularText>
             </Link>
           </StyledStack>
         )}
@@ -75,11 +84,13 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
           <StyledStack>
             <BoldText>Прес-центр:</BoldText>
             <Link
-              onClick={e => !isMobile && e.preventDefault()}
+              onClick={(e) => !isMobile && e.preventDefault()}
               href={isMobile ? `tel:${pressCenterPhone}` : ''}
               sx={{ color: 'inherit' }}
             >
-              <RegularText component={'p'}>{phoneNumberFormatting(pressCenterPhone)}</RegularText>
+              <RegularText component={'p'}>
+                {phoneNumberFormatting(pressCenterPhone)}
+              </RegularText>
             </Link>
           </StyledStack>
         )}
@@ -94,7 +105,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
       </ContentStack>
       <InfoDivider variant="light" />
     </Box>
-  )
-}
+  );
+};
 
-export default ContactsDetails
+export default ContactsDetails;
