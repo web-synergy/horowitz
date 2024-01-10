@@ -5,6 +5,8 @@ import {schemaTypes} from './schemas'
 import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 import {languages} from './../languages'
 import {projectId} from './environment'
+import structure from './structure'
+import {defaultDocumentNode} from './structure/preview'
 
 const langByDefault = languages.find((lang) => lang.default)?.id || languages[0].id
 
@@ -16,7 +18,7 @@ export default defineConfig({
   dataset: 'production',
 
   plugins: [
-    deskTool(),
+    deskTool({structure, defaultDocumentNode}),
     visionTool(),
     internationalizedArray({
       languages: languages,
