@@ -3,7 +3,9 @@ import {singleDocument} from './singleDocument'
 
 import {IoSettingsSharp} from 'react-icons/io5'
 import {RiPagesLine} from 'react-icons/ri'
-
+import {LuContact} from 'react-icons/lu'
+import {IoShareSocialOutline} from 'react-icons/io5'
+import {MdOutlineSettingsBrightness} from 'react-icons/md'
 const singleSchemaTittles = [
   'Головна',
   'Налаштування',
@@ -29,9 +31,11 @@ const structure = (S: StructureBuilder) =>
           S.list()
             .title('Налаштування')
             .items([
-              singleDocument(S, 'contacts', 'Контактна інформація', 'contacts'),
-              singleDocument(S, 'settings', 'Загальні налаштування'),
-              singleDocument(S, 'social', 'Соцмережі'),
+              singleDocument(S, 'contacts', 'Контактна інформація', 'contacts').icon(LuContact),
+              singleDocument(S, 'settings', 'Загальні налаштування').icon(
+                MdOutlineSettingsBrightness,
+              ),
+              singleDocument(S, 'social', 'Соцмережі').icon(IoShareSocialOutline),
             ]),
         ),
     ])

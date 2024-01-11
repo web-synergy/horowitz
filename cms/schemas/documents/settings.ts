@@ -9,6 +9,7 @@ export default defineType({
       name: 'logo',
       title: 'Логотип',
       type: 'image',
+      validation: (Rule) => Rule.error('Обовʼязкове поле').required(),
     }),
   ],
 })
