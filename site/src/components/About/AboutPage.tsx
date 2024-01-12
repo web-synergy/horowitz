@@ -1,7 +1,11 @@
-import React from 'react';
+import PageTemplate from '../Common/PageTemplate';
 
 const AboutPage = () => {
-  return <div>About Competition</div>;
+  return (
+    <PageTemplate>
+      <div>About Competition</div>
+    </PageTemplate>
+  );
 };
 
 export default AboutPage;

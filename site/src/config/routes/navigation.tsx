@@ -1,32 +1,32 @@
-import { Routes } from '../../types/routes';
+import { NavigationItemType, Routes } from '@/types/routes.d';
 
-export const navigation = {
-  [Routes.HOME]: {
-    children: null,
-  },
-  [Routes.ABOUT]: {
+export const navigation: NavigationItemType[] = [
+  // { title: Routes.HOME, children: null },
+  {
+    title: Routes.ABOUT,
     children: [
-      { title: Routes.DETAILS },
-      { title: Routes.KYIV_GENEVA },
-      { title: Routes.HOROWITZ },
+      { title: Routes.DETAILS, slug: Routes.DETAILS },
+      { title: Routes.HOROWITZ, slug: Routes.HOROWITZ },
     ],
   },
-  [Routes.COMPETITION]: {
-    children: [],
-  },
-  [Routes.PROJECTS]: {
+  {
+    title: Routes.COMPETITION,
     children: [
-      { title: Routes.MASTER_CLASS },
-      { title: Routes.SUMMER_SCHOOL },
-      { title: Routes.VIRTUOSES },
+      { title: Routes.KYIV_GENEVA, slug: Routes.KYIV_GENEVA },
+      {
+        title: Routes.ARCHIVE,
+        slug: Routes.ARCHIVE,
+      },
     ],
   },
-  [Routes.NEWS]: {
-    children: null,
+  {
+    title: Routes.PROJECTS,
+    children: [
+      { title: Routes.MASTER_CLASS, slug: Routes.MASTER_CLASS },
+      { title: Routes.SUMMER_SCHOOL, slug: Routes.SUMMER_SCHOOL },
+      { title: Routes.VIRTUOSES, slug: Routes.VIRTUOSES },
+    ],
   },
-  [Routes.CONTACTS]: {
-    children: null,
-  },
-};
-
-export const mainNavigation = Object.keys(navigation);
+  { title: Routes.NEWS, children: null },
+  { title: Routes.CONTACTS, children: null },
+];

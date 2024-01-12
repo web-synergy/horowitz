@@ -1,7 +1,11 @@
-import React from 'react';
+import PageTemplate from '../Common/PageTemplate';
 
 const SummerSchoolPage = () => {
-  return <div>SummerSchool</div>;
+  return (
+    <PageTemplate>
+      <div>SummerSchool</div>;
+    </PageTemplate>
+  );
 };
 
 export default SummerSchoolPage;

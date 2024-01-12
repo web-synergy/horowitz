@@ -1,7 +1,11 @@
-import React from 'react';
+import PageTemplate from '../Common/PageTemplate';
 
 const MasterClassPage = () => {
-  return <div>MasterClassPage</div>;
+  return (
+    <PageTemplate>
+      <div>MasterClassPage</div>
+    </PageTemplate>
+  );
 };
 
 export default MasterClassPage;

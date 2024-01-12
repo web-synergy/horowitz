@@ -1,10 +1,9 @@
-import { Container } from '@mui/material';
-
+import PageTemplate from '../Common/PageTemplate';
 const NotFoundPage = () => {
   return (
-    <Container>
+    <PageTemplate>
       <p>Not Found Page</p>
-    </Container>
+    </PageTemplate>
   );
 };
 

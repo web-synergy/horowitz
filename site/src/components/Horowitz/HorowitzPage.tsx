@@ -1,7 +1,11 @@
-import React from 'react';
+import PageTemplate from '../Common/PageTemplate';
 
 const HorowitzPage = () => {
-  return <div>HorowitzPage</div>;
+  return (
+    <PageTemplate>
+      <div>HorowitzPage</div>
+    </PageTemplate>
+  );
 };
 
 export default HorowitzPage;

@@ -1,7 +1,11 @@
-import React from 'react';
+import PageTemplate from '../Common/PageTemplate';
 
 const KyivGenevaPage = () => {
-  return <div>KyivGenevaPage</div>;
+  return (
+    <PageTemplate>
+      <div>KyivGenevaPage</div>
+    </PageTemplate>
+  );
 };
 
 export default KyivGenevaPage;

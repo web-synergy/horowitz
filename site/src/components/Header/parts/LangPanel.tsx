@@ -1,9 +1,9 @@
 import { FC, ChangeEvent } from 'react';
-import { FormControl, RadioGroup, Radio, Divider } from '@mui/material';
+import { FormControl, RadioGroup, Radio } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { languages } from '#root/languages';
-import { StyledFormControlLabel } from '../styled';
+import { StyledFormControlLabel, LangDivider } from '../styled';
 import { lang as langKey } from '@/libs/searchParamsKey';
 
 interface LangPanelProps {
@@ -27,13 +27,14 @@ const LangPanel: FC<LangPanelProps> = ({ additionalClickFn }) => {
   };
 
   return (
-    <FormControl>
+    <FormControl sx={{ flexShrink: 0 }}>
       <RadioGroup
         aria-label="language-panel"
         name="language"
         value={language}
         onChange={onChangeLang}
         row
+        sx={{ display: 'flex', alignItems: 'center' }}
       >
         <StyledFormControlLabel
           value={languages[0].id}
@@ -43,7 +44,7 @@ const LangPanel: FC<LangPanelProps> = ({ additionalClickFn }) => {
           key={languages[0].id}
           aria-label={`Вибрати українську`}
         />
-        <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
+        <LangDivider />
 
         <StyledFormControlLabel
           value={languages[1].id}

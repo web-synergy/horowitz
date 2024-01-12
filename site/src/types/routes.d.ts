@@ -3,6 +3,7 @@ export enum Routes {
   ABOUT = 'about',
   DETAILS = 'details',
   KYIV_GENEVA = 'kyiv-geneva',
+  ARCHIVE = 'archive',
   HOROWITZ = 'horowitz',
   COMPETITION = 'competition',
   PROJECTS = 'projects',
@@ -12,3 +13,10 @@ export enum Routes {
   NEWS = 'news',
   CONTACTS = 'contacts',
 }
+
+export type NavigationChildrenType = { title: string; slug: string };
+
+export type NavigationItemType = {
+  title: Routes;
+  children: NavigationChildrenType[] | null;
+};

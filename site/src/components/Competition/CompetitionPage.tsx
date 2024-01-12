@@ -1,7 +1,11 @@
-import React from 'react';
+import PageTemplate from '../Common/PageTemplate';
 
 const CompetitionPage = () => {
-  return <div>Page for one competition</div>;
+  return (
+    <PageTemplate>
+      <div>Competition Page</div>
+    </PageTemplate>
+  );
 };
 
 export default CompetitionPage;

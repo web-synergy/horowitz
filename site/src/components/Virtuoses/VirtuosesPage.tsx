@@ -1,7 +1,11 @@
-import React from 'react';
+import PageTemplate from '../Common/PageTemplate';
 
 const VirtuosesPage = () => {
-  return <div>VirtuosesPage</div>;
+  return (
+    <PageTemplate>
+      <div>VirtuosesPage</div>
+    </PageTemplate>
+  );
 };
 
 export default VirtuosesPage;

@@ -4,6 +4,7 @@ import Breadcrumbs from '../Common/Breadcrumbs';
 import ContactsDetails from './parts/ContactsDetails';
 import Section from './parts/Section';
 import { ContentWrapper, InfoDivider, MainTitle, SubTitle } from './styled';
+import { Offset } from '../Common/Offset';
 
 const ContactsPage: FC = () => {
   const { location, phone, email, pressCenterEmail, pressCenterPhone } = {
@@ -16,6 +17,7 @@ const ContactsPage: FC = () => {
 
   return (
     <Section component={'section'}>
+      <Offset />
       <Container>
         <Breadcrumbs title="Контакти" mode="dark" />
         <ContentWrapper>

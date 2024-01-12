@@ -12,7 +12,7 @@ import VirtuosesPage from '../../components/Virtuoses/VirtuosesPage';
 import NewsPage from '../../components/News/NewsPage';
 import ContactsPage from '../../components/Contacts/ContactsPage';
 
-import { Routes } from '../../types/routes';
+import { Routes } from '@/types/routes.d';
 
 const routes = createBrowserRouter([
   {

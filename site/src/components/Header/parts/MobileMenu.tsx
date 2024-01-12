@@ -1,7 +1,10 @@
 import { FC, forwardRef } from 'react';
-import { Dialog, Slide, IconButton } from '@mui/material';
+import { Slide, IconButton, Dialog, Stack } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import SvgSpriteIcon from '../../Common/SvgSpriteIcon';
+import Search from './Search';
+import LangPanel from './LangPanel';
+import Navigation from './Navigation';
 
 interface MobileMenuProps {
   open: boolean;
@@ -24,11 +27,23 @@ const MobileMenu: FC<MobileMenuProps> = ({ open, onClose }) => {
       open={open}
       onClose={onClose}
       TransitionComponent={Transition}
+      PaperProps={{
+        sx: {
+          backgroundColor: (theme) => theme.palette.neutral[90],
+          color: (theme) => theme.palette.text.secondary,
+          padding: '40px 40px 56px 40px',
+          gap: 5,
+        },
+      }}
     >
-      <IconButton onClick={onClose}>
-        <SvgSpriteIcon icon="close" />
-      </IconButton>
-      MobileMenu
+      <Stack direction="row" justifyContent="space-between" alignItems="center">
+        <LangPanel />
+        <IconButton onClick={onClose} sx={{ padding: 0 }}>
+          <SvgSpriteIcon icon="close" />
+        </IconButton>
+      </Stack>
+      <Search />
+      <Navigation onCloseMobileMenu={onClose} />
     </Dialog>
   );
 };
