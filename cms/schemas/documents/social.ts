@@ -9,16 +9,19 @@ export default defineType({
       name: 'instagram',
       title: 'Instagram',
       type: 'url',
+      validation: (Rule) => Rule.error('Обовʼязкове поле').required(),
     }),
     defineField({
       name: 'facebook',
       title: 'Facebook',
       type: 'url',
+      validation: (Rule) => Rule.error('Обовʼязкове поле').required(),
     }),
     defineField({
       name: 'youTube',
       title: 'YouTube',
       type: 'url',
+      validation: (Rule) => Rule.error('Обовʼязкове поле').required(),
     }),
   ],
 })

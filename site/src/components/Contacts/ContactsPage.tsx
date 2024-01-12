@@ -1,19 +1,22 @@
+import useContacts from './useContacts';
+
 import { Box, Container, Typography } from '@mui/material';
 import { FC } from 'react';
+
 import Breadcrumbs from '../Common/Breadcrumbs';
 import ContactsDetails from './parts/ContactsDetails';
 import Section from './parts/Section';
-import { ContentWrapper, InfoDivider, MainTitle, SubTitle } from './styled';
+import { ContentWrapper, InfoDivider } from './styled';
 import { Offset } from '../Common/Offset';
 
 const ContactsPage: FC = () => {
-  const { location, phone, email, pressCenterEmail, pressCenterPhone } = {
-    location: 'вул. Гетьмана Павла Скоропадського, 31, Київ, 01032, Україна',
-    phone: '380442883238',
-    email: 'horowitz@horowitzv.org',
-    pressCenterPhone: '380972696416',
-    pressCenterEmail: 's.antoniuk.horowitz@gmail.com',
-  };
+  // TODO
+  // - write a function to get the current language
+  // - translate static content
+
+  const { contacts } = useContacts('ua');
+  const { location, phone, email, pressCenterEmail, pressCenterPhone } =
+    contacts;
 
   return (
     <Section component={'section'}>
@@ -21,15 +24,20 @@ const ContactsPage: FC = () => {
       <Container>
         <Breadcrumbs title="Контакти" mode="dark" />
         <ContentWrapper>
-          <MainTitle component={'h1'}>Контакти</MainTitle>
+          <Typography variant="h2" component={'h1'}>
+            Контакти
+          </Typography>
           <Box>
-            <SubTitle component={'p'} sx={{ marginBottom: '16px' }}>
-              Київська муніципальна академія музики імені Р. М. Глієра
-            </SubTitle>
-            <SubTitle component={'p'}>
-              Адміністрація міжнародного конкурсу молодих піаністів пам'яті
-              Володимира Горовиця
-            </SubTitle>
+            <Typography
+              variant="bodyRegular"
+              component={'p'}
+              sx={{ marginBottom: '16px' }}
+            >
+              {contacts.about_part1}
+            </Typography>
+            <Typography variant="bodyRegular" component={'p'}>
+              {contacts.about_part2}
+            </Typography>
             <InfoDivider variant="light" />
           </Box>
           <Box sx={{ width: '100%' }}>

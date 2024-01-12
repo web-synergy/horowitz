@@ -1,4 +1,4 @@
-import groq from 'groq';
+import groq from 'groq'
 export const homeQuery = groq`*[_type == 'home'][0]{
  'quote':quote{
        'author': author[_key ==$language].value,
@@ -31,19 +31,22 @@ export const homeQuery = groq`*[_type == 'home'][0]{
       'title':title[_key ==$language].value,
       link
     },
-}`;
+}`
 
 export const settingsQuery = groq`*[_type == 'settings']{
   'logo':logo.asset->url,
   'sociable':*[_type == 'social'][0],
   'contacts':*[_type == 'contacts'][0]{
     'about':about[_key ==$language].value,
+    phone,
+    email,
     'address':address[_key ==$language].value,
      pressCenter
   }
-}`;
+
+}`
 
 export const competitionQuery = groq`*[_type == 'competitions']{
  'slug':slug.current,
   'title':title[_key ==$language].value,
-  }`;
+  }`

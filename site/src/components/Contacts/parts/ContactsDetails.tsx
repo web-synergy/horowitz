@@ -3,13 +3,15 @@ import {
   Link,
   Stack,
   StackProps,
+  Typography,
   styled,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
 import { FC } from 'react';
-import { phoneNumberFormatting } from '@/utils/phoneNumberFormatting';
-import { BoldText, InfoDivider, RegularText } from '../styled';
+
+import { phoneNumberFormatting } from '../../../utils/helpers';
+import { DescBox, InfoDivider } from '../styled';
 
 interface ContactsDetailsProps {
   location?: string;
@@ -54,51 +56,67 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
       <ContentStack>
         {location && (
           <StyledStack>
-            <BoldText>Адреса:</BoldText>
-            <RegularText component={'p'}>{location}</RegularText>
+            <DescBox>
+              <Typography variant="bodyMedium">Адреса:</Typography>
+            </DescBox>
+            <Typography variant="bodyRegular" component={'p'}>
+              {location}
+            </Typography>
           </StyledStack>
         )}
         {phone && (
           <StyledStack>
-            <BoldText>Телефон:</BoldText>
+            <DescBox>
+              <Typography variant="bodyMedium">Телефон:</Typography>
+            </DescBox>
             <Link
               onClick={(e) => !isMobile && e.preventDefault()} // щоб запобігти перезавантаженню сторінки
               href={isMobile ? `tel:${phone}` : ''}
               sx={{ color: 'inherit' }}
             >
-              <RegularText component={'p'}>
+              <Typography variant="bodyRegular" component={'p'}>
                 {phoneNumberFormatting(phone)}
-              </RegularText>
+              </Typography>
             </Link>
           </StyledStack>
         )}
         {email && (
           <StyledStack>
-            <BoldText>E-mail:</BoldText>
+            <DescBox>
+              <Typography variant="bodyMedium">E-mail:</Typography>
+            </DescBox>
             <Link href={`mailto:${email}`} sx={{ color: 'inherit' }}>
-              <RegularText component={'p'}>{email}</RegularText>
+              <Typography variant="bodyRegular" component={'p'}>
+                {email}
+              </Typography>
             </Link>
           </StyledStack>
         )}
         {pressCenterPhone && (
           <StyledStack>
-            <BoldText>Прес-центр:</BoldText>
+            <DescBox>
+              <Typography variant="bodyMedium">Прес-центр:</Typography>
+            </DescBox>
             <Link
               onClick={(e) => !isMobile && e.preventDefault()}
               href={isMobile ? `tel:${pressCenterPhone}` : ''}
               sx={{ color: 'inherit' }}
             >
-              <RegularText component={'p'}>
+              <Typography variant="bodyRegular" component={'p'}>
                 {phoneNumberFormatting(pressCenterPhone)}
-              </RegularText>
+              </Typography>
             </Link>
           </StyledStack>
         )}
         {pressCenterEmail && (
           <StyledStack>
-            <BoldText>E-mail:</BoldText>
+            <DescBox>
+              <Typography variant="bodyMedium">E-mail:</Typography>
+            </DescBox>
             <Link href={`mailto:${pressCenterEmail}`} sx={{ color: 'inherit' }}>
-              <RegularText component={'p'}>{pressCenterEmail}</RegularText>
+              <Typography variant="bodyRegular" component={'p'}>
+                {pressCenterEmail}
+              </Typography>
             </Link>
           </StyledStack>
         )}
