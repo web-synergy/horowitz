@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { getSettings } from '../../api';
+import { useEffect, useState } from 'react'
+import { getSettings } from '../../api'
 
 const initialData = {
   location: '',
@@ -9,17 +9,15 @@ const initialData = {
   pressCenterEmail: '',
   about_part1: '',
   about_part2: '',
-};
+}
 
 const useContacts = (lang: string) => {
-  const [contacts, setContacts] = useState(initialData);
-
-  console.log(contacts);
+  const [contacts, setContacts] = useState(initialData)
   const fetchContactsData = async (): Promise<void> => {
     try {
-      const data = await getSettings(lang);
-      if (!data) throw new Error('could not fetch the data from that resource');
-      const { about, address, phone, email, pressCenter } = data[0].contacts;
+      const data = await getSettings(lang)
+      if (!data) throw new Error('could not fetch the data from that resource')
+      const { about, address, phone, email, pressCenter } = data[0].contacts
       setContacts({
         ...contacts,
         location: address,
@@ -29,17 +27,17 @@ const useContacts = (lang: string) => {
         pressCenterEmail: pressCenter.email,
         about_part1: about[0][0].children[0].text,
         about_part2: about[0][1].children[0].text,
-      });
+      })
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchContactsData();
-  }, [lang]);
+    fetchContactsData()
+  }, [lang])
 
-  return { contacts };
-};
+  return { contacts }
+}
 
-export default useContacts;
+export default useContacts

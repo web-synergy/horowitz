@@ -7,18 +7,20 @@ import {
   styled,
   useMediaQuery,
   useTheme,
-} from '@mui/material';
-import { FC } from 'react';
+} from '@mui/material'
+import { FC } from 'react'
 
-import { phoneNumberFormatting } from '../../../utils/helpers';
-import { DescBox, InfoDivider } from '../styled';
+import { t } from 'i18next'
+
+import { phoneNumberFormatting } from '../../../utils/helpers'
+import { DescBox, InfoDivider } from '../styled'
 
 interface ContactsDetailsProps {
-  location?: string;
-  phone?: string;
-  email?: string;
-  pressCenterPhone?: string;
-  pressCenterEmail?: string;
+  location?: string
+  phone?: string
+  email?: string
+  pressCenterPhone?: string
+  pressCenterEmail?: string
 }
 
 const StyledStack = styled(Stack)<StackProps>(({ theme }) => ({
@@ -30,7 +32,7 @@ const StyledStack = styled(Stack)<StackProps>(({ theme }) => ({
     flexDirection: 'row',
     columnGap: '24px',
   },
-}));
+}))
 
 const ContentStack = styled(Stack)<StackProps>(({ theme }) => ({
   [theme.breakpoints.up('xs')]: {
@@ -39,7 +41,7 @@ const ContentStack = styled(Stack)<StackProps>(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     rowGap: '18px',
   },
-}));
+}))
 
 const ContactsDetails: FC<ContactsDetailsProps> = ({
   location,
@@ -48,8 +50,8 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
   pressCenterPhone,
   pressCenterEmail,
 }) => {
-  const { breakpoints } = useTheme();
-  const isMobile = useMediaQuery(breakpoints.down('md'));
+  const { breakpoints } = useTheme()
+  const isMobile = useMediaQuery(breakpoints.down('md'))
 
   return (
     <Box>
@@ -57,7 +59,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
         {location && (
           <StyledStack>
             <DescBox>
-              <Typography variant="bodyMedium">Адреса:</Typography>
+              <Typography variant="bodyMedium">{t('contacts.address')}</Typography>
             </DescBox>
             <Typography variant="bodyRegular" component={'p'}>
               {location}
@@ -67,10 +69,10 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
         {phone && (
           <StyledStack>
             <DescBox>
-              <Typography variant="bodyMedium">Телефон:</Typography>
+              <Typography variant="bodyMedium">{t('contacts.phone')}</Typography>
             </DescBox>
             <Link
-              onClick={(e) => !isMobile && e.preventDefault()} // щоб запобігти перезавантаженню сторінки
+              onClick={e => !isMobile && e.preventDefault()} // щоб запобігти перезавантаженню сторінки
               href={isMobile ? `tel:${phone}` : ''}
               sx={{ color: 'inherit' }}
             >
@@ -95,10 +97,10 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
         {pressCenterPhone && (
           <StyledStack>
             <DescBox>
-              <Typography variant="bodyMedium">Прес-центр:</Typography>
+              <Typography variant="bodyMedium">{t('contacts.pressCenter')}</Typography>
             </DescBox>
             <Link
-              onClick={(e) => !isMobile && e.preventDefault()}
+              onClick={e => !isMobile && e.preventDefault()}
               href={isMobile ? `tel:${pressCenterPhone}` : ''}
               sx={{ color: 'inherit' }}
             >
@@ -123,7 +125,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
       </ContentStack>
       <InfoDivider variant="light" />
     </Box>
-  );
-};
+  )
+}
 
-export default ContactsDetails;
+export default ContactsDetails
