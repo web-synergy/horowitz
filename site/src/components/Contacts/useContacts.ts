@@ -7,8 +7,7 @@ const initialData = {
   email: '',
   pressCenterPhone: '',
   pressCenterEmail: '',
-  about_part1: '',
-  about_part2: '',
+  about: [],
 }
 
 const useContacts = (lang: string) => {
@@ -25,8 +24,7 @@ const useContacts = (lang: string) => {
         email,
         pressCenterPhone: pressCenter.phone,
         pressCenterEmail: pressCenter.email,
-        about_part1: about[0][0].children[0].text,
-        about_part2: about[0][1].children[0].text,
+        about,
       })
     } catch (error) {
       console.log(error)

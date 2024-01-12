@@ -1,47 +1,14 @@
-import {
-  Box,
-  Link,
-  Stack,
-  StackProps,
-  Typography,
-  styled,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material'
+import { Box, Link, Typography, useMediaQuery, useTheme } from '@mui/material'
+
+import { ContactsDetailsProps } from '@/types/сontactsTypes'
 import { FC } from 'react'
 
 import { t } from 'i18next'
 
 import { phoneNumberFormatting } from '../../../utils/helpers'
+
 import { DescBox, InfoDivider } from '../styled'
-
-interface ContactsDetailsProps {
-  location?: string
-  phone?: string
-  email?: string
-  pressCenterPhone?: string
-  pressCenterEmail?: string
-}
-
-const StyledStack = styled(Stack)<StackProps>(({ theme }) => ({
-  [theme.breakpoints.up('xs')]: {
-    flexDirection: 'column',
-    rowGap: '8px',
-  },
-  [theme.breakpoints.up('md')]: {
-    flexDirection: 'row',
-    columnGap: '24px',
-  },
-}))
-
-const ContentStack = styled(Stack)<StackProps>(({ theme }) => ({
-  [theme.breakpoints.up('xs')]: {
-    rowGap: '24px',
-  },
-  [theme.breakpoints.up('md')]: {
-    rowGap: '18px',
-  },
-}))
+import { ContentStack, StyledStack } from './styled'
 
 const ContactsDetails: FC<ContactsDetailsProps> = ({
   location,

@@ -1,12 +1,4 @@
-interface AboutText {
-  text: string
-}
-interface AboutChildren {
-  children: AboutText[]
-}
-interface AboutSettings extends Array<AboutChildren> {}
-
-interface SettingsResp {
+export interface SettingsResp {
   contacts: {
     address: string
     phone: string
@@ -15,7 +7,7 @@ interface SettingsResp {
       phone: string
       email: string
     }
-    about: AboutSettings[]
+    about: []
   }
   logo: string
   sociable: {
@@ -30,4 +22,10 @@ interface SettingsResp {
   }
 }
 
-export default SettingsResp
+export interface ContactsDetailsProps {
+  location?: string
+  phone?: string
+  email?: string
+  pressCenterPhone?: string
+  pressCenterEmail?: string
+}
