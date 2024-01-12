@@ -3,6 +3,7 @@ export enum Routes {
   ABOUT = 'about',
   DETAILS = 'details',
   KYIV_GENEVA = 'kyiv-geneva',
+  ADMINISTRATION = 'administration',
   ARCHIVE = 'archive',
   HOROWITZ = 'horowitz',
   COMPETITION = 'competition',

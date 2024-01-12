@@ -2,20 +2,20 @@ import { Routes } from '@/types/routes.d';
 
 export default {
   navigation: {
-    main: 'translate',
     [Routes.HOME]: 'Home',
     [Routes.ABOUT]: 'About Us',
-    [Routes.DETAILS]: 'Horowitz competition',
-    [Routes.KYIV_GENEVA]: 'Kyiv Geneva competition',
-    [Routes.HOROWITZ]: 'Volodimir Horowitz',
+    [Routes.DETAILS]: 'Horowitz Competition',
+    [Routes.ADMINISTRATION]: 'Administrative Group',
+    [Routes.KYIV_GENEVA]: 'Horowitz Competition Kyiv-Geneva',
+    [Routes.HOROWITZ]: 'Vladimir Horowitz',
     [Routes.COMPETITION]: 'Competitions',
     [Routes.PROJECTS]: 'Projects',
-    [Routes.MASTER_CLASS]: 'Master classes',
-    [Routes.SUMMER_SCHOOL]: 'Summer musician academy',
-    [Routes.VIRTUOSES]: 'visionToolirtuoses',
+    [Routes.MASTER_CLASS]: 'Masterclasses',
+    [Routes.SUMMER_SCHOOL]: 'Summer Music Academy',
+    [Routes.VIRTUOSES]: 'Virtuosos of the Planet',
     [Routes.NEWS]: 'News',
     [Routes.CONTACTS]: 'Contacts',
-    [Routes.ARCHIVE]: 'Archive',
+    [Routes.ARCHIVE]: 'Website-archive',
   },
   search: 'Search',
 };
