@@ -7,7 +7,7 @@ import { localeLocalStorageKey } from '../../libs/localStorageKeys';
 import { lang } from '../../libs/searchParamsKey';
 import { languages } from './../../../../languages';
 
-const langByDefault = languages.find((lang) => lang.default)?.title || 'ua';
+const langByDefault = languages.find((lang) => lang.default)?.id || 'ua';
 
 const customPath = {
   name: 'fromPath',
