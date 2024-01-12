@@ -7,6 +7,7 @@ import { t } from 'i18next'
 
 import { phoneNumberFormatting } from '../../../utils/helpers'
 
+import { Link as RouterLink } from 'react-router-dom'
 import { DescBox, InfoDivider } from '../styled'
 import { ContentStack, StyledStack } from './styled'
 
@@ -38,11 +39,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
             <DescBox>
               <Typography variant="bodyMedium">{t('contacts.phone')}</Typography>
             </DescBox>
-            <Link
-              onClick={e => !isMobile && e.preventDefault()} // щоб запобігти перезавантаженню сторінки
-              href={isMobile ? `tel:${phone}` : ''}
-              sx={{ color: 'inherit' }}
-            >
+            <Link component={RouterLink} to={isMobile ? `tel:${phone}` : ''}>
               <Typography variant="bodyRegular" component={'p'}>
                 {phoneNumberFormatting(phone)}
               </Typography>
@@ -54,7 +51,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
             <DescBox>
               <Typography variant="bodyMedium">E-mail:</Typography>
             </DescBox>
-            <Link href={`mailto:${email}`} sx={{ color: 'inherit' }}>
+            <Link href={`mailto:${email}`}>
               <Typography variant="bodyRegular" component={'p'}>
                 {email}
               </Typography>
@@ -66,11 +63,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
             <DescBox>
               <Typography variant="bodyMedium">{t('contacts.pressCenter')}</Typography>
             </DescBox>
-            <Link
-              onClick={e => !isMobile && e.preventDefault()}
-              href={isMobile ? `tel:${pressCenterPhone}` : ''}
-              sx={{ color: 'inherit' }}
-            >
+            <Link component={RouterLink} to={isMobile ? `tel:${pressCenterPhone}` : ''}>
               <Typography variant="bodyRegular" component={'p'}>
                 {phoneNumberFormatting(pressCenterPhone)}
               </Typography>
@@ -82,7 +75,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
             <DescBox>
               <Typography variant="bodyMedium">E-mail:</Typography>
             </DescBox>
-            <Link href={`mailto:${pressCenterEmail}`} sx={{ color: 'inherit' }}>
+            <Link href={`mailto:${pressCenterEmail}`}>
               <Typography variant="bodyRegular" component={'p'}>
                 {pressCenterEmail}
               </Typography>

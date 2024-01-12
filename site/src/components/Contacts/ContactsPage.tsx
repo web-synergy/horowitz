@@ -14,10 +14,16 @@ import useContacts from './useContacts'
 
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 
+const components: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <Typography variant="bodyRegular" component={'p'}>
+        {children}
+      </Typography>
+    ),
+  },
+}
 const ContactsPage: FC = () => {
-  // TODO
-  // - add PortableText component
-  // - use Router Link for links
   const {
     i18n: { language },
     t,
@@ -25,16 +31,6 @@ const ContactsPage: FC = () => {
 
   const { contacts } = useContacts(language)
   const { location, phone, email, pressCenterEmail, pressCenterPhone, about } = contacts
-
-  const components: PortableTextComponents = {
-    block: {
-      normal: ({ children }) => (
-        <Typography variant="bodyRegular" component={'p'}>
-          {children}
-        </Typography>
-      ),
-    },
-  }
 
   return (
     <Section component={'section'}>
