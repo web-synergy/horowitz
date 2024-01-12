@@ -1,10 +1,11 @@
 import PageTemplate from '../Common/PageTemplate';
-const NotFoundPage = () => {
+
+const KyivGenevaPage = () => {
   return (
     <PageTemplate>
-      <p>Not Found Page</p>
+      <div>KyivGenevaPage</div>
     </PageTemplate>
   );
 };
 
-export default NotFoundPage;
+export default KyivGenevaPage;

@@ -1,10 +1,11 @@
 import PageTemplate from '../Common/PageTemplate';
-const NotFoundPage = () => {
+
+const CompetitionPage = () => {
   return (
     <PageTemplate>
-      <p>Not Found Page</p>
+      <div>Competition Page</div>
     </PageTemplate>
   );
 };
 
-export default NotFoundPage;
+export default CompetitionPage;

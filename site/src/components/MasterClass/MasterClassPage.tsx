@@ -1,10 +1,11 @@
 import PageTemplate from '../Common/PageTemplate';
-const NotFoundPage = () => {
+
+const MasterClassPage = () => {
   return (
     <PageTemplate>
-      <p>Not Found Page</p>
+      <div>MasterClassPage</div>
     </PageTemplate>
   );
 };
 
-export default NotFoundPage;
+export default MasterClassPage;

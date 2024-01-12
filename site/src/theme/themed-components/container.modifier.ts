@@ -1,4 +1,4 @@
-import { Components, Theme } from '@mui/material/styles'
+import { Components, Theme } from '@mui/material/styles';
 
 export const MuiContainer: Components<Theme>['MuiContainer'] = {
   styleOverrides: {
@@ -9,11 +9,14 @@ export const MuiContainer: Components<Theme>['MuiContainer'] = {
 
         //settings for tablet container: 0px - 767px
         minWidth: 320,
+        paddingLeft: 16,
+        paddingRight: 16,
       },
 
       [theme.breakpoints.up('md')]: {
         //settings for tablet container: 768px - 1279px
-        padding: '0 40px',
+        paddingLeft: 40,
+        paddingRight: 40,
       },
 
       [theme.breakpoints.up('lg')]: {
@@ -21,7 +24,9 @@ export const MuiContainer: Components<Theme>['MuiContainer'] = {
         padding: '0 80px',
         maxWidth: 1280,
         margin: '0 auto',
+        paddingLeft: 80,
+        paddingRight: 80,
       },
     }),
   },
-}
+};

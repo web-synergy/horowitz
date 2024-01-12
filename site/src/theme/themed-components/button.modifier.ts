@@ -4,6 +4,7 @@ declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
     primary: true;
     secondary: true;
+    link: true;
   }
 }
 export const MuiButton: Components<Theme>['MuiButton'] = {
@@ -84,6 +85,33 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
         '&:active': {},
 
         '&:disabled': {},
+      }),
+    },
+    {
+      props: { variant: 'link' },
+      style: ({ theme }) => ({
+        padding: 0,
+        backgroundColor: 'transparent',
+        display: 'block',
+
+        color: 'inherit',
+
+        '&:hover': {
+          color: theme.palette.primary.main,
+          backgroundColor: 'transparent',
+        },
+
+        '&:focus-visible': {
+          backgroundColor: 'transparent',
+        },
+
+        '&:active': {
+          backgroundColor: 'transparent',
+        },
+
+        '&:disabled': {
+          backgroundColor: 'transparent',
+        },
       }),
     },
   ],

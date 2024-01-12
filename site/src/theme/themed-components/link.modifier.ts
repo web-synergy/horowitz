@@ -10,7 +10,7 @@ export const MuiLink: Components<Theme>['MuiLink'] = {
     root: ({ theme }) => ({
       display: 'inline-flex',
       gap: 8,
-      color: theme.palette.common.black,
+      color: 'inherit',
 
       '&:hover': {
         color: theme.palette.primary.main,
