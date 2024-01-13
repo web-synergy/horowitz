@@ -13,6 +13,7 @@ import { ContentWrapper, InfoDivider } from './styled'
 import useContacts from './useContacts'
 
 import { PortableText, PortableTextComponents } from '@portabletext/react'
+import SocialMedia from '../Common/SocialMedia'
 
 const components: PortableTextComponents = {
   block: {
@@ -53,9 +54,7 @@ const ContactsPage: FC = () => {
           <Box sx={{ width: '100%' }}>
             <ContactsDetails {...{ pressCenterPhone, pressCenterEmail }} />
           </Box>
-          <Typography textTransform={'uppercase'}>
-            There should be icons for social networks{' '}
-          </Typography>
+          <SocialMedia />
         </ContentWrapper>
       </Container>
     </Section>
