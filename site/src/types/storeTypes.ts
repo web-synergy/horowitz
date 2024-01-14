@@ -5,5 +5,10 @@ export interface SettingsStoreState {
     youTube?: string
   }
   about: never[]
+  contacts: {
+    address: string
+    phone: string
+    email: string
+  }
   fetchSettings: (language: string) => Promise<void>
 }
