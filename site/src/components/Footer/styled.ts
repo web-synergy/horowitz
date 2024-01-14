@@ -16,3 +16,14 @@ export const DetailsStack = styled(Stack)<StackProps>(() => ({
   flexDirection: 'row',
   columnGap: '16px',
 }))
+
+export const StyledStack = styled(Stack)<StackProps>(({ theme }) => ({
+  gap: '56px',
+  flexWrap: 'wrap',
+  [theme.breakpoints.up('xs')]: {
+    flexDirection: 'column',
+  },
+  [theme.breakpoints.only('md')]: {
+    flexDirection: 'row',
+  },
+}))

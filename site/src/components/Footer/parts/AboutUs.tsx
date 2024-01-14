@@ -22,7 +22,7 @@ const AboutUs: FC<AboutUsProps> = ({ about }) => {
   }
 
   return (
-    <Stack sx={{ rowGap: '24px', maxWidth: '222px' }}>
+    <Stack sx={{ rowGap: '24px', maxWidth: '235px' }}>
       <Box component={'img'} src={logo} alt="logo" width={'90px'} height={'110px'} />
       <PortableText value={about[0]} components={components} />
       <SocialMedia {...{ facebookLink, instagramLink, youtubeLink }} />
