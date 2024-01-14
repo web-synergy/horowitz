@@ -19,7 +19,7 @@ const Footer: FC<PropsWithChildren> = () => {
 
   const about = useSettingsStore(state => state.about)
   const contacts = useSettingsStore(state => state.contacts)
-  const { address: location, email, phone } = contacts
+  const { address: location, email, phone, pressCenter } = contacts
   const fetchData = useSettingsStore(state => state.fetchSettings)
 
   useEffect(() => {
@@ -29,10 +29,19 @@ const Footer: FC<PropsWithChildren> = () => {
   return (
     <Section>
       <Container component={'footer'}>
-        <Stack sx={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <Stack
+          sx={{
+            flexDirection: 'row',
+            // justifyContent: 'space-between',
+            // gap: '56px',
+            // flexWrap: 'wrap',
+          }}
+        >
           <AboutUs about={about} />
           <FooterContacts {...{ isMobile, location, email, phone }} />
-          <FooterPressCenter />
+          <FooterPressCenter
+            {...{ isMobile, phone: pressCenter.phone, email: pressCenter.email }}
+          />
         </Stack>
       </Container>
     </Section>

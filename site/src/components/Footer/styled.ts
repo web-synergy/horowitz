@@ -15,5 +15,4 @@ export const Section = styled(Box)(({ theme }) => ({
 export const DetailsStack = styled(Stack)<StackProps>(() => ({
   flexDirection: 'row',
   columnGap: '16px',
-  maxWidth: '364px',
 }))

@@ -20,7 +20,7 @@ const FooterContacts: FC<FooterContactsProps> = ({ location, email, phone, isMob
   const formattedPhoneNum = phoneNumberFormatting(phone, 3)
 
   return (
-    <Stack spacing={3}>
+    <Stack spacing={3} sx={{ maxWidth: '364px' }}>
       <Typography variant="subhead">{t(`navigation.${Routes.CONTACTS}`)}</Typography>
 
       <DetailsStack>
