@@ -9,6 +9,10 @@ export interface SettingsStoreState {
     address: string
     phone: string
     email: string
+    pressCenter: {
+      phone: string
+      email: string
+    }
   }
   fetchSettings: (language: string) => Promise<void>
 }

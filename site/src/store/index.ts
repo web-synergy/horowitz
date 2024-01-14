@@ -9,11 +9,15 @@ export const useSettingsStore = create<SettingsStoreState>()(set => ({
     address: '',
     phone: '',
     email: '',
+    pressCenter: {
+      email: '',
+      phone: '',
+    },
   },
   fetchSettings: async language => {
     try {
       const settings = await getSettings(language)
-      // console.log(settings[0].contacts)
+      console.log(settings[0].contacts)
 
       if (!settings) throw new Error('could not fetch the data from that resource')
       set({
