@@ -12,6 +12,7 @@ import { Section } from './styled'
 const Footer: FC<PropsWithChildren> = () => {
   const { breakpoints } = useTheme()
   const isMobile = useMediaQuery(breakpoints.down('md'))
+  const isTablet = useMediaQuery(breakpoints.down('lg'))
 
   const {
     i18n: { language },
@@ -22,6 +23,8 @@ const Footer: FC<PropsWithChildren> = () => {
   const { address: location, email, phone, pressCenter } = contacts
   const fetchData = useSettingsStore(state => state.fetchSettings)
 
+  console.log(isMobile)
+
   useEffect(() => {
     fetchData(language)
   }, [language])
@@ -29,20 +32,37 @@ const Footer: FC<PropsWithChildren> = () => {
   return (
     <Section>
       <Container component={'footer'}>
-        <Stack
-          sx={{
-            flexDirection: 'row',
-            // justifyContent: 'space-between',
-            // gap: '56px',
-            // flexWrap: 'wrap',
-          }}
-        >
-          <AboutUs about={about} />
-          <FooterContacts {...{ isMobile, location, email, phone }} />
-          <FooterPressCenter
-            {...{ isMobile, phone: pressCenter.phone, email: pressCenter.email }}
-          />
-        </Stack>
+        {isTablet ? (
+          <Stack sx={{ flexDirection: { xs: 'column', md: 'row' }, gap: '56px' }}>
+            <AboutUs about={about} />
+            <Stack
+              sx={{
+                flexDirection: { xs: 'column', md: 'row' },
+                gap: '56px',
+                flexWrap: 'wrap',
+              }}
+            >
+              <FooterContacts {...{ isMobile, location, email, phone }} />
+              <FooterPressCenter
+                {...{ isMobile, phone: pressCenter.phone, email: pressCenter.email }}
+              />
+            </Stack>
+          </Stack>
+        ) : (
+          <Stack
+            sx={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
+            <AboutUs about={about} />
+
+            <FooterContacts {...{ isMobile, location, email, phone }} />
+            <FooterPressCenter
+              {...{ isMobile, phone: pressCenter.phone, email: pressCenter.email }}
+            />
+          </Stack>
+        )}
       </Container>
     </Section>
   )
