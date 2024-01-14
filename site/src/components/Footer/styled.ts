@@ -1,4 +1,4 @@
-import { Box, styled } from '@mui/material'
+import { Box, Stack, StackProps, styled } from '@mui/material'
 
 export const Section = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.secondaryBlack,
@@ -10,4 +10,10 @@ export const Section = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     padding: '40px 0 40px',
   },
+}))
+
+export const DetailsStack = styled(Stack)<StackProps>(() => ({
+  flexDirection: 'row',
+  columnGap: '16px',
+  maxWidth: '364px',
 }))
