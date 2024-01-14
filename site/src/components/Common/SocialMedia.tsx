@@ -1,8 +1,5 @@
-import { useSettingsStore } from '@/store'
-import { useTranslation } from 'react-i18next'
-
 import { Box, Link, LinkProps, styled } from '@mui/material'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom'
 import SvgSpriteIcon from './SvgSpriteIcon'
 
@@ -16,34 +13,27 @@ const StyledLink = styled(Link)<LinkProps & RouterLinkProps>(({ theme }) => ({
   },
 }))
 
-const SocialMedia: FC = () => {
-  const {
-    i18n: { language },
-  } = useTranslation()
+interface SocialMediaProps {
+  facebookLink?: string
+  instagramLink?: string
+  youtubeLink?: string
+}
 
-  const socialMediaLinks = useSettingsStore(state => state.sociable)
-  const fetchSocialMediaLinks = useSettingsStore(state => state.fetchSettings)
-
-  const { facebook, instagram, youTube } = socialMediaLinks
-
-  useEffect(() => {
-    fetchSocialMediaLinks(language)
-  }, [])
-
+const SocialMedia: FC<SocialMediaProps> = ({ facebookLink, instagramLink, youtubeLink }) => {
   return (
     <Box sx={{ 'a:not(:last-child)': { marginRight: '16px' } }}>
-      {facebook && (
-        <StyledLink component={RouterLink} to={facebook} target="_blank">
+      {facebookLink && (
+        <StyledLink component={RouterLink} to={facebookLink} target="_blank">
           <SvgSpriteIcon icon="facebook" />
         </StyledLink>
       )}
-      {instagram && (
-        <StyledLink component={RouterLink} to={instagram} target="_blank">
+      {instagramLink && (
+        <StyledLink component={RouterLink} to={instagramLink} target="_blank">
           <SvgSpriteIcon icon="instagram" />
         </StyledLink>
       )}
-      {youTube && (
-        <StyledLink component={RouterLink} to={youTube} target="_blank">
+      {youtubeLink && (
+        <StyledLink component={RouterLink} to={youtubeLink} target="_blank">
           <SvgSpriteIcon icon="youtube" />
         </StyledLink>
       )}

@@ -20,6 +20,7 @@ export interface SettingsResp {
     _type: string
     _id: string
   }
+  about: never[]
 }
 
 export interface ContactsDetailsProps {

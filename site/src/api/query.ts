@@ -42,7 +42,8 @@ export const settingsQuery = groq`*[_type == 'settings']{
     email,
     'address':address[_key ==$language].value,
      pressCenter
-  }
+  },
+  'about':about[_key ==$language].value,
 
 }`
 

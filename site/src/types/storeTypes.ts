@@ -4,5 +4,6 @@ export interface SettingsStoreState {
     instagram?: string
     youTube?: string
   }
+  about: never[]
   fetchSettings: (language: string) => Promise<void>
 }
