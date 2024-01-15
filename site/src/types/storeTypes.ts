@@ -1,8 +1,8 @@
+import { SociableType, ContactsType } from './сontactsTypes';
+
 export interface SettingsStoreState {
-  sociable: {
-    facebook?: string
-    instagram?: string
-    youTube?: string
-  }
-  fetchSettings: (language: string) => Promise<void>
+  sociable: SociableType | null;
+  logo: string | null;
+  contacts: { [key: string]: ContactsType | null };
+  fetchSettings: (language: string) => Promise<void>;
 }

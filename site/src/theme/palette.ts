@@ -33,14 +33,14 @@ declare module '@mui/material/styles' {
 
 export const palette: PaletteOptions = {
   common: {
-    black: '#050505',
+    black: '#080708',
     white: '#F5F5F5',
   },
   primary: {
     light: '#F9B33F',
     main: '#D9A145',
     dark: '#CB8D2A',
-    contrastText: '#050505',
+    contrastText: '#080708',
   },
   action: {
     hover: '#F9B33F',
@@ -49,7 +49,7 @@ export const palette: PaletteOptions = {
     disabled: '#E0E0E0',
   },
   text: {
-    primary: '#050505',
+    primary: '#080708',
     secondary: '#F5F5F5',
   },
   background: {
