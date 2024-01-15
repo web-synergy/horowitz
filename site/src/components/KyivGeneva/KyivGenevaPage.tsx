@@ -1,9 +1,12 @@
 import PageTemplate from '../Common/PageTemplate';
+import { Container } from '@mui/material';
 
 const KyivGenevaPage = () => {
   return (
     <PageTemplate>
-      <div>KyivGenevaPage</div>
+      <Container>
+        <div>KyivGenevaPage</div>
+      </Container>
     </PageTemplate>
   );
 };

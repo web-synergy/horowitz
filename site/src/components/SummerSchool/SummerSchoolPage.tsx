@@ -1,9 +1,12 @@
 import PageTemplate from '../Common/PageTemplate';
+import { Container } from '@mui/material';
 
 const SummerSchoolPage = () => {
   return (
     <PageTemplate>
-      <div>SummerSchool</div>;
+      <Container>
+        <div>SummerSchool</div>;
+      </Container>
     </PageTemplate>
   );
 };

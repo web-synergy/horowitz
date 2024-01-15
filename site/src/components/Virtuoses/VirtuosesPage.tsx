@@ -1,9 +1,12 @@
 import PageTemplate from '../Common/PageTemplate';
+import { Container } from '@mui/material';
 
 const VirtuosesPage = () => {
   return (
     <PageTemplate>
-      <div>VirtuosesPage</div>
+      <Container>
+        <div>VirtuosesPage</div>
+      </Container>
     </PageTemplate>
   );
 };

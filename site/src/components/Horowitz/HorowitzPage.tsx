@@ -1,9 +1,12 @@
 import PageTemplate from '../Common/PageTemplate';
+import { Container } from '@mui/material';
 
 const HorowitzPage = () => {
   return (
     <PageTemplate>
-      <div>HorowitzPage</div>
+      <Container>
+        <div>HorowitzPage</div>
+      </Container>
     </PageTemplate>
   );
 };

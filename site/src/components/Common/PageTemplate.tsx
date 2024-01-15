@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from 'react';
-import { Container, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import { Offset } from './Offset';
 
 interface PageTemplateProps {
@@ -24,7 +24,7 @@ const PageTemplate: FC<PropsWithChildren<PageTemplateProps>> = ({
       }}
     >
       <Offset />
-      <Container>{children}</Container>
+      {children}
     </Box>
   );
 };

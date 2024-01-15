@@ -4,6 +4,7 @@ import { navigation } from '@/config/routes/navigation';
 import { NavList } from '../styled';
 import MainMenu from './MainMenu';
 import { Routes } from '@/types/routes.d';
+import { useSettingsStore } from '@/store';
 
 interface NavigationProps {
   onCloseMobileMenu?: () => void;
@@ -11,13 +12,17 @@ interface NavigationProps {
 
 const Navigation: FC<NavigationProps> = ({ onCloseMobileMenu }) => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const { t } = useTranslation();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
+  const { competitions } = useSettingsStore();
 
   const onOpenMenu = (panel: string) =>
     setActiveMenu((prev) => (prev === panel ? null : panel));
 
   // TODO: receive from admin
-  const competitionNav = [{ title: 'XIV Конкурс', slug: 'competition-XIV' }];
+  const competitionNav = competitions[language] ?? [];
 
   const navigationForRender = navigation.map((item) => {
     const children = item.children

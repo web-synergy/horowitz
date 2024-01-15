@@ -1,9 +1,12 @@
 import PageTemplate from '../Common/PageTemplate';
+import { Container } from '@mui/material';
 
 const AboutPage = () => {
   return (
     <PageTemplate>
-      <div>About Competition</div>
+      <Container>
+        <div>About Competition</div>
+      </Container>
     </PageTemplate>
   );
 };
