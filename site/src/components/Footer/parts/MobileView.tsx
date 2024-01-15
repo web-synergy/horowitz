@@ -1,6 +1,6 @@
 import { useSettingsStore } from '@/store'
 import { Stack, useMediaQuery, useTheme } from '@mui/material'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { StyledStack } from '../styled'
 import AboutUs from './AboutUs'
@@ -17,13 +17,11 @@ const MobileView: FC = () => {
     i18n: { language },
   } = useTranslation()
 
-  const contacts = useSettingsStore(state => state.contacts)
-  const { address: location, email, phone, pressCenter } = contacts
-  const fetchData = useSettingsStore(state => state.fetchSettings)
+  const contacts = useSettingsStore(state => state.contacts[language])
 
-  useEffect(() => {
-    fetchData(language)
-  }, [language])
+  if (!contacts) return null
+
+  const { address: location, email, phone, pressCenter } = contacts
 
   return (
     <>

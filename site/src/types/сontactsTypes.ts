@@ -7,13 +7,13 @@ export interface SettingsResp {
 
 export interface ContactsType {
   address: string
-  phone: string
+  about: []
   email: string
+  phone: string
   pressCenter: {
     phone: string
     email: string
   }
-  about: []
 }
 
 export interface CompetitionsMenu {

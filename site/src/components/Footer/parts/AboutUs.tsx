@@ -3,7 +3,6 @@ import { FC } from 'react'
 
 import SocialMedia from '@/components/Common/SocialMedia'
 import { useSettingsStore } from '@/store'
-import logo from '../temp/logo.svg'
 
 interface AboutUsProps {
   about: string
@@ -11,15 +10,16 @@ interface AboutUsProps {
 
 const AboutUs: FC<AboutUsProps> = ({ about }) => {
   const mediaLinks = useSettingsStore(state => state.sociable)
+  const logo = useSettingsStore(state => state.logo)
+  if (!mediaLinks || !logo) return null
 
-  const { facebook: facebookLink, instagram: instagramLink, youTube: youtubeLink } = mediaLinks
+  const { facebook, instagram, youTube } = mediaLinks
 
   return (
     <Stack sx={{ rowGap: '24px', maxWidth: '235px' }}>
       <Box component={'img'} src={logo} alt="logo" width={'90px'} height={'110px'} />
       <Typography variant="bodyLight">{about}</Typography>
-      {/* <PortableText value={about[0]} components={components} /> */}
-      <SocialMedia {...{ facebookLink, instagramLink, youtubeLink }} />
+      <SocialMedia {...{ facebook, instagram, youTube }} />
     </Stack>
   )
 }
