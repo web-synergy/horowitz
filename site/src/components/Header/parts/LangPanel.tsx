@@ -53,7 +53,6 @@ const LangPanel: FC<LangPanelProps> = ({ additionalClickFn }) => {
           checked={languages[1].id === language}
           key={languages[1].id}
           aria-label={`Вибрати англійську`}
-          sx={{ cursor: 'default' }}
         />
       </RadioGroup>
     </FormControl>

@@ -5,7 +5,7 @@ import enLocale from './locales/en/translation';
 import uaLocale from './locales/ua/translation';
 import { localeLocalStorageKey } from '../../libs/localStorageKeys';
 import { lang } from '../../libs/searchParamsKey';
-import { languages } from './../../../../languages';
+import { languages } from '#root/languages';
 
 const langByDefault = languages.find((lang) => lang.default)?.id || 'ua';
 

@@ -1,8 +1,14 @@
 import { Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import logo from '../temp/logo.svg';
+import { useSettingsStore } from '@/store';
 
 const Logo = () => {
+  const { logo } = useSettingsStore();
+
+  if (!logo) {
+    return;
+  }
+
   return (
     <Link to={'/'} style={{ fontSize: 0 }}>
       <Box

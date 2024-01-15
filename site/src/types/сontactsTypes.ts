@@ -1,31 +1,30 @@
 export interface SettingsResp {
-  contacts: {
-    address: string
-    phone: string
-    email: string
-    pressCenter: {
-      phone: string
-      email: string
-    }
-    about: []
-  }
-  logo: string
-  sociable: {
-    instagram: string
-    _updatedAt: string
-    _createdAt: string
-    facebook: string
-    youTube: string
-    _rev: string
-    _type: string
-    _id: string
-  }
+  contacts: ContactsType;
+  logo: string;
+  sociable: SociableType;
+}
+
+export interface ContactsType {
+  address: string;
+  phone: string;
+  email: string;
+  pressCenter: {
+    phone: string;
+    email: string;
+  };
+  about: [];
+}
+
+export interface SociableType {
+  instagram: string;
+  facebook: string;
+  youTube: string;
 }
 
 export interface ContactsDetailsProps {
-  location?: string
-  phone?: string
-  email?: string
-  pressCenterPhone?: string
-  pressCenterEmail?: string
+  location?: string;
+  phone?: string;
+  email?: string;
+  pressCenterPhone?: string;
+  pressCenterEmail?: string;
 }
