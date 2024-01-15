@@ -7,11 +7,10 @@ import { Box, Container, Typography } from '@mui/material'
 import Breadcrumbs from '../Common/Breadcrumbs'
 import { Offset } from '../Common/Offset'
 import ContactsDetails from './parts/ContactsDetails'
-import Section from './parts/Section'
-import { ContentWrapper, InfoDivider } from './styled'
 
-import useContacts from './useContacts'
+import { ContentWrapper, InfoDivider, Section } from './styled'
 
+import { useSettingsStore } from '@/store'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import SocialMedia from '../Common/SocialMedia'
 
@@ -30,8 +29,10 @@ const ContactsPage: FC = () => {
     t,
   } = useTranslation()
 
-  const { contacts } = useContacts(language)
-  const { location, phone, email, pressCenterEmail, pressCenterPhone, about } = contacts
+  const contacts = useSettingsStore(state => state.contacts[language])
+  if (!contacts) return null
+
+  const { address: location, phone, email, pressCenter, about } = contacts
 
   return (
     <Section component={'section'}>
@@ -52,7 +53,10 @@ const ContactsPage: FC = () => {
             <ContactsDetails {...{ location, phone, email }} />
           </Box>
           <Box sx={{ width: '100%' }}>
-            <ContactsDetails {...{ pressCenterPhone, pressCenterEmail }} />
+            <ContactsDetails
+              pressCenterPhone={pressCenter.phone}
+              pressCenterEmail={pressCenter.email}
+            />
           </Box>
           <SocialMedia />
         </ContentWrapper>
