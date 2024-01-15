@@ -1,13 +1,10 @@
-import { useSettingsStore } from '@/store';
+import { useSettingsStore } from '@/store'
 // import { useTranslation } from 'react-i18next';
 
-import { Box, Link, LinkProps, styled } from '@mui/material';
-import { FC } from 'react';
-import {
-  Link as RouterLink,
-  LinkProps as RouterLinkProps,
-} from 'react-router-dom';
-import SvgSpriteIcon from './SvgSpriteIcon';
+import { Box, Link, LinkProps, styled } from '@mui/material'
+import { FC } from 'react'
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom'
+import SvgSpriteIcon from './SvgSpriteIcon'
 
 const StyledLink = styled(Link)<LinkProps & RouterLinkProps>(({ theme }) => ({
   border: `1px solid ${theme.palette.common.white}`,
@@ -17,14 +14,14 @@ const StyledLink = styled(Link)<LinkProps & RouterLinkProps>(({ theme }) => ({
   '&:hover': {
     borderColor: theme.palette.action.focus,
   },
-}));
+}))
 
 const SocialMedia: FC = () => {
   // const {
   //   i18n: { language },
   // } = useTranslation();
 
-  const socialMediaLinks = useSettingsStore((state) => state.sociable);
+  const socialMediaLinks = useSettingsStore(state => state.sociable)
   // const fetchSocialMediaLinks = useSettingsStore(
   //   (state) => state.fetchSettings
   // );
@@ -33,8 +30,8 @@ const SocialMedia: FC = () => {
   //   fetchSocialMediaLinks(language);
   // }, []);
 
-  if (!socialMediaLinks) return;
-  const { facebook, instagram, youTube } = socialMediaLinks;
+  if (!socialMediaLinks) return
+  const { facebook, instagram, youTube } = socialMediaLinks
 
   return (
     <Box sx={{ 'a:not(:last-child)': { marginRight: '16px' } }}>
@@ -50,7 +47,7 @@ const SocialMedia: FC = () => {
         <SvgSpriteIcon icon="youtube" />
       </StyledLink>
     </Box>
-  );
-};
+  )
+}
 
-export default SocialMedia;
+export default SocialMedia

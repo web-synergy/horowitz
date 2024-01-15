@@ -7,11 +7,12 @@ import { Box, Container, Typography } from '@mui/material'
 import Breadcrumbs from '../Common/Breadcrumbs'
 import { Offset } from '../Common/Offset'
 import ContactsDetails from './parts/ContactsDetails'
-import Section from './parts/Section'
-import { ContentWrapper, InfoDivider } from './styled'
+
+import { ContentWrapper, InfoDivider, Section } from './styled'
 
 import useContacts from './useContacts'
 
+import { useSettingsStore } from '@/store'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import SocialMedia from '../Common/SocialMedia'
 
@@ -32,6 +33,9 @@ const ContactsPage: FC = () => {
 
   const { contacts } = useContacts(language)
   const { location, phone, email, pressCenterEmail, pressCenterPhone, about } = contacts
+
+  const mediaLinks = useSettingsStore(state => state.sociable)
+  const { facebook: facebookLink, instagram: instagramLink, youTube: youtubeLink } = mediaLinks
 
   return (
     <Section component={'section'}>
@@ -54,7 +58,7 @@ const ContactsPage: FC = () => {
           <Box sx={{ width: '100%' }}>
             <ContactsDetails {...{ pressCenterPhone, pressCenterEmail }} />
           </Box>
-          <SocialMedia />
+          <SocialMedia {...{ facebookLink, instagramLink, youtubeLink }} />
         </ContentWrapper>
       </Container>
     </Section>
