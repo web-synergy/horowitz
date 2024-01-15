@@ -1,4 +1,5 @@
-import { Routes } from '@/types/routes.d'
+import { Routes } from '@/types/routes.d';
+import { Translations } from '@/types/translation';
 
 export default {
   navigation: {
@@ -17,10 +18,10 @@ export default {
     [Routes.CONTACTS]: 'Contacts',
     [Routes.ARCHIVE]: 'Website-archive',
   },
-  search: 'Search',
+  [Translations.SEARCH]: 'Search',
   contacts: {
     address: 'Address',
     phone: 'Phone',
     pressCenter: 'Press-center',
   },
-}
+};

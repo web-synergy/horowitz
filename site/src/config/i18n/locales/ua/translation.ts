@@ -1,4 +1,5 @@
-import { Routes } from '@/types/routes.d'
+import { Routes } from '@/types/routes.d';
+import { Translations } from '@/types/translation';
 
 export default {
   navigation: {
@@ -17,10 +18,10 @@ export default {
     [Routes.CONTACTS]: 'Контакти',
     [Routes.ARCHIVE]: 'Сайт-архів',
   },
-  search: 'Пошук',
+  [Translations.SEARCH]: 'Пошук',
   contacts: {
     address: 'Адреса',
     phone: 'Телефон',
     pressCenter: 'Прес-центр',
   },
-}
+};

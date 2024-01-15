@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
+import { Translations } from '@/types/translation.d';
 
 const Search = () => {
   const [search, setSearch] = useState('');
@@ -33,7 +34,7 @@ const Search = () => {
           <TextField
             value={search}
             onChange={onChangeSearch}
-            placeholder={t('search')}
+            placeholder={t(`${Translations.SEARCH}`)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">

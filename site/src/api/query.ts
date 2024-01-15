@@ -42,10 +42,9 @@ export const settingsQuery = groq`*[_type == 'settings']{
     email,
     'address':address[_key ==$language].value,
      pressCenter
+  },
+  "competitions": *[_type == 'competitions']{
+  'slug':slug.current,
+  'title':title[_key ==$language].value,
   }
 }`;
-
-export const competitionQuery = groq`*[_type == 'competitions']{
- 'slug':slug.current,
-  'title':title[_key ==$language].value,
-  }`;

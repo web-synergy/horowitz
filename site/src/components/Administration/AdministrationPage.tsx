@@ -1,14 +1,14 @@
 import PageTemplate from '../Common/PageTemplate';
 import { Container } from '@mui/material';
 
-const NewsPage = () => {
+const AdministrationPage = () => {
   return (
     <PageTemplate>
       <Container>
-        <div>NewsPage</div>
+        <div>Administration Page</div>
       </Container>
     </PageTemplate>
   );
 };
 
-export default NewsPage;
+export default AdministrationPage;

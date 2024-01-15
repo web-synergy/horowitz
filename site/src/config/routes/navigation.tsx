@@ -7,6 +7,7 @@ export const navigation: NavigationItemType[] = [
     children: [
       { title: Routes.DETAILS, slug: Routes.DETAILS },
       { title: Routes.HOROWITZ, slug: Routes.HOROWITZ },
+      { title: Routes.ADMINISTRATION, slug: Routes.ADMINISTRATION },
     ],
   },
   {

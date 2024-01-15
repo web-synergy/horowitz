@@ -11,6 +11,7 @@ import SummerSchoolPage from '../../components/SummerSchool/SummerSchoolPage';
 import VirtuosesPage from '../../components/Virtuoses/VirtuosesPage';
 import NewsPage from '../../components/News/NewsPage';
 import ContactsPage from '../../components/Contacts/ContactsPage';
+import AdministrationPage from '@/components/Administration/AdministrationPage';
 
 import { Routes } from '@/types/routes.d';
 
@@ -41,6 +42,7 @@ const routes = createBrowserRouter([
       { path: Routes.VIRTUOSES, element: <VirtuosesPage /> },
       { path: Routes.NEWS, element: <NewsPage /> },
       { path: Routes.CONTACTS, element: <ContactsPage /> },
+      { path: Routes.ADMINISTRATION, element: <AdministrationPage /> },
     ],
   },
   {

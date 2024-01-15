@@ -2,6 +2,7 @@ export interface SettingsResp {
   contacts: ContactsType;
   logo: string;
   sociable: SociableType;
+  competitions: CompetitionsMenu[];
 }
 
 export interface ContactsType {
@@ -15,6 +16,10 @@ export interface ContactsType {
   about: [];
 }
 
+export interface CompetitionsMenu {
+  title: string;
+  slug: string;
+}
 export interface SociableType {
   instagram: string;
   facebook: string;
