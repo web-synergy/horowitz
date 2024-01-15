@@ -9,17 +9,14 @@ interface AboutUsProps {
 }
 
 const AboutUs: FC<AboutUsProps> = ({ about }) => {
-  const mediaLinks = useSettingsStore(state => state.sociable)
   const logo = useSettingsStore(state => state.logo)
-  if (!mediaLinks || !logo) return null
-
-  const { facebook, instagram, youTube } = mediaLinks
+  if (!logo) return null
 
   return (
     <Stack sx={{ rowGap: '24px', maxWidth: '235px' }}>
       <Box component={'img'} src={logo} alt="logo" width={'90px'} height={'110px'} />
       <Typography variant="bodyLight">{about}</Typography>
-      <SocialMedia {...{ facebook, instagram, youTube }} />
+      <SocialMedia />
     </Stack>
   )
 }

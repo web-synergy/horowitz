@@ -10,8 +10,6 @@ import ContactsDetails from './parts/ContactsDetails'
 
 import { ContentWrapper, InfoDivider, Section } from './styled'
 
-import useContacts from './useContacts'
-
 import { useSettingsStore } from '@/store'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import SocialMedia from '../Common/SocialMedia'
@@ -31,11 +29,10 @@ const ContactsPage: FC = () => {
     t,
   } = useTranslation()
 
-  const { contacts } = useContacts(language)
-  const { location, phone, email, pressCenterEmail, pressCenterPhone, about } = contacts
+  const contacts = useSettingsStore(state => state.contacts[language])
+  if (!contacts) return null
 
-  const mediaLinks = useSettingsStore(state => state.sociable)
-  const { facebook: facebookLink, instagram: instagramLink, youTube: youtubeLink } = mediaLinks
+  const { address: location, phone, email, pressCenter, about } = contacts
 
   return (
     <Section component={'section'}>
@@ -56,9 +53,12 @@ const ContactsPage: FC = () => {
             <ContactsDetails {...{ location, phone, email }} />
           </Box>
           <Box sx={{ width: '100%' }}>
-            <ContactsDetails {...{ pressCenterPhone, pressCenterEmail }} />
+            <ContactsDetails
+              pressCenterPhone={pressCenter.phone}
+              pressCenterEmail={pressCenter.email}
+            />
           </Box>
-          <SocialMedia {...{ facebookLink, instagramLink, youtubeLink }} />
+          <SocialMedia />
         </ContentWrapper>
       </Container>
     </Section>

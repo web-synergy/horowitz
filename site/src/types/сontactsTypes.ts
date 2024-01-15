@@ -7,7 +7,7 @@ export interface SettingsResp {
 
 export interface ContactsType {
   address: string
-  about: []
+  about: never[]
   email: string
   phone: string
   pressCenter: {

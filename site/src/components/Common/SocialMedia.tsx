@@ -1,4 +1,5 @@
-import { SociableType } from '@/types/сontactsTypes'
+import { useSettingsStore } from '@/store'
+
 import { Box, Link, LinkProps, styled } from '@mui/material'
 import { FC } from 'react'
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom'
@@ -14,7 +15,11 @@ const StyledLink = styled(Link)<LinkProps & RouterLinkProps>(({ theme }) => ({
   },
 }))
 
-const SocialMedia: FC<SociableType> = ({ facebook, instagram, youTube }) => {
+const SocialMedia: FC = () => {
+  const mediaLinks = useSettingsStore(state => state.sociable)
+  if (!mediaLinks) return null
+  const { facebook, instagram, youTube } = mediaLinks
+
   return (
     <Box sx={{ 'a:not(:last-child)': { marginRight: '16px' } }}>
       <StyledLink component={RouterLink} to={facebook} target="_blank">
