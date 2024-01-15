@@ -1,12 +1,12 @@
-import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon'
+import { phoneNumberFormatting } from '@/utils/helpers'
+
 import { Routes } from '@/types/routes.d'
-import { Box, Stack, Typography } from '@mui/material'
 import { t } from 'i18next'
 import { FC } from 'react'
-import { DetailsStack } from '../styled'
 
-import { phoneNumberFormatting } from '@/utils/helpers'
+import { Box, Stack, Typography } from '@mui/material'
 import EmailDetails from './EmailDetails'
+import LocationDetails from './LocationDetails'
 import PhoneDetails from './PhoneDetails'
 
 interface FooterContactsProps {
@@ -23,10 +23,7 @@ const FooterContacts: FC<FooterContactsProps> = ({ location, email, phone, isMob
     <Stack spacing={3} sx={{ maxWidth: '364px' }}>
       <Typography variant="subhead">{t(`navigation.${Routes.CONTACTS}`)}</Typography>
 
-      <DetailsStack>
-        <SvgSpriteIcon icon="location" />
-        <Typography variant="bodyRegular">{location}</Typography>
-      </DetailsStack>
+      <LocationDetails location={location} />
 
       <Box>
         <EmailDetails email={email} />

@@ -12,7 +12,7 @@ const EmailDetails: FC<EmailDetailsProps> = ({ email }) => {
     <Link href={`mailto:${email}`}>
       <DetailsStack>
         <SvgSpriteIcon icon="mail" />
-        <Typography variant="bodyRegular" component={'p'}>
+        <Typography variant="bodyLight" component={'p'}>
           {email}
         </Typography>
       </DetailsStack>

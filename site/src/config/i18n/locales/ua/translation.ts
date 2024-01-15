@@ -1,5 +1,5 @@
-import { Routes } from '@/types/routes.d';
-import { Translations } from '@/types/translation.d';
+import { Routes } from '@/types/routes.d'
+import { Translations } from '@/types/translation.d'
 
 export default {
   navigation: {
@@ -24,4 +24,5 @@ export default {
     phone: 'Телефон',
     pressCenter: 'Прес-центр',
   },
-};
+  institutional_name: 'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
+}

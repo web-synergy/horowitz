@@ -1,13 +1,15 @@
-import { Box, Typography } from '@mui/material'
 import { FC } from 'react'
+
+import { Box } from '@mui/material'
+import { CopyrightTypography } from '../styled'
 
 const Copyright: FC = () => {
   return (
-    <Box sx={{ textAlign: 'center', marginTop: '56px', color: theme => theme.palette.neutral[30] }}>
-      <Typography variant="caption">
+    <Box sx={{ textAlign: 'center', marginTop: '56px' }}>
+      <CopyrightTypography>
         © 2024, International Сompetition for Young Pianists in Memory of Vladimir Horowitz, All
         right reserved.
-      </Typography>
+      </CopyrightTypography>
     </Box>
   )
 }

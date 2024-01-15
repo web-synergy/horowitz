@@ -11,11 +11,5 @@ export default defineType({
       type: 'image',
       validation: (Rule) => Rule.error('Обовʼязкове поле').required(),
     }),
-    defineField({
-      name: 'about',
-      title: 'Про нас',
-      type: 'internationalizedArrayContent',
-      validation: (Rule) => Rule.error('Обовʼязкове поле').required(),
-    }),
   ],
 })

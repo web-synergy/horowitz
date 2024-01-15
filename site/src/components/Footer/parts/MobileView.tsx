@@ -13,10 +13,10 @@ const MobileView: FC = () => {
   const isMobile = useMediaQuery(breakpoints.down('md'))
 
   const {
+    t,
     i18n: { language },
   } = useTranslation()
 
-  const about = useSettingsStore(state => state.about)
   const contacts = useSettingsStore(state => state.contacts)
   const { address: location, email, phone, pressCenter } = contacts
   const fetchData = useSettingsStore(state => state.fetchSettings)
@@ -28,7 +28,7 @@ const MobileView: FC = () => {
   return (
     <>
       <Stack sx={{ flexDirection: { xs: 'column', md: 'row' }, gap: '56px' }}>
-        <AboutUs about={about} />
+        <AboutUs about={t('institutional_name')} />
         <StyledStack>
           <FooterContacts {...{ isMobile, location, email, phone }} />
           <FooterPressCenter

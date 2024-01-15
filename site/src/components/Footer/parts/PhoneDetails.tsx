@@ -18,7 +18,7 @@ const PhoneDetails: FC<PhoneDetailsProps> = ({ phone, isMobile }) => {
     >
       <DetailsStack>
         <SvgSpriteIcon icon="phone" />
-        <Typography variant="bodyRegular" component={'p'}>
+        <Typography variant="bodyLight" component={'p'}>
           {phone}
         </Typography>
       </DetailsStack>

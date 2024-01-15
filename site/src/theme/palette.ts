@@ -55,7 +55,6 @@ export const palette: PaletteOptions = {
   background: {
     default: '#F5F5F5',
     paper: '#F5F5F5',
-    secondaryBlack: '#080708',
   },
   // divider: '#F2F2F2',
   neutral: {

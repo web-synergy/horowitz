@@ -12,10 +12,10 @@ const DesktopView: FC = () => {
   const isMobile = useMediaQuery(breakpoints.down('md'))
 
   const {
+    t,
     i18n: { language },
   } = useTranslation()
 
-  const about = useSettingsStore(state => state.about)
   const contacts = useSettingsStore(state => state.contacts)
   const { address: location, email, phone, pressCenter } = contacts
   const fetchData = useSettingsStore(state => state.fetchSettings)
@@ -23,10 +23,11 @@ const DesktopView: FC = () => {
   useEffect(() => {
     fetchData(language)
   }, [language])
+
   return (
     <>
       <Stack flexDirection={'row'} justifyContent={'space-between'}>
-        <AboutUs about={about} />
+        <AboutUs about={t('institutional_name')} />
         <FooterContacts {...{ isMobile, location, email, phone }} />
         <FooterPressCenter {...{ isMobile, phone: pressCenter.phone, email: pressCenter.email }} />
       </Stack>
