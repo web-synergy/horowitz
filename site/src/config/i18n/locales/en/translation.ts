@@ -1,5 +1,5 @@
 import { Routes } from '@/types/routes.d';
-import { Translations } from '@/types/translation.d';
+import { Translations, NotFound } from '@/types/translation.d';
 
 export default {
   navigation: {
@@ -23,5 +23,11 @@ export default {
     address: 'Address',
     phone: 'Phone',
     pressCenter: 'Press-center',
+  },
+  notFound: {
+    [NotFound.TITLE]: 'Sorry, but the page is not found.',
+    [NotFound.TEXT]:
+      'The page you are searching for, is deleted or temporary unavailable',
+    [NotFound.BTN]: 'Back to Home Page',
   },
 };

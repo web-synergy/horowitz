@@ -1,5 +1,5 @@
 import { Routes } from '@/types/routes.d';
-import { Translations } from '@/types/translation.d';
+import { Translations, NotFound } from '@/types/translation.d';
 
 export default {
   navigation: {
@@ -23,5 +23,11 @@ export default {
     address: 'Адреса',
     phone: 'Телефон',
     pressCenter: 'Прес-центр',
+  },
+  notFound: {
+    [NotFound.TITLE]: 'Вибачте, але сторінку не знайдено',
+    [NotFound.TEXT]:
+      'Сторінка, яку ви шукаєте, видалена або тимчасово недоступна',
+    [NotFound.BTN]: 'На головну сторінку',
   },
 };

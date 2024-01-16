@@ -4,3 +4,9 @@ export enum Translations {
   PHONE = 'phone',
   PRESS_CENTER = 'pressCenter',
 }
+
+export enum NotFound {
+  TITLE = 'title',
+  TEXT = 'text',
+  BTN = 'btn',
+}

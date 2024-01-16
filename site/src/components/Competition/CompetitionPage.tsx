@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSettingsStore } from '@/store';
@@ -12,7 +11,6 @@ const CompetitionPage = () => {
   const {
     i18n: { language },
   } = useTranslation();
-  // if ()
 
   const langCompetitions = competitions[language];
   const competitionName = pathname.slice(1);
