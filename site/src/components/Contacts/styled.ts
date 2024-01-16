@@ -16,7 +16,7 @@ export const ContentWrapper = styled(Stack)<StackProps>(({ theme }) => ({
 }))
 
 export const DescBox = styled(Box)<BoxProps>(() => ({
-  width: '113px',
+  width: '119px',
   flexShrink: 0,
 }))
 

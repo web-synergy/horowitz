@@ -27,7 +27,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
         {location && (
           <StyledStack>
             <DescBox>
-              <Typography variant="bodyMedium">{t('contacts.address')}</Typography>
+              <Typography variant="bodyMedium">{t('contacts.address')}:</Typography>
             </DescBox>
             <Typography variant="bodyRegular" component={'p'}>
               {location}
@@ -37,7 +37,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
         {phone && (
           <StyledStack>
             <DescBox>
-              <Typography variant="bodyMedium">{t('contacts.phone')}</Typography>
+              <Typography variant="bodyMedium">{t('contacts.phone')}:</Typography>
             </DescBox>
             <Link component={RouterLink} to={isMobile ? `tel:${phone}` : ''}>
               <Typography variant="bodyRegular" component={'p'}>
@@ -61,7 +61,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
         {pressCenterPhone && (
           <StyledStack>
             <DescBox>
-              <Typography variant="bodyMedium">{t('contacts.pressCenter')}</Typography>
+              <Typography variant="bodyMedium">{t('contacts.pressCenter')}:</Typography>
             </DescBox>
             <Link component={RouterLink} to={isMobile ? `tel:${pressCenterPhone}` : ''}>
               <Typography variant="bodyRegular" component={'p'}>
