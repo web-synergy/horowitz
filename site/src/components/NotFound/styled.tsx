@@ -4,7 +4,7 @@ import notFound from '@/assets/images/notFound.png';
 export const Wrapper = styled(Box)(({ theme }) => ({
   position: 'relative',
   textAlign: 'center',
-  marginBottom: 12,
+  marginBottom: 7,
 
   '&:after': {
     content: '""',

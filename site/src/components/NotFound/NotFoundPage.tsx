@@ -1,11 +1,5 @@
 import PageTemplate from '../Common/PageTemplate';
-import {
-  Container,
-  Typography,
-  useTheme,
-  useMediaQuery,
-  Button,
-} from '@mui/material';
+import { Container, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { NotFound } from '@/types/translation.d';
@@ -13,16 +7,13 @@ import { MainTitle, Wrapper } from './styled';
 
 const NotFoundPage = () => {
   const { t } = useTranslation();
-  const { breakpoints } = useTheme();
-  const isNotMobile = useMediaQuery(breakpoints.up('md'));
 
-  console.log(isNotMobile);
   return (
     <PageTemplate>
       <Container
         sx={{
-          paddingTop: { xs: '103px', md: '130px', lg: '159px' },
-          paddingBottom: { xs: 8, md: 10, lg: '100px' },
+          paddingTop: { xs: '100px', md: '130px', lg: 20 },
+          paddingBottom: { xs: '46px', md: 10, lg: '100px' },
           textAlign: 'center',
         }}
       >
@@ -32,17 +23,11 @@ const NotFoundPage = () => {
         <Typography
           component="h2"
           variant="h2"
-          // variant={isNotMobile ? 'h2' : 'subhead'}
-          mb={{ xs: '10px', md: 2, lg: '12px' }}
+          mb={{ xs: '6px', md: 2, lg: '12px' }}
         >
           {t(`notFound.${NotFound.TITLE}`)}
         </Typography>
-        <Typography
-          component={'p'}
-          variant="subhead"
-          // variant={isNotMobile ? 'subhead' : 'bodyRegular'}
-          mb={{ xs: 2, md: 5 }}
-        >
+        <Typography component={'p'} variant="subhead" mb={{ xs: 2, md: 5 }}>
           {t(`notFound.${NotFound.TEXT}`)}
         </Typography>
         <Button component={Link} to={'/'}>
