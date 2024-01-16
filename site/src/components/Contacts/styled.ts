@@ -23,3 +23,9 @@ export const DescBox = styled(Box)<BoxProps>(() => ({
 export const InfoDivider = styled(Divider)<DividerProps>(() => ({
   marginTop: '24px',
 }))
+
+export const Section = styled(Box)<BoxProps>(({ theme }) => ({
+  backgroundColor: theme.palette.neutral[90],
+  color: theme.palette.neutral[20],
+  flexGrow: 1,
+}))

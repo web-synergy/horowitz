@@ -30,4 +30,6 @@ export default {
       'The page you are searching for, is deleted or temporary unavailable',
     [NotFound.BTN]: 'Back to Home Page',
   },
+  institutional_name:
+    'International Competition for Young Pianists in Memory of Vladimir Horowitz',
 };
