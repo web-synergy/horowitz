@@ -14,12 +14,12 @@ import ContactsPage from '../../components/Contacts/ContactsPage';
 import AdministrationPage from '@/components/Administration/AdministrationPage';
 
 import { Routes } from '@/types/routes.d';
-import WidthPreview from '@/components/SanityPreview/WithPreview';
+import WithPreview from '@/components/SanityPreview/WithPreview';
 
 const routes = createBrowserRouter([
   {
     path: '/',
-    element: <WidthPreview />,
+    element: <WithPreview />,
     children: [
       {
         index: true,
