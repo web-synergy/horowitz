@@ -15,18 +15,18 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
     disableFocusRipple: true,
   },
   styleOverrides: {
-    root: ({ theme }) => ({
+    root: () => ({
       textTransform: 'none',
-      fontSize: '1rem',
-      lineHeight: 1.25,
+      fontSize: '1.125rem',
+      lineHeight: 1.222,
 
       //ToDo: change to value from layout
       minWidth: 204,
 
-      [theme.breakpoints.up('md')]: {
-        fontSize: '1.125rem',
-        lineHeight: 1.222,
-      },
+      // [theme.breakpoints.up('md')]: {
+      //   fontSize: '1.125rem',
+      //   lineHeight: 1.222,
+      // },
     }),
     startIcon: {
       '& > *:first-of-type': {
