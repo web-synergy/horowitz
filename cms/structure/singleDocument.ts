@@ -26,6 +26,9 @@ export const singleDocument = (
             .options({
               url: (doc: SanityDocument) => getPreviewUrl(doc, previewPath),
               defaultSize: 'desktop',
+              reload: {
+                button: true, // default `undefined`
+              },
             }),
         ]),
     )
