@@ -1,5 +1,5 @@
-import { Routes } from '@/types/routes.d'
-import { Translations } from '@/types/translation.d'
+import { Routes } from '@/types/routes.d';
+import { Translations, NotFound } from '@/types/translation.d';
 
 export default {
   navigation: {
@@ -24,5 +24,12 @@ export default {
     phone: 'Телефон',
     pressCenter: 'Прес-центр',
   },
-  institutional_name: 'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
-}
+  notFound: {
+    [NotFound.TITLE]: 'Вибачте, сторінку не знайдено',
+    [NotFound.TEXT]:
+      'Сторінка, яку ви шукаєте, видалена або тимчасово недоступна',
+    [NotFound.BTN]: 'На головну сторінку',
+  },
+  institutional_name:
+    'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
+};

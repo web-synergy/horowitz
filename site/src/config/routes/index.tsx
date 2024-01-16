@@ -1,5 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
-
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 import MainPage from '../../components/Main/MainPage';
 import NotFoundPage from '../../components/NotFound/NotFoundPage';
 import AboutPage from '../../components/About/AboutPage';
@@ -37,18 +36,25 @@ const routes = createBrowserRouter([
         path: Routes.HOROWITZ,
         element: <HorowitzPage />,
       },
-      { path: `:${Routes.COMPETITION}`, element: <CompetitionPage /> },
+      {
+        path: `:${Routes.COMPETITION}`,
+        element: <CompetitionPage />,
+      },
       { path: Routes.MASTER_CLASS, element: <MasterClassPage /> },
       { path: Routes.SUMMER_SCHOOL, element: <SummerSchoolPage /> },
       { path: Routes.VIRTUOSES, element: <VirtuosesPage /> },
       { path: Routes.NEWS, element: <NewsPage /> },
       { path: Routes.CONTACTS, element: <ContactsPage /> },
       { path: Routes.ADMINISTRATION, element: <AdministrationPage /> },
+      {
+        path: '404',
+        element: <NotFoundPage />,
+      },
     ],
   },
   {
     path: '*',
-    element: <NotFoundPage />,
+    element: <Navigate to={'404'} />,
   },
 ]);
 
