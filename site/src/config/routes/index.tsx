@@ -1,19 +1,20 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom';
-import MainPage from '../../components/Main/MainPage';
-import NotFoundPage from '../../components/NotFound/NotFoundPage';
-import AboutPage from '../../components/About/AboutPage';
-import KyivGenevaPage from '../../components/KyivGeneva/KyivGenevaPage';
-import HorowitzPage from '../../components/Horowitz/HorowitzPage';
-import CompetitionPage from '../../components/Competition/CompetitionPage';
-import MasterClassPage from '../../components/MasterClass/MasterClassPage';
-import SummerSchoolPage from '../../components/SummerSchool/SummerSchoolPage';
-import VirtuosesPage from '../../components/Virtuoses/VirtuosesPage';
-import NewsPage from '../../components/News/NewsPage';
-import ContactsPage from '../../components/Contacts/ContactsPage';
-import AdministrationPage from '@/components/Administration/AdministrationPage';
+import AdministrationPage from '@/components/Administration/AdministrationPage'
+import { Navigate, createBrowserRouter } from 'react-router-dom'
+import AboutPage from '../../components/About/AboutPage'
+import CompetitionPage from '../../components/Competition/CompetitionPage'
+import ContactsPage from '../../components/Contacts/ContactsPage'
+import HorowitzPage from '../../components/Horowitz/HorowitzPage'
+import KyivGenevaPage from '../../components/KyivGeneva/KyivGenevaPage'
+import MainPage from '../../components/Main/MainPage'
+import MasterClassPage from '../../components/MasterClass/MasterClassPage'
+import NewsPage from '../../components/News/NewsPage'
+import NotFoundPage from '../../components/NotFound/NotFoundPage'
+import SummerSchoolPage from '../../components/SummerSchool/SummerSchoolPage'
+import VirtuosesPage from '../../components/Virtuoses/VirtuosesPage'
 
-import { Routes } from '@/types/routes.d';
-import WithPreview from '@/components/SanityPreview/WithPreview';
+import InDevelopmentPage from '@/components/InDevelopmentPage/InDevelopmentPage'
+import WithPreview from '@/components/SanityPreview/WithPreview'
+import { Routes } from '@/types/routes.d'
 
 const routes = createBrowserRouter([
   {
@@ -50,12 +51,16 @@ const routes = createBrowserRouter([
         path: '404',
         element: <NotFoundPage />,
       },
+      {
+        path: 'in-development',
+        element: <InDevelopmentPage />,
+      },
     ],
   },
   {
     path: '*',
     element: <Navigate to={'404'} />,
   },
-]);
+])
 
-export default routes;
+export default routes

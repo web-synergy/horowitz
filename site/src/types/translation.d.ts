@@ -10,3 +10,8 @@ export enum NotFound {
   TEXT = 'text',
   BTN = 'btn',
 }
+
+export enum InDevelopment {
+  MSG = 'message',
+  BTN = 'btn',
+}
