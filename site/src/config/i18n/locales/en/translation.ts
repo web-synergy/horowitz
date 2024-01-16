@@ -25,7 +25,7 @@ export default {
     pressCenter: 'Press-center',
   },
   notFound: {
-    [NotFound.TITLE]: 'Sorry, but the page is not found.',
+    [NotFound.TITLE]: 'Sorry, the page is not found.',
     [NotFound.TEXT]:
       'The page you are searching for, is deleted or temporary unavailable',
     [NotFound.BTN]: 'Back to Home Page',
