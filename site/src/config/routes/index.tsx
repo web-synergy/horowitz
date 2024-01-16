@@ -1,5 +1,4 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import SharedLayout from '../../components/Common/SharedLayout';
 import MainPage from '../../components/Main/MainPage';
 import NotFoundPage from '../../components/NotFound/NotFoundPage';
 import AboutPage from '../../components/About/AboutPage';
@@ -14,11 +13,12 @@ import ContactsPage from '../../components/Contacts/ContactsPage';
 import AdministrationPage from '@/components/Administration/AdministrationPage';
 
 import { Routes } from '@/types/routes.d';
+import WithPreview from '@/components/SanityPreview/WithPreview';
 
 const routes = createBrowserRouter([
   {
     path: '/',
-    element: <SharedLayout />,
+    element: <WithPreview />,
     children: [
       {
         index: true,

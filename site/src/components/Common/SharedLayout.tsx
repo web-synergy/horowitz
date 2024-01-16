@@ -4,9 +4,11 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import { lang } from '../../libs/searchParamsKey';
+import { lang, draft } from '../../libs/searchParamsKey';
 
 import { useSettingsStore } from '@/store';
+import { useLiveQuery } from '@sanity/preview-kit';
+import { settingsQuery } from '@/api/query';
 
 const SharedLayout = () => {
   const {
@@ -15,7 +17,19 @@ const SharedLayout = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [loader, setLoader] = useState(false);
   const langParam = searchParams.get(lang);
-  const { contacts, fetchSettings } = useSettingsStore();
+  const draftMod = searchParams.get(draft);
+  const { contacts, fetchSettings, getPreviewSettings } = useSettingsStore();
+
+  const [data] = useLiveQuery(null, settingsQuery, {
+    language,
+  });
+
+  useEffect(() => {
+    if (data) {
+      getPreviewSettings(data, language);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language, data]);
 
   useEffect(() => {
     const existedContacts = contacts[language];
@@ -25,11 +39,11 @@ const SharedLayout = () => {
       setLoader(false);
     };
 
-    if (!existedContacts) {
+    if (!existedContacts && !draftMod) {
       setLoader(true);
       getData();
     }
-  }, [contacts, fetchSettings, language]);
+  }, [contacts, fetchSettings, language, draftMod]);
 
   useEffect(() => {
     if (!langParam) {
@@ -39,7 +53,7 @@ const SharedLayout = () => {
 
   if (loader) {
     return (
-      <Stack minHeight="100vh">
+      <Stack minHeight='100vh'>
         <Backdrop open={loader}>
           <CircularProgress />
         </Backdrop>
@@ -47,18 +61,9 @@ const SharedLayout = () => {
     );
   }
   return (
-    <Stack minHeight="100vh">
+    <Stack minHeight='100vh'>
       <Header />
-      <Stack component="main" minHeight="100%" flex="1 1 auto">
-        {/* {previewDrafts ? (
-          <Suspense fallback={<h1>Loading...</h1>}>
-            <PreviewProvider token={token!}>
-              <Outlet />
-            </PreviewProvider>
-          </Suspense>
-        ) : (
-          <Outlet />
-        )} */}
+      <Stack component='main' minHeight='100%' flex='1 1 auto'>
         <Outlet />
       </Stack>
       <Footer />

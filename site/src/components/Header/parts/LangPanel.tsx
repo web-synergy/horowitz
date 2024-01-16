@@ -12,11 +12,11 @@ interface LangPanelProps {
 
 const LangPanel: FC<LangPanelProps> = ({ additionalClickFn }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const {
     i18n: { language, changeLanguage },
   } = useTranslation();
-
+  const draft = searchParams.get('draft') || '';
   const onChangeLang = (event: ChangeEvent<HTMLInputElement>) => {
     const value = (event.target as HTMLInputElement).value;
     changeLanguage(value);
@@ -24,18 +24,20 @@ const LangPanel: FC<LangPanelProps> = ({ additionalClickFn }) => {
     if (additionalClickFn) {
       additionalClickFn();
     }
+    if (draft) {
+      setSearchParams({ [langKey]: value, draft: draft });
+    }
   };
 
   return (
     <FormControl sx={{ flexShrink: 0 }}>
       <RadioGroup
-        aria-label="language-panel"
-        name="language"
+        aria-label='language-panel'
+        name='language'
         value={language}
         onChange={onChangeLang}
         row
-        sx={{ display: 'flex', alignItems: 'center' }}
-      >
+        sx={{ display: 'flex', alignItems: 'center' }}>
         <StyledFormControlLabel
           value={languages[0].id}
           control={<Radio sx={{ display: 'none' }} />}
