@@ -6,6 +6,8 @@ import {RiPagesLine} from 'react-icons/ri'
 import {LuContact} from 'react-icons/lu'
 import {IoShareSocialOutline} from 'react-icons/io5'
 import {MdOutlineSettingsBrightness} from 'react-icons/md'
+import {preview} from './preview'
+
 const singleSchemaTittles = [
   'Головна',
   'Налаштування',
@@ -18,7 +20,7 @@ const structure = (S: StructureBuilder) =>
   S.list()
     .title('Контент')
     .items([
-      singleDocument(S, 'home', 'Головна').icon(RiPagesLine),
+      singleDocument(S, 'home', 'Головна', preview(S)).icon(RiPagesLine),
       ...S.documentTypeListItems().filter(
         (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
       ),
@@ -31,8 +33,10 @@ const structure = (S: StructureBuilder) =>
           S.list()
             .title('Налаштування')
             .items([
-              singleDocument(S, 'contacts', 'Контактна інформація', 'contacts').icon(LuContact),
-              singleDocument(S, 'settings', 'Загальні налаштування').icon(
+              singleDocument(S, 'contacts', 'Контактна інформація', preview(S, 'contacts')).icon(
+                LuContact,
+              ),
+              singleDocument(S, 'settings', 'Загальні налаштування', preview(S)).icon(
                 MdOutlineSettingsBrightness,
               ),
               singleDocument(S, 'social', 'Соцмережі').icon(IoShareSocialOutline),

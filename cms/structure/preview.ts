@@ -1,4 +1,4 @@
-import {DefaultDocumentNodeResolver} from 'sanity/desk'
+import {DefaultDocumentNodeResolver, StructureBuilder} from 'sanity/desk'
 import {Iframe} from 'sanity-plugin-iframe-pane'
 import {SanityDocument} from 'sanity'
 import {previewUrl} from '../environment'
@@ -9,7 +9,7 @@ interface DocProps extends SanityDocument {
   }
 }
 
-export function getPreviewUrl(doc: DocProps, add: string) {
+function getPreviewUrl(doc: DocProps, add: string) {
   const slug = doc?.slug?.current
   const result = slug
     ? `${previewUrl}/${add}/${slug}?lang=ua&draft=true`
@@ -18,20 +18,16 @@ export function getPreviewUrl(doc: DocProps, add: string) {
   return result
 }
 
-export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType}) => {
-  switch (schemaType) {
-    case `aboutCompetition`:
-      return S.document().views([
-        S.view.form(),
-        S.view
-          .component(Iframe)
-          .options({
-            url: (doc: SanityDocument) => getPreviewUrl(doc, 'news'),
-            defaultSize: 'desktop',
-          })
-          .title('Preview'),
-      ])
-    default:
-      return S.document().views([S.view.form()])
-  }
-}
+export const preview = (S: StructureBuilder, previewPath = '') => [
+  S.view.form(),
+  S.view
+    .component(Iframe)
+    .title('Preview')
+    .options({
+      url: (doc: SanityDocument) => getPreviewUrl(doc, previewPath),
+      defaultSize: 'desktop',
+      reload: {
+        button: true,
+      },
+    }),
+]
