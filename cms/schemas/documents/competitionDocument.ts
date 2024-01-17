@@ -12,6 +12,12 @@ export default defineType({
       type: 'internationalizedArrayString',
     }),
     defineField({
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      options: {source: 'title[1].value'},
+    }),
+    defineField({
       name: 'rule',
       title: 'Правила',
       type: 'internationalizedArrayContent',
