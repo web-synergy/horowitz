@@ -17,18 +17,17 @@ export default defineType({
       options: {source: 'title[1].value'},
     }),
     defineField({
-      name: 'description',
-      title: 'Опис новини',
-      type: 'internationalizedArrayContent',
-    }),
-
-    defineField({
       name: 'img',
       title: 'Додати зображення',
       type: 'image',
       options: {
         hotspot: true,
       },
+    }),
+    defineField({
+      name: 'description',
+      title: 'Опис новини',
+      type: 'internationalizedArrayContent',
     }),
   ],
   preview: {
