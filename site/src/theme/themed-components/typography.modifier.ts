@@ -1,18 +1,19 @@
-import { Components, Theme } from '@mui/material/styles'
+import { Components, Theme } from '@mui/material/styles';
 
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
-    title: true
-    h1: true
-    h2: true
-    h3: true
-    subhead: true
-    bodyMedium: true
-    bodyRegular: true
-    bodyLight: true
-    caption: true
-    smallText: true
-    navLink: true
+    title: true;
+    h1: true;
+    h2: true;
+    h3: true;
+    subhead: true;
+    bodyMedium: true;
+    bodyRegular: true;
+    bodyLight: true;
+    caption: true;
+    smallText: true;
+    navLink: true;
+    blockquote: true;
   }
 }
 export const MuiTypography: Components<Theme>['MuiTypography'] = {
@@ -138,12 +139,12 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
         fontSize: '1rem',
         fontStyle: 'normal',
         fontWeight: 400,
-        lineHeight: 1.25,
+        lineHeight: 1.62,
         fontVariantNumeric: 'lining-nums proportional-nums',
 
         [theme.breakpoints.up('md')]: {
           fontSize: '1.125rem',
-          lineHeight: 1.222,
+          lineHeight: 1.75,
         },
       }),
     },
@@ -193,6 +194,21 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
       }),
     },
     {
+      props: { variant: 'blockquote' },
+      style: ({ theme }) => ({
+        fontSize: '1.125rem',
+        fontStyle: 'italic',
+        fontWeight: 400,
+        lineHeight: 1.62,
+        fontVariantNumeric: 'lining-nums proportional-nums',
+
+        [theme.breakpoints.up('md')]: {
+          fontSize: '1.25rem',
+          lineHeight: 2,
+        },
+      }),
+    },
+    {
       props: { variant: 'navLink' },
       style: ({ theme }) => ({
         fontSize: '1.25rem',
@@ -213,4 +229,4 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
       }),
     },
   ],
-}
+};
