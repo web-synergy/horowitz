@@ -17,7 +17,7 @@ interface FooterContactsProps {
 }
 
 const FooterContacts: FC<FooterContactsProps> = ({ location, email, phone, isMobile }) => {
-  const formattedPhoneNum = phoneNumberFormatting(phone, 3)
+  const formattedPhoneNum = phoneNumberFormatting(phone)
 
   return (
     <Stack spacing={3} sx={{ maxWidth: '364px' }}>
