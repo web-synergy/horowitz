@@ -12,7 +12,7 @@ import winners from './objects/winners'
 import competition from './documents/competition'
 import competitionDocument from './documents/competitionDocument'
 import {youtube} from './objects/youtube'
-import {imageGalleryType} from './objects/imagesArray'
+import {imageGalleryType} from './objects/imageGalleryType'
 
 export const schemaTypes = [
   //documents

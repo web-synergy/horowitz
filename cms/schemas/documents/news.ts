@@ -25,6 +25,11 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'shortDescription',
+      title: 'Короткий опис новини',
+      type: 'internationalizedArrayText',
+    }),
+    defineField({
       name: 'description',
       title: 'Опис новини',
       type: 'internationalizedArrayContent',

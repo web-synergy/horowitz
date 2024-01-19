@@ -1,5 +1,4 @@
 import {defineType} from 'sanity'
-import ImageBlock from '../../components/ImageBlock'
 
 export const content = defineType({
   name: 'content',
@@ -12,11 +11,11 @@ export const content = defineType({
         {title: 'H2', value: 'h2'},
         {title: 'H3', value: 'h3'},
         {title: 'H4', value: 'h4'},
-        {title: 'Цитата', value: 'blockquote'},
+        {title: 'Quote', value: 'blockquote'},
       ],
       lists: [
-        {title: 'Нумерований', value: 'number'},
-        {title: 'Маркований', value: 'bullet'},
+        {title: 'Number', value: 'number'},
+        {title: 'Bullet', value: 'bullet'},
       ],
       marks: {
         decorators: [
@@ -48,11 +47,19 @@ export const content = defineType({
       type: 'youtube',
     },
     {type: 'gallery'},
+
     {
       type: 'image',
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Опис фото',
+        },
+      ],
     },
   ],
 })
