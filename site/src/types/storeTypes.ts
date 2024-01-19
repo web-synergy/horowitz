@@ -1,3 +1,4 @@
+import { INews } from './newsTypes';
 import {
   CompetitionsMenu,
   ContactsType,
@@ -12,4 +13,10 @@ export interface SettingsStoreState {
   competitions: { [key: string]: CompetitionsMenu[] | null };
   fetchSettings: (language: string) => Promise<void>;
   getPreviewSettings: (settings: SettingsResp[], language: string) => void;
+}
+export interface NewsStoreState {
+  newsList: INews[];
+  currentNews: INews | null;
+  fetchNews: (language: string, start: number, end: number) => Promise<void>;
+  getCurrentNews: (language: string, slug: string) => Promise<void>;
 }
