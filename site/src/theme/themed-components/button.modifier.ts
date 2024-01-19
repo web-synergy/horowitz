@@ -20,14 +20,14 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
       textTransform: 'none',
       fontSize: '1.125rem',
       lineHeight: '1.556',
-      padding: '13px 32px',
-      border: '1px solid',
+      padding: '12px 32px',
+      border: '2px solid',
       minWidth: 226,
 
       [theme.breakpoints.up('md')]: {
         fontSize: '1.125rem',
         lineHeight: '1.556',
-        padding: '15px 32px',
+        padding: '14px 32px',
       },
     }),
     startIcon: {
