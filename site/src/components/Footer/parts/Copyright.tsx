@@ -4,11 +4,14 @@ import { Box } from '@mui/material'
 import { CopyrightTypography } from '../styled'
 
 const Copyright: FC = () => {
+  const date = new Date()
+  const currentYear = date.getFullYear()
+
   return (
     <Box sx={{ textAlign: 'center', marginTop: '56px' }}>
       <CopyrightTypography>
-        © 2024, International Сompetition for Young Pianists in Memory of Vladimir Horowitz, All
-        right reserved.
+        {`© ${currentYear}, International Сompetition for Young Pianists in Memory of Vladimir Horowitz, All
+        right reserved.`}
       </CopyrightTypography>
     </Box>
   )

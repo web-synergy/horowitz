@@ -12,7 +12,7 @@ interface FooterPressCenterProps {
 }
 
 const FooterPressCenter: FC<FooterPressCenterProps> = ({ email, phone, isMobile }) => {
-  const formattedPhoneNum = phoneNumberFormatting(phone, 3)
+  const formattedPhoneNum = phoneNumberFormatting(phone)
   return (
     <Stack spacing={3} maxWidth={'299px'}>
       <Typography variant="subhead">{t('contacts.pressCenter')}</Typography>
