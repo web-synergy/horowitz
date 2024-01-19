@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 
 import { FC } from 'react'
-import HeroSection from './parts/HeroSection'
+import HeroSection from './parts/HeroSection/HeroSection'
 
 const MainPage: FC = () => {
   return (

@@ -1,12 +1,12 @@
-import { Components, Theme } from '@mui/material/styles';
+import { Components, Theme } from '@mui/material/styles'
 
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
-    primary: true;
-    secondary: true;
-    link: true;
-    transparent: true;
-    tertiary: true;
+    primary: true
+    secondary: true
+    link: true
+    transparent: true
+    tertiary: true
   }
 }
 export const MuiButton: Components<Theme>['MuiButton'] = {
@@ -215,4 +215,4 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
       }),
     },
   ],
-};
+}
