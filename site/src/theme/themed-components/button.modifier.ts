@@ -5,6 +5,7 @@ declare module '@mui/material/Button' {
     primary: true;
     secondary: true;
     link: true;
+    transparent: true;
   }
 }
 export const MuiButton: Components<Theme>['MuiButton'] = {
@@ -15,18 +16,19 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
     disableFocusRipple: true,
   },
   styleOverrides: {
-    root: () => ({
+    root: ({ theme }) => ({
       textTransform: 'none',
       fontSize: '1.125rem',
-      lineHeight: 1.222,
+      lineHeight: '1.556',
+      padding: '13px 32px',
+      border: '1px solid',
+      minWidth: 226,
 
-      //ToDo: change to value from layout
-      minWidth: 204,
-
-      // [theme.breakpoints.up('md')]: {
-      //   fontSize: '1.125rem',
-      //   lineHeight: 1.222,
-      // },
+      [theme.breakpoints.up('md')]: {
+        fontSize: '1.125rem',
+        lineHeight: '1.556',
+        padding: '15px 32px',
+      },
     }),
     startIcon: {
       '& > *:first-of-type': {
@@ -43,10 +45,8 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
     {
       props: { variant: 'primary' },
       style: ({ theme }) => ({
-        padding: '14px 32px',
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.common.black,
-        border: '2px solid',
         borderColor: 'transparent',
 
         '&:hover': {
@@ -65,26 +65,43 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
 
         '&:disabled': {
           backgroundColor: theme.palette.action.disabled,
-          color: theme.palette.neutral[40],
+          color: theme.palette.neutral[50],
         },
       }),
     },
     {
       props: { variant: 'secondary' },
       style: ({ theme }) => ({
-        padding: '15px 32px',
+        paddingRight: '20px',
+        paddingLeft: '20px',
         backgroundColor: 'transparent',
-        border: '1px solid',
         borderColor: theme.palette.primary.main,
-        color: theme.palette.primary.main,
+        color: 'inherit',
 
-        '&:hover': {},
+        '&:hover': {
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.common.black,
+          borderColor: 'transparent',
+        },
 
-        '&:focus-visible': {},
+        '&:focus-visible': {
+          borderColor: theme.palette.primary.dark,
+          color: 'inherit',
+          backgroundColor: 'transparent',
+        },
 
-        '&:active': {},
+        '&:active': {
+          borderColor: theme.palette.primary.light,
+          boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.22) inset',
+          color: 'inherit',
+          backgroundColor: 'transparent',
+        },
 
-        '&:disabled': {},
+        '&:disabled': {
+          borderColor: theme.palette.neutral[50],
+          backgroundColor: theme.palette.action.disabled,
+          color: theme.palette.neutral[50],
+        },
       }),
     },
     {
@@ -111,6 +128,38 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
 
         '&:disabled': {
           backgroundColor: 'transparent',
+        },
+      }),
+    },
+    {
+      props: { variant: 'transparent' },
+      style: ({ theme }) => ({
+        backgroundColor: 'transparent',
+        borderColor: theme.palette.common.black,
+        color: theme.palette.common.black,
+
+        '&:hover': {
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.common.black,
+          borderColor: 'transparent',
+        },
+
+        '&:focus-visible': {
+          borderColor: theme.palette.primary.dark,
+          backgroundColor: 'transparent',
+        },
+
+        '&:active': {
+          borderColor: theme.palette.primary.light,
+          boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.22) inset',
+          color: 'inherit',
+          backgroundColor: 'transparent',
+        },
+
+        '&:disabled': {
+          borderColor: theme.palette.neutral[50],
+          backgroundColor: theme.palette.action.disabled,
+          color: theme.palette.neutral[50],
         },
       }),
     },
