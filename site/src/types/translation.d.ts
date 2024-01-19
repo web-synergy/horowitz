@@ -15,3 +15,8 @@ export enum InDevelopment {
   MSG = 'message',
   BTN = 'btn',
 }
+
+export enum MainPage {
+  BTN_APL = 'application',
+  BTN_SUPP = 'support',
+}

@@ -1,4 +1,5 @@
-import { Box, BoxProps, Stack, StackProps, styled } from '@mui/material'
+import { Box, BoxProps, Button, ButtonProps, Stack, StackProps, styled } from '@mui/material'
+import { LinkProps } from 'react-router-dom'
 
 export const Video = styled('video')(() => ({
   position: 'absolute',
@@ -60,5 +61,14 @@ export const ButtonsStack = styled(Stack)<StackProps>(({ theme }) => ({
   },
   [theme.breakpoints.up('md')]: {
     gap: '24px',
+  },
+}))
+
+export const StyledButton = styled(Button)<ButtonProps & LinkProps>(({ theme }) => ({
+  [theme.breakpoints.up('xs')]: {
+    width: '288px',
+  },
+  [theme.breakpoints.up('md')]: {
+    width: '266px',
   },
 }))

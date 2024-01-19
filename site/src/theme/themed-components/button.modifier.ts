@@ -24,7 +24,7 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
       padding: '12px 32px',
       border: '2px solid',
       minWidth: 226,
-
+      transition: 'all .3s ease-in', // плавна анімація
       [theme.breakpoints.up('md')]: {
         fontSize: '1.125rem',
         lineHeight: '1.556',

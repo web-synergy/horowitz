@@ -1,6 +1,6 @@
 import { Offset } from '@/components/Common/Offset'
 import SocialMedia from '@/components/Common/SocialMedia'
-import { Box, Button, Container, Stack, styled, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Container, Stack, useMediaQuery, useTheme } from '@mui/material'
 import { FC, useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
@@ -10,6 +10,8 @@ import pianoImage from '../../temp/piano_image.png'
 import EMCY_logo from '../../temp/EMCY_logo.svg'
 import WFIMC_logo from '../../temp/WFIMC_logo.svg'
 
+import { MainPage } from '@/types/translation.d'
+import { useTranslation } from 'react-i18next'
 import ScrollDownBtn from './ScrollDownBtn'
 import {
   ButtonsStack,
@@ -17,6 +19,7 @@ import {
   ContentWrapper,
   Overlay,
   SocialMediaBox,
+  StyledButton,
   Video,
 } from './styled'
 
@@ -29,7 +32,7 @@ const HeroSection: FC = () => {
 
   const windowHeight = innerHeight
 
-  console.log(windowHeight)
+  const { t } = useTranslation()
 
   return (
     <Box
@@ -56,31 +59,12 @@ const HeroSection: FC = () => {
                 alt="piano image"
               />
               <ButtonsStack>
-                <Button
-                  component={RouterLink}
-                  to={'in-development'}
-                  sx={{
-                    width: {
-                      xs: '288px',
-                      md: '266px',
-                    },
-                  }}
-                >
-                  Заявка на участь
-                </Button>
-                <Button
-                  variant="secondary"
-                  component={RouterLink}
-                  to={'in-development'}
-                  sx={{
-                    width: {
-                      xs: '288px',
-                      md: '266px',
-                    },
-                  }}
-                >
-                  Підтримати проєкт
-                </Button>
+                <StyledButton component={RouterLink} to={'in-development'}>
+                  {t(`mainPage.${MainPage.BTN_APL}`)}
+                </StyledButton>
+                <StyledButton variant="secondary" component={RouterLink} to={'in-development'}>
+                  {t(`mainPage.${MainPage.BTN_SUPP}`)}
+                </StyledButton>
               </ButtonsStack>
             </ContentStack>
             <ScrollDownBtn onClick={() => scrollTo({ top: windowHeight, behavior: 'smooth' })} />

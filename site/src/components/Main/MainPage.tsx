@@ -2,12 +2,13 @@ import { Box } from '@mui/material'
 
 import { FC } from 'react'
 import HeroSection from './parts/HeroSection/HeroSection'
+import NewsSection from './parts/NewsSection/NewsSection'
 
 const MainPage: FC = () => {
   return (
     <>
       <HeroSection />
-      <Box sx={{ height: '644px' }}></Box>
+      <NewsSection />
     </>
   )
 }
