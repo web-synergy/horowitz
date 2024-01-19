@@ -7,12 +7,6 @@ import PortableSwiper from './Swiper';
 export const components: PortableTextComponents = {
   types: {
     gallery: PortableSwiper,
-    slider: ({ value }) => {
-      console.log('aa', value);
-
-      return null;
-    },
-
     youtube: ({ value }) => {
       const { url } = value;
       return (

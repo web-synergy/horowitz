@@ -1,7 +1,8 @@
 import { urlFor } from '@/config/sanity/imageUrl';
+import { IPortableImgGallery } from '@/types/newsTypes';
 import { processImageUrl } from '@/utils/helpers';
 import { Box, Grow, ImageList, ImageListItem, Typography } from '@mui/material';
-import { ReactNode } from 'react';
+import { FC } from 'react';
 
 function srcset(image: string, size: number, rows = 1, cols = 1) {
   const imageSrs = `${image}?w=${size * cols}&h=${
@@ -16,7 +17,7 @@ function srcset(image: string, size: number, rows = 1, cols = 1) {
   };
 }
 
-export const GridGallery = ({ value }: { value: ReactNode }) => {
+export const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
   const { images, title } = value;
 
   return (

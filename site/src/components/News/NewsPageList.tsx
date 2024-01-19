@@ -19,7 +19,7 @@ const NewsPageList = () => {
   const { newsList, fetchNews } = useNewsStore();
 
   useEffect(() => {
-    if (!newsList.length) fetchNews(language, 0, 10);
+    if (!newsList.length) fetchNews(language, 0, 4);
   }, [language]);
 
   return (

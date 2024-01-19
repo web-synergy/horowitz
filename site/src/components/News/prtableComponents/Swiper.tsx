@@ -2,12 +2,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Box } from '@mui/material';
 import { urlFor } from '@/config/sanity/imageUrl';
-import { GridGallery } from './gridGallery';
+import { GridGallery } from './GridGallery';
+import { FC } from 'react';
+import { IPortableImgGallery } from '@/types/newsTypes';
 
-const PortableSwiper = ({ value }) => {
+const PortableSwiper: FC<IPortableImgGallery> = ({ value }) => {
   const { images, option } = value;
 
-  console.log(images);
   if (option) {
     return <GridGallery value={value} />;
   }
