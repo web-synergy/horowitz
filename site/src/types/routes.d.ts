@@ -12,6 +12,7 @@ export enum Routes {
   SUMMER_SCHOOL = 'summer-school',
   VIRTUOSES = 'virtuoses',
   NEWS = 'news',
+  CURRENT_NEWS = `${NEWS}/:slug`,
   CONTACTS = 'contacts',
 }
 

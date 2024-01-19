@@ -8,12 +8,13 @@ import CompetitionPage from '../../components/Competition/CompetitionPage';
 import MasterClassPage from '../../components/MasterClass/MasterClassPage';
 import SummerSchoolPage from '../../components/SummerSchool/SummerSchoolPage';
 import VirtuosesPage from '../../components/Virtuoses/VirtuosesPage';
-import NewsPage from '../../components/News/NewsPage';
 import ContactsPage from '../../components/Contacts/ContactsPage';
 import AdministrationPage from '@/components/Administration/AdministrationPage';
 
 import { Routes } from '@/types/routes.d';
 import WithPreview from '@/components/SanityPreview/WithPreview';
+import NewsPageList from '../../components/News/NewsPageList';
+import NewsCurrentPage from '@/components/News/NewsCurrentPage';
 
 const routes = createBrowserRouter([
   {
@@ -43,7 +44,8 @@ const routes = createBrowserRouter([
       { path: Routes.MASTER_CLASS, element: <MasterClassPage /> },
       { path: Routes.SUMMER_SCHOOL, element: <SummerSchoolPage /> },
       { path: Routes.VIRTUOSES, element: <VirtuosesPage /> },
-      { path: Routes.NEWS, element: <NewsPage /> },
+      { path: Routes.NEWS, element: <NewsPageList /> },
+      { path: Routes.CURRENT_NEWS, element: <NewsCurrentPage /> },
       { path: Routes.CONTACTS, element: <ContactsPage /> },
       { path: Routes.ADMINISTRATION, element: <AdministrationPage /> },
       {
