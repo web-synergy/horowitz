@@ -1,11 +1,23 @@
-import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon'
-import { Box, Card, CardMedia, Container, Link, Stack, Typography } from '@mui/material'
+import { Box, Container, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { FC } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import ShowMoreBtn from './ShowMoreBtn'
 
 import pianistImg from '../../temp/pianist.jpg'
 
+import fakeData from './fakeData.json'
+import NewsCard from './NewsCard'
+
+import { sliceNewsTitle } from '@/utils/helpers'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.css'
+
 const NewsSection: FC = () => {
+  const { breakpoints } = useTheme()
+  const isTablet = useMediaQuery(breakpoints.only('md'))
+  const isMobile = useMediaQuery(breakpoints.down('md'))
+
+  const slidesPerView = isTablet ? 2.1 : isMobile ? 1.2 : 3
+
   return (
     <Box
       component={'section'}
@@ -24,27 +36,19 @@ const NewsSection: FC = () => {
           >
             <Typography variant="h1">Новини</Typography>
             <Box>
-              <Link component={RouterLink} to={'/'} sx={{ display: 'inline-block' }}>
-                <Typography variant="bodyRegular" component={'span'}>
-                  Переглянути всі
-                </Typography>
-                <Box
-                  sx={{
-                    display: 'inline-block',
-                    marginLeft: '8px',
-                    transform: 'translate(-2.5px, 0)',
-                    rotate: '-90deg',
-                  }}
-                >
-                  <SvgSpriteIcon icon="arrow" />
-                </Box>
-              </Link>
+              <ShowMoreBtn title="Переглянути всі" link="/" />
             </Box>
           </Stack>
         </Container>
-        <Stack sx={{ width: '357px' }}>
-          <Box component={'img'} src={pianistImg} alt="photo news" />
-        </Stack>
+        <Container sx={{ '&.MuiContainer-root': { paddingRight: 0 } }}>
+          <Swiper spaceBetween={'24px'} slidesPerView={slidesPerView}>
+            {fakeData.map(({ id, link, title }) => (
+              <SwiperSlide key={id}>
+                <NewsCard title={sliceNewsTitle(title, 48)} image={pianistImg} link={link} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </Container>
       </Box>
     </Box>
   )

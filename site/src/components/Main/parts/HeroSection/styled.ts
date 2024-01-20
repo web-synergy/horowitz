@@ -1,4 +1,14 @@
-import { Box, BoxProps, Button, ButtonProps, Stack, StackProps, styled } from '@mui/material'
+import {
+  Box,
+  BoxProps,
+  Button,
+  ButtonProps,
+  Stack,
+  StackProps,
+  Typography,
+  TypographyProps,
+  styled,
+} from '@mui/material'
 import { LinkProps } from 'react-router-dom'
 
 export const Video = styled('video')(() => ({
@@ -70,5 +80,22 @@ export const StyledButton = styled(Button)<ButtonProps & LinkProps>(({ theme }) 
   },
   [theme.breakpoints.up('md')]: {
     width: '266px',
+  },
+}))
+
+export const CardTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
+  fontWeight: 400,
+  fontStyle: 'normal',
+  [theme.breakpoints.up('xs')]: {
+    fontSize: '1rem',
+    lineHeight: 1.5,
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '1.375rem',
+    lineHeight: 1.36,
+  },
+  [theme.breakpoints.up('lg')]: {
+    fontSize: '1.5rem',
+    lineHeight: 1.333,
   },
 }))
