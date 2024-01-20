@@ -7,8 +7,16 @@ export default defineType({
 
   groups: [
     {
-      name: 'text',
-      title: 'Блок тексту',
+      name: 'upperBlockText',
+      title: 'Верхній текст',
+    },
+    {
+      name: 'quote',
+      title: 'Цитата',
+    },
+    {
+      name: 'lowerBlockText',
+      title: 'Нижній текст',
     },
     {
       name: 'literature',
@@ -42,11 +50,39 @@ export default defineType({
     }),
 
     defineField({
-      group: ['text'],
-      name: 'textBlocks',
-      title: 'Блок тексту',
-      type: 'array',
-      of: [{type: 'biographyText'}],
+      group: ['upperBlockText'],
+      name: 'upperBlockText',
+      title: 'Верхній блок тексту',
+      type: 'internationalizedArrayContent',
+    }),
+
+    defineField({
+      group: ['quote'],
+      name: 'quote',
+      title: 'Змінити цитату',
+      type: 'object',
+      options: {
+        collapsible: true,
+      },
+      fields: [
+        defineField({
+          name: 'quote',
+          title: 'Цитата',
+          type: 'internationalizedArrayText',
+        }),
+        defineField({
+          name: 'author',
+          title: 'Автор',
+          type: 'internationalizedArrayString',
+        }),
+      ],
+    }),
+
+    defineField({
+      group: ['lowerBlockText'],
+      name: 'lowerBlockText',
+      title: 'Нижній блок тексту',
+      type: 'internationalizedArrayContent',
     }),
 
     defineField({
@@ -54,7 +90,7 @@ export default defineType({
       name: 'literature',
       title: 'Література',
       type: 'array',
-      of: [{type: 'literatureItem'}],
+      of: [{type: 'block'}],
     }),
   ],
 })
