@@ -41,6 +41,9 @@ export default {
   mainPage: {
     [MainPage.BTN_APL]: 'Заявка на участь',
     [MainPage.BTN_SUPP]: 'Підтримати проєкт',
+    [MainPage.BTN_VIEW]: 'Переглянути всі',
+    [MainPage.BTN_READ]: 'Читати більше',
+    [MainPage.NEWS]: 'Новини',
   },
   institutional_name: 'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
 }

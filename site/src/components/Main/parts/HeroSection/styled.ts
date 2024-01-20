@@ -3,6 +3,7 @@ import {
   BoxProps,
   Button,
   ButtonProps,
+  Container,
   Stack,
   StackProps,
   Typography,
@@ -10,6 +11,18 @@ import {
   styled,
 } from '@mui/material'
 import { LinkProps } from 'react-router-dom'
+
+export const NewsBox = styled(Box)<BoxProps>(({ theme }) => ({
+  [theme.breakpoints.up('xs')]: {
+    padding: '72px 0',
+  },
+  [theme.breakpoints.up('md')]: {
+    padding: '96px 0',
+  },
+  [theme.breakpoints.up('lg')]: {
+    padding: '120px 0',
+  },
+}))
 
 export const Video = styled('video')(() => ({
   position: 'absolute',
@@ -80,22 +93,5 @@ export const StyledButton = styled(Button)<ButtonProps & LinkProps>(({ theme }) 
   },
   [theme.breakpoints.up('md')]: {
     width: '266px',
-  },
-}))
-
-export const CardTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
-  fontWeight: 400,
-  fontStyle: 'normal',
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '1rem',
-    lineHeight: 1.5,
-  },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '1.375rem',
-    lineHeight: 1.36,
-  },
-  [theme.breakpoints.up('lg')]: {
-    fontSize: '1.5rem',
-    lineHeight: 1.333,
   },
 }))

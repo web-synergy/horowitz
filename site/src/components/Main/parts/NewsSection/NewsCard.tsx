@@ -1,7 +1,11 @@
 import { Box, Stack } from '@mui/material'
 import { FC } from 'react'
-import { CardTitle } from '../HeroSection/styled'
+
 import ShowMoreBtn from './ShowMoreBtn'
+
+import { MainPage } from '@/types/translation.d'
+import { useTranslation } from 'react-i18next'
+import { CardTitle } from './styled'
 
 interface NewsCardProps {
   title: string
@@ -10,6 +14,7 @@ interface NewsCardProps {
 }
 
 const NewsCard: FC<NewsCardProps> = ({ image, title, link }) => {
+  const { t } = useTranslation()
   return (
     <Stack
       sx={{
@@ -27,7 +32,7 @@ const NewsCard: FC<NewsCardProps> = ({ image, title, link }) => {
       <Box component={'img'} src={image} alt="news photo" />
       <CardTitle>{title}</CardTitle>
       <Box>
-        <ShowMoreBtn title="Читати більше" link={link} />
+        <ShowMoreBtn title={t(`mainPage.${MainPage.BTN_READ}`)} link={link} />
       </Box>
     </Stack>
   )

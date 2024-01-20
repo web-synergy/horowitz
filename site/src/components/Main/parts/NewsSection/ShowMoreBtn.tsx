@@ -1,6 +1,7 @@
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon'
 import { Box, Link, Typography } from '@mui/material'
 import { FC } from 'react'
+
 import { Link as RouterLink } from 'react-router-dom'
 
 interface ShowMoreBtnProps {
@@ -21,8 +22,9 @@ const ShowMoreBtn: FC<ShowMoreBtnProps> = ({ link, title, isTitleVisible = true 
         sx={{
           display: 'inline-block',
           marginLeft: '8px',
-          transform: 'translate(-2.5px, 0)',
+          transform: 'translate(-2px, 0)',
           rotate: '-90deg',
+          height: '100%',
         }}
       >
         <SvgSpriteIcon icon="arrow" />

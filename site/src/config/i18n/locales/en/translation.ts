@@ -41,6 +41,9 @@ export default {
   mainPage: {
     [MainPage.BTN_APL]: 'Application form',
     [MainPage.BTN_SUPP]: 'Support the project',
+    [MainPage.BTN_VIEW]: 'View all',
+    [MainPage.BTN_READ]: 'Read more',
+    [MainPage.NEWS]: 'News',
   },
   institutional_name: 'International Competition for Young Pianists in Memory of Vladimir Horowitz',
 }
