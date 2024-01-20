@@ -1,4 +1,4 @@
-import groq from 'groq';
+import groq from "groq";
 export const homeQuery = groq`*[_type == 'home'][0]{
  'quote':quote{
        'author': author[_key ==$language].value,
@@ -47,4 +47,15 @@ export const settingsQuery = groq`*[_type == 'settings']{
   'slug':slug.current,
   'title':title[_key ==$language].value,
   }
+}`;
+
+export const horowitzQuery = groq`*[_type == 'horowitz'][0]{
+  'banner': banner {
+    'bannerImg': bannerImg.asset->url,
+    'copyright': copyright
+  },
+  'textBlocks':textBlocks[]{
+    'text': text[_key ==$language].value,
+  },
+  'literature': literature[]
 }`;

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import PageTemplate from "../Common/PageTemplate";
 import {
   Button,
@@ -11,7 +11,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import horowitz_img from "./horowitz.png";
+import { getHorowitzData } from "@/api";
 
 interface TextComponentProps {
   text1: string;
@@ -19,6 +19,24 @@ interface TextComponentProps {
 }
 
 const TextComponent: FC<TextComponentProps> = ({ text1, text2 }) => {
+  // const [horowitzData, setHorowitzData] = useState(null);
+  // console.log(horowitzData);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const language = "ua"; // Замените на нужный язык
+        const data = await getHorowitzData(language);
+        console.log(data);
+        // setHorowitzData(data);
+      } catch (error) {
+        console.error("Error fetching Horowitz data:", error);
+        // Обработка ошибки, если необходимо
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <Card
       style={{ display: "flex", flexDirection: "column", marginBottom: "24px" }}
@@ -65,7 +83,7 @@ const HorowitzPage = () => {
         </Grid>
         <Card style={{ marginTop: "24px", marginBottom: "24px" }}>
           <CardContent>
-            <img src={horowitz_img} alt="Картинка" style={{ width: "100%" }} />
+            <img src="" alt="Картинка" style={{ width: "100%" }} />
           </CardContent>
         </Card>
         <Grid container spacing={2}>

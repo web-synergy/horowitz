@@ -18,7 +18,7 @@ export default defineType({
 
   fields: [
     defineField({
-      name: 'banner',
+      name: 'bannerData',
       title: 'Баннер',
       type: 'object',
       options: {
@@ -34,7 +34,7 @@ export default defineType({
           },
         }),
         defineField({
-          name: 'copyright',
+          name: 'bannerCopyright',
           title: 'Текст авторського права',
           type: 'string',
         }),
