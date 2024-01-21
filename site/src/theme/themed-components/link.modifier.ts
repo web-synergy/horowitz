@@ -16,34 +16,14 @@ export const MuiLink: Components<Theme>['MuiLink'] = {
       paddingBottom: '2px',
       cursor: 'pointer',
 
-      '&::after': {
-        content: '""',
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        height: 1,
-        width: '100%',
-        backgroundColor: 'transparent',
-      },
-
-      [theme.breakpoints.up('md')]: {
-        paddingBottom: '4px',
-      },
-
       '&:hover, &:focus-visible': {
+        color: theme.palette.action.focus,
         backgroundColor: 'transparent',
-
-        '&::after': {
-          backgroundColor: 'currentColor',
-        },
       },
 
       '&:active': {
         backgroundColor: 'transparent',
-        color: theme.palette.neutral[60],
-        '&::after': {
-          backgroundColor: 'currentColor',
-        },
+        color: theme.palette.action.active,
       },
     }),
   },

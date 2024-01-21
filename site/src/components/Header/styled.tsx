@@ -61,10 +61,6 @@ export const Link = styled(MuiLink)<LinkProps & RouterLinkProps>(
 
     '&:hover': {
       color: theme.palette.primary.main,
-      '&::after': {
-        width: 0,
-        height: 0,
-      },
     },
   })
 );
@@ -131,11 +127,6 @@ export const SubmenuLink = styled(MuiLink)<LinkProps | RouterLinkProps>(
 
     '&:hover': {
       color: theme.palette.primary.main,
-
-      '&::after': {
-        width: 0,
-        height: 0,
-      },
     },
   })
 );

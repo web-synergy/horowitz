@@ -6,6 +6,7 @@ declare module '@mui/material/Button' {
     secondary: true;
     link: true;
     transparent: true;
+    tertiary: true;
   }
 }
 export const MuiButton: Components<Theme>['MuiButton'] = {
@@ -32,12 +33,12 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
     }),
     startIcon: {
       '& > *:first-of-type': {
-        // fontSize: '1.5rem',
+        fontSize: '1.5rem',
       },
     },
     endIcon: {
       '& > *:first-of-type': {
-        // fontSize: '1.5rem',
+        fontSize: '1.5rem',
       },
     },
   },
@@ -110,7 +111,6 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
         padding: 0,
         backgroundColor: 'transparent',
         display: 'block',
-
         color: 'inherit',
 
         '&:hover': {
@@ -160,6 +160,57 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
           borderColor: theme.palette.neutral[50],
           backgroundColor: theme.palette.action.disabled,
           color: theme.palette.neutral[50],
+        },
+      }),
+    },
+    {
+      props: { variant: 'tertiary' },
+      style: ({ theme }) => ({
+        minWidth: 0,
+        padding: 0,
+        paddingBottom: '2px',
+        border: 'none',
+        fontSize: '1rem',
+        lineHeight: 1.5,
+
+        [theme.breakpoints.up('md')]: {
+          padding: 0,
+          paddingBottom: '4px',
+        },
+
+        [theme.breakpoints.up('lg')]: {
+          padding: 0,
+          fontSize: '1.125rem',
+          lineHeight: 1.556,
+        },
+
+        color: 'inherit',
+        position: 'relative',
+
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          height: 1,
+          width: '100%',
+          backgroundColor: 'transparent',
+        },
+
+        '&:hover, &:focus-visible': {
+          backgroundColor: 'transparent',
+
+          '&::after': {
+            backgroundColor: 'currentColor',
+          },
+        },
+
+        '&:active': {
+          backgroundColor: 'transparent',
+          color: theme.palette.neutral[60],
+          '&::after': {
+            backgroundColor: 'currentColor',
+          },
         },
       }),
     },
