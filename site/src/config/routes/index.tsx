@@ -7,7 +7,6 @@ import HorowitzPage from '../../components/Horowitz/HorowitzPage';
 import KyivGenevaPage from '../../components/KyivGeneva/KyivGenevaPage';
 import MainPage from '../../components/Main/MainPage';
 import MasterClassPage from '../../components/MasterClass/MasterClassPage';
-import NewsPage from '../../components/News/NewsPage';
 import NotFoundPage from '../../components/NotFound/NotFoundPage';
 import SummerSchoolPage from '../../components/SummerSchool/SummerSchoolPage';
 import VirtuosesPage from '../../components/Virtuoses/VirtuosesPage';

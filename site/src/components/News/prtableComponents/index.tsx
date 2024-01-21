@@ -1,7 +1,7 @@
 import { PortableTextComponents } from '@portabletext/react';
 import { ImageComponent } from './ImageComponent';
 import ReactPlayer from 'react-player';
-import { Box, Grow, Typography } from '@mui/material';
+import { Box, Grow, Link, Typography } from '@mui/material';
 import PortableSwiper from './Swiper';
 
 export const components: PortableTextComponents = {
@@ -36,6 +36,7 @@ export const components: PortableTextComponents = {
     normal: ({ children }) => (
       <Grow in={true} timeout={1000} translate='yes'>
         <Typography
+          component={'p'}
           sx={{
             display: 'block',
             mb: { xs: '24px', md: '32px' },
@@ -51,6 +52,7 @@ export const components: PortableTextComponents = {
     ),
     blockquote: ({ children }) => (
       <Typography
+        component={'blockquote'}
         sx={{
           display: 'block',
           pl: '24px',
@@ -68,37 +70,37 @@ export const components: PortableTextComponents = {
         ? '_blank'
         : undefined;
       return (
-        <a href={value?.href} target={target}>
+        <Link variant='linkBlock' href={value?.href} target={target}>
           {children}
-        </a>
+        </Link>
       );
     },
   },
   list: {
     bullet: ({ children }) => (
-      <Box
+      <Typography
         component={'ul'}
         sx={{
           display: 'flex',
           flexDirection: 'column',
-
           mb: { xs: '24px', md: '32px' },
-        }}>
-        <Typography variant='bodyRegular'> {children}</Typography>
-      </Box>
+        }}
+        variant='bodyRegular'>
+        {children}
+      </Typography>
     ),
 
     number: ({ children }) => (
-      <Box
+      <Typography
         component={'ol'}
         sx={{
           display: 'flex',
           flexDirection: 'column',
-
           mb: { xs: '24px', md: '32px' },
-        }}>
-        <Typography variant='bodyRegular'> {children}</Typography>
-      </Box>
+        }}
+        variant='bodyRegular'>
+        {children}
+      </Typography>
     ),
   },
 };

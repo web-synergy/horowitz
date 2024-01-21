@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import PageTemplate from '../Common/PageTemplate';
-import { Button, Container, List, Typography, Box } from '@mui/material';
+import { Button, Container, List, Typography, Box, Stack } from '@mui/material';
 
 import { useNewsStore } from '@/store/newsStore';
 
@@ -19,22 +19,22 @@ const NewsPageList = () => {
   const { newsList, fetchNews } = useNewsStore();
 
   useEffect(() => {
-    if (!newsList.length) fetchNews(language, 0, 4);
+    fetchNews(language, 0, 10);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language]);
 
   return (
     <PageTemplate>
       <Container>
         <Breadcrumbs title={t(`navigation.${Routes.NEWS}`)} mode='light' />
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: { xs: 5, md: 6, lg: 7 },
-            mt: { xs: 5, md: 6, lg: 7 },
-            mb: { xs: '56px', md: '90px', lg: '120px' },
-          }}>
-          <Typography variant='h2'>Новини</Typography>
+        <Stack>
+          <Typography
+            sx={{
+              my: { xs: '48px', lg: '56px' },
+            }}
+            variant='h2'>
+            Новини
+          </Typography>
           <List
             sx={{
               display: 'grid',
@@ -54,10 +54,14 @@ const NewsPageList = () => {
                 />
               ))}
           </List>
-          <Box sx={{ margin: '0 auto' }}>
-            <Button variant='secondary'>Показати Більше</Button>
+          <Box
+            sx={{
+              my: { xs: '48px', lg: '56px' },
+              mx: 'auto',
+            }}>
+            <Button variant='transparent'>Показати Більше</Button>
           </Box>
-        </Box>
+        </Stack>
       </Container>
     </PageTemplate>
   );

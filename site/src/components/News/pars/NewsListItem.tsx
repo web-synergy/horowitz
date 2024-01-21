@@ -1,13 +1,22 @@
-import LinkElement from '@/components/Common/LinkElement';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import { urlFor } from '@/config/sanity/imageUrl';
+import { IImage } from '@/types/newsTypes';
 import { parseAndFormatDate } from '@/utils/helpers';
-import { Box, Button, ListItem, Stack, Typography } from '@mui/material';
+
+import {
+  Box,
+  Link,
+  ListItem,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 interface INewsListItem {
   date: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  img: any;
+  img: IImage;
   title: string;
   shortDescription: string;
   slug: string;
@@ -20,48 +29,45 @@ const NewsListItem = ({
   shortDescription,
   slug,
 }: INewsListItem) => {
+  const theme = useTheme();
+  const isMob = useMediaQuery(theme.breakpoints.down('md'));
   return (
     <ListItem>
-      <Stack direction={{ xs: 'column', md: 'row' }} spacing={{ xs: 2, md: 3 }}>
-        <Box
-          component={'img'}
-          sx={{
-            width: { xs: '288px', md: '332px', lg: '357px' },
-            height: '248px',
-            objectFit: 'cover',
-          }}
+      <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+        <img
           src={urlFor(img)
             .auto('format')
+            .width(isMob ? 288 : 357)
+            .height(248)
             .fit('fill')
-            .crop('focalpoint')
             .url()
             .toString()}
           alt='event logo'
         />
 
-        <Box sx={{ width: { xs: '100%', md: '80%', lg: '548px' } }}>
+        <Box sx={{ maxWidth: '548px' }}>
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
               gap: '16px',
             }}>
-            <Typography variant='bodyLight'>
+            <Typography
+              sx={{ color: theme => theme.palette.neutral[50] }}
+              variant='bodyLight'>
               {parseAndFormatDate(date)}
             </Typography>
             <Typography variant='subhead'>{title}</Typography>
-            <Typography variant='bodyRegular'>{shortDescription}</Typography>
+            <Typography
+              sx={{ color: theme => theme.palette.neutral[40] }}
+              variant='bodyRegular'>
+              {shortDescription}
+            </Typography>
             <Box>
-              <Button
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'flex-start',
-                  minWidth: '181px',
-                }}
-                variant='link'
-                endIcon={<SvgSpriteIcon icon='linkArrow' />}>
-                <LinkElement title=' Читати більше' href={slug}></LinkElement>
-              </Button>
+              <Link component={RouterLink} to={slug}>
+                Читати більше
+                <SvgSpriteIcon icon='linkArrow' />
+              </Link>
             </Box>
           </Box>
         </Box>

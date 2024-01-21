@@ -15,6 +15,7 @@ import { currentNewsQuery } from '@/api/query';
 
 const NewsCurrentPage = () => {
   const { slug } = useParams();
+
   const { getCurrentNews, currentNews } = useNewsStore();
   const {
     t,
@@ -30,17 +31,23 @@ const NewsCurrentPage = () => {
     language,
   });
 
+  const history = [
+    { title: t(`navigation.${Routes.NEWS}`), href: `/${Routes.NEWS}` },
+  ];
+
   return (
     <PageTemplate>
       <Container>
-        <Breadcrumbs title={t(`navigation.${Routes.NEWS}`)} mode='light' />
+        <Breadcrumbs title={data?.title || ''} mode='light' history={history} />
         {data && (
-          <Box>
+          <Box sx={{ mt: '56px' }}>
             <Box
-              sx={{ width: '100%' }}
+              sx={{ width: '100%', height: '408px' }}
               src={urlFor(data.img)
                 .auto('format')
-                .fit('scale')
+                .width(980)
+                .height(408)
+                .fit('fill')
                 .url()
                 .toString()}
               component={'img'}></Box>
