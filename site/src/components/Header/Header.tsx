@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import {
   Container,
   AppBar,
@@ -17,7 +17,7 @@ const Header = () => {
 
   const scrollTrigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 500,
+    threshold: 200,
   });
   const isHomePage = location.pathname === '/';
   const isHeaderTransparent = isHomePage && !scrollTrigger;
