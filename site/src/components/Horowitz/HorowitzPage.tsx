@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import PageTemplate from "../Common/PageTemplate";
 import {
   Button,
@@ -10,6 +10,7 @@ import {
   ListItem,
   ListItemText,
   Typography,
+  Grow,
 } from "@mui/material";
 import { getHorowitzData } from "@/api";
 
@@ -18,25 +19,21 @@ interface TextComponentProps {
   text2: string;
 }
 
+import { PortableText, PortableTextComponents } from "@portabletext/react";
+import { useHorowitzStore } from "@/store/horowitzStore";
+import { useTranslation } from "react-i18next";
+
+const components: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <Typography variant="bodyRegular" component={"p"}>
+        {children}
+      </Typography>
+    ),
+  },
+};
+
 const TextComponent: FC<TextComponentProps> = ({ text1, text2 }) => {
-  // const [horowitzData, setHorowitzData] = useState(null);
-  // console.log(horowitzData);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const language = "ua"; // Замените на нужный язык
-        const data = await getHorowitzData(language);
-        console.log(data);
-        // setHorowitzData(data);
-      } catch (error) {
-        console.error("Error fetching Horowitz data:", error);
-        // Обработка ошибки, если необходимо
-      }
-    };
-
-    fetchData();
-  }, []);
   return (
     <Card
       style={{ display: "flex", flexDirection: "column", marginBottom: "24px" }}
@@ -60,27 +57,35 @@ const TextComponent: FC<TextComponentProps> = ({ text1, text2 }) => {
   );
 };
 
-const HorowitzPage = () => {
+const HorowitzPage: FC = () => {
+  const {
+    i18n: { language },
+    t,
+  } = useTranslation();
+
+  const fetchHorowitzData = useHorowitzStore(
+    (state) => state.fetchHorowitzData
+  );
+
+  useEffect(() => {
+    fetchHorowitzData(language);
+  }, [fetchHorowitzData, language]);
+
+  const { loading, horowitzData } = useHorowitzStore();
+
+  console.log(horowitzData);
+  console.log(loading);
   return (
     <PageTemplate>
       <Container>
         <Typography variant="h2" gutterBottom>
           Заголовок
         </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <TextComponent
-              text1="Текст блока 1, колонка 1"
-              text2="Текст блока 2, колонка 1"
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextComponent
-              text1="Текст блока 1, колонка 2"
-              text2="Текст блока 2, колонка 2"
-            />
-          </Grid>
-        </Grid>
+        {/* <PortableText
+          value={horowitzData?.upperBlockText}
+          components={components}
+        /> */}
+
         <Card style={{ marginTop: "24px", marginBottom: "24px" }}>
           <CardContent>
             <img src="" alt="Картинка" style={{ width: "100%" }} />

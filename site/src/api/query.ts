@@ -49,13 +49,30 @@ export const settingsQuery = groq`*[_type == 'settings']{
   }
 }`;
 
-export const horowitzQuery = groq`*[_type == 'horowitz'][0]{
-  'banner': banner {
-    'bannerImg': bannerImg.asset->url,
-    'copyright': copyright
+export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
+  'bannerData': {
+    'bannerImg': bannerData.bannerImg.asset->url,
+    'bannerCopyright': bannerData.bannerCopyright
   },
-  'textBlocks':textBlocks[]{
-    'text': text[_key ==$language].value,
+  'upperBlockText': upperBlockText[_key ==$language].value,
+  'quote':quote{
+    'author': author[_key ==$language].value,
+    'quote': quote[_key ==$language].value,
   },
-  'literature': literature[]
+  'lowerBlockText': upperBlockText[_key ==$language].value,
+  'literature': literature[].children[0].text,
 }`;
+
+// export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
+//   'bannerData': {
+//     'bannerImg': bannerData.bannerImg.asset->url,
+//     'bannerCopyright': bannerData.bannerCopyright
+//   },
+//   'upperBlockText': upperBlockText[_key ==$language].value[].children[0].text,
+//   'quote':quote{
+//     'author': author[_key ==$language].value,
+//     'quote': quote[_key ==$language].value,
+//   },
+//   'lowerBlockText': upperBlockText[_key ==$language].value,
+//   'literature': literature[].children[0],
+// }`;
