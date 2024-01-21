@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Routes } from '@/types/routes.d'
 import { FC } from 'react'
 
-import { Box, Container, Stack, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import Breadcrumbs from '../Common/Breadcrumbs'
 import { Offset } from '../Common/Offset'
 import ContactsDetails from './parts/ContactsDetails'
