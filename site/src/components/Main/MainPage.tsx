@@ -1,5 +1,3 @@
-import { Box } from '@mui/material'
-
 import { FC } from 'react'
 import HeroSection from './parts/HeroSection/HeroSection'
 import NewsSection from './parts/NewsSection/NewsSection'
