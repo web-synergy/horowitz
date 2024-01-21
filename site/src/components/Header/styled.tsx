@@ -6,7 +6,11 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Link as MuiLink,
+  LinkProps,
+  Theme,
 } from '@mui/material';
+import { LinkProps as RouterLinkProps } from 'react-router-dom';
 
 interface StyledFormControlLabelProps extends FormControlLabelProps {
   checked: boolean;
@@ -41,9 +45,29 @@ export const LangDivider = styled(Box)(({ theme }) => ({
   margin: 'auto 4px',
 }));
 
-export const navLinkStyle = {
+const navLinkStyle = (theme: Theme) => ({
   padding: '8px 0',
-};
+  '&:hover': {
+    color: theme.palette.primary.main,
+  },
+});
+
+export const Link = styled(MuiLink)<LinkProps & RouterLinkProps>(
+  ({ theme }) => ({
+    ...navLinkStyle(theme),
+    '&': {
+      paddingBottom: 8,
+    },
+
+    '&:hover': {
+      color: theme.palette.primary.main,
+      '&::after': {
+        width: 0,
+        height: 0,
+      },
+    },
+  })
+);
 
 export const NavList = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -70,9 +94,13 @@ export const NavItem = styled(Accordion)(() => ({
 }));
 
 export const NavButton = styled(AccordionSummary)(({ theme }) => ({
-  ...navLinkStyle,
+  ...navLinkStyle(theme),
 
   gap: 16,
+
+  '&[aria-expanded="true"]': {
+    color: theme.palette.action.focus,
+  },
 
   [theme.breakpoints.up('lg')]: {
     gap: 4,
@@ -81,12 +109,33 @@ export const NavButton = styled(AccordionSummary)(({ theme }) => ({
 
 export const SubMenuList = styled(AccordionDetails)(({ theme }) => ({
   padding: '24px 32px 0',
-
+  color: 'inherit',
   display: 'flex',
   flexDirection: 'column',
   gap: 24,
+  borderRadius: 0,
 
   [theme.breakpoints.up('lg')]: {
-    padding: '24px 16px',
+    padding: '12px',
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+    gap: 10,
   },
 }));
+
+export const SubmenuLink = styled(MuiLink)<LinkProps | RouterLinkProps>(
+  ({ theme }) => ({
+    '&': {
+      paddingBottom: 0,
+    },
+
+    '&:hover': {
+      color: theme.palette.primary.main,
+
+      '&::after': {
+        width: 0,
+        height: 0,
+      },
+    },
+  })
+);
