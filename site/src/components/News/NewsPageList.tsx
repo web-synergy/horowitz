@@ -43,9 +43,9 @@ const NewsPageList = () => {
               justifyContent: { xs: 'center', md: 'flex-start' },
             }}>
             {newsList &&
-              newsList.map((news: INews) => (
+              newsList.map((news: INews, index) => (
                 <NewsListItem
-                  key={news._id}
+                  key={index}
                   title={news.title}
                   date={news._createdAt}
                   img={news.img}
