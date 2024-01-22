@@ -13,6 +13,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
+import { t } from 'i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
 interface INewsListItem {
@@ -67,7 +68,7 @@ const NewsListItem = ({
               </Typography>
               <Box>
                 <Link component={RouterLink} to={slug}>
-                  Читати більше
+                  {t(`news.readMore`)}
                   <SvgSpriteIcon
                     sx={{ transform: 'rotate(270deg)' }}
                     icon='arrow'

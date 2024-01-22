@@ -27,7 +27,7 @@ const NewsPageList = () => {
 
   useEffect(() => {
     if (newsList) {
-      fetchNews(language, 0, 5);
+      fetchNews(language);
     }
 
     setTotalEvents(newsList.length);
@@ -44,7 +44,7 @@ const NewsPageList = () => {
               my: { xs: '48px', lg: '56px' },
             }}
             variant='h2'>
-            Новини
+            {t(`navigation.${Routes.NEWS}`)}
           </Typography>
           <List
             sx={{
@@ -74,7 +74,7 @@ const NewsPageList = () => {
             }}>
             {pageSize < totalEvents && (
               <Button onClick={handlerLoadMore} variant='transparent'>
-                Показати більше
+                {t(`news.showMore`)}
               </Button>
             )}
           </Box>

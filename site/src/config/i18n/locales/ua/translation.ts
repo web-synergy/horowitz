@@ -1,5 +1,5 @@
-import { Routes } from '@/types/routes.d'
-import { Translations, NotFound, InDevelopment } from '@/types/translation.d'
+import { Routes } from '@/types/routes.d';
+import { Translations, NotFound, InDevelopment } from '@/types/translation.d';
 
 export default {
   navigation: {
@@ -24,14 +24,22 @@ export default {
     phone: 'Телефон',
     pressCenter: 'Прес-центр',
   },
+  news: {
+    goBack: 'Повернутись до Новин',
+    readMore: 'Читати більше',
+    showMore: 'Показати більше',
+  },
   notFound: {
     [NotFound.TITLE]: 'Вибачте, сторінку не знайдено',
-    [NotFound.TEXT]: 'Сторінка, яку ви шукаєте, видалена або тимчасово недоступна',
+    [NotFound.TEXT]:
+      'Сторінка, яку ви шукаєте, видалена або тимчасово недоступна',
     [NotFound.BTN]: 'На головну сторінку',
   },
-  institutional_name: 'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
+  institutional_name:
+    'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
   inDevelopment: {
-    [InDevelopment.MSG]: 'Вибачте, на даний момент ця сторінка знаходиться в розробці',
+    [InDevelopment.MSG]:
+      'Вибачте, на даний момент ця сторінка знаходиться в розробці',
     [InDevelopment.BTN]: 'На головну сторінку',
   },
-}
+};

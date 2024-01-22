@@ -64,25 +64,22 @@ const NewsCurrentPage = () => {
                   .width(920)
                   .height(400)
                   .fit('fill')
-
                   .url()
                   .toString()}
                 component={'img'}></Box>
             </GrowView>
 
             <Box sx={{ maxWidth: '930px', mx: 'auto' }}>
-              <GrowView>
-                <Typography
-                  sx={{ mt: '54px', mb: '24px', display: 'block' }}
-                  variant='bodyLight'>
-                  {parseAndFormatDate(data._createdAt)}
-                </Typography>
-              </GrowView>
-              <GrowView>
-                <Typography sx={{ mb: '32px' }} variant='h2'>
-                  {data.title}
-                </Typography>
-              </GrowView>
+              <Typography
+                sx={{ mt: '54px', mb: '24px', display: 'block' }}
+                variant='bodyLight'>
+                {parseAndFormatDate(data._createdAt)}
+              </Typography>
+
+              <Typography sx={{ mb: '32px' }} variant='h2'>
+                {data.title}
+              </Typography>
+
               <PortableText
                 value={data.description[0]}
                 components={components}
@@ -94,7 +91,7 @@ const NewsCurrentPage = () => {
                   sx={{ transform: 'rotate(90deg)' }}
                   icon='arrow'
                 />
-                Читати більше
+                {t(`news.goBack`)}
               </Link>
             </Box>
           </Box>
