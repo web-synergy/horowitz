@@ -1,18 +1,6 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import PageTemplate from "../Common/PageTemplate";
-import {
-  Button,
-  Card,
-  CardContent,
-  Container,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-  Grow,
-  Box,
-} from "@mui/material";
+import { Button, Container, Typography, Box } from "@mui/material";
 import Breadcrumbs from "../Common/Breadcrumbs";
 import { Routes } from "@/types/routes.d";
 
@@ -69,13 +57,25 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
   imgSrc,
   copyright,
 }) => {
+  const { t } = useTranslation();
+
   return (
-    <Box position="relative" mb={4}>
+    <Box position="relative" sx={{ backgroundColor: "#0D0C06" }} mb={4}>
       <img
         src={imgSrc}
         alt="Banner"
         style={{ width: "100%", height: "auto" }}
       />
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+        }}
+      >
+        <Breadcrumbs title={t(`navigation.${Routes.HOROWITZ}`)} mode="dark" />
+      </Box>
       <Typography
         variant="bodyMedium"
         sx={{
@@ -96,7 +96,7 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
 const HorowitzPage: FC = () => {
   const {
     i18n: { language },
-    t,
+    // t,
   } = useTranslation();
 
   const fetchHorowitzData = useHorowitzStore(
@@ -111,20 +111,19 @@ const HorowitzPage: FC = () => {
     useHorowitzStore();
 
   // console.log(bannerData);
-  console.log(quote);
+  // console.log(quote);
   // console.log(upperBlockText);
   // console.log(lowerBlockText);
   // console.log(literature);
   return (
     <PageTemplate>
+      {bannerData && (
+        <BannerComponent
+          imgSrc={bannerData.bannerImg}
+          copyright={bannerData.bannerCopyright}
+        />
+      )}
       <Container>
-        {bannerData && (
-          <BannerComponent
-            imgSrc={bannerData.bannerImg}
-            copyright={bannerData.bannerCopyright}
-          />
-        )}
-
         <Typography variant="h2">Володимир Горовиць</Typography>
         {upperBlockText && (
           <Box sx={{ "p:not(:last-child)": { marginBottom: "16px" } }}>

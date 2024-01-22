@@ -1,9 +1,11 @@
+import { PortableTextBlock } from "@portabletext/types";
+
 import {
   CompetitionsMenu,
   ContactsType,
   SettingsResp,
   SociableType,
-} from './сontactsTypes';
+} from "./contactsTypes";
 
 export interface SettingsStoreState {
   sociable: SociableType | null;
@@ -12,4 +14,17 @@ export interface SettingsStoreState {
   competitions: { [key: string]: CompetitionsMenu[] | null };
   fetchSettings: (language: string) => Promise<void>;
   getPreviewSettings: (settings: SettingsResp[], language: string) => void;
+}
+
+export interface HorowitzStoreState {
+  bannerData: {
+    bannerCopyright: string;
+    bannerImg: string;
+  };
+  quote: { author: string[]; quote: string[] };
+  upperBlockText: PortableTextBlock[];
+  lowerBlockText: PortableTextBlock[];
+  literature: PortableTextBlock[];
+  loading: boolean;
+  fetchHorowitzData: (language: string) => Promise<void>;
 }
