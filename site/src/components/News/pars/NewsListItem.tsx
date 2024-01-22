@@ -68,7 +68,10 @@ const NewsListItem = ({
               <Box>
                 <Link component={RouterLink} to={slug}>
                   Читати більше
-                  <SvgSpriteIcon icon='linkArrow' />
+                  <SvgSpriteIcon
+                    sx={{ transform: 'rotate(270deg)' }}
+                    icon='arrow'
+                  />
                 </Link>
               </Box>
             </Box>

@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import PageTemplate from '../Common/PageTemplate';
-import { Box, Button, Container, Typography } from '@mui/material';
+import { Box, Container, Link, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
@@ -15,6 +15,7 @@ import { INews } from '@/types/newsTypes';
 import { getCurrentNews } from '@/api';
 import GrowView from '../Common/GrowView';
 import Loader from '../Common/Loader';
+import SvgSpriteIcon from '../Common/SvgSpriteIcon';
 
 const NewsCurrentPage = () => {
   const { slug } = useParams();
@@ -54,7 +55,7 @@ const NewsCurrentPage = () => {
       <Container>
         <Breadcrumbs title={data?.title || ''} mode='light' history={history} />
         {data && (
-          <Box sx={{ mt: '56px' }}>
+          <Box sx={{ my: '56px' }}>
             <GrowView>
               <Box
                 sx={{ width: '100%', height: 'auto' }}
@@ -85,11 +86,15 @@ const NewsCurrentPage = () => {
                 value={data.description[0]}
                 components={components}
               />
-            </Box>
-            <Box>
-              <Button onClick={() => navigate(-1)} variant='link'>
-                Повернутись до Новин
-              </Button>
+              <Link
+                sx={{ mt: { xs: '8px', md: '18px', lg: '24px' } }}
+                onClick={() => navigate(-1)}>
+                <SvgSpriteIcon
+                  sx={{ transform: 'rotate(90deg)' }}
+                  icon='arrow'
+                />
+                Читати більше
+              </Link>
             </Box>
           </Box>
         )}
