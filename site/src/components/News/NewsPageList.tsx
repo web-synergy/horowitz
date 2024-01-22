@@ -26,7 +26,7 @@ const NewsPageList = () => {
   };
 
   useEffect(() => {
-    if (newsList) {
+    if (!newsList) {
       fetchNews(language);
     }
 

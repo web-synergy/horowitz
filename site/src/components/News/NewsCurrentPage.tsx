@@ -60,12 +60,15 @@ const NewsCurrentPage = () => {
             <GrowView>
               <Box
                 sx={{ width: '100%', height: 'auto' }}
-                src={urlFor(data.img)
-                  .width(920)
-                  .height(400)
-                  .fit('fill')
-                  .url()
-                  .toString()}
+                src={
+                  data.img &&
+                  urlFor(data.img)
+                    .width(920)
+                    .height(400)
+                    .fit('fill')
+                    .url()
+                    .toString()
+                }
                 component={'img'}></Box>
             </GrowView>
 
@@ -85,7 +88,14 @@ const NewsCurrentPage = () => {
                 components={components}
               />
               <Link
-                sx={{ mt: { xs: '8px', md: '18px', lg: '24px' } }}
+                sx={{
+                  mt: {
+                    xs: '8px',
+                    md: '18px',
+                    lg: '24px',
+                  },
+                  color: theme => theme.palette.neutral[60],
+                }}
                 onClick={() => navigate(-1)}>
                 <SvgSpriteIcon
                   sx={{ transform: 'rotate(90deg)' }}

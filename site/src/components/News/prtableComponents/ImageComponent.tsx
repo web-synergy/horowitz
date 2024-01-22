@@ -1,11 +1,11 @@
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage, IPortableImgGallery } from '@/types/newsTypes';
 import { Box, useMediaQuery } from '@mui/material';
-import { GridGallery } from './GridGallery';
+import { FC, Suspense, lazy } from 'react';
 import { PortableSwiper } from './Swiper';
 import { theme } from '@/theme';
-import { FC } from 'react';
 import GrowView from '@/components/Common/GrowView';
+const GridGallery = lazy(() => import('./GridGallery'));
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ImageComponent = ({ value }: { value: IImage }) => {
@@ -15,14 +15,17 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
         <img
           width={'100%'}
           height={'auto'}
-          src={urlFor(value)
-            .auto('format')
-            .width(920)
-            .height(520)
-            .fit('fill')
-            .url()
-            .toString()}
-          alt={value.alt || ' '}
+          src={
+            value.asset &&
+            urlFor(value)
+              .auto('format')
+              .width(920)
+              .height(520)
+              .fit('fill')
+              .url()
+              .toString()
+          }
+          alt={value.alt || ''}
           loading='lazy'
         />
       </Box>
@@ -34,8 +37,16 @@ export const ImagesArray: FC<IPortableImgGallery> = ({ value }) => {
 
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
   if (option && !isMob) {
-    return <GridGallery value={value} />;
+    return (
+      <Suspense fallback={<p>load</p>}>
+        <GridGallery value={value} />
+      </Suspense>
+    );
   } else {
-    return <PortableSwiper value={value} />;
+    return (
+      <Suspense fallback={<p>load</p>}>
+        <PortableSwiper value={value} />
+      </Suspense>
+    );
   }
 };
