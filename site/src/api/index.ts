@@ -8,12 +8,8 @@ export const getSettings = async (
 ): Promise<SettingsResp[]> => {
   return sanityFetch(settingsQuery, { language });
 };
-export const getNews = async (
-  language: string,
-  start: number,
-  end: number
-): Promise<INews[]> => {
-  return sanityFetch(newsQuery, { language, start, end });
+export const getNews = async (language: string): Promise<INews[]> => {
+  return sanityFetch(newsQuery, { language });
 };
 export const getCurrentNews = async (
   language: string,

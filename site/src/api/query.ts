@@ -49,13 +49,14 @@ export const settingsQuery = groq`*[_type == 'settings']{
   }
 }`;
 
-export const newsQuery = groq`*[_type == 'news'][$start...$end]{
+export const newsQuery = groq`*[_type == 'news']{
   _id,
   _createdAt,
    img,
    'title':  title[_key ==$language].value,
    'slug':slug.current,
-   'shortDescription':shortDescription[_key ==$language].value
+   'shortDescription':shortDescription[_key ==$language].value,
+   'count':count(*[_type == "news"])
 }`;
 
 export const currentNewsQuery = groq`*[_type == 'news'&& slug.current == $slug][0]{
