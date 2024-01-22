@@ -7,6 +7,11 @@ export const youtube = defineType({
   title: 'YouTube',
   fields: [
     defineField({
+      name: 'title',
+      type: 'string',
+      title: 'Назва',
+    }),
+    defineField({
       name: 'url',
       type: 'url',
       title: 'Вставте посилання на відео',
