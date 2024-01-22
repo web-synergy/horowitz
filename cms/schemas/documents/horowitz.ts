@@ -90,7 +90,15 @@ export default defineType({
       name: 'literature',
       title: 'Література',
       type: 'array',
-      of: [{type: 'block'}],
+      of: [
+        {
+          type: 'block',
+          lists: [
+            {title: 'Number', value: 'number'},
+            {title: 'Bullet', value: 'bullet'},
+          ],
+        },
+      ],
     }),
   ],
 })

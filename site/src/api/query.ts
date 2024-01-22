@@ -59,8 +59,8 @@ export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
     'author': author[_key ==$language].value,
     'quote': quote[_key ==$language].value,
   },
-  'lowerBlockText': upperBlockText[_key ==$language].value,
-  'literature': literature[].children[0].text,
+  'lowerBlockText': lowerBlockText[_key ==$language].value,
+  'literature': literature[],
 }`;
 
 // export const horowitzQuery = groq`*[_type == 'horowitz'][0] {

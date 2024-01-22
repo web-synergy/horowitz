@@ -2,7 +2,17 @@ import { getHorowitzData } from "@/api";
 import { create } from "zustand";
 
 export interface HorowitzStoreState {
-  horowitzData: null;
+  bannerData: {
+    bannerCopyright: string;
+    bannerImg: string;
+  };
+  quote: {
+    author: string[];
+    quote: string[];
+  };
+  upperBlockText: any;
+  lowerBlockText: any;
+  literature: string[];
   loading: boolean;
   fetchHorowitzData: (language: string) => Promise<void>;
 }
@@ -24,7 +34,11 @@ export const useHorowitzStore = create<HorowitzStoreState>((set) => ({
       if (!horowitzData)
         throw new Error("Could not fetch the data from that resource");
       set({
-        horowitzData: horowitzData,
+        bannerData: horowitzData.bannerData,
+        quote: horowitzData.quote,
+        upperBlockText: horowitzData.upperBlockText,
+        lowerBlockText: horowitzData.lowerBlockText,
+        literature: horowitzData.literature,
       });
     } catch (error) {
       console.log(error);

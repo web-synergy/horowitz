@@ -11,17 +11,15 @@ import {
   ListItemText,
   Typography,
   Grow,
+  Box,
 } from "@mui/material";
-import { getHorowitzData } from "@/api";
-
-interface TextComponentProps {
-  text1: string;
-  text2: string;
-}
+import Breadcrumbs from "../Common/Breadcrumbs";
+import { Routes } from "@/types/routes.d";
 
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { useHorowitzStore } from "@/store/horowitzStore";
 import { useTranslation } from "react-i18next";
+import { Section } from "../Contacts/styled";
 
 const components: PortableTextComponents = {
   block: {
@@ -31,29 +29,67 @@ const components: PortableTextComponents = {
       </Typography>
     ),
   },
-};
-
-const TextComponent: FC<TextComponentProps> = ({ text1, text2 }) => {
-  return (
-    <Card
-      style={{ display: "flex", flexDirection: "column", marginBottom: "24px" }}
-    >
-      <CardContent
-        style={{
+  list: {
+    bullet: ({ children }) => (
+      <Typography
+        component={"ul"}
+        sx={{
           display: "flex",
           flexDirection: "column",
-          gap: "24px",
-          flexWrap: "wrap",
+          mb: { xs: "24px", md: "32px" },
+        }}
+        variant="bodyRegular"
+      >
+        {children}
+      </Typography>
+    ),
+
+    number: ({ children }) => (
+      <Typography
+        component={"ol"}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          mb: { xs: "24px", md: "32px" },
+        }}
+        variant="bodyRegular"
+      >
+        {children}
+      </Typography>
+    ),
+  },
+};
+
+interface BannerComponentProps {
+  imgSrc: string;
+  copyright: string;
+}
+
+const BannerComponent: React.FC<BannerComponentProps> = ({
+  imgSrc,
+  copyright,
+}) => {
+  return (
+    <Box position="relative" mb={4}>
+      <img
+        src={imgSrc}
+        alt="Banner"
+        style={{ width: "100%", height: "auto" }}
+      />
+      <Typography
+        variant="bodyMedium"
+        sx={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          color: "#666",
+          padding: 2,
+          width: "100%",
         }}
       >
-        <div style={{ flex: "1", marginBottom: "16px" }}>
-          <Typography variant="body1">{text1}</Typography>
-        </div>
-        <div style={{ flex: "1", marginBottom: "16px" }}>
-          <Typography variant="body1">{text2}</Typography>
-        </div>
-      </CardContent>
-    </Card>
+        {copyright}
+      </Typography>
+    </Box>
   );
 };
 
@@ -71,53 +107,53 @@ const HorowitzPage: FC = () => {
     fetchHorowitzData(language);
   }, [fetchHorowitzData, language]);
 
-  const { loading, horowitzData } = useHorowitzStore();
+  const { bannerData, quote, upperBlockText, lowerBlockText, literature } =
+    useHorowitzStore();
 
-  console.log(horowitzData);
-  console.log(loading);
+  // console.log(bannerData);
+  console.log(quote);
+  // console.log(upperBlockText);
+  // console.log(lowerBlockText);
+  // console.log(literature);
   return (
     <PageTemplate>
       <Container>
-        <Typography variant="h2" gutterBottom>
-          Заголовок
-        </Typography>
-        {/* <PortableText
-          value={horowitzData?.upperBlockText}
-          components={components}
-        /> */}
+        {bannerData && (
+          <BannerComponent
+            imgSrc={bannerData.bannerImg}
+            copyright={bannerData.bannerCopyright}
+          />
+        )}
 
-        <Card style={{ marginTop: "24px", marginBottom: "24px" }}>
-          <CardContent>
-            <img src="" alt="Картинка" style={{ width: "100%" }} />
-          </CardContent>
-        </Card>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <TextComponent
-              text1="Текст блока 3, колонка 1"
-              text2="Текст блока 4, колонка 1"
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextComponent
-              text1="Текст блока 3, колонка 2"
-              text2="Текст блока 4, колонка 2"
-            />
-          </Grid>
-        </Grid>
+        <Typography variant="h2">Володимир Горовиць</Typography>
+        {upperBlockText && (
+          <Box sx={{ "p:not(:last-child)": { marginBottom: "16px" } }}>
+            <PortableText value={upperBlockText[0]} components={components} />
+          </Box>
+        )}
+        {quote && (
+          <Section component={"section"}>
+            <Typography variant="h4" gutterBottom>
+              {quote.quote}
+            </Typography>
+            <Typography variant="h4" gutterBottom>
+              {quote.author}
+            </Typography>
+          </Section>
+        )}
+        {lowerBlockText && (
+          <Box sx={{ "p:not(:last-child)": { marginBottom: "16px" } }}>
+            <PortableText value={lowerBlockText[0]} components={components} />
+          </Box>
+        )}
         <Typography variant="h4" gutterBottom>
           Литература
         </Typography>
-        <List>
-          {/* Здесь добавьте элементы списка литературы */}
-          <ListItem>
-            <ListItemText primary="Название книги 1" />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary="Название книги 2" />
-          </ListItem>
-          {/* Добавьте еще элементов, по вашему желанию */}
-        </List>
+        {literature && (
+          <Box sx={{ "p:not(:last-child)": { marginBottom: "16px" } }}>
+            <PortableText value={literature} components={components} />
+          </Box>
+        )}
         <Button variant="outlined" color="primary">
           Показать больше
         </Button>
