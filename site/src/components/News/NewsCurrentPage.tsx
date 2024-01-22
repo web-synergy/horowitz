@@ -29,6 +29,7 @@ const NewsCurrentPage = () => {
   } = useTranslation();
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
     const getData = async () => {
       if (slug) {
         const response = await getCurrentNews(language, slug);
