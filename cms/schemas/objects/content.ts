@@ -3,6 +3,7 @@ import {defineType} from 'sanity'
 export const content = defineType({
   name: 'content',
   type: 'array',
+
   of: [
     {
       type: 'block',
@@ -31,12 +32,7 @@ export const content = defineType({
               {
                 title: 'URL',
                 name: 'href',
-                type: 'url',
-              },
-              {
-                title: 'Відкрити в новому вікні',
-                name: 'blank',
-                type: 'boolean',
+                type: 'string',
               },
             ],
           },
