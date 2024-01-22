@@ -9,6 +9,7 @@ export interface INews {
   description: PortableTextBlock[];
   shortDescription: string;
   date: string;
+  count: number;
 }
 
 export interface IImage {

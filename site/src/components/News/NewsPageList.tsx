@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import PageTemplate from '../Common/PageTemplate';
 import { Button, Container, List, Typography, Box, Stack } from '@mui/material';
 
@@ -16,12 +16,23 @@ const NewsPageList = () => {
     t,
     i18n: { language },
   } = useTranslation();
-  const { newsList, fetchNews } = useNewsStore();
+  const { fetchNews, newsList } = useNewsStore();
+
+  const [totalEvents, setTotalEvents] = useState<number>(0);
+  const [pageSize, setPageSize] = useState(4);
+
+  const handlerLoadMore = () => {
+    setPageSize(prevPage => prevPage + 4);
+  };
 
   useEffect(() => {
-    fetchNews(language, 0, 10);
+    if (newsList) {
+      fetchNews(language, 0, 5);
+    }
+
+    setTotalEvents(newsList.length);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language]);
+  }, [language, totalEvents, pageSize]);
 
   return (
     <PageTemplate>
@@ -43,23 +54,29 @@ const NewsPageList = () => {
               justifyContent: { xs: 'center', md: 'flex-start' },
             }}>
             {newsList &&
-              newsList.map((news: INews, index) => (
-                <NewsListItem
-                  key={index}
-                  title={news.title}
-                  date={news._createdAt}
-                  img={news.img}
-                  slug={news.slug}
-                  shortDescription={news.shortDescription}
-                />
-              ))}
+              newsList
+                .slice(0, pageSize)
+                .map((news: INews, index) => (
+                  <NewsListItem
+                    key={index}
+                    title={news.title}
+                    date={news._createdAt}
+                    img={news.img}
+                    slug={news.slug}
+                    shortDescription={news.shortDescription}
+                  />
+                ))}
           </List>
           <Box
             sx={{
               my: { xs: '48px', lg: '56px' },
               mx: 'auto',
             }}>
-            <Button variant='transparent'>Показати Більше</Button>
+            {pageSize < totalEvents && (
+              <Button onClick={handlerLoadMore} variant='transparent'>
+                Показати більше
+              </Button>
+            )}
           </Box>
         </Stack>
       </Container>

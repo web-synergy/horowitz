@@ -1,8 +1,7 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import PageTemplate from '../Common/PageTemplate';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-
 import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { PortableText } from '@portabletext/react';
@@ -19,8 +18,10 @@ import Loader from '../Common/Loader';
 
 const NewsCurrentPage = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [loader, setLoader] = useState(true);
   const [currentNews, setCurrentNews] = useState<INews | null>(null);
+
   const {
     t,
     i18n: { language },
@@ -84,6 +85,11 @@ const NewsCurrentPage = () => {
                 value={data.description[0]}
                 components={components}
               />
+            </Box>
+            <Box>
+              <Button onClick={() => navigate(-1)} variant='link'>
+                Повернутись до Новин
+              </Button>
             </Box>
           </Box>
         )}
