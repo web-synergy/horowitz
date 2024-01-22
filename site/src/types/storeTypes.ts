@@ -16,5 +16,5 @@ export interface SettingsStoreState {
 }
 export interface NewsStoreState {
   newsList: INews[];
-  fetchNews: (language: string, start: number, end: number) => Promise<void>;
+  fetchNews: (language: string) => Promise<void>;
 }
