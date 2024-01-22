@@ -10,7 +10,10 @@ const ScrollDownBtn: FC<ScrollDownBtnProps> = ({ onClick }) => {
     <Box
       sx={{
         position: 'absolute',
-        bottom: '30px',
+        bottom: {
+          xs: '30px',
+          md: '40px',
+        },
         left: '50%',
         marginLeft: '-16px',
         display: 'block',

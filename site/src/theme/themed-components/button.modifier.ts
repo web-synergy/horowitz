@@ -73,12 +73,12 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
     {
       props: { variant: 'secondary' },
       style: ({ theme }) => ({
-        paddingRight: '20px',
-        paddingLeft: '20px',
+        '&.MuiButton-root': {
+          padding: '16px 20px',
+        },
         backgroundColor: 'transparent',
         borderColor: theme.palette.primary.main,
         color: 'inherit',
-
         '&:hover': {
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.common.black,

@@ -1,27 +1,31 @@
 import { Offset } from '@/components/Common/Offset'
 import SocialMedia from '@/components/Common/SocialMedia'
-import { Box, Container, Stack, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Container, useMediaQuery, useTheme } from '@mui/material'
 import { FC, useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
 import bgVideo from '../../../../../public/bg_video.mp4'
-import pianoImage from '../../temp/piano_image.png'
 
-import EMCY_logo from '../../temp/EMCY_logo.svg'
+import EUMCY_logo from '../../temp/EUMCY_logo.svg'
 import WFIMC_logo from '../../temp/WFIMC_logo.svg'
 
 import { MainPage } from '@/types/translation.d'
 import { useTranslation } from 'react-i18next'
+import LogoImg from './LogoImg'
 import ScrollDownBtn from './ScrollDownBtn'
 import {
   ButtonsStack,
   ContentStack,
   ContentWrapper,
+  LogotypesStack,
+  MainTitle,
   Overlay,
   SocialMediaBox,
   StyledButton,
   Video,
 } from './styled'
+
+
 
 const HeroSection: FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null)
@@ -48,57 +52,27 @@ const HeroSection: FC = () => {
         <Offset />
         <Container>
           <ContentWrapper>
-            <ContentStack>
+            <Box position={'relative'}>
               <SocialMediaBox>
                 <SocialMedia vertical={!isMobile} />
               </SocialMediaBox>
-              <Box
-                component={'img'}
-                src={pianoImage}
-                sx={{ maxWidth: '695px' }}
-                alt="piano image"
-              />
-              <ButtonsStack>
-                <StyledButton component={RouterLink} to={'in-development'}>
-                  {t(`mainPage.${MainPage.BTN_APL}`)}
-                </StyledButton>
-                <StyledButton variant="secondary" component={RouterLink} to={'in-development'}>
-                  {t(`mainPage.${MainPage.BTN_SUPP}`)}
-                </StyledButton>
-              </ButtonsStack>
-            </ContentStack>
+              <ContentStack>
+                <MainTitle component={'h1'}>{t('institutional_name')}</MainTitle>
+                <ButtonsStack>
+                  <StyledButton component={RouterLink} to={'in-development'}>
+                    {t(`mainPage.${MainPage.BTN_APL}`)}
+                  </StyledButton>
+                  <StyledButton variant="secondary" component={RouterLink} to={'in-development'}>
+                    {t(`mainPage.${MainPage.BTN_SUPP}`)}
+                  </StyledButton>
+                </ButtonsStack>
+                <LogotypesStack>
+                  <LogoImg src={WFIMC_logo} alt="WFIMC logotype" />
+                  <LogoImg src={EUMCY_logo} alt="EMCY logotype" />
+                </LogotypesStack>
+              </ContentStack>
+            </Box>
             <ScrollDownBtn onClick={() => scrollTo({ top: windowHeight, behavior: 'smooth' })} />
-            <Stack
-              sx={{
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                marginTop: {
-                  xs: '24px',
-                  md: '40px',
-                  lg: '56px',
-                },
-                gap: {
-                  xs: '24px',
-                  md: '48px',
-                },
-              }}
-            >
-              <Box
-                component={'img'}
-                src={WFIMC_logo}
-                alt="WFIMC logotype"
-                width={'250px'}
-                height={'48px'}
-              />
-
-              <Box
-                component={'img'}
-                src={EMCY_logo}
-                alt="EMCY logotype"
-                width={'250px'}
-                height={'48px'}
-              />
-            </Stack>
           </ContentWrapper>
         </Container>
       </Overlay>

@@ -1,4 +1,16 @@
-import { Container, Typography, TypographyProps, styled } from '@mui/material'
+import { Box, BoxProps, Container, Typography, TypographyProps, styled } from '@mui/material'
+
+export const NewsBox = styled(Box)<BoxProps>(({ theme }) => ({
+  [theme.breakpoints.up('xs')]: {
+    padding: '72px 0',
+  },
+  [theme.breakpoints.up('md')]: {
+    padding: '96px 0',
+  },
+  [theme.breakpoints.up('lg')]: {
+    padding: '120px 0',
+  },
+}))
 
 export const CardTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
   fontWeight: 400,

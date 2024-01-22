@@ -1,20 +1,21 @@
-import { Box, Container, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
-import { FC } from 'react'
-import { NewsBox } from '../HeroSection/styled'
-import NewsCard from './NewsCard'
-import ShowMoreBtn from './ShowMoreBtn'
-
-import pianistImg from '../../temp/pianist.jpg'
-import fakeData from './fakeData.json'
-
-import { sliceNewsTitle } from '@/utils/helpers'
-
+import { useTranslation } from 'react-i18next'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css'
 
+import { sliceNewsTitle } from '@/utils/helpers'
+
+import { Routes } from '@/types/routes.d'
 import { MainPage } from '@/types/translation.d'
-import { useTranslation } from 'react-i18next'
-import { StyledContainer } from './styled'
+
+import { FC } from 'react'
+
+import { Box, Container, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
+import NewsCard from './NewsCard'
+import ShowMoreBtn from './ShowMoreBtn'
+import { NewsBox, StyledContainer } from './styled'
+
+import pianistImg from '../../temp/pianist.jpg'
+import fakeData from './fakeData.json'
 
 const NewsSection: FC = () => {
   const { breakpoints } = useTheme()
@@ -43,7 +44,7 @@ const NewsSection: FC = () => {
             <Box>
               <ShowMoreBtn
                 title={t(`mainPage.${MainPage.BTN_VIEW}`)}
-                link="/"
+                link={`/${[Routes.NEWS]}`}
                 isTitleVisible={!isMobile}
               />
             </Box>
