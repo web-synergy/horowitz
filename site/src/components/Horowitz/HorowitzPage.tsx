@@ -63,9 +63,10 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
     <Box
       position="relative"
       sx={{
+        maxWidth: "1280px",
+        margin: "0 auto",
         backgroundColor: "#0D0C06",
-        height: "314px",
-        paddingLeft: "16px",
+        height: { xs: "314px", md: "468px" },
         "::before": {
           content: '""',
           position: "absolute",
@@ -77,13 +78,13 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
           zIndex: 1,
         },
       }}
-      mb={4}
     >
       <Box
         sx={{
           position: "absolute",
           top: 0,
-          right: 0,
+          right: { xs: 0, md: "48px", lg: "228px" },
+          height: "100%",
         }}
       >
         <img
@@ -91,7 +92,7 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
           alt="banner img"
           style={{
             display: "block",
-            maxWidth: "100%",
+            width: "100%",
             height: "100%",
             objectFit: "cover",
           }}
@@ -102,7 +103,7 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
         sx={{
           position: "absolute",
           top: 0,
-          left: 16,
+          left: { xs: "16px", md: "40px", lg: "80px" },
           maxWidth: "100%",
           zIndex: 10,
         }}
@@ -116,7 +117,7 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
           bottom: 0,
           left: 0,
           color: "#666",
-          padding: 2,
+          padding: { xs: "16px 16px", md: "16px 40px", lg: "16px 80px" },
           width: "100%",
           zIndex: 10,
         }}
@@ -157,28 +158,77 @@ const HorowitzPage: FC = () => {
           copyright={bannerData.bannerCopyright}
         />
       )}
+
       <Container>
-        <Typography variant="h2">Володимир Горовиць</Typography>
-        {upperBlockText && (
-          <Box sx={{ "p:not(:last-child)": { marginBottom: "16px" } }}>
-            <PortableText value={upperBlockText[0]} components={components} />
-          </Box>
-        )}
-        {quote && (
-          <Section component={"section"}>
-            <Typography variant="h4" gutterBottom>
-              {quote.quote}
-            </Typography>
-            <Typography variant="h4" gutterBottom>
-              {quote.author}
-            </Typography>
-          </Section>
-        )}
+        <Box
+          sx={{
+            paddingTop: { xs: "48px", md: "54px", lg: "80px" },
+            paddingBottom: { xs: "24px", lg: "80px" },
+          }}
+        >
+          <Typography
+            variant="h1"
+            sx={{
+              textTransform: "uppercase",
+              marginBottom: "24px",
+              textAlign: { xs: "left", md: "center" },
+            }}
+          >
+            Володимир Горовиць
+          </Typography>
+          {upperBlockText && (
+            <Box
+              sx={{
+                "p:not(:last-child)": { marginBottom: "16px" },
+              }}
+            >
+              <PortableText value={upperBlockText[0]} components={components} />
+            </Box>
+          )}
+        </Box>
+      </Container>
+      {quote && (
+        <Section
+          component={"section"}
+          sx={{
+            textAlign: "center",
+            maxWidth: "1280px",
+            margin: "0 auto",
+            padding: { xs: "24px 16px", md: "72px 54px", lg: "148px 172px" },
+          }}
+        >
+          <Typography variant="h1" sx={{}}>
+            {quote.quote}
+          </Typography>
+          <Typography
+            variant="subhead"
+            sx={{
+              textAlign: "center",
+              position: "relative",
+              color: "#E19C2A",
+              "::before": {
+                content: '""',
+                position: "absolute",
+                width: "20px", // Ширина полоски
+                height: "2px", // Высота полоски
+                background: "#E19C2A", // Цвет полоски
+                top: "50%", // Смещение полоски по вертикали
+                transform: "translateY(-50%)", // Выравнивание полоски по вертикали
+                left: "-28px", // Смещение полоски влево
+              },
+            }}
+          >
+            {quote.author}
+          </Typography>
+        </Section>
+      )}
+      <Container>
         {lowerBlockText && (
           <Box sx={{ "p:not(:last-child)": { marginBottom: "16px" } }}>
             <PortableText value={lowerBlockText[0]} components={components} />
           </Box>
         )}
+
         <Typography variant="h4" gutterBottom>
           Литература
         </Typography>
