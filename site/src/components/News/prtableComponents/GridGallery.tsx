@@ -34,7 +34,11 @@ export const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
                 );
             })}
         </ImageList>
-        <Typography variant='smallText'>{title}</Typography>
+        <Typography
+          sx={{ color: theme => theme.palette.neutral[50] }}
+          variant='smallText'>
+          {title}
+        </Typography>
       </Box>
     </GrowView>
   );

@@ -17,10 +17,11 @@ import GrowView from '@/components/Common/GrowView';
 export const PortableSwiper: FC<IPortableImgGallery> = ({ value }) => {
   const { images, title } = value;
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  if (!images.length) return null;
 
   return (
     <GrowView>
-      <Box>
+      <Box sx={{ my: '24px' }}>
         <Swiper
           modules={[FreeMode, Navigation, Thumbs]}
           loop={true}
@@ -58,7 +59,15 @@ export const PortableSwiper: FC<IPortableImgGallery> = ({ value }) => {
               </SwiperSlide>
             ))}
         </Swiper>
-        <Typography variant='smallText'>{title}</Typography>
+        <Typography
+          sx={{
+            display: 'block',
+            my: '16px',
+            color: theme => theme.palette.neutral[50],
+          }}
+          variant='smallText'>
+          {title}
+        </Typography>
       </Box>
     </GrowView>
   );

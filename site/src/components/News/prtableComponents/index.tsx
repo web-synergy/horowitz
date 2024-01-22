@@ -1,42 +1,40 @@
 import { PortableTextComponents } from '@portabletext/react';
 import { ImageComponent, ImagesArray } from './ImageComponent';
-import ReactPlayer from 'react-player';
-import { Box, Link, Typography } from '@mui/material';
-
+import { Link, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 
 import GrowView from '@/components/Common/GrowView';
+import YouTube from './YouTube';
 
 export const components: PortableTextComponents = {
   types: {
     gallery: ImagesArray,
-    youtube: ({ value }) => {
-      const { url } = value;
-      return (
-        <GrowView>
-          <Box sx={{ mb: '24px' }}>
-            <ReactPlayer
-              style={{ width: '100%', height: '500px' }}
-              width={'100%'}
-              height={480}
-              controls
-              url={url}
-            />
-          </Box>
-        </GrowView>
-      );
-    },
+    youtube: YouTube,
     image: ImageComponent,
   },
   block: {
     h1: ({ children }) => (
       <GrowView>
-        <Typography variant='h1'>{children}</Typography>
+        <Typography
+          sx={{
+            mb: { xs: '24px', md: '32px' },
+            mt: { xs: '24px', md: '40px' },
+          }}
+          variant='h1'>
+          {children}
+        </Typography>
       </GrowView>
     ),
     h2: ({ children }) => (
       <GrowView>
-        <Typography variant='h2'>{children}</Typography>
+        <Typography
+          sx={{
+            mb: { xs: '24px', md: '32px' },
+            mt: { xs: '24px', md: '40px' },
+          }}
+          variant='h2'>
+          {children}
+        </Typography>
       </GrowView>
     ),
     h3: ({ children }) => (
