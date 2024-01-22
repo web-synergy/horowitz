@@ -60,18 +60,51 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
   const { t } = useTranslation();
 
   return (
-    <Box position="relative" sx={{ backgroundColor: "#0D0C06" }} mb={4}>
-      <img
-        src={imgSrc}
-        alt="Banner"
-        style={{ width: "100%", height: "auto" }}
-      />
+    <Box
+      position="relative"
+      sx={{
+        backgroundColor: "#0D0C06",
+        height: "314px",
+        paddingLeft: "16px",
+        "::before": {
+          content: '""',
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          background: "rgba(0, 0, 0, 0.6)", // колір затемнення
+          zIndex: 1,
+        },
+      }}
+      mb={4}
+    >
       <Box
         sx={{
           position: "absolute",
           top: 0,
-          left: 0,
-          width: "100%",
+          right: 0,
+        }}
+      >
+        <img
+          src={imgSrc}
+          alt="banner img"
+          style={{
+            display: "block",
+            maxWidth: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+      </Box>
+
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 16,
+          maxWidth: "100%",
+          zIndex: 10,
         }}
       >
         <Breadcrumbs title={t(`navigation.${Routes.HOROWITZ}`)} mode="dark" />
@@ -85,6 +118,7 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
           color: "#666",
           padding: 2,
           width: "100%",
+          zIndex: 10,
         }}
       >
         {copyright}
