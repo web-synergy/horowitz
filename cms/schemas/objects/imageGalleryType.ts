@@ -43,6 +43,7 @@ export const imageGalleryType = defineType({
                   name: 'cols',
                   type: 'number',
                   title: 'Кількість колонок',
+                  initialValue: 2,
                   options: {
                     list: [1, 2, 3, 4],
                     layout: 'radio',
@@ -53,6 +54,7 @@ export const imageGalleryType = defineType({
                   name: 'rows',
                   type: 'number',
                   title: 'Кількість рядків',
+                  initialValue: 1,
                   options: {
                     list: [1, 2, 3, 4],
                     layout: 'radio',
