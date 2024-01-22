@@ -23,8 +23,9 @@ export const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
                     rows={item.photoLayout.rows || 1}>
                     <img
                       src={urlFor(item)
-                        .width(400)
-                        .height(200)
+                        .width(800)
+                        .height(400)
+                        .auto('format')
                         .fit('fill')
                         .url()}
                       alt={item.title}

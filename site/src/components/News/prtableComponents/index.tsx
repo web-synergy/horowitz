@@ -2,8 +2,6 @@ import { PortableTextComponents } from '@portabletext/react';
 import { ImageComponent, ImagesArray } from './ImageComponent';
 import { Link, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
-
-import GrowView from '@/components/Common/GrowView';
 import YouTube from './YouTube';
 
 export const components: PortableTextComponents = {
@@ -14,77 +12,63 @@ export const components: PortableTextComponents = {
   },
   block: {
     h1: ({ children }) => (
-      <GrowView>
-        <Typography
-          sx={{
-            mb: { xs: '24px', md: '32px' },
-            mt: { xs: '24px', md: '40px' },
-          }}
-          variant='h1'>
-          {children}
-        </Typography>
-      </GrowView>
+      <Typography
+        sx={{
+          mb: { xs: '24px', md: '32px' },
+          mt: { xs: '24px', md: '40px' },
+        }}
+        variant='h1'>
+        {children}
+      </Typography>
     ),
     h2: ({ children }) => (
-      <GrowView>
-        <Typography
-          sx={{
-            mb: { xs: '24px', md: '32px' },
-            mt: { xs: '24px', md: '40px' },
-          }}
-          variant='h2'>
-          {children}
-        </Typography>
-      </GrowView>
+      <Typography
+        sx={{
+          mb: { xs: '24px', md: '32px' },
+          mt: { xs: '24px', md: '40px' },
+        }}
+        variant='h2'>
+        {children}
+      </Typography>
     ),
     h3: ({ children }) => (
-      <GrowView>
-        <Typography
-          sx={{
-            mb: { xs: '24px', md: '32px' },
-            mt: { xs: '24px', md: '40px' },
-          }}
-          variant='h3'>
-          {children}
-        </Typography>
-      </GrowView>
+      <Typography
+        sx={{
+          mb: { xs: '24px', md: '32px' },
+          mt: { xs: '24px', md: '40px' },
+        }}
+        variant='h3'>
+        {children}
+      </Typography>
     ),
-    h4: ({ children }) => (
-      <GrowView>
-        <Typography variant='h4'>{children}</Typography>
-      </GrowView>
-    ),
+    h4: ({ children }) => <Typography variant='h4'>{children}</Typography>,
     normal: ({ children }) => (
-      <GrowView>
-        <Typography
-          component={'p'}
-          sx={{
-            display: 'block',
-            my: { xs: '24px', md: '32px' },
-            textAlign: 'justify',
-          }}
-          variant='bodyRegular'>
-          {children}
-        </Typography>
-      </GrowView>
+      <Typography
+        component={'p'}
+        sx={{
+          display: 'block',
+          my: { xs: '24px', md: '32px' },
+          textAlign: 'justify',
+        }}
+        variant='bodyRegular'>
+        {children}
+      </Typography>
     ),
     p: ({ children }) => (
       <Typography variant='bodyRegular'>{children}</Typography>
     ),
     blockquote: ({ children }) => (
-      <GrowView>
-        <Typography
-          component={'blockquote'}
-          sx={{
-            display: 'block',
-            pl: '16px',
-            borderLeft: 'solid 2px #141414',
-            my: { xs: '24px', lg: '32px' },
-          }}
-          variant='blockquote'>
-          {children}
-        </Typography>
-      </GrowView>
+      <Typography
+        component={'blockquote'}
+        sx={{
+          display: 'block',
+          pl: '16px',
+          borderLeft: 'solid 2px #141414',
+          my: { xs: '24px', lg: '32px' },
+        }}
+        variant='blockquote'>
+        {children}
+      </Typography>
     ),
   },
   marks: {
@@ -106,25 +90,8 @@ export const components: PortableTextComponents = {
   list: {
     bullet: ({ children }) => {
       return (
-        <GrowView>
-          <Typography
-            component={'ul'}
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              my: { xs: '24px', md: '32px' },
-            }}
-            variant='bodyRegular'>
-            {children}
-          </Typography>
-        </GrowView>
-      );
-    },
-
-    number: ({ children }) => (
-      <GrowView>
         <Typography
-          component={'ol'}
+          component={'ul'}
           sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -133,7 +100,20 @@ export const components: PortableTextComponents = {
           variant='bodyRegular'>
           {children}
         </Typography>
-      </GrowView>
+      );
+    },
+
+    number: ({ children }) => (
+      <Typography
+        component={'ol'}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          my: { xs: '24px', md: '32px' },
+        }}
+        variant='bodyRegular'>
+        {children}
+      </Typography>
     ),
   },
 };

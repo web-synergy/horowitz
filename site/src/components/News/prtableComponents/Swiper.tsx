@@ -34,7 +34,12 @@ export const PortableSwiper: FC<IPortableImgGallery> = ({ value }) => {
             images.map(item => (
               <SwiperSlide key={item._key}>
                 <img
-                  src={urlFor(item).width(980).height(480).fit('fill').url()}
+                  src={urlFor(item)
+                    .width(980)
+                    .height(480)
+                    .auto('format')
+                    .fit('fill')
+                    .url()}
                 />
               </SwiperSlide>
             ))}
@@ -54,7 +59,12 @@ export const PortableSwiper: FC<IPortableImgGallery> = ({ value }) => {
             images.map(item => (
               <SwiperSlide key={item._key}>
                 <img
-                  src={urlFor(item).width(223).height(130).fit('fill').url()}
+                  src={urlFor(item)
+                    .width(223)
+                    .height(130)
+                    .auto('format')
+                    .fit('fill')
+                    .url()}
                 />
               </SwiperSlide>
             ))}

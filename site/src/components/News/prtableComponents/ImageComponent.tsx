@@ -16,6 +16,7 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
           width={'100%'}
           height={'auto'}
           src={urlFor(value)
+            .auto('format')
             .width(920)
             .height(520)
             .fit('fill')
@@ -30,6 +31,7 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
 };
 export const ImagesArray: FC<IPortableImgGallery> = ({ value }) => {
   const { option } = value;
+
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
   if (option && !isMob) {
     return <GridGallery value={value} />;
