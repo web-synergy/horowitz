@@ -1,33 +1,65 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import { Box } from '@mui/material';
+
+import { Box, Typography } from '@mui/material';
 import { urlFor } from '@/config/sanity/imageUrl';
-import { GridGallery } from './GridGallery';
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { Navigation, Thumbs, FreeMode } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import './sliderStyles.css';
+
+import 'swiper/swiper-bundle.css';
 import { IPortableImgGallery } from '@/types/newsTypes';
+import GrowView from '@/components/Common/GrowView';
 
-const PortableSwiper: FC<IPortableImgGallery> = ({ value }) => {
-  const { images, option } = value;
+export const PortableSwiper: FC<IPortableImgGallery> = ({ value }) => {
+  const { images, title } = value;
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  if (option) {
-    return <GridGallery value={value} />;
-  }
   return (
-    <Box>
-      <Swiper spaceBetween={50} slidesPerView={1}>
-        {images &&
-          images.map(item => (
-            <SwiperSlide key={item._key}>
-              <img
-                width={'100%'}
-                height={'500px'}
-                src={urlFor(item).crop('focalpoint').url()}
-              />
-            </SwiperSlide>
-          ))}
-        ...
-      </Swiper>
-    </Box>
+    <GrowView>
+      <Box>
+        <Swiper
+          modules={[FreeMode, Navigation, Thumbs]}
+          loop={true}
+          spaceBetween={50}
+          navigation={true}
+          slidesPerView={1}
+          thumbs={{ swiper: thumbsSwiper }}
+          className='mySwiper'>
+          {images &&
+            images.map(item => (
+              <SwiperSlide key={item._key}>
+                <img
+                  src={urlFor(item).width(980).height(480).fit('fill').url()}
+                />
+              </SwiperSlide>
+            ))}
+        </Swiper>
+
+        <Swiper
+          modules={[FreeMode, Navigation, Thumbs]}
+          watchSlidesProgress
+          spaceBetween={8}
+          slidesPerView={4}
+          loop={true}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //@ts-ignore
+          onSwiper={setThumbsSwiper}
+          className='my_thumbs'>
+          {images &&
+            images.map(item => (
+              <SwiperSlide key={item._key}>
+                <img
+                  src={urlFor(item).width(223).height(130).fit('fill').url()}
+                />
+              </SwiperSlide>
+            ))}
+        </Swiper>
+        <Typography variant='smallText'>{title}</Typography>
+      </Box>
+    </GrowView>
   );
 };
-export default PortableSwiper;
