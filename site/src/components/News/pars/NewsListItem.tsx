@@ -1,3 +1,4 @@
+import GrowView from '@/components/Common/GrowView';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage } from '@/types/newsTypes';
@@ -33,45 +34,47 @@ const NewsListItem = ({
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
   return (
     <ListItem>
-      <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
-        <img
-          src={urlFor(img)
-            .auto('format')
-            .width(isMob ? 288 : 357)
-            .height(248)
-            .fit('fill')
-            .url()
-            .toString()}
-          alt='event logo'
-        />
+      <GrowView>
+        <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+          <img
+            src={urlFor(img)
+              .auto('format')
+              .width(isMob ? 288 : 357)
+              .height(248)
+              .fit('fill')
+              .url()
+              .toString()}
+            alt='event logo'
+          />
 
-        <Box sx={{ maxWidth: '548px' }}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '16px',
-            }}>
-            <Typography
-              sx={{ color: theme => theme.palette.neutral[50] }}
-              variant='bodyLight'>
-              {parseAndFormatDate(date)}
-            </Typography>
-            <Typography variant='subhead'>{title}</Typography>
-            <Typography
-              sx={{ color: theme => theme.palette.neutral[40] }}
-              variant='bodyRegular'>
-              {shortDescription}
-            </Typography>
-            <Box>
-              <Link component={RouterLink} to={slug}>
-                Читати більше
-                <SvgSpriteIcon icon='linkArrow' />
-              </Link>
+          <Box sx={{ maxWidth: '548px' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+              }}>
+              <Typography
+                sx={{ color: theme => theme.palette.neutral[50] }}
+                variant='bodyLight'>
+                {parseAndFormatDate(date)}
+              </Typography>
+              <Typography variant='subhead'>{title}</Typography>
+              <Typography
+                sx={{ color: theme => theme.palette.neutral[40] }}
+                variant='bodyRegular'>
+                {shortDescription}
+              </Typography>
+              <Box>
+                <Link component={RouterLink} to={slug}>
+                  Читати більше
+                  <SvgSpriteIcon icon='linkArrow' />
+                </Link>
+              </Box>
             </Box>
           </Box>
-        </Box>
-      </Stack>
+        </Stack>
+      </GrowView>
     </ListItem>
   );
 };
