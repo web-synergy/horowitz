@@ -153,8 +153,6 @@ const HorowitzPage: FC = () => {
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
-  console.log(isLargeScreen);
-
   const {
     i18n: { language },
     t,
@@ -173,7 +171,7 @@ const HorowitzPage: FC = () => {
 
   // console.log(bannerData);
   // console.log(quote);
-  console.log(upperBlockText[0]);
+  // console.log(upperBlockText[0]);
   // console.log(lowerBlockText[0]);
   // console.log(literature);
 
@@ -195,26 +193,6 @@ const HorowitzPage: FC = () => {
       return newArray;
     }
   }
-
-  //   const [upperBlockTextForDesc, setUpperBlockTextForDesc] = useState<
-  //   PortableTextBlock[] | undefined
-  // >(undefined);
-
-  // const [lowerBlockTextForDesc, setLowerBlockTextForDesc] = useState<
-  //   PortableTextBlock[] | undefined
-  // >(undefined);
-
-  // useEffect(() => {
-  //   if (upperBlockText && upperBlockText.length >= 3) {
-  //     setUpperBlockTextForDesc(swapElements(upperBlockText)[0]);
-  //   }
-  // }, [upperBlockText]);
-
-  // useEffect(() => {
-  //   if (lowerBlockText && lowerBlockText.length >= 3) {
-  //     setLowerBlockTextForDesc(swapElements(lowerBlockText)[0]);
-  //   }
-  // }, [lowerBlockText]);
 
   return (
     <PageTemplate>
@@ -313,7 +291,7 @@ const HorowitzPage: FC = () => {
               <PortableText
                 value={
                   isLargeScreen
-                    ? swapElements(lowerBlockText)
+                    ? swapElements(lowerBlockText[0])
                     : lowerBlockText[0]
                 }
                 components={components}
