@@ -1,7 +1,7 @@
 import SocialMedia from '@/components/Common/SocialMedia'
 import { Box, Container, useMediaQuery, useTheme } from '@mui/material'
 import { FC, useRef } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link, Link as RouterLink } from 'react-router-dom'
 
 import bgVideo from '../../../../../public/bg_video.mp4'
 
@@ -65,8 +65,12 @@ const HeroSection: FC = () => {
                   </StyledButton>
                 </ButtonsStack>
                 <LogotypesStack>
-                  <LogoImg src={WFIMC_logo} alt="WFIMC logotype" />
-                  <LogoImg src={EUMCY_logo} alt="EMCY logotype" />
+                  <Link to="https://www.wfimc.org/" target="_blank">
+                    <LogoImg src={WFIMC_logo} alt="WFIMC logotype" />
+                  </Link>
+                  <Link to="https://emcy.org/" target="_blank">
+                    <LogoImg src={EUMCY_logo} alt="EMCY logotype" />
+                  </Link>
                 </LogotypesStack>
               </ContentStack>
             </Box>
