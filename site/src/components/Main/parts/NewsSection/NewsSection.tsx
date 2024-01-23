@@ -14,8 +14,8 @@ import NewsCard from './NewsCard'
 import ShowMoreBtn from './ShowMoreBtn'
 import { NewsBox, StyledContainer } from './styled'
 
+import fakeData from '../../temp/fakeData.json'
 import pianistImg from '../../temp/pianist.jpg'
-import fakeData from './fakeData.json'
 
 const NewsSection: FC = () => {
   const { breakpoints } = useTheme()
