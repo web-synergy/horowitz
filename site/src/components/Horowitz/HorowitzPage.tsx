@@ -1,6 +1,13 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import PageTemplate from "../Common/PageTemplate";
-import { Button, Container, Typography, Box } from "@mui/material";
+import {
+  Button,
+  Container,
+  Typography,
+  Box,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Breadcrumbs from "../Common/Breadcrumbs";
 import { Routes } from "@/types/routes.d";
 
@@ -8,11 +15,23 @@ import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { useHorowitzStore } from "@/store/horowitzStore";
 import { useTranslation } from "react-i18next";
 import { Section } from "../Contacts/styled";
+import {
+  PortableTextBlock,
+  PortableTextMarkDefinition,
+  ArbitraryTypedObject,
+  PortableTextSpan,
+} from "@portabletext/types";
 
 const components: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <Typography variant="bodyRegular" component={"p"}>
+      <Typography
+        variant="bodyRegular"
+        component={"p"}
+        sx={{
+          flex: { lg: "1 1 calc(50% - 12px)" }, // Делит блоки на две колонки, учитывая интервал в 24px
+        }}
+      >
         {children}
       </Typography>
     ),
@@ -24,7 +43,8 @@ const components: PortableTextComponents = {
         sx={{
           display: "flex",
           flexDirection: "column",
-          mb: { xs: "24px", md: "32px" },
+          padding: 0,
+          gap: "16px",
         }}
         variant="bodyRegular"
       >
@@ -38,7 +58,8 @@ const components: PortableTextComponents = {
         sx={{
           display: "flex",
           flexDirection: "column",
-          mb: { xs: "24px", md: "32px" },
+          paddingLeft: "18px",
+          gap: "16px",
         }}
         variant="bodyRegular"
       >
@@ -129,9 +150,14 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
 };
 
 const HorowitzPage: FC = () => {
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
+
+  console.log(isLargeScreen);
+
   const {
     i18n: { language },
-    // t,
+    t,
   } = useTranslation();
 
   const fetchHorowitzData = useHorowitzStore(
@@ -147,9 +173,49 @@ const HorowitzPage: FC = () => {
 
   // console.log(bannerData);
   // console.log(quote);
-  // console.log(upperBlockText);
-  // console.log(lowerBlockText);
+  console.log(upperBlockText[0]);
+  // console.log(lowerBlockText[0]);
   // console.log(literature);
+
+  const [visibleItemsLiterature, setVisibleItemsLiterature] = useState(4);
+
+  const [isAllLiteratureVisible, setIsAllLiteratureVisible] = useState(false);
+
+  const handleShowMore = () => {
+    setVisibleItemsLiterature(literature.length);
+    setIsAllLiteratureVisible(true);
+  };
+
+  function swapElements(array: any) {
+    if (array !== undefined) {
+      const newArray = [...array];
+
+      [newArray[1], newArray[2]] = [newArray[2], newArray[1]];
+
+      return newArray;
+    }
+  }
+
+  //   const [upperBlockTextForDesc, setUpperBlockTextForDesc] = useState<
+  //   PortableTextBlock[] | undefined
+  // >(undefined);
+
+  // const [lowerBlockTextForDesc, setLowerBlockTextForDesc] = useState<
+  //   PortableTextBlock[] | undefined
+  // >(undefined);
+
+  // useEffect(() => {
+  //   if (upperBlockText && upperBlockText.length >= 3) {
+  //     setUpperBlockTextForDesc(swapElements(upperBlockText)[0]);
+  //   }
+  // }, [upperBlockText]);
+
+  // useEffect(() => {
+  //   if (lowerBlockText && lowerBlockText.length >= 3) {
+  //     setLowerBlockTextForDesc(swapElements(lowerBlockText)[0]);
+  //   }
+  // }, [lowerBlockText]);
+
   return (
     <PageTemplate>
       {bannerData && (
@@ -179,10 +245,20 @@ const HorowitzPage: FC = () => {
           {upperBlockText && (
             <Box
               sx={{
-                "p:not(:last-child)": { marginBottom: "16px" },
+                display: "flex",
+                flexWrap: "wrap",
+                columnGap: "24px",
+                rowGap: "16px",
               }}
             >
-              <PortableText value={upperBlockText[0]} components={components} />
+              <PortableText
+                value={
+                  isLargeScreen
+                    ? swapElements(upperBlockText[0])
+                    : upperBlockText[0]
+                }
+                components={components}
+              />
             </Box>
           )}
         </Box>
@@ -194,52 +270,90 @@ const HorowitzPage: FC = () => {
             textAlign: "center",
             maxWidth: "1280px",
             margin: "0 auto",
-            padding: { xs: "24px 16px", md: "72px 54px", lg: "148px 172px" },
+            padding: { xs: "24px 20px", md: "72px 54px", lg: "148px 172px" },
           }}
         >
-          <Typography variant="h1" sx={{}}>
+          <Typography
+            variant="h1"
+            sx={{
+              marginBottom: {
+                xs: "16px",
+                md: "32px",
+                lg: "24px",
+              },
+            }}
+          >
             {quote.quote}
           </Typography>
           <Typography
             variant="subhead"
             sx={{
-              textAlign: "center",
-              position: "relative",
               color: "#E19C2A",
-              "::before": {
-                content: '""',
-                position: "absolute",
-                width: "20px", // Ширина полоски
-                height: "2px", // Высота полоски
-                background: "#E19C2A", // Цвет полоски
-                top: "50%", // Смещение полоски по вертикали
-                transform: "translateY(-50%)", // Выравнивание полоски по вертикали
-                left: "-28px", // Смещение полоски влево
-              },
             }}
           >
-            {quote.author}
+            — {quote.author}
           </Typography>
         </Section>
       )}
       <Container>
         {lowerBlockText && (
-          <Box sx={{ "p:not(:last-child)": { marginBottom: "16px" } }}>
-            <PortableText value={lowerBlockText[0]} components={components} />
+          <Box
+            sx={{
+              padding: { xs: "24px 0px", lg: "80px 0px" },
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                columnGap: "24px",
+                rowGap: "16px",
+              }}
+            >
+              <PortableText
+                value={
+                  isLargeScreen
+                    ? swapElements(lowerBlockText)
+                    : lowerBlockText[0]
+                }
+                components={components}
+              />
+            </Box>
           </Box>
         )}
 
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="subhead" sx={{ textAlign: "left" }} gutterBottom>
           Литература
         </Typography>
         {literature && (
-          <Box sx={{ "p:not(:last-child)": { marginBottom: "16px" } }}>
-            <PortableText value={literature} components={components} />
+          <Box
+            sx={{
+              paddingTop: { xs: "24px", md: "16px", lg: "24px" },
+              "p:not(:last-child)": { marginBottom: "16px" },
+            }}
+          >
+            <PortableText
+              value={literature.slice(0, visibleItemsLiterature)}
+              components={components}
+            />
           </Box>
         )}
-        <Button variant="outlined" color="primary">
-          Показать больше
-        </Button>
+        <Box
+          sx={{
+            width: "100%",
+            textAlign: "center",
+            marginTop: { xs: "48px", md: "54px", lg: "80px" },
+            marginBottom: { xs: "72px", md: "96px", lg: "118px" },
+          }}
+        >
+          <Button
+            variant="transparent"
+            onClick={handleShowMore}
+            disabled={isAllLiteratureVisible}
+          >
+            {t(`news.showMore`)}
+          </Button>
+        </Box>
       </Container>
     </PageTemplate>
   );
