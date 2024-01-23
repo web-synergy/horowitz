@@ -1,6 +1,5 @@
 import { FC, PropsWithChildren } from 'react';
 import { Box } from '@mui/material';
-import { Offset } from './Offset';
 
 interface PageTemplateProps {
   mode?: 'dark' | 'light';
@@ -23,7 +22,6 @@ const PageTemplate: FC<PropsWithChildren<PageTemplateProps>> = ({
             : theme.palette.common.black,
       }}
     >
-      <Offset />
       {children}
     </Box>
   );

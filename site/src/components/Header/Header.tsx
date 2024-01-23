@@ -9,6 +9,7 @@ import {
 import { useLocation } from 'react-router-dom';
 import MobileMenu from './parts/MobileMenu';
 import Content from './parts/Content';
+import { Offset } from '../Common/Offset';
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -59,6 +60,7 @@ const Header = () => {
       </AppBar>
 
       <MobileMenu open={openMenu} onClose={onCloseMenu} />
+      {!isHomePage && <Offset />}
     </>
   );
 };
