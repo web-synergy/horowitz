@@ -1,6 +1,6 @@
 import { useSettingsStore } from '@/store'
 
-import { Box, Link, LinkProps, styled } from '@mui/material'
+import { Box, Link, LinkProps, Stack, styled } from '@mui/material'
 import { FC } from 'react'
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom'
 import SvgSpriteIcon from './SvgSpriteIcon'
@@ -15,25 +15,35 @@ const StyledLink = styled(Link)<LinkProps & RouterLinkProps>(({ theme }) => ({
   },
 }))
 
-const SocialMedia: FC = () => {
+interface SocialMediaProps {
+  vertical?: boolean
+}
+
+const SocialMedia: FC<SocialMediaProps> = ({ vertical }) => {
   const mediaLinks = useSettingsStore(state => state.sociable)
   if (!mediaLinks) return null
   const { facebook, instagram, youTube } = mediaLinks
 
   return (
-    <Box sx={{ 'a:not(:last-child)': { marginRight: '16px' } }}>
-      <StyledLink component={RouterLink} to={facebook} target="_blank">
-        <SvgSpriteIcon icon="facebook" />
-      </StyledLink>
+    <Stack sx={{ gap: '16px', flexDirection: () => (vertical ? 'column' : 'row') }}>
+      <Box>
+        <StyledLink component={RouterLink} to={facebook} target="_blank">
+          <SvgSpriteIcon icon="facebook" />
+        </StyledLink>
+      </Box>
 
-      <StyledLink component={RouterLink} to={instagram} target="_blank">
-        <SvgSpriteIcon icon="instagram" />
-      </StyledLink>
+      <Box>
+        <StyledLink component={RouterLink} to={instagram} target="_blank">
+          <SvgSpriteIcon icon="instagram" />
+        </StyledLink>
+      </Box>
 
-      <StyledLink component={RouterLink} to={youTube} target="_blank">
-        <SvgSpriteIcon icon="youtube" />
-      </StyledLink>
-    </Box>
+      <Box>
+        <StyledLink component={RouterLink} to={youTube} target="_blank">
+          <SvgSpriteIcon icon="youtube" />
+        </StyledLink>
+      </Box>
+    </Stack>
   )
 }
 
