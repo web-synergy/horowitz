@@ -5,7 +5,7 @@ import { FC } from 'react'
 import { Box, Container, Typography } from '@mui/material'
 import Breadcrumbs from '../Common/Breadcrumbs'
 import ContactsDetails from './parts/ContactsDetails'
-
+import { Offset } from '../Common/Offset'
 import { ContentWrapper, InfoDivider, MainBox, Section } from './styled'
 
 import { useSettingsStore } from '@/store'
@@ -34,6 +34,7 @@ const ContactsPage: FC = () => {
 
   return (
     <Section component={'section'}>
+      <Offset/>
       <Container>
         <Breadcrumbs title={t(`navigation.${Routes.CONTACTS}`)} mode="dark" />
         <MainBox>

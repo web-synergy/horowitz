@@ -45,8 +45,10 @@ const Header = () => {
         position="fixed"
         sx={{
           ...headerStyle,
-          transition: (theme) =>
-            theme.transitions.create('background-color', { duration: '1s' }),
+          transition: theme.transitions.create('background-color', {
+            duration: '500ms',
+            delay: '200ms',
+          }),
         }}
       >
         <Toolbar disableGutters>
@@ -57,7 +59,6 @@ const Header = () => {
       </AppBar>
 
       <MobileMenu open={openMenu} onClose={onCloseMenu} />
-      {!isHomePage && <Toolbar />}
     </>
   );
 };
