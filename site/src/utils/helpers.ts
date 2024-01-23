@@ -32,3 +32,6 @@ export function processImageUrl(url: string) {
 
   return modifiedUrl;
 }
+
+export const sliceNewsTitle = (title: string, sliceIndex: number): string =>
+  title.slice(0, sliceIndex) + '...'

@@ -1,24 +1,24 @@
-import { Components, Theme } from '@mui/material/styles';
+import { Components, Theme } from '@mui/material/styles'
 
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
-    title: true;
-    h1: true;
-    h2: true;
-    h3: true;
-    subhead: true;
-    bodyMedium: true;
-    bodyRegular: true;
-    bodyLight: true;
-    caption: true;
-    smallText: true;
-    navLink: true;
-    blockquote: true;
-    h2Block: true;
-    h3Block: true;
-    h4Block: true;
-    quote: true;
-    linkBlock: true;
+    title: true
+    h1: true
+    h2: true
+    h3: true
+    subhead: true
+    bodyMedium: true
+    bodyRegular: true
+    bodyLight: true
+    caption: true
+    smallText: true
+    navLink: true
+    blockquote: true
+    h2Block: true
+    h3Block: true
+    h4Block: true
+    quote: true
+    linkBlock: true
   }
 }
 export const MuiTypography: Components<Theme>['MuiTypography'] = {
@@ -330,4 +330,4 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
       }),
     },
   ],
-};
+}

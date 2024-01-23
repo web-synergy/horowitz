@@ -1,5 +1,5 @@
-import { Routes } from '@/types/routes.d';
-import { InDevelopment, NotFound, Translations } from '@/types/translation.d';
+import { Routes } from '@/types/routes.d'
+import { InDevelopment, MainPage, NotFound, Translations } from '@/types/translation.d'
 
 export default {
   navigation: {
@@ -31,14 +31,19 @@ export default {
   },
   notFound: {
     [NotFound.TITLE]: 'Sorry, the page is not found.',
-    [NotFound.TEXT]:
-      'The page you are searching for, is deleted or temporary unavailable',
+    [NotFound.TEXT]: 'The page you are searching for, is deleted or temporary unavailable',
     [NotFound.BTN]: 'Back to Home Page',
   },
   inDevelopment: {
     [InDevelopment.MSG]: 'Sorry, the page is in development.',
     [InDevelopment.BTN]: 'Back to Home Page',
   },
-  institutional_name:
-    'International Competition for Young Pianists in Memory of Vladimir Horowitz',
-};
+  mainPage: {
+    [MainPage.BTN_APL]: 'Application form',
+    [MainPage.BTN_SUPP]: 'Support the project',
+    [MainPage.BTN_VIEW]: 'View all',
+    [MainPage.BTN_READ]: 'Read more',
+    [MainPage.NEWS]: 'News',
+  },
+  institutional_name: 'International Competition for Young Pianists in Memory of Vladimir Horowitz',
+}
