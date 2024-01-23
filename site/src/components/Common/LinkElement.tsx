@@ -9,7 +9,7 @@ interface LinkElementProps {
 
 const LinkElement: FC<LinkElementProps> = ({ href, title }) => {
   return (
-    <Link component={RouterLink} to={`/${href}`}>
+    <Link component={RouterLink} to={href}>
       {title}
     </Link>
   );

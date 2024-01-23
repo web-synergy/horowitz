@@ -13,6 +13,7 @@ declare module '@mui/material/Typography' {
     caption: true;
     smallText: true;
     navLink: true;
+    blockquote: true;
     h2Block: true;
     h3Block: true;
     h4Block: true;
@@ -194,6 +195,21 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
         [theme.breakpoints.up('md')]: {
           fontSize: '0.875rem',
           lineHeight: 1.571,
+        },
+      }),
+    },
+    {
+      props: { variant: 'blockquote' },
+      style: ({ theme }) => ({
+        fontSize: '1.125rem',
+        fontStyle: 'italic',
+        fontWeight: 400,
+        lineHeight: 1.62,
+        fontVariantNumeric: 'lining-nums proportional-nums',
+
+        [theme.breakpoints.up('md')]: {
+          fontSize: '1.25rem',
+          lineHeight: 2,
         },
       }),
     },
