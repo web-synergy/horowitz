@@ -20,6 +20,16 @@ export const Video = styled('video')(() => ({
   objectFit: 'cover',
 }))
 
+export const HeaderOverlay = styled(Box)(({ theme }) => ({
+  width: '100%',
+  [theme.breakpoints.up('xs')]: {
+    height: '64px',
+  },
+  [theme.breakpoints.up('lg')]: {
+    height: '102px',
+  },
+}))
+
 export const Overlay = styled(Box)<BoxProps>(() => ({
   position: 'absolute',
   left: 0,

@@ -1,4 +1,3 @@
-import { Offset } from '@/components/Common/Offset'
 import SocialMedia from '@/components/Common/SocialMedia'
 import { Box, Container, useMediaQuery, useTheme } from '@mui/material'
 import { FC, useRef } from 'react'
@@ -17,6 +16,7 @@ import {
   ButtonsStack,
   ContentStack,
   ContentWrapper,
+  HeaderOverlay,
   LogotypesStack,
   MainTitle,
   Overlay,
@@ -24,8 +24,6 @@ import {
   StyledButton,
   Video,
 } from './styled'
-
-
 
 const HeroSection: FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null)
@@ -49,7 +47,7 @@ const HeroSection: FC = () => {
     >
       <Video src={bgVideo} autoPlay loop muted ref={videoRef} />
       <Overlay>
-        <Offset />
+        <HeaderOverlay />
         <Container>
           <ContentWrapper>
             <Box position={'relative'}>
