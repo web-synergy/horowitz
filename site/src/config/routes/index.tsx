@@ -1,20 +1,21 @@
-import AdministrationPage from '@/components/Administration/AdministrationPage'
-import { Navigate, createBrowserRouter } from 'react-router-dom'
-import AboutPage from '../../components/About/AboutPage'
-import CompetitionPage from '../../components/Competition/CompetitionPage'
-import ContactsPage from '../../components/Contacts/ContactsPage'
-import HorowitzPage from '../../components/Horowitz/HorowitzPage'
-import KyivGenevaPage from '../../components/KyivGeneva/KyivGenevaPage'
-import MainPage from '../../components/Main/MainPage'
-import MasterClassPage from '../../components/MasterClass/MasterClassPage'
-import NewsPage from '../../components/News/NewsPage'
-import NotFoundPage from '../../components/NotFound/NotFoundPage'
-import SummerSchoolPage from '../../components/SummerSchool/SummerSchoolPage'
-import VirtuosesPage from '../../components/Virtuoses/VirtuosesPage'
+import AdministrationPage from '@/components/Administration/AdministrationPage';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
+import AboutPage from '../../components/About/AboutPage';
+import CompetitionPage from '../../components/Competition/CompetitionPage';
+import ContactsPage from '../../components/Contacts/ContactsPage';
+import HorowitzPage from '../../components/Horowitz/HorowitzPage';
+import KyivGenevaPage from '../../components/KyivGeneva/KyivGenevaPage';
+import MainPage from '../../components/Main/MainPage';
+import MasterClassPage from '../../components/MasterClass/MasterClassPage';
+import NotFoundPage from '../../components/NotFound/NotFoundPage';
+import SummerSchoolPage from '../../components/SummerSchool/SummerSchoolPage';
+import VirtuosesPage from '../../components/Virtuoses/VirtuosesPage';
 
-import InDevelopmentPage from '@/components/InDevelopmentPage/InDevelopmentPage'
-import WithPreview from '@/components/SanityPreview/WithPreview'
-import { Routes } from '@/types/routes.d'
+import InDevelopmentPage from '@/components/InDevelopmentPage/InDevelopmentPage';
+import WithPreview from '@/components/SanityPreview/WithPreview';
+import { Routes } from '@/types/routes.d';
+import NewsPageList from '@/components/News/NewsPageList';
+import NewsCurrentPage from '@/components/News/NewsCurrentPage';
 
 const routes = createBrowserRouter([
   {
@@ -44,7 +45,8 @@ const routes = createBrowserRouter([
       { path: Routes.MASTER_CLASS, element: <MasterClassPage /> },
       { path: Routes.SUMMER_SCHOOL, element: <SummerSchoolPage /> },
       { path: Routes.VIRTUOSES, element: <VirtuosesPage /> },
-      { path: Routes.NEWS, element: <NewsPage /> },
+      { path: Routes.NEWS, element: <NewsPageList /> },
+      { path: Routes.CURRENT_NEWS, element: <NewsCurrentPage /> },
       { path: Routes.CONTACTS, element: <ContactsPage /> },
       { path: Routes.ADMINISTRATION, element: <AdministrationPage /> },
       {
@@ -61,6 +63,6 @@ const routes = createBrowserRouter([
     path: '*',
     element: <Navigate to={'404'} />,
   },
-])
+]);
 
-export default routes
+export default routes;

@@ -1,8 +1,10 @@
-import { sanityFetch } from "../config/sanity/client";
-import { SettingsResp } from "../types/contactsTypes";
-import { settingsQuery } from "./query";
 import { horowitzQuery } from "./query";
 import { IHorowitzData } from "@/types/horowitzTypes";
+
+import { INews } from "@/types/newsTypes";
+import { sanityFetch } from "../config/sanity/client";
+import { SettingsResp } from "../types/contactsTypes";
+import { currentNewsQuery, newsQuery, settingsQuery } from "./query";
 
 export const getSettings = async (
   language: string
@@ -14,4 +16,14 @@ export const getHorowitzData = async (
   language: string
 ): Promise<IHorowitzData> => {
   return sanityFetch(horowitzQuery, { language });
+};
+
+export const getNews = async (language: string): Promise<INews[]> => {
+  return sanityFetch(newsQuery, { language });
+};
+export const getCurrentNews = async (
+  language: string,
+  slug: string
+): Promise<INews> => {
+  return sanityFetch(currentNewsQuery, { language, slug });
 };

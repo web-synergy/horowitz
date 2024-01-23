@@ -12,6 +12,8 @@ import video from './objects/video'
 import winners from './objects/winners'
 import competition from './documents/competition'
 import competitionDocument from './documents/competitionDocument'
+import {youtube} from './objects/youtube'
+import {imageGalleryType} from './objects/imageGalleryType'
 
 export const schemaTypes = [
   //documents
@@ -29,4 +31,6 @@ export const schemaTypes = [
   video,
   sponsor,
   content,
+  youtube,
+  imageGalleryType,
 ]

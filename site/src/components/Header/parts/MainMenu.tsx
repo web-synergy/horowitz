@@ -1,8 +1,8 @@
 import { FC, useState, MouseEvent } from 'react';
-import { Link, Typography, useTheme, useMediaQuery } from '@mui/material';
+import { Typography, useTheme, useMediaQuery } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { navLinkStyle, NavItem, NavButton, SubMenuList } from '../styled';
+import { Link as CustomLink, NavItem, NavButton, SubMenuList } from '../styled';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import Submenu from './Submenu';
 import { NavigationChildrenType } from '@/types/routes.d';
@@ -44,15 +44,14 @@ const MainMenu: FC<MainMenuProps> = ({
 
   if (!children) {
     return (
-      <Link
+      <CustomLink
         component={RouterLink}
         to={`/${title}`}
         variant="navLink"
-        {...navLinkStyle}
         onClick={onCloseMobileMenu}
       >
         {langTitle}
-      </Link>
+      </CustomLink>
     );
   }
 

@@ -1,9 +1,9 @@
-import { Container } from '@mui/material';
+import { Container, Box } from '@mui/material';
 
 const MainPage = () => {
   return (
     <Container>
-      <p>MainPage</p>
+      <Box>main section</Box>
     </Container>
   );
 };

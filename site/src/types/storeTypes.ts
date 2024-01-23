@@ -1,4 +1,5 @@
 import { PortableTextBlock } from "@portabletext/types";
+import { INews } from "./newsTypes";
 
 import {
   CompetitionsMenu,
@@ -27,4 +28,9 @@ export interface HorowitzStoreState {
   literature: PortableTextBlock[];
   loading: boolean;
   fetchHorowitzData: (language: string) => Promise<void>;
+}
+
+export interface NewsStoreState {
+  newsList: INews[];
+  fetchNews: (language: string) => Promise<void>;
 }

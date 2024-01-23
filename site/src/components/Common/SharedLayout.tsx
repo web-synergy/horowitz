@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Stack, CircularProgress, Backdrop } from '@mui/material';
+import { Stack } from '@mui/material';
 import { Outlet, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../Header/Header';
@@ -9,6 +9,7 @@ import { lang, draft } from '../../libs/searchParamsKey';
 import { useSettingsStore } from '@/store';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { settingsQuery } from '@/api/query';
+import Loader from './Loader';
 
 const SharedLayout = () => {
   const {
@@ -47,18 +48,12 @@ const SharedLayout = () => {
 
   useEffect(() => {
     if (!langParam) {
-      setSearchParams({ [lang]: language });
+      setSearchParams({ [lang]: language }, { replace: true });
     }
   }, [langParam, language, searchParams, setSearchParams]);
 
   if (loader) {
-    return (
-      <Stack minHeight='100vh'>
-        <Backdrop open={loader}>
-          <CircularProgress />
-        </Backdrop>
-      </Stack>
-    );
+    return <Loader />;
   }
   return (
     <Stack minHeight='100vh'>

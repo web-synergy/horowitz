@@ -1,33 +1,33 @@
-import { PaletteOptions } from '@mui/material'
+import { PaletteOptions } from '@mui/material';
 
 declare module '@mui/material/styles' {
   interface Palette {
     neutral: {
-      100: string
-      90: string
-      80: string
-      70: string
-      60: string
-      50: string
-      40: string
-      30: string
-      20: string
-      10: string
-    }
+      100: string;
+      90: string;
+      80: string;
+      70: string;
+      60: string;
+      50: string;
+      40: string;
+      30: string;
+      20: string;
+      10: string;
+    };
   }
   interface PaletteOptions {
     neutral: {
-      100: string
-      90: string
-      80: string
-      70: string
-      60: string
-      50: string
-      40: string
-      30: string
-      20: string
-      10: string
-    }
+      100: string;
+      90: string;
+      80: string;
+      70: string;
+      60: string;
+      50: string;
+      40: string;
+      30: string;
+      20: string;
+      10: string;
+    };
   }
 }
 
@@ -39,9 +39,14 @@ export const palette: PaletteOptions = {
   primary: {
     light: '#F9B33F',
     main: '#D9A145',
-    dark: '#CB8D2A',
+    dark: '#B0730F',
     contrastText: '#080708',
   },
+  secondary: {
+    light: '#1125D1',
+    main: '#0B2DA3',
+  },
+
   action: {
     hover: '#F9B33F',
     focus: '#D9A145',
@@ -69,4 +74,4 @@ export const palette: PaletteOptions = {
     20: '#E0E0E0',
     10: '#F5F5F5',
   },
-}
+};

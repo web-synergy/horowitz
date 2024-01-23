@@ -63,16 +63,21 @@ export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
   'literature': literature[],
 }`;
 
-// export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
-//   'bannerData': {
-//     'bannerImg': bannerData.bannerImg.asset->url,
-//     'bannerCopyright': bannerData.bannerCopyright
-//   },
-//   'upperBlockText': upperBlockText[_key ==$language].value[].children[0].text,
-//   'quote':quote{
-//     'author': author[_key ==$language].value,
-//     'quote': quote[_key ==$language].value,
-//   },
-//   'lowerBlockText': upperBlockText[_key ==$language].value,
-//   'literature': literature[].children[0],
-// }`;
+export const newsQuery = groq`*[_type == 'news']{
+  _id,
+  _createdAt,
+   img,
+   'title':  title[_key ==$language].value,
+   'slug':slug.current,
+   'shortDescription':shortDescription[_key ==$language].value,
+   'count':count(*[_type == "news"])
+}`;
+
+export const currentNewsQuery = groq`*[_type == 'news'&& slug.current == $slug][0]{
+  _id,
+  _createdAt,
+   img,
+   'title':  title[_key ==$language].value,
+   'slug':slug.current,
+   'description':description[_key ==$language].value
+}`;

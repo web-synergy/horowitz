@@ -31,6 +31,7 @@ const PopoverWrapper: FC<PropsWithChildren<PopoverWrapperProps>> = ({
         vertical: 'bottom',
         horizontal: 'left',
       }}
+      PaperProps={{ sx: { borderRadius: 0 } }}
     >
       {children}
     </Popover>

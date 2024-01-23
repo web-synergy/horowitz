@@ -1,17 +1,24 @@
 import { Box, BoxProps, Divider, DividerProps, Stack, StackProps, styled } from '@mui/material'
 
+export const MainBox = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.up('xs')]: {
+    margin: '40px 0',
+  },
+  [theme.breakpoints.up('md')]: {
+    margin: '48px 0 36px 0',
+  },
+  [theme.breakpoints.up('lg')]: {
+    margin: '56px 0 68px 0',
+  },
+}))
+
 export const ContentWrapper = styled(Stack)<StackProps>(({ theme }) => ({
   width: 'fit-content', // по ширині контенту, щоб Divider більше не розтягувався
   [theme.breakpoints.up('xs')]: {
-    margin: '40px 0 72px',
     rowGap: '40px',
   },
   [theme.breakpoints.up('md')]: {
-    margin: '48px 89px 96px',
     rowGap: '48px',
-  },
-  [theme.breakpoints.up('lg')]: {
-    margin: '56px 0 128px 96px',
   },
 }))
 

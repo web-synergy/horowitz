@@ -1,5 +1,5 @@
-import { styled } from '@mui/material';
+import { styled, Box } from '@mui/material';
 
-export const Offset = styled('div')(({ theme }) => ({
+export const Offset = styled(Box)(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));

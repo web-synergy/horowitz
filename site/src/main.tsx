@@ -1,4 +1,4 @@
-import React from "react";
+// import React from 'react';
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
@@ -14,5 +14,4 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <CssBaseline />
     <RouterProvider router={routes} />
   </ThemeProvider>
-  // </React.StrictMode>
 );
