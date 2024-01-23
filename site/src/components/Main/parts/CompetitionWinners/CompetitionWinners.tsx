@@ -9,11 +9,16 @@ import { MainTitle, Wrapper } from './styled'
 
 import fakeData from '../../temp/fakeDataWinners.json'
 import winner1Img from '../../temp/winner_1.jpg'
+import winner2Img from '../../temp/winner_2.jpg'
+import winner3Img from '../../temp/winner_3.jpg'
 
 const CompetitionWinners: FC = () => {
   const { breakpoints } = useTheme()
   const isMobile = useMediaQuery(breakpoints.down('md'))
   const { t } = useTranslation()
+
+  // !TEMP
+  const images = [winner1Img, winner2Img, winner3Img]
 
   return (
     <Wrapper component={'section'}>
@@ -43,8 +48,8 @@ const CompetitionWinners: FC = () => {
           }}
         >
           {/* ! TEMP */}
-          {fakeData.map(({ id, ...props }) => (
-            <WinnerCard key={id} {...{ ...props, image: winner1Img }} />
+          {fakeData.map(({ id, ...props }, i) => (
+            <WinnerCard key={id} {...{ ...props, image: images[i] }} />
           ))}
         </Stack>
       </Container>
