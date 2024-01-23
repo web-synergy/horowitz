@@ -14,6 +14,7 @@ const singleSchemaTittles = [
   'Контактна інформація',
   'Соцмережі',
   'Конкурс дані',
+  'Володимир Горовиць',
 ]
 
 const structure = (S: StructureBuilder) =>
@@ -24,7 +25,7 @@ const structure = (S: StructureBuilder) =>
       ...S.documentTypeListItems().filter(
         (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
       ),
-
+      singleDocument(S, 'horowitz', 'Володимир Горовиць').icon(MdOutlineSettingsBrightness),
       S.divider(),
       S.listItem()
         .title('Налаштування')

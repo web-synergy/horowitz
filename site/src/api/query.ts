@@ -1,4 +1,4 @@
-import groq from 'groq'
+import groq from "groq";
 export const homeQuery = groq`*[_type == 'home'][0]{
  'quote':quote{
        'author': author[_key ==$language].value,
@@ -31,7 +31,7 @@ export const homeQuery = groq`*[_type == 'home'][0]{
       'title':title[_key ==$language].value,
       link
     },
-}`
+}`;
 
 export const settingsQuery = groq`*[_type == 'settings']{
   'logo':logo.asset->url,
@@ -47,7 +47,21 @@ export const settingsQuery = groq`*[_type == 'settings']{
   'slug':slug.current,
   'title':title[_key ==$language].value,
   }
-}`
+}`;
+
+export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
+  'bannerData': {
+    'bannerImg': bannerData.bannerImg.asset->url,
+    'bannerCopyright': bannerData.bannerCopyright
+  },
+  'upperBlockText': upperBlockText[_key ==$language].value,
+  'quote':quote{
+    'author': author[_key ==$language].value,
+    'quote': quote[_key ==$language].value,
+  },
+  'lowerBlockText': lowerBlockText[_key ==$language].value,
+  'literature': literature[],
+}`;
 
 export const newsQuery = groq`*[_type == 'news']{
   _id,
@@ -57,7 +71,7 @@ export const newsQuery = groq`*[_type == 'news']{
    'slug':slug.current,
    'shortDescription':shortDescription[_key ==$language].value,
    'count':count(*[_type == "news"])
-}`
+}`;
 
 export const currentNewsQuery = groq`*[_type == 'news'&& slug.current == $slug][0]{
   _id,
@@ -66,4 +80,4 @@ export const currentNewsQuery = groq`*[_type == 'news'&& slug.current == $slug][
    'title':  title[_key ==$language].value,
    'slug':slug.current,
    'description':description[_key ==$language].value
-}`
+}`;

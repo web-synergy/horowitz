@@ -5,6 +5,7 @@ import news from './documents/news'
 import settings from './documents/settings'
 import social from './documents/social'
 import {content} from './objects/content'
+import horowitz from './documents/horowitz'
 
 import sponsor from './objects/sponsor'
 import video from './objects/video'
@@ -23,6 +24,7 @@ export const schemaTypes = [
   contacts,
   social,
   competitionDocument,
+  horowitz,
 
   //objects
   winners,
