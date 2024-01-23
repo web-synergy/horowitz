@@ -17,8 +17,9 @@ const Header = () => {
 
   const scrollTrigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 200,
+    threshold: 100,
   });
+
   const isHomePage = location.pathname === '/';
   const isHeaderTransparent = isHomePage && !scrollTrigger;
   const headerStyle = isHeaderTransparent
@@ -45,7 +46,7 @@ const Header = () => {
         sx={{
           ...headerStyle,
           transition: (theme) =>
-            theme.transitions.create('background-color', { duration: '2s' }),
+            theme.transitions.create('background-color', { duration: '1s' }),
         }}
       >
         <Toolbar disableGutters>
@@ -54,7 +55,9 @@ const Header = () => {
           </Container>
         </Toolbar>
       </AppBar>
+
       <MobileMenu open={openMenu} onClose={onCloseMenu} />
+      {!isHomePage && <Toolbar />}
     </>
   );
 };
