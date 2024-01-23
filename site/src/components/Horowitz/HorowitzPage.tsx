@@ -15,12 +15,6 @@ import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { useHorowitzStore } from "@/store/horowitzStore";
 import { useTranslation } from "react-i18next";
 import { Section } from "../Contacts/styled";
-import {
-  PortableTextBlock,
-  PortableTextMarkDefinition,
-  ArbitraryTypedObject,
-  PortableTextSpan,
-} from "@portabletext/types";
 
 const components: PortableTextComponents = {
   block: {
