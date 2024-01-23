@@ -6,6 +6,7 @@ import NewsSection from './parts/NewsSection/NewsSection'
 import CompetitionWinners from './parts/CompetitionWinners/CompetitionWinners'
 import holidayCard from './temp/holidayCard.jpg'
 import CompetitionEvents from './parts/CompetitionEvents/CompetitionEvents'
+import WatchOnline from './parts/WatchOnline/WatchOnline'
 
 const MainPage: FC = () => {
   return (
@@ -15,6 +16,7 @@ const MainPage: FC = () => {
       <HolidayCard src={holidayCard} />
       <CompetitionWinners />
       <CompetitionEvents />
+      <WatchOnline />
     </>
   )
 }
