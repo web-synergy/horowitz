@@ -48,7 +48,14 @@ const SharedLayout = () => {
 
   useEffect(() => {
     if (!langParam) {
-      setSearchParams({ [lang]: language }, { replace: true });
+      // setSearchParams({ [lang]:  }, { replace: true });
+      setSearchParams(
+        prev => {
+          prev.set(lang, language);
+          return prev;
+        },
+        { replace: true }
+      );
     }
   }, [langParam, language, searchParams, setSearchParams]);
 

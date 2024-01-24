@@ -16,16 +16,16 @@ const LangPanel: FC<LangPanelProps> = ({ additionalClickFn }) => {
   const {
     i18n: { language, changeLanguage },
   } = useTranslation();
-  const draft = searchParams.get('draft') || '';
+
   const onChangeLang = (event: ChangeEvent<HTMLInputElement>) => {
     const value = (event.target as HTMLInputElement).value;
     changeLanguage(value);
-    setSearchParams({ [langKey]: value });
+    setSearchParams(prev => {
+      prev.set(langKey, value);
+      return prev;
+    });
     if (additionalClickFn) {
       additionalClickFn();
-    }
-    if (draft) {
-      setSearchParams({ [langKey]: value, draft: draft });
     }
   };
 
