@@ -6,15 +6,12 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import Breadcrumbs from "@/components/Common/Breadcrumbs";
 import { useTranslation } from "react-i18next";
-import { Routes } from "@/types/routes.d";
-import { urlFor } from "@/config/sanity/imageUrl";
 
-interface BannerComponentProps {
-  imgSrc: string;
-  copyright: string;
-}
+import Breadcrumbs from "@/components/Common/Breadcrumbs";
+import { urlFor } from "@/config/sanity/imageUrl";
+import { Routes } from "@/types/routes.d";
+import { BannerComponentProps } from "@/types/horowitzTypes";
 
 const BannerComponent: React.FC<BannerComponentProps> = ({
   imgSrc,
@@ -29,7 +26,7 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
       position="relative"
       sx={{
         width: "100%",
-        backgroundColor: "#0D0C06",
+        backgroundColor: theme.palette.background.banner,
         height: { xs: "314px", md: "468px" },
         "::before": {
           content: '""',
@@ -38,7 +35,7 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
           right: 0,
           bottom: 0,
           left: 0,
-          background: "rgba(0, 0, 0, 0.6)", // колір затемнення
+          background: "rgba(0, 0, 0, 0.6)",
           zIndex: 1,
           overflow: "hidden",
         },
@@ -87,21 +84,19 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
             />
           </Box>
         )}
-
-        <Typography
-          variant="bodyMedium"
+        <Box
           sx={{
             position: "absolute",
             bottom: 0,
             left: 0,
-            color: "#666",
+            color: theme.palette.neutral[60],
             padding: { xs: "16px 16px", md: "16px 40px", lg: "16px 80px" },
             width: "100%",
             zIndex: 10,
           }}
         >
-          {copyright}
-        </Typography>
+          <Typography variant="bodyMedium">{copyright}</Typography>
+        </Box>
       </Container>
     </Box>
   );
