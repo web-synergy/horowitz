@@ -179,7 +179,7 @@ const HorowitzPage: FC = () => {
   };
 
   function swapElements(array: any) {
-    if (array !== undefined) {
+    if (array) {
       const newArray = [...array];
 
       [newArray[1], newArray[2]] = [newArray[2], newArray[1]];
@@ -212,7 +212,7 @@ const HorowitzPage: FC = () => {
               textAlign: { xs: "left", md: "center" },
             }}
           >
-            Володимир Горовиць
+            {t(`navigation.${Routes.HOROWITZ}`)}
           </Typography>
           {upperBlockText && (
             <Box
@@ -295,7 +295,7 @@ const HorowitzPage: FC = () => {
         )}
 
         <Typography variant="subhead" sx={{ textAlign: "left" }} gutterBottom>
-          Литература
+          {t(`horowitzPage.literature`)}:
         </Typography>
         {literature && (
           <Box
@@ -323,7 +323,7 @@ const HorowitzPage: FC = () => {
             onClick={handleShowMore}
             disabled={isAllLiteratureVisible}
           >
-            {t(`news.showMore`)}
+            {t(`horowitzPage.showMore`)}
           </Button>
         </Box>
       </Container>
