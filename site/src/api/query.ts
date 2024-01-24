@@ -1,4 +1,4 @@
-import groq from "groq";
+import groq from 'groq';
 export const homeQuery = groq`*[_type == 'home'][0]{
  'quote':quote{
        'author': author[_key ==$language].value,
@@ -63,7 +63,7 @@ export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
   'literature': literature[],
 }`;
 
-export const newsQuery = groq`*[_type == 'news']{
+export const newsQuery = groq`*[_type == 'news'][$firstEl ...$lastEl]{
   _id,
   _createdAt,
    img,
