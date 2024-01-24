@@ -1,12 +1,12 @@
-import { PortableTextBlock } from "@portabletext/types";
-import { INews } from "./newsTypes";
+import { PortableTextBlock } from '@portabletext/types';
+import { INews } from './newsTypes';
 
 import {
   CompetitionsMenu,
   ContactsType,
   SettingsResp,
   SociableType,
-} from "./contactsTypes";
+} from './contactsTypes';
 
 export interface SettingsStoreState {
   sociable: SociableType | null;
@@ -31,6 +31,9 @@ export interface HorowitzStoreState {
 }
 
 export interface NewsStoreState {
-  newsList: INews[];
-  fetchNews: (language: string) => Promise<void>;
+  newsList: { [key: string]: INews[] | null };
+  loading: boolean;
+  isLastEl: boolean;
+  error: string | unknown;
+  fetchNews: (language: string, page: number) => Promise<void>;
 }
