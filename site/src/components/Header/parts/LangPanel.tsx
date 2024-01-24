@@ -12,7 +12,7 @@ interface LangPanelProps {
 
 const LangPanel: FC<LangPanelProps> = ({ additionalClickFn }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [_, setSearchParams] = useSearchParams();
   const {
     i18n: { language, changeLanguage },
   } = useTranslation();
