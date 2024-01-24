@@ -71,88 +71,78 @@ const HorowitzPage: FC = () => {
   }
 
   return (
-    <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <PageTemplate>
-          {bannerData && (
-            <BannerComponent
-              imgSrc={bannerData.bannerImg}
-              copyright={bannerData.bannerCopyright}
-            />
-          )}
-
-          <Container>
-            <Box
-              sx={{
-                paddingTop: { xs: "48px", md: "54px", lg: "80px" },
-                paddingBottom: { xs: "24px", lg: "80px" },
-              }}
-            >
-              <Typography
-                variant="h1"
-                sx={{
-                  textTransform: "uppercase",
-                  marginBottom: "24px",
-                  textAlign: { xs: "left", md: "center" },
-                }}
-              >
-                {t(`navigation.${Routes.HOROWITZ}`)}
-              </Typography>
-              {upperTextBlock && (
-                <TextBlockSection blocks={currentUpperTextBlock} />
-              )}
-            </Box>
-          </Container>
-          {quote && <QuoteSection quote={quote} />}
-          <Container>
-            {lowerTextBlock && (
-              <Box
-                sx={{
-                  padding: { xs: "24px 0px", lg: "80px 0px" },
-                }}
-              >
-                {upperTextBlock && (
-                  <TextBlockSection blocks={currentLowerTextBlock} />
-                )}
-              </Box>
-            )}
-
-            <Typography
-              variant="subhead"
-              sx={{ textAlign: "left" }}
-              gutterBottom
-            >
-              {t(`horowitzPage.literature`)}:
-            </Typography>
-            {literature && (
-              <LiteratureSection
-                literature={literature}
-                visibleItems={visibleItemsLiterature}
-              />
-            )}
-            <Box
-              sx={{
-                width: "100%",
-                textAlign: "center",
-                marginTop: { xs: "48px", md: "54px", lg: "80px" },
-                marginBottom: { xs: "72px", md: "96px", lg: "118px" },
-              }}
-            >
-              <Button
-                sx={{ width: "288px" }}
-                variant="transparent"
-                onClick={handleShowMore}
-                disabled={isAllLiteratureVisible}
-              >
-                {t(`horowitzPage.showMore`)}
-              </Button>
-            </Box>
-          </Container>
-        </PageTemplate>
+    <PageTemplate>
+      {bannerData && (
+        <BannerComponent
+          imgSrc={bannerData.bannerImg}
+          copyright={bannerData.bannerCopyright}
+        />
       )}
-    </>
+
+      <Container>
+        <Box
+          sx={{
+            paddingTop: { xs: "48px", md: "54px", lg: "80px" },
+            paddingBottom: { xs: "24px", lg: "80px" },
+          }}
+        >
+          <Typography
+            variant="h1"
+            sx={{
+              textTransform: "uppercase",
+              marginBottom: "24px",
+              textAlign: { xs: "left", md: "center" },
+            }}
+          >
+            {t(`navigation.${Routes.HOROWITZ}`)}
+          </Typography>
+          {upperTextBlock && (
+            <TextBlockSection blocks={currentUpperTextBlock} />
+          )}
+        </Box>
+      </Container>
+      {quote && <QuoteSection quote={quote} />}
+      <Container>
+        {lowerTextBlock && (
+          <Box
+            sx={{
+              padding: { xs: "24px 0px", lg: "80px 0px" },
+            }}
+          >
+            {upperTextBlock && (
+              <TextBlockSection blocks={currentLowerTextBlock} />
+            )}
+          </Box>
+        )}
+
+        <Typography variant="subhead" sx={{ textAlign: "left" }} gutterBottom>
+          {t(`horowitzPage.literature`)}:
+        </Typography>
+        {literature && (
+          <LiteratureSection
+            literature={literature}
+            visibleItems={visibleItemsLiterature}
+          />
+        )}
+        <Box
+          sx={{
+            width: "100%",
+            textAlign: "center",
+            marginTop: { xs: "48px", md: "54px", lg: "80px" },
+            marginBottom: { xs: "72px", md: "96px", lg: "118px" },
+          }}
+        >
+          <Button
+            sx={{ width: "288px" }}
+            variant="transparent"
+            onClick={handleShowMore}
+            disabled={isAllLiteratureVisible}
+          >
+            {t(`horowitzPage.showMore`)}
+          </Button>
+        </Box>
+      </Container>
+    </PageTemplate>
   );
 };
 
