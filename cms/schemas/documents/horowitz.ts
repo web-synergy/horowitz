@@ -7,7 +7,7 @@ export default defineType({
 
   groups: [
     {
-      name: 'upperBlockText',
+      name: 'upperTextBlock',
       title: 'Верхній текст',
     },
     {
@@ -15,7 +15,7 @@ export default defineType({
       title: 'Цитата',
     },
     {
-      name: 'lowerBlockText',
+      name: 'lowerTextBlock',
       title: 'Нижній текст',
     },
     {
@@ -50,8 +50,8 @@ export default defineType({
     }),
 
     defineField({
-      group: ['upperBlockText'],
-      name: 'upperBlockText',
+      group: ['upperTextBlock'],
+      name: 'upperTextBlock',
       title: 'Верхній блок тексту',
       type: 'internationalizedArrayContent',
     }),
@@ -79,8 +79,8 @@ export default defineType({
     }),
 
     defineField({
-      group: ['lowerBlockText'],
-      name: 'lowerBlockText',
+      group: ['lowerTextBlock'],
+      name: 'lowerTextBlock',
       title: 'Нижній блок тексту',
       type: 'internationalizedArrayContent',
     }),

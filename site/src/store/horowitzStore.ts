@@ -11,12 +11,12 @@ export const useHorowitzStore = create<HorowitzStoreState>((set) => ({
     author: [],
     quote: [],
   },
-  upperBlockText: [],
-  lowerBlockText: [],
+  upperTextBlock: [],
+  lowerTextBlock: [],
   literature: [],
-  loading: false,
+  isLoading: false,
   fetchHorowitzData: async (language) => {
-    set({ loading: true });
+    set({ isLoading: true });
 
     try {
       const horowitzData = await getHorowitzData(language);
@@ -26,14 +26,14 @@ export const useHorowitzStore = create<HorowitzStoreState>((set) => ({
       set({
         bannerData: horowitzData.bannerData,
         quote: horowitzData.quote,
-        upperBlockText: horowitzData.upperBlockText || [],
-        lowerBlockText: horowitzData.lowerBlockText || [],
+        upperTextBlock: horowitzData.upperTextBlock || [],
+        lowerTextBlock: horowitzData.lowerTextBlock || [],
         literature: horowitzData.literature || [],
       });
     } catch (error) {
       console.log(error);
     } finally {
-      set({ loading: false });
+      set({ isLoading: false });
     }
   },
 }));

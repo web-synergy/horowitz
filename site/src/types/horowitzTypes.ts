@@ -9,7 +9,7 @@ export interface IHorowitzData {
     author: string[];
     quote: string[];
   };
-  upperBlockText: PortableTextBlock[];
-  lowerBlockText: PortableTextBlock[];
+  upperTextBlock: PortableTextBlock[];
+  lowerTextBlock: PortableTextBlock[];
   literature: PortableTextBlock[];
 }

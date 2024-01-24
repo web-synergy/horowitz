@@ -23,10 +23,10 @@ export interface HorowitzStoreState {
     bannerImg: string;
   };
   quote: { author: string[]; quote: string[] };
-  upperBlockText: PortableTextBlock[];
-  lowerBlockText: PortableTextBlock[];
+  upperTextBlock: PortableTextBlock[];
+  lowerTextBlock: PortableTextBlock[];
   literature: PortableTextBlock[];
-  loading: boolean;
+  isLoading: boolean;
   fetchHorowitzData: (language: string) => Promise<void>;
 }
 
