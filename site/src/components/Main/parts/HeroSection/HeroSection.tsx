@@ -65,8 +65,12 @@ const HeroSection: FC = () => {
                   </StyledButton>
                 </ButtonsStack>
                 <LogotypesStack>
-                  <LogoImg src={WFIMC_logo} alt="WFIMC logotype" />
-                  <LogoImg src={EUMCY_logo} alt="EMCY logotype" />
+                  <RouterLink to="https://www.wfimc.org/" target="_blank">
+                    <LogoImg src={WFIMC_logo} alt="WFIMC logotype" />
+                  </RouterLink>
+                  <RouterLink to="https://emcy.org/" target="_blank">
+                    <LogoImg src={EUMCY_logo} alt="EMCY logotype" />
+                  </RouterLink>
                 </LogotypesStack>
               </ContentStack>
             </Box>
