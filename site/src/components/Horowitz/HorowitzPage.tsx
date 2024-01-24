@@ -80,8 +80,7 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
     <Box
       position="relative"
       sx={{
-        maxWidth: "1280px",
-        margin: "0 auto",
+        width: "100%",
         backgroundColor: "#0D0C06",
         height: { xs: "314px", md: "468px" },
         "::before": {
@@ -93,54 +92,64 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
           left: 0,
           background: "rgba(0, 0, 0, 0.6)", // колір затемнення
           zIndex: 1,
+          overflow: "hidden",
         },
       }}
     >
-      <Box
+      <Container
         sx={{
-          position: "absolute",
-          top: 0,
-          right: { xs: 0, md: "48px", lg: "228px" },
           height: "100%",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <img
-          src={imgSrc}
-          alt="banner img"
-          style={{
-            display: "block",
-            width: "100%",
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            right: { xs: "-118px", md: "-198px", lg: 0 },
             height: "100%",
-            objectFit: "cover",
           }}
-        />
-      </Box>
+        >
+          <img
+            src={imgSrc}
+            alt="banner img"
+            style={{
+              display: "block",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+          B
+        </Box>
 
-      <Box
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: { xs: "16px", md: "40px", lg: "80px" },
-          maxWidth: "100%",
-          zIndex: 10,
-        }}
-      >
-        <Breadcrumbs title={t(`navigation.${Routes.HOROWITZ}`)} mode="dark" />
-      </Box>
-      <Typography
-        variant="bodyMedium"
-        sx={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          color: "#666",
-          padding: { xs: "16px 16px", md: "16px 40px", lg: "16px 80px" },
-          width: "100%",
-          zIndex: 10,
-        }}
-      >
-        {copyright}
-      </Typography>
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: { xs: "16px", md: "40px", lg: "80px" },
+            maxWidth: "100%",
+            zIndex: 10,
+          }}
+        >
+          <Breadcrumbs title={t(`navigation.${Routes.HOROWITZ}`)} mode="dark" />
+        </Box>
+        <Typography
+          variant="bodyMedium"
+          sx={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            color: "#666",
+            padding: { xs: "16px 16px", md: "16px 40px", lg: "16px 80px" },
+            width: "100%",
+            zIndex: 10,
+          }}
+        >
+          {copyright}
+        </Typography>
+      </Container>
     </Box>
   );
 };
@@ -167,7 +176,7 @@ const HorowitzPage: FC = () => {
 
   // console.log(bannerData);
   // console.log(quote);
-  // console.log(upperBlockText[0]);
+  // console.log(upperBlockText);
   // console.log(lowerBlockText[0]);
   // console.log(literature);
 
@@ -180,16 +189,34 @@ const HorowitzPage: FC = () => {
     setIsAllLiteratureVisible(true);
   };
 
-  function swapElements(array: any) {
-    if (array !== undefined) {
-      const newArray = [...array];
-
-      [newArray[1], newArray[2]] = [newArray[2], newArray[1]];
-
+  const swapElements = (
+    array: PortableTextBlock[], // Ensure that the array is an array of ArrayElement objects
+    index1: number,
+    index2: number
+  ) => {
+    if (array && array.length > index1 && array.length > index2) {
+      const newArray = [...array]; // Create a new array to avoid mutation
+      [newArray[index1], newArray[index2]] = [
+        newArray[index2],
+        newArray[index1],
+      ];
       return newArray;
     }
-  }
+    return array;
+  };
 
+  // Swap elements within the first block of blockText if it exists and the screen is large
+  const swappedUpperBlockText =
+    isLargeScreen && upperBlockText
+      ? swapElements(upperBlockText[0], 1, 2)
+      : upperBlockText[0];
+
+  console.log(swappedUpperBlockText);
+
+  const swappedLowerBlockText =
+    isLargeScreen && lowerBlockText
+      ? swapElements(lowerBlockText[0], 1, 2)
+      : lowerBlockText[0];
   return (
     <PageTemplate>
       {bannerData && (
@@ -226,11 +253,7 @@ const HorowitzPage: FC = () => {
               }}
             >
               <PortableText
-                value={
-                  isLargeScreen
-                    ? swapElements(upperBlockText[0])
-                    : upperBlockText[0]
-                }
+                value={swappedUpperBlockText}
                 components={components}
               />
             </Box>
@@ -285,11 +308,7 @@ const HorowitzPage: FC = () => {
               }}
             >
               <PortableText
-                value={
-                  isLargeScreen
-                    ? swapElements(lowerBlockText[0])
-                    : lowerBlockText[0]
-                }
+                value={swappedLowerBlockText}
                 components={components}
               />
             </Box>
@@ -321,6 +340,7 @@ const HorowitzPage: FC = () => {
           }}
         >
           <Button
+            sx={{ width: "288px" }}
             variant="transparent"
             onClick={handleShowMore}
             disabled={isAllLiteratureVisible}
