@@ -15,6 +15,7 @@ import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { useHorowitzStore } from "@/store/horowitzStore";
 import { useTranslation } from "react-i18next";
 import { Section } from "../Contacts/styled";
+import { PortableTextBlock } from "@portabletext/types";
 
 const components: PortableTextComponents = {
   block: {
@@ -23,7 +24,8 @@ const components: PortableTextComponents = {
         variant="bodyRegular"
         component={"p"}
         sx={{
-          flex: { lg: "1 1 calc(50% - 12px)" }, // Делит блоки на две колонки, учитывая интервал в 24px
+          textAlign: "justify",
+          flex: { lg: "1 1 calc(50% - 12px)" },
         }}
       >
         {children}
@@ -179,7 +181,7 @@ const HorowitzPage: FC = () => {
   };
 
   function swapElements(array: any) {
-    if (array) {
+    if (array !== undefined) {
       const newArray = [...array];
 
       [newArray[1], newArray[2]] = [newArray[2], newArray[1]];
