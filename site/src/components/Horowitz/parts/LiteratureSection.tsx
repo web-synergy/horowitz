@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 
 import { PortableText } from "@portabletext/react";
-import { components } from "../portableComponents";
+import { components } from "../horowitzPortableComponents";
 import { LiteratureSectionProps } from "@/types/horowitzTypes";
 
 const LiteratureSection: React.FC<LiteratureSectionProps> = ({
