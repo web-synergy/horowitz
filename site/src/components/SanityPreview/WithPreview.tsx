@@ -5,6 +5,7 @@ import { Suspense, lazy } from 'react';
 import { token } from '../../config/sanity/client';
 import SharedLayout from '../Common/SharedLayout';
 import { draft } from '@/libs/searchParamsKey';
+import Loader from '../Common/Loader';
 const PreviewProvider = lazy(() => import('./PreviewProvider'));
 
 export default function WithPreview() {
@@ -15,7 +16,7 @@ export default function WithPreview() {
   return (
     <>
       {previewDrafts ? (
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<Loader />}>
           <PreviewProvider token={token!}>
             <SharedLayout />
           </PreviewProvider>

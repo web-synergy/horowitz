@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react';
 import PageTemplate from '../Common/PageTemplate';
 import { Button, Container, List, Typography, Box, Stack } from '@mui/material';
 
@@ -10,30 +11,40 @@ import { useTranslation } from 'react-i18next';
 
 import Breadcrumbs from '../Common/Breadcrumbs';
 import { Routes } from '@/types/routes.d';
+import Loader from '../Common/Loader';
+import { useSearchParams } from 'react-router-dom';
 
 const NewsPageList = () => {
   const {
     t,
     i18n: { language },
   } = useTranslation();
-  const { fetchNews, newsList } = useNewsStore();
+  const { fetchNews, newsList, loading, isLastEl } = useNewsStore(state => ({
+    fetchNews: state.fetchNews,
+    loading: state.loading,
+    newsList: state.newsList[language],
+    isLastEl: state.isLastEl,
+  }));
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [totalEvents, setTotalEvents] = useState<number>(0);
-  const [pageSize, setPageSize] = useState(4);
-
-  const handlerLoadMore = () => {
-    setPageSize(prevPage => prevPage + 4);
-  };
+  const urlPage = +(searchParams.get('page') || 1);
 
   useEffect(() => {
-    if (!newsList.length) {
-      fetchNews(language);
-    }
+    window.scrollTo({ top: 0, left: 0 });
 
-    setTotalEvents(newsList.length);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language, totalEvents, pageSize]);
+    fetchNews(language, urlPage);
+  }, [language, urlPage]);
 
+  const handler = () => {
+    const countedPage = urlPage + 1;
+
+    setSearchParams(prev => {
+      prev.set('page', countedPage.toString());
+      return prev;
+    });
+  };
+
+  if (loading) return <Loader />;
   return (
     <PageTemplate>
       <Container>
@@ -54,26 +65,24 @@ const NewsPageList = () => {
               justifyContent: { xs: 'center', md: 'flex-start' },
             }}>
             {newsList &&
-              newsList
-                .slice(0, pageSize)
-                .map((news: INews, index) => (
-                  <NewsListItem
-                    key={index}
-                    title={news.title}
-                    date={news._createdAt}
-                    img={news.img}
-                    slug={news.slug}
-                    shortDescription={news.shortDescription}
-                  />
-                ))}
+              newsList.map((news: INews, index) => (
+                <NewsListItem
+                  key={index}
+                  title={news.title}
+                  date={news._createdAt}
+                  img={news.img}
+                  slug={news.slug}
+                  shortDescription={news.shortDescription}
+                />
+              ))}
           </List>
           <Box
             sx={{
               my: { xs: '48px', lg: '56px' },
               mx: 'auto',
             }}>
-            {pageSize < totalEvents && (
-              <Button onClick={handlerLoadMore} variant='transparent'>
+            {!isLastEl && (
+              <Button onClick={handler} variant='transparent'>
                 {t(`news.showMore`)}
               </Button>
             )}

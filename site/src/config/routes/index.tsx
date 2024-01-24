@@ -14,8 +14,8 @@ import VirtuosesPage from '../../components/Virtuoses/VirtuosesPage';
 import InDevelopmentPage from '@/components/InDevelopmentPage/InDevelopmentPage';
 import WithPreview from '@/components/SanityPreview/WithPreview';
 import { Routes } from '@/types/routes.d';
-import NewsPageList from '@/components/News/NewsPageList';
-import NewsCurrentPage from '@/components/News/NewsCurrentPage';
+import NewsPageList from '@/components/NewsPageList/NewsPageList';
+import NewsCurrentPage from '@/components/NewsCurrentPage/NewsCurrentPage';
 
 const routes = createBrowserRouter([
   {
