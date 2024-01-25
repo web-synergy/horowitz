@@ -34,6 +34,10 @@ export default {
     readMore: "Read more",
     showMore: "Show more",
   },
+  horowitzPage: {
+    literature: "Literature",
+    showMore: "Show more",
+  },
   notFound: {
     [NotFound.TITLE]: "Sorry, the page is not found.",
     [NotFound.TEXT]:

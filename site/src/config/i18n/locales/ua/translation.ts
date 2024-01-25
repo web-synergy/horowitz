@@ -34,6 +34,10 @@ export default {
     readMore: "Читати більше",
     showMore: "Показати більше",
   },
+  horowitzPage: {
+    literature: "Література",
+    showMore: "Показати більше",
+  },
   notFound: {
     [NotFound.TITLE]: "Вибачте, сторінку не знайдено",
     [NotFound.TEXT]:
