@@ -1,12 +1,9 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { PortableTextBlock } from "@portabletext/types";
-import { PortableText } from "@portabletext/react";
-import { components } from "../portableComponents"; // Assuming you have a separate file for portable text components
 
-interface TextBlockSectionProps {
-  blocks: PortableTextBlock[];
-}
+import { PortableText } from "@portabletext/react";
+import { components } from "../portableComponents";
+import { TextBlockSectionProps } from "@/types/horowitzTypes";
 
 const TextBlockSection: React.FC<TextBlockSectionProps> = ({ blocks }) => {
   return (

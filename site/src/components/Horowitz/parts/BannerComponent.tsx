@@ -10,11 +10,7 @@ import Breadcrumbs from "@/components/Common/Breadcrumbs";
 import { useTranslation } from "react-i18next";
 import { Routes } from "@/types/routes.d";
 import { urlFor } from "@/config/sanity/imageUrl";
-
-interface BannerComponentProps {
-  imgSrc: string;
-  copyright: string;
-}
+import { BannerComponentProps } from "@/types/horowitzTypes";
 
 const BannerComponent: React.FC<BannerComponentProps> = ({
   imgSrc,

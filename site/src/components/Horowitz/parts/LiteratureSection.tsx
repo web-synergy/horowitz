@@ -3,12 +3,7 @@ import { Box } from "@mui/material";
 
 import { PortableText } from "@portabletext/react";
 import { components } from "../portableComponents";
-import { PortableTextBlock } from "@portabletext/types";
-
-interface LiteratureSectionProps {
-  literature: PortableTextBlock[];
-  visibleItems: number;
-}
+import { LiteratureSectionProps } from "@/types/horowitzTypes";
 
 const LiteratureSection: React.FC<LiteratureSectionProps> = ({
   literature,

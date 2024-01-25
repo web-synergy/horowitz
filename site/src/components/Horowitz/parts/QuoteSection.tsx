@@ -1,13 +1,7 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import { Section } from "@/components/Contacts/styled";
-
-interface QuoteSectionProps {
-  quote: {
-    author: string[];
-    quote: string[];
-  };
-}
+import { QuoteSectionProps } from "@/types/horowitzTypes";
 
 const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
   return (
