@@ -56,7 +56,7 @@ export const palette: PaletteOptions = {
   text: {
     primary: "#080708",
     secondary: "#F5F5F5",
-    qoute: "#E19C2A",
+    quote: "#E19C2A",
   },
   background: {
     default: "#F5F5F5",
