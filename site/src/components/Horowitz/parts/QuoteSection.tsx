@@ -29,7 +29,7 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
       <Typography
         variant="subhead"
         sx={{
-          color: "#E19C2A",
+          color: (theme) => theme.palette.text.qoute,
         }}
       >
         — {quote.author}
