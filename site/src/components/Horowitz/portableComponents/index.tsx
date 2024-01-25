@@ -1,5 +1,5 @@
-import { Typography } from "@mui/material";
 import { PortableTextComponents } from "@portabletext/react";
+import { Typography } from "@mui/material";
 
 export const components: PortableTextComponents = {
   block: {

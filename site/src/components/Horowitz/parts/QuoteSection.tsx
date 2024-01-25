@@ -1,9 +1,11 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 import { Section } from "@/components/Contacts/styled";
 import { QuoteSectionProps } from "@/types/horowitzTypes";
 
 const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
+  const theme = useTheme();
+
   return (
     <Section
       component={"section"}
@@ -29,7 +31,7 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
       <Typography
         variant="subhead"
         sx={{
-          color: "#E19C2A",
+          color: theme.palette.text.quote,
         }}
       >
         — {quote.author}
