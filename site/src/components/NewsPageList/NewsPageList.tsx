@@ -2,7 +2,6 @@
 import { useEffect } from 'react';
 import PageTemplate from '../Common/PageTemplate';
 import {
-  // Button,
   Container,
   List,
   Typography,
@@ -20,15 +19,16 @@ import { useTranslation } from 'react-i18next';
 
 import Breadcrumbs from '../Common/Breadcrumbs';
 import { Routes } from '@/types/routes.d';
-// import Loader from '../Common/Loader';
+
 import { useSearchParams } from 'react-router-dom';
+import Loader from '../Common/Loader';
 
 const NewsPageList = () => {
   const {
     t,
     i18n: { language },
   } = useTranslation();
-  const { fetchNews, newsList, pageQty } = useNewsStore(state => ({
+  const { fetchNews, newsList, pageQty, loading } = useNewsStore(state => ({
     fetchNews: state.fetchNews,
     loading: state.loading,
     newsList: state.newsList[language],
@@ -54,7 +54,7 @@ const NewsPageList = () => {
   //   });
   // };
 
-  // if (loading) return <Loader />;
+  if (loading) return <Loader />;
   return (
     <PageTemplate>
       <Container>

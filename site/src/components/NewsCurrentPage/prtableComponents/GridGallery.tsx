@@ -1,5 +1,3 @@
-import { urlFor } from '@/config/sanity/imageUrl';
-import { IImage, IPortableImgGallery } from '@/types/newsTypes';
 import {
   Box,
   Dialog,
@@ -12,6 +10,8 @@ import { FC, useState } from 'react';
 
 import GrowView from '@/components/Common/GrowView';
 import { theme } from '@/theme';
+import { urlFor } from '@/config/sanity/imageUrl';
+import { IImage, IPortableImgGallery } from '@/types/newsTypes';
 
 const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
   const { images, title } = value;
@@ -28,7 +28,7 @@ const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
   return (
     <GrowView>
       <Box sx={{ mb: '24px' }}>
-        <ImageList variant='quilted' cols={4} rowHeight={'auto'}>
+        <ImageList variant='quilted' cols={4} rowHeight={isMob ? 'auto' : 250}>
           {images.map(item => {
             if (item.asset)
               return (
@@ -40,8 +40,8 @@ const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
                     style={{ cursor: 'pointer' }}
                     onClick={() => handleClickOpen(item)}
                     src={urlFor(item)
-                      .width(700)
-                      .height(400)
+                      .width(600)
+                      .height(300)
                       .auto('format')
                       .fit('fill')
                       .url()}
@@ -55,15 +55,15 @@ const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
 
         <Dialog
           fullWidth={true}
-          maxWidth={'lg'}
+          maxWidth={'md'}
           onClose={handleClose}
           aria-labelledby='customized-dialog-title'
           open={open}>
           {imgSrc && (
             <img
               src={urlFor(imgSrc)
-                .width(700)
-                .height(isMob ? 500 : 400)
+                .width(930)
+                .height(isMob ? 700 : 500)
                 .auto('format')
                 .fit('fill')
                 .url()}
