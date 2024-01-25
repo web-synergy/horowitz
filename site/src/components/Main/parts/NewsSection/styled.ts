@@ -30,7 +30,7 @@ export const CardTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
 }))
 
 export const StyledContainer = styled(Container)(({ theme }) => ({
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down('lg')]: {
     '&.MuiContainer-root': { paddingRight: 0 },
   },
 }))
