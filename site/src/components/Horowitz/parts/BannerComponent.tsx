@@ -25,7 +25,7 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
       position="relative"
       sx={{
         width: "100%",
-        backgroundColor: theme.palette.background.banner,
+        backgroundColor: "#0D0C06",
         height: { xs: "314px", md: "468px" },
         "::before": {
           content: '""',
@@ -90,7 +90,7 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
             position: "absolute",
             bottom: 0,
             left: 0,
-            color: theme.palette.neutral[60],
+            color: "#666",
             padding: { xs: "16px 16px", md: "16px 40px", lg: "16px 80px" },
             width: "100%",
             zIndex: 10,

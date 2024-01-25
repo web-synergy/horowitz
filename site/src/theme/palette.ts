@@ -56,12 +56,10 @@ export const palette: PaletteOptions = {
   text: {
     primary: "#080708",
     secondary: "#F5F5F5",
-    quote: "#E19C2A",
   },
   background: {
     default: "#F5F5F5",
     paper: "#F5F5F5",
-    banner: "#0D0C06",
   },
   // divider: '#F2F2F2',
   neutral: {
