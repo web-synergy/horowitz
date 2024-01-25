@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import PageTemplate from '../Common/PageTemplate';
-import { Box, Container, Link, Typography } from '@mui/material';
+import { Box, Container, Link, Typography, useMediaQuery } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
@@ -16,6 +16,7 @@ import { getCurrentNews } from '@/api';
 import GrowView from '../Common/GrowView';
 import Loader from '../Common/Loader';
 import SvgSpriteIcon from '../Common/SvgSpriteIcon';
+import { theme } from '@/theme';
 
 const NewsCurrentPage = () => {
   const { slug } = useParams();
@@ -46,25 +47,28 @@ const NewsCurrentPage = () => {
     language,
   });
 
+  const isMob = useMediaQuery(theme.breakpoints.down('md'));
   const history = [
     { title: t(`navigation.${Routes.NEWS}`), href: `/${Routes.NEWS}` },
   ];
   if (loader) return <Loader />;
-
   return (
     <PageTemplate>
       <Container>
         <Breadcrumbs title={data?.title || ''} mode='light' history={history} />
         {data && (
-          <Box sx={{ my: '56px' }}>
+          <Box sx={{ my: { xs: '40px', md: '48px', lg: '56px' } }}>
             <GrowView>
               <Box
-                sx={{ width: '100%', height: 'auto' }}
+                sx={{
+                  width: '100%',
+                  // objectFit: { sx: 'none', md: 'cover' },
+                }}
                 src={
                   data.img &&
                   urlFor(data.img)
-                    .width(920)
-                    .height(400)
+                    .width(isMob ? 400 : 920)
+                    .height(isMob ? 340 : 408)
                     .fit('fill')
                     .url()
                     .toString()
@@ -74,26 +78,29 @@ const NewsCurrentPage = () => {
 
             <Box sx={{ maxWidth: '930px', mx: 'auto' }}>
               <Typography
-                sx={{ mt: '54px', mb: '24px', display: 'block' }}
+                sx={{
+                  mt: '54px',
+                  mb: '24px',
+                  display: 'block',
+                  color: theme => theme.palette.neutral[50],
+                }}
                 variant='bodyLight'>
                 {parseAndFormatDate(data._createdAt)}
               </Typography>
 
-              <Typography sx={{ mb: '32px' }} variant='h2'>
-                {data.title}
-              </Typography>
-
-              <PortableText
-                value={data.description[0]}
-                components={components}
-              />
+              <Typography variant='h2'>{data.title}</Typography>
+              <Box
+                sx={{
+                  mb: { xs: '40px', md: '48px', lg: '56px' },
+                  mt: { xs: '24px', md: '32px' },
+                }}>
+                <PortableText
+                  value={data.description[0]}
+                  components={components}
+                />
+              </Box>
               <Link
                 sx={{
-                  mt: {
-                    xs: '8px',
-                    md: '18px',
-                    lg: '24px',
-                  },
                   color: theme => theme.palette.neutral[60],
                 }}
                 onClick={() => navigate(-1)}>

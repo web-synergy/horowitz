@@ -47,7 +47,7 @@ export const components: PortableTextComponents = {
         component={'p'}
         sx={{
           display: 'block',
-          my: { xs: '24px', md: '32px' },
+          my: { xs: '24px', lg: '32px' },
           textAlign: 'justify',
         }}
         variant='bodyRegular'>
@@ -94,8 +94,11 @@ export const components: PortableTextComponents = {
           component={'ul'}
           sx={{
             display: 'flex',
+            gap: '8px',
             flexDirection: 'column',
-            my: { xs: '24px', md: '32px' },
+            my: { xs: '24px', md: '24px', lg: '32px' },
+            pl: { xs: '24px', md: '32px' },
+            lineHeight: { sx: '24px', md: '28px' },
           }}
           variant='bodyRegular'>
           {children}
@@ -108,8 +111,10 @@ export const components: PortableTextComponents = {
         component={'ol'}
         sx={{
           display: 'flex',
+          gap: '8px',
           flexDirection: 'column',
           my: { xs: '24px', md: '32px' },
+          lineHeight: { sx: '24px', md: '28px' },
         }}
         variant='bodyRegular'>
         {children}

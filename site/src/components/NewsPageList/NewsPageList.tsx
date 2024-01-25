@@ -1,17 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import PageTemplate from '../Common/PageTemplate';
-import { Button, Container, List, Typography, Box, Stack } from '@mui/material';
+import {
+  // Button,
+  Container,
+  List,
+  Typography,
+  Box,
+  Stack,
+  Pagination,
+  PaginationItem,
+} from '@mui/material';
 
 import { useNewsStore } from '@/store/newsStore';
-
+import { Link as RouterLink } from 'react-router-dom';
 import NewsListItem from './pars/NewsListItem';
 import { INews } from '@/types/newsTypes';
 import { useTranslation } from 'react-i18next';
 
 import Breadcrumbs from '../Common/Breadcrumbs';
 import { Routes } from '@/types/routes.d';
-import Loader from '../Common/Loader';
+// import Loader from '../Common/Loader';
 import { useSearchParams } from 'react-router-dom';
 
 const NewsPageList = () => {
@@ -19,11 +28,12 @@ const NewsPageList = () => {
     t,
     i18n: { language },
   } = useTranslation();
-  const { fetchNews, newsList, loading, isLastEl } = useNewsStore(state => ({
+  const { fetchNews, newsList, pageQty } = useNewsStore(state => ({
     fetchNews: state.fetchNews,
     loading: state.loading,
     newsList: state.newsList[language],
     isLastEl: state.isLastEl,
+    pageQty: state.pageQty,
   }));
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -35,16 +45,16 @@ const NewsPageList = () => {
     fetchNews(language, urlPage);
   }, [language, urlPage]);
 
-  const handler = () => {
-    const countedPage = urlPage + 1;
+  // const handlerCounterPage = () => {
+  //   const countedPage = urlPage + 1;
 
-    setSearchParams(prev => {
-      prev.set('page', countedPage.toString());
-      return prev;
-    });
-  };
+  //   setSearchParams(prev => {
+  //     prev.set('page', countedPage.toString());
+  //     return prev;
+  //   });
+  // };
 
-  if (loading) return <Loader />;
+  // if (loading) return <Loader />;
   return (
     <PageTemplate>
       <Container>
@@ -81,11 +91,28 @@ const NewsPageList = () => {
               my: { xs: '48px', lg: '56px' },
               mx: 'auto',
             }}>
-            {!isLastEl && (
-              <Button onClick={handler} variant='transparent'>
-                {t(`news.showMore`)}
-              </Button>
-            )}
+            <Stack spacing={2}>
+              <Pagination
+                count={pageQty}
+                variant='outlined'
+                size='large'
+                page={urlPage}
+                onChange={(_, num) =>
+                  setSearchParams(prev => {
+                    prev.set('page', num.toString());
+                    return prev;
+                  })
+                }
+                sx={{ marginY: 4, marginX: 'auto' }}
+                renderItem={item => (
+                  <PaginationItem
+                    component={RouterLink}
+                    to={`/news/?page=${item.page}`}
+                    {...item}
+                  />
+                )}
+              />
+            </Stack>
           </Box>
         </Stack>
       </Container>

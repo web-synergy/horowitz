@@ -35,5 +35,6 @@ export interface NewsStoreState {
   loading: boolean;
   isLastEl: boolean;
   error: string | unknown;
+  pageQty: number;
   fetchNews: (language: string, page: number) => Promise<void>;
 }

@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { FC, useState } from 'react';
 import { Navigation, Thumbs, FreeMode } from 'swiper/modules';
@@ -11,14 +11,15 @@ import 'swiper/css/pagination';
 import './sliderStyles.css';
 import { IPortableImgGallery } from '@/types/newsTypes';
 import GrowView from '@/components/Common/GrowView';
+import { theme } from '@/theme';
 
 export const PortableSwiper: FC<IPortableImgGallery> = ({ value }) => {
   const { images, title } = value;
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>();
-
+  const isMob = useMediaQuery(theme.breakpoints.down('md'));
   return (
     <GrowView>
-      <Box sx={{ my: '24px' }}>
+      <Box sx={{ my: { xs: '40px', md: '48px', lg: '56px' } }}>
         <Swiper
           modules={[FreeMode, Navigation, Thumbs]}
           loop={true}
@@ -31,13 +32,14 @@ export const PortableSwiper: FC<IPortableImgGallery> = ({ value }) => {
             if (item.asset)
               return (
                 <SwiperSlide key={item._key}>
-                  <img
+                  <Box
+                    component={'img'}
                     loading='lazy'
                     src={
                       item &&
                       urlFor(item)
-                        .width(980)
-                        .height(480)
+                        .width(isMob ? 288 : 930)
+                        .height(isMob ? 309 : 480)
                         .auto('format')
                         .fit('fill')
                         .url()
@@ -47,41 +49,42 @@ export const PortableSwiper: FC<IPortableImgGallery> = ({ value }) => {
               );
           })}
         </Swiper>
-
-        <Swiper
-          modules={[FreeMode, Navigation, Thumbs]}
-          watchSlidesProgress
-          spaceBetween={8}
-          slidesPerView={4}
-          loop={true}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          onSwiper={setThumbsSwiper}
-          className='my_thumbs'>
-          {images &&
-            images.map(item => {
-              if (item.asset)
-                return (
-                  <SwiperSlide key={item._key}>
-                    <img
-                      src={urlFor(item)
-                        .width(223)
-                        .height(130)
-                        .auto('format')
-                        .fit('fill')
-                        .url()}
-                    />
-                  </SwiperSlide>
-                );
-            })}
-        </Swiper>
+        <Box sx={{ my: { xs: '14px', md: '24px' } }}>
+          <Swiper
+            modules={[FreeMode, Navigation, Thumbs]}
+            watchSlidesProgress
+            spaceBetween={16}
+            slidesPerView={isMob ? 2 : 4}
+            loop={true}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            onSwiper={setThumbsSwiper}
+            className='my_thumbs'>
+            {images &&
+              images.map(item => {
+                if (item.asset)
+                  return (
+                    <SwiperSlide key={item._key}>
+                      <img
+                        src={urlFor(item)
+                          .width(223)
+                          .height(130)
+                          .auto('format')
+                          .fit('fill')
+                          .url()}
+                      />
+                    </SwiperSlide>
+                  );
+              })}
+          </Swiper>
+        </Box>
         <Typography
           sx={{
             display: 'block',
-            my: '16px',
+            mt: { xs: '16px', md: '24px' },
             color: theme => theme.palette.neutral[50],
           }}
-          variant='smallText'>
+          variant='caption'>
           {title}
         </Typography>
       </Box>
