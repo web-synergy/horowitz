@@ -90,7 +90,7 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
             position: "absolute",
             bottom: 0,
             left: 0,
-            color: "#666",
+            color: (theme) => theme.palette.neutral[60],
             padding: { xs: "16px 16px", md: "16px 40px", lg: "16px 80px" },
             width: "100%",
             zIndex: 10,
