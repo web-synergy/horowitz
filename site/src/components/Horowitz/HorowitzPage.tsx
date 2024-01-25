@@ -1,3 +1,5 @@
+import { FC, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Routes } from "@/types/routes.d";
 import {
   Box,
@@ -7,11 +9,9 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import { FC, useEffect, useState } from "react";
+
 import Loader from "../Common/Loader";
 import PageTemplate from "../Common/PageTemplate";
-
 import { useHorowitzStore } from "@/store/horowitzStore";
 import { swapElementsInArray } from "@/utils/swapElements";
 import BannerComponent from "./parts/BannerComponent";
