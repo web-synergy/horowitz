@@ -37,7 +37,9 @@ const NewsListItem = ({
     <ListItem>
       <GrowView>
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
-          <img
+          <Box
+            component={'img'}
+            sx={{ objectFit: 'cover' }}
             src={urlFor(img)
               .auto('format')
               .width(isMob ? 288 : 357)
@@ -45,7 +47,7 @@ const NewsListItem = ({
               .fit('fill')
               .url()
               .toString()}
-            alt='event logo'
+            alt={img.alt}
           />
 
           <Box sx={{ maxWidth: '548px' }}>

@@ -7,8 +7,9 @@ export const useNewsStore = create<NewsStoreState>()(set => ({
   loading: false,
   error: '',
   isLastEl: false,
+  pageQty: 1,
   fetchNews: async (language, page) => {
-    const PAGE_SIZE = 4;
+    const PAGE_SIZE = 5;
     const start = (page - 1) * PAGE_SIZE;
     const end = start + PAGE_SIZE;
 
@@ -18,7 +19,7 @@ export const useNewsStore = create<NewsStoreState>()(set => ({
 
       set(state => ({
         newsList: { ...state.newsList, [language]: news },
-        isLastEl: news[0].count < end,
+        pageQty: Math.ceil(news[0].count / PAGE_SIZE),
       }));
 
       set({ loading: false });
