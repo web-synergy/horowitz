@@ -32,9 +32,9 @@ const NewsPageList = () => {
     if (isNaN(urlPage)) {
       return navigate('/404');
     }
-    if (urlPage > pageQty) {
-      return navigate('/404');
-    }
+    // if (urlPage > pageQty) {
+    //   return navigate('/404');
+    // }
     if (urlPage <= 0) {
       return navigate('/404');
     }
@@ -66,7 +66,8 @@ const NewsPageList = () => {
                 <NewsListItem
                   key={index}
                   title={news.title}
-                  date={news._createdAt}
+                  dateStart={news.dateStart}
+                  dateEnd={news.dateEnd}
                   img={news.img}
                   slug={news.slug}
                   shortDescription={news.shortDescription}

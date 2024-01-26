@@ -43,7 +43,6 @@ const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
                       .width(700)
                       .height(460)
                       .auto('format')
-                      .fit('scale')
                       .url()}
                     alt={item.title || ''}
                     loading='lazy'
@@ -63,7 +62,7 @@ const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
             <img
               width={'100%'}
               height={'auto'}
-              src={urlFor(imgSrc).auto('format').fit('scale').url()}
+              src={urlFor(imgSrc).auto('format').fit('fill').url()}
             />
           )}
         </Dialog>

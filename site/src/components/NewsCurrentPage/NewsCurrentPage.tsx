@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { PortableText } from '@portabletext/react';
 import { components } from './prtableComponents';
-import { parseAndFormatDate } from '@/utils/helpers';
 import Breadcrumbs from '../Common/Breadcrumbs';
 import { Routes } from '@/types/routes.d';
 import { useLiveQuery } from '@sanity/preview-kit';
@@ -34,7 +33,6 @@ const NewsCurrentPage = () => {
     const getData = async () => {
       if (slug) {
         const response = await getCurrentNews(language, slug);
-
         setCurrentNews(response);
       }
       setLoader(false);
@@ -85,7 +83,8 @@ const NewsCurrentPage = () => {
                   color: theme => theme.palette.neutral[50],
                 }}
                 variant='bodyLight'>
-                {parseAndFormatDate(data._createdAt)}
+                {data.dateStart.replaceAll('-', '.')}
+                {data.dateEnd && ` - ${data.dateEnd.replaceAll('-', '.')}`}
               </Typography>
 
               <Typography variant='h2'>{data.title}</Typography>

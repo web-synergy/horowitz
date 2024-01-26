@@ -2,7 +2,6 @@ import GrowView from '@/components/Common/GrowView';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage } from '@/types/newsTypes';
-import { parseAndFormatDate } from '@/utils/helpers';
 
 import {
   Box,
@@ -17,15 +16,17 @@ import { t } from 'i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
 interface INewsListItem {
-  date: string;
   img: IImage;
   title: string;
   shortDescription: string;
   slug: string;
+  dateStart: string;
+  dateEnd: string;
 }
 
 const NewsListItem = ({
-  date,
+  dateStart,
+  dateEnd,
   img,
   title,
   shortDescription,
@@ -60,7 +61,8 @@ const NewsListItem = ({
               <Typography
                 sx={{ color: theme => theme.palette.neutral[50] }}
                 variant='bodyLight'>
-                {parseAndFormatDate(date)}
+                {dateStart && dateStart.replaceAll('-', '.')}
+                {dateEnd && ` - ${dateEnd.replaceAll('-', '.')}`}
               </Typography>
               <Typography variant='subhead'>{title}</Typography>
               <Typography
