@@ -33,7 +33,6 @@ export interface HorowitzStoreState {
 export interface NewsStoreState {
   newsList: INews[];
   loading: boolean;
-  isLastEl: boolean;
   error: string | unknown;
   pageQty: number;
   fetchNews: (language: string, page: number) => Promise<void>;
