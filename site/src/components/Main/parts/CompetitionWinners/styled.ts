@@ -1,4 +1,4 @@
-import { Box, BoxProps, Typography, TypographyProps, styled } from '@mui/material'
+import { Box, BoxProps, Stack, Typography, TypographyProps, styled } from '@mui/material'
 
 export const Wrapper = styled(Box)<BoxProps>(({ theme }) => ({
   [theme.breakpoints.up('xs')]: {
@@ -20,5 +20,25 @@ export const MainTitle = styled(Typography)<TypographyProps>(({ theme, variant }
   }),
   [theme.breakpoints.down('md')]: {
     maxWidth: '',
+  },
+}))
+
+export const WinnersCardsStack = styled(Stack)(({ theme: { breakpoints } }) => ({
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+
+  [breakpoints.up('xs')]: {
+    gap: '32px',
+    marginTop: '32px',
+  },
+  [breakpoints.up('md')]: {
+    gap: '24px',
+    marginTop: '24px',
+  },
+  [breakpoints.up('lg')]: {
+    rowGap: '48px',
+    columnGap: '24px',
+    marginTop: '48px',
   },
 }))

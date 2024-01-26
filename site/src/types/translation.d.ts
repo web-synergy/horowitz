@@ -22,4 +22,8 @@ export enum MainPage {
   BTN_VIEW = 'viewAll',
   BTN_READ = 'readMore',
   NEWS = 'news',
+  COMP_EVENTS = 'events',
+  WATCH_ONLINE = 'watch',
+  WATCH_ONLINE_XS = 'watch XS',
+  ORGANIZERS = 'organizers',
 }
