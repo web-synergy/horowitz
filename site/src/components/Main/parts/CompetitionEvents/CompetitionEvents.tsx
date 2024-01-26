@@ -5,14 +5,19 @@ import { Link as RouterLink } from 'react-router-dom'
 import bg_image from '../../temp/CompetitionEvents_bg.jpg'
 import { DescriptionText, MainTitle, WatchButton, Wrapper } from './styled'
 
+import { MainPage } from '@/types/translation.d'
+
 // !TEMP
+import { useTranslation } from 'react-i18next'
 import eventData from '../../temp/CompetitionEventsData.json'
 
 const CompetitionEvents: FC = () => {
   const { breakpoints } = useTheme()
   const isMobile = useMediaQuery(breakpoints.down('md'))
 
-  const buttonTitle = isMobile ? 'Дивитись трансляцію' : 'Дивитись онлайн-трансляцію'
+  const { t } = useTranslation()
+
+  const buttonTitle = isMobile ? [MainPage.WATCH_ONLINE_XS] : [MainPage.WATCH_ONLINE]
 
   return (
     <Wrapper
@@ -28,14 +33,14 @@ const CompetitionEvents: FC = () => {
           component={'p'}
           sx={{ color: theme => theme.palette.primary.main, marginBottom: 1.5 }}
         >
-          Події конкурсу
+          {t(`mainPage.${MainPage.COMP_EVENTS}`)}
         </Typography>
         <MainTitle component={'h2'}>{eventData.title}</MainTitle>
         <DescriptionText component={'p'} variant="bodyRegular">
           {eventData.description}
         </DescriptionText>
         <WatchButton component={RouterLink} to={'/'} target="_blank">
-          {buttonTitle}
+          {t(`mainPage.${buttonTitle}`)}
         </WatchButton>
       </Container>
     </Wrapper>
