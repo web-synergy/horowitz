@@ -1,12 +1,12 @@
-import { PortableTextBlock } from '@portabletext/types';
-import { INews } from './newsTypes';
+import { PortableTextBlock } from "@portabletext/types";
+import { INews } from "./newsTypes";
 
 import {
   CompetitionsMenu,
   ContactsType,
   SettingsResp,
   SociableType,
-} from './contactsTypes';
+} from "./contactsTypes";
 
 export interface SettingsStoreState {
   sociable: SociableType | null;
@@ -23,10 +23,10 @@ export interface HorowitzStoreState {
     bannerImg: string;
   };
   quote: { author: string[]; quote: string[] };
-  upperBlockText: PortableTextBlock[];
-  lowerBlockText: PortableTextBlock[];
+  upperTextBlock: PortableTextBlock[];
+  lowerTextBlock: PortableTextBlock[];
   literature: PortableTextBlock[];
-  loading: boolean;
+  isLoading: boolean;
   fetchHorowitzData: (language: string) => Promise<void>;
 }
 
