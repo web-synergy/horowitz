@@ -5,6 +5,9 @@ import { Link as RouterLink } from 'react-router-dom'
 import bg_image from '../../temp/CompetitionEvents_bg.jpg'
 import { DescriptionText, MainTitle, WatchButton, Wrapper } from './styled'
 
+// !TEMP
+import eventData from '../../temp/CompetitionEventsData.json'
+
 const CompetitionEvents: FC = () => {
   const { breakpoints } = useTheme()
   const isMobile = useMediaQuery(breakpoints.down('md'))
@@ -27,11 +30,9 @@ const CompetitionEvents: FC = () => {
         >
           Події конкурсу
         </Typography>
-        <MainTitle component={'h2'}>Концерт-присвята Володимиру Горовицю</MainTitle>
+        <MainTitle component={'h2'}>{eventData.title}</MainTitle>
         <DescriptionText component={'p'} variant="bodyRegular">
-          Конкурс Горовиця Київ-Женева та VERE MUSIC FUND представляють концерт пам'яті видатного
-          піаніста усіх часів: Володимира Горовиця. Четверо відомих лауреатів конкурсу виконають
-          програму з репертуару Маестро.
+          {eventData.description}
         </DescriptionText>
         <WatchButton component={RouterLink} to={'/'} target="_blank">
           {buttonTitle}
