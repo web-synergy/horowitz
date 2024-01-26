@@ -1,8 +1,9 @@
-import { Box, Button, Container, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Container, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { FC } from 'react'
 
 import { Link as RouterLink } from 'react-router-dom'
 import bg_image from '../../temp/CompetitionEvents_bg.jpg'
+import { DescriptionText, MainTitle, WatchButton, Wrapper } from './styled'
 
 const CompetitionEvents: FC = () => {
   const { breakpoints } = useTheme()
@@ -11,18 +12,11 @@ const CompetitionEvents: FC = () => {
   const buttonTitle = isMobile ? 'Дивитись трансляцію' : 'Дивитись онлайн-трансляцію'
 
   return (
-    <Box
+    <Wrapper
       component={'section'}
       sx={{
-        background: `url(${bg_image}) no-repeat`,
+        background: `url(${bg_image}) center no-repeat`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        padding: {
-          xs: '72px 0',
-          md: '80px 0',
-          lg: '120px 0',
-        },
-        color: theme => theme.palette.common.white,
       }}
     >
       <Container>
@@ -33,58 +27,17 @@ const CompetitionEvents: FC = () => {
         >
           Події конкурсу
         </Typography>
-        <Typography
-          variant="h2"
-          component={'h2'}
-          sx={{
-            maxWidth: {
-              xs: '100%',
-              md: '530px',
-            },
-            fontSize: {
-              xs: '1.5rem',
-              md: '2.25rem',
-              lg: '2.625rem',
-            },
-          }}
-        >
-          Концерт-присвята Володимиру Горовицю
-        </Typography>
-        <Typography
-          component={'p'}
-          variant="bodyRegular"
-          sx={{
-            margin: '32px 0',
-            width: {
-              xs: '100%',
-              md: '548px',
-            },
-            textAlign: 'justify',
-          }}
-        >
+        <MainTitle component={'h2'}>Концерт-присвята Володимиру Горовицю</MainTitle>
+        <DescriptionText component={'p'} variant="bodyRegular">
           Конкурс Горовиця Київ-Женева та VERE MUSIC FUND представляють концерт пам'яті видатного
           піаніста усіх часів: Володимира Горовиця. Четверо відомих лауреатів конкурсу виконають
           програму з репертуару Маестро.
-        </Typography>
-        <Button
-          component={RouterLink}
-          to={'/'}
-          target="_blank"
-          sx={{
-            '&.MuiButton-root': {
-              padding: '16px 32px',
-            },
-            width: {
-              xs: '288px',
-              md: '336px',
-            },
-            height: '60px',
-          }}
-        >
+        </DescriptionText>
+        <WatchButton component={RouterLink} to={'/'} target="_blank">
           {buttonTitle}
-        </Button>
+        </WatchButton>
       </Container>
-    </Box>
+    </Wrapper>
   )
 }
 
