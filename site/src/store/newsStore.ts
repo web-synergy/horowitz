@@ -10,7 +10,7 @@ export const useNewsStore = create<NewsStoreState>()(set => ({
   isLastEl: false,
   pageQty: 1,
   fetchNews: async (language, page) => {
-    const PAGE_SIZE = 2;
+    const PAGE_SIZE = 5;
     const start = (page - 1) * PAGE_SIZE;
     const end = start + PAGE_SIZE;
 
