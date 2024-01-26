@@ -65,7 +65,8 @@ export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
 
 export const newsQuery = groq`*[_type == 'news'] | order(  publishedAt desc) [$firstEl ...$lastEl]{
   _id,
-  _createdAt,
+   dateStart,
+   dateEnd,
    img,
    'title':  title[_key ==$language].value,
    'slug':slug.current,
@@ -74,8 +75,9 @@ export const newsQuery = groq`*[_type == 'news'] | order(  publishedAt desc) [$f
 }`;
 
 export const currentNewsQuery = groq`*[_type == 'news'&& slug.current == $slug][0]{
-  _id,
-  _createdAt,
+   _id,
+   dateStart,
+   dateEnd,
    img,
    'title':  title[_key ==$language].value,
    'slug':slug.current,

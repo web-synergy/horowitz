@@ -7,7 +7,6 @@ export const useNewsStore = create<NewsStoreState>()(set => ({
   newsList: [],
   loading: false,
   error: '',
-  isLastEl: false,
   pageQty: 1,
   fetchNews: async (language, page) => {
     const PAGE_SIZE = 5;
