@@ -6,19 +6,24 @@ import { MainTitle, StyledContainer, Wrapper } from './styled'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css'
 
+import { MainPage } from '@/types/translation.d'
+
 // !temp
+import { useTranslation } from 'react-i18next'
 import urlList from '../../temp/watchOnlineList.json'
 
 const WatchOnline: FC = () => {
   const { breakpoints } = useTheme()
   const isTablet = useMediaQuery(breakpoints.only('md'))
   const isMobile = useMediaQuery(breakpoints.down('md'))
-
   const slidesPerView = isTablet ? 2.1 : isMobile ? 1.2 : 3
+
+  const { t } = useTranslation()
+
   return (
     <Wrapper component={'section'}>
       <StyledContainer>
-        <MainTitle component={'h2'}>Дивитись онлайн</MainTitle>
+        <MainTitle component={'h2'}>{t(`mainPage.${MainPage.WATCH_ONLINE_XS}`)}</MainTitle>
         <Swiper spaceBetween={24} slidesPerView={slidesPerView}>
           {urlList.map(({ id, ...props }) => (
             <SwiperSlide key={id}>

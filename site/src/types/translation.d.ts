@@ -25,4 +25,5 @@ export enum MainPage {
   COMP_EVENTS = 'events',
   WATCH_ONLINE = 'watch',
   WATCH_ONLINE_XS = 'watch XS',
+  ORGANIZERS = 'organizers',
 }

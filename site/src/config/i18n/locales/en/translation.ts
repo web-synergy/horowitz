@@ -51,6 +51,7 @@ export default {
     [MainPage.COMP_EVENTS]: 'Competition events',
     [MainPage.WATCH_ONLINE]: 'Watch online',
     [MainPage.WATCH_ONLINE_XS]: 'Watch online',
+    [MainPage.ORGANIZERS]: 'Competition organizers',
   },
   institutional_name: 'International Competition for Young Pianists in Memory of Vladimir Horowitz',
 }

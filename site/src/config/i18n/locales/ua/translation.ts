@@ -51,6 +51,7 @@ export default {
     [MainPage.COMP_EVENTS]: 'Події конкурсу',
     [MainPage.WATCH_ONLINE]: 'Дивитись онлайн-трансляцію',
     [MainPage.WATCH_ONLINE_XS]: 'Дивитись трансляцію',
+    [MainPage.ORGANIZERS]: 'Організатори конкурсу',
   },
   institutional_name: 'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
 }

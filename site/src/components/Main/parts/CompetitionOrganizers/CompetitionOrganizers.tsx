@@ -10,15 +10,20 @@ import logo2 from '../../temp/organizers/stateAgency_logo.png'
 import { MainTitle } from '../WatchOnline/styled'
 import { LogotypesStack, Wrapper } from './styled'
 
+import { MainPage } from '@/types/translation.d'
+import { useTranslation } from 'react-i18next'
+
 const CompetitionOrganizers: FC = () => {
   // !temp
   const logotypes = [logo1, logo2, logo3, logo4, logo5]
+
+  const { t } = useTranslation()
 
   return (
     <Wrapper component={'section'}>
       <Container>
         <MainTitle component={'h2'} sx={{ marginBottom: '48px', textAlign: 'center' }}>
-          Організатори конкурсу
+          {t(`mainPage.${MainPage.ORGANIZERS}`)}
         </MainTitle>
         <LogotypesStack>
           {logotypes.map((logo, i) => (
