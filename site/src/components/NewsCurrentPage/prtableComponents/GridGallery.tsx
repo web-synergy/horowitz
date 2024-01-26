@@ -28,7 +28,7 @@ const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
   return (
     <GrowView>
       <Box sx={{ mb: '24px' }}>
-        <ImageList variant='quilted' cols={4} rowHeight={isMob ? 'auto' : 250}>
+        <ImageList variant='quilted' cols={4} rowHeight={isMob ? 'auto' : 230}>
           {images.map(item => {
             if (item.asset)
               return (
@@ -40,10 +40,10 @@ const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
                     style={{ cursor: 'pointer' }}
                     onClick={() => handleClickOpen(item)}
                     src={urlFor(item)
-                      .width(600)
-                      .height(300)
+                      .width(700)
+                      .height(460)
                       .auto('format')
-                      .fit('fill')
+                      .fit('scale')
                       .url()}
                     alt={item.title || ''}
                     loading='lazy'
@@ -61,12 +61,9 @@ const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
           open={open}>
           {imgSrc && (
             <img
-              src={urlFor(imgSrc)
-                .width(930)
-                .height(isMob ? 700 : 500)
-                .auto('format')
-                .fit('fill')
-                .url()}
+              width={'100%'}
+              height={'auto'}
+              src={urlFor(imgSrc).auto('format').fit('scale').url()}
             />
           )}
         </Dialog>
