@@ -10,28 +10,28 @@ export default defineType({
       name: 'title',
       title: 'Заголовок',
       type: 'internationalizedArrayString',
-      validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
+      validation: (Rule) => Rule.required().error('Обовʼязкове поле'),
     }),
     defineField({
       name: 'slug',
       type: 'slug',
       options: {source: 'title[1].value'},
-      validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
+      validation: (Rule) => Rule.required().error('Обовʼязкове поле'),
     }),
     defineField({
       name: 'dateStart',
       type: 'date',
-      title: 'Дата',
+      title: 'Дата початку події',
       options: {
         dateFormat: 'DD-MM-YYYY',
       },
       validation: (Rule) => [
-        Rule.required().error('Обовʼязкове поле для заповнення'),
+        Rule.required().error('Обовʼязкове поле'),
         Rule.custom((duration, context) => {
           const dateEnd = context.document?.date!
 
           if (duration! >= dateEnd) {
-            return 'Дата закінчення пізніше дати початку'
+            return 'Дата закінчення новини пізніше дати початку'
           }
 
           return true
@@ -39,9 +39,9 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'date',
+      name: 'dateEnd',
       type: 'date',
-      title: 'Дата',
+      title: 'Дата закінчення події',
       options: {
         dateFormat: 'DD-MM-YYYY',
       },
