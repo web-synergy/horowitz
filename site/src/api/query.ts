@@ -63,7 +63,7 @@ export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
   'literature': literature[],
 }`;
 
-export const newsQuery = groq`*[_type == 'news'][$firstEl ...$lastEl]{
+export const newsQuery = groq`*[_type == 'news'] | order(  publishedAt desc) [$firstEl ...$lastEl]{
   _id,
   _createdAt,
    img,

@@ -10,11 +10,41 @@ export default defineType({
       name: 'title',
       title: 'Заголовок',
       type: 'internationalizedArrayString',
+      validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
     }),
     defineField({
       name: 'slug',
       type: 'slug',
       options: {source: 'title[1].value'},
+      validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
+    }),
+    defineField({
+      name: 'dateStart',
+      type: 'date',
+      title: 'Дата',
+      options: {
+        dateFormat: 'DD-MM-YYYY',
+      },
+      validation: (Rule) => [
+        Rule.required().error('Обовʼязкове поле для заповнення'),
+        Rule.custom((duration, context) => {
+          const dateEnd = context.document?.date!
+
+          if (duration! >= dateEnd) {
+            return 'Дата закінчення пізніше дати початку'
+          }
+
+          return true
+        }),
+      ],
+    }),
+    defineField({
+      name: 'date',
+      type: 'date',
+      title: 'Дата',
+      options: {
+        dateFormat: 'DD-MM-YYYY',
+      },
     }),
     defineField({
       name: 'img',
@@ -23,16 +53,19 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
     }),
     defineField({
       name: 'shortDescription',
       title: 'Короткий опис новини',
       type: 'internationalizedArrayText',
+      validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
     }),
     defineField({
       name: 'description',
       title: 'Опис новини',
       type: 'internationalizedArrayContent',
+      validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
     }),
   ],
   preview: {

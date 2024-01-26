@@ -1,18 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import PageTemplate from '../Common/PageTemplate';
-import {
-  Container,
-  List,
-  Typography,
-  Box,
-  Stack,
-  Pagination,
-  PaginationItem,
-} from '@mui/material';
+import { Container, List, Typography, Box, Stack } from '@mui/material';
 
 import { useNewsStore } from '@/store/newsStore';
-import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import NewsListItem from './pars/NewsListItem';
 import { INews } from '@/types/newsTypes';
 import { useTranslation } from 'react-i18next';
@@ -22,37 +14,32 @@ import { Routes } from '@/types/routes.d';
 
 import { useSearchParams } from 'react-router-dom';
 import Loader from '../Common/Loader';
+import PaginationNews from './pars/PaginationNews';
 
 const NewsPageList = () => {
   const {
     t,
     i18n: { language },
   } = useTranslation();
-  const { fetchNews, newsList, pageQty, loading } = useNewsStore(state => ({
-    fetchNews: state.fetchNews,
-    loading: state.loading,
-    newsList: state.newsList[language],
-    isLastEl: state.isLastEl,
-    pageQty: state.pageQty,
-  }));
-  const [searchParams, setSearchParams] = useSearchParams();
 
+  const { fetchNews, newsList, pageQty, loading } = useNewsStore();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const urlPage = +(searchParams.get('page') || 1);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0 });
-
+    if (isNaN(urlPage)) {
+      return navigate('/404');
+    }
+    if (urlPage > pageQty) {
+      return navigate('/404');
+    }
+    if (urlPage <= 0) {
+      return navigate('/404');
+    }
     fetchNews(language, urlPage);
   }, [language, urlPage]);
-
-  // const handlerCounterPage = () => {
-  //   const countedPage = urlPage + 1;
-
-  //   setSearchParams(prev => {
-  //     prev.set('page', countedPage.toString());
-  //     return prev;
-  //   });
-  // };
 
   if (loading) return <Loader />;
   return (
@@ -91,28 +78,11 @@ const NewsPageList = () => {
               my: { xs: '48px', lg: '56px' },
               mx: 'auto',
             }}>
-            <Stack spacing={2}>
-              <Pagination
-                count={pageQty}
-                variant='outlined'
-                size='large'
-                page={urlPage}
-                onChange={(_, num) =>
-                  setSearchParams(prev => {
-                    prev.set('page', num.toString());
-                    return prev;
-                  })
-                }
-                sx={{ marginY: 4, marginX: 'auto' }}
-                renderItem={item => (
-                  <PaginationItem
-                    component={RouterLink}
-                    to={`/news/?page=${item.page}`}
-                    {...item}
-                  />
-                )}
-              />
-            </Stack>
+            <PaginationNews
+              pageQty={pageQty}
+              setSearchParams={setSearchParams}
+              urlPage={urlPage}
+            />
           </Box>
         </Stack>
       </Container>
