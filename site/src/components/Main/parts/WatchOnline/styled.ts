@@ -1,4 +1,4 @@
-import { Box, BoxProps, Container, Typography, TypographyProps, styled } from '@mui/material'
+import { Box, BoxProps, Container, styled } from '@mui/material'
 
 export const Wrapper = styled(Box)<BoxProps>(({ theme }) => ({
   [theme.breakpoints.up('xs')]: {
