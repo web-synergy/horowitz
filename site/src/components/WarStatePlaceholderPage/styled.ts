@@ -1,8 +1,6 @@
 import {
   Box,
   BoxProps,
-  Container,
-  ContainerProps,
   Typography,
   TypographyProps,
   styled,
@@ -15,16 +13,15 @@ interface BannerWrapperProps {
 export const BannerWrapper = styled(Box)<BannerWrapperProps>(
   ({ theme, img }) => ({
     width: "100%",
-    height: "422px",
-
-    margin: "0 auto",
+    height: "100%",
+    // margin: "0 auto",
     paddingTop: "72px",
     paddingBottom: "72px",
 
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
 
-    backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url(${img})`,
+    backgroundImage: `linear-gradient(to right, rgba(8, 7, 8, 0.60), rgba(8, 7, 8, 0.60)), url(${img})`,
     [theme.breakpoints.up("md")]: {
       paddingTop: "96px",
       paddingBottom: "96px",
@@ -36,17 +33,24 @@ export const BannerWrapper = styled(Box)<BannerWrapperProps>(
   })
 );
 
-export const StyledContainer = styled(Container)<ContainerProps>(
+export const TitleTypography = styled(Typography)<TypographyProps>(
   ({ theme }) => ({
-    [theme.breakpoints.up("xs")]: {
-      padding: "183px 0 183px",
-    },
+    color: theme.palette.primary.main,
+    marginBottom: "24px",
     [theme.breakpoints.up("md")]: {
-      padding: "245px 0 245px",
+      marginBottom: "32px",
     },
-    [theme.breakpoints.up("lg")]: {
-      padding: "275px 0 275px",
+    [theme.breakpoints.up("lg")]: {},
+  })
+);
+
+export const MessageTypography = styled(Typography)<TypographyProps>(
+  ({ theme }) => ({
+    marginBottom: "56px",
+    [theme.breakpoints.up("md")]: {
+      marginBottom: "38px",
     },
+    [theme.breakpoints.up("lg")]: { marginBottom: "60px" },
   })
 );
 
@@ -63,17 +67,3 @@ export const StyledBox = styled(Box)<BoxProps>(({ theme }) => ({
   //   maxWidth: "100%",
   // },
 }));
-
-export const StyledTypography = styled(Typography)<TypographyProps>(
-  ({ theme }) => ({
-    [theme.breakpoints.up("xs")]: {
-      marginBottom: "40px",
-    },
-    [theme.breakpoints.up("md")]: {
-      marginBottom: "60px",
-    },
-    [theme.breakpoints.up("lg")]: {
-      marginBottom: "80px",
-    },
-  })
-);
