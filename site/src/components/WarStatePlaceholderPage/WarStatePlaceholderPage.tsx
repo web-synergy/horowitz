@@ -1,13 +1,14 @@
 import { InDevelopment } from "@/types/translation.d";
 import { useTranslation } from "react-i18next";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import PageTemplate from "../Common/PageTemplate";
-import { StyledBox, StyledContainer, StyledTypography } from "./styled";
+import { BannerWrapper, StyledBox, StyledTypography } from "./styled";
+import bannerWarState from "../../assets/images/bannerWarState.webp";
 
 interface WarStatePlaceholderPageProps {
-  title: string; // Определите тип аргумента title как string
+  title: string;
 }
 
 const WarStatePlaceholderPage: FC<WarStatePlaceholderPageProps> = ({
@@ -17,11 +18,15 @@ const WarStatePlaceholderPage: FC<WarStatePlaceholderPageProps> = ({
 
   return (
     <PageTemplate mode="dark">
-      <StyledContainer>
+      <BannerWrapper img={bannerWarState}>
         <StyledBox>
-          <StyledTypography variant="subhead" component={"p"}>
-            {title} {/* Используйте title напрямую */}
-          </StyledTypography>
+          <Typography
+            sx={{ color: "#D9A145" }}
+            variant="title"
+            component={"h1"}
+          >
+            {title}
+          </Typography>
           <StyledTypography variant="subhead" component={"p"}>
             {t(`inDevelopment.${InDevelopment.MSG}`)}
           </StyledTypography>
@@ -29,7 +34,7 @@ const WarStatePlaceholderPage: FC<WarStatePlaceholderPageProps> = ({
             {t(`inDevelopment.${InDevelopment.BTN}`)}
           </Button>
         </StyledBox>
-      </StyledContainer>
+      </BannerWrapper>
     </PageTemplate>
   );
 };

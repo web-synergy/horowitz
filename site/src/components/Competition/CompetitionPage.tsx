@@ -7,8 +7,7 @@ import WarStatePlaceholderPage from "../WarStatePlaceholderPage/WarStatePlacehol
 import { useState } from "react";
 
 const CompetitionPage = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isWarTime, setIsWarTime] = useState(true);
+  const [isWarTime] = useState(true);
   // const { pathname } = useLocation();
 
   const { competitions } = useSettingsStore();
