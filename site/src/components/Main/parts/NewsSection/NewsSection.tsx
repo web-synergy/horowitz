@@ -19,10 +19,7 @@ import pianistImg from '../../temp/pianist.jpg'
 
 const NewsSection: FC = () => {
   const { breakpoints } = useTheme()
-  const isTablet = useMediaQuery(breakpoints.only('md'))
   const isMobile = useMediaQuery(breakpoints.down('md'))
-
-  const slidesPerView = isTablet ? 2.1 : isMobile ? 1.2 : 3
 
   const { t } = useTranslation()
 
@@ -51,7 +48,20 @@ const NewsSection: FC = () => {
           </Stack>
         </Container>
         <StyledContainer>
-          <Swiper spaceBetween={24} slidesPerView={slidesPerView}>
+          <Swiper
+            spaceBetween={24}
+            breakpoints={{
+              300: {
+                slidesPerView: 1.2,
+              },
+              768: {
+                slidesPerView: 2.1,
+              },
+              1280: {
+                slidesPerView: 3,
+              },
+            }}
+          >
             {fakeData.map(({ id, link, title }) => (
               <SwiperSlide key={id}>
                 <NewsCard title={sliceNewsTitle(title, 48)} image={pianistImg} link={link} />
