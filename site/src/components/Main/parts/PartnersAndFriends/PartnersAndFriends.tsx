@@ -50,7 +50,7 @@ const PartnersAndFriends: FC = () => {
           modules={[Autoplay]}
         >
           {sponsorsLogotypes.map((logo, i) => (
-            <SwiperSlide id="sponsors-swiper-slide" key={i}>
+            <SwiperSlide key={i}>
               <img
                 src={logo}
                 alt="logotype"
