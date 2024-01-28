@@ -1,16 +1,16 @@
-import { InDevelopment } from "@/types/translation.d";
-import { useTranslation } from "react-i18next";
-import { Button } from "@mui/material";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Button } from "@mui/material";
+
+import bannerWarState from "../../assets/images/bannerWarState.webp";
 import PageTemplate from "../Common/PageTemplate";
 import {
   BannerWrapper,
-  TitleTypography,
   MessageTypography,
   StyledBox,
+  TitleTypography,
 } from "./styled";
-import bannerWarState from "../../assets/images/bannerWarState.webp";
 
 interface WarStatePlaceholderPageProps {
   title: string;
@@ -28,11 +28,11 @@ const WarStatePlaceholderPage: FC<WarStatePlaceholderPageProps> = ({
           <TitleTypography variant="title" component={"h1"}>
             {title}
           </TitleTypography>
-          <MessageTypography variant="subhead" component={"p"}>
-            {t(`inDevelopment.${InDevelopment.MSG}`)}
+          <MessageTypography variant="h3" component={"p"}>
+            {t(`warStatePlaceholder.message`)}
           </MessageTypography>
           <Button component={RouterLink} to={"/"} sx={{ width: "288px" }}>
-            {t(`inDevelopment.${InDevelopment.BTN}`)}
+            {t(`warStatePlaceholder.backToHomeBtn`)}
           </Button>
         </StyledBox>
       </BannerWrapper>

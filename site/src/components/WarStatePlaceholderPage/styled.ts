@@ -13,8 +13,7 @@ interface BannerWrapperProps {
 export const BannerWrapper = styled(Box)<BannerWrapperProps>(
   ({ theme, img }) => ({
     width: "100%",
-    height: "100%",
-    // margin: "0 auto",
+
     paddingTop: "72px",
     paddingBottom: "72px",
 
@@ -23,6 +22,7 @@ export const BannerWrapper = styled(Box)<BannerWrapperProps>(
 
     backgroundImage: `linear-gradient(to right, rgba(8, 7, 8, 0.60), rgba(8, 7, 8, 0.60)), url(${img})`,
     [theme.breakpoints.up("md")]: {
+      minHeight: "68vh",
       paddingTop: "96px",
       paddingBottom: "96px",
     },
@@ -33,14 +33,44 @@ export const BannerWrapper = styled(Box)<BannerWrapperProps>(
   })
 );
 
+export const WrapperImg = styled(Box)(() => ({
+  width: "100%",
+  height: "100%",
+
+  "& img": {
+    display: "block",
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+  },
+}));
+
+export const StyledBox = styled(Box)<BoxProps>(({ theme }) => ({
+  margin: "0 auto",
+  textAlign: "center",
+  maxWidth: "1280px",
+  minWidth: "288px",
+  padding: "0 16px",
+
+  [theme.breakpoints.up("md")]: {
+    padding: "0 60px",
+  },
+}));
+
 export const TitleTypography = styled(Typography)<TypographyProps>(
   ({ theme }) => ({
-    color: theme.palette.primary.main,
     marginBottom: "24px",
+    color: theme.palette.primary.main,
+
+    fontSize: "2,875rem",
+    fontWeight: 400,
+    lineHeight: "normal",
+
     [theme.breakpoints.up("md")]: {
       marginBottom: "32px",
+      fontSize: "5rem",
     },
-    [theme.breakpoints.up("lg")]: {},
+    [theme.breakpoints.up("lg")]: { fontSize: "7rem" },
   })
 );
 
@@ -50,20 +80,6 @@ export const MessageTypography = styled(Typography)<TypographyProps>(
     [theme.breakpoints.up("md")]: {
       marginBottom: "38px",
     },
-    [theme.breakpoints.up("lg")]: { marginBottom: "60px" },
+    [theme.breakpoints.up("lg")]: { marginBottom: "80px" },
   })
 );
-
-export const StyledBox = styled(Box)<BoxProps>(({ theme }) => ({
-  margin: "0 auto",
-  textAlign: "center",
-  [theme.breakpoints.up("xs")]: {
-    maxWidth: "288px",
-  },
-  [theme.breakpoints.up("md")]: {
-    maxWidth: "664px",
-  },
-  // [theme.breakpoints.up("lg")]: {
-  //   maxWidth: "100%",
-  // },
-}));
