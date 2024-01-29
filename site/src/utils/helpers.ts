@@ -9,18 +9,8 @@ export const phoneNumberFormatting = (
 };
 
 export const parseAndFormatDate = (inputDate: string): string => {
-  // Парсимо дату з рядка
-  const parsedDate = new Date(inputDate);
-
-  // Отримуємо день, місяць та рік
-  const day = parsedDate.getDate().toString().padStart(2, '0');
-  const month = (parsedDate.getMonth() + 1).toString().padStart(2, '0'); // Місяці у JavaScript починаються з 0
-  const year = parsedDate.getFullYear().toString();
-
-  // Форматуємо результат
-  const formattedDate = `${day}.${month}.${year}`;
-
-  return formattedDate;
+  const [year, month, day] = inputDate.split('-');
+  return `${day}.${month}.${year}`;
 };
 
 export function processImageUrl(url: string) {
@@ -34,4 +24,4 @@ export function processImageUrl(url: string) {
 }
 
 export const sliceNewsTitle = (title: string, sliceIndex: number): string =>
-  title.slice(0, sliceIndex) + '...'
+  title.slice(0, sliceIndex) + '...';
