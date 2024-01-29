@@ -1,4 +1,4 @@
-import { Box, BoxProps, Container, Typography, TypographyProps, styled } from '@mui/material'
+import { Box, BoxProps, Container, styled } from '@mui/material'
 
 export const Wrapper = styled(Box)<BoxProps>(({ theme }) => ({
   [theme.breakpoints.up('xs')]: {
@@ -9,24 +9,6 @@ export const Wrapper = styled(Box)<BoxProps>(({ theme }) => ({
   },
   [theme.breakpoints.up('lg')]: {
     padding: '120px 0',
-  },
-}))
-
-export const MainTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '1.75rem',
-    lineHeight: 1.28,
-    marginBottom: '24px',
-  },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '2.25rem',
-    lineHeight: 1.22,
-    marginBottom: '40px',
-  },
-  [theme.breakpoints.up('lg')]: {
-    fontSize: '3rem',
-    lineHeight: 1.16,
-    marginBottom: '48px',
   },
 }))
 
