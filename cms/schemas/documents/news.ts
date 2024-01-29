@@ -48,7 +48,7 @@ export default defineType({
           const dateEnd = context.document?.dateEnd!
 
           if (duration! >= dateEnd) {
-            return 'Дата закінчення новини швидше дати початку'
+            return 'Дата початку повинна бути раніше за дату закінчення'
           } else {
             return true
           }
@@ -70,6 +70,13 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        defineField({
+          name: 'alt',
+          type: 'string',
+          title: 'Опис фото',
+        }),
+      ],
       validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
     }),
 
@@ -81,8 +88,8 @@ export default defineType({
         Rule.custom((content) => {
           let errorMassage = ''
           for (const value of content as Icontent[]) {
-            if (value.value?.length > 150) {
-              errorMassage = `В поле ${value._key?.toUpperCase()} введено ${value.value.length} символів, доступно 150`
+            if (value.value?.length > 200) {
+              errorMassage = `В поле ${value._key?.toUpperCase()} введено ${value.value.length} символів, доступно 200`
             }
             if (!value.value?.length) {
               errorMassage = `Поле ${value._key?.toUpperCase()} обовʼязкове`
@@ -95,20 +102,6 @@ export default defineType({
       name: 'description',
       title: 'Опис новини',
       type: 'internationalizedArrayContent',
-      validation: (Rule) =>
-        Rule.custom((content) => {
-          let errorMassage = ''
-          for (const value of content as Icontent[]) {
-            console.log(value)
-            if (value.value?.length > 150) {
-              errorMassage = `В поле ${value._key?.toUpperCase()} введено ${value.value.length} символів, доступно 150`
-            }
-            if (!value.value?.length) {
-              errorMassage = `Поле ${value._key?.toUpperCase()} обовʼязкове`
-            }
-          }
-          return errorMassage || true
-        }),
     }),
   ],
   preview: {
