@@ -1,5 +1,10 @@
 import {defineField, defineType} from 'sanity'
 import {IoNewspaperOutline as icon} from 'react-icons/io5'
+
+interface Icontent {
+  _key: string
+  value: string
+}
 export default defineType({
   name: 'news',
   title: 'Новини',
@@ -10,7 +15,19 @@ export default defineType({
       name: 'title',
       title: 'Заголовок',
       type: 'internationalizedArrayString',
-      validation: (Rule) => Rule.required().error('Обовʼязкове поле'),
+      validation: (Rule) =>
+        Rule.custom((content) => {
+          let errorMassage = ''
+          for (const value of content as Icontent[]) {
+            if (value.value?.length > 100) {
+              errorMassage = `В поле ${value._key?.toUpperCase()} введено ${value.value.length} символів, доступно 100`
+            }
+            if (!value.value?.length) {
+              errorMassage = `Поле ${value._key?.toUpperCase()} обовʼязкове`
+            }
+          }
+          return errorMassage || true
+        }),
     }),
     defineField({
       name: 'slug',
@@ -28,13 +45,13 @@ export default defineType({
       validation: (Rule) => [
         Rule.required().error('Обовʼязкове поле'),
         Rule.custom((duration, context) => {
-          const dateEnd = context.document?.date!
+          const dateEnd = context.document?.dateEnd!
 
           if (duration! >= dateEnd) {
-            return 'Дата закінчення новини пізніше дати початку'
+            return 'Дата закінчення новини швидше дати початку'
+          } else {
+            return true
           }
-
-          return true
         }),
       ],
     }),
@@ -55,17 +72,43 @@ export default defineType({
       },
       validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
     }),
+
     defineField({
       name: 'shortDescription',
       title: 'Короткий опис новини',
       type: 'internationalizedArrayText',
-      validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
+      validation: (Rule) =>
+        Rule.custom((content) => {
+          let errorMassage = ''
+          for (const value of content as Icontent[]) {
+            if (value.value?.length > 150) {
+              errorMassage = `В поле ${value._key?.toUpperCase()} введено ${value.value.length} символів, доступно 150`
+            }
+            if (!value.value?.length) {
+              errorMassage = `Поле ${value._key?.toUpperCase()} обовʼязкове`
+            }
+          }
+          return errorMassage || true
+        }),
     }),
     defineField({
       name: 'description',
       title: 'Опис новини',
       type: 'internationalizedArrayContent',
-      validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
+      validation: (Rule) =>
+        Rule.custom((content) => {
+          let errorMassage = ''
+          for (const value of content as Icontent[]) {
+            console.log(value)
+            if (value.value?.length > 150) {
+              errorMassage = `В поле ${value._key?.toUpperCase()} введено ${value.value.length} символів, доступно 150`
+            }
+            if (!value.value?.length) {
+              errorMassage = `Поле ${value._key?.toUpperCase()} обовʼязкове`
+            }
+          }
+          return errorMassage || true
+        }),
     }),
   ],
   preview: {
