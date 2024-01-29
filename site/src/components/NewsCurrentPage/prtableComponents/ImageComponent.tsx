@@ -38,6 +38,7 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
 };
 export const ImagesArray: FC<IPortableImgGallery> = ({ value }) => {
   const { option } = value;
+  console.log(value);
 
   if (option) {
     return (

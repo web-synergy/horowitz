@@ -25,6 +25,7 @@ const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
     setOpen(false);
   };
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
+  if (!images) return null;
   return (
     <GrowView>
       <Box sx={{ mb: '24px' }}>
@@ -62,7 +63,8 @@ const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
             <img
               width={'100%'}
               height={'auto'}
-              src={urlFor(imgSrc).auto('format').fit('fill').url()}
+              src={urlFor(imgSrc).auto('format').url()}
+              loading='lazy'
             />
           )}
         </Dialog>

@@ -17,6 +17,12 @@ export const PortableSwiper: FC<IPortableImgGallery> = ({ value }) => {
   const { images, title } = value;
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>();
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
+  if (!images) return null;
+
+  const imagesLength = images.length;
+
+  const countSlidesPer = isMob ? 2 : imagesLength > 4 ? 4 : imagesLength;
+  console.log(countSlidesPer);
   return (
     <GrowView>
       <Box sx={{ my: { xs: '40px', md: '48px', lg: '56px' } }}>
@@ -54,8 +60,10 @@ export const PortableSwiper: FC<IPortableImgGallery> = ({ value }) => {
             modules={[FreeMode, Navigation, Thumbs]}
             watchSlidesProgress
             spaceBetween={16}
-            slidesPerView={isMob ? 2 : 4}
+            slidesPerView={countSlidesPer}
             loop={true}
+            slideToClickedSlide
+            // slidesPerView={'auto'}
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             onSwiper={setThumbsSwiper}

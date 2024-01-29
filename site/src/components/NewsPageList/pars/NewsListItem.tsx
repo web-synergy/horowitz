@@ -66,7 +66,14 @@ const NewsListItem = ({
               </Typography>
               <Typography variant='subhead'>{title}</Typography>
               <Typography
-                sx={{ color: theme => theme.palette.neutral[40] }}
+                sx={{
+                  color: theme => theme.palette.neutral[40],
+                  widows: '500px',
+                  // height: '70px',
+                  // whiteSpace: 'nowrap',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                }}
                 variant='bodyRegular'>
                 {shortDescription}
               </Typography>
