@@ -1,0 +1,32 @@
+[
+	{
+		"id": 1,
+		"title": "Міністерство культури та інформаційної політики",
+		"url": "https://mcip.gov.ua/",
+		"logo": "src"
+	},
+	{
+		"id": 2,
+		"title": "Державне агентство України з питань мистецтв та мистецької освіти",
+		"url": "https://arts.gov.ua/",
+		"logo": "src"
+	},
+	{
+		"id": 3,
+		"title": "Департамент культури КМДА",
+		"url": "https://dk.kyivcity.gov.ua/",
+		"logo": "src"
+	},
+	{
+		"id": 4,
+		"title": "Горовітц",
+		"url": "https://horowitz.org",
+		"logo": "src"
+	},
+	{
+		"id": 5,
+		"title": "Академія Глієра",
+		"url": "https://glieracademy.org/",
+		"logo": "src"
+	}
+]

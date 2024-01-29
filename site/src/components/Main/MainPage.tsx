@@ -6,6 +6,7 @@ import CompetitionWinners from './parts/CompetitionWinners/CompetitionWinners'
 import HeroSection from './parts/HeroSection/HeroSection'
 import HolidayCard from './parts/HolidayCard/HolidayCard'
 import NewsSection from './parts/NewsSection/NewsSection'
+import PartnersAndFriends from './parts/PartnersAndFriends/PartnersAndFriends'
 import WatchOnline from './parts/WatchOnline/WatchOnline'
 import holidayCard from './temp/holidayCard.jpg'
 
@@ -19,6 +20,7 @@ const MainPage: FC = () => {
       <CompetitionEvents />
       <WatchOnline />
       <CompetitionOrganizers />
+      <PartnersAndFriends />
     </>
   )
 }
