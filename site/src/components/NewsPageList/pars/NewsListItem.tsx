@@ -2,6 +2,7 @@ import GrowView from '@/components/Common/GrowView';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage } from '@/types/newsTypes';
+import { parseAndFormatDate } from '@/utils/helpers';
 
 import {
   Box,
@@ -61,18 +62,13 @@ const NewsListItem = ({
               <Typography
                 sx={{ color: theme => theme.palette.neutral[50] }}
                 variant='bodyLight'>
-                {dateStart && dateStart.replaceAll('-', '.')}
-                {dateEnd && ` - ${dateEnd.replaceAll('-', '.')}`}
+                {dateStart && parseAndFormatDate(dateStart)}
+                {dateEnd && ` - ${parseAndFormatDate(dateEnd)}`}
               </Typography>
               <Typography variant='subhead'>{title}</Typography>
               <Typography
                 sx={{
                   color: theme => theme.palette.neutral[40],
-                  widows: '500px',
-                  // height: '70px',
-                  // whiteSpace: 'nowrap',
-                  textOverflow: 'ellipsis',
-                  overflow: 'hidden',
                 }}
                 variant='bodyRegular'>
                 {shortDescription}

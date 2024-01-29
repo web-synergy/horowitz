@@ -16,6 +16,7 @@ import GrowView from '../Common/GrowView';
 import Loader from '../Common/Loader';
 import SvgSpriteIcon from '../Common/SvgSpriteIcon';
 import { theme } from '@/theme';
+import { parseAndFormatDate } from '@/utils/helpers';
 
 const NewsCurrentPage = () => {
   const { slug } = useParams();
@@ -60,10 +61,9 @@ const NewsCurrentPage = () => {
               <Box
                 sx={{
                   width: '100%',
-                  // objectFit: { sx: 'none', md: 'cover' },
                 }}
                 src={
-                  data.img &&
+                  data.img?.asset &&
                   urlFor(data.img)
                     .width(isMob ? 400 : 920)
                     .height(isMob ? 340 : 408)
@@ -71,6 +71,7 @@ const NewsCurrentPage = () => {
                     .url()
                     .toString()
                 }
+                alt={data.img?.alt}
                 component={'img'}></Box>
             </GrowView>
 
@@ -83,8 +84,8 @@ const NewsCurrentPage = () => {
                   color: theme => theme.palette.neutral[50],
                 }}
                 variant='bodyLight'>
-                {data.dateStart.replaceAll('-', '.')}
-                {data.dateEnd && ` - ${data.dateEnd.replaceAll('-', '.')}`}
+                {data.dateStart && parseAndFormatDate(data.dateStart)}
+                {data.dateEnd && ` - ${parseAndFormatDate(data.dateEnd)}`}
               </Typography>
 
               <Typography variant='h2'>{data.title}</Typography>

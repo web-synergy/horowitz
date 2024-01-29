@@ -11,18 +11,9 @@ export const components: PortableTextComponents = {
     image: ImageComponent,
   },
   block: {
-    h1: ({ children }) => (
-      <Typography
-        sx={{
-          mb: { xs: '24px', md: '32px' },
-          mt: { xs: '24px', md: '40px' },
-        }}
-        variant='h1'>
-        {children}
-      </Typography>
-    ),
     h2: ({ children }) => (
       <Typography
+        component={'h2'}
         sx={{
           mb: { xs: '24px', md: '32px' },
           mt: { xs: '24px', md: '40px' },
@@ -33,6 +24,7 @@ export const components: PortableTextComponents = {
     ),
     h3: ({ children }) => (
       <Typography
+        component={'h3'}
         sx={{
           mb: { xs: '24px', md: '32px' },
           mt: { xs: '24px', md: '40px' },
@@ -41,7 +33,17 @@ export const components: PortableTextComponents = {
         {children}
       </Typography>
     ),
-    h4: ({ children }) => <Typography variant='h4'>{children}</Typography>,
+    h4: ({ children }) => (
+      <Typography
+        component={'h4'}
+        sx={{
+          mb: { xs: '24px', md: '32px' },
+          mt: { xs: '24px', md: '40px' },
+        }}
+        variant='h3Block'>
+        {children}
+      </Typography>
+    ),
     normal: ({ children }) => (
       <Typography
         component={'p'}

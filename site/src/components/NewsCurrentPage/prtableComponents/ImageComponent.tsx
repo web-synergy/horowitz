@@ -2,7 +2,7 @@ import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage, IPortableImgGallery } from '@/types/newsTypes';
 import { Box } from '@mui/material';
 import { FC, Suspense, lazy } from 'react';
-import { PortableSwiper } from './Swiper';
+import { PortableSwiper } from './Swiper/Swiper';
 
 import GrowView from '@/components/Common/GrowView';
 const GridGallery = lazy(() => import('./GridGallery'));

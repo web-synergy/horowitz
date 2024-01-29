@@ -61,6 +61,7 @@ const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
           open={open}>
           {imgSrc && (
             <img
+              style={{ width: '100%', objectFit: 'contain' }}
               width={'100%'}
               height={'auto'}
               src={urlFor(imgSrc).auto('format').url()}
