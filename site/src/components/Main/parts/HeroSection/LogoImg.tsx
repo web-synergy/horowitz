@@ -16,7 +16,7 @@ const LogoImg: FC<LogoImgProps> = ({ src, alt }) => {
         height: '48px',
         width: {
           xs: '288px',
-          md: '226px',
+          md: '250px',
         },
       }}
     />

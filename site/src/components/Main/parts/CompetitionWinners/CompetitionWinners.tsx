@@ -5,15 +5,21 @@ import { useTranslation } from 'react-i18next'
 import { MainPage } from '@/types/translation.d'
 import ShowMoreBtn from '../NewsSection/ShowMoreBtn'
 import WinnerCard from './WinnerCard'
-import { MainTitle, Wrapper } from './styled'
+import { MainTitle, WinnersCardsStack, Wrapper } from './styled'
 
+// !TEMP
 import fakeData from '../../temp/fakeDataWinners.json'
-import winner1Img from '../../temp/winner_1.jpg'
+import { default as winner1Img, default as winner4Img } from '../../temp/winner_1.jpg'
+import { default as winner2Img, default as winner5Img } from '../../temp/winner_2.jpg'
+import { default as winner3Img, default as winner6Img } from '../../temp/winner_3.jpg'
 
 const CompetitionWinners: FC = () => {
   const { breakpoints } = useTheme()
   const isMobile = useMediaQuery(breakpoints.down('md'))
   const { t } = useTranslation()
+
+  // !TEMP
+  const images = [winner1Img, winner2Img, winner3Img, winner4Img, winner5Img, winner6Img]
 
   return (
     <Wrapper component={'section'}>
@@ -26,27 +32,12 @@ const CompetitionWinners: FC = () => {
             isTitleVisible={!isMobile}
           />
         </Stack>
-        <Stack
-          sx={{
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            gap: {
-              xs: '32px',
-              md: '24px',
-            },
-            justifyContent: 'center',
-            marginTop: {
-              xs: '32px',
-              md: '24px',
-              lg: '48px',
-            },
-          }}
-        >
+        <WinnersCardsStack>
           {/* ! TEMP */}
-          {fakeData.map(({ id, ...props }) => (
-            <WinnerCard key={id} {...{ ...props, image: winner1Img }} />
+          {fakeData.map(({ id, ...props }, i) => (
+            <WinnerCard key={id} {...{ ...props, image: images[i] }} />
           ))}
-        </Stack>
+        </WinnersCardsStack>
       </Container>
     </Wrapper>
   )

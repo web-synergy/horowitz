@@ -16,5 +16,23 @@
 		"winnerName": "Йонсон Пак",
 		"prizePlace": "ІІІ Премія і Бронзова медаль",
 		"href": "/"
+	},
+	{	"id": 4,
+		"image": "../temp/winner_1.jpg",
+		"winnerName": "Роман Федюрко",
+		"prizePlace": "І Премія і Золота медаль",
+		"href": "/"
+	},
+	{	"id": 5,
+		"image": "../temp/winner_2.jpg",
+		"winnerName": "Джуліан Тревельян",
+		"prizePlace": "ІІ Премія і Срібна медаль",
+		"href": "/"
+	},
+	{	"id": 6,
+		"image": "../temp/winner_3.jpg",
+		"winnerName": "Йонсон Пак",
+		"prizePlace": "ІІІ Премія і Бронзова медаль",
+		"href": "/"
 	}
 ]
