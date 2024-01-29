@@ -1,4 +1,3 @@
-import { Box, Container } from '@mui/material'
 import { FC } from 'react'
 
 import logo5 from '../../temp/organizers/academyGliyera_logo.png'
@@ -7,11 +6,15 @@ import logo4 from '../../temp/organizers/horowitz_logo.png'
 import logo1 from '../../temp/organizers/minCult_logo.png'
 import logo2 from '../../temp/organizers/stateAgency_logo.png'
 
-import { MainTitle } from '../WatchOnline/styled'
 import { LogotypesStack, Wrapper } from './styled'
 
 import { MainPage } from '@/types/translation.d'
+import { Box, Container, Link } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import { Link as RouterLink } from 'react-router-dom'
+import { MainTitle } from '../../styled'
+
+import organizersData from '../../temp/organizers.json'
 
 const CompetitionOrganizers: FC = () => {
   // !temp
@@ -26,14 +29,15 @@ const CompetitionOrganizers: FC = () => {
           {t(`mainPage.${MainPage.ORGANIZERS}`)}
         </MainTitle>
         <LogotypesStack>
-          {logotypes.map((logo, i) => (
-            <Box
-              key={i}
-              component={'img'}
-              src={logo}
-              alt={'logo image'}
-              sx={{ maxWidth: '288px', maxHeight: '92px' }}
-            />
+          {organizersData.map(({ url, id, title }, i) => (
+            <Link key={id} component={RouterLink} to={url} target="_blank">
+              <Box
+                component={'img'}
+                src={logotypes[i]}
+                alt={title}
+                sx={{ maxWidth: '288px', maxHeight: '92px' }}
+              />
+            </Link>
           ))}
         </LogotypesStack>
       </Container>

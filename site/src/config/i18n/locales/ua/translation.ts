@@ -54,16 +54,18 @@ export default {
     [InDevelopment.BTN]: "На головну сторінку",
   },
   mainPage: {
-    [MainPage.BTN_APL]: "Заявка на участь",
-    [MainPage.BTN_SUPP]: "Підтримати проєкт",
-    [MainPage.BTN_VIEW]: "Переглянути всі",
-    [MainPage.BTN_READ]: "Читати більше",
-    [MainPage.NEWS]: "Новини",
-    [MainPage.COMP_EVENTS]: "Події конкурсу",
-    [MainPage.WATCH_ONLINE]: "Дивитись онлайн-трансляцію",
-    [MainPage.WATCH_ONLINE_XS]: "Дивитись трансляцію",
-    [MainPage.ORGANIZERS]: "Організатори конкурсу",
+    [MainPage.BTN_APL]: 'Заявка на участь',
+    [MainPage.BTN_SUPP]: 'Підтримати проєкт',
+    [MainPage.BTN_VIEW]: 'Переглянути всі',
+    [MainPage.BTN_READ]: 'Читати більше',
+    [MainPage.NEWS]: 'Новини',
+    [MainPage.COMP_EVENTS]: 'Події конкурсу',
+    [MainPage.WATCH_ONLINE]: 'Дивитись онлайн-трансляцію',
+    [MainPage.WATCH_ONLINE_XS]: 'Дивитись трансляцію',
+    [MainPage.ORGANIZERS]: 'Організатори конкурсу',
+    [MainPage.FRIENDS]: 'Партнери та друзі',
+    [MainPage.BTN_SHOW]: 'Показати всіх',
   },
-  institutional_name:
-    "Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця",
-};
+  institutional_name: 'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
+}
+
