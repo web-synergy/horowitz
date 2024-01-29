@@ -1,48 +1,45 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import PageTemplate from '../Common/PageTemplate';
-import { Button, Container, List, Typography, Box, Stack } from '@mui/material';
+import { Container, List, Typography, Box, Stack } from '@mui/material';
 
 import { useNewsStore } from '@/store/newsStore';
-
+import { useNavigate } from 'react-router-dom';
 import NewsListItem from './pars/NewsListItem';
 import { INews } from '@/types/newsTypes';
 import { useTranslation } from 'react-i18next';
 
 import Breadcrumbs from '../Common/Breadcrumbs';
 import { Routes } from '@/types/routes.d';
-import Loader from '../Common/Loader';
+
 import { useSearchParams } from 'react-router-dom';
+import Loader from '../Common/Loader';
+import PaginationNews from './pars/PaginationNews';
 
 const NewsPageList = () => {
   const {
     t,
     i18n: { language },
   } = useTranslation();
-  const { fetchNews, newsList, loading, isLastEl } = useNewsStore(state => ({
-    fetchNews: state.fetchNews,
-    loading: state.loading,
-    newsList: state.newsList[language],
-    isLastEl: state.isLastEl,
-  }));
-  const [searchParams, setSearchParams] = useSearchParams();
 
+  const { fetchNews, newsList, pageQty, loading } = useNewsStore();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const urlPage = +(searchParams.get('page') || 1);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0 });
-
+    if (isNaN(urlPage)) {
+      return navigate('/404');
+    }
+    // if (urlPage > pageQty) {
+    //   return navigate('/404');
+    // }
+    if (urlPage <= 0) {
+      return navigate('/404');
+    }
     fetchNews(language, urlPage);
   }, [language, urlPage]);
-
-  const handler = () => {
-    const countedPage = urlPage + 1;
-
-    setSearchParams(prev => {
-      prev.set('page', countedPage.toString());
-      return prev;
-    });
-  };
 
   if (loading) return <Loader />;
   return (
@@ -69,7 +66,8 @@ const NewsPageList = () => {
                 <NewsListItem
                   key={index}
                   title={news.title}
-                  date={news._createdAt}
+                  dateStart={news.dateStart}
+                  dateEnd={news.dateEnd}
                   img={news.img}
                   slug={news.slug}
                   shortDescription={news.shortDescription}
@@ -81,11 +79,11 @@ const NewsPageList = () => {
               my: { xs: '48px', lg: '56px' },
               mx: 'auto',
             }}>
-            {!isLastEl && (
-              <Button onClick={handler} variant='transparent'>
-                {t(`news.showMore`)}
-              </Button>
-            )}
+            <PaginationNews
+              pageQty={pageQty}
+              setSearchParams={setSearchParams}
+              urlPage={urlPage}
+            />
           </Box>
         </Stack>
       </Container>

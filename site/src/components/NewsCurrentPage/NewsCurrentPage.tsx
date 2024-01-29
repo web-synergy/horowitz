@@ -1,12 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import PageTemplate from '../Common/PageTemplate';
-import { Box, Container, Link, Typography } from '@mui/material';
+import { Box, Container, Link, Typography, useMediaQuery } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { PortableText } from '@portabletext/react';
 import { components } from './prtableComponents';
-import { parseAndFormatDate } from '@/utils/helpers';
 import Breadcrumbs from '../Common/Breadcrumbs';
 import { Routes } from '@/types/routes.d';
 import { useLiveQuery } from '@sanity/preview-kit';
@@ -16,6 +15,8 @@ import { getCurrentNews } from '@/api';
 import GrowView from '../Common/GrowView';
 import Loader from '../Common/Loader';
 import SvgSpriteIcon from '../Common/SvgSpriteIcon';
+import { theme } from '@/theme';
+import { parseAndFormatDate } from '@/utils/helpers';
 
 const NewsCurrentPage = () => {
   const { slug } = useParams();
@@ -33,7 +34,6 @@ const NewsCurrentPage = () => {
     const getData = async () => {
       if (slug) {
         const response = await getCurrentNews(language, slug);
-
         setCurrentNews(response);
       }
       setLoader(false);
@@ -46,54 +46,61 @@ const NewsCurrentPage = () => {
     language,
   });
 
+  const isMob = useMediaQuery(theme.breakpoints.down('md'));
   const history = [
     { title: t(`navigation.${Routes.NEWS}`), href: `/${Routes.NEWS}` },
   ];
   if (loader) return <Loader />;
-
   return (
     <PageTemplate>
       <Container>
         <Breadcrumbs title={data?.title || ''} mode='light' history={history} />
         {data && (
-          <Box sx={{ my: '56px' }}>
+          <Box sx={{ my: { xs: '40px', md: '48px', lg: '56px' } }}>
             <GrowView>
               <Box
-                sx={{ width: '100%', height: 'auto' }}
+                sx={{
+                  width: '100%',
+                }}
                 src={
-                  data.img &&
+                  data.img?.asset &&
                   urlFor(data.img)
-                    .width(920)
-                    .height(400)
+                    .width(isMob ? 400 : 920)
+                    .height(isMob ? 340 : 408)
                     .fit('fill')
                     .url()
                     .toString()
                 }
+                alt={data.img?.alt}
                 component={'img'}></Box>
             </GrowView>
 
             <Box sx={{ maxWidth: '930px', mx: 'auto' }}>
               <Typography
-                sx={{ mt: '54px', mb: '24px', display: 'block' }}
+                sx={{
+                  mt: '54px',
+                  mb: '24px',
+                  display: 'block',
+                  color: theme => theme.palette.neutral[50],
+                }}
                 variant='bodyLight'>
-                {parseAndFormatDate(data._createdAt)}
+                {data.dateStart && parseAndFormatDate(data.dateStart)}
+                {data.dateEnd && ` - ${parseAndFormatDate(data.dateEnd)}`}
               </Typography>
 
-              <Typography sx={{ mb: '32px' }} variant='h2'>
-                {data.title}
-              </Typography>
-
-              <PortableText
-                value={data.description[0]}
-                components={components}
-              />
+              <Typography variant='h2'>{data.title}</Typography>
+              <Box
+                sx={{
+                  mb: { xs: '40px', md: '48px', lg: '56px' },
+                  mt: { xs: '24px', md: '32px' },
+                }}>
+                <PortableText
+                  value={data.description[0]}
+                  components={components}
+                />
+              </Box>
               <Link
                 sx={{
-                  mt: {
-                    xs: '8px',
-                    md: '18px',
-                    lg: '24px',
-                  },
                   color: theme => theme.palette.neutral[60],
                 }}
                 onClick={() => navigate(-1)}>

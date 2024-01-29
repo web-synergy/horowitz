@@ -17,15 +17,17 @@ import { t } from 'i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
 interface INewsListItem {
-  date: string;
   img: IImage;
   title: string;
   shortDescription: string;
   slug: string;
+  dateStart: string;
+  dateEnd: string;
 }
 
 const NewsListItem = ({
-  date,
+  dateStart,
+  dateEnd,
   img,
   title,
   shortDescription,
@@ -37,7 +39,9 @@ const NewsListItem = ({
     <ListItem>
       <GrowView>
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
-          <img
+          <Box
+            component={'img'}
+            sx={{ objectFit: 'cover' }}
             src={urlFor(img)
               .auto('format')
               .width(isMob ? 288 : 357)
@@ -45,7 +49,7 @@ const NewsListItem = ({
               .fit('fill')
               .url()
               .toString()}
-            alt='event logo'
+            alt={img.alt}
           />
 
           <Box sx={{ maxWidth: '548px' }}>
@@ -58,11 +62,14 @@ const NewsListItem = ({
               <Typography
                 sx={{ color: theme => theme.palette.neutral[50] }}
                 variant='bodyLight'>
-                {parseAndFormatDate(date)}
+                {dateStart && parseAndFormatDate(dateStart)}
+                {dateEnd && ` - ${parseAndFormatDate(dateEnd)}`}
               </Typography>
               <Typography variant='subhead'>{title}</Typography>
               <Typography
-                sx={{ color: theme => theme.palette.neutral[40] }}
+                sx={{
+                  color: theme => theme.palette.neutral[40],
+                }}
                 variant='bodyRegular'>
                 {shortDescription}
               </Typography>
