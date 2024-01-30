@@ -1,42 +1,47 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Zoom } from '@mui/material'
 import { FC } from 'react'
 
 interface WinnerCardProps {
   image: string
   winnerName: string
   prizePlace: string
+  isVisible?: boolean
+  delay?: number
 }
 
-const WinnerCard: FC<WinnerCardProps> = ({ image, winnerName, prizePlace }) => {
+const WinnerCard: FC<WinnerCardProps> = ({ image, winnerName, prizePlace, isVisible, delay }) => {
+  console.log(delay)
   return (
-    <Box
-      sx={{
-        maxWidth: {
-          xs: '100%',
-          md: '332px',
-          lg: '358px',
-        },
-        lineHeight: 0,
-      }}
-    >
-      <Box component={'img'} src={image} alt="winner photo" sx={{ width: '100%' }} />
-      <Typography
-        variant="subhead"
-        component={'p'}
+    <Zoom in={isVisible} style={{ transitionDelay: isVisible ? `${delay}00ms` : '0ms' }}>
+      <Box
         sx={{
-          margin: '24px 0px 16px',
+          maxWidth: {
+            xs: '100%',
+            md: '332px',
+            lg: '358px',
+          },
+          lineHeight: 0,
         }}
       >
-        {winnerName}
-      </Typography>
-      <Typography
-        variant="bodyRegular"
-        component={'p'}
-        sx={{ color: theme => theme.palette.primary.dark }}
-      >
-        {prizePlace}
-      </Typography>
-    </Box>
+        <Box component={'img'} src={image} alt="winner photo" sx={{ width: '100%' }} />
+        <Typography
+          variant="subhead"
+          component={'p'}
+          sx={{
+            margin: '24px 0px 16px',
+          }}
+        >
+          {winnerName}
+        </Typography>
+        <Typography
+          variant="bodyRegular"
+          component={'p'}
+          sx={{ color: theme => theme.palette.primary.dark }}
+        >
+          {prizePlace}
+        </Typography>
+      </Box>
+    </Zoom>
   )
 }
 
