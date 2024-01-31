@@ -5,12 +5,11 @@ interface WinnerCardProps {
   image: string
   winnerName: string
   prizePlace: string
-  isVisible?: boolean
-  delay?: number
+  isVisible: boolean
+  delay: number
 }
 
 const WinnerCard: FC<WinnerCardProps> = ({ image, winnerName, prizePlace, isVisible, delay }) => {
-  console.log(delay)
   return (
     <Zoom in={isVisible} style={{ transitionDelay: isVisible ? `${delay}00ms` : '0ms' }}>
       <Box

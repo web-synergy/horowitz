@@ -1,8 +1,11 @@
-import { Container, Stack, useMediaQuery, useTheme } from '@mui/material'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC } from 'react'
+import useWinners from './useWinners'
+
 import { useTranslation } from 'react-i18next'
 
 import { MainPage } from '@/types/translation.d'
+
+import { Container, Stack, useMediaQuery, useTheme } from '@mui/material'
 import ShowMoreBtn from '../NewsSection/ShowMoreBtn'
 import WinnerCard from './WinnerCard'
 import { MainTitle, WinnersCardsStack, Wrapper } from './styled'
@@ -14,8 +17,7 @@ import { default as winner2Img, default as winner5Img } from '../../temp/winner_
 import { default as winner3Img, default as winner6Img } from '../../temp/winner_3.jpg'
 
 const CompetitionWinners: FC = () => {
-  const [isVisible, setIsVisible] = useState(false)
-  const ref = useRef(null)
+  const { isVisible, ref } = useWinners()
 
   const { breakpoints } = useTheme()
   const isMobile = useMediaQuery(breakpoints.down('md'))
@@ -23,27 +25,6 @@ const CompetitionWinners: FC = () => {
 
   // !TEMP
   const images = [winner1Img, winner2Img, winner3Img, winner4Img, winner5Img, winner6Img]
-
-  if (isVisible) console.log('VISIBLE')
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) setIsVisible(true)
-          else {
-            setIsVisible(false)
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-    if (ref.current) observer.observe(ref.current)
-
-    return () => {
-      if (ref.current) observer.unobserve(ref.current)
-    }
-  }, [])
 
   return (
     <Wrapper component={'section'} ref={ref}>
@@ -60,7 +41,7 @@ const CompetitionWinners: FC = () => {
           {/* ! TEMP */}
           {fakeData.map(({ id, ...props }, i) => {
             return (
-              <WinnerCard key={id} {...{ ...props, image: images[i], isVisible, delay: i + 2 }} />
+              <WinnerCard key={id} {...{ ...props, image: images[i], isVisible, delay: i + 3 }} />
             )
           })}
         </WinnersCardsStack>
