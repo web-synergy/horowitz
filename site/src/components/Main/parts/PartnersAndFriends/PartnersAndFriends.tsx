@@ -5,6 +5,7 @@ import { MainTitle } from '../../styled'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css'
 
+import { Routes } from '@/types/routes.d'
 import { MainPage } from '@/types/translation.d'
 import { useTranslation } from 'react-i18next'
 import { Link as RouterLink } from 'react-router-dom'
@@ -65,7 +66,7 @@ const PartnersAndFriends: FC = () => {
         </Swiper>
       </Box>
       <Box sx={{ alignSelf: 'center' }}>
-        <ShowMoreBtn variant="secondary" component={RouterLink} to={'/sponsors'}>
+        <ShowMoreBtn variant="secondary" component={RouterLink} to={Routes.SPONSORS}>
           {t(`mainPage.${MainPage.BTN_SHOW}`)}
         </ShowMoreBtn>
       </Box>
