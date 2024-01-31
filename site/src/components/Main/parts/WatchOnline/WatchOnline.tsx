@@ -18,8 +18,18 @@ const WatchOnline: FC = () => {
   return (
     <Wrapper component={'section'}>
       <StyledContainer>
-
-        <MainTitle component={'h2'}>{t(`mainPage.${MainPage.WATCH_ONLINE_XS}`)}</MainTitle>
+        <MainTitle
+          component={'h2'}
+          sx={{
+            marginBottom: {
+              xs: '24px',
+              md: '40px',
+              lg: '48px',
+            },
+          }}
+        >
+          {t(`mainPage.${MainPage.WATCH_ONLINE_XS}`)}
+        </MainTitle>
         <Swiper
           spaceBetween={24}
           breakpoints={{
@@ -34,7 +44,6 @@ const WatchOnline: FC = () => {
             },
           }}
         >
-
           {urlList.map(({ id, ...props }) => (
             <SwiperSlide key={id}>
               <PlayerCard {...props} />
