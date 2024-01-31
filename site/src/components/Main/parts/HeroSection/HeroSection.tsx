@@ -1,5 +1,5 @@
 import SocialMedia from '@/components/Common/SocialMedia'
-import { Box, Container, useMediaQuery, useTheme } from '@mui/material'
+import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { FC, useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
@@ -15,13 +15,12 @@ import ScrollDownBtn from './ScrollDownBtn'
 import {
   ButtonsStack,
   ContentStack,
-  ContentWrapper,
-  HeaderOverlay,
   LogotypesStack,
   MainTitle,
   Overlay,
   SocialMediaBox,
   StyledButton,
+  StyledContainer,
   Video,
 } from './styled'
 
@@ -31,8 +30,6 @@ const HeroSection: FC = () => {
 
   const { breakpoints } = useTheme()
   const isMobile = useMediaQuery(breakpoints.down('lg'))
-
-  const windowHeight = innerHeight
 
   const { t } = useTranslation()
 
@@ -47,36 +44,33 @@ const HeroSection: FC = () => {
     >
       <Video src={bgVideo} autoPlay loop muted ref={videoRef} />
       <Overlay>
-        <HeaderOverlay />
-        <Container>
-          <ContentWrapper>
-            <Box position={'relative'}>
-              <SocialMediaBox>
-                <SocialMedia vertical={!isMobile} />
-              </SocialMediaBox>
-              <ContentStack>
-                <MainTitle component={'h1'}>{t('institutional_name')}</MainTitle>
-                <ButtonsStack>
-                  <StyledButton component={RouterLink} to={'in-development'}>
-                    {t(`mainPage.${MainPage.BTN_APL}`)}
-                  </StyledButton>
-                  <StyledButton variant="secondary" component={RouterLink} to={'in-development'}>
-                    {t(`mainPage.${MainPage.BTN_SUPP}`)}
-                  </StyledButton>
-                </ButtonsStack>
-                <LogotypesStack>
-                  <RouterLink to="https://www.wfimc.org/" target="_blank">
-                    <LogoImg src={WFIMC_logo} alt="WFIMC logotype" />
-                  </RouterLink>
-                  <RouterLink to="https://emcy.org/" target="_blank">
-                    <LogoImg src={EUMCY_logo} alt="EMCY logotype" />
-                  </RouterLink>
-                </LogotypesStack>
-              </ContentStack>
-            </Box>
-            <ScrollDownBtn onClick={() => scrollTo({ top: windowHeight, behavior: 'smooth' })} />
-          </ContentWrapper>
-        </Container>
+        <StyledContainer>
+          <Box position={'relative'}>
+            <SocialMediaBox>
+              <SocialMedia vertical={!isMobile} />
+            </SocialMediaBox>
+            <ContentStack>
+              <MainTitle component={'h1'}>{t('institutional_name')}</MainTitle>
+              <ButtonsStack>
+                <StyledButton component={RouterLink} to={'in-development'}>
+                  {t(`mainPage.${MainPage.BTN_APL}`)}
+                </StyledButton>
+                <StyledButton variant="secondary" component={RouterLink} to={'in-development'}>
+                  {t(`mainPage.${MainPage.BTN_SUPP}`)}
+                </StyledButton>
+              </ButtonsStack>
+              <LogotypesStack>
+                <RouterLink to="https://www.wfimc.org/" target="_blank">
+                  <LogoImg src={WFIMC_logo} alt="WFIMC logotype" />
+                </RouterLink>
+                <RouterLink to="https://emcy.org/" target="_blank">
+                  <LogoImg src={EUMCY_logo} alt="EMCY logotype" />
+                </RouterLink>
+              </LogotypesStack>
+            </ContentStack>
+          </Box>
+          <ScrollDownBtn onClick={() => scrollTo({ top: innerHeight, behavior: 'smooth' })} />
+        </StyledContainer>
       </Overlay>
     </Box>
   )
