@@ -18,9 +18,6 @@ export const MainTitle = styled(Typography)<TypographyProps>(({ theme, variant }
       fontSize: '36px',
     },
   }),
-  [theme.breakpoints.down('md')]: {
-    maxWidth: '',
-  },
 }))
 
 export const WinnersCardsStack = styled(Stack)(({ theme: { breakpoints } }) => ({
