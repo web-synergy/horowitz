@@ -12,10 +12,12 @@ function chooseObject(arr: Icontent[]) {
     return arr[0].value
   }
 }
+
 export default defineType({
   name: 'news',
   title: 'Новини',
   type: 'document',
+  __experimental_formPreviewTitle: false,
   icon,
   fields: [
     defineField({
@@ -83,7 +85,7 @@ export default defineType({
         defineField({
           name: 'alt',
           type: 'string',
-          title: 'Опис фото',
+          title: 'Alt',
         }),
       ],
       validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
@@ -120,7 +122,7 @@ export default defineType({
     },
     prepare: ({title, img}) => {
       return {
-        title: chooseObject(title),
+        title: title[0].value,
         media: img,
       }
     },
