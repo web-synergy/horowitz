@@ -51,6 +51,7 @@ const NewsCurrentPage = () => {
     { title: t(`navigation.${Routes.NEWS}`), href: `/${Routes.NEWS}` },
   ];
   if (loader) return <Loader />;
+
   return (
     <PageTemplate>
       <Container>
@@ -94,10 +95,12 @@ const NewsCurrentPage = () => {
                   mb: { xs: '40px', md: '48px', lg: '56px' },
                   mt: { xs: '24px', md: '32px' },
                 }}>
-                <PortableText
-                  value={data.description[0]}
-                  components={components}
-                />
+                {data.description && (
+                  <PortableText
+                    value={data.description}
+                    components={components}
+                  />
+                )}
               </Box>
               <Link
                 sx={{

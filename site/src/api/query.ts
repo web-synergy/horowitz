@@ -1,4 +1,4 @@
-import groq from "groq";
+import groq from 'groq';
 export const homeQuery = groq`*[_type == 'home'][0]{
  'quote':quote{
        'author': author[_key ==$language].value,
@@ -63,7 +63,7 @@ export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
   'literature': literature[],
 }`;
 
-export const newsQuery = groq`*[_type == 'news'] | order( _createdAt desc
+export const newsQuery = groq`*[_type == 'news' && length(title[_key ==$language].value) != 0] | order( _createdAt desc
 ) [$firstEl ...$lastEl]{
   _id,
    dateStart,
@@ -72,7 +72,7 @@ export const newsQuery = groq`*[_type == 'news'] | order( _createdAt desc
    'title':  title[_key ==$language].value,
    'slug':slug.current,
    'shortDescription':shortDescription[_key ==$language].value,
-   'count':count(*[_type == "news"])
+   'count':count(*[_type == "news" && length(title[_key ==$language].value) != 0])
 }`;
 
 export const currentNewsQuery = groq`*[_type == 'news'&& slug.current == $slug][0]{
@@ -80,7 +80,7 @@ export const currentNewsQuery = groq`*[_type == 'news'&& slug.current == $slug][
    dateStart,
    dateEnd,
    img,
-   'title':  title[_key ==$language].value,
+   'title': coalesce( title[_key ==$language][0].value, title[][0].value), 
    'slug':slug.current,
-   'description':description[_key ==$language].value
+   'description': coalesce(description[_key ==$language][0].value, description[][0].value)
 }`;

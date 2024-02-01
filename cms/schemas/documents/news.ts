@@ -5,6 +5,13 @@ interface Icontent {
   _key: string
   value: string
 }
+function chooseObject(arr: Icontent[]) {
+  if (arr.length === 2) {
+    return arr[1].value
+  } else {
+    return arr[0].value
+  }
+}
 export default defineType({
   name: 'news',
   title: 'Новини',
@@ -32,7 +39,9 @@ export default defineType({
     defineField({
       name: 'slug',
       type: 'slug',
-      options: {source: 'title[1].value'},
+      options: {
+        source: (context) => chooseObject(context.title as Icontent[]),
+      },
       validation: (Rule) => Rule.required().error('Обовʼязкове поле'),
     }),
     defineField({
@@ -111,7 +120,7 @@ export default defineType({
     },
     prepare: ({title, img}) => {
       return {
-        title: title[0].value,
+        title: chooseObject(title),
         media: img,
       }
     },
