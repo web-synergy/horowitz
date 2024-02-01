@@ -1,5 +1,5 @@
-import { getSettings } from '@/api'
-import { SettingsStoreState } from '@/types/storeTypes'
+import { getPartners, getSettings } from '@/api'
+import { PartnersStoreState, SettingsStoreState } from '@/types/storeTypes'
 import { create } from 'zustand'
 
 export const useSettingsStore = create<SettingsStoreState>()((set, get) => ({
@@ -30,6 +30,26 @@ export const useSettingsStore = create<SettingsStoreState>()((set, get) => ({
       logo,
       contacts: { ...get().contacts, [language]: contacts },
       competitions: { ...get().competitions, [language]: competitions },
+    })
+  },
+}))
+
+export const usePartnersStore = create<PartnersStoreState>()((set, get) => ({
+  organizers: null,
+  mainPartners: null,
+  sponsors: null,
+  generalInfoPartners: null,
+  mainInfoPartners: null,
+  officialInfoPartners: null,
+  partners: null,
+
+  fetchPartners: async () => {
+    const resp = await getPartners()
+    if (!resp) throw new Error('could not fetch data from that resource')
+    console.log(resp)
+
+    set({
+      ...resp,
     })
   },
 }))
