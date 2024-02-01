@@ -3,6 +3,7 @@ import {
   BoxProps,
   Button,
   ButtonProps,
+  Container,
   Stack,
   StackProps,
   Typography,
@@ -20,16 +21,6 @@ export const Video = styled('video')(() => ({
   objectFit: 'cover',
 }))
 
-export const HeaderOverlay = styled(Box)(({ theme }) => ({
-  width: '100%',
-  [theme.breakpoints.up('xs')]: {
-    height: '64px',
-  },
-  [theme.breakpoints.up('lg')]: {
-    height: '102px',
-  },
-}))
-
 export const Overlay = styled(Box)<BoxProps>(() => ({
   position: 'absolute',
   left: 0,
@@ -37,21 +28,15 @@ export const Overlay = styled(Box)<BoxProps>(() => ({
   width: '100%',
   height: '100%',
   zIndex: 5,
-  backgroundColor: 'rgba(0, 0, 0, 0.70);',
+  backgroundColor: 'rgba(0, 0, 0, 0.70)',
   backdropFilter: 'blur(4px)',
 }))
 
-export const ContentWrapper = styled(Box)<BoxProps>(({ theme }) => ({
-  color: theme.palette.common.white,
-  [theme.breakpoints.up('xs')]: {
-    padding: '60px 0',
-  },
-  [theme.breakpoints.up('md')]: {
-    padding: '80px 0 165px',
-  },
-  [theme.breakpoints.up('lg')]: {
-    padding: '110px 0 120px',
-  },
+export const StyledContainer = styled(Container)(({ theme: { palette } }) => ({
+  height: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  color: palette.common.white,
 }))
 
 export const SocialMediaBox = styled(Box)<BoxProps>(({ theme }) => ({

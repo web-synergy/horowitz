@@ -39,7 +39,7 @@ const CompetitionEvents: FC = () => {
         <DescriptionText component={'p'} variant="bodyRegular">
           {eventData.description}
         </DescriptionText>
-        <WatchButton component={RouterLink} to={'/'} target="_blank">
+        <WatchButton component={RouterLink} to={eventData.link} target="_blank">
           {t(`mainPage.${buttonTitle}`)}
         </WatchButton>
       </Container>
