@@ -1,11 +1,11 @@
 import {StructureBuilder} from 'sanity/desk'
 import {singleDocument} from './singleDocument'
 
-import {IoSettingsSharp} from 'react-icons/io5'
-import {RiPagesLine} from 'react-icons/ri'
+import {IoSettingsSharp, IoShareSocialOutline} from 'react-icons/io5'
 import {LuContact} from 'react-icons/lu'
-import {IoShareSocialOutline} from 'react-icons/io5'
 import {MdOutlineSettingsBrightness} from 'react-icons/md'
+import {RiPagesLine} from 'react-icons/ri'
+import {SiGithubsponsors} from 'react-icons/si'
 import {preview} from './preview'
 import {languages} from '../../languages'
 import {newsStructure} from './newsStructure'
@@ -18,6 +18,7 @@ const singleSchemaTittles = [
   'Конкурс дані',
   'Володимир Горовиць',
   'Новини',
+  'Партнери і спонсори',
 ]
 
 const structure = (S: StructureBuilder) =>
@@ -30,6 +31,7 @@ const structure = (S: StructureBuilder) =>
       ),
       ...newsStructure(S),
       singleDocument(S, 'horowitz', 'Володимир Горовиць').icon(MdOutlineSettingsBrightness),
+      singleDocument(S, 'partners', 'Партнери і спонсори').icon(SiGithubsponsors),
       S.divider(),
       S.listItem()
         .title('Налаштування')
