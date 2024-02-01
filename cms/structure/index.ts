@@ -7,6 +7,8 @@ import {LuContact} from 'react-icons/lu'
 import {IoShareSocialOutline} from 'react-icons/io5'
 import {MdOutlineSettingsBrightness} from 'react-icons/md'
 import {preview} from './preview'
+import {languages} from '../../languages'
+import {newsStructure} from './newsStructure'
 
 const singleSchemaTittles = [
   'Головна',
@@ -15,6 +17,7 @@ const singleSchemaTittles = [
   'Соцмережі',
   'Конкурс дані',
   'Володимир Горовиць',
+  'Новини',
 ]
 
 const structure = (S: StructureBuilder) =>
@@ -25,6 +28,7 @@ const structure = (S: StructureBuilder) =>
       ...S.documentTypeListItems().filter(
         (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
       ),
+      ...newsStructure(S),
       singleDocument(S, 'horowitz', 'Володимир Горовиць').icon(MdOutlineSettingsBrightness),
       S.divider(),
       S.listItem()
