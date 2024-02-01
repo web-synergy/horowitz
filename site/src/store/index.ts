@@ -10,7 +10,6 @@ export const useSettingsStore = create<SettingsStoreState>()((set, get) => ({
   fetchSettings: async language => {
     try {
       const settings = await getSettings(language)
-      // console.log(settings[0]);
       if (!settings) throw new Error('could not fetch the data from that resource')
       const { contacts, logo, sociable, competitions } = settings[0]
       set({
@@ -34,7 +33,7 @@ export const useSettingsStore = create<SettingsStoreState>()((set, get) => ({
   },
 }))
 
-export const usePartnersStore = create<PartnersStoreState>()((set, get) => ({
+export const usePartnersStore = create<PartnersStoreState>()(set => ({
   organizers: null,
   mainPartners: null,
   sponsors: null,
