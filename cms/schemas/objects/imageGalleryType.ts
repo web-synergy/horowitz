@@ -29,7 +29,7 @@ export const imageGalleryType = defineType({
             defineField({
               name: 'alt',
               type: 'string',
-              title: 'Опис фото',
+              title: 'Alt',
             }),
             defineField({
               name: 'photoLayout',

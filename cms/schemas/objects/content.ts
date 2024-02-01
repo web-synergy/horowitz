@@ -51,7 +51,7 @@ export const content = defineType({
         {
           name: 'alt',
           type: 'string',
-          title: 'Опис фото',
+          title: 'Alt',
         },
       ],
     },
