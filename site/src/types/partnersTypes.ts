@@ -16,4 +16,9 @@ export interface Partner {
 export interface PartnersResp {
   organizers: Partner[]
   mainPartners: Partner[]
+  sponsors: Partner[]
+  generalInfoPartners: Partner[]
+  mainInfoPartners: Partner[]
+  officialInfoPartners: Partner[]
+  partners: Partner[]
 }

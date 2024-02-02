@@ -43,5 +43,7 @@ export interface PartnersStoreState {
   officialInfoPartners: Partner[] | null
   partners: Partner[] | null
 
+  filtered?: Partner[]
+
   fetchPartners: () => Promise<void>
 }

@@ -33,7 +33,7 @@ export const useSettingsStore = create<SettingsStoreState>()((set, get) => ({
   },
 }))
 
-export const usePartnersStore = create<PartnersStoreState>()(set => ({
+export const usePartnersStore = create<PartnersStoreState>()((set, get) => ({
   organizers: null,
   mainPartners: null,
   sponsors: null,
@@ -41,13 +41,28 @@ export const usePartnersStore = create<PartnersStoreState>()(set => ({
   mainInfoPartners: null,
   officialInfoPartners: null,
   partners: null,
+  filtered: [],
 
   fetchPartners: async () => {
-    const resp = await getPartners()
-    if (!resp) throw new Error('could not fetch data from that resource')
+    try {
+      const resp = await getPartners()
+      if (!resp) throw new Error('could not fetch data from that resource')
 
-    set({
-      ...resp,
-    })
+      const filtered = []
+      for (const item in resp) {
+        if (item !== 'organizers') {
+          // @ts-ignore
+          const partner = JSON.parse(JSON.stringify(resp[item]))
+          filtered.push(...partner)
+        }
+      }
+
+      set({
+        ...resp,
+        filtered,
+      })
+    } catch (error) {
+      console.log(error)
+    }
   },
 }))
