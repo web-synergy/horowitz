@@ -1,8 +1,7 @@
 import { FC, useEffect } from 'react'
 
-import { getMainPageData, getPartners } from '@/api'
-import { useMainPageStore, usePartnersStore } from '@/store'
-import { useTranslation } from 'react-i18next'
+import { usePartnersStore } from '@/store'
+
 import CompetitionEvents from './parts/CompetitionEvents/CompetitionEvents'
 import CompetitionOrganizers from './parts/CompetitionOrganizers/CompetitionOrganizers'
 import CompetitionWinners from './parts/CompetitionWinners/CompetitionWinners'
@@ -15,10 +14,6 @@ import holidayCard from './temp/holidayCard.jpg'
 
 const MainPage: FC = () => {
   const fetchData = usePartnersStore(state => state.fetchPartners)
-
-  const partners = usePartnersStore(state => state.partners)
-
-  console.log(partners)
 
   useEffect(() => {
     fetchData()

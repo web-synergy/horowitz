@@ -45,7 +45,6 @@ export const usePartnersStore = create<PartnersStoreState>()(set => ({
   fetchPartners: async () => {
     const resp = await getPartners()
     if (!resp) throw new Error('could not fetch data from that resource')
-    console.log(resp)
 
     set({
       ...resp,

@@ -1,11 +1,15 @@
+interface PartnerImage {
+  asset: {
+    _ref: string
+  }
+  _key: string
+  alt: string
+}
+
 export interface Partner {
   _key: string
   title: string
-  img: {
-    asset: {
-      _ref: string
-    }
-  }
+  img: PartnerImage
   link: string
 }
 
