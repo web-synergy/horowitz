@@ -1,9 +1,12 @@
 import { usePartnersStore } from '@/store'
-import { Box, Container, Link, Stack } from '@mui/material'
+import { Sponsors } from '@/types/translation.d'
+import { Box, Container, Stack } from '@mui/material'
 import { FC, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import PageTemplate from '../Common/PageTemplate'
-import SvgSpriteIcon from '../Common/SvgSpriteIcon'
+
+import GoBackBtn from './parts/GoBackBtn'
 import LogotypesGallery from './parts/LogotypesGallery'
 import { MainTitle, TwoGalleryStack } from './styled'
 
@@ -18,6 +21,8 @@ const SponsorsPage: FC = () => {
   const officialInfoPartners = usePartnersStore(state => state.officialInfoPartners)
 
   const navigate = useNavigate()
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     scrollTo(0, 0)
@@ -46,31 +51,36 @@ const SponsorsPage: FC = () => {
     >
       <PageTemplate>
         <Container>
-          <MainTitle component={'h1'}>Партнери та друзі</MainTitle>
+          <MainTitle component={'h1'}>{t(`sponsorsPage.${Sponsors.MAIN_TITLE}`)}</MainTitle>
           <Stack spacing={6}>
-            <LogotypesGallery title="Організатори конкурсу" gallery={organizers} />
+            <LogotypesGallery title={t(`sponsorsPage.${Sponsors.COMP_ORG}`)} gallery={organizers} />
             <TwoGalleryStack>
-              <LogotypesGallery title="Головні партнери" gallery={mainPartners} />
-              <LogotypesGallery title="Спонсори" gallery={sponsors} />
-            </TwoGalleryStack>
-            <LogotypesGallery title="Головні інформаційні партнери" gallery={generalInfoPartners} />
-            <TwoGalleryStack>
-              <LogotypesGallery title="Партнери" gallery={partners} />
-              <LogotypesGallery title="Головні інформаційні партнери" gallery={mainInfoPartners} />
+              <LogotypesGallery
+                title={t(`sponsorsPage.${Sponsors.MAIN_PART}`)}
+                gallery={mainPartners}
+              />
+              <LogotypesGallery title={t(`sponsorsPage.${Sponsors.SPONSORS}`)} gallery={sponsors} />
             </TwoGalleryStack>
             <LogotypesGallery
-              title="Офіційні інформаційні партнери"
+              title={t(`sponsorsPage.${Sponsors.GEN_INFO_PART}`)}
+              gallery={generalInfoPartners}
+            />
+            <TwoGalleryStack>
+              <LogotypesGallery title={t(`sponsorsPage.${Sponsors.PARTNERS}`)} gallery={partners} />
+              <LogotypesGallery
+                title={t(`sponsorsPage.${Sponsors.MAIN_INFO_PART}`)}
+                gallery={mainInfoPartners}
+              />
+            </TwoGalleryStack>
+            <LogotypesGallery
+              title={t(`sponsorsPage.${Sponsors.OFF_INFO_PART}`)}
               gallery={officialInfoPartners}
             />
-            <Link
-              sx={{
-                color: theme => theme.palette.neutral[60],
-              }}
+
+            <GoBackBtn
+              title={t(`sponsorsPage.${Sponsors.BTN_GO_BACK}`)}
               onClick={() => navigate(-1)}
-            >
-              <SvgSpriteIcon sx={{ transform: 'rotate(90deg)' }} icon="arrow" />
-              Повернутись до головної сторінки
-            </Link>
+            />
           </Stack>
         </Container>
       </PageTemplate>
