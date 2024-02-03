@@ -32,7 +32,7 @@ const Navigation: FC<NavigationProps> = ({ onCloseMobileMenu }) => {
         }))
       : null;
 
-    return item.title === Routes.COMPETITION
+    return item.title === Routes.COMPETITIONS
       ? {
           ...item,
           children: [...competitionNav, ...(children ? children : [])],

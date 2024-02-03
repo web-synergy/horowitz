@@ -11,7 +11,7 @@ export const navigation: NavigationItemType[] = [
     ],
   },
   {
-    title: Routes.COMPETITION,
+    title: Routes.COMPETITIONS,
     children: [
       { title: Routes.KYIV_GENEVA, slug: Routes.KYIV_GENEVA },
       {
@@ -30,4 +30,16 @@ export const navigation: NavigationItemType[] = [
   },
   { title: Routes.NEWS, children: null },
   { title: Routes.CONTACTS, children: null },
+];
+
+export const kyivGenevaNavigation = [
+  { title: Routes.KYIV_GENEVA_CONDITIONS },
+  { title: Routes.KYIV_GENEVA_JURY },
+  { title: Routes.KYIV_GENEVA_PARTICIPANTS },
+  { title: Routes.KYIV_GENEVA_REQUIREMENTS },
+  { title: Routes.KYIV_GENEVA_SELECTION_JURY },
+  { title: Routes.KYIV_GENEVA_WINNERS },
+  { title: Routes.KYIV_GENEVA_REWARDS },
+  { title: Routes.KYIV_GENEVA_ORCHESTRA },
+  { title: Routes.KYIV_GENEVA_TIMETABLE },
 ];

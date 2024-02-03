@@ -1,5 +1,10 @@
-import { Routes } from '@/types/routes.d'
-import { InDevelopment, MainPage, NotFound, Translations } from '@/types/translation.d'
+import { Routes } from '@/types/routes.d';
+import {
+  InDevelopment,
+  MainPage,
+  NotFound,
+  Translations,
+} from '@/types/translation.d';
 
 export default {
   navigation: {
@@ -9,7 +14,7 @@ export default {
     [Routes.ADMINISTRATION]: 'Адміністрація конкурсу',
     [Routes.KYIV_GENEVA]: 'Конкурс Горовиця Київ-Женева',
     [Routes.HOROWITZ]: 'Володимир Горовиць',
-    [Routes.COMPETITION]: 'Конкурс',
+    [Routes.COMPETITIONS]: 'Конкурс',
     [Routes.PROJECTS]: 'Проєкти',
     [Routes.MASTER_CLASS]: 'Майстеркласи',
     [Routes.SUMMER_SCHOOL]: 'Літня музична академія',
@@ -39,11 +44,13 @@ export default {
   },
   notFound: {
     [NotFound.TITLE]: 'Вибачте, сторінку не знайдено',
-    [NotFound.TEXT]: 'Сторінка, яку ви шукаєте, видалена або тимчасово недоступна',
+    [NotFound.TEXT]:
+      'Сторінка, яку ви шукаєте, видалена або тимчасово недоступна',
     [NotFound.BTN]: 'На головну сторінку',
   },
   inDevelopment: {
-    [InDevelopment.MSG]: 'Вибачте, на даний момент ця сторінка знаходиться в розробці',
+    [InDevelopment.MSG]:
+      'Вибачте, на даний момент ця сторінка знаходиться в розробці',
     [InDevelopment.BTN]: 'На головну сторінку',
   },
   mainPage: {
@@ -59,5 +66,17 @@ export default {
     [MainPage.FRIENDS]: 'Партнери та друзі',
     [MainPage.BTN_SHOW]: 'Переглянути всіх',
   },
-  institutional_name: 'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
-}
+  institutional_name:
+    'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
+  kyivGeneva: {
+    [Routes.KYIV_GENEVA_CONDITIONS]: 'Умови конкурсу',
+    [Routes.KYIV_GENEVA_JURY]: 'Журі',
+    [Routes.KYIV_GENEVA_PARTICIPANTS]: 'Учасники',
+    [Routes.KYIV_GENEVA_REQUIREMENTS]: 'Репертуарні вимоги',
+    [Routes.KYIV_GENEVA_SELECTION_JURY]: 'Журі відбіркового туру',
+    [Routes.KYIV_GENEVA_WINNERS]: 'Переможці',
+    [Routes.KYIV_GENEVA_REWARDS]: 'Нагороди',
+    [Routes.KYIV_GENEVA_ORCHESTRA]: 'Оркестр і диригент',
+    [Routes.KYIV_GENEVA_TIMETABLE]: 'Регламент проведення конкурсу',
+  },
+};
