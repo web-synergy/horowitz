@@ -39,7 +39,7 @@ const HeroSection: FC = () => {
       position={'relative'}
       sx={{
         width: '100%',
-        height: '100vh',
+        height: '100svh',
       }}
     >
       <Video src={bgVideo} autoPlay loop muted ref={videoRef} />
