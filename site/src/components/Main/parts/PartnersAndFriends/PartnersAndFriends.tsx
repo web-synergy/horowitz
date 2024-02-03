@@ -19,7 +19,7 @@ const PartnersAndFriends: FC = () => {
   const { t } = useTranslation()
   const partners = usePartnersStore(state => state.filtered)
 
-  if (!partners) return null
+  if (!partners?.length) return null
 
   return (
     <Stack

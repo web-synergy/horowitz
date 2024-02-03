@@ -33,7 +33,7 @@ export const useSettingsStore = create<SettingsStoreState>()((set, get) => ({
   },
 }))
 
-export const usePartnersStore = create<PartnersStoreState>()(set => ({
+export const usePartnersStore = create<PartnersStoreState>()((set, get) => ({
   organizers: null,
   mainPartners: null,
   sponsors: null,
