@@ -2,10 +2,10 @@ export enum Routes {
   HOME = 'home',
   ABOUT = 'about',
   DETAILS = 'details',
-  KYIV_GENEVA = 'kyiv-geneva',
   ADMINISTRATION = 'administration',
   ARCHIVE = 'archive',
   HOROWITZ = 'horowitz',
+  COMPETITIONS = 'competitions',
   COMPETITION = 'competition',
   PROJECTS = 'projects',
   MASTER_CLASS = 'master-class',
@@ -14,6 +14,16 @@ export enum Routes {
   NEWS = 'news',
   CURRENT_NEWS = `${NEWS}/:slug`,
   CONTACTS = 'contacts',
+  KYIV_GENEVA = 'kyiv-geneva',
+  KYIV_GENEVA_CONDITIONS = 'conditions',
+  KYIV_GENEVA_JURY = 'jury',
+  KYIV_GENEVA_PARTICIPANTS = 'participants',
+  KYIV_GENEVA_REQUIREMENTS = 'requirements',
+  KYIV_GENEVA_SELECTION_JURY = 'selection_jury',
+  KYIV_GENEVA_WINNERS = 'winners',
+  KYIV_GENEVA_REWARDS = 'rewards',
+  KYIV_GENEVA_ORCHESTRA = 'orchestra',
+  KYIV_GENEVA_TIMETABLE = 'timetable',
 }
 
 export type NavigationChildrenType = { title: string; slug: string };

@@ -1,14 +1,14 @@
 import { Container, Typography } from '@mui/material';
 import PageTemplate from '@/components/Common/PageTemplate';
 
-const AboutPage = () => {
+const KyivGenevaParticipants = () => {
   return (
     <PageTemplate>
       <Container>
-        <Typography>About Competition</Typography>
+        <Typography>Kyiv Geneva Participants</Typography>
       </Container>
     </PageTemplate>
   );
 };
 
-export default AboutPage;
+export default KyivGenevaParticipants;
