@@ -1,5 +1,5 @@
-import { getSettings } from '@/api'
-import { SettingsStoreState } from '@/types/storeTypes'
+import { getPartners, getSettings } from '@/api'
+import { PartnersStoreState, SettingsStoreState } from '@/types/storeTypes'
 import { create } from 'zustand'
 
 export const useSettingsStore = create<SettingsStoreState>()((set, get) => ({
@@ -10,7 +10,6 @@ export const useSettingsStore = create<SettingsStoreState>()((set, get) => ({
   fetchSettings: async language => {
     try {
       const settings = await getSettings(language)
-      // console.log(settings[0]);
       if (!settings) throw new Error('could not fetch the data from that resource')
       const { contacts, logo, sociable, competitions } = settings[0]
       set({
@@ -31,5 +30,39 @@ export const useSettingsStore = create<SettingsStoreState>()((set, get) => ({
       contacts: { ...get().contacts, [language]: contacts },
       competitions: { ...get().competitions, [language]: competitions },
     })
+  },
+}))
+
+export const usePartnersStore = create<PartnersStoreState>()(set => ({
+  organizers: null,
+  mainPartners: null,
+  sponsors: null,
+  generalInfoPartners: null,
+  mainInfoPartners: null,
+  officialInfoPartners: null,
+  partners: null,
+  filtered: [],
+
+  fetchPartners: async () => {
+    try {
+      const resp = await getPartners()
+      if (!resp) throw new Error('could not fetch data from that resource')
+
+      const filtered = []
+      for (const item in resp) {
+        if (item !== 'organizers') {
+          // @ts-ignore
+          const partner = JSON.parse(JSON.stringify(resp[item]))
+          filtered.push(...partner)
+        }
+      }
+
+      set({
+        ...resp,
+        filtered,
+      })
+    } catch (error) {
+      console.log(error)
+    }
   },
 }))

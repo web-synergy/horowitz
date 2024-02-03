@@ -1,4 +1,6 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
+
+import { usePartnersStore } from '@/store'
 
 import CompetitionEvents from './parts/CompetitionEvents/CompetitionEvents'
 import CompetitionOrganizers from './parts/CompetitionOrganizers/CompetitionOrganizers'
@@ -11,6 +13,12 @@ import WatchOnline from './parts/WatchOnline/WatchOnline'
 import holidayCard from './temp/holidayCard.jpg'
 
 const MainPage: FC = () => {
+  const fetchData = usePartnersStore(state => state.fetchPartners)
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
   return (
     <>
       <HeroSection />

@@ -29,3 +29,15 @@ export enum MainPage {
   ORGANIZERS = 'organizers',
   FRIENDS = 'friends',
 }
+
+export enum Sponsors {
+  MAIN_TITLE = 'partners & friends',
+  COMP_ORG = 'organizers',
+  MAIN_PART = 'lead partner',
+  SPONSORS = 'sponsors',
+  GEN_INFO_PART = 'general information partners',
+  PARTNERS = 'partners',
+  MAIN_INFO_PART = 'main information partners',
+  OFF_INFO_PART = 'official information partners',
+  BTN_GO_BACK = 'go back btn',
+}

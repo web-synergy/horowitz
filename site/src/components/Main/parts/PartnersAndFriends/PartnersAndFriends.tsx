@@ -1,19 +1,26 @@
-import { Box, Stack } from '@mui/material'
 import { FC } from 'react'
-import { MainTitle } from '../../styled'
 
+import { Box, Stack } from '@mui/material'
+import { MainTitle } from '../../styled'
+import { ShowMoreBtn } from './styled'
+
+import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css'
 
+import { urlFor } from '@/config/sanity/imageUrl'
+import { usePartnersStore } from '@/store'
+import { Routes } from '@/types/routes.d'
 import { MainPage } from '@/types/translation.d'
 import { useTranslation } from 'react-i18next'
 import { Link as RouterLink } from 'react-router-dom'
-import { Autoplay } from 'swiper/modules'
-import { ShowMoreBtn } from './styled'
-import { sponsorsLogotypes } from './test'
 
 const PartnersAndFriends: FC = () => {
   const { t } = useTranslation()
+  const partners = usePartnersStore(state => state.filtered)
+
+  if (!partners?.length) return null
+
   return (
     <Stack
       spacing={6}
@@ -32,13 +39,16 @@ const PartnersAndFriends: FC = () => {
         <Swiper
           centeredSlides={true}
           breakpoints={{
+            320: {
+              spaceBetween: 40,
+              slidesPerView: 1.5,
+            },
+            768: {
+              slidesPerView: 1.9,
+            },
             1280: {
               spaceBetween: 150,
               slidesPerView: 2.2,
-            },
-            320: {
-              spaceBetween: 40,
-              slidesPerView: 1.7,
             },
           }}
           loop={true}
@@ -49,23 +59,24 @@ const PartnersAndFriends: FC = () => {
           }}
           modules={[Autoplay]}
         >
-          {sponsorsLogotypes.map((logo, i) => (
-            <SwiperSlide key={i}>
-              <img
-                src={logo}
-                alt="logotype"
-                style={{
-                  maxWidth: '100%',
-                  maxHeight: '100%',
-                  objectFit: 'contain',
-                }}
-              />
-            </SwiperSlide>
-          ))}
+          {partners.length &&
+            partners.map(({ _key, img, title }) => (
+              <SwiperSlide key={_key}>
+                <img
+                  src={img?.asset && urlFor(img).url().toString()}
+                  alt={title}
+                  style={{
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    objectFit: 'contain',
+                  }}
+                />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </Box>
       <Box sx={{ alignSelf: 'center' }}>
-        <ShowMoreBtn variant="secondary" component={RouterLink} to={'/sponsors'}>
+        <ShowMoreBtn variant="secondary" component={RouterLink} to={Routes.SPONSORS}>
           {t(`mainPage.${MainPage.BTN_SHOW}`)}
         </ShowMoreBtn>
       </Box>

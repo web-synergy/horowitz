@@ -1,10 +1,5 @@
-import { Routes } from '@/types/routes.d';
-import {
-  InDevelopment,
-  MainPage,
-  NotFound,
-  Translations,
-} from '@/types/translation.d';
+import { Routes } from '@/types/routes.d'
+import { InDevelopment, MainPage, NotFound, Translations, Sponsors } from '@/types/translation.d'
 
 export default {
   navigation: {
@@ -44,8 +39,7 @@ export default {
   },
   notFound: {
     [NotFound.TITLE]: 'Sorry, the page is not found.',
-    [NotFound.TEXT]:
-      'The page you are searching for, is deleted or temporary unavailable',
+    [NotFound.TEXT]: 'The page you are searching for, is deleted or temporary unavailable',
     [NotFound.BTN]: 'Back to Home Page',
   },
   inDevelopment: {
@@ -65,8 +59,18 @@ export default {
     [MainPage.FRIENDS]: 'Partners and friends',
     [MainPage.BTN_SHOW]: 'View all',
   },
-  institutional_name:
-    'International Competition for Young Pianists in Memory of Vladimir Horowitz',
+  sponsorsPage: {
+    [Sponsors.MAIN_TITLE]: 'Partners and friends',
+    [Sponsors.COMP_ORG]: 'Competition organizers',
+    [Sponsors.MAIN_PART]: 'Main partner',
+    [Sponsors.SPONSORS]: 'Sponsors',
+    [Sponsors.GEN_INFO_PART]: 'General information partners',
+    [Sponsors.PARTNERS]: 'Partners',
+    [Sponsors.MAIN_INFO_PART]: 'Main information partners',
+    [Sponsors.OFF_INFO_PART]: 'Official information partners',
+    [Sponsors.BTN_GO_BACK]: 'Back to Home page',
+  },
+  institutional_name: 'International Competition for Young Pianists in Memory of Vladimir Horowitz',
   kyivGeneva: {
     [Routes.KYIV_GENEVA_CONDITIONS]: 'Competition Rules',
     [Routes.KYIV_GENEVA_JURY]: 'The Jury',
@@ -78,4 +82,4 @@ export default {
     [Routes.KYIV_GENEVA_ORCHESTRA]: 'Artists',
     [Routes.KYIV_GENEVA_TIMETABLE]: 'Competition Schedule',
   },
-};
+}

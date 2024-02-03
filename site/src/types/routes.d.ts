@@ -24,11 +24,12 @@ export enum Routes {
   KYIV_GENEVA_REWARDS = 'rewards',
   KYIV_GENEVA_ORCHESTRA = 'orchestra',
   KYIV_GENEVA_TIMETABLE = 'timetable',
+  SPONSORS = 'sponsors',
 }
 
-export type NavigationChildrenType = { title: string; slug: string };
+export type NavigationChildrenType = { title: string; slug: string }
 
 export type NavigationItemType = {
-  title: Routes;
-  children: NavigationChildrenType[] | null;
-};
+  title: Routes
+  children: NavigationChildrenType[] | null
+}

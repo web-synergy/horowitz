@@ -41,7 +41,7 @@ const CompetitionWinners: FC = () => {
           {/* ! TEMP */}
           {fakeData.map(({ id, ...props }, i) => {
             return (
-              <WinnerCard key={id} {...{ ...props, image: images[i], isVisible, delay: i + 3 }} />
+              <WinnerCard key={id} {...{ ...props, image: images[i], isVisible, delay: i + 2 }} />
             )
           })}
         </WinnersCardsStack>
