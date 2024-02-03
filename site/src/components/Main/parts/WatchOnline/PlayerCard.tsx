@@ -27,7 +27,7 @@ const PlayerCard: FC<PlayerCardProps> = ({ url, title }) => {
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-        sandbox="allow-same-origin allow-scripts allow-popups"
+        sandbox="allow-scripts allow-presentation allow-same-origin allow-popups"
       />
       <Typography
         sx={{
