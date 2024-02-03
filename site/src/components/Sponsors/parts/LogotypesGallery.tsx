@@ -1,7 +1,8 @@
 import { urlFor } from '@/config/sanity/imageUrl'
 import { Partner } from '@/types/partnersTypes'
-import { Box, Typography, Stack } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import { FC } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 
 interface LogotypesGalleryProps {
   title: string
@@ -32,20 +33,26 @@ const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery }) => {
         {gallery.length &&
           gallery.map(item => (
             <Box key={item._key}>
-              <Box
-                component={'img'}
-                src={urlFor(item.img).url().toString()}
-                alt={item.title}
-                sx={{
-                  height: {
-                    xs: '54px',
-                    md: '70px',
-                    lg: '80px',
-                  },
-                  maxWidth: '100%',
-                  objectFit: 'contain',
-                }}
-              />
+              <RouterLink
+                to={item.link}
+                target="_blank"
+                onClick={e => !item.link && e.preventDefault()}
+              >
+                <Box
+                  component={'img'}
+                  src={urlFor(item.img).url().toString()}
+                  alt={item.title}
+                  sx={{
+                    height: {
+                      xs: '54px',
+                      md: '70px',
+                      lg: '80px',
+                    },
+                    maxWidth: '100%',
+                    objectFit: 'contain',
+                  }}
+                />
+              </RouterLink>
             </Box>
           ))}
       </Stack>
