@@ -3,7 +3,7 @@ import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { FC, useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
-import bgVideo from '../../../../../public/bg_video.mp4'
+import bgVideo from '../../../../assets/bg_video.mp4'
 
 import EUMCY_logo from '../../temp/EUMCY_logo.svg'
 import WFIMC_logo from '../../temp/WFIMC_logo.svg'
