@@ -7,7 +7,7 @@ export default defineType({
 
   fields: [
     defineField({
-      name: 'membersddd',
+      name: 'members',
       title: 'Учасники',
       type: 'array',
       of: [{type: 'membersAdministration'}],

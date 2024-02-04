@@ -10,7 +10,7 @@ export default defineType({
       type: 'internationalizedArrayString',
     }),
     defineField({
-      name: 'position',
+      name: 'role',
       title: 'Посада',
       type: 'internationalizedArrayString',
     }),
@@ -27,13 +27,13 @@ export default defineType({
   preview: {
     select: {
       title: 'title[0].value',
-      position: 'position[0].value',
+      role: 'role[0].value',
       img: 'img',
     },
-    prepare: ({title, position, img}) => {
+    prepare: ({title, role, img}) => {
       return {
         title: `${title ? title : 'Імʼя'}`,
-        subtitle: `${position ? position : 'посада'}`,
+        subtitle: `${role ? role : 'посада'}`,
         media: img,
       }
     },
