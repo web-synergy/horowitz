@@ -1,3 +1,5 @@
+import { Routes } from '@/types/routes.d'
+
 import SocialMedia from '@/components/Common/SocialMedia'
 import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { FC, useRef } from 'react'
@@ -53,10 +55,10 @@ const HeroSection: FC = () => {
             <ContentStack>
               <MainTitle component={'h1'}>{t('institutional_name')}</MainTitle>
               <ButtonsStack>
-                <StyledButton component={RouterLink} to={'in-development'}>
+                <StyledButton component={RouterLink} to={Routes.APPLY}>
                   {t(`mainPage.${MainPage.BTN_APL}`)}
                 </StyledButton>
-                <StyledButton variant="secondary" component={RouterLink} to={'in-development'}>
+                <StyledButton variant="secondary" component={RouterLink} to={Routes.SUPPORT}>
                   {t(`mainPage.${MainPage.BTN_SUPP}`)}
                 </StyledButton>
               </ButtonsStack>
