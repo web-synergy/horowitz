@@ -1,15 +1,16 @@
-import { useTranslation } from 'react-i18next';
-import { Routes } from '@/types/routes.d';
-import { FC } from 'react';
+import { Routes } from '@/types/routes.d'
+import { FC, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
-import { Box, Container, Typography } from '@mui/material';
-import Breadcrumbs from '../Common/Breadcrumbs';
-import ContactsDetails from './parts/ContactsDetails';
-import { ContentWrapper, InfoDivider, MainBox, Section } from './styled';
+import { Box, Container, Typography } from '@mui/material'
+import Breadcrumbs from '../Common/Breadcrumbs'
+import ContactsDetails from './parts/ContactsDetails'
+import { ContentWrapper, InfoDivider, MainBox, Section } from './styled'
 
-import { useSettingsStore } from '@/store';
-import { PortableText, PortableTextComponents } from '@portabletext/react';
-import SocialMedia from '../Common/SocialMedia';
+import { useSettingsStore } from '@/store'
+import { PortableText, PortableTextComponents } from '@portabletext/react'
+import { useFetcher } from 'react-router-dom'
+import SocialMedia from '../Common/SocialMedia'
 
 const components: PortableTextComponents = {
   block: {
@@ -19,17 +20,21 @@ const components: PortableTextComponents = {
       </Typography>
     ),
   },
-};
+}
 const ContactsPage: FC = () => {
+  useEffect(() => {
+    scroll(0, 0)
+  }, [])
+
   const {
     i18n: { language },
     t,
-  } = useTranslation();
+  } = useTranslation()
 
-  const contacts = useSettingsStore((state) => state.contacts[language]);
-  if (!contacts) return null;
+  const contacts = useSettingsStore(state => state.contacts[language])
+  if (!contacts) return null
 
-  const { address: location, phone, email, pressCenter, about } = contacts;
+  const { address: location, phone, email, pressCenter, about } = contacts
 
   return (
     <Section component={'section'}>
@@ -70,7 +75,7 @@ const ContactsPage: FC = () => {
         </MainBox>
       </Container>
     </Section>
-  );
-};
+  )
+}
 
-export default ContactsPage;
+export default ContactsPage
