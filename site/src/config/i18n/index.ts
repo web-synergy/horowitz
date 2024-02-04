@@ -17,7 +17,9 @@ const customPath = {
       const params = new URLSearchParams(window.location.search);
       const langParam = params.get(lang);
       if (langParam) {
-        found = langParam;
+        const isLangExist = languages.find((lang) => lang.id === langParam);
+
+        found = isLangExist ? langParam : langByDefault;
       }
     }
     return found;
