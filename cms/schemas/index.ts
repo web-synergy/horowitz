@@ -4,6 +4,7 @@ import home from './documents/home'
 import horowitz from './documents/horowitz'
 import news from './documents/news'
 import partners from './documents/partners'
+import administration from './documents/administration'
 import settings from './documents/settings'
 import social from './documents/social'
 import {content} from './objects/content'
@@ -12,6 +13,7 @@ import competition from './documents/competition'
 import competitionDocument from './documents/competitionDocument'
 import {imageGalleryType} from './objects/imageGalleryType'
 import sponsor from './objects/sponsor'
+import membersAdministration from './objects/membersAdministration'
 import video from './objects/video'
 import winners from './objects/winners'
 import {youtube} from './objects/youtube'
@@ -27,11 +29,13 @@ export const schemaTypes = [
   competitionDocument,
   horowitz,
   partners,
+  administration,
 
   //objects
   winners,
   video,
   sponsor,
+  membersAdministration,
   content,
   youtube,
   imageGalleryType,
