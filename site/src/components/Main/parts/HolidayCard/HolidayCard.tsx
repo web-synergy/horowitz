@@ -12,7 +12,7 @@ const HolidayCard: FC<HolidayCardProps> = ({ src }) => {
         component={'img'}
         src={src}
         alt="holiday card"
-        sx={{ maxWidth: '100%', height: '100%', objectFit: 'cover' }}
+        sx={{ maxWidth: '100%', objectFit: 'cover' }}
       />
     </Box>
   )
