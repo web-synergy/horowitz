@@ -31,6 +31,22 @@ const KyivGenevaPage = () => {
               </Grid>
             ))}
           </Grid>
+
+          <Box sx={{ my: 10, display: 'flex', gap: 10 }}>
+            <Button
+              component={Link}
+              to={`/${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_SPONSORS}`}
+            >
+              Спонсори
+            </Button>
+
+            <Button
+              component={Link}
+              to={`/${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_WFIMC}`}
+            >
+              WFIMC
+            </Button>
+          </Box>
         </Box>
       </Container>
     </PageTemplate>

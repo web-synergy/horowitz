@@ -19,17 +19,21 @@ export enum Routes {
   KYIV_GENEVA_JURY = 'jury',
   KYIV_GENEVA_PARTICIPANTS = 'participants',
   KYIV_GENEVA_REQUIREMENTS = 'requirements',
-  KYIV_GENEVA_SELECTION_JURY = 'selection_jury',
+  KYIV_GENEVA_SELECTION_JURY = 'selection-jury',
   KYIV_GENEVA_WINNERS = 'winners',
   KYIV_GENEVA_REWARDS = 'rewards',
   KYIV_GENEVA_ORCHESTRA = 'orchestra',
   KYIV_GENEVA_TIMETABLE = 'timetable',
+  KYIV_GENEVA_SPONSORS = 'kg-sponsors',
+  KYIV_GENEVA_WFIMC = 'wfimc',
   SPONSORS = 'sponsors',
+  APPLY = 'apply',
+  SUPPORT = 'support',
 }
 
-export type NavigationChildrenType = { title: string; slug: string }
+export type NavigationChildrenType = { title: string; slug: string };
 
 export type NavigationItemType = {
-  title: Routes
-  children: NavigationChildrenType[] | null
-}
+  title: Routes;
+  children: NavigationChildrenType[] | null;
+};

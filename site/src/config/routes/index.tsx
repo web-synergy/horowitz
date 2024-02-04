@@ -1,31 +1,34 @@
-import AdministrationPage from '@/components/Administration/AdministrationPage'
-import ArchivePage from '@/components/Archive/ArchivePage'
-import InDevelopmentPage from '@/components/InDevelopmentPage/InDevelopmentPage'
-import KyivGenevaConditions from '@/components/KyivGenevaSubPages/Conditions/KyivGenevaConditions'
-import KyivGenevaJury from '@/components/KyivGenevaSubPages/JuryList/KyivGenevaJury'
-import KyivGenevaOrchestra from '@/components/KyivGenevaSubPages/Orchestra/KyivGenevaOrchestra'
-import KyivGenevaParticipants from '@/components/KyivGenevaSubPages/Participants/KyivGenevaParticipants'
-import KyivGenevaRegulation from '@/components/KyivGenevaSubPages/Regulation/KyivGenevaRegulation'
-import KyivGenevaRequirements from '@/components/KyivGenevaSubPages/Requirements/KyivGenevaRequirements'
-import KyivGenevaRewards from '@/components/KyivGenevaSubPages/Rewards/KyivGenevaRewards'
-import KyivGenevaSelectionJury from '@/components/KyivGenevaSubPages/SelectionJury/KyivGenevaSelectionJury'
-import KyivGenevaWinners from '@/components/KyivGenevaSubPages/Winners/KyivGenevaWinners'
-import NewsCurrentPage from '@/components/NewsCurrentPage/NewsCurrentPage'
-import NewsPageList from '@/components/NewsPageList/NewsPageList'
-import WithPreview from '@/components/SanityPreview/WithPreview'
-import SponsorsPage from '@/components/Sponsors/SponsorsPage'
-import { Routes } from '@/types/routes.d'
-import { Navigate, createBrowserRouter } from 'react-router-dom'
-import AboutPage from '../../components/About/AboutPage'
-import CompetitionPage from '../../components/Competition/CompetitionPage'
-import ContactsPage from '../../components/Contacts/ContactsPage'
-import HorowitzPage from '../../components/Horowitz/HorowitzPage'
-import KyivGenevaPage from '../../components/KyivGeneva/KyivGenevaPage'
-import MainPage from '../../components/Main/MainPage'
-import MasterClassPage from '../../components/MasterClass/MasterClassPage'
-import NotFoundPage from '../../components/NotFound/NotFoundPage'
-import SummerSchoolPage from '../../components/SummerSchool/SummerSchoolPage'
-import VirtuosesPage from '../../components/Virtuoses/VirtuosesPage'
+import AdministrationPage from '@/components/Administration/AdministrationPage';
+import ArchivePage from '@/components/Archive/ArchivePage';
+import KyivGenevaConditions from '@/components/KyivGenevaSubPages/Conditions/KyivGenevaConditions';
+import KyivGenevaJury from '@/components/KyivGenevaSubPages/JuryList/KyivGenevaJury';
+import KyivGenevaOrchestra from '@/components/KyivGenevaSubPages/Orchestra/KyivGenevaOrchestra';
+import KyivGenevaParticipants from '@/components/KyivGenevaSubPages/Participants/KyivGenevaParticipants';
+import KyivGenevaRegulation from '@/components/KyivGenevaSubPages/Regulation/KyivGenevaRegulation';
+import KyivGenevaRequirements from '@/components/KyivGenevaSubPages/Requirements/KyivGenevaRequirements';
+import KyivGenevaRewards from '@/components/KyivGenevaSubPages/Rewards/KyivGenevaRewards';
+import KyivGenevaSelectionJury from '@/components/KyivGenevaSubPages/SelectionJury/KyivGenevaSelectionJury';
+import KyivGenevaWinners from '@/components/KyivGenevaSubPages/Winners/KyivGenevaWinners';
+import KyivGenevaSponsorsPage from '@/components/KyivGenevaSubPages/Sponsors/KyivGenevaSponsors';
+import KyivGenevaWFIMCPage from '@/components/KyivGenevaSubPages/WFIMC/KyivGenevaWFIMC';
+import NewsCurrentPage from '@/components/NewsCurrentPage/NewsCurrentPage';
+import NewsPageList from '@/components/NewsPageList/NewsPageList';
+import WithPreview from '@/components/SanityPreview/WithPreview';
+import SponsorsPage from '@/components/Sponsors/SponsorsPage';
+import { Routes } from '@/types/routes.d';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
+import AboutPage from '../../components/About/AboutPage';
+import CompetitionPage from '../../components/Competition/CompetitionPage';
+import ContactsPage from '../../components/Contacts/ContactsPage';
+import HorowitzPage from '../../components/Horowitz/HorowitzPage';
+import KyivGenevaPage from '../../components/KyivGeneva/KyivGenevaPage';
+import MainPage from '../../components/Main/MainPage';
+import MasterClassPage from '../../components/MasterClass/MasterClassPage';
+import NotFoundPage from '../../components/NotFound/NotFoundPage';
+import SummerSchoolPage from '../../components/SummerSchool/SummerSchoolPage';
+import VirtuosesPage from '../../components/Virtuoses/VirtuosesPage';
+import ApplyPage from '@/components/Apply/ApplyPage';
+import SupportUsPage from '@/components/SupportUs/SupportUsPage';
 
 const routes = createBrowserRouter([
   {
@@ -108,8 +111,20 @@ const routes = createBrowserRouter([
         element: <KyivGenevaRegulation />,
       },
       {
-        path: 'in-development',
-        element: <InDevelopmentPage />,
+        path: `${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_SPONSORS}`,
+        element: <KyivGenevaSponsorsPage />,
+      },
+      {
+        path: `${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_WFIMC}`,
+        element: <KyivGenevaWFIMCPage />,
+      },
+      {
+        path: Routes.APPLY,
+        element: <ApplyPage />,
+      },
+      {
+        path: Routes.SUPPORT,
+        element: <SupportUsPage />,
       },
       {
         path: '404',
@@ -121,6 +136,6 @@ const routes = createBrowserRouter([
     path: '*',
     element: <Navigate to={'404'} />,
   },
-])
+]);
 
-export default routes
+export default routes;
