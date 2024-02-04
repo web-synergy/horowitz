@@ -9,13 +9,8 @@ interface PhoneDetailsProps {
   isMobile: boolean
 }
 const PhoneDetails: FC<PhoneDetailsProps> = ({ phone, isMobile }) => {
-  return (
-    <Link
-      component={RouterLink}
-      to={isMobile ? `tel:${phone}` : ''}
-      onClick={e => !isMobile && e.preventDefault()}
-      sx={{ flexShrink: 1 }}
-    >
+  return isMobile ? (
+    <Link component={RouterLink} to={`tel:${phone}`} sx={{ flexShrink: 1 }}>
       <DetailsStack>
         <SvgSpriteIcon icon="phone" />
         <Typography variant="bodyLight" component={'p'}>
@@ -23,6 +18,13 @@ const PhoneDetails: FC<PhoneDetailsProps> = ({ phone, isMobile }) => {
         </Typography>
       </DetailsStack>
     </Link>
+  ) : (
+    <DetailsStack>
+      <SvgSpriteIcon icon="phone" />
+      <Typography variant="bodyLight" component={'p'}>
+        {phone}
+      </Typography>
+    </DetailsStack>
   )
 }
 

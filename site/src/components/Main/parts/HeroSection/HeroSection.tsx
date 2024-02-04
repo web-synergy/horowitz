@@ -1,9 +1,12 @@
+import { Routes } from '@/types/routes.d'
+
 import SocialMedia from '@/components/Common/SocialMedia'
 import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { FC, useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
-import bgVideo from '../../../../../public/bg_video.mp4'
+import bgVideo from '../../../../assets/bg_video.mp4'
+import poster from '../../../../assets/images//bg_video_poster.jpg'
 
 import EUMCY_logo from '../../temp/EUMCY_logo.svg'
 import WFIMC_logo from '../../temp/WFIMC_logo.svg'
@@ -42,7 +45,7 @@ const HeroSection: FC = () => {
         height: '100svh',
       }}
     >
-      <Video src={bgVideo} autoPlay loop muted ref={videoRef} />
+      <Video src={bgVideo} autoPlay loop muted ref={videoRef} poster={poster} />
       <Overlay>
         <StyledContainer>
           <Box position={'relative'} sx={{ width: '100%' }}>
@@ -52,10 +55,10 @@ const HeroSection: FC = () => {
             <ContentStack>
               <MainTitle component={'h1'}>{t('institutional_name')}</MainTitle>
               <ButtonsStack>
-                <StyledButton component={RouterLink} to={'in-development'}>
+                <StyledButton component={RouterLink} to={Routes.APPLY}>
                   {t(`mainPage.${MainPage.BTN_APL}`)}
                 </StyledButton>
-                <StyledButton variant="secondary" component={RouterLink} to={'in-development'}>
+                <StyledButton variant="secondary" component={RouterLink} to={Routes.SUPPORT}>
                   {t(`mainPage.${MainPage.BTN_SUPP}`)}
                 </StyledButton>
               </ButtonsStack>

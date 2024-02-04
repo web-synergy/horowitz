@@ -41,7 +41,13 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
             <Box
               component={RouterLink}
               to={isMobile ? `tel:${phone}` : ''}
-              sx={{ textDecoration: 'none', color: 'inherit', cursor: 'text' }}
+              sx={{
+                textDecoration: 'none',
+                color: 'inherit',
+                cursor: 'text',
+                width: 'fit-content',
+              }}
+              onClick={e => !isMobile && e.preventDefault()}
             >
               <Typography variant="bodyRegular" component={'p'}>
                 {phoneNumberFormatting(phone)}
@@ -69,7 +75,13 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
             <Box
               component={RouterLink}
               to={isMobile ? `tel:${pressCenterPhone}` : ''}
-              sx={{ textDecoration: 'none', color: 'inherit', cursor: 'text' }}
+              sx={{
+                textDecoration: 'none',
+                color: 'inherit',
+                cursor: 'text',
+                width: 'fit-content',
+              }}
+              onClick={e => !isMobile && e.preventDefault()}
             >
               <Typography variant="bodyRegular" component={'p'}>
                 {phoneNumberFormatting(pressCenterPhone)}
