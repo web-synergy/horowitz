@@ -9,7 +9,6 @@ import { ContentWrapper, InfoDivider, MainBox, Section } from './styled'
 
 import { useSettingsStore } from '@/store'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
-import { useFetcher } from 'react-router-dom'
 import SocialMedia from '../Common/SocialMedia'
 
 const components: PortableTextComponents = {
