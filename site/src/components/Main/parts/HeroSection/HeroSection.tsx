@@ -4,6 +4,7 @@ import { FC, useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
 import bgVideo from '../../../../assets/bg_video.mp4'
+import poster from '../../../../assets/images//bg_video_poster.jpg'
 
 import EUMCY_logo from '../../temp/EUMCY_logo.svg'
 import WFIMC_logo from '../../temp/WFIMC_logo.svg'
@@ -42,7 +43,7 @@ const HeroSection: FC = () => {
         height: '100svh',
       }}
     >
-      <Video src={bgVideo} autoPlay loop muted ref={videoRef} />
+      <Video src={bgVideo} autoPlay loop muted ref={videoRef} poster={poster} />
       <Overlay>
         <StyledContainer>
           <Box position={'relative'} sx={{ width: '100%' }}>
