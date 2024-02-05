@@ -1,10 +1,9 @@
-import { Box, Container, Link, Typography, styled } from '@mui/material';
+import { Box, Container, Typography, styled } from '@mui/material';
 import PageTemplate from '@/components/Common/PageTemplate';
 import { Conditions } from '@/assets/kyiv-geneva/main/KyivGenevaConditions';
 import TextFormat from './parts/TextFormat';
-import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
-import { Link as RouterLink } from 'react-router-dom';
 import { theme } from '@/theme';
+import LinkGoBack from '@/components/Common/LinkGoBack';
 
 export const RichText = styled(Typography)(() => ({
   display: 'block',
@@ -18,20 +17,17 @@ const KyivGenevaConditions = () => {
   return (
     <PageTemplate>
       <Container>
-        <Box sx={{ py: '120px' }}>
+        <Box sx={{ my: { xs: '48px', lg: '120px' } }}>
           <Typography variant='h1'>Умови конкурсу</Typography>
           {Conditions.map((item, index) => (
             <TextFormat key={index} title={item.title} text={item.text} />
           ))}
-          <Link
-            component={RouterLink}
-            to='/kyiv-geneva'
-            sx={{
-              color: theme => theme.palette.neutral[60],
-            }}>
-            <SvgSpriteIcon sx={{ transform: 'rotate(90deg)' }} icon='arrow' />
-            Повернутись до Конкурс Горовиця Київ-Женева
-          </Link>
+          <Box sx={{ mt: '48px' }}>
+            <LinkGoBack
+              title='Повернутись до Конкурс Горовиця Київ-Женева'
+              href='/kyiv-geneva'
+            />
+          </Box>
         </Box>
       </Container>
     </PageTemplate>

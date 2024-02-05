@@ -1,12 +1,13 @@
 import { Box, Container, Stack, Typography } from '@mui/material';
 import PageTemplate from '@/components/Common/PageTemplate';
 import { Rewards } from '@/assets/kyiv-geneva/main/KyivGenevaRewards';
+import LinkGoBack from '@/components/Common/LinkGoBack';
 
 const KyivGenevaRewards = () => {
   return (
     <PageTemplate>
       <Container>
-        <Box sx={{ py: '120px' }}>
+        <Box sx={{ my: { xs: '48px', lg: '120px' } }}>
           {Rewards.map((item, index) => (
             <Stack spacing={{ xs: '24px', lg: '48px' }} key={index}>
               <Box>
@@ -51,6 +52,12 @@ const KyivGenevaRewards = () => {
               ))}
             </Stack>
           ))}
+          <Box sx={{ mt: '48px' }}>
+            <LinkGoBack
+              title='Повернутись до Конкурс Горовиця Київ-Женева'
+              href='/kyiv-geneva'
+            />
+          </Box>
         </Box>
       </Container>
     </PageTemplate>
