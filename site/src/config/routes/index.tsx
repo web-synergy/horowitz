@@ -11,6 +11,7 @@ import KyivGenevaSelectionJury from '@/components/KyivGenevaSubPages/SelectionJu
 import KyivGenevaWinners from '@/components/KyivGenevaSubPages/Winners/KyivGenevaWinners';
 import KyivGenevaSponsorsPage from '@/components/KyivGenevaSubPages/Sponsors/KyivGenevaSponsors';
 import KyivGenevaWFIMCPage from '@/components/KyivGenevaSubPages/WFIMC/KyivGenevaWFIMC';
+import KyivGenevaLayout from '@/components/KyivGenevaSubPages/Layout/KyivGenevaLayout';
 import NewsCurrentPage from '@/components/NewsCurrentPage/NewsCurrentPage';
 import NewsPageList from '@/components/NewsPageList/NewsPageList';
 import WithPreview from '@/components/SanityPreview/WithPreview';
@@ -72,52 +73,59 @@ const routes = createBrowserRouter([
 
       {
         path: Routes.KYIV_GENEVA,
-        element: <KyivGenevaPage />,
+        element: <KyivGenevaLayout />,
+        children: [
+          {
+            index: true,
+            element: <KyivGenevaPage />,
+          },
+          {
+            path: Routes.KYIV_GENEVA_CONDITIONS,
+            element: <KyivGenevaConditions />,
+          },
+          {
+            path: Routes.KYIV_GENEVA_JURY,
+            element: <KyivGenevaJury />,
+          },
+          {
+            path: Routes.KYIV_GENEVA_PARTICIPANTS,
+            element: <KyivGenevaParticipants />,
+          },
+          {
+            path: Routes.KYIV_GENEVA_REQUIREMENTS,
+            element: <KyivGenevaRequirements />,
+          },
+          {
+            path: Routes.KYIV_GENEVA_SELECTION_JURY,
+            element: <KyivGenevaSelectionJury />,
+          },
+          {
+            path: Routes.KYIV_GENEVA_WINNERS,
+            element: <KyivGenevaWinners />,
+          },
+          {
+            path: Routes.KYIV_GENEVA_REWARDS,
+            element: <KyivGenevaRewards />,
+          },
+          {
+            path: Routes.KYIV_GENEVA_ORCHESTRA,
+            element: <KyivGenevaOrchestra />,
+          },
+          {
+            path: Routes.KYIV_GENEVA_TIMETABLE,
+            element: <KyivGenevaRegulation />,
+          },
+          {
+            path: Routes.KYIV_GENEVA_SPONSORS,
+            element: <KyivGenevaSponsorsPage />,
+          },
+          {
+            path: Routes.KYIV_GENEVA_WFIMC,
+            element: <KyivGenevaWFIMCPage />,
+          },
+        ],
       },
-      {
-        path: `${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_CONDITIONS}`,
-        element: <KyivGenevaConditions />,
-      },
-      {
-        path: `${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_JURY}`,
-        element: <KyivGenevaJury />,
-      },
-      {
-        path: `${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_PARTICIPANTS}`,
-        element: <KyivGenevaParticipants />,
-      },
-      {
-        path: `${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_REQUIREMENTS}`,
-        element: <KyivGenevaRequirements />,
-      },
-      {
-        path: `${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_SELECTION_JURY}`,
-        element: <KyivGenevaSelectionJury />,
-      },
-      {
-        path: `${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_WINNERS}`,
-        element: <KyivGenevaWinners />,
-      },
-      {
-        path: `${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_REWARDS}`,
-        element: <KyivGenevaRewards />,
-      },
-      {
-        path: `${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_ORCHESTRA}`,
-        element: <KyivGenevaOrchestra />,
-      },
-      {
-        path: `${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_TIMETABLE}`,
-        element: <KyivGenevaRegulation />,
-      },
-      {
-        path: `${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_SPONSORS}`,
-        element: <KyivGenevaSponsorsPage />,
-      },
-      {
-        path: `${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_WFIMC}`,
-        element: <KyivGenevaWFIMCPage />,
-      },
+
       {
         path: Routes.APPLY,
         element: <ApplyPage />,
