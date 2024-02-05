@@ -1,21 +1,20 @@
-import { kyivGenevaNavigation } from '@/config/routes/navigation'
-import { Routes } from '@/types/routes.d'
-import { Box, Button, Container, Grid, Stack } from '@mui/material'
-import { UseTranslationOptions, useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Container } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import PageTemplate from '../Common/PageTemplate'
 
+import pianoImg from '@/assets/images/kyiv-geneva/mainPage/zheneva_bg_piano.jpg'
 import bannerImg from '@/assets/images/kyiv-geneva/mainPage/zheneva_main_bg.jpg'
+
 import AboutSection from './parts/AboutSection'
 import BannerSection from './parts/BannerSection'
 import { MainStack } from './styled'
 
 import pageData from '@/assets/kyiv-geneva/main/zheneva_mainPage.json'
-import { i18n } from 'i18next'
+
+import ButtonsSection from './parts/ButtonsSection'
 
 const KyivGenevaPage = () => {
   const {
-    t,
     i18n: { language },
   } = useTranslation()
 
@@ -25,6 +24,7 @@ const KyivGenevaPage = () => {
         <MainStack>
           <BannerSection bannerImg={bannerImg} breadcrumbsTitle="Конкурс Горовиця Київ-Женева" />
           <AboutSection content={pageData[language]} />
+          <ButtonsSection bgImage={pianoImg} />
         </MainStack>
         <Container>
           {/* <Box>
