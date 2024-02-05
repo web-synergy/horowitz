@@ -12,14 +12,9 @@ const KyivGenevaPage = () => {
       <Container>
         <div>KyivGenevaPage</div>
         <Box>
-          <Grid
-            container
-            rowSpacing={6}
-            columnSpacing={7}
-            justifyContent="space-between"
-          >
+          <Grid container rowSpacing={6} columnSpacing={7}>
             {kyivGenevaNavigation.map((navigation) => (
-              <Grid item xs={4} key={navigation.title}>
+              <Grid item key={navigation.title} lg={4} md={6} xs={12}>
                 <Button
                   fullWidth
                   component={Link}
