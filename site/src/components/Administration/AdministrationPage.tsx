@@ -5,6 +5,7 @@ import { useAdministrationStore } from "@/store/administrationStore";
 import { useEffect } from "react";
 import { urlFor } from "@/config/sanity/imageUrl";
 import { Routes } from "@/types/routes.d";
+import BannerComponent from "./parts/BannerComponent";
 
 const AdministrationPage = () => {
   const {
@@ -20,16 +21,24 @@ const AdministrationPage = () => {
     fetchAdministrationData(language);
   }, [fetchAdministrationData, language]);
 
-  const { administrationData } = useAdministrationStore();
+  const administrationData = useAdministrationStore(
+    (state) => state.administrationData
+  );
 
-  // if (administrationData) {
-  //   console.log(administrationData);
-  // }
+  if (!administrationData?.length) return null;
 
   return (
     <PageTemplate>
+      <BannerComponent />
       <Container>
-        <Typography variant="h4" gutterBottom>
+        <Typography
+          sx={{
+            marginBottom: "24px",
+            textAlign: "center",
+          }}
+          variant="h4"
+          gutterBottom
+        >
           {t(`navigation.${Routes.ADMINISTRATION}`)}
         </Typography>
         <Box
@@ -41,11 +50,11 @@ const AdministrationPage = () => {
           }}
         >
           {administrationData &&
-            administrationData.map((data, index) => (
+            administrationData.map((member, index) => (
               <Box key={index}>
                 <img
-                  src={data.img?.asset && urlFor(data.img).url().toString()}
-                  alt={data.name}
+                  src={member.img?.asset && urlFor(member.img).url().toString()}
+                  alt={member.name}
                   style={{
                     maxWidth: "100%",
                     maxHeight: "100%",
@@ -53,8 +62,8 @@ const AdministrationPage = () => {
                   }}
                 />
                 <Box>
-                  <Typography variant="h6">{data.name}</Typography>
-                  <Typography variant="body2">{data.role}</Typography>
+                  <Typography variant="h6">{member.name}</Typography>
+                  <Typography variant="body2">{member.role}</Typography>
                 </Box>
               </Box>
             ))}

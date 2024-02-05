@@ -8,7 +8,6 @@ export const useAdministrationStore = create<AdministrationStoreState>(
     fetchAdministrationData: async (language) => {
       try {
         const responseData = await getAdministrationMembers(language);
-        console.log(responseData);
         if (!responseData) {
           throw new Error("Could not fetch the data from that resource");
         }

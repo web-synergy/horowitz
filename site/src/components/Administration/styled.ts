@@ -13,25 +13,28 @@ interface BannerWrapperProps {
 export const BannerWrapper = styled(Box)<BannerWrapperProps>(
   ({ theme, img }) => ({
     width: "100%",
-
-    paddingTop: "72px",
-    paddingBottom: "72px",
+    height: "314px",
 
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundImage: `linear-gradient(to right, rgba(8, 7, 8, 0.60), rgba(8, 7, 8, 0.60)), url(${img})`,
-    [theme.breakpoints.up("md")]: {
-      minHeight: "68vh",
-      paddingTop: "96px",
-      paddingBottom: "96px",
-    },
-    [theme.breakpoints.up("lg")]: {
-      paddingTop: "160px",
-      paddingBottom: "160px",
-    },
+    [theme.breakpoints.up("md")]: { height: "468px" },
+    [theme.breakpoints.up("lg")]: {},
   })
 );
+
+export const WrapperImg = styled(Box)(() => ({
+  width: "100%",
+  height: "100%",
+
+  "& img": {
+    display: "block",
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+  },
+}));
 
 export const StyledBox = styled(Box)<BoxProps>(({ theme }) => ({
   margin: "0 auto",
