@@ -1,73 +1,33 @@
 import { kyivGenevaNavigation } from '@/config/routes/navigation'
 import { Routes } from '@/types/routes.d'
 import { Box, Button, Container, Grid, Stack } from '@mui/material'
-import { useTranslation } from 'react-i18next'
+import { UseTranslationOptions, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import PageTemplate from '../Common/PageTemplate'
 
-import mainBgIng from '@/assets/images/kyiv-geneva/mainPage/zheneva_main_bg.jpg'
-import Breadcrumbs from '../Common/Breadcrumbs'
+import bannerImg from '@/assets/images/kyiv-geneva/mainPage/zheneva_main_bg.jpg'
+import AboutSection from './parts/AboutSection'
+import BannerSection from './parts/BannerSection'
+import { MainStack } from './styled'
+
+import pageData from '@/assets/kyiv-geneva/main/zheneva_mainPage.json'
+import { i18n } from 'i18next'
 
 const KyivGenevaPage = () => {
-  const { t } = useTranslation()
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation()
 
-  return (
-    <PageTemplate>
-      <Stack sx={{ marginBottom: { xs: '72px', md: '90px', lg: '120px' } }}>
-        <Box
-          sx={{
-            position: 'relative',
-            paddingBottom: {
-              xs: 'calc(38.5% - 32px)',
-              md: 'calc(43.5% - 48px)',
-              lg: 'calc(42.5% - 48px)',
-            },
-            maxHeight: '544px',
-            overflow: 'hidden',
-            '::after': {
-              content: '""',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              zIndex: 2,
-              bgcolor: '#080708B2',
-            },
-          }}
-        >
-          <Box
-            sx={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              zIndex: 1,
-            }}
-          >
-            <Box
-              component={'img'}
-              src={mainBgIng}
-              alt="background image"
-              sx={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'bottom',
-              }}
-            />
-          </Box>
-          <Box sx={{ position: 'relative', zIndex: 5 }}>
-            <Container>
-              <Breadcrumbs mode="dark" title="Конкурс Горовиця Київ-Женева" />
-            </Container>
-          </Box>
-        </Box>
-        {/* <Box height={'120px'}></Box> */}
-      </Stack>
-      <Container>
-        {/* <Box>
+  if (language === 'ua' || language === 'en')
+    return (
+      <PageTemplate>
+        <MainStack>
+          <BannerSection bannerImg={bannerImg} breadcrumbsTitle="Конкурс Горовиця Київ-Женева" />
+          <AboutSection content={pageData[language]} />
+        </MainStack>
+        <Container>
+          {/* <Box>
           <Grid
             container
             rowSpacing={6}
@@ -104,9 +64,9 @@ const KyivGenevaPage = () => {
             </Button>
           </Box>
         </Box> */}
-      </Container>
-    </PageTemplate>
-  )
+        </Container>
+      </PageTemplate>
+    )
 }
 
 export default KyivGenevaPage
