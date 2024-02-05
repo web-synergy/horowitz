@@ -25,13 +25,13 @@ export const BannerWrapper = styled(Box)<BannerWrapperProps>(
 );
 
 export const WrapperImg = styled(Box)(() => ({
-  width: "100%",
+  maxWidth: "546px",
   height: "100%",
 
   "& img": {
     display: "block",
     width: "100%",
-    height: "100%",
+    height: "auto",
     objectFit: "cover",
   },
 }));

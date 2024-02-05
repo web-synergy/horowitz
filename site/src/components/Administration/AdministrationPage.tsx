@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { urlFor } from "@/config/sanity/imageUrl";
 import { Routes } from "@/types/routes.d";
 import BannerComponent from "./parts/BannerComponent";
+import { WrapperImg } from "./styled";
 
 const AdministrationPage = () => {
   const {
@@ -33,10 +34,11 @@ const AdministrationPage = () => {
       <Container>
         <Typography
           sx={{
-            marginBottom: "24px",
+            marginBottom: { xs: "24px", md: "48px" },
+            marginTop: { xs: "48px", lg: "120px" },
             textAlign: "center",
           }}
-          variant="h4"
+          variant="h1"
           gutterBottom
         >
           {t(`navigation.${Routes.ADMINISTRATION}`)}
@@ -52,18 +54,44 @@ const AdministrationPage = () => {
           {administrationData &&
             administrationData.map((member, index) => (
               <Box key={index}>
-                <img
-                  src={member.img?.asset && urlFor(member.img).url().toString()}
-                  alt={member.name}
-                  style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    objectFit: "contain",
-                  }}
-                />
-                <Box>
-                  <Typography variant="h6">{member.name}</Typography>
-                  <Typography variant="body2">{member.role}</Typography>
+                <Box sx={{ padding: { xs: "24px 0" } }}>
+                  <Box
+                    sx={{
+                      display: "grid",
+                      gridTemplateColumns: { md: "1fr 1fr", lg: "494px 436px" },
+                      gap: { xs: "16px", md: "24px", lg: "48px" },
+                    }}
+                  >
+                    <WrapperImg className={member.img ? "" : "no-image"}>
+                      {member.img ? (
+                        <img
+                          src={urlFor(member.img).url().toString()}
+                          alt={`Зображення ${member.role}`}
+                        />
+                      ) : (
+                        // Дополнительный контент, отображаемый вместо изображения
+                        <Box
+                          sx={{
+                            minWidth: "288px",
+                            minHeight: "288px",
+                            backgroundColor: "grey",
+                          }}
+                        ></Box>
+                      )}
+                    </WrapperImg>
+                    <Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "16px",
+                        }}
+                      >
+                        <Typography variant="h6">{member.name}</Typography>
+                        <Typography variant="body2">{member.role}</Typography>
+                      </Box>
+                    </Box>
+                  </Box>
                 </Box>
               </Box>
             ))}
