@@ -2,6 +2,7 @@ import { Container } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import PageTemplate from '../Common/PageTemplate'
 
+import WFIMC_image from '@/assets/images/kyiv-geneva/mainPage/group_photo.jpg'
 import pianoImg from '@/assets/images/kyiv-geneva/mainPage/zheneva_bg_piano.jpg'
 import bannerImg from '@/assets/images/kyiv-geneva/mainPage/zheneva_main_bg.jpg'
 
@@ -12,6 +13,7 @@ import { MainStack } from './styled'
 import pageData from '@/assets/kyiv-geneva/main/zheneva_mainPage.json'
 
 import ButtonsSection from './parts/ButtonsSection'
+import WFIMCSection from './parts/WFIMCSection'
 
 const KyivGenevaPage = () => {
   const {
@@ -25,6 +27,7 @@ const KyivGenevaPage = () => {
           <BannerSection bannerImg={bannerImg} breadcrumbsTitle="Конкурс Горовиця Київ-Женева" />
           <AboutSection content={pageData[language]} />
           <ButtonsSection bgImage={pianoImg} />
+          <WFIMCSection image={WFIMC_image} wfimc_content={pageData[language].wfimc} />
         </MainStack>
         <Container>
           {/* <Box>
