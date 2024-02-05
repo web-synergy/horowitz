@@ -5,7 +5,7 @@ export default defineType({
   type: 'object',
   fields: [
     defineField({
-      name: 'title',
+      name: 'name',
       title: 'Імʼя',
       type: 'internationalizedArrayString',
     }),
@@ -26,13 +26,13 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title[0].value',
+      name: 'name[0].value',
       role: 'role[0].value',
       img: 'img',
     },
-    prepare: ({title, role, img}) => {
+    prepare: ({name, role, img}) => {
       return {
-        title: `${title ? title : 'Імʼя'}`,
+        title: `${name ? name : 'Імʼя'}`,
         subtitle: `${role ? role : 'посада'}`,
         media: img,
       }
