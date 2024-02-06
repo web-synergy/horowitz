@@ -1,6 +1,7 @@
-import { Container, Stack, Typography } from '@mui/material'
+import { Container } from '@mui/material'
 import { FC } from 'react'
 import RegularText from './RegularText'
+import { AboutStack, AboutTitle } from './styled'
 
 type Content = {
   title: string
@@ -14,29 +15,14 @@ type AboutSectionProps = {
 const AboutSection: FC<AboutSectionProps> = ({ content: { title, about_text } }) => {
   return (
     <Container>
-      <Typography
-        variant="h1"
-        component={'h1'}
-        sx={{
-          textAlign: 'center',
-          marginBottom: { xs: '24px', lg: '48px' },
-          textTransform: 'capitalize',
-        }}
-      >
+      <AboutTitle variant="h1" component={'h1'}>
         {title.toLowerCase()}
-      </Typography>
-      <Stack
-        sx={{
-          maxHeight: { xs: '100%', lg: '350px' },
-          flexWrap: 'wrap',
-          rowGap: { xs: '24px', lg: '16px' },
-          columnGap: '24px',
-        }}
-      >
+      </AboutTitle>
+      <AboutStack>
         {about_text.map((chapter, i) => (
           <RegularText key={i} chapter={chapter} />
         ))}
-      </Stack>
+      </AboutStack>
     </Container>
   )
 }
