@@ -17,7 +17,6 @@ const CompetitionPage = () => {
 
   const langCompetitions = competitions[language];
   const title = langCompetitions ? langCompetitions[0]?.title[0] : "";
-  console.log(title);
 
   // const competitionName = pathname.slice(1);
   // const isCompetitionExist = langCompetitions?.find(

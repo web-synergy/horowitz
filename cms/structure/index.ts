@@ -6,6 +6,7 @@ import {LuContact} from 'react-icons/lu'
 import {MdOutlineSettingsBrightness} from 'react-icons/md'
 import {RiPagesLine} from 'react-icons/ri'
 import {SiGithubsponsors} from 'react-icons/si'
+import {FaPeopleGroup} from 'react-icons/fa6'
 import {preview} from './preview'
 import {languages} from '../../languages'
 import {newsStructure} from './newsStructure'
@@ -19,6 +20,7 @@ const singleSchemaTittles = [
   'Володимир Горовиць',
   'Новини',
   'Партнери і спонсори',
+  'Адміністрація конкурсу',
 ]
 
 const structure = (S: StructureBuilder) =>
@@ -30,6 +32,7 @@ const structure = (S: StructureBuilder) =>
         (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
       ),
       ...newsStructure(S),
+      singleDocument(S, 'administration', 'Адміністрація конкурсу').icon(FaPeopleGroup),
       singleDocument(S, 'horowitz', 'Володимир Горовиць').icon(MdOutlineSettingsBrightness),
       singleDocument(S, 'partners', 'Партнери і спонсори').icon(SiGithubsponsors),
       S.divider(),

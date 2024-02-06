@@ -1,49 +1,60 @@
-import { PortableTextBlock } from '@portabletext/types'
-import { INews } from './newsTypes'
+import { PortableTextBlock } from "@portabletext/types";
+import { INews } from "./newsTypes";
 
-import { CompetitionsMenu, ContactsType, SettingsResp, SociableType } from './contactsTypes'
-import { Partner } from './partnersTypes'
+import {
+  CompetitionsMenu,
+  ContactsType,
+  SettingsResp,
+  SociableType,
+} from "./contactsTypes";
+import { Partner } from "./partnersTypes";
+import { Member } from "./administrationTypes";
 
 export interface SettingsStoreState {
-  sociable: SociableType | null
-  logo: string | null
-  contacts: { [key: string]: ContactsType | null }
-  competitions: { [key: string]: CompetitionsMenu[] | null }
-  fetchSettings: (language: string) => Promise<void>
-  getPreviewSettings: (settings: SettingsResp[], language: string) => void
+  sociable: SociableType | null;
+  logo: string | null;
+  contacts: { [key: string]: ContactsType | null };
+  competitions: { [key: string]: CompetitionsMenu[] | null };
+  fetchSettings: (language: string) => Promise<void>;
+  getPreviewSettings: (settings: SettingsResp[], language: string) => void;
 }
 
 export interface HorowitzStoreState {
   bannerData: {
-    bannerCopyright: string
-    bannerImg: string
-  }
-  quote: { author: string[]; quote: string[] }
-  upperTextBlock: PortableTextBlock[]
-  lowerTextBlock: PortableTextBlock[]
-  literature: PortableTextBlock[]
-  isLoading: boolean
-  fetchHorowitzData: (language: string) => Promise<void>
+    bannerCopyright: string;
+    bannerImg: string;
+  };
+  quote: { author: string[]; quote: string[] };
+  upperTextBlock: PortableTextBlock[];
+  lowerTextBlock: PortableTextBlock[];
+  literature: PortableTextBlock[];
+  isLoading: boolean;
+  fetchHorowitzData: (language: string) => Promise<void>;
 }
 
 export interface NewsStoreState {
-  newsList: INews[]
-  loading: boolean
-  error: string | unknown
-  pageQty: number
-  fetchNews: (language: string, page: number) => Promise<void>
+  newsList: INews[];
+  loading: boolean;
+  error: string | unknown;
+  pageQty: number;
+  fetchNews: (language: string, page: number) => Promise<void>;
 }
 
 export interface PartnersStoreState {
-  organizers: Partner[] | null
-  mainPartners: Partner[] | null
-  sponsors: Partner[] | null
-  generalInfoPartners: Partner[] | null
-  mainInfoPartners: Partner[] | null
-  officialInfoPartners: Partner[] | null
-  partners: Partner[] | null
+  organizers: Partner[] | null;
+  mainPartners: Partner[] | null;
+  sponsors: Partner[] | null;
+  generalInfoPartners: Partner[] | null;
+  mainInfoPartners: Partner[] | null;
+  officialInfoPartners: Partner[] | null;
+  partners: Partner[] | null;
 
-  filtered?: Partner[]
+  filtered?: Partner[];
 
-  fetchPartners: () => Promise<void>
+  fetchPartners: () => Promise<void>;
+}
+
+export interface AdministrationStoreState {
+  administrationData: Member[] | null;
+  fetchAdministrationData: (language: string) => Promise<void>;
 }
