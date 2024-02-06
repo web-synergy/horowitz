@@ -1,9 +1,11 @@
 import React from "react";
-import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
-import Breadcrumbs from "@/components/Common/Breadcrumbs";
 import { useTranslation } from "react-i18next";
+import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
+
+import Breadcrumbs from "@/components/Common/Breadcrumbs";
 import { Routes } from "@/types/routes.d";
 import { BannerWrapper } from "../styled";
+
 import administrationDeskBanner from "@/assets/images/administrationDeskBanner.webp";
 import administrationTabletBanner from "@/assets/images/administrationTabletBanner.webp";
 

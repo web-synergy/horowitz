@@ -1,10 +1,4 @@
-import {
-  Box,
-  BoxProps,
-  Typography,
-  TypographyProps,
-  styled,
-} from "@mui/material";
+import { Box, styled } from "@mui/material";
 
 interface BannerWrapperProps {
   img: string;
@@ -24,53 +18,23 @@ export const BannerWrapper = styled(Box)<BannerWrapperProps>(
   })
 );
 
-export const WrapperImg = styled(Box)(() => ({
-  maxWidth: "546px",
-  height: "100%",
+export const WrapperImg = styled(Box)(({ theme }) => ({
+  maxWidth: "498px",
 
   "& img": {
     display: "block",
     width: "100%",
-    height: "auto",
+    height: "100%",
     objectFit: "cover",
-  },
-}));
-
-export const StyledBox = styled(Box)<BoxProps>(({ theme }) => ({
-  margin: "0 auto",
-  textAlign: "center",
-  maxWidth: "1280px",
-  minWidth: "288px",
-  padding: "0 16px",
-
-  [theme.breakpoints.up("md")]: {
-    padding: "0 60px",
-  },
-}));
-
-export const TitleTypography = styled(Typography)<TypographyProps>(
-  ({ theme }) => ({
-    marginBottom: "24px",
-    color: theme.palette.primary.main,
-
-    fontSize: "2,875rem",
-    fontWeight: 400,
-    lineHeight: "normal",
 
     [theme.breakpoints.up("md")]: {
-      marginBottom: "32px",
-      fontSize: "5rem",
+      width: "144px",
+      height: "144px",
     },
-    [theme.breakpoints.up("lg")]: { fontSize: "7rem" },
-  })
-);
 
-export const MessageTypography = styled(Typography)<TypographyProps>(
-  ({ theme }) => ({
-    marginBottom: "56px",
-    [theme.breakpoints.up("md")]: {
-      marginBottom: "38px",
+    [theme.breakpoints.up("lg")]: {
+      width: "262px",
+      height: "262px",
     },
-    [theme.breakpoints.up("lg")]: { marginBottom: "80px" },
-  })
-);
+  },
+}));

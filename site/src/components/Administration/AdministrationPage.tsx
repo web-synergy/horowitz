@@ -1,12 +1,12 @@
-import { useTranslation } from "react-i18next";
-import PageTemplate from "../Common/PageTemplate";
-import { Container, Typography, Box } from "@mui/material";
-import { useAdministrationStore } from "@/store/administrationStore";
 import { useEffect } from "react";
-import { urlFor } from "@/config/sanity/imageUrl";
+import { Container, Typography, Box } from "@mui/material";
+import { useTranslation } from "react-i18next";
+
+import PageTemplate from "../Common/PageTemplate";
+import { useAdministrationStore } from "@/store/administrationStore";
 import { Routes } from "@/types/routes.d";
 import BannerComponent from "./parts/BannerComponent";
-import { WrapperImg } from "./styled";
+import MembersListBlock from "./parts/MembersListBlock";
 
 const AdministrationPage = () => {
   const {
@@ -28,14 +28,22 @@ const AdministrationPage = () => {
 
   if (!administrationData?.length) return null;
 
+  const halfLength = Math.ceil(administrationData.length / 2);
+  const firstBlockMembers = administrationData.slice(0, halfLength);
+  const secondBlockMembers = administrationData.slice(halfLength);
+
   return (
     <PageTemplate>
       <BannerComponent />
-      <Container>
+      <Container
+        sx={{
+          paddingTop: { xs: "48px", lg: "120px" },
+          paddingBottom: { xs: "72px", md: "96px", lg: "120px" },
+        }}
+      >
         <Typography
           sx={{
             marginBottom: { xs: "24px", md: "48px" },
-            marginTop: { xs: "48px", lg: "120px" },
             textAlign: "center",
           }}
           variant="h1"
@@ -46,55 +54,13 @@ const AdministrationPage = () => {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "48px",
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: "space-between",
+            gap: { xs: "48px", md: "26px" },
           }}
         >
-          {administrationData &&
-            administrationData.map((member, index) => (
-              <Box key={index}>
-                <Box sx={{ padding: { xs: "24px 0" } }}>
-                  <Box
-                    sx={{
-                      display: "grid",
-                      gridTemplateColumns: { md: "1fr 1fr", lg: "494px 436px" },
-                      gap: { xs: "16px", md: "24px", lg: "48px" },
-                    }}
-                  >
-                    <WrapperImg className={member.img ? "" : "no-image"}>
-                      {member.img ? (
-                        <img
-                          src={urlFor(member.img).url().toString()}
-                          alt={`Зображення ${member.role}`}
-                        />
-                      ) : (
-                        // Дополнительный контент, отображаемый вместо изображения
-                        <Box
-                          sx={{
-                            minWidth: "288px",
-                            minHeight: "288px",
-                            backgroundColor: "grey",
-                          }}
-                        ></Box>
-                      )}
-                    </WrapperImg>
-                    <Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: "16px",
-                        }}
-                      >
-                        <Typography variant="h6">{member.name}</Typography>
-                        <Typography variant="body2">{member.role}</Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
-            ))}
+          <MembersListBlock members={firstBlockMembers} />
+          <MembersListBlock members={secondBlockMembers} />
         </Box>
       </Container>
     </PageTemplate>
