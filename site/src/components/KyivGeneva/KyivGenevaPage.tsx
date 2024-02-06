@@ -1,51 +1,32 @@
-import PageTemplate from '../Common/PageTemplate';
-import { Container, Grid, Box, Button } from '@mui/material';
-import { useTranslation } from 'react-i18next';
-import { kyivGenevaNavigation } from '@/config/routes/navigation';
-import { Link } from 'react-router-dom';
-import { Routes } from '@/types/routes.d';
+import { useTranslation } from 'react-i18next'
+import PageTemplate from '../Common/PageTemplate'
+import { MainStack } from './styled'
+
+import AboutSection from './parts/AboutSection'
+import ButtonsSection from './parts/ButtonsSection'
+import SponsorsSection from './parts/SponsorsSection'
+import WFIMCSection from './parts/WFIMCSection'
+
+import pianoImg from '@/assets/images/kyiv-geneva/mainPage/geneva_bg_piano.jpg'
+import WFIMC_members from '@/assets/images/kyiv-geneva/wfimc/wfimc.jpeg'
+import pageData from '@/assets/kyiv-geneva/main/geneva_mainPage.json'
 
 const KyivGenevaPage = () => {
-  const { t } = useTranslation();
-  return (
-    <PageTemplate>
-      <Container>
-        <div>KyivGenevaPage</div>
-        <Box>
-          <Grid container rowSpacing={6} columnSpacing={7}>
-            {kyivGenevaNavigation.map((navigation) => (
-              <Grid item key={navigation.title} lg={4} md={6} xs={12}>
-                <Button
-                  fullWidth
-                  component={Link}
-                  sx={{ '&.MuiButton-root': { padding: '14px' } }}
-                  to={`/${Routes.KYIV_GENEVA}/${navigation.title}`}
-                >
-                  {t(`kyivGeneva.${navigation.title}`)}
-                </Button>
-              </Grid>
-            ))}
-          </Grid>
+  const {
+    i18n: { language },
+  } = useTranslation()
 
-          <Box sx={{ my: 10, display: 'flex', gap: 10 }}>
-            <Button
-              component={Link}
-              to={`/${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_SPONSORS}`}
-            >
-              Спонсори
-            </Button>
+  if (language === 'ua' || language === 'en')
+    return (
+      <PageTemplate>
+        <MainStack>
+          <AboutSection content={pageData[language]} />
+          <ButtonsSection bgImage={pianoImg} />
+          <WFIMCSection image={WFIMC_members} wfimc_content={pageData[language].wfimc} />
+          <SponsorsSection />
+        </MainStack>
+      </PageTemplate>
+    )
+}
 
-            <Button
-              component={Link}
-              to={`/${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_WFIMC}`}
-            >
-              WFIMC
-            </Button>
-          </Box>
-        </Box>
-      </Container>
-    </PageTemplate>
-  );
-};
-
-export default KyivGenevaPage;
+export default KyivGenevaPage
