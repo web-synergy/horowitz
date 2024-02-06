@@ -56,7 +56,7 @@ const AdministrationPage = () => {
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
             justifyContent: "space-between",
-            gap: { xs: "48px", md: "26px" },
+            gap: { md: "26px" },
           }}
         >
           <MembersListBlock members={firstBlockMembers} />
