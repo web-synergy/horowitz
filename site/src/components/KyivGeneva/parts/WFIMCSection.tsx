@@ -1,6 +1,7 @@
 import { Routes } from '@/types/routes.d'
-import { Box, Button, Container, Stack, Typography } from '@mui/material'
+import { Box, Container, Stack, Typography } from '@mui/material'
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Caption, StyledButton } from './styled'
 
@@ -13,6 +14,8 @@ type WFIMCSectionProps = {
 }
 
 const WFIMCSection: FC<WFIMCSectionProps> = ({ image, wfimc_content: { about, photoCaption } }) => {
+  const { t } = useTranslation()
+
   return (
     <Container>
       <Typography variant="h1" sx={{ marginBottom: { xs: '24px', lg: '48px' } }}>
@@ -60,7 +63,7 @@ const WFIMCSection: FC<WFIMCSectionProps> = ({ image, wfimc_content: { about, ph
             component={Link}
             to={`/${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_WFIMC}`}
           >
-            Показати більше
+            {t('horowitzPage.showMore')}
           </StyledButton>
         </Box>
       </Stack>

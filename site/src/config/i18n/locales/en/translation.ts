@@ -1,4 +1,4 @@
-import { Routes } from '@/types/routes.d';
+import { Routes } from '@/types/routes.d'
 import {
   InDevelopment,
   MainPage,
@@ -6,7 +6,7 @@ import {
   Translations,
   Sponsors,
   KyivGeneva,
-} from '@/types/translation.d';
+} from '@/types/translation.d'
 
 export default {
   navigation: {
@@ -46,8 +46,7 @@ export default {
   },
   notFound: {
     [NotFound.TITLE]: 'Sorry, the page is not found.',
-    [NotFound.TEXT]:
-      'The page you are searching for, is deleted or temporary unavailable',
+    [NotFound.TEXT]: 'The page you are searching for, is deleted or temporary unavailable',
     [NotFound.BTN]: 'Back to Home Page',
   },
   inDevelopment: {
@@ -78,8 +77,7 @@ export default {
     [Sponsors.OFF_INFO_PART]: 'Official information partners',
     [Sponsors.BTN_GO_BACK]: 'Back to Home page',
   },
-  institutional_name:
-    'International Competition for Young Pianists in Memory of Vladimir Horowitz',
+  institutional_name: 'International Competition for Young Pianists in Memory of Vladimir Horowitz',
   kyivGeneva: {
     [Routes.KYIV_GENEVA_CONDITIONS]: 'Competition Rules',
     [Routes.KYIV_GENEVA_JURY]: 'The Jury',
@@ -92,4 +90,7 @@ export default {
     [Routes.KYIV_GENEVA_TIMETABLE]: 'Competition Schedule',
     [KyivGeneva.GO_KYIV_GENEVA]: 'Back to competition Horovytsia Kyiv-Geneva',
   },
-};
+  genevaMainPage: {
+    GOVERNMENT: 'Government agencies',
+  },
+}
