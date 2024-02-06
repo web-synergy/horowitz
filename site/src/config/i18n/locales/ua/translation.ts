@@ -1,5 +1,11 @@
-import { Routes } from '@/types/routes.d'
-import { InDevelopment, MainPage, NotFound, Sponsors, Translations } from '@/types/translation.d'
+import { Routes } from '@/types/routes.d';
+import {
+  InDevelopment,
+  MainPage,
+  NotFound,
+  Sponsors,
+  Translations,
+} from '@/types/translation.d';
 
 export default {
   navigation: {
@@ -39,11 +45,13 @@ export default {
   },
   notFound: {
     [NotFound.TITLE]: 'Вибачте, сторінку не знайдено',
-    [NotFound.TEXT]: 'Сторінка, яку ви шукаєте, видалена або тимчасово недоступна',
+    [NotFound.TEXT]:
+      'Сторінка, яку ви шукаєте, видалена або тимчасово недоступна',
     [NotFound.BTN]: 'На головну сторінку',
   },
   inDevelopment: {
-    [InDevelopment.MSG]: 'Вибачте, на даний момент ця сторінка знаходиться в розробці',
+    [InDevelopment.MSG]:
+      'Вибачте, на даний момент ця сторінка знаходиться в розробці',
     [InDevelopment.BTN]: 'На головну сторінку',
   },
   mainPage: {
@@ -70,7 +78,8 @@ export default {
     [Sponsors.OFF_INFO_PART]: 'Офіційні інформаційні партнери',
     [Sponsors.BTN_GO_BACK]: ' Повернутись до Головної сторінки',
   },
-  institutional_name: 'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
+  institutional_name:
+    'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
   kyivGeneva: {
     [Routes.KYIV_GENEVA_CONDITIONS]: 'Умови конкурсу',
     [Routes.KYIV_GENEVA_JURY]: 'Журі',
@@ -82,4 +91,8 @@ export default {
     [Routes.KYIV_GENEVA_ORCHESTRA]: 'Оркестр і диригент',
     [Routes.KYIV_GENEVA_TIMETABLE]: 'Регламент проведення конкурсу',
   },
-}
+  jury: {
+    title: 'Жюрі',
+    read_more: 'Читати більше',
+  },
+};
