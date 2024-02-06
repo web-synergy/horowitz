@@ -1,12 +1,12 @@
 import { Box, Container, Stack, Typography } from '@mui/material';
 import PageTemplate from '@/components/Common/PageTemplate';
 
-import { Routes } from '@/types/routes.d';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
 import LinkGoBack from '@/components/Common/LinkGoBack';
 import { KyivGeneva } from '@/types/translation.d';
 import Breadcrumbs from '@/components/Common/Breadcrumbs';
+import { Routes } from '@/types/routes.d';
+import rewardsData from '@/assets/kyiv-geneva/KyivGenevaRewards';
 interface IRewards {
   listStrong: string[];
   p: string;
@@ -19,12 +19,9 @@ const KyivGenevaRewards = () => {
     t,
     i18n: { language },
   } = useTranslation();
-  const [data, setData] = useState<IRewards[]>([]);
-
-  useEffect(() => {
-    const pathData = `../../../assets/kyiv-geneva/KyivGenevaRewards/${language}.ts`;
-    import(pathData).then(res => setData(res.default));
-  }, [language]);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
+  const data: IRewards[] = rewardsData[language];
 
   return (
     <PageTemplate>

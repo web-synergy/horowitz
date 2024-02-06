@@ -1,7 +1,6 @@
 import { Box, Container, Typography, styled } from '@mui/material';
 import PageTemplate from '@/components/Common/PageTemplate';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
 
 import { RichText } from '../Conditions/KyivGenevaConditions';
 
@@ -9,6 +8,7 @@ import { Routes } from '@/types/routes.d';
 import LinkGoBack from '@/components/Common/LinkGoBack';
 import { KyivGeneva } from '@/types/translation.d';
 import Breadcrumbs from '@/components/Common/Breadcrumbs';
+import requirementsData from '@/assets/kyiv-geneva/KyivGenevaRequirements';
 interface ITextData {
   title: string;
   p: string;
@@ -35,12 +35,9 @@ const KyivGenevaRequirements = () => {
     t,
     i18n: { language },
   } = useTranslation();
-  const [data, setData] = useState<IRequirements>();
-
-  useEffect(() => {
-    const pathData = `../../../assets/kyiv-geneva/KyivGenevaRequirements/${language}.ts`;
-    import(pathData).then(res => setData(res.default));
-  }, [language]);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
+  const data: IRequirements = requirementsData[language] as IRequirements;
 
   if (!data) return null;
   const { firstRound, secondRound, thirdRound, finalRound, qualifyingRound } =

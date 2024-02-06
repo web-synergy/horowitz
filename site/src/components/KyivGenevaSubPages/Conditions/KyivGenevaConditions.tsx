@@ -5,9 +5,9 @@ import { theme } from '@/theme';
 import Breadcrumbs from '@/components/Common/Breadcrumbs';
 import { Routes } from '@/types/routes.d';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
 import LinkGoBack from '@/components/Common/LinkGoBack';
 import { KyivGeneva } from '@/types/translation.d';
+import conditionsData from '@/assets/kyiv-geneva/KyivGenevaConditions';
 export interface ITextFormat {
   title: string;
   text: {
@@ -30,13 +30,9 @@ const KyivGenevaConditions = () => {
     t,
     i18n: { language },
   } = useTranslation();
-  const [data, setData] = useState<ITextFormat[]>([]);
-
-  useEffect(() => {
-    const pathData = `../../../assets/kyiv-geneva/KyivGenevaConditions/${language}.ts`;
-    import(pathData).then(res => setData(res.default));
-  }, [language]);
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
+  const data: ITextFormat[] = conditionsData[language];
   return (
     <PageTemplate>
       <Container>
