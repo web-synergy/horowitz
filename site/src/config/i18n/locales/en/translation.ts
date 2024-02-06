@@ -93,5 +93,6 @@ export default {
   jury: {
     title: 'The Jury',
     read_more: 'Read more',
+    return_jury: 'Return to the Jury',
   },
 };

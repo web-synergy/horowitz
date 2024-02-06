@@ -94,5 +94,6 @@ export default {
   jury: {
     title: 'Жюрі',
     read_more: 'Читати більше',
+    return_jury: 'Повернутись до Журі',
   },
 };

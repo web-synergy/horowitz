@@ -7,14 +7,24 @@ import ho from '@/assets/images/kyiv-geneva/jury/Ho.jpeg';
 import lane from '@/assets/images/kyiv-geneva/jury/Lane.jpeg';
 import muravska from '@/assets/images/kyiv-geneva/jury/Muravska.jpeg';
 import ye from '@/assets/images/kyiv-geneva/jury/Ye.jpeg';
+import { IJury } from '@/types/kyivGeneva';
 
-export const content = {
+interface IContent {
+  text: {
+    ua: string;
+    en: string;
+  };
+  list: IJury[];
+}
+
+export const content: IContent = {
   text: {
     ua: 'До складу журі входять музичні діячі різних національностей. У Конкурсі не можуть брати участь претенденти, які будуть або були протягом останніх 2 років учнями будь-кого зі членів журі, а також ті, хто має з кимось із них родинні стосунки. Склади журі Відбіркового туру і журі турів наживо відрізнятимуться.',
     en: 'The jury is made up of music professionals of different nationalities. Applicants who will be, or have been during the past 2 years, students of any of the jury members, as well as those who have family relations with any of them, cannot participate in the competition. The composition of the preliminary jury and the jury of the live rounds will vary.',
   },
   list: [
     {
+      id: 'kirill-karabits',
       name: {
         ua: 'Кирило Карабиць',
         en: 'Kirill Karabits',
@@ -30,6 +40,7 @@ export const content = {
       },
     },
     {
+      id: 'giuseppe-albanes',
       name: {
         ua: 'Джузеппе Альбанезе',
         en: 'Giuseppe Albanese',
@@ -41,6 +52,7 @@ export const content = {
       },
     },
     {
+      id: 'michel-béroff',
       name: {
         ua: 'Мішель Берофф',
         en: 'Michel Béroff',
@@ -52,6 +64,7 @@ export const content = {
       },
     },
     {
+      id: 'alexej-gorlatch',
       name: {
         ua: 'Олексій Горлач',
         en: 'Alexej Gorlatch',
@@ -63,6 +76,7 @@ export const content = {
       },
     },
     {
+      id: 'rico-gulda',
       name: {
         ua: 'Ріко Гульда',
         en: 'Rico Gulda',
@@ -74,6 +88,7 @@ export const content = {
       },
     },
     {
+      id: 'tisa-ho',
       name: {
         ua: 'Тіса Хо',
         en: 'Tisa Ho',
@@ -85,6 +100,7 @@ export const content = {
       },
     },
     {
+      id: 'piers-lane',
       name: {
         ua: 'Пірс Лейн',
         en: 'Piers Lane',
@@ -96,6 +112,7 @@ export const content = {
       },
     },
     {
+      id: 'maria-murawska',
       name: {
         ua: 'Марія Муравська',
         en: 'Maria Murawska',
@@ -107,6 +124,7 @@ export const content = {
       },
     },
     {
+      id: 'sisi-ye',
       name: {
         ua: 'Сісі Є',
         en: 'Sisi Ye',
