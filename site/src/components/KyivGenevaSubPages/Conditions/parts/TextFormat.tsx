@@ -1,13 +1,6 @@
 import { Box, Grid, Typography } from '@mui/material';
-import { RichText } from '../KyivGenevaConditions';
-interface ITextFormat {
-  title: string;
-  text: {
-    p?: string;
-    list?: string[];
-    h4?: string;
-  }[];
-}
+import { ITextFormat, RichText } from '../KyivGenevaConditions';
+
 export default function TextFormat({ title, text }: ITextFormat) {
   return (
     <Box sx={{ mb: { xs: '-8px', lg: '-16px' } }}>
@@ -18,9 +11,14 @@ export default function TextFormat({ title, text }: ITextFormat) {
         <Grid item lg={6}>
           {text.slice(0, text.length / 2).map((text, index) => (
             <Box key={index}>
-              <Typography component={'h4'} variant='subhead'>
-                {text.h4}
-              </Typography>
+              {text.h4 && (
+                <Typography
+                  sx={{ mb: '16px' }}
+                  component={'h4'}
+                  variant='subhead'>
+                  {text.h4}
+                </Typography>
+              )}
               <RichText variant='bodyRegular'>
                 {text.p}
                 {text.list?.map((item, index) => (

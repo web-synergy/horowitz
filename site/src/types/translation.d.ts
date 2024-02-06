@@ -41,3 +41,7 @@ export enum Sponsors {
   OFF_INFO_PART = 'official information partners',
   BTN_GO_BACK = 'go back btn',
 }
+
+export enum KyivGeneva {
+  GO_KYIV_GENEVA = 'go Kyiv Geneva page',
+}
