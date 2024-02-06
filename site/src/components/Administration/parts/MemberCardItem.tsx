@@ -13,7 +13,7 @@ const MemberCardItem = ({ member }: { member: Member }) => {
         flexDirection: { xs: "column", md: "row" },
         gap: { xs: "8px", md: "8px", lg: "16px" },
         height: { md: "144px", lg: "262px" },
-        alignItems: "center",
+        alignItems: { xs: "center", md: "flex-start" },
       }}
     >
       <WrapperImg className={member.img ? "" : "no-image"}>
@@ -37,22 +37,29 @@ const MemberCardItem = ({ member }: { member: Member }) => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
+
+          // alignItems: { xs: "center", md: "flex-start" },
+          alignItems: { xs: "center" },
           gap: { xs: "8px", md: "16px" },
-          // minWidth: "190px",
+          // width: "194px",
+          paddingTop: { md: "34px", lg: "94px" },
           maxWidth: "268px",
-          hyphens: "none",
         }}
       >
         <Typography
-          sx={{ textAlign: "center" }}
+          // sx={{ textAlign: { xs: "center", md: "left" } }}
+          sx={{ textAlign: { xs: "center" } }}
           variant="bodyRegular"
           component={"p"}
         >
           {member.name}
         </Typography>
         <Typography
-          sx={{ textAlign: "center", color: theme.palette.primary.main }}
+          sx={{
+            // textAlign: { xs: "center", md: "left" },
+            textAlign: { xs: "center" },
+            color: theme.palette.primary.main,
+          }}
           variant="bodyRegular"
           component={"p"}
         >
