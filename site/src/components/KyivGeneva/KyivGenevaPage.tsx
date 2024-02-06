@@ -1,4 +1,3 @@
-import { Container } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import PageTemplate from '../Common/PageTemplate'
 import { MainStack } from './styled'
@@ -26,7 +25,6 @@ const KyivGenevaPage = () => {
           <WFIMCSection image={WFIMC_members} wfimc_content={pageData[language].wfimc} />
           <SponsorsSection />
         </MainStack>
-        <Container></Container>
       </PageTemplate>
     )
 }

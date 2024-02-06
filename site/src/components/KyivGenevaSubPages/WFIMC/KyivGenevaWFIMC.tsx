@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import PageTemplate from '@/components/Common/PageTemplate'
 import { Caption } from '@/components/KyivGeneva/parts/styled'
 import GoBackBtn from '@/components/Sponsors/parts/GoBackBtn'
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Container, Link, Stack, Typography } from '@mui/material'
 import { FC, useEffect } from 'react'
 import { ImgBox, MainBox } from './syled'
 
@@ -59,9 +59,33 @@ const KyivGenevaWFIMCPage: FC = () => {
             </Box>
             <Box sx={{ clear: 'both' }}></Box>
 
-            <Box marginTop={6}>
-              <GoBackBtn title={t('genevaMainPage.BTN_GO_BACK')} onClick={() => navigate(-1)} />
-            </Box>
+            <Stack
+              sx={{
+                marginTop: {
+                  xs: '24px',
+                  md: '48px',
+                },
+                flexDirection: {
+                  xs: 'column',
+                  md: 'row',
+                },
+                justifyContent: 'space-between',
+                gap: '48px',
+              }}
+            >
+              <Box sx={{ order: { xs: 1, md: 0 } }}>
+                <GoBackBtn title={t('genevaMainPage.BTN_GO_BACK')} onClick={() => navigate(-1)} />
+              </Box>
+
+              <Link
+                component={RouterLink}
+                to={'https://www.wfimc.org/'}
+                target="_blank"
+                sx={{ alignSelf: 'end', color: '#0B2DA3', fontWeight: '500' }}
+              >
+                WFIMC
+              </Link>
+            </Stack>
           </MainBox>
         </Container>
       </PageTemplate>
