@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Breadcrumbs as MuiBreadcrumbs, Link, Typography } from '@mui/material';
 import SvgSpriteIcon from './SvgSpriteIcon';
+import { Link as RouterLink } from 'react-router-dom';
 
 interface HistoryItem {
   title: string;
@@ -20,35 +21,37 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({
 }) => {
   return (
     <MuiBreadcrumbs
-      aria-label="breadcrumb"
+      aria-label='breadcrumb'
       separator={
-        <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(-90deg)' }} />
+        <SvgSpriteIcon icon='arrow' sx={{ transform: 'rotate(-90deg)' }} />
       }
       sx={{
-        color: (theme) =>
+        color: theme =>
           mode === 'dark'
             ? theme.palette.neutral[50]
             : theme.palette.neutral[30],
-      }}
-    >
-      <Link color="inherit" href="/">
+      }}>
+      <Link component={RouterLink} color='inherit' to='/'>
         Головна
       </Link>
       {history &&
-        history.map((item) => (
-          <Link href={item.href} key={item.href} color="inherit">
+        history.map(item => (
+          <Link
+            component={RouterLink}
+            to={item.href}
+            key={item.href}
+            color='inherit'>
             {item.title}
           </Link>
         ))}
 
       <Typography
         sx={{
-          color: (theme) =>
+          color: theme =>
             mode === 'dark'
               ? theme.palette.common.white
               : theme.palette.common.black,
-        }}
-      >
+        }}>
         {title}
       </Typography>
     </MuiBreadcrumbs>
