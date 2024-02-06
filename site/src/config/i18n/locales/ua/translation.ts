@@ -92,5 +92,6 @@ export default {
   },
   genevaMainPage: {
     GOVERNMENT: 'Державні установи',
+    BTN_GO_BACK: 'Повернутись до Конкурс Горовиця Київ-Женева',
   },
 }

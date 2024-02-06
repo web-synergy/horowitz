@@ -1,4 +1,4 @@
-import { kyivGenevaNavigation } from '@/config/routes/navigation'
+import { kyivGenevaNavigation, navigation } from '@/config/routes/navigation'
 import { Routes } from '@/types/routes.d'
 import { Box, Button, Container, Stack } from '@mui/material'
 import { FC } from 'react'
@@ -62,8 +62,9 @@ const ButtonsSection: FC<ButtonsSectionProps> = ({ bgImage }) => {
               },
             }}
           >
-            {kyivGenevaNavigation.map(navigation => (
+            {kyivGenevaNavigation.map((navigation, i) => (
               <Button
+                key={i}
                 fullWidth
                 component={Link}
                 sx={{

@@ -92,5 +92,6 @@ export default {
   },
   genevaMainPage: {
     GOVERNMENT: 'Government agencies',
+    BTN_GO_BACK: 'Back to Horowitz Kyiv-Geneva Competition',
   },
 }
