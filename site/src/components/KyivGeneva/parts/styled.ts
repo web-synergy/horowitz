@@ -1,4 +1,14 @@
-import { Box, Button, ButtonProps, Stack, Typography, TypographyProps, styled } from '@mui/material'
+import {
+  Box,
+  BoxProps,
+  Button,
+  ButtonProps,
+  Stack,
+  Typography,
+  TypographyProps,
+  styled,
+} from '@mui/material'
+import { ImgHTMLAttributes } from 'react'
 import { LinkProps } from 'react-router-dom'
 
 export const BannerBox = styled(Box)(({ theme: { breakpoints } }) => ({
@@ -75,5 +85,45 @@ export const AboutStack = styled(Stack)(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
     maxHeight: '350px',
     rowGap: '16px',
+  },
+}))
+
+export const MainBox = styled(Box)(() => ({
+  position: 'relative',
+  '::after': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+  },
+}))
+
+export const BgImage = styled(Box)<BoxProps & ImgHTMLAttributes<string>>(() => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+}))
+
+export const ButtonsListStack = styled(Stack)(({ theme }) => ({
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  columnGap: '56px',
+  rowGap: '24px',
+  margin: '48px 0',
+  justifyContent: 'center',
+
+  [theme.breakpoints.up('md')]: {
+    margin: '115px 0 105px',
+    justifyContent: 'space-between',
+  },
+  [theme.breakpoints.up('lg')]: {
+    margin: '160px 0',
+    rowGap: '48px',
   },
 }))
