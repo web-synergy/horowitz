@@ -11,29 +11,6 @@ import {
 import { ImgHTMLAttributes } from 'react'
 import { LinkProps } from 'react-router-dom'
 
-export const BannerBox = styled(Box)(({ theme: { breakpoints } }) => ({
-  position: 'relative',
-  maxHeight: '544px',
-  overflow: 'hidden',
-  paddingBottom: 'calc(38.5% - 32px)',
-  [breakpoints.up('md')]: {
-    paddingBottom: 'calc(43.5% - 48px)',
-  },
-  [breakpoints.up('lg')]: {
-    paddingBottom: 'calc(42.5% - 48px)',
-  },
-  '::after': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    zIndex: 2,
-    backgroundColor: '#080708B2',
-  },
-}))
-
 export const Caption = styled(Typography)<TypographyProps>(
   ({ theme: { breakpoints, palette } }) => ({
     color: palette.neutral[60],
@@ -125,5 +102,20 @@ export const ButtonsListStack = styled(Stack)(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
     margin: '160px 0',
     rowGap: '48px',
+  },
+}))
+
+export const ContentStack = styled(Stack)(({ theme }) => ({
+  gap: '24px',
+  flexWrap: 'wrap',
+  [theme.breakpoints.up('lg')]: {
+    flexDirection: 'row',
+  },
+}))
+
+export const ImageBox = styled(Box)(({ theme }) => ({
+  width: '100%',
+  [theme.breakpoints.up('lg')]: {
+    width: 'calc(50% - 12px)',
   },
 }))

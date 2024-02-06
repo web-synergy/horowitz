@@ -1,9 +1,9 @@
 import { Routes } from '@/types/routes.d'
-import { Box, Container, Stack, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { Caption, StyledButton } from './styled'
+import { Caption, ContentStack, ImageBox, StyledButton } from './styled'
 
 type WFIMCSectionProps = {
   image: string
@@ -21,31 +21,11 @@ const WFIMCSection: FC<WFIMCSectionProps> = ({ image, wfimc_content: { about, ph
       <Typography variant="h1" sx={{ marginBottom: { xs: '24px', lg: '48px' } }}>
         WFIMC
       </Typography>
-      <Stack
-        sx={{
-          flexDirection: {
-            xs: 'column',
-            lg: 'row',
-          },
-          gap: '24px',
-          flexWrap: 'wrap',
-        }}
-      >
-        <Box
-          sx={{
-            width: {
-              xs: '100%',
-              lg: 'calc(50% - 12px)',
-            },
-          }}
-        >
-          <Box
-            component={'img'}
-            src={image}
-            sx={{ display: 'block', width: '100%', height: '100%' }}
-          />
+      <ContentStack>
+        <ImageBox>
+          <Box component={'img'} src={image} sx={{ width: '100%', height: '100%' }} />
           <Caption component={'p'}>{photoCaption}</Caption>
-        </Box>
+        </ImageBox>
         <Box
           position={'relative'}
           sx={{
@@ -66,7 +46,7 @@ const WFIMCSection: FC<WFIMCSectionProps> = ({ image, wfimc_content: { about, ph
             {t('horowitzPage.showMore')}
           </StyledButton>
         </Box>
-      </Stack>
+      </ContentStack>
     </Container>
   )
 }
