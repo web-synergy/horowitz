@@ -82,4 +82,7 @@ export default {
     [Routes.KYIV_GENEVA_ORCHESTRA]: 'Оркестр і диригент',
     [Routes.KYIV_GENEVA_TIMETABLE]: 'Регламент проведення конкурсу',
   },
+  genevaMainPage: {
+    GOVERNMENT: 'Державні установи',
+  },
 }

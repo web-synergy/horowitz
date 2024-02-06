@@ -1,5 +1,5 @@
 import { Routes } from '@/types/routes.d'
-import { InDevelopment, MainPage, NotFound, Translations, Sponsors } from '@/types/translation.d'
+import { InDevelopment, MainPage, NotFound, Sponsors, Translations } from '@/types/translation.d'
 
 export default {
   navigation: {
@@ -81,5 +81,8 @@ export default {
     [Routes.KYIV_GENEVA_REWARDS]: 'Prizes',
     [Routes.KYIV_GENEVA_ORCHESTRA]: 'Artists',
     [Routes.KYIV_GENEVA_TIMETABLE]: 'Competition Schedule',
+  },
+  genevaMainPage: {
+    GOVERNMENT: 'Government agencies',
   },
 }

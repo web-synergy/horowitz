@@ -13,6 +13,7 @@ import { MainStack } from './styled'
 import pageData from '@/assets/kyiv-geneva/main/zheneva_mainPage.json'
 
 import ButtonsSection from './parts/ButtonsSection'
+import SponsorsSection from './parts/SponsorsSection'
 import WFIMCSection from './parts/WFIMCSection'
 
 const KyivGenevaPage = () => {
@@ -28,6 +29,7 @@ const KyivGenevaPage = () => {
           <AboutSection content={pageData[language]} />
           <ButtonsSection bgImage={pianoImg} />
           <WFIMCSection image={WFIMC_image} wfimc_content={pageData[language].wfimc} />
+          <SponsorsSection />
         </MainStack>
         <Container>
           {/* <Box>
