@@ -19,7 +19,7 @@ export const BannerWrapper = styled(Box)<BannerWrapperProps>(
 
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
-
+    backgroundPosition: "center",
     backgroundImage: `linear-gradient(to right, rgba(8, 7, 8, 0.60), rgba(8, 7, 8, 0.60)), url(${img})`,
     [theme.breakpoints.up("md")]: {
       minHeight: "68vh",
@@ -32,18 +32,6 @@ export const BannerWrapper = styled(Box)<BannerWrapperProps>(
     },
   })
 );
-
-export const WrapperImg = styled(Box)(() => ({
-  width: "100%",
-  height: "100%",
-
-  "& img": {
-    display: "block",
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-  },
-}));
 
 export const StyledBox = styled(Box)<BoxProps>(({ theme }) => ({
   margin: "0 auto",

@@ -1,6 +1,7 @@
 import { Routes } from '@/types/routes.d';
 import {
   InDevelopment,
+  KyivGeneva,
   MainPage,
   NotFound,
   Sponsors,
@@ -90,6 +91,11 @@ export default {
     [Routes.KYIV_GENEVA_REWARDS]: 'Нагороди',
     [Routes.KYIV_GENEVA_ORCHESTRA]: 'Оркестр і диригент',
     [Routes.KYIV_GENEVA_TIMETABLE]: 'Регламент проведення конкурсу',
+    [KyivGeneva.GO_KYIV_GENEVA]: 'Повернутись до Конкурс Горовиця Київ-Женева',
+  },
+  genevaMainPage: {
+    GOVERNMENT: 'Державні установи',
+    BTN_GO_BACK: 'Повернутись до Конкурс Горовиця Київ-Женева',
   },
   jury: {
     title: 'Жюрі',

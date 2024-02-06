@@ -99,8 +99,8 @@ export default defineType({
         Rule.custom((content) => {
           let errorMassage = ''
           for (const value of content as Icontent[]) {
-            if (value.value?.length > 200) {
-              errorMassage = `В поле ${value._key?.toUpperCase()} введено ${value.value.length} символів, доступно 200`
+            if (value.value?.length > 150) {
+              errorMassage = `В поле ${value._key?.toUpperCase()} введено ${value.value.length} символів, доступно 150`
             }
             if (!value.value?.length) {
               errorMassage = `Поле ${value._key?.toUpperCase()} обовʼязкове`

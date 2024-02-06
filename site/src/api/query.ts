@@ -1,4 +1,4 @@
-import groq from 'groq'
+import groq from "groq";
 export const homeQuery = groq`*[_type == 'home'][0]{
  'quote':quote{
        'author': author[_key ==$language].value,
@@ -31,7 +31,7 @@ export const homeQuery = groq`*[_type == 'home'][0]{
       'title':title[_key ==$language].value,
       link
     },
-}`
+}`;
 
 export const settingsQuery = groq`*[_type == 'settings']{
   'logo':logo.asset->url,
@@ -47,7 +47,7 @@ export const settingsQuery = groq`*[_type == 'settings']{
   'slug':slug.current,
   'title':title[_key ==$language].value,
   }
-}`
+}`;
 
 export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
   'bannerData': {
@@ -61,7 +61,7 @@ export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
   },
   'lowerTextBlock': lowerTextBlock[_key ==$language].value,
   'literature': literature[],
-}`
+}`;
 
 export const newsQuery = groq`*[_type == 'news' && length(title[_key ==$language].value) != 0] | order( _createdAt desc
 ) [$firstEl ...$lastEl]{
@@ -73,7 +73,7 @@ export const newsQuery = groq`*[_type == 'news' && length(title[_key ==$language
    'slug':slug.current,
    'shortDescription':shortDescription[_key ==$language].value,
    'count':count(*[_type == "news" && length(title[_key ==$language].value) != 0])
-}`
+}`;
 
 export const currentNewsQuery = groq`*[_type == 'news'&& slug.current == $slug][0]{
    _id,
@@ -83,7 +83,7 @@ export const currentNewsQuery = groq`*[_type == 'news'&& slug.current == $slug][
    'title': coalesce( title[_key ==$language][0].value, title[][0].value), 
    'slug':slug.current,
    'description': coalesce(description[_key ==$language][0].value, description[][0].value)
-}`
+}`;
 
 export const partners = groq`*[_type == 'partners'][0]{
   organizers,
@@ -93,4 +93,12 @@ export const partners = groq`*[_type == 'partners'][0]{
   mainInfoPartners,
   officialInfoPartners,
   partners,
-}`
+}`;
+
+export const administrationQuery = groq`*[_type == 'administration'][0] {
+  'members':members[]{
+    'name': name[_key ==$language][0].value,
+    'role': role[_key ==$language][0].value,
+    img
+    },
+}`;
