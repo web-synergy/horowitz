@@ -1,4 +1,4 @@
-import { Box, Button, ButtonProps, Typography, TypographyProps, styled } from '@mui/material'
+import { Box, Button, ButtonProps, Stack, Typography, TypographyProps, styled } from '@mui/material'
 import { LinkProps } from 'react-router-dom'
 
 export const BannerBox = styled(Box)(({ theme: { breakpoints } }) => ({
@@ -54,5 +54,26 @@ export const StyledButton = styled(Button)<ButtonProps & LinkProps>(({ theme }) 
     position: 'absolute',
     bottom: 0,
     right: 0,
+  },
+}))
+
+export const AboutTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
+  textAlign: 'center',
+  textTransform: 'capitalize',
+  marginBottom: '24px',
+
+  [theme.breakpoints.up('lg')]: {
+    marginBottom: '48px',
+  },
+}))
+
+export const AboutStack = styled(Stack)(({ theme }) => ({
+  maxHeight: '100%',
+  flexWrap: 'wrap',
+  columnGap: '24px',
+  rowGap: '24px',
+  [theme.breakpoints.up('lg')]: {
+    maxHeight: '350px',
+    rowGap: '16px',
   },
 }))
