@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
-import banner from '@/assets/images/kyiv-geneva/banner-en.jpg';
+import banner from '@/assets/images/kyiv-geneva/banner-full.jpeg';
 // import Breadcrumbs from '@/components/Common/Breadcrumbs';
 
 import { ImageWrapper } from './styled';
@@ -19,14 +19,13 @@ const KyivGenevaLayout = () => {
         <ImageWrapper>
           <Box
             sx={{
-              objectFit: 'contain',
               position: 'absolute',
               top: 0,
               left: 0,
               right: 0,
               bottom: 0,
               backgroundImage: `url(${banner})`,
-              backgroundSize: 'contain',
+              backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
 
