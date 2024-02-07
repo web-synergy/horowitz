@@ -18,7 +18,9 @@ export const Wrapper = styled(Box)(({ theme }) => ({
       marginLeft: 24,
       marginBottom: 8,
       width: '50%',
-      maxHeight: 'unset',
+      maxHeight: '50vh',
+      objectFit: 'cover',
+      objectPosition: 'center top',
     },
   },
 
@@ -43,8 +45,7 @@ export const Wrapper = styled(Box)(({ theme }) => ({
       right: 0,
       width: 'calc(50% - 12px)',
       height: 500,
-
-      objectFit: 'cover',
+      maxHeight: 'unset',
       margin: 0,
     },
   },

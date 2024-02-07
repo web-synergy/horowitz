@@ -19,7 +19,7 @@ export enum Routes {
   KYIV_GENEVA_JURY = 'jury',
   KYIV_GENEVA_PARTICIPANTS = 'participants',
   KYIV_GENEVA_REQUIREMENTS = 'requirements',
-  KYIV_GENEVA_SELECTION_JURY = 'selection-jury',
+  KYIV_GENEVA_SELECTION_JURY = 'preselection-jury',
   KYIV_GENEVA_WINNERS = 'winners',
   KYIV_GENEVA_REWARDS = 'rewards',
   KYIV_GENEVA_ORCHESTRA = 'orchestra',

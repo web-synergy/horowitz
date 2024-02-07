@@ -1,12 +1,11 @@
-import { Container, Typography, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Container, Typography, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import PageTemplate from '@/components/Common/PageTemplate';
 import JuryList from '../Common/JuryList/JuryList';
-import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
-import { content } from '@/assets/kyiv-geneva/jury/content';
+import { content } from '@/assets/kyiv-geneva/KyivGenevaJury';
 import { Routes } from '@/types/routes.d';
 import { Buttons } from '@/types/translation.d';
+import LinkGoBack from '../Common/LinkGoBack';
 
 const KyivGenevaJuryList = () => {
   const {
@@ -30,18 +29,14 @@ const KyivGenevaJuryList = () => {
         >
           {language === 'ua' ? content.text.ua : content.text.en}
         </Typography>
-        <JuryList juryList={content.list} />
-        <Button
-          variant="tertiary"
-          component={Link}
-          to={`/${Routes.KYIV_GENEVA}`}
-          startIcon={
-            <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(90deg)' }} />
-          }
-          sx={{ mt: 6 }}
-        >
-          {t(`buttons.${Buttons.GO_KYIV_GENEVA}`)}
-        </Button>
+        <Box sx={{ mb: 6 }}>
+          <JuryList juryList={content.list} />
+        </Box>
+
+        <LinkGoBack
+          href={`/${Routes.KYIV_GENEVA}`}
+          title={t(`buttons.${Buttons.GO_KYIV_GENEVA}`)}
+        />
       </Container>
     </PageTemplate>
   );
