@@ -6,7 +6,7 @@ import { parseAndFormatDate } from '@/utils/helpers';
 
 import {
   Box,
-  Link,
+  Button,
   ListItem,
   Stack,
   Typography,
@@ -14,7 +14,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { t } from 'i18next';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface INewsListItem {
   img: IImage;
@@ -74,13 +74,18 @@ const NewsListItem = ({
                 {shortDescription}
               </Typography>
               <Box>
-                <Link component={RouterLink} to={slug}>
+                <Button
+                  component={Link}
+                  to={slug}
+                  endIcon={
+                    <SvgSpriteIcon
+                      icon='arrow'
+                      sx={{ transform: 'rotate(270deg)' }}
+                    />
+                  }
+                  variant='tertiary'>
                   {t(`news.readMore`)}
-                  <SvgSpriteIcon
-                    sx={{ transform: 'rotate(270deg)' }}
-                    icon='arrow'
-                  />
-                </Link>
+                </Button>
               </Box>
             </Box>
           </Box>

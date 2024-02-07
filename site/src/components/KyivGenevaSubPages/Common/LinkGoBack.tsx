@@ -1,24 +1,21 @@
-import { Link, Stack } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Box, Button } from '@mui/material';
+
 import SvgSpriteIcon from '../../Common/SvgSpriteIcon';
+import { Link } from 'react-router-dom';
 const LinkGoBack = ({ title, href }: { title: string; href: string }) => {
   return (
-    <Stack>
-      <Link
-        component={RouterLink}
+    <Box>
+      <Button
+        variant='tertiary'
+        component={Link}
         to={href}
-        sx={{
-          color: theme => theme.palette.neutral[60],
-          fontSize: { xs: '12px', md: '16px' },
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          flex: 1,
-        }}>
-        <SvgSpriteIcon sx={{ transform: 'rotate(90deg)' }} icon='arrow' />
+        sx={{ fontSize: { xs: '12px', md: '16px' } }}
+        startIcon={
+          <SvgSpriteIcon icon='arrow' sx={{ transform: 'rotate(-270deg)' }} />
+        }>
         {title}
-      </Link>
-    </Stack>
+      </Button>
+    </Box>
   );
 };
 export default LinkGoBack;
