@@ -3,6 +3,7 @@ import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage } from '@/types/newsTypes';
 import { parseAndFormatDate } from '@/utils/helpers';
+import { Buttons } from '@/types/translation.d';
 
 import {
   Box,
@@ -58,19 +59,22 @@ const NewsListItem = ({
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '16px',
-              }}>
+              }}
+            >
               <Typography
-                sx={{ color: theme => theme.palette.neutral[50] }}
-                variant='bodyLight'>
+                sx={{ color: (theme) => theme.palette.neutral[50] }}
+                variant="bodyLight"
+              >
                 {dateStart && parseAndFormatDate(dateStart)}
                 {dateEnd && ` - ${parseAndFormatDate(dateEnd)}`}
               </Typography>
-              <Typography variant='subhead'>{title}</Typography>
+              <Typography variant="subhead">{title}</Typography>
               <Typography
                 sx={{
-                  color: theme => theme.palette.neutral[40],
+                  color: (theme) => theme.palette.neutral[40],
                 }}
-                variant='bodyRegular'>
+                variant="bodyRegular"
+              >
                 {shortDescription}
               </Typography>
               <Box>
@@ -79,12 +83,13 @@ const NewsListItem = ({
                   to={slug}
                   endIcon={
                     <SvgSpriteIcon
-                      icon='arrow'
+                      icon="arrow"
                       sx={{ transform: 'rotate(270deg)' }}
                     />
                   }
-                  variant='tertiary'>
-                  {t(`news.readMore`)}
+                  variant="tertiary"
+                >
+                  {t(`buttons.${Buttons.READ_MORE}`)}
                 </Button>
               </Box>
             </Box>

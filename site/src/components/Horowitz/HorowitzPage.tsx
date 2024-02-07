@@ -1,6 +1,6 @@
-import { FC, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Routes } from "@/types/routes.d";
+import { FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Routes } from '@/types/routes.d';
 import {
   Box,
   Button,
@@ -8,20 +8,21 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-} from "@mui/material";
-import Loader from "../Common/Loader";
-import PageTemplate from "../Common/PageTemplate";
+} from '@mui/material';
+import Loader from '../Common/Loader';
+import PageTemplate from '../Common/PageTemplate';
 
-import { useHorowitzStore } from "@/store/horowitzStore";
-import { swapElementsInArray } from "@/utils/swapElements";
-import BannerComponent from "./parts/BannerComponent";
-import LiteratureSection from "./parts/LiteratureSection";
-import QuoteSection from "./parts/QuoteSection";
-import TextBlockSection from "./parts/TextBlockSection.tsx";
+import { useHorowitzStore } from '@/store/horowitzStore';
+import { swapElementsInArray } from '@/utils/swapElements';
+import BannerComponent from './parts/BannerComponent';
+import LiteratureSection from './parts/LiteratureSection';
+import QuoteSection from './parts/QuoteSection';
+import TextBlockSection from './parts/TextBlockSection.tsx';
+import { Buttons } from '@/types/translation.d';
 
 const HorowitzPage: FC = () => {
   const theme = useTheme();
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
 
   const {
     i18n: { language },
@@ -80,16 +81,16 @@ const HorowitzPage: FC = () => {
       <Container>
         <Box
           sx={{
-            paddingTop: { xs: "48px", md: "54px", lg: "80px" },
-            paddingBottom: { xs: "24px", lg: "80px" },
+            paddingTop: { xs: '48px', md: '54px', lg: '80px' },
+            paddingBottom: { xs: '24px', lg: '80px' },
           }}
         >
           <Typography
             variant="h1"
             sx={{
-              textTransform: "uppercase",
-              marginBottom: "24px",
-              textAlign: { xs: "left", md: "center" },
+              textTransform: 'uppercase',
+              marginBottom: '24px',
+              textAlign: { xs: 'left', md: 'center' },
             }}
           >
             {t(`navigation.${Routes.HOROWITZ}`)}
@@ -104,7 +105,7 @@ const HorowitzPage: FC = () => {
         {lowerTextBlock && (
           <Box
             sx={{
-              padding: { xs: "24px 0px", lg: "80px 0px" },
+              padding: { xs: '24px 0px', lg: '80px 0px' },
             }}
           >
             {upperTextBlock && (
@@ -113,7 +114,7 @@ const HorowitzPage: FC = () => {
           </Box>
         )}
 
-        <Typography variant="subhead" sx={{ textAlign: "left" }} gutterBottom>
+        <Typography variant="subhead" sx={{ textAlign: 'left' }} gutterBottom>
           {t(`horowitzPage.literature`)}:
         </Typography>
         {literature && (
@@ -124,19 +125,19 @@ const HorowitzPage: FC = () => {
         )}
         <Box
           sx={{
-            width: "100%",
-            textAlign: "center",
-            marginTop: { xs: "48px", md: "54px", lg: "80px" },
-            marginBottom: { xs: "72px", md: "96px", lg: "118px" },
+            width: '100%',
+            textAlign: 'center',
+            marginTop: { xs: '48px', md: '54px', lg: '80px' },
+            marginBottom: { xs: '72px', md: '96px', lg: '118px' },
           }}
         >
           <Button
-            sx={{ width: "288px" }}
+            sx={{ width: '288px' }}
             variant="transparent"
             onClick={handleShowMore}
             disabled={isAllLiteratureVisible}
           >
-            {t(`horowitzPage.showMore`)}
+            {t(`buttons.${Buttons.SHOW_MORE}`)}
           </Button>
         </Box>
       </Container>

@@ -1,17 +1,17 @@
-import { kyivGenevaNavigation } from '@/config/routes/navigation'
-import { Routes } from '@/types/routes.d'
-import { Box, Button, Container } from '@mui/material'
-import { FC } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
-import { BgImage, ButtonsListStack, MainBox } from './styled'
+import { kyivGenevaNavigation } from '@/config/routes/navigation';
+import { Routes } from '@/types/routes.d';
+import { Box, Button, Container } from '@mui/material';
+import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { BgImage, ButtonsListStack, MainBox } from './styled';
 
 type ButtonsSectionProps = {
-  bgImage: string
-}
+  bgImage: string;
+};
 
 const ButtonsSection: FC<ButtonsSectionProps> = ({ bgImage }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <MainBox>
@@ -37,14 +37,14 @@ const ButtonsSection: FC<ButtonsSectionProps> = ({ bgImage }) => {
                 }}
                 to={`/${Routes.KYIV_GENEVA}/${navigation.title}`}
               >
-                {t(`kyivGeneva.${navigation.title}`)}
+                {t(`navigation.${navigation.title}`)}
               </Button>
             ))}
           </ButtonsListStack>
         </Container>
       </Box>
     </MainBox>
-  )
-}
+  );
+};
 
-export default ButtonsSection
+export default ButtonsSection;

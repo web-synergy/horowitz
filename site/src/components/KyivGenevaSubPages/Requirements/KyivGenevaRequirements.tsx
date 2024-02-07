@@ -6,7 +6,7 @@ import { RichText } from '../Conditions/KyivGenevaConditions';
 
 import { Routes } from '@/types/routes.d';
 import LinkGoBack from '@/components/KyivGenevaSubPages/Common/LinkGoBack';
-import { KyivGeneva } from '@/types/translation.d';
+import { Buttons } from '@/types/translation.d';
 import { requirementsData } from '@/assets/kyiv-geneva/KyivGenevaRequirements';
 import { useEffect } from 'react';
 
@@ -37,42 +37,44 @@ const KyivGenevaRequirements = () => {
         <Typography
           component={'h1'}
           sx={{ mb: { xs: '-24px', lg: '0px' } }}
-          variant='h1'>
-          {t(`kyivGeneva.${Routes.KYIV_GENEVA_REQUIREMENTS}`)}
+          variant="h1"
+        >
+          {t(`navigation.${Routes.KYIV_GENEVA_REQUIREMENTS}`)}
         </Typography>
         <Box sx={{ mb: { xs: '-8px', lg: '-16px' } }}>
-          <Title variant='h3'>{qualifyingRound.title}</Title>
+          <Title variant="h3">{qualifyingRound.title}</Title>
           <Box
             sx={{
               columnCount: { xs: 1, lg: 2 },
               columnGap: 3,
               mb: { xs: '-8px', lg: '-16px' },
-            }}>
-            {qualifyingRound.list?.map(item => (
-              <RichText variant='bodyRegular'>{item}</RichText>
+            }}
+          >
+            {qualifyingRound.list?.map((item) => (
+              <RichText variant="bodyRegular">{item}</RichText>
             ))}
-            <Title variant='h3'>{firstRound.title}</Title>
-            <RichText variant='bodyRegular'>{firstRound.p}</RichText>
-            {firstRound.list?.map(item => (
-              <RichText variant='bodyRegular'>{item}</RichText>
+            <Title variant="h3">{firstRound.title}</Title>
+            <RichText variant="bodyRegular">{firstRound.p}</RichText>
+            {firstRound.list?.map((item) => (
+              <RichText variant="bodyRegular">{item}</RichText>
             ))}
-            <Title variant='h3'>{secondRound.title}</Title>
-            <RichText variant='bodyRegular'>{secondRound.p}</RichText>
-            {secondRound.list?.map(item => (
-              <RichText variant='bodyRegular'>{item}</RichText>
+            <Title variant="h3">{secondRound.title}</Title>
+            <RichText variant="bodyRegular">{secondRound.p}</RichText>
+            {secondRound.list?.map((item) => (
+              <RichText variant="bodyRegular">{item}</RichText>
             ))}
-            <Title variant='h3'>{thirdRound.title}</Title>
-            <RichText variant='bodyRegular'>{thirdRound.p}</RichText>
-            <Title variant='h3'>{finalRound.title}</Title>
-            <RichText variant='bodyRegular'>{finalRound.p}</RichText>
-            <RichText sx={{ mt: '16px' }} variant='bodyRegular'>
+            <Title variant="h3">{thirdRound.title}</Title>
+            <RichText variant="bodyRegular">{thirdRound.p}</RichText>
+            <Title variant="h3">{finalRound.title}</Title>
+            <RichText variant="bodyRegular">{finalRound.p}</RichText>
+            <RichText sx={{ mt: '16px' }} variant="bodyRegular">
               {finalRound.p2}
             </RichText>
           </Box>
         </Box>
         <Box sx={{ mt: { xs: '48px', lg: '62px' } }}>
           <LinkGoBack
-            title={t(`kyivGeneva.${KyivGeneva.GO_KYIV_GENEVA}`)}
+            title={t(`buttons.${Buttons.GO_KYIV_GENEVA}`)}
             href={`/${Routes.KYIV_GENEVA}`}
           />
         </Box>

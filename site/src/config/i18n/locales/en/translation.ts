@@ -1,12 +1,15 @@
-import { Routes } from '@/types/routes.d'
+import { Routes } from '@/types/routes.d';
 import {
   InDevelopment,
   MainPage,
   NotFound,
-  Translations,
+  Header,
   Sponsors,
   KyivGeneva,
-} from '@/types/translation.d'
+  Contacts,
+  Buttons,
+  WarState,
+} from '@/types/translation.d';
 
 export default {
   navigation: {
@@ -24,48 +27,58 @@ export default {
     [Routes.NEWS]: 'News',
     [Routes.CONTACTS]: 'Contacts',
     [Routes.ARCHIVE]: 'Website-archive',
+    [Routes.KYIV_GENEVA_CONDITIONS]: 'Competition Rules',
+    [Routes.KYIV_GENEVA_JURY]: 'The Jury',
+    [Routes.KYIV_GENEVA_PARTICIPANTS]: 'Participants',
+    [Routes.KYIV_GENEVA_REQUIREMENTS]: 'Repertoire',
+    [Routes.KYIV_GENEVA_SELECTION_JURY]: 'Preselection Jury',
+    [Routes.KYIV_GENEVA_WINNERS]: 'Prizewinners',
+    [Routes.KYIV_GENEVA_REWARDS]: 'Prizes',
+    [Routes.KYIV_GENEVA_ORCHESTRA]: 'Artists',
+    [Routes.KYIV_GENEVA_TIMETABLE]: 'Competition Schedule',
   },
-  [Translations.SEARCH]: 'Search',
+  buttons: {
+    [Buttons.READ_MORE]: 'Read more',
+    [Buttons.SHOW_MORE]: 'Show more',
+    [Buttons.APPLY]: 'Apply now',
+    [Buttons.SUPPORT]: 'Support us',
+    [Buttons.VIEW_ALL]: 'View all',
+    [Buttons.WATCH_ONLINE]: 'Watch online',
+    [Buttons.WATCH_ONLINE_XS]: 'Watch online',
+    [Buttons.GO_HOME]: 'Back to Home Page',
+    [Buttons.GO_BACK_HOME]: 'Back to Home page',
+    [Buttons.GO_NEWS]: 'Back to News page',
+    [Buttons.GO_KYIV_GENEVA]: 'Back to Main Page Kyiv Geneva Competition',
+    [Buttons.GO_KG_JURY]: 'Back to Jury',
+    [Buttons.GO_KG_SEL_JURY]: 'Back to Selection Jury',
+  },
+  [Header.SEARCH]: 'Search',
   contacts: {
-    address: 'Address',
-    phone: 'Phone',
-    pressCenter: 'Press-center',
+    [Contacts.ADDRESS]: 'Address',
+    [Contacts.PHONE]: 'Phone',
+    [Contacts.PRESS_CENTER]: 'Press-center',
   },
-  news: {
-    goBack: 'Back to news',
-    readMore: 'Read more',
-    showMore: 'Show more',
-  },
+
   horowitzPage: {
     literature: 'Literature',
-    showMore: 'Show more',
   },
-  warStatePlaceholder: {
-    message: 'Paused due to the war in Ukraine',
-    backToHomeBtn: 'Back to Home Page',
+  warState: {
+    [WarState.TEXT]: 'Paused due to the war in Ukraine',
   },
   notFound: {
     [NotFound.TITLE]: 'Sorry, the page is not found.',
     [NotFound.TEXT]:
       'The page you are searching for, is deleted or temporary unavailable',
-    [NotFound.BTN]: 'Back to Home Page',
   },
   inDevelopment: {
     [InDevelopment.MSG]: 'Sorry, the page is in development.',
-    [InDevelopment.BTN]: 'Back to Home Page',
   },
   mainPage: {
-    [MainPage.BTN_APL]: 'Application form',
-    [MainPage.BTN_SUPP]: 'Support the project',
-    [MainPage.BTN_VIEW]: 'View all',
-    [MainPage.BTN_READ]: 'Read more',
     [MainPage.NEWS]: 'News',
     [MainPage.COMP_EVENTS]: 'Competition events',
     [MainPage.WATCH_ONLINE]: 'Watch online',
-    [MainPage.WATCH_ONLINE_XS]: 'Watch online',
     [MainPage.ORGANIZERS]: 'Competition organizers',
     [MainPage.FRIENDS]: 'Partners and friends',
-    [MainPage.BTN_SHOW]: 'View all',
   },
   sponsorsPage: {
     [Sponsors.MAIN_TITLE]: 'Partners and friends',
@@ -76,29 +89,10 @@ export default {
     [Sponsors.PARTNERS]: 'Partners',
     [Sponsors.MAIN_INFO_PART]: 'Main information partners',
     [Sponsors.OFF_INFO_PART]: 'Official information partners',
-    [Sponsors.BTN_GO_BACK]: 'Back to Home page',
   },
   institutional_name:
     'International Competition for Young Pianists in Memory of Vladimir Horowitz',
   kyivGeneva: {
-    [Routes.KYIV_GENEVA_CONDITIONS]: 'Competition Rules',
-    [Routes.KYIV_GENEVA_JURY]: 'The Jury',
-    [Routes.KYIV_GENEVA_PARTICIPANTS]: 'Participants',
-    [Routes.KYIV_GENEVA_REQUIREMENTS]: 'Repertoire',
-    [Routes.KYIV_GENEVA_SELECTION_JURY]: 'Preselection Jury',
-    [Routes.KYIV_GENEVA_WINNERS]: 'Prizewinners',
-    [Routes.KYIV_GENEVA_REWARDS]: 'Prizes',
-    [Routes.KYIV_GENEVA_ORCHESTRA]: 'Artists',
-    [Routes.KYIV_GENEVA_TIMETABLE]: 'Competition Schedule',
-    [KyivGeneva.GO_KYIV_GENEVA]: 'Back to competition Horovytsia Kyiv-Geneva',
-  },
-  genevaMainPage: {
-    GOVERNMENT: 'Government agencies',
-    BTN_GO_BACK: 'Back to Horowitz Kyiv-Geneva Competition',
-  },
-  jury: {
-    title: 'The Jury',
-    read_more: 'Read more',
-    return_jury: 'Return to the Jury',
+    [KyivGeneva.GOVERNMENT]: 'Government agencies',
   },
 };

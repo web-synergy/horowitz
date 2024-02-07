@@ -2,7 +2,7 @@ import PageTemplate from '../Common/PageTemplate';
 import { Container, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { NotFound } from '@/types/translation.d';
+import { NotFound, Buttons } from '@/types/translation.d';
 import { MainTitle, Wrapper } from './styled';
 
 const NotFoundPage = () => {
@@ -31,7 +31,7 @@ const NotFoundPage = () => {
           {t(`notFound.${NotFound.TEXT}`)}
         </Typography>
         <Button component={Link} to={'/'}>
-          {t(`notFound.${NotFound.BTN}`)}
+          {t(`buttons.${Buttons.GO_HOME}`)}
         </Button>
       </Container>
     </PageTemplate>

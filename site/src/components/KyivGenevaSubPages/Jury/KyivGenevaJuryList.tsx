@@ -6,6 +6,7 @@ import JuryList from '../Common/JuryList/JuryList';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import { content } from '@/assets/kyiv-geneva/jury/content';
 import { Routes } from '@/types/routes.d';
+import { Buttons } from '@/types/translation.d';
 
 const KyivGenevaJuryList = () => {
   const {
@@ -16,7 +17,7 @@ const KyivGenevaJuryList = () => {
     <PageTemplate>
       <Container sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
         <Typography variant="h1" mb={{ xs: 3, lg: 6 }}>
-          {t('jury.title')}
+          {t(`navigation.${Routes.KYIV_GENEVA_JURY}`)}
         </Typography>
         <Typography
           sx={{
@@ -39,7 +40,7 @@ const KyivGenevaJuryList = () => {
           }
           sx={{ mt: 6 }}
         >
-          text
+          {t(`buttons.${Buttons.GO_KYIV_GENEVA}`)}
         </Button>
       </Container>
     </PageTemplate>

@@ -24,6 +24,7 @@ import SvgSpriteIcon from '../Common/SvgSpriteIcon';
 import { theme } from '@/theme';
 import { parseAndFormatDate } from '@/utils/helpers';
 import PageTemplate from '../Common/PageTemplate';
+import { Buttons } from '@/types/translation.d';
 
 const NewsCurrentPage = () => {
   const { slug } = useParams();
@@ -62,7 +63,7 @@ const NewsCurrentPage = () => {
   return (
     <PageTemplate>
       <Container>
-        <Breadcrumbs title={data?.title || ''} mode='light' history={history} />
+        <Breadcrumbs title={data?.title || ''} mode="light" history={history} />
         {data && (
           <Box sx={{ my: { xs: '40px', md: '48px', lg: '56px' } }}>
             <GrowView>
@@ -80,7 +81,8 @@ const NewsCurrentPage = () => {
                     .toString()
                 }
                 alt={data.img?.alt}
-                component={'img'}></Box>
+                component={'img'}
+              ></Box>
             </GrowView>
 
             <Box sx={{ maxWidth: '930px', mx: 'auto' }}>
@@ -89,19 +91,21 @@ const NewsCurrentPage = () => {
                   mt: '54px',
                   mb: '24px',
                   display: 'block',
-                  color: theme => theme.palette.neutral[50],
+                  color: (theme) => theme.palette.neutral[50],
                 }}
-                variant='bodyLight'>
+                variant="bodyLight"
+              >
                 {data.dateStart && parseAndFormatDate(data.dateStart)}
                 {data.dateEnd && ` - ${parseAndFormatDate(data.dateEnd)}`}
               </Typography>
 
-              <Typography variant='h2'>{data.title}</Typography>
+              <Typography variant="h2">{data.title}</Typography>
               <Box
                 sx={{
                   mb: { xs: '40px', md: '48px', lg: '56px' },
                   mt: { xs: '24px', md: '32px' },
-                }}>
+                }}
+              >
                 {data.description && (
                   <PortableText
                     value={data.description}
@@ -111,16 +115,17 @@ const NewsCurrentPage = () => {
               </Box>
 
               <Button
-                variant='tertiary'
+                variant="tertiary"
                 onClick={() => navigate(-1)}
                 startIcon={
                   <SvgSpriteIcon
-                    icon='arrow'
+                    icon="arrow"
                     sx={{ transform: 'rotate(90deg)' }}
                   />
                 }
-                sx={{ mt: 6 }}>
-                {t(`news.readMore`)}
+                sx={{ mt: 6 }}
+              >
+                {t(`buttons.${Buttons.READ_MORE}`)}
               </Button>
             </Box>
           </Box>
