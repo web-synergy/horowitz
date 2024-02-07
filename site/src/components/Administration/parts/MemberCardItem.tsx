@@ -8,6 +8,7 @@ const MemberCardItem = ({ member }: { member: Member }) => {
   const theme = useTheme();
   return (
     <Box
+      component={"li"}
       sx={{
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
@@ -37,13 +38,9 @@ const MemberCardItem = ({ member }: { member: Member }) => {
         sx={{
           display: "flex",
           flexDirection: "column",
-
-          // alignItems: { xs: "center", md: "flex-start" },
-          alignItems: { xs: "center" },
-          gap: { xs: "8px", md: "16px" },
-          // width: "194px",
+          alignItems: "center",
+          gap: { xs: "8px", lg: "16px" },
           paddingTop: { md: "34px", lg: "94px" },
-          maxWidth: "268px",
         }}
       >
         <TextBlock>{member.name}</TextBlock>

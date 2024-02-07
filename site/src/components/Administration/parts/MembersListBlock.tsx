@@ -8,9 +8,8 @@ const MembersListBlock = ({ members }: { members: Member[] }) => {
       component={"ul"}
       sx={{
         display: "flex",
-        flexDirection: { xs: "column" },
+        flexDirection: "column",
         gap: "48px",
-        maxWidth: { md: "548px" },
         margin: 0,
         padding: 0,
       }}
