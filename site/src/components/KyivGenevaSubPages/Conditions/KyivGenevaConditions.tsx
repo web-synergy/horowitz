@@ -29,23 +29,21 @@ const KyivGenevaConditions = () => {
   const data = conditionsData[language];
   return (
     <PageTemplate>
-      <Container>
-        <Box sx={{ my: { xs: '48px', lg: '120px' } }}>
-          <Typography
-            sx={{ mb: { xs: '-24px', lg: '0px' } }}
-            component={'h1'}
-            variant='h1'>
-            {t(`kyivGeneva.${Routes.KYIV_GENEVA_CONDITIONS}`)}
-          </Typography>
-          {data.map((item, index) => (
-            <TextFormat key={index} title={item.title} text={item.text} />
-          ))}
-          <Box sx={{ mt: '48px' }}>
-            <LinkGoBack
-              title={t(`kyivGeneva.${KyivGeneva.GO_KYIV_GENEVA}`)}
-              href={`/${Routes.KYIV_GENEVA}`}
-            />
-          </Box>
+      <Container sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+        <Typography
+          sx={{ mb: { xs: '-24px', lg: '0px' } }}
+          component={'h1'}
+          variant='h1'>
+          {t(`kyivGeneva.${Routes.KYIV_GENEVA_CONDITIONS}`)}
+        </Typography>
+        {data.map((item, index) => (
+          <TextFormat key={index} title={item.title} text={item.text} />
+        ))}
+        <Box sx={{ mt: '48px' }}>
+          <LinkGoBack
+            title={t(`kyivGeneva.${KyivGeneva.GO_KYIV_GENEVA}`)}
+            href={`/${Routes.KYIV_GENEVA}`}
+          />
         </Box>
       </Container>
     </PageTemplate>

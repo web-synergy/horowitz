@@ -30,55 +30,53 @@ const KyivGenevaOrchestra = () => {
 
   return (
     <PageTemplate>
-      <Container>
-        <Box sx={{ my: { xs: '48px', lg: '120px' } }}>
-          <Typography
-            sx={{
-              mb: { xs: '24px', lg: '48px' },
-            }}
-            component={'h1'}
-            variant='h1'>
-            {t(`kyivGeneva.${Routes.KYIV_GENEVA_ORCHESTRA}`)}
-          </Typography>
+      <Container sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+        <Typography
+          sx={{
+            mb: { xs: '24px', lg: '48px' },
+          }}
+          component={'h1'}
+          variant='h1'>
+          {t(`kyivGeneva.${Routes.KYIV_GENEVA_ORCHESTRA}`)}
+        </Typography>
 
-          {data.map((item, index) => (
-            <Box key={index}>
-              <Typography
-                sx={{ mb: { xs: '24px', lg: '48px' } }}
-                component={'h3'}
-                variant='h3'>
-                {item.title}
-              </Typography>
-              <Box
-                sx={{
-                  columnCount: { lg: 2 },
-                  columnGap: { lg: 3 },
-                  mb: { xs: '24px', lg: '48px' },
-                }}>
-                {item.text.map((item, index) => (
-                  <RichText key={index}>{item}</RichText>
-                ))}
-              </Box>
-              <Box sx={{ mb: { xs: '24px', lg: '48px' } }}>
-                <Box
-                  sx={{ width: '100%', maxHeight: '681px' }}
-                  component={'img'}
-                  src={item.img.src}
-                  alt={item.img.title}
-                />
-                <Typography
-                  sx={{ color: theme => theme.palette.neutral[60] }}
-                  variant='smallText'>
-                  {item.img.title}
-                </Typography>
-              </Box>
+        {data.map((item, index) => (
+          <Box key={index}>
+            <Typography
+              sx={{ mb: { xs: '24px', lg: '48px' } }}
+              component={'h3'}
+              variant='h3'>
+              {item.title}
+            </Typography>
+            <Box
+              sx={{
+                columnCount: { lg: 2 },
+                columnGap: { lg: 3 },
+                mb: { xs: '24px', lg: '48px' },
+              }}>
+              {item.text.map((item, index) => (
+                <RichText key={index}>{item}</RichText>
+              ))}
             </Box>
-          ))}
-          <LinkGoBack
-            title={t(`kyivGeneva.${KyivGeneva.GO_KYIV_GENEVA}`)}
-            href={`/${Routes.KYIV_GENEVA}`}
-          />
-        </Box>
+            <Box sx={{ mb: { xs: '24px', lg: '48px' } }}>
+              <Box
+                sx={{ width: '100%', maxHeight: '681px' }}
+                component={'img'}
+                src={item.img.src}
+                alt={item.img.title}
+              />
+              <Typography
+                sx={{ color: theme => theme.palette.neutral[60] }}
+                variant='smallText'>
+                {item.img.title}
+              </Typography>
+            </Box>
+          </Box>
+        ))}
+        <LinkGoBack
+          title={t(`kyivGeneva.${KyivGeneva.GO_KYIV_GENEVA}`)}
+          href={`/${Routes.KYIV_GENEVA}`}
+        />
       </Container>
     </PageTemplate>
   );
