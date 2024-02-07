@@ -1,50 +1,26 @@
 import { Box, Container, Stack, Typography } from '@mui/material';
-import PageTemplate from '@/components/Common/PageTemplate';
-
 import { useTranslation } from 'react-i18next';
+
+import PageTemplate from '@/components/Common/PageTemplate';
 import LinkGoBack from '@/components/Common/LinkGoBack';
 import { KyivGeneva } from '@/types/translation.d';
-import Breadcrumbs from '@/components/Common/Breadcrumbs';
 import { Routes } from '@/types/routes.d';
-import rewardsData from '@/assets/kyiv-geneva/KyivGenevaRewards';
-interface IRewards {
-  listStrong: string[];
-  p: string;
-  title: string;
-  list: string[];
-  h3: string;
-}
+import { rewardsData } from '@/assets/kyiv-geneva/KyivGenevaRewards';
+import { useEffect } from 'react';
 const KyivGenevaRewards = () => {
   const {
     t,
     i18n: { language },
   } = useTranslation();
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-ignore
-  const data: IRewards[] = rewardsData[language];
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
+  }, []);
+  const data = rewardsData[language];
 
   return (
     <PageTemplate>
       <Container>
-        <Box
-          sx={{
-            position: 'absolute',
-            top: { xs: '60px', md: '80px', lg: '100px' },
-            left: { xs: '16px', md: '40px', lg: '80px' },
-            maxWidth: '100%',
-            zIndex: 10,
-          }}>
-          <Breadcrumbs
-            history={[
-              {
-                title: t(`navigation.${Routes.KYIV_GENEVA}`),
-                href: `/${Routes.KYIV_GENEVA}`,
-              },
-            ]}
-            title={t(`kyivGeneva.${Routes.KYIV_GENEVA_REWARDS}`)}
-            mode='dark'
-          />
-        </Box>
         <Box sx={{ my: { xs: '48px', lg: '120px' } }}>
           <Typography
             sx={{ mb: { xs: '24px', lg: '48px' } }}

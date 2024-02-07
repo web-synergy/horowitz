@@ -1,7 +1,8 @@
 import { Box, Grid, Typography } from '@mui/material';
-import { ITextFormat, RichText } from '../KyivGenevaConditions';
+import { RichText } from '../KyivGenevaConditions';
+import { IConditionsData } from '@/types/kyivGenevaDataTypes';
 
-export default function TextFormat({ title, text }: ITextFormat) {
+export default function TextFormat({ title, text }: IConditionsData) {
   return (
     <Box sx={{ mb: { xs: '-8px', lg: '-16px' } }}>
       <Typography sx={{ mt: '48px', mb: '24px' }} component={'h3'} variant='h3'>

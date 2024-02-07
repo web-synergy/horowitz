@@ -7,22 +7,8 @@ import { RichText } from '../Conditions/KyivGenevaConditions';
 import { Routes } from '@/types/routes.d';
 import LinkGoBack from '@/components/Common/LinkGoBack';
 import { KyivGeneva } from '@/types/translation.d';
-import Breadcrumbs from '@/components/Common/Breadcrumbs';
-import requirementsData from '@/assets/kyiv-geneva/KyivGenevaRequirements';
-interface ITextData {
-  title: string;
-  p: string;
-  p2?: string;
-  list?: string[];
-  h4?: string;
-}
-interface IRequirements {
-  firstRound: ITextData;
-  secondRound: ITextData;
-  thirdRound: ITextData;
-  finalRound: ITextData;
-  qualifyingRound: ITextData;
-}
+import { requirementsData } from '@/assets/kyiv-geneva/KyivGenevaRequirements';
+import { useEffect } from 'react';
 
 const Title = styled(Typography)(() => ({
   display: 'block',
@@ -35,55 +21,19 @@ const KyivGenevaRequirements = () => {
     t,
     i18n: { language },
   } = useTranslation();
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-ignore
-  const data: IRequirements = requirementsData[language] as IRequirements;
 
-  if (!data) return null;
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
+  }, []);
+
+  const data = requirementsData[language];
+
   const { firstRound, secondRound, thirdRound, finalRound, qualifyingRound } =
     data;
 
   return (
     <PageTemplate>
       <Container>
-        <Box
-          sx={{
-            position: 'absolute',
-            top: { xs: '60px', md: '80px', lg: '100px' },
-            left: { xs: '16px', md: '40px', lg: '80px' },
-            maxWidth: '100%',
-            zIndex: 10,
-          }}>
-          <Breadcrumbs
-            history={[
-              {
-                title: t(`navigation.${Routes.KYIV_GENEVA}`),
-                href: `/${Routes.KYIV_GENEVA}`,
-              },
-            ]}
-            title={t(`kyivGeneva.${Routes.KYIV_GENEVA_REQUIREMENTS}`)}
-            mode='dark'
-          />
-        </Box>
-        <Box
-          sx={{
-            position: 'absolute',
-            top: { xs: '60px', md: '80px', lg: '100px' },
-            left: { xs: '16px', md: '40px', lg: '80px' },
-            maxWidth: '100%',
-            zIndex: 10,
-          }}>
-          <Breadcrumbs
-            history={[
-              {
-                title: t(`navigation.${Routes.KYIV_GENEVA}`),
-                href: `/${Routes.KYIV_GENEVA}`,
-              },
-            ]}
-            title={t(`kyivGeneva.${Routes.KYIV_GENEVA_CONDITIONS}`)}
-            mode='dark'
-          />
-        </Box>
         <Box sx={{ my: { xs: '48px', lg: '120px' } }}>
           <Typography
             component={'h1'}
