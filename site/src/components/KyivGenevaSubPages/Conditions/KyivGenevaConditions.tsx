@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { Buttons } from '@/types/translation.d';
 import LinkGoBack from '@/components/KyivGenevaSubPages/Common/LinkGoBack';
 import { conditionsData } from '@/assets/kyiv-geneva/KyivGenevaConditions';
-import { useEffect } from 'react';
 
 export const RichText = styled(Typography)(() => ({
   display: 'block',
@@ -23,10 +22,6 @@ const KyivGenevaConditions = () => {
     t,
     i18n: { language },
   } = useTranslation();
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0 });
-  }, []);
-
   const data = conditionsData[language];
   return (
     <PageTemplate>
@@ -34,8 +29,7 @@ const KyivGenevaConditions = () => {
         <Typography
           sx={{ mb: { xs: '-24px', lg: '0px' } }}
           component={'h1'}
-          variant="h1"
-        >
+          variant='h1'>
           {t(`navigation.${Routes.KYIV_GENEVA_CONDITIONS}`)}
         </Typography>
         {data.map((item, index) => (

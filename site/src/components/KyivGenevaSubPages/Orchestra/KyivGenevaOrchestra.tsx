@@ -6,7 +6,6 @@ import { orchestraData } from '@/assets/kyiv-geneva/KyivGenevaOrchestra';
 import { theme } from '@/theme';
 import LinkGoBack from '@/components/KyivGenevaSubPages/Common/LinkGoBack';
 import { Buttons } from '@/types/translation.d';
-import { useEffect } from 'react';
 
 const RichText = styled(Typography)(() => ({
   display: 'block',
@@ -23,9 +22,6 @@ const KyivGenevaOrchestra = () => {
     i18n: { language },
   } = useTranslation();
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0 });
-  }, []);
   const data = orchestraData[language];
 
   return (
@@ -36,8 +32,7 @@ const KyivGenevaOrchestra = () => {
             mb: { xs: '24px', lg: '48px' },
           }}
           component={'h1'}
-          variant="h1"
-        >
+          variant='h1'>
           {t(`navigation.${Routes.KYIV_GENEVA_ORCHESTRA}`)}
         </Typography>
 
@@ -46,8 +41,7 @@ const KyivGenevaOrchestra = () => {
             <Typography
               sx={{ mb: { xs: '24px', lg: '48px' } }}
               component={'h3'}
-              variant="h3"
-            >
+              variant='h3'>
               {item.title}
             </Typography>
             <Box
@@ -55,8 +49,7 @@ const KyivGenevaOrchestra = () => {
                 columnCount: { lg: 2 },
                 columnGap: { lg: 3 },
                 mb: { xs: '24px', lg: '48px' },
-              }}
-            >
+              }}>
               {item.text.map((item, index) => (
                 <RichText key={index}>{item}</RichText>
               ))}
@@ -69,9 +62,8 @@ const KyivGenevaOrchestra = () => {
                 alt={item.img.title}
               />
               <Typography
-                sx={{ color: (theme) => theme.palette.neutral[60] }}
-                variant="smallText"
-              >
+                sx={{ color: theme => theme.palette.neutral[60] }}
+                variant='smallText'>
                 {item.img.title}
               </Typography>
             </Box>
