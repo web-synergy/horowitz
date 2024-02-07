@@ -6,7 +6,8 @@ import KyivGenevaParticipants from '@/components/KyivGenevaSubPages/Participants
 import KyivGenevaRegulation from '@/components/KyivGenevaSubPages/Regulation/KyivGenevaRegulation';
 import KyivGenevaRequirements from '@/components/KyivGenevaSubPages/Requirements/KyivGenevaRequirements';
 import KyivGenevaRewards from '@/components/KyivGenevaSubPages/Rewards/KyivGenevaRewards';
-import KyivGenevaSelectionJury from '@/components/KyivGenevaSubPages/SelectionJury/KyivGenevaSelectionJury';
+import KyivGenevaPreselectionJury from '@/components/KyivGenevaSubPages/PreselectionJury/KyivGenevaPreselectionJury';
+import KyivGenevaPreselectionJuryList from '@/components/KyivGenevaSubPages/PreselectionJury/KyivGenevaPreselectionJuryList';
 import KyivGenevaWinners from '@/components/KyivGenevaSubPages/Winners/KyivGenevaWinners';
 import KyivGenevaSponsorsPage from '@/components/KyivGenevaSubPages/Sponsors/KyivGenevaSponsors';
 import KyivGenevaWFIMCPage from '@/components/KyivGenevaSubPages/WFIMC/KyivGenevaWFIMC';
@@ -102,7 +103,12 @@ const routes = createBrowserRouter([
           },
           {
             path: Routes.KYIV_GENEVA_SELECTION_JURY,
-            element: <KyivGenevaSelectionJury />,
+            element: <KyivGenevaPreselectionJuryList />,
+          },
+
+          {
+            path: `${Routes.KYIV_GENEVA_SELECTION_JURY}/:id`,
+            element: <KyivGenevaPreselectionJury />,
           },
 
           {
