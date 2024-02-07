@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Stack } from '@mui/material';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -16,6 +16,7 @@ const SharedLayout = () => {
     i18n: { language },
   } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
   const [loader, setLoader] = useState(false);
   const langParam = searchParams.get(lang);
   const draftMod = searchParams.get(draft);
@@ -24,6 +25,10 @@ const SharedLayout = () => {
   const [data] = useLiveQuery(null, settingsQuery, {
     language,
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (data) {

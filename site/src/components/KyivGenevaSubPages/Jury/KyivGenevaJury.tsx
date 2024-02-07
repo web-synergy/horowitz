@@ -25,6 +25,7 @@ const KyivGenevaJury = () => {
           variant="tertiary"
           component={Link}
           to={`/${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_JURY}`}
+          reloadDocument={true}
           startIcon={
             <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(90deg)' }} />
           }
