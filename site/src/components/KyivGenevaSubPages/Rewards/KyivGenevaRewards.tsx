@@ -2,7 +2,7 @@ import { Box, Container, Stack, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 import PageTemplate from '@/components/Common/PageTemplate';
-import LinkGoBack from '@/components/Common/LinkGoBack';
+import LinkGoBack from '@/components/KyivGenevaSubPages/Common/LinkGoBack';
 import { KyivGeneva } from '@/types/translation.d';
 import { Routes } from '@/types/routes.d';
 import { rewardsData } from '@/assets/kyiv-geneva/KyivGenevaRewards';

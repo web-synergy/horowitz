@@ -3,7 +3,7 @@ import PageTemplate from '@/components/Common/PageTemplate';
 import { regulationData } from '@/assets/kyiv-geneva/KyivGenevaRegulation';
 import { useTranslation } from 'react-i18next';
 import { Routes } from '@/types/routes.d';
-import LinkGoBack from '@/components/Common/LinkGoBack';
+import LinkGoBack from '@/components/KyivGenevaSubPages/Common/LinkGoBack';
 import { KyivGeneva } from '@/types/translation.d';
 import { useEffect } from 'react';
 

@@ -4,7 +4,7 @@ import TextFormat from './parts/TextFormat';
 import { theme } from '@/theme';
 import { Routes } from '@/types/routes.d';
 import { useTranslation } from 'react-i18next';
-import LinkGoBack from '@/components/Common/LinkGoBack';
+import LinkGoBack from '@/components/KyivGenevaSubPages/Common/LinkGoBack';
 import { KyivGeneva } from '@/types/translation.d';
 import { conditionsData } from '@/assets/kyiv-geneva/KyivGenevaConditions';
 import { useEffect } from 'react';

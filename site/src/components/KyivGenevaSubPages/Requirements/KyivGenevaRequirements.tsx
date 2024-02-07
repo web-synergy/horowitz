@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { RichText } from '../Conditions/KyivGenevaConditions';
 
 import { Routes } from '@/types/routes.d';
-import LinkGoBack from '@/components/Common/LinkGoBack';
+import LinkGoBack from '@/components/KyivGenevaSubPages/Common/LinkGoBack';
 import { KyivGeneva } from '@/types/translation.d';
 import { requirementsData } from '@/assets/kyiv-geneva/KyivGenevaRequirements';
 import { useEffect } from 'react';

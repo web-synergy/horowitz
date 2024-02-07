@@ -1,6 +1,6 @@
 import { Link, Stack } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
-import SvgSpriteIcon from './SvgSpriteIcon';
+import SvgSpriteIcon from '../../Common/SvgSpriteIcon';
 const LinkGoBack = ({ title, href }: { title: string; href: string }) => {
   return (
     <Stack>
