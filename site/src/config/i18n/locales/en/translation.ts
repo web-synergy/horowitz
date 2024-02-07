@@ -1,4 +1,4 @@
-import { Routes } from '@/types/routes.d';
+import { Routes } from '@/types/routes.d'
 import {
   InDevelopment,
   MainPage,
@@ -6,7 +6,7 @@ import {
   Translations,
   Sponsors,
   KyivGeneva,
-} from '@/types/translation.d';
+} from '@/types/translation.d'
 
 export default {
   navigation: {
@@ -91,5 +91,14 @@ export default {
     [Routes.KYIV_GENEVA_ORCHESTRA]: 'Artists',
     [Routes.KYIV_GENEVA_TIMETABLE]: 'Competition Schedule',
     [KyivGeneva.GO_KYIV_GENEVA]: 'Back to competition Horovytsia Kyiv-Geneva',
+  },
+  genevaMainPage: {
+    GOVERNMENT: 'Government agencies',
+    BTN_GO_BACK: 'Back to Horowitz Kyiv-Geneva Competition',
+  },
+  jury: {
+    title: 'The Jury',
+    read_more: 'Read more',
+    return_jury: 'Return to the Jury',
   },
 };

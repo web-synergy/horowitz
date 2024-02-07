@@ -93,4 +93,13 @@ export default {
     [Routes.KYIV_GENEVA_TIMETABLE]: 'Регламент проведення конкурсу',
     [KyivGeneva.GO_KYIV_GENEVA]: 'Повернутись до Конкурс Горовиця Київ-Женева',
   },
+  genevaMainPage: {
+    GOVERNMENT: 'Державні установи',
+    BTN_GO_BACK: 'Повернутись до Конкурс Горовиця Київ-Женева',
+  },
+  jury: {
+    title: 'Жюрі',
+    read_more: 'Читати більше',
+    return_jury: 'Повернутись до Журі',
+  },
 };

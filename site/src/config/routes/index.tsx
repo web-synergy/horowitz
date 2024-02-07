@@ -1,7 +1,6 @@
 import AdministrationPage from '@/components/Administration/AdministrationPage';
 import ArchivePage from '@/components/Archive/ArchivePage';
 import KyivGenevaConditions from '@/components/KyivGenevaSubPages/Conditions/KyivGenevaConditions';
-import KyivGenevaJury from '@/components/KyivGenevaSubPages/JuryList/KyivGenevaJury';
 import KyivGenevaOrchestra from '@/components/KyivGenevaSubPages/Orchestra/KyivGenevaOrchestra';
 import KyivGenevaParticipants from '@/components/KyivGenevaSubPages/Participants/KyivGenevaParticipants';
 import KyivGenevaRegulation from '@/components/KyivGenevaSubPages/Regulation/KyivGenevaRegulation';
@@ -12,6 +11,8 @@ import KyivGenevaWinners from '@/components/KyivGenevaSubPages/Winners/KyivGenev
 import KyivGenevaSponsorsPage from '@/components/KyivGenevaSubPages/Sponsors/KyivGenevaSponsors';
 import KyivGenevaWFIMCPage from '@/components/KyivGenevaSubPages/WFIMC/KyivGenevaWFIMC';
 import KyivGenevaLayout from '@/components/KyivGenevaSubPages/Layout/KyivGenevaLayout';
+import KyivGenevaJuryList from '@/components/KyivGenevaSubPages/Jury/KyivGenevaJuryList';
+import KyivGenevaJury from '@/components/KyivGenevaSubPages/Jury/KyivGenevaJury';
 import NewsCurrentPage from '@/components/NewsCurrentPage/NewsCurrentPage';
 import NewsPageList from '@/components/NewsPageList/NewsPageList';
 import WithPreview from '@/components/SanityPreview/WithPreview';
@@ -85,6 +86,10 @@ const routes = createBrowserRouter([
           },
           {
             path: Routes.KYIV_GENEVA_JURY,
+            element: <KyivGenevaJuryList />,
+          },
+          {
+            path: `${Routes.KYIV_GENEVA_JURY}/:id`,
             element: <KyivGenevaJury />,
           },
           {
@@ -99,6 +104,7 @@ const routes = createBrowserRouter([
             path: Routes.KYIV_GENEVA_SELECTION_JURY,
             element: <KyivGenevaSelectionJury />,
           },
+
           {
             path: Routes.KYIV_GENEVA_WINNERS,
             element: <KyivGenevaWinners />,
