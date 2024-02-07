@@ -1,4 +1,6 @@
-export default {
+import { TConditions } from '@/types/kyivGenevaDataTypes';
+
+export const conditionsData: TConditions = {
   ua: [
     {
       title: 'Умови участі у конкурсу',
