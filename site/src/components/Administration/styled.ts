@@ -38,3 +38,18 @@ export const WrapperImg = styled(Box)(({ theme }) => ({
     },
   },
 }));
+
+export const TextBlock = styled("p")(({ theme }) => ({
+  margin: 0,
+  textAlign: "center",
+  fontSize: "16px",
+  lineHeight: "24px",
+
+  [theme.breakpoints.up("md")]: {
+    lineHeight: "28px",
+  },
+
+  [theme.breakpoints.up("lg")]: {
+    fontSize: "18px",
+  },
+}));

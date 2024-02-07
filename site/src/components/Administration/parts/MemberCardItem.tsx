@@ -1,7 +1,7 @@
 import { urlFor } from "@/config/sanity/imageUrl";
-import { Typography, Box, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 
-import { WrapperImg } from "../styled";
+import { WrapperImg, TextBlock } from "../styled";
 import { Member } from "@/types/administrationTypes";
 
 const MemberCardItem = ({ member }: { member: Member }) => {
@@ -46,25 +46,10 @@ const MemberCardItem = ({ member }: { member: Member }) => {
           maxWidth: "268px",
         }}
       >
-        <Typography
-          // sx={{ textAlign: { xs: "center", md: "left" } }}
-          sx={{ textAlign: { xs: "center" } }}
-          variant="bodyRegular"
-          component={"p"}
-        >
-          {member.name}
-        </Typography>
-        <Typography
-          sx={{
-            // textAlign: { xs: "center", md: "left" },
-            textAlign: { xs: "center" },
-            color: theme.palette.primary.main,
-          }}
-          variant="bodyRegular"
-          component={"p"}
-        >
+        <TextBlock>{member.name}</TextBlock>
+        <TextBlock sx={{ color: theme.palette.primary.main }}>
           {member.role}
-        </Typography>
+        </TextBlock>
       </Box>
     </Box>
   );
