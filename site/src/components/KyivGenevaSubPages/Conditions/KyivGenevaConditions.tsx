@@ -6,7 +6,7 @@ import Breadcrumbs from '@/components/Common/Breadcrumbs';
 import { Routes } from '@/types/routes.d';
 import { useTranslation } from 'react-i18next';
 import LinkGoBack from '@/components/Common/LinkGoBack';
-import { KyivGeneva } from '@/types/translation.d';
+import { Buttons } from '@/types/translation.d';
 import conditionsData from '@/assets/kyiv-geneva/KyivGenevaConditions';
 export interface ITextFormat {
   title: string;
@@ -43,7 +43,8 @@ const KyivGenevaConditions = () => {
             left: { xs: '16px', md: '40px', lg: '80px' },
             maxWidth: '100%',
             zIndex: 10,
-          }}>
+          }}
+        >
           <Breadcrumbs
             history={[
               {
@@ -51,16 +52,17 @@ const KyivGenevaConditions = () => {
                 href: `/${Routes.KYIV_GENEVA}`,
               },
             ]}
-            title={t(`kyivGeneva.${Routes.KYIV_GENEVA_CONDITIONS}`)}
-            mode='dark'
+            title={t(`navigation.${Routes.KYIV_GENEVA_CONDITIONS}`)}
+            mode="dark"
           />
         </Box>
         <Box sx={{ my: { xs: '48px', lg: '120px' } }}>
           <Typography
             sx={{ mb: { xs: '-24px', lg: '0px' } }}
             component={'h1'}
-            variant='h1'>
-            {t(`kyivGeneva.${Routes.KYIV_GENEVA_CONDITIONS}`)}
+            variant="h1"
+          >
+            {t(`navigation.${Routes.KYIV_GENEVA_CONDITIONS}`)}
           </Typography>
           {data &&
             data.map((item, index) => (
@@ -68,7 +70,7 @@ const KyivGenevaConditions = () => {
             ))}
           <Box sx={{ mt: '48px' }}>
             <LinkGoBack
-              title={t(`kyivGeneva.${KyivGeneva.GO_KYIV_GENEVA}`)}
+              title={t(`buttons.${Buttons.GO_KYIV_GENEVA}`)}
               href={`/${Routes.KYIV_GENEVA}`}
             />
           </Box>

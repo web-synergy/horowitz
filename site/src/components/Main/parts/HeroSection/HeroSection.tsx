@@ -1,20 +1,15 @@
-import { Routes } from '@/types/routes.d'
+import { FC, useRef } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 
-import SocialMedia from '@/components/Common/SocialMedia'
-import { Box, useMediaQuery, useTheme } from '@mui/material'
-import { FC, useRef } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import SocialMedia from '@/components/Common/SocialMedia';
 
-import bgVideo from '../../../../assets/bg_video.mp4'
-import poster from '../../../../assets/images//bg_video_poster.jpg'
+import { Routes } from '@/types/routes.d';
+import { Buttons } from '@/types/translation.d';
 
-import EUMCY_logo from '../../temp/EUMCY_logo.svg'
-import WFIMC_logo from '../../temp/WFIMC_logo.svg'
-
-import { MainPage } from '@/types/translation.d'
-import { useTranslation } from 'react-i18next'
-import LogoImg from './LogoImg'
-import ScrollDownBtn from './ScrollDownBtn'
+import LogoImg from './LogoImg';
+import ScrollDownBtn from './ScrollDownBtn';
 import {
   ButtonsStack,
   ContentStack,
@@ -25,16 +20,22 @@ import {
   StyledButton,
   StyledContainer,
   Video,
-} from './styled'
+} from './styled';
+
+import bgVideo from '@/assets/bg_video.mp4';
+import poster from '@/assets/images//bg_video_poster.jpg';
+
+import EUMCY_logo from '../../temp/EUMCY_logo.svg';
+import WFIMC_logo from '../../temp/WFIMC_logo.svg';
 
 const HeroSection: FC = () => {
-  const videoRef = useRef<HTMLVideoElement | null>(null)
-  if (videoRef.current) videoRef.current.playbackRate = 0.5
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  if (videoRef.current) videoRef.current.playbackRate = 0.5;
 
-  const { breakpoints } = useTheme()
-  const isMobile = useMediaQuery(breakpoints.down('lg'))
+  const { breakpoints } = useTheme();
+  const isMobile = useMediaQuery(breakpoints.down('lg'));
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -56,10 +57,14 @@ const HeroSection: FC = () => {
               <MainTitle component={'h1'}>{t('institutional_name')}</MainTitle>
               <ButtonsStack>
                 <StyledButton component={RouterLink} to={Routes.APPLY}>
-                  {t(`mainPage.${MainPage.BTN_APL}`)}
+                  {t(`buttons.${Buttons.APPLY}`)}
                 </StyledButton>
-                <StyledButton variant="secondary" component={RouterLink} to={Routes.SUPPORT}>
-                  {t(`mainPage.${MainPage.BTN_SUPP}`)}
+                <StyledButton
+                  variant="secondary"
+                  component={RouterLink}
+                  to={Routes.SUPPORT}
+                >
+                  {t(`buttons.${Buttons.SUPPORT}`)}
                 </StyledButton>
               </ButtonsStack>
               <LogotypesStack>
@@ -72,11 +77,13 @@ const HeroSection: FC = () => {
               </LogotypesStack>
             </ContentStack>
           </Box>
-          <ScrollDownBtn onClick={() => scrollTo({ top: innerHeight, behavior: 'smooth' })} />
+          <ScrollDownBtn
+            onClick={() => scrollTo({ top: innerHeight, behavior: 'smooth' })}
+          />
         </StyledContainer>
       </Overlay>
     </Box>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;

@@ -1,27 +1,34 @@
-import { useTranslation } from 'react-i18next'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper-bundle.css'
+import { useTranslation } from 'react-i18next';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
 
-import { sliceNewsTitle } from '@/utils/helpers'
+import { sliceNewsTitle } from '@/utils/helpers';
 
-import { Routes } from '@/types/routes.d'
-import { MainPage } from '@/types/translation.d'
+import { Routes } from '@/types/routes.d';
+import { MainPage, Buttons } from '@/types/translation.d';
 
-import { FC } from 'react'
+import { FC } from 'react';
 
-import { Box, Container, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
-import NewsCard from './NewsCard'
-import ShowMoreBtn from './ShowMoreBtn'
-import { NewsBox, StyledContainer } from './styled'
+import {
+  Box,
+  Container,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
+import NewsCard from './NewsCard';
+import ShowMoreBtn from './ShowMoreBtn';
+import { NewsBox, StyledContainer } from './styled';
 
-import fakeData from '../../temp/fakeData.json'
-import pianistImg from '../../temp/pianist.jpg'
+import fakeData from '../../temp/fakeData.json';
+import pianistImg from '../../temp/pianist.jpg';
 
 const NewsSection: FC = () => {
-  const { breakpoints } = useTheme()
-  const isMobile = useMediaQuery(breakpoints.down('md'))
+  const { breakpoints } = useTheme();
+  const isMobile = useMediaQuery(breakpoints.down('md'));
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <NewsBox component={'section'}>
@@ -40,7 +47,7 @@ const NewsSection: FC = () => {
             </Typography>
             <Box>
               <ShowMoreBtn
-                title={t(`mainPage.${MainPage.BTN_VIEW}`)}
+                title={t(`buttons.${Buttons.VIEW_ALL}`)}
                 link={`/${[Routes.NEWS]}`}
                 isTitleVisible={!isMobile}
               />
@@ -64,14 +71,18 @@ const NewsSection: FC = () => {
           >
             {fakeData.map(({ id, link, title }) => (
               <SwiperSlide key={id}>
-                <NewsCard title={sliceNewsTitle(title, 48)} image={pianistImg} link={link} />
+                <NewsCard
+                  title={sliceNewsTitle(title, 48)}
+                  image={pianistImg}
+                  link={link}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
         </StyledContainer>
       </>
     </NewsBox>
-  )
-}
+  );
+};
 
-export default NewsSection
+export default NewsSection;

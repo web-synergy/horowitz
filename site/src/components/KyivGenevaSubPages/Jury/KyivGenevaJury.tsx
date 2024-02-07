@@ -6,6 +6,7 @@ import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import Jury from '../Common/Jury/Jury';
 import { Routes } from '@/types/routes.d';
 import { content } from '@/assets/kyiv-geneva/jury/content';
+import { Buttons } from '@/types/translation.d';
 
 const KyivGenevaJury = () => {
   const { t } = useTranslation();
@@ -29,7 +30,7 @@ const KyivGenevaJury = () => {
           }
           sx={{ mt: 6 }}
         >
-          {t('jury.return_jury')}
+          {t(`buttons.${Buttons.GO_KG_JURY}`)}
         </Button>
       </Container>
     </PageTemplate>

@@ -1,38 +1,60 @@
-import { FC } from 'react'
-import useWinners from './useWinners'
+import { FC } from 'react';
+import useWinners from './useWinners';
 
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
-import { MainPage } from '@/types/translation.d'
+import { Buttons } from '@/types/translation.d';
 
-import { Container, Stack, useMediaQuery, useTheme } from '@mui/material'
-import ShowMoreBtn from '../NewsSection/ShowMoreBtn'
-import WinnerCard from './WinnerCard'
-import { MainTitle, WinnersCardsStack, Wrapper } from './styled'
+import { Container, Stack, useMediaQuery, useTheme } from '@mui/material';
+import ShowMoreBtn from '../NewsSection/ShowMoreBtn';
+import WinnerCard from './WinnerCard';
+import { MainTitle, WinnersCardsStack, Wrapper } from './styled';
 
 // !TEMP
-import fakeData from '../../temp/fakeDataWinners.json'
-import { default as winner1Img, default as winner4Img } from '../../temp/winner_1.jpg'
-import { default as winner2Img, default as winner5Img } from '../../temp/winner_2.jpg'
-import { default as winner3Img, default as winner6Img } from '../../temp/winner_3.jpg'
+import fakeData from '../../temp/fakeDataWinners.json';
+import {
+  default as winner1Img,
+  default as winner4Img,
+} from '../../temp/winner_1.jpg';
+import {
+  default as winner2Img,
+  default as winner5Img,
+} from '../../temp/winner_2.jpg';
+import {
+  default as winner3Img,
+  default as winner6Img,
+} from '../../temp/winner_3.jpg';
 
 const CompetitionWinners: FC = () => {
-  const { isVisible, ref } = useWinners()
+  const { isVisible, ref } = useWinners();
 
-  const { breakpoints } = useTheme()
-  const isMobile = useMediaQuery(breakpoints.down('md'))
-  const { t } = useTranslation()
+  const { breakpoints } = useTheme();
+  const isMobile = useMediaQuery(breakpoints.down('md'));
+  const { t } = useTranslation();
 
   // !TEMP
-  const images = [winner1Img, winner2Img, winner3Img, winner4Img, winner5Img, winner6Img]
+  const images = [
+    winner1Img,
+    winner2Img,
+    winner3Img,
+    winner4Img,
+    winner5Img,
+    winner6Img,
+  ];
 
   return (
     <Wrapper component={'section'} ref={ref}>
       <Container>
-        <Stack sx={{ flexDirection: 'row', justifyContent: 'space-between', gap: '50px' }}>
+        <Stack
+          sx={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            gap: '50px',
+          }}
+        >
           <MainTitle variant="h1">Переможці XIII Конкурсу</MainTitle>
           <ShowMoreBtn
-            title={t(`mainPage.${MainPage.BTN_VIEW}`)}
+            title={t(`buttons.${Buttons.VIEW_ALL}`)}
             link={'/'}
             isTitleVisible={!isMobile}
           />
@@ -41,13 +63,16 @@ const CompetitionWinners: FC = () => {
           {/* ! TEMP */}
           {fakeData.map(({ id, ...props }, i) => {
             return (
-              <WinnerCard key={id} {...{ ...props, image: images[i], isVisible, delay: i + 2 }} />
-            )
+              <WinnerCard
+                key={id}
+                {...{ ...props, image: images[i], isVisible, delay: i + 2 }}
+              />
+            );
           })}
         </WinnersCardsStack>
       </Container>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default CompetitionWinners
+export default CompetitionWinners;

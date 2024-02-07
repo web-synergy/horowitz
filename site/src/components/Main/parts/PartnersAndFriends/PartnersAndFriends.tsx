@@ -1,19 +1,19 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { Box, Stack } from "@mui/material";
-import { MainTitle } from "../../styled";
-import { ShowMoreBtn } from "./styled";
+import { Box, Stack } from '@mui/material';
+import { MainTitle } from '../../styled';
+import { ShowMoreBtn } from './styled';
 
-import { Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.css";
+import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
 
-import { urlFor } from "@/config/sanity/imageUrl";
-import { usePartnersStore } from "@/store";
-import { Routes } from "@/types/routes.d";
-import { MainPage } from "@/types/translation.d";
-import { useTranslation } from "react-i18next";
-import { Link as RouterLink } from "react-router-dom";
+import { urlFor } from '@/config/sanity/imageUrl';
+import { usePartnersStore } from '@/store';
+import { Routes } from '@/types/routes.d';
+import { MainPage, Buttons } from '@/types/translation.d';
+import { useTranslation } from 'react-i18next';
+import { Link as RouterLink } from 'react-router-dom';
 
 const PartnersAndFriends: FC = () => {
   const { t } = useTranslation();
@@ -26,16 +26,16 @@ const PartnersAndFriends: FC = () => {
       spacing={6}
       sx={{
         marginBottom: {
-          xs: "72px",
-          md: "96px",
-          lg: "120px",
+          xs: '72px',
+          md: '96px',
+          lg: '120px',
         },
       }}
     >
-      <MainTitle component={"h2"} sx={{ textAlign: "center" }}>
+      <MainTitle component={'h2'} sx={{ textAlign: 'center' }}>
         {t(`mainPage.${MainPage.FRIENDS}`)}
       </MainTitle>
-      <Box sx={{ height: "150px" }}>
+      <Box sx={{ height: '150px' }}>
         <Swiper
           centeredSlides={true}
           breakpoints={{
@@ -66,22 +66,22 @@ const PartnersAndFriends: FC = () => {
                   src={img?.asset && urlFor(img).url().toString()}
                   alt={title}
                   style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    objectFit: "contain",
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    objectFit: 'contain',
                   }}
                 />
               </SwiperSlide>
             ))}
         </Swiper>
       </Box>
-      <Box sx={{ alignSelf: "center" }}>
+      <Box sx={{ alignSelf: 'center' }}>
         <ShowMoreBtn
           variant="secondary"
           component={RouterLink}
           to={Routes.SPONSORS}
         >
-          {t(`mainPage.${MainPage.BTN_SHOW}`)}
+          {t(`buttons.${Buttons.VIEW_ALL}`)}
         </ShowMoreBtn>
       </Box>
     </Stack>

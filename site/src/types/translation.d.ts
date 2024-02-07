@@ -1,31 +1,46 @@
-export enum Translations {
+export enum Header {
   SEARCH = 'search',
+}
+
+export enum Contacts {
   ADDRESS = 'address',
   PHONE = 'phone',
   PRESS_CENTER = 'pressCenter',
 }
 
+export enum Buttons {
+  READ_MORE = 'readMore',
+  SHOW_MORE = 'showMore',
+  APPLY = 'apply',
+  SUPPORT = 'support',
+  VIEW_ALL = 'viewAll',
+  WATCH_ONLINE = 'watchOnline',
+  WATCH_ONLINE_XS = 'watchOnlineXS',
+  GO_HOME = 'goHome',
+  GO_BACK_HOME = 'goBackHome',
+  GO_NEWS = 'goNewsPage',
+  GO_KYIV_GENEVA = 'goKyivGeneva',
+  GO_KG_JURY = 'KG-goJury',
+  GO_KG_SEL_JURY = 'KG-goSelectionJury',
+}
+
 export enum NotFound {
   TITLE = 'title',
   TEXT = 'text',
-  BTN = 'btn',
+}
+
+export enum WarState {
+  TEXT = 'text',
 }
 
 export enum InDevelopment {
   MSG = 'message',
-  BTN = 'btn',
 }
 
 export enum MainPage {
-  BTN_APL = 'application',
-  BTN_SUPP = 'support',
-  BTN_VIEW = 'viewAll',
-  BTN_READ = 'readMore',
-  BTN_SHOW = 'showMore',
   NEWS = 'news',
   COMP_EVENTS = 'events',
   WATCH_ONLINE = 'watch',
-  WATCH_ONLINE_XS = 'watch XS',
   ORGANIZERS = 'organizers',
   FRIENDS = 'friends',
 }
@@ -39,9 +54,8 @@ export enum Sponsors {
   PARTNERS = 'partners',
   MAIN_INFO_PART = 'main information partners',
   OFF_INFO_PART = 'official information partners',
-  BTN_GO_BACK = 'go back btn',
 }
 
 export enum KyivGeneva {
-  GO_KYIV_GENEVA = 'go Kyiv Geneva page',
+  GOVERNMENT = 'government',
 }

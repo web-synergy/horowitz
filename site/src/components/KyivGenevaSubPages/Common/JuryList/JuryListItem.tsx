@@ -3,6 +3,7 @@ import { Grid, Box, Stack, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
+import { Buttons } from '@/types/translation.d';
 
 interface JuryItemProps {
   id: string;
@@ -56,7 +57,7 @@ const JuryListItem: FC<JuryItemProps> = ({ id, photo, name, position }) => {
             <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(-90deg)' }} />
           }
         >
-          {t('jury.read_more')}
+          {t(`buttons.${Buttons.READ_MORE}`)}
         </Button>
       </Box>
     </Grid>

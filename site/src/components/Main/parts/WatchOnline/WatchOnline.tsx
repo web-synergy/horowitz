@@ -1,19 +1,19 @@
-import { FC } from 'react'
-import PlayerCard from './PlayerCard'
-import { StyledContainer, Wrapper } from './styled'
+import { FC } from 'react';
+import PlayerCard from './PlayerCard';
+import { StyledContainer, Wrapper } from './styled';
 
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper-bundle.css'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
 
-import { MainPage } from '@/types/translation.d'
+import { MainPage } from '@/types/translation.d';
 
 // !temp
-import { useTranslation } from 'react-i18next'
-import { MainTitle } from '../../styled'
-import urlList from '../../temp/watchOnlineList.json'
+import { useTranslation } from 'react-i18next';
+import { MainTitle } from '../../styled';
+import urlList from '../../temp/watchOnlineList.json';
 
 const WatchOnline: FC = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Wrapper component={'section'}>
@@ -28,7 +28,7 @@ const WatchOnline: FC = () => {
             },
           }}
         >
-          {t(`mainPage.${MainPage.WATCH_ONLINE_XS}`)}
+          {t(`mainPage.${MainPage.WATCH_ONLINE}`)}
         </MainTitle>
         <Swiper
           spaceBetween={24}
@@ -52,7 +52,7 @@ const WatchOnline: FC = () => {
         </Swiper>
       </StyledContainer>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default WatchOnline
+export default WatchOnline;
