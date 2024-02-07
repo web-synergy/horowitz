@@ -28,7 +28,6 @@ const NewsPageList = () => {
   const urlPage = +(searchParams.get('page') || 1);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0 });
     if (isNaN(urlPage)) {
       return navigate('/404');
     }
