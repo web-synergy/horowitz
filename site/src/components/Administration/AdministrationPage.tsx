@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Typography, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import PageTemplate from "../Common/PageTemplate";
@@ -51,17 +51,14 @@ const AdministrationPage = () => {
         >
           {t(`navigation.${Routes.ADMINISTRATION}`)}
         </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            justifyContent: "space-between",
-            gap: { md: "26px" },
-          }}
-        >
-          <MembersListBlock members={firstBlockMembers} />
-          <MembersListBlock members={secondBlockMembers} />
-        </Box>
+        <Grid container spacing={{ xs: "48px", md: "26px" }}>
+          <Grid item xs={12} md={6}>
+            <MembersListBlock members={firstBlockMembers} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <MembersListBlock members={secondBlockMembers} />
+          </Grid>
+        </Grid>
       </Container>
     </PageTemplate>
   );

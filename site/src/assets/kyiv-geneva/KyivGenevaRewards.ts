@@ -1,4 +1,6 @@
-export default {
+import { TRewards } from '@/types/kyivGenevaDataTypes';
+
+export const rewardsData: TRewards = {
   ua: [
     {
       h3: 'Перша премія',

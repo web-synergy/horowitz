@@ -1,19 +1,20 @@
 import { urlFor } from "@/config/sanity/imageUrl";
-import { Typography, Box, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 
-import { WrapperImg } from "../styled";
+import { WrapperImg, TextBlock } from "../styled";
 import { Member } from "@/types/administrationTypes";
 
 const MemberCardItem = ({ member }: { member: Member }) => {
   const theme = useTheme();
   return (
     <Box
+      component={"li"}
       sx={{
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
         gap: { xs: "8px", md: "8px", lg: "16px" },
         height: { md: "144px", lg: "262px" },
-        alignItems: "center",
+        alignItems: { xs: "center", md: "flex-start" },
       }}
     >
       <WrapperImg className={member.img ? "" : "no-image"}>
@@ -38,26 +39,14 @@ const MemberCardItem = ({ member }: { member: Member }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: { xs: "8px", md: "16px" },
-          // minWidth: "190px",
-          maxWidth: "268px",
-          hyphens: "none",
+          gap: { xs: "8px", lg: "16px" },
+          paddingTop: { md: "34px", lg: "94px" },
         }}
       >
-        <Typography
-          sx={{ textAlign: "center" }}
-          variant="bodyRegular"
-          component={"p"}
-        >
-          {member.name}
-        </Typography>
-        <Typography
-          sx={{ textAlign: "center", color: theme.palette.primary.main }}
-          variant="bodyRegular"
-          component={"p"}
-        >
+        <TextBlock>{member.name}</TextBlock>
+        <TextBlock sx={{ color: theme.palette.primary.main }}>
           {member.role}
-        </Typography>
+        </TextBlock>
       </Box>
     </Box>
   );

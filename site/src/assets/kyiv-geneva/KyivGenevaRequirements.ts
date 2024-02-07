@@ -1,4 +1,6 @@
-export default {
+import { TRequirements } from '@/types/kyivGenevaDataTypes';
+
+export const requirementsData: TRequirements = {
   ua: {
     qualifyingRound: {
       title: 'Відбірковий тур',

@@ -1,6 +1,12 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import PageTemplate from '../Common/PageTemplate';
-import { Box, Container, Link, Typography, useMediaQuery } from '@mui/material';
+
+import {
+  Box,
+  Button,
+  Container,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
@@ -17,6 +23,7 @@ import Loader from '../Common/Loader';
 import SvgSpriteIcon from '../Common/SvgSpriteIcon';
 import { theme } from '@/theme';
 import { parseAndFormatDate } from '@/utils/helpers';
+import PageTemplate from '../Common/PageTemplate';
 import { Buttons } from '@/types/translation.d';
 
 const NewsCurrentPage = () => {
@@ -106,18 +113,20 @@ const NewsCurrentPage = () => {
                   />
                 )}
               </Box>
-              <Link
-                sx={{
-                  color: (theme) => theme.palette.neutral[60],
-                }}
+
+              <Button
+                variant="tertiary"
                 onClick={() => navigate(-1)}
+                startIcon={
+                  <SvgSpriteIcon
+                    icon="arrow"
+                    sx={{ transform: 'rotate(90deg)' }}
+                  />
+                }
+                sx={{ mt: 6 }}
               >
-                <SvgSpriteIcon
-                  sx={{ transform: 'rotate(90deg)' }}
-                  icon="arrow"
-                />
-                {t(`buttons.${Buttons.GO_NEWS}`)}
-              </Link>
+                {t(`buttons.${Buttons.READ_MORE}`)}
+              </Button>
             </Box>
           </Box>
         )}
