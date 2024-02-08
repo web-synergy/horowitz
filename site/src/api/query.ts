@@ -54,12 +54,12 @@ export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
     'bannerImg': bannerData.bannerImg.asset->url,
     'bannerCopyright': bannerData.bannerCopyright
   },
-  'upperTextBlock': upperTextBlock[_key ==$language].value,
+  'upperTextBlock': upperTextBlock[_key ==$language][0].value,
   'quote':quote{
     'author': author[_key ==$language].value,
     'quote': quote[_key ==$language].value,
   },
-  'lowerTextBlock': lowerTextBlock[_key ==$language].value,
+  'lowerTextBlock': lowerTextBlock[_key ==$language][0].value,
   'literature': literature[],
 }`;
 

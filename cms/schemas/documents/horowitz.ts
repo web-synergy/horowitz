@@ -54,6 +54,15 @@ export default defineType({
       name: 'upperTextBlock',
       title: 'Верхній блок тексту',
       type: 'internationalizedArrayContent',
+      validation: (Rule) =>
+        Rule.custom((content: {_key?: string; value?: string}[]) => {
+          for (const value of content) {
+            if (!value.value?.length) {
+              return `Поле ${value._key?.toUpperCase()} обовʼязкове`
+            }
+          }
+          return true // All checks passed
+        }),
     }),
 
     defineField({
