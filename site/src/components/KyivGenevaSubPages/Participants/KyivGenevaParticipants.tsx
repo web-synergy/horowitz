@@ -26,8 +26,8 @@ const KyivGenevaParticipants = () => {
           {t(`navigation.${Routes.KYIV_GENEVA_WINNERS}`)}
         </Typography>
         <Grid container rowGap={{ xs: '24px', lg: '48px' }} gap={'24px'}>
-          {participantsData.map(item => (
-            <Grid xs={12} md={5.7} lg={3.8} item>
+          {participantsData.map((item, index) => (
+            <Grid key={index} xs={12} md={5.7} lg={3.8} item>
               <ImagePerson img={item.img} />
               <Typography
                 variant='subhead'

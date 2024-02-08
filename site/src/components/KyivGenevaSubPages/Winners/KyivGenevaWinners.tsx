@@ -31,8 +31,8 @@ const KyivGenevaWinners = () => {
           {t(`navigation.${Routes.KYIV_GENEVA_WINNERS}`)}
         </Typography>
         <Grid container justifyContent={'center'} gap={'24px'}>
-          {data.winners.map(winner => (
-            <Grid xs={12} md={5.8} lg={3.8} item>
+          {data.winners.map((winner, index) => (
+            <Grid key={index} xs={12} md={5.8} lg={3.8} item>
               <ImagePerson alt={winner.fullName} img={winner.img} />
               <Typography
                 variant='subhead'
