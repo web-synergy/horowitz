@@ -48,7 +48,7 @@ export default {
     [Buttons.GO_HOME]: 'На головну сторінку',
     [Buttons.GO_BACK_HOME]: 'Повернутись до Головної сторінки',
     [Buttons.GO_NEWS]: 'Повернутись до Новин',
-    [Buttons.GO_KYIV_GENEVA]: 'Повернутись до Конкурс Горовиця Київ-Женева',
+    [Buttons.GO_KYIV_GENEVA]: 'Повернутись назад',
     [Buttons.GO_KG_JURY]: 'Повернутись до Журі',
     [Buttons.GO_KG_SEL_JURY]: 'Повернутись до Журі відбіркового туру',
   },

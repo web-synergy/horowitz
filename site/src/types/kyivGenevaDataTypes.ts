@@ -26,11 +26,7 @@ interface ITextData {
   h4?: string;
 }
 export interface IRequirements {
-  qualifyingRound: ITextData;
-  firstRound: ITextData;
-  secondRound: ITextData;
-  thirdRound: ITextData;
-  finalRound: ITextData;
+  [key: string]: ITextData;
 }
 export type TRequirements = { [key: string]: IRequirements };
 
@@ -52,3 +48,22 @@ export interface IRegulation {
 }
 
 export type TRegulation = { [key: string]: IRegulation[] };
+
+interface IKGWinners {
+  fullName: string;
+  prizePlace: string;
+  img: string;
+}
+
+export interface IKGWinnersData {
+  mainImag: string;
+  winners: { [key: string]: IKGWinners[] };
+}
+
+export interface IParticipants {
+  fullName: {
+    en: string;
+    ua: string;
+  };
+  img: string;
+}

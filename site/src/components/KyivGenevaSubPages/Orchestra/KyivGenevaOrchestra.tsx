@@ -56,7 +56,7 @@ const KyivGenevaOrchestra = () => {
             </Box>
             <Box sx={{ mb: { xs: '24px', lg: '48px' } }}>
               <Box
-                sx={{ width: '100%', maxHeight: '681px' }}
+                sx={{ width: '100%', maxHeight: '681px', objectFit: 'cover' }}
                 component={'img'}
                 src={item.img.src}
                 alt={item.img.title}

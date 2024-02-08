@@ -1,5 +1,5 @@
-import orcestr from '../images/kyiv-geneva/orcestr.png';
-import conductor from '../images/kyiv-geneva/conductor.png';
+import orcestr from '../images/kyiv-geneva/orcestr.jpeg';
+import conductor from '../images/kyiv-geneva/conductor.jpeg';
 import { TOrchestra } from '@/types/kyivGenevaDataTypes';
 
 export const orchestraData: TOrchestra = {
