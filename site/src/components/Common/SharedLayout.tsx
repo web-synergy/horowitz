@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Stack } from '@mui/material';
 import { Outlet, useSearchParams, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -9,7 +9,6 @@ import { lang, draft } from '../../libs/searchParamsKey';
 import { useSettingsStore } from '@/store/settingStore';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { settingsQuery } from '@/api/query';
-import Loader from './Loader';
 
 const SharedLayout = () => {
   const {
@@ -17,7 +16,7 @@ const SharedLayout = () => {
   } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  const [loader, setLoader] = useState(false);
+
   const langParam = searchParams.get(lang);
   const draftMod = searchParams.get(draft);
   const { contacts, fetchSettings, getPreviewSettings } = useSettingsStore();
@@ -30,23 +29,21 @@ const SharedLayout = () => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // useEffect(() => {
-  //   if (data) {
-  //     getPreviewSettings(data, language);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [language, data]);
+  useEffect(() => {
+    if (data) {
+      getPreviewSettings(data, language);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language, data]);
 
   useEffect(() => {
     const existedContacts = contacts[language];
 
     const getData = async () => {
       await fetchSettings(language);
-      setLoader(false);
     };
 
     if (!existedContacts && !draftMod) {
-      setLoader(true);
       getData();
     }
   }, [contacts, fetchSettings, language, draftMod]);
@@ -65,9 +62,6 @@ const SharedLayout = () => {
     }
   }, [langParam, language, searchParams, setSearchParams]);
 
-  if (loader) {
-    return <Loader />;
-  }
   return (
     <Stack minHeight="100vh">
       <Header />
