@@ -4,7 +4,7 @@ import Adam_Balogh from '@/assets/images/kyiv-geneva/participants/balogh.jpeg';
 import Elzbieta_Bilicka from '@/assets/images/kyiv-geneva/participants/bilicka.jpg';
 import Anfisa_Bobylova from '@/assets/images/kyiv-geneva/participants/bobylova.jpg';
 import Anais_Cassiers from '@/assets/images/kyiv-geneva/participants/cassiers.jpg';
-import Xuehong_Chen from '@/assets/images/kyiv-geneva/participants/cheng.jpeg';
+import Xuehong_Chen from '@/assets/images/kyiv-geneva/participants/che.jpg';
 import Boyuan_Cheng from '@/assets/images/kyiv-geneva/participants/cheng.jpeg';
 import Jun_Hwi_Cho from '@/assets/images/kyiv-geneva/participants/cho.jpg';
 import Roman_Fediurko from '@/assets/images/kyiv-geneva/participants/fediurko.jpg';
