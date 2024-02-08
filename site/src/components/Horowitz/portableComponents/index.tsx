@@ -9,7 +9,6 @@ export const components: PortableTextComponents = {
         component={"p"}
         sx={{
           textAlign: "justify",
-          flex: { lg: "1 1 calc(50% - 12px)" },
         }}
       >
         {children}

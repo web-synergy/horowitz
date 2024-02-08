@@ -9,10 +9,12 @@ const TextBlockSection: React.FC<TextBlockSectionProps> = ({ blocks }) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        columnGap: "24px",
-        rowGap: "16px",
+        columnCount: { xs: 1, lg: 2 },
+        columnGap: 3,
+
+        "& p:not(last-op-type)": {
+          marginBottom: 2,
+        },
       }}
     >
       <PortableText value={blocks} components={components} />
