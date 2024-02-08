@@ -27,6 +27,7 @@ const HorowitzPage: FC = () => {
   useEffect(() => {
     fetchHorowitzData(language);
   }, [fetchHorowitzData, language]);
+
   const horowitzData = useHorowitzStore();
 
   const [
@@ -41,6 +42,7 @@ const HorowitzPage: FC = () => {
   ] = useLiveQuery(horowitzData, horowitzQuery, {
     language,
   });
+
   const [visibleItemsLiterature, setVisibleItemsLiterature] = useState(4);
 
   const [isAllLiteratureVisible, setIsAllLiteratureVisible] = useState(false);
