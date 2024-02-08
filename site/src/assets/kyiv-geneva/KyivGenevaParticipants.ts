@@ -1,6 +1,6 @@
 import David_Aladashvili from '@/assets/images/kyiv-geneva/participants/Aladashvili-David.jpeg';
 import Ana_Bakradze from '@/assets/images/kyiv-geneva/participants/Bakradze-Ana.jpeg';
-import Adam_Balogh from '@/assets/images/kyiv-geneva/participants/Balogh-Ádám.jpeg';
+import Adam_Balogh from '@/assets/images/kyiv-geneva/participants/Balogh-Adam.jpeg';
 import Elzbieta_Bilicka from '@/assets/images/kyiv-geneva/participants/Bilicka-Elzbieta.jpg';
 import Anfisa_Bobylova from '@/assets/images/kyiv-geneva/participants/Bobylova-Anfisa(1).jpg';
 import Anais_Cassiers from '@/assets/images/kyiv-geneva/participants/Cassiers-Anaïs.jpg';
@@ -19,7 +19,7 @@ import Hyo_Lee from '@/assets/images/kyiv-geneva/participants/Lee-Hyo.jpg';
 import Hao_Wei_Lin from '@/assets/images/kyiv-geneva/participants/Lin-Hao- Wei.jpg';
 import Linnik_Denis from '@/assets/images/kyiv-geneva/participants/Linnik-Denis.jpg';
 import Roman_Lopatynskyi from '@/assets/images/kyiv-geneva/participants/Lopatynskyi-Roman.jpg';
-import Pedro_Lopez_Salas from '@/assets/images/kyiv-geneva/participants/López Salas-Pedro.jpeg';
+import Pedro_Lopez_Salas from '@/assets/images/kyiv-geneva/participants/LopezSalas-Pedro.jpeg';
 import Danilo_Mascetti from '@/assets/images/kyiv-geneva/participants/Mascetti-Danilo.jpg';
 import Kyoungsun_Park from '@/assets/images/kyiv-geneva/participants/Park-Kyoungsun.jpg';
 import Yuli_Qiao from '@/assets/images/kyiv-geneva/participants/Qiao-Yuli.jpeg';
