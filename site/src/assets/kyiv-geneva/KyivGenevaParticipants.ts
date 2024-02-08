@@ -27,8 +27,9 @@ import Danylo_Saienko from '@/assets/images/kyiv-geneva/participants/Saienko-Dan
 import Wenting_Shi from '@/assets/images/kyiv-geneva/participants/Shi-Wenting.jpg';
 import Julian_Trevelyan from '@/assets/images/kyiv-geneva/participants/Trevelyan-Julian.jpg';
 import Yuanfan_Yang from '@/assets/images/kyiv-geneva/participants/Yang-Yuanfan-.jpg';
+import { IParticipants } from '@/types/kyivGenevaDataTypes';
 
-export const participantsData = [
+export const participantsData: IParticipants[] = [
   {
     img: David_Aladashvili,
     fullName: {

@@ -59,3 +59,11 @@ export interface IKGWinnersData {
   mainImag: string;
   winners: { [key: string]: IKGWinners[] };
 }
+
+export interface IParticipants {
+  fullName: {
+    en: string;
+    ua: string;
+  };
+  img: string;
+}
