@@ -19,6 +19,8 @@ import LiteratureSection from './parts/LiteratureSection';
 import QuoteSection from './parts/QuoteSection';
 import TextBlockSection from './parts/TextBlockSection.tsx';
 import { Buttons } from '@/types/translation.d';
+import { useLiveQuery } from '@sanity/preview-kit';
+import { horowitzQuery } from '@/api/query.ts';
 
 const HorowitzPage: FC = () => {
   const theme = useTheme();
@@ -29,23 +31,25 @@ const HorowitzPage: FC = () => {
     t,
   } = useTranslation();
 
-  const fetchHorowitzData = useHorowitzStore(
-    (state) => state.fetchHorowitzData
-  );
+  const fetchHorowitzData = useHorowitzStore(state => state.fetchHorowitzData);
 
   useEffect(() => {
     fetchHorowitzData(language);
   }, [fetchHorowitzData, language]);
+  const horowitzData = useHorowitzStore();
 
-  const {
-    bannerData,
-    quote,
-    upperTextBlock,
-    lowerTextBlock,
-    literature,
-    isLoading,
-  } = useHorowitzStore();
-
+  const [
+    {
+      bannerData,
+      quote,
+      upperTextBlock,
+      lowerTextBlock,
+      literature,
+      isLoading,
+    },
+  ] = useLiveQuery(horowitzData, horowitzQuery, {
+    language,
+  });
   const [visibleItemsLiterature, setVisibleItemsLiterature] = useState(4);
 
   const [isAllLiteratureVisible, setIsAllLiteratureVisible] = useState(false);
@@ -83,16 +87,14 @@ const HorowitzPage: FC = () => {
           sx={{
             paddingTop: { xs: '48px', md: '54px', lg: '80px' },
             paddingBottom: { xs: '24px', lg: '80px' },
-          }}
-        >
+          }}>
           <Typography
-            variant="h1"
+            variant='h1'
             sx={{
               textTransform: 'uppercase',
               marginBottom: '24px',
               textAlign: { xs: 'left', md: 'center' },
-            }}
-          >
+            }}>
             {t(`navigation.${Routes.HOROWITZ}`)}
           </Typography>
           {upperTextBlock && (
@@ -106,15 +108,14 @@ const HorowitzPage: FC = () => {
           <Box
             sx={{
               padding: { xs: '24px 0px', lg: '80px 0px' },
-            }}
-          >
+            }}>
             {upperTextBlock && (
               <TextBlockSection blocks={currentLowerTextBlock} />
             )}
           </Box>
         )}
 
-        <Typography variant="subhead" sx={{ textAlign: 'left' }} gutterBottom>
+        <Typography variant='subhead' sx={{ textAlign: 'left' }} gutterBottom>
           {t(`horowitzPage.literature`)}:
         </Typography>
         {literature && (
@@ -129,14 +130,12 @@ const HorowitzPage: FC = () => {
             textAlign: 'center',
             marginTop: { xs: '48px', md: '54px', lg: '80px' },
             marginBottom: { xs: '72px', md: '96px', lg: '118px' },
-          }}
-        >
+          }}>
           <Button
             sx={{ width: '288px' }}
-            variant="transparent"
+            variant='transparent'
             onClick={handleShowMore}
-            disabled={isAllLiteratureVisible}
-          >
+            disabled={isAllLiteratureVisible}>
             {t(`buttons.${Buttons.SHOW_MORE}`)}
           </Button>
         </Box>

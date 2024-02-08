@@ -32,8 +32,15 @@ const structure = (S: StructureBuilder) =>
         (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
       ),
       ...newsStructure(S),
-      singleDocument(S, 'administration', 'Адміністрація конкурсу').icon(FaPeopleGroup),
-      singleDocument(S, 'horowitz', 'Володимир Горовиць').icon(MdOutlineSettingsBrightness),
+      singleDocument(
+        S,
+        'administration',
+        'Адміністрація конкурсу',
+        preview(S, 'administration'),
+      ).icon(FaPeopleGroup),
+      singleDocument(S, 'horowitz', 'Володимир Горовиць', preview(S, 'horowitz')).icon(
+        MdOutlineSettingsBrightness,
+      ),
       singleDocument(S, 'partners', 'Партнери і спонсори').icon(SiGithubsponsors),
       S.divider(),
       S.listItem()
