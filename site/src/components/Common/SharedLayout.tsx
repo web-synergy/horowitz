@@ -6,7 +6,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { lang, draft } from '../../libs/searchParamsKey';
 
-import { useSettingsStore } from '@/store';
+import { useSettingsStore } from '@/store/settingStore';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { settingsQuery } from '@/api/query';
 import Loader from './Loader';

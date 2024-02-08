@@ -1,4 +1,4 @@
-import { usePartnersStore } from '@/store';
+import { usePartnersStore } from '@/store/settingStore';
 import { Sponsors, Buttons } from '@/types/translation.d';
 import { Box, Container, Stack } from '@mui/material';
 import { FC, useEffect } from 'react';

@@ -38,30 +38,4 @@ const PopoverWrapper: FC<PropsWithChildren<PopoverWrapperProps>> = ({
   );
 };
 
-// const PopoverWrapper = forwardRef<Ref, PropsWithChildren<PopoverWrapperProps>>(
-//   ({ open, onCloseMenu, id, children }, ref) => {
-//     const theme = useTheme();
-//     const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
-
-//     if (!isDesktop) {
-//       return children;
-//     }
-
-//     return (
-//       <Popover
-//         id={id}
-//         open={open}
-//         anchorEl={ref}
-//         onClose={onCloseMenu}
-//         anchorOrigin={{
-//           vertical: 'bottom',
-//           horizontal: 'left',
-//         }}
-//       >
-//         {children}
-//       </Popover>
-//     );
-//   }
-// );
-
 export default PopoverWrapper;

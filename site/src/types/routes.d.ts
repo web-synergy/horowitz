@@ -4,6 +4,7 @@ export enum Routes {
   DETAILS = 'details',
   ADMINISTRATION = 'administration',
   ARCHIVE = 'archive',
+  UKRAINIAN_WORKS = 'ukrainian-works',
   HOROWITZ = 'horowitz',
   COMPETITIONS = 'competitions',
   COMPETITION = 'competition',
@@ -31,9 +32,9 @@ export enum Routes {
   SUPPORT = 'support',
 }
 
-export type NavigationChildrenType = { title: string; slug: string };
+export type NavigationType = { title: string; slug: string };
 
 export type NavigationItemType = {
   title: Routes;
-  children: NavigationChildrenType[] | null;
+  children: NavigationType[] | null;
 };

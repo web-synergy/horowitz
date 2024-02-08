@@ -1,9 +1,12 @@
-import { useSettingsStore } from '@/store'
+import { useSettingsStore } from '@/store/settingStore';
 
-import { Box, Link, LinkProps, Stack, styled } from '@mui/material'
-import { FC } from 'react'
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom'
-import SvgSpriteIcon from './SvgSpriteIcon'
+import { Box, Link, LinkProps, Stack, styled } from '@mui/material';
+import { FC } from 'react';
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+} from 'react-router-dom';
+import SvgSpriteIcon from './SvgSpriteIcon';
 
 const StyledLink = styled(Link)<LinkProps & RouterLinkProps>(({ theme }) => ({
   border: `1px solid ${theme.palette.common.white}`,
@@ -13,19 +16,21 @@ const StyledLink = styled(Link)<LinkProps & RouterLinkProps>(({ theme }) => ({
   '&:hover': {
     borderColor: theme.palette.action.focus,
   },
-}))
+}));
 
 interface SocialMediaProps {
-  vertical?: boolean
+  vertical?: boolean;
 }
 
 const SocialMedia: FC<SocialMediaProps> = ({ vertical }) => {
-  const mediaLinks = useSettingsStore(state => state.sociable)
-  if (!mediaLinks) return null
-  const { facebook, instagram, youTube } = mediaLinks
+  const mediaLinks = useSettingsStore((state) => state.sociable);
+  if (!mediaLinks) return null;
+  const { facebook, instagram, youTube } = mediaLinks;
 
   return (
-    <Stack sx={{ gap: '16px', flexDirection: () => (vertical ? 'column' : 'row') }}>
+    <Stack
+      sx={{ gap: '16px', flexDirection: () => (vertical ? 'column' : 'row') }}
+    >
       <Box>
         <StyledLink component={RouterLink} to={facebook} target="_blank">
           <SvgSpriteIcon icon="facebook" />
@@ -44,7 +49,7 @@ const SocialMedia: FC<SocialMediaProps> = ({ vertical }) => {
         </StyledLink>
       </Box>
     </Stack>
-  )
-}
+  );
+};
 
-export default SocialMedia
+export default SocialMedia;

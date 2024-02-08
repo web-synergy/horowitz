@@ -14,6 +14,7 @@ import KyivGenevaWFIMCPage from '@/components/KyivGenevaSubPages/WFIMC/KyivGenev
 import KyivGenevaLayout from '@/components/KyivGenevaSubPages/Layout/KyivGenevaLayout';
 import KyivGenevaJuryList from '@/components/KyivGenevaSubPages/Jury/KyivGenevaJuryList';
 import KyivGenevaJury from '@/components/KyivGenevaSubPages/Jury/KyivGenevaJury';
+import UkrainianComposition from '@/components/UkrainianComposition/UkrainianComposition';
 import NewsCurrentPage from '@/components/NewsCurrentPage/NewsCurrentPage';
 import NewsPageList from '@/components/NewsPageList/NewsPageList';
 import WithPreview from '@/components/SanityPreview/WithPreview';
@@ -51,7 +52,10 @@ const routes = createBrowserRouter([
         path: Routes.HOROWITZ,
         element: <HorowitzPage />,
       },
-
+      {
+        path: Routes.UKRAINIAN_WORKS,
+        element: <UkrainianComposition />,
+      },
       {
         path: `:${Routes.COMPETITION}`,
         element: <CompetitionPage />,

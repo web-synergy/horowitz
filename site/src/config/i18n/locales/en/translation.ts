@@ -17,6 +17,7 @@ export default {
     [Routes.ABOUT]: 'About Us',
     [Routes.DETAILS]: 'Horowitz Competition',
     [Routes.ADMINISTRATION]: 'Administrative Group',
+    [Routes.UKRAINIAN_WORKS]: 'Ukrainian Works',
     [Routes.KYIV_GENEVA]: 'Horowitz Competition Kyiv-Geneva',
     [Routes.HOROWITZ]: 'Vladimir Horowitz',
     [Routes.COMPETITIONS]: 'Competitions',

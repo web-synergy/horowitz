@@ -1,29 +1,32 @@
-import { FC } from 'react'
+import { FC } from 'react';
 
-import { LogotypesStack, Wrapper } from './styled'
+import { LogotypesStack, Wrapper } from './styled';
 
-import { MainPage } from '@/types/translation.d'
-import { Box, Container } from '@mui/material'
-import { useTranslation } from 'react-i18next'
-import { MainTitle } from '../../styled'
+import { MainPage } from '@/types/translation.d';
+import { Box, Container } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { MainTitle } from '../../styled';
 
-import { urlFor } from '@/config/sanity/imageUrl'
-import { usePartnersStore } from '@/store'
+import { urlFor } from '@/config/sanity/imageUrl';
+import { usePartnersStore } from '@/store/settingStore';
 
 const CompetitionOrganizers: FC = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  const organizers = usePartnersStore(state => state.organizers)
-  if (!organizers) return null
+  const organizers = usePartnersStore((state) => state.organizers);
+  if (!organizers) return null;
 
   return (
     <Wrapper component={'section'}>
       <Container>
-        <MainTitle component={'h2'} sx={{ marginBottom: '48px', textAlign: 'center' }}>
+        <MainTitle
+          component={'h2'}
+          sx={{ marginBottom: '48px', textAlign: 'center' }}
+        >
           {t(`mainPage.${MainPage.ORGANIZERS}`)}
         </MainTitle>
         <LogotypesStack>
-          {organizers.map(organizer => (
+          {organizers.map((organizer) => (
             <Box
               key={organizer._key}
               component={'img'}
@@ -35,14 +38,16 @@ const CompetitionOrganizers: FC = () => {
                 },
                 maxHeight: '90px',
               }}
-              src={organizer.img?.asset && urlFor(organizer.img).url().toString()}
+              src={
+                organizer.img?.asset && urlFor(organizer.img).url().toString()
+              }
               alt={organizer.title}
             />
           ))}
         </LogotypesStack>
       </Container>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default CompetitionOrganizers
+export default CompetitionOrganizers;

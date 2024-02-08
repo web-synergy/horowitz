@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { useSettingsStore } from '@/store';
+import { useSettingsStore } from '@/store/settingStore';
 
 const Logo = () => {
   const { logo } = useSettingsStore();

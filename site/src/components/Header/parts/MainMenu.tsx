@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { Link as CustomLink, NavItem, NavButton, SubMenuList } from '../styled';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import Submenu from './Submenu';
-import { NavigationChildrenType } from '@/types/routes.d';
+import { NavigationType } from '@/types/routes.d';
 import PopoverWrapper from './PopoverWrapper';
 
 interface MainMenuProps {
   title: string;
-  children: NavigationChildrenType[] | null;
+  children: NavigationType[] | null;
   activeMenu: string | null;
   onOpenMenu: (value: string) => void;
   onCloseMobileMenu?: () => void;

@@ -1,7 +1,6 @@
 import { NavigationItemType, Routes } from '@/types/routes.d';
 
 export const navigation: NavigationItemType[] = [
-  // { title: Routes.HOME, children: null },
   {
     title: Routes.ABOUT,
     children: [
@@ -13,6 +12,10 @@ export const navigation: NavigationItemType[] = [
   {
     title: Routes.COMPETITIONS,
     children: [
+      {
+        title: Routes.UKRAINIAN_WORKS,
+        slug: Routes.UKRAINIAN_WORKS,
+      },
       { title: Routes.KYIV_GENEVA, slug: Routes.KYIV_GENEVA },
       {
         title: Routes.ARCHIVE,
