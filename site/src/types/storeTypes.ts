@@ -1,14 +1,14 @@
-import { PortableTextBlock } from "@portabletext/types";
-import { INews } from "./newsTypes";
+import { PortableTextBlock } from '@portabletext/types';
+import { INews } from './newsTypes';
 
 import {
   CompetitionsMenu,
   ContactsType,
   SettingsResp,
   SociableType,
-} from "./contactsTypes";
-import { Partner } from "./partnersTypes";
-import { Member } from "./administrationTypes";
+} from './contactsTypes';
+import { Partner } from './partnersTypes';
+import { Member } from './administrationTypes';
 
 export interface SettingsStoreState {
   sociable: SociableType | null;
@@ -55,6 +55,6 @@ export interface PartnersStoreState {
 }
 
 export interface AdministrationStoreState {
-  administrationData: Member[] | null;
+  administrationData: { members: Member[] } | null;
   fetchAdministrationData: (language: string) => Promise<void>;
 }
