@@ -30,12 +30,12 @@ const SharedLayout = () => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  useEffect(() => {
-    if (data) {
-      getPreviewSettings(data, language);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language, data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     getPreviewSettings(data, language);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [language, data]);
 
   useEffect(() => {
     const existedContacts = contacts[language];

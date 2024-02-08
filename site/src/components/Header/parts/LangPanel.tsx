@@ -18,26 +18,28 @@ const LangPanel: FC<LangPanelProps> = ({ additionalClickFn }) => {
   } = useTranslation();
 
   const onChangeLang = (event: ChangeEvent<HTMLInputElement>) => {
+    if (additionalClickFn) {
+      console.log('additional click');
+      additionalClickFn();
+    }
     const value = (event.target as HTMLInputElement).value;
     changeLanguage(value);
-    setSearchParams(prev => {
+    setSearchParams((prev) => {
       prev.set(langKey, value);
       return prev;
     });
-    if (additionalClickFn) {
-      additionalClickFn();
-    }
   };
 
   return (
     <FormControl sx={{ flexShrink: 0 }}>
       <RadioGroup
-        aria-label='language-panel'
-        name='language'
+        aria-label="language-panel"
+        name="language"
         value={language}
         onChange={onChangeLang}
         row
-        sx={{ display: 'flex', alignItems: 'center' }}>
+        sx={{ display: 'flex', alignItems: 'center' }}
+      >
         <StyledFormControlLabel
           value={languages[0].id}
           control={<Radio sx={{ display: 'none' }} />}

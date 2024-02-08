@@ -37,7 +37,7 @@ const MobileMenu: FC<MobileMenuProps> = ({ open, onClose }) => {
       }}
     >
       <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <LangPanel />
+        <LangPanel additionalClickFn={onClose} />
         <IconButton onClick={onClose} sx={{ padding: 0 }}>
           <SvgSpriteIcon icon="close" />
         </IconButton>
