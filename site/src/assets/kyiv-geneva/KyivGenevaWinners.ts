@@ -1,6 +1,6 @@
-import Roman_Fediurko from '../images/kyiv-geneva/participants/Fediurko-Roman.jpg';
-import Julian_Trevelyan from '../images/kyiv-geneva/participants/Trevelyan-Julian.jpg';
-import Kyoungsun_Park from '../images/kyiv-geneva/participants/park-kyoungsun.jpg';
+import Roman_Fediurko from '../images/kyiv-geneva/participants/Fediurko_Roman.jpg';
+import Julian_Trevelyan from '../images/kyiv-geneva/participants/Trevelyan_Julian.jpg';
+import Kyoungsun_Park from '../images/kyiv-geneva/participants/park_kyoungsun.jpg';
 import mainImg from '../images/kyiv-geneva/winners.png';
 import { IKGWinnersData } from '@/types/kyivGenevaDataTypes';
 export const winnersData: IKGWinnersData = {
