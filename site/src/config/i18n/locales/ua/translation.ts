@@ -17,6 +17,7 @@ export default {
     [Routes.ABOUT]: 'Про нас',
     [Routes.DETAILS]: 'Конкурс Горовиця',
     [Routes.ADMINISTRATION]: 'Адміністрація конкурсу',
+    [Routes.UKRAINIAN_WORKS]: 'Твори український композиторів',
     [Routes.KYIV_GENEVA]: 'Конкурс Горовиця Київ-Женева',
     [Routes.HOROWITZ]: 'Володимир Горовиць',
     [Routes.COMPETITIONS]: 'Конкурс',

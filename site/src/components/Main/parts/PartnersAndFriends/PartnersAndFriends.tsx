@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 
 import { urlFor } from '@/config/sanity/imageUrl';
-import { usePartnersStore } from '@/store';
+import { usePartnersStore } from '@/store/settingStore';
 import { Routes } from '@/types/routes.d';
 import { MainPage, Buttons } from '@/types/translation.d';
 import { useTranslation } from 'react-i18next';

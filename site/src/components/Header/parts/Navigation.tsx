@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { navigation } from '@/config/routes/navigation';
 import { NavList } from '../styled';
 import MainMenu from './MainMenu';
-import { Routes } from '@/types/routes.d';
-import { useSettingsStore } from '@/store';
+import { Routes, NavigationType } from '@/types/routes.d';
+import { useSettingsStore } from '@/store/settingStore';
 
 interface NavigationProps {
   onCloseMobileMenu?: () => void;
@@ -21,7 +21,6 @@ const Navigation: FC<NavigationProps> = ({ onCloseMobileMenu }) => {
   const onOpenMenu = (panel: string) =>
     setActiveMenu((prev) => (prev === panel ? null : panel));
 
-  // TODO: receive from admin
   const competitionNav = competitions[language] ?? [];
 
   const navigationForRender = navigation.map((item) => {
@@ -35,7 +34,13 @@ const Navigation: FC<NavigationProps> = ({ onCloseMobileMenu }) => {
     return item.title === Routes.COMPETITIONS
       ? {
           ...item,
-          children: [...competitionNav, ...(children ? children : [])],
+          children: [
+            ...(children ? [children[0]] : ([] as NavigationType[])),
+            ...competitionNav,
+            ...(children && children.length > 1
+              ? children.slice(1)
+              : ([] as NavigationType[])),
+          ],
         }
       : { ...item, children };
   });

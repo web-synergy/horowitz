@@ -1,20 +1,18 @@
 import { PortableTextBlock } from "@portabletext/types";
 import { INews } from "./newsTypes";
 
-import {
-  CompetitionsMenu,
-  ContactsType,
-  SettingsResp,
-  SociableType,
-} from "./contactsTypes";
-import { Partner } from "./partnersTypes";
-import { Member } from "./administrationTypes";
+
+import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
+import { Partner } from './partnersTypes';
+import { Member } from './administrationTypes';
+import { NavigationType } from './routes';
+
 
 export interface SettingsStoreState {
   sociable: SociableType | null;
   logo: string | null;
   contacts: { [key: string]: ContactsType | null };
-  competitions: { [key: string]: CompetitionsMenu[] | null };
+  competitions: { [key: string]: NavigationType[] | null };
   fetchSettings: (language: string) => Promise<void>;
   getPreviewSettings: (settings: SettingsResp[], language: string) => void;
 }

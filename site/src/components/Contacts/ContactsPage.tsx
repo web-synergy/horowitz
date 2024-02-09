@@ -7,7 +7,7 @@ import Breadcrumbs from '../Common/Breadcrumbs';
 import ContactsDetails from './parts/ContactsDetails';
 import { ContentWrapper, InfoDivider, MainBox, Section } from './styled';
 
-import { useSettingsStore } from '@/store';
+import { useSettingsStore } from '@/store/settingStore';
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 import SocialMedia from '../Common/SocialMedia';
 

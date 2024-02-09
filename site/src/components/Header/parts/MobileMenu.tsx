@@ -27,17 +27,25 @@ const MobileMenu: FC<MobileMenuProps> = ({ open, onClose }) => {
       open={open}
       onClose={onClose}
       TransitionComponent={Transition}
+      sx={{
+        '& .MuiDialog-container': {
+          justifyContent: { md: 'flex-start' },
+        },
+      }}
       PaperProps={{
         sx: {
           backgroundColor: (theme) => theme.palette.neutral[90],
           color: (theme) => theme.palette.text.secondary,
           padding: '40px 40px 56px 40px',
           gap: 5,
+          width: { md: '60%' },
+          maxWidth: { md: '50vw' },
+          minWidth: { md: '430px' },
         },
       }}
     >
       <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <LangPanel />
+        <LangPanel additionalClickFn={onClose} />
         <IconButton onClick={onClose} sx={{ padding: 0 }}>
           <SvgSpriteIcon icon="close" />
         </IconButton>

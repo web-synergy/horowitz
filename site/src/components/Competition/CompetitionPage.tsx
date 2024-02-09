@@ -1,6 +1,6 @@
 import { useLocation, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useSettingsStore } from '@/store';
+import { useSettingsStore } from '@/store/settingStore';
 import PageTemplate from '../Common/PageTemplate';
 import { Container } from '@mui/material';
 import WarStatePlaceholderPage from '../WarStatePlaceholderPage/WarStatePlaceholderPage';

@@ -115,7 +115,7 @@ export const SubMenuList = styled(AccordionDetails)(({ theme }) => ({
     padding: '12px',
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
-    gap: 10,
+    gap: 16,
   },
 }));
 
