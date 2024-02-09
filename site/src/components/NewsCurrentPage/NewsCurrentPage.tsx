@@ -12,8 +12,6 @@ import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { PortableText } from '@portabletext/react';
 import { components } from './prtableComponents';
-import Breadcrumbs from '../Common/Breadcrumbs';
-import { Routes } from '@/types/routes.d';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { currentNewsQuery } from '@/api/query';
 import { INews } from '@/types/newsTypes';
@@ -54,15 +52,12 @@ const NewsCurrentPage = () => {
   });
 
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
-  const history = [
-    { title: t(`navigation.${Routes.NEWS}`), href: `/${Routes.NEWS}` },
-  ];
+
   if (loader) return <Loader />;
 
   return (
     <PageTemplate>
       <Container>
-        <Breadcrumbs title={data?.title || ''} mode='light' history={history} />
         {data && (
           <Box sx={{ my: { xs: '40px', md: '48px', lg: '56px' } }}>
             <GrowView>
