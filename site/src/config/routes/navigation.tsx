@@ -46,3 +46,20 @@ export const kyivGenevaNavigation = [
   { title: Routes.KYIV_GENEVA_ORCHESTRA },
   { title: Routes.KYIV_GENEVA_TIMETABLE },
 ];
+
+type Navigate = { title: string; parent: string | null };
+
+export const overallNavigation = navigation.reduce(
+  (acc, { title, children }) => {
+    const mainElement = { title: title, parent: null };
+    acc.push(mainElement);
+    if (children) {
+      children.forEach((item) => {
+        const element = { title: item.title, parent: title };
+        acc.push(element);
+      });
+    }
+    return acc;
+  },
+  [] as Navigate[]
+);
