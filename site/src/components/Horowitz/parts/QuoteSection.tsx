@@ -7,7 +7,10 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
   const theme = useTheme();
 
   return (
-    <Section component={"section"}>
+    <Section
+      sx={{ backgroundColor: theme.palette.common.black }}
+      component={"section"}
+    >
       <Box
         sx={{
           textAlign: "center",
@@ -18,8 +21,10 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
       >
         <Typography
           variant="h1"
+          component="p"
           sx={{
             marginBottom: {
+              color: theme.palette.common.white,
               xs: "16px",
               md: "32px",
               lg: "24px",
