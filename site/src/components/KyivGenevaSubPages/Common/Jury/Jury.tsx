@@ -28,8 +28,8 @@ const Jury: FC<JuryProps> = ({ jury }) => {
       <Box>
         <Wrapper>
           <Box component="img" src={jury.photo} />
-          {textArray.map((text) => (
-            <TextBlock>{text}</TextBlock>
+          {textArray.map((text, index) => (
+            <TextBlock key={index}>{text}</TextBlock>
           ))}
         </Wrapper>
       </Box>

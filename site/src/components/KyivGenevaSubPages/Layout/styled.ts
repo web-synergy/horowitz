@@ -6,7 +6,7 @@ export const ImageWrapper = styled(Box)(({ theme }) => ({
   position: 'relative',
 
   margin: '0 auto',
-  backgroundColor: 'rgba(8, 7, 8, 0.7)',
+  backgroundColor: 'rgba(8, 7, 8, 0.4)',
   width: '100%',
   height: '42vw',
   minHeight: 161,
