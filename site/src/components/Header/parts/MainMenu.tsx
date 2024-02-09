@@ -1,12 +1,14 @@
 import { FC, useState, MouseEvent } from 'react';
 import { Typography, useTheme, useMediaQuery } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Link as CustomLink, NavItem, NavButton, SubMenuList } from '../styled';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import Submenu from './Submenu';
 import { NavigationType } from '@/types/routes.d';
 import PopoverWrapper from './PopoverWrapper';
+
+import { overallNavigation } from '@/config/routes/navigation';
 
 interface MainMenuProps {
   title: string;
@@ -27,6 +29,12 @@ const MainMenu: FC<MainMenuProps> = ({
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
   const [anchorElement, setAnchorEl] = useState<HTMLDivElement | null>(null);
+  const { pathname } = useLocation();
+
+  const currentLocation = pathname.split('/')[1];
+  const parent = overallNavigation.find(
+    (item) => item.title === currentLocation
+  )?.parent;
 
   const langTitle = t(`navigation.${title}`);
   const isActive = activeMenu === title;
@@ -42,6 +50,8 @@ const MainMenu: FC<MainMenuProps> = ({
     if (onCloseMobileMenu) onCloseMobileMenu();
   };
 
+  const isActiveMenu = title === currentLocation || title === parent;
+
   if (!children) {
     return (
       <CustomLink
@@ -49,6 +59,7 @@ const MainMenu: FC<MainMenuProps> = ({
         to={`/${title}`}
         variant="navLink"
         onClick={onCloseMobileMenu}
+        isActive={isActiveMenu}
       >
         {langTitle}
       </CustomLink>
@@ -64,6 +75,7 @@ const MainMenu: FC<MainMenuProps> = ({
         expandIcon={
           <SvgSpriteIcon icon="arrow" size={isDesktop ? 'small' : 'medium'} />
         }
+        isActive={isActiveMenu}
       >
         <Typography variant="navLink">{langTitle}</Typography>
       </NavButton>

@@ -52,9 +52,14 @@ const navLinkStyle = (theme: Theme) => ({
   },
 });
 
-export const Link = styled(MuiLink)<LinkProps & RouterLinkProps>(
-  ({ theme }) => ({
+interface CustomProp {
+  isActive: boolean;
+}
+
+export const Link = styled(MuiLink)<LinkProps & RouterLinkProps & CustomProp>(
+  ({ theme, isActive }) => ({
     ...navLinkStyle(theme),
+    color: isActive ? theme.palette.primary.main : 'inherit',
     '&': {
       paddingBottom: 8,
     },
@@ -89,19 +94,22 @@ export const NavItem = styled(Accordion)(() => ({
   },
 }));
 
-export const NavButton = styled(AccordionSummary)(({ theme }) => ({
-  ...navLinkStyle(theme),
+export const NavButton = styled(AccordionSummary)<CustomProp>(
+  ({ theme, isActive }) => ({
+    ...navLinkStyle(theme),
 
-  gap: 16,
+    gap: 16,
+    color: isActive ? theme.palette.primary.main : 'inherit',
 
-  '&[aria-expanded="true"]': {
-    color: theme.palette.action.focus,
-  },
+    '&[aria-expanded="true"]': {
+      color: theme.palette.action.focus,
+    },
 
-  [theme.breakpoints.up('lg')]: {
-    gap: 4,
-  },
-}));
+    [theme.breakpoints.up('lg')]: {
+      gap: 4,
+    },
+  })
+);
 
 export const SubMenuList = styled(AccordionDetails)(({ theme }) => ({
   padding: '24px 32px 0',
@@ -119,14 +127,15 @@ export const SubMenuList = styled(AccordionDetails)(({ theme }) => ({
   },
 }));
 
-export const SubmenuLink = styled(MuiLink)<LinkProps | RouterLinkProps>(
-  ({ theme }) => ({
-    '&': {
-      paddingBottom: 0,
-    },
+export const SubmenuLink = styled(MuiLink)<
+  LinkProps & RouterLinkProps & CustomProp
+>(({ theme, isActive }) => ({
+  color: isActive ? theme.palette.primary.main : 'inherit',
+  '&': {
+    paddingBottom: 0,
+  },
 
-    '&:hover': {
-      color: theme.palette.primary.main,
-    },
-  })
-);
+  '&:hover': {
+    color: theme.palette.primary.main,
+  },
+}));
