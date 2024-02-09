@@ -40,7 +40,7 @@ const MobileMenu: FC<MobileMenuProps> = ({ open, onClose }) => {
           gap: 5,
           width: { md: '60%' },
           maxWidth: { md: '50vw' },
-          minWidth: { md: '320px' },
+          minWidth: { md: '430px' },
         },
       }}
     >

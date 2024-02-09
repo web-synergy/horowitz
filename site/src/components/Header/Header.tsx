@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Container,
   AppBar,
   Toolbar,
   useTheme,
   useScrollTrigger,
+  useMediaQuery,
 } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import MobileMenu from './parts/MobileMenu';
@@ -15,11 +16,19 @@ const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const location = useLocation();
   const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
 
   const scrollTrigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 100,
   });
+
+  useEffect(() => {
+    if (isDesktop && openMenu) {
+      setOpenMenu(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDesktop]);
 
   const isHomePage = location.pathname === '/';
   const isHeaderTransparent = isHomePage && !scrollTrigger;
