@@ -1,10 +1,12 @@
-import { PortableTextBlock } from '@portabletext/types';
-import { INews } from './newsTypes';
+import { PortableTextBlock } from "@portabletext/types";
+import { INews } from "./newsTypes";
+
 
 import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
 import { Partner } from './partnersTypes';
 import { Member } from './administrationTypes';
 import { NavigationType } from './routes';
+
 
 export interface SettingsStoreState {
   sociable: SociableType | null;
@@ -52,5 +54,6 @@ export interface PartnersStoreState {
 
 export interface AdministrationStoreState {
   administrationData: { members: Member[] } | null;
+  isLoading: boolean;
   fetchAdministrationData: (language: string) => Promise<void>;
 }

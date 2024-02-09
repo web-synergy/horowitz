@@ -1,9 +1,11 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { Section } from "@/components/Contacts/styled";
 import { QuoteSectionProps } from "@/types/horowitzTypes";
 
 const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
+  const theme = useTheme();
+
   return (
     <Section component={"section"}>
       <Box
@@ -11,7 +13,7 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
           textAlign: "center",
           maxWidth: "1280px",
           margin: "0 auto",
-          padding: { xs: "24px 20px", md: "72px 54px", lg: "148px 172px" },
+          padding: { xs: "24px 16px", md: "72px 54px", lg: "148px 172px" },
         }}
       >
         <Typography
@@ -29,7 +31,7 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
         <Typography
           variant="subhead"
           sx={{
-            color: "#E19C2A",
+            color: theme.palette.primary.main,
           }}
         >
           — {quote.author}

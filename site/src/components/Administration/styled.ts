@@ -19,7 +19,7 @@ export const BannerWrapper = styled(Box)<BannerWrapperProps>(
 );
 
 export const WrapperImg = styled(Box)(({ theme }) => ({
-  maxWidth: "498px",
+  maxWidth: "320px",
 
   "& img": {
     display: "block",
@@ -41,7 +41,6 @@ export const WrapperImg = styled(Box)(({ theme }) => ({
 
 export const TextBlock = styled("p")(({ theme }) => ({
   margin: 0,
-  textAlign: "center",
   fontSize: "16px",
   lineHeight: "24px",
 
