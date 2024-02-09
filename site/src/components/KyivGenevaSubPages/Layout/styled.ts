@@ -1,4 +1,6 @@
 import { Box, styled } from '@mui/material';
+import banner from '@/assets/images/kyiv-geneva/banner.jpg';
+import text from '@/assets/images/kyiv-geneva/text-eng.svg';
 
 export const ImageWrapper = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -34,5 +36,41 @@ export const ImageWrapper = styled(Box)(({ theme }) => ({
     '&:after, &:before': {
       width: '20%',
     },
+  },
+}));
+
+export const Image = styled(Box)(() => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  backgroundImage: `url(${banner})`,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center',
+  zIndex: '-1',
+}));
+
+export const TextWrapper = styled(Box)(() => ({
+  position: 'absolute',
+  bottom: '2%',
+  width: '100%',
+  height: '30%',
+  zIndex: 100,
+}));
+
+export const Text = styled(Box)(({ theme }) => ({
+  margin: '0 auto',
+  width: '95%',
+  height: '100%',
+  maxWidth: '1280px',
+  backgroundImage: `url(${text})`,
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center',
+
+  [theme.breakpoints.up('lg')]: {
+    width: '70%',
   },
 }));
