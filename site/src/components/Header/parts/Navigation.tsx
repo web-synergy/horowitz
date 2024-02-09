@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { navigation } from '@/config/routes/navigation';
 import { NavList } from '../styled';
 import MainMenu from './MainMenu';
-import { Routes } from '@/types/routes.d';
+import { Routes, NavigationType } from '@/types/routes.d';
 import { useSettingsStore } from '@/store/settingStore';
 
 interface NavigationProps {
@@ -35,9 +35,11 @@ const Navigation: FC<NavigationProps> = ({ onCloseMobileMenu }) => {
       ? {
           ...item,
           children: [
-            children ? children[0] : [],
+            ...(children ? [children[0]] : ([] as NavigationType[])),
             ...competitionNav,
-            ...(children && children.length > 1 ? children.slice(1) : []),
+            ...(children && children.length > 1
+              ? children.slice(1)
+              : ([] as NavigationType[])),
           ],
         }
       : { ...item, children };
