@@ -23,7 +23,7 @@ const KyivGenevaParticipants = () => {
           gap: { xs: '24px', lg: '48px' },
         }}>
         <Typography component={'h1'} variant='h1'>
-          {t(`navigation.${Routes.KYIV_GENEVA_WINNERS}`)}
+          {t(`navigation.${Routes.KYIV_GENEVA_PARTICIPANTS}`)}
         </Typography>
         <Grid container rowGap={{ xs: '24px', lg: '48px' }} gap={'24px'}>
           {participantsData.map((item, index) => (

@@ -8,7 +8,6 @@ export default function YouTube({
 }: {
   value: { url: string; title: string };
 }) {
-  console.log(value);
   const { url, title } = value;
   const theme = useTheme();
   const isMob = useMediaQuery(theme.breakpoints.down('md'));

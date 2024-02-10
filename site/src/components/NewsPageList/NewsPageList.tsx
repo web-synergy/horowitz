@@ -8,8 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import NewsListItem from './pars/NewsListItem';
 import { INews } from '@/types/newsTypes';
 import { useTranslation } from 'react-i18next';
-
-import Breadcrumbs from '../Common/Breadcrumbs';
 import { Routes } from '@/types/routes.d';
 
 import { useSearchParams } from 'react-router-dom';
@@ -44,7 +42,6 @@ const NewsPageList = () => {
   return (
     <PageTemplate>
       <Container>
-        <Breadcrumbs title={t(`navigation.${Routes.NEWS}`)} mode='light' />
         <Stack>
           <Typography
             sx={{
