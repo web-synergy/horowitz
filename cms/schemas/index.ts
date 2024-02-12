@@ -7,7 +7,7 @@ import partners from './documents/partners'
 import administration from './documents/administration'
 import settings from './documents/settings'
 import social from './documents/social'
-import {content} from './objects/content'
+import content from './objects/content'
 
 import competition from './documents/competition'
 import competitionDocument from './documents/competitionDocument'

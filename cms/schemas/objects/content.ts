@@ -1,6 +1,6 @@
 import {defineType} from 'sanity'
 
-export const content = defineType({
+const content = defineType({
   name: 'content',
   type: 'array',
   of: [
@@ -57,3 +57,5 @@ export const content = defineType({
     },
   ],
 })
+
+export default content

@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 
 import { urlFor } from '@/config/sanity/imageUrl';
-import { usePartnersStore } from '@/store/settingStore';
+import { usePartnersStore } from '@/store/partnersStore';
 import { Routes } from '@/types/routes.d';
 import { MainPage, Buttons } from '@/types/translation.d';
 import { useTranslation } from 'react-i18next';
@@ -17,9 +17,23 @@ import { Link as RouterLink } from 'react-router-dom';
 
 const PartnersAndFriends: FC = () => {
   const { t } = useTranslation();
-  const partners = usePartnersStore((state) => state.filtered);
+  const {
+    generalInfoPartners,
+    mainInfoPartners,
+    mainPartners,
+    officialInfoPartners,
+    partners,
+    sponsors,
+  } = usePartnersStore();
 
-  if (!partners?.length) return null;
+  const commonList = [
+    ...(mainPartners || []),
+    ...(sponsors || []),
+    ...(generalInfoPartners || []),
+    ...(partners ?? []),
+    ...(mainInfoPartners ?? []),
+    ...(officialInfoPartners ?? []),
+  ];
 
   return (
     <Stack
@@ -59,11 +73,11 @@ const PartnersAndFriends: FC = () => {
           }}
           modules={[Autoplay]}
         >
-          {partners.length &&
-            partners.map(({ _key, img, title }) => (
+          {commonList.length > 0 &&
+            commonList.map(({ _key, img, title }) => (
               <SwiperSlide key={_key}>
                 <img
-                  src={img?.asset && urlFor(img).url().toString()}
+                  src={img.asset && urlFor(img).url().toString()}
                   alt={title}
                   style={{
                     maxWidth: '100%',

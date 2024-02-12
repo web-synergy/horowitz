@@ -1,12 +1,10 @@
-import { PortableTextBlock } from "@portabletext/types";
-import { INews } from "./newsTypes";
-
+import { PortableTextBlock } from '@portabletext/types';
+import { INews } from './newsTypes';
 
 import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
 import { Partner } from './partnersTypes';
 import { Member } from './administrationTypes';
 import { NavigationType } from './routes';
-
 
 export interface SettingsStoreState {
   sociable: SociableType | null;
@@ -46,10 +44,9 @@ export interface PartnersStoreState {
   mainInfoPartners: Partner[] | null;
   officialInfoPartners: Partner[] | null;
   partners: Partner[] | null;
+  requestLang: string | null;
 
-  filtered?: Partner[];
-
-  fetchPartners: () => Promise<void>;
+  fetchPartners: (language: string) => Promise<void>;
 }
 
 export interface AdministrationStoreState {

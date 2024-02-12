@@ -1,12 +1,12 @@
-import { urlFor } from '@/config/sanity/imageUrl'
-import { Partner } from '@/types/partnersTypes'
-import { Box, Stack, Typography } from '@mui/material'
-import { FC } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { urlFor } from '@/config/sanity/imageUrl';
+import { Partner } from '@/types/partnersTypes';
+import { Box, Stack, Typography } from '@mui/material';
+import { FC } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 interface LogotypesGalleryProps {
-  title: string
-  gallery: Partner[]
+  title: string;
+  gallery: Partner[];
 }
 const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery }) => {
   return (
@@ -28,15 +28,16 @@ const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery }) => {
             xs: '24px',
             md: '28px',
           },
+          alignItems: 'center',
         }}
       >
         {gallery.length &&
-          gallery.map(item => (
+          gallery.map((item) => (
             <Box key={item._key}>
               <RouterLink
                 to={item.link}
                 target="_blank"
-                onClick={e => !item.link && e.preventDefault()}
+                onClick={(e) => !item.link && e.preventDefault()}
               >
                 <Box
                   component={'img'}
@@ -44,12 +45,13 @@ const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery }) => {
                   alt={item.title}
                   sx={{
                     height: {
-                      xs: '54px',
-                      md: '70px',
-                      lg: '80px',
+                      xs: item.size * 0.75,
+                      md: item.size * 0.8,
+                      lg: item.size,
                     },
+                    width: 'auto',
                     maxWidth: '100%',
-                    objectFit: 'contain',
+                    fontSize: 0,
                   }}
                 />
               </RouterLink>
@@ -57,7 +59,7 @@ const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery }) => {
           ))}
       </Stack>
     </Box>
-  )
-}
+  );
+};
 
-export default LogotypesGallery
+export default LogotypesGallery;
