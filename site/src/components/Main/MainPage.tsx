@@ -1,7 +1,4 @@
-import { FC, useEffect } from 'react';
-
-import { usePartnersStore } from '@/store/settingStore';
-
+import { FC } from 'react';
 import CompetitionEvents from './parts/CompetitionEvents/CompetitionEvents';
 import CompetitionOrganizers from './parts/CompetitionOrganizers/CompetitionOrganizers';
 import CompetitionWinners from './parts/CompetitionWinners/CompetitionWinners';
@@ -13,12 +10,6 @@ import WatchOnline from './parts/WatchOnline/WatchOnline';
 import holidayCard from './temp/holidayCard.jpg';
 
 const MainPage: FC = () => {
-  const fetchData = usePartnersStore((state) => state.fetchPartners);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   return (
     <>
       <HeroSection />

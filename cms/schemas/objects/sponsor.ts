@@ -15,22 +15,24 @@ export default defineType({
       type: 'url',
     }),
     defineField({
+      name: 'size',
+      title: 'Висота',
+      type: 'number',
+    }),
+    defineField({
       name: 'img',
       title: 'Додати зображення',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      type: 'internationalizedArrayImage',
     }),
   ],
   preview: {
     select: {
       title: 'title',
-      img: 'img',
+      image: 'img',
     },
-    prepare: ({title, img}) => ({
+    prepare: ({title, image}) => ({
       title: title,
-      media: img,
+      media: image[0].value,
     }),
   },
 })

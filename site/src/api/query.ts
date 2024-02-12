@@ -1,4 +1,4 @@
-import groq from "groq";
+import groq from 'groq';
 export const homeQuery = groq`*[_type == 'home'][0]{
  'quote':quote{
        'author': author[_key ==$language].value,
@@ -86,13 +86,27 @@ export const currentNewsQuery = groq`*[_type == 'news'&& slug.current == $slug][
 }`;
 
 export const partners = groq`*[_type == 'partners'][0]{
-  organizers,
-  mainPartners,
-  sponsors,
-  generalInfoPartners,
-  mainInfoPartners,
-  officialInfoPartners,
-  partners,
+  'organizers': organizers[]{
+    _key,title, size, link, 'img': coalesce(img[_key ==$language][0].value, img[][0].value)
+  },
+  'mainPartners':  mainPartners[]{
+    _key,title, size,link, 'img': coalesce(img[_key ==$language][0].value, img[][0].value)
+  },
+  'sponsors':  sponsors[]{
+   _key, title, size, link,'img': coalesce(img[_key ==$language][0].value, img[][0].value)
+  },
+  'generalInfoPartners':  generalInfoPartners[]{
+    _key,title, size,link, 'img': coalesce(img[_key ==$language][0].value, img[][0].value)
+  },
+  'mainInfoPartners': mainInfoPartners[]{
+    _key,title, size,link, 'img': coalesce(img[_key ==$language][0].value, img[][0].value)
+  },
+  'officialInfoPartners': officialInfoPartners[]{
+   _key, title, size, link,'img': coalesce(img[_key ==$language][0].value, img[][0].value)
+  },
+  'partners':  partners[]{
+    _key, title, size, link,'img': coalesce(img[_key ==$language][0].value, img[][0].value)
+  },
 }`;
 
 export const administrationQuery = groq`*[_type == 'administration'][0] {

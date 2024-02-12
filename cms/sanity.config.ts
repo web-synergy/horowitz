@@ -27,7 +27,7 @@ export default defineConfig({
       languages: languages,
       defaultLanguages: [langByDefault],
       buttonAddAll: false,
-      fieldTypes: ['string', 'text', 'content'],
+      fieldTypes: ['string', 'text', 'content', 'image'],
     }),
   ],
 
