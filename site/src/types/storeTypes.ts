@@ -1,10 +1,11 @@
-import { PortableTextBlock } from '@portabletext/types';
-import { INews } from './newsTypes';
+import { PortableTextBlock } from "@portabletext/types";
+import { INews } from "./newsTypes";
 
-import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
-import { Partner } from './partnersTypes';
-import { Member } from './administrationTypes';
-import { NavigationType } from './routes';
+import { ContactsType, SettingsResp, SociableType } from "./contactsTypes";
+import { Partner } from "./partnersTypes";
+import { AboutCompetitionImage } from "./aboutCompetitionTypes";
+import { Member } from "./administrationTypes";
+import { NavigationType } from "./routes";
 
 export interface SettingsStoreState {
   sociable: SociableType | null;
@@ -13,6 +14,17 @@ export interface SettingsStoreState {
   competitions: { [key: string]: NavigationType[] | null };
   fetchSettings: (language: string) => Promise<void>;
   getPreviewSettings: (settings: SettingsResp[], language: string) => void;
+}
+
+export interface AboutCompetitionState {
+  upperTextBlock: PortableTextBlock[];
+  middleTextBlock: PortableTextBlock[];
+  lowerTextBlock: PortableTextBlock[];
+  imgHistoryOne: AboutCompetitionImage | null;
+  imgHistoryTwo: AboutCompetitionImage | null;
+  imgStatistics: AboutCompetitionImage | null;
+  isLoading: boolean;
+  fetchAboutCompetitionData: (language: string) => Promise<void>;
 }
 
 export interface HorowitzStoreState {

@@ -1,19 +1,21 @@
-import { IHorowitzData } from '@/types/horowitzTypes';
-import { horowitzQuery } from './query';
+import { IHorowitzData } from "@/types/horowitzTypes";
+import { horowitzQuery } from "./query";
 
-import { INews } from '@/types/newsTypes';
-import { Member } from '@/types/administrationTypes';
-import { sanityFetch } from '../config/sanity/client';
-import { SettingsResp } from '../types/contactsTypes';
+import { INews } from "@/types/newsTypes";
+import { Member } from "@/types/administrationTypes";
+import { AboutCompetitionResp } from "@/types/aboutCompetitionTypes";
+import { sanityFetch } from "../config/sanity/client";
+import { SettingsResp } from "../types/contactsTypes";
 import {
   currentNewsQuery,
   partners,
   newsQuery,
   settingsQuery,
   administrationQuery,
-} from './query';
+  aboutCompetitionQuery,
+} from "./query";
 
-import { PartnersResp } from '@/types/partnersTypes';
+import { PartnersResp } from "@/types/partnersTypes";
 
 export const getSettings = async (
   language: string
@@ -43,6 +45,12 @@ export const getCurrentNews = async (
 
 export const getPartners = async (language: string): Promise<PartnersResp> => {
   return sanityFetch(partners, { language });
+};
+
+export const getAboutCompetition = async (
+  language: string
+): Promise<AboutCompetitionResp> => {
+  return sanityFetch(aboutCompetitionQuery, { language });
 };
 
 export const getAdministrationMembers = async (

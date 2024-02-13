@@ -1,7 +1,7 @@
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: 'aboutCompetition',
+  name: 'aboutHorowitzCompetition',
   title: 'Конкурс Горовиця',
   type: 'document',
 
@@ -42,7 +42,7 @@ export default defineType({
     }),
 
     defineField({
-      name: 'imgOne',
+      name: 'imgHistoryOne',
       title: 'Зображення Історія 1',
       type: 'internationalizedArrayImage',
       group: 'images',
@@ -56,7 +56,7 @@ export default defineType({
     }),
 
     defineField({
-      name: 'imgTwo',
+      name: 'imgHistoryTwo',
       title: 'Зображення Історія 2',
       type: 'internationalizedArrayImage',
       group: 'images',
@@ -70,7 +70,7 @@ export default defineType({
     }),
 
     defineField({
-      name: 'imgThree',
+      name: 'imgStatistics',
       title: 'Зображення Статистика',
       type: 'internationalizedArrayImage',
       group: 'images',

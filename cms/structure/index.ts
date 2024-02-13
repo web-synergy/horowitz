@@ -33,9 +33,12 @@ const structure = (S: StructureBuilder) =>
         (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
       ),
       ...newsStructure(S),
-      singleDocument(S, 'aboutCompetition', 'Конкурс Горовиця', preview(S, 'horowitz')).icon(
-        MdOutlineSettingsBrightness,
-      ),
+      singleDocument(
+        S,
+        'aboutHorowitzCompetition',
+        'Конкурс Горовиця',
+        preview(S, 'aboutHorowitzCompetition'),
+      ).icon(MdOutlineSettingsBrightness),
       singleDocument(
         S,
         'administration',

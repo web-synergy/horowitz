@@ -1,4 +1,4 @@
-import groq from 'groq';
+import groq from "groq";
 export const homeQuery = groq`*[_type == 'home'][0]{
  'quote':quote{
        'author': author[_key ==$language].value,
@@ -107,6 +107,15 @@ export const partners = groq`*[_type == 'partners'][0]{
   'partners':  partners[]{
     _key, title, size, link,'img': coalesce(img[_key ==$language][0].value, img[][0].value)
   },
+}`;
+
+export const aboutCompetitionQuery = groq`*[_type == 'aboutHorowitzCompetition'][0] {
+  'upperTextBlock': upperTextBlock[_key ==$language][0].value,
+  'middleTextBlock': middleTextBlock[_key ==$language][0].value,
+  'lowerTextBlock': lowerTextBlock[_key ==$language][0].value,
+  'imgHistoryOne': imgHistoryOne[_key ==$language][0].value,
+  'imgHistoryTwo': imgHistoryTwo[_key ==$language][0].value,
+  'imgStatistics': imgStatistics[_key ==$language][0].value,
 }`;
 
 export const administrationQuery = groq`*[_type == 'administration'][0] {
