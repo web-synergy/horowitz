@@ -96,4 +96,9 @@ export default {
   kyivGeneva: {
     [KyivGeneva.GOVERNMENT]: 'Government agencies',
   },
+
+  archive: {
+    title: '27 years of the Competition history',
+    btn: 'Follow the link',
+  },
 };
