@@ -97,7 +97,9 @@ export default {
   kyivGeneva: {
     [KyivGeneva.GOVERNMENT]: 'Державні установи',
   },
-  jury: {
-    return_jury: 'Повернутись до Журі',
+
+  archive: {
+    title: '27 років історії Конкурсу ',
+    btn: 'Перейти за посиланням',
   },
 };
