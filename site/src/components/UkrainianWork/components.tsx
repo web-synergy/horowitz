@@ -1,17 +1,14 @@
 import { PortableTextComponents } from '@portabletext/react';
-import { Link, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
+import { Link } from './styled';
 
 export const components: PortableTextComponents = {
   block: {
-    normal: ({ children }) => {
-      console.log('p elemnt');
-      console.log(children);
-      return (
-        <Typography component={'p'} textAlign={'justify'}>
-          {children}
-        </Typography>
-      );
-    },
+    normal: ({ children }) => (
+      <Typography component={'p'} textAlign={'justify'}>
+        {children}
+      </Typography>
+    ),
   },
   marks: {
     link: ({ value, children }) => {
@@ -20,7 +17,7 @@ export const components: PortableTextComponents = {
         : undefined;
 
       return (
-        <Link variant="linkBlock" href={value?.href} target={target}>
+        <Link href={value?.href} target={target}>
           {children}
         </Link>
       );

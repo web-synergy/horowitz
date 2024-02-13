@@ -47,7 +47,7 @@ const UkrainianComposition = () => {
 
             <List>
               {works.list.split('\n').map((item, index) => (
-                <ListItem key={index} index={index + 1}>
+                <ListItem key={index}>
                   <Typography component={'span'}>{item}</Typography>
                 </ListItem>
               ))}
