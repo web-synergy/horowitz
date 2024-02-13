@@ -16,7 +16,6 @@ export const useAboutCompetitionStore = create<AboutCompetitionState>(
 
       try {
         const response = await getAboutCompetition(language);
-        console.log(response);
         if (!response) {
           throw new Error("Could not fetch the data from that resource");
         }

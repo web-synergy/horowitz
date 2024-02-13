@@ -2,17 +2,15 @@ import { FC, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Routes } from "@/types/routes.d";
 import { Box, Container, Typography } from "@mui/material";
-// import Loader from "../Common/Loader";
+import Loader from "../Common/Loader";
 import PageTemplate from "../Common/PageTemplate";
 
 import { useAboutCompetitionStore } from "@/store/aboutCompetitionStore";
-// import BannerComponent from "./parts/BannerComponent";
-// import LiteratureSection from "./parts/LiteratureSection";
-// import QuoteSection from "./parts/QuoteSection";
-// import TextBlockSection from "./parts/TextBlockSection.tsx";
-// import { Buttons } from "@/types/translation.d";
-// import { useLiveQuery } from "@sanity/preview-kit";
-// import { horowitzQuery } from "@/api/query.ts";
+import BannerComponent from "./parts/BannerComponent";
+import TextBlockSection from "./parts/TextBlockSection.tsx";
+import ImageSection from "./parts/ImageSection.tsx";
+import { useLiveQuery } from "@sanity/preview-kit";
+import { aboutCompetitionQuery } from "@/api/query.ts";
 
 const AboutPage: FC = () => {
   const {
@@ -28,32 +26,28 @@ const AboutPage: FC = () => {
     fetchAboutCompetitionData(language);
   }, [fetchAboutCompetitionData, language]);
 
-  // const horowitzData = useHorowitzStore();
+  const aboutCompetitionData = useAboutCompetitionStore();
 
-  // const [
-  //   {
-  //     bannerData,
-  //     quote,
-  //     upperTextBlock,
-  //     lowerTextBlock,
-  //     literature,
-  //     isLoading,
-  //   },
-  // ] = useLiveQuery(horowitzData, horowitzQuery, {
-  //   language,
-  // });
+  const [
+    {
+      upperTextBlock,
+      middleTextBlock,
+      lowerTextBlock,
+      imgHistoryOne,
+      imgHistoryTwo,
+      imgStatistics,
+      isLoading,
+    },
+  ] = useLiveQuery(aboutCompetitionData, aboutCompetitionQuery, {
+    language,
+  });
 
-  // if (isLoading) {
-  //   return <Loader />;
-  // }
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <PageTemplate>
-      {/* {bannerData && (
-        <BannerComponent
-          imgSrc={bannerData.bannerImg}
-          copyright={bannerData.bannerCopyright}
-        />
-      )} */}
+      <BannerComponent />
 
       <Container>
         <Box
@@ -71,7 +65,7 @@ const AboutPage: FC = () => {
               textAlign: "center",
             }}
           >
-            {t(`navigation.${Routes.HOROWITZ}`)}
+            {t(`navigation.${Routes.DETAILS}`)}
           </Typography>
         </Box>
         <Box
@@ -79,8 +73,29 @@ const AboutPage: FC = () => {
             padding: { xs: "24px 0px", lg: "80px 0px" },
           }}
         >
-          {/* <TextBlockSection blocks={"fff"} /> */}
+          <TextBlockSection blocks={upperTextBlock} />
         </Box>
+        {imgHistoryOne && <ImageSection image={imgHistoryOne} />}
+        {middleTextBlock && (
+          <Box
+            sx={{
+              padding: { xs: "24px 0px", lg: "80px 0px" },
+            }}
+          >
+            <TextBlockSection blocks={middleTextBlock} />
+          </Box>
+        )}
+        {imgHistoryTwo && <ImageSection image={imgHistoryTwo} />}
+        {lowerTextBlock && (
+          <Box
+            sx={{
+              padding: { xs: "24px 0px", lg: "80px 0px" },
+            }}
+          >
+            <TextBlockSection blocks={lowerTextBlock} />
+          </Box>
+        )}
+        {imgStatistics && <ImageSection image={imgStatistics} />}
       </Container>
     </PageTemplate>
   );
