@@ -10,19 +10,19 @@ export const Banner = styled(Box)(() => ({
 }));
 
 export const Title = styled(Typography)<TypographyProps>(({ theme }) => ({
-  fontSize: '40px',
-  lineHeight: '48px',
+  fontSize: '2.5rem',
+  lineHeight: 1.2,
   textAlign: 'center',
   marginBottom: 56,
 
   [theme.breakpoints.up('md')]: {
-    fontSize: '48px',
-    lineHeight: '56px',
-    marginBottom: 48,
+    fontSize: '3rem',
+    lineHeight: 1.167,
+    marginBottom: 40,
   },
 
   [theme.breakpoints.up('lg')]: {
-    fontSize: '80px',
+    fontSize: '5rem',
     lineHeight: 1,
     marginBottom: 96,
   },
