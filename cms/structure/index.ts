@@ -21,6 +21,7 @@ const singleSchemaTittles = [
   'Новини',
   'Партнери і спонсори',
   'Адміністрація конкурсу',
+  'Конкурс Горовиця',
 ]
 
 const structure = (S: StructureBuilder) =>
@@ -32,6 +33,9 @@ const structure = (S: StructureBuilder) =>
         (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
       ),
       ...newsStructure(S),
+      singleDocument(S, 'aboutCompetition', 'Конкурс Горовиця', preview(S, 'horowitz')).icon(
+        MdOutlineSettingsBrightness,
+      ),
       singleDocument(
         S,
         'administration',
