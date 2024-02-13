@@ -1,8 +1,7 @@
 import { IHorowitzData } from '@/types/horowitzTypes';
-import { horowitzQuery } from './query';
-
 import { INews } from '@/types/newsTypes';
 import { Member } from '@/types/administrationTypes';
+import { IUkrWorks } from '@/types/ukranianWorks';
 import { sanityFetch } from '../config/sanity/client';
 import { SettingsResp } from '../types/contactsTypes';
 import {
@@ -11,8 +10,9 @@ import {
   newsQuery,
   settingsQuery,
   administrationQuery,
+  horowitzQuery,
+  ukrWorksQuery,
 } from './query';
-
 import { PartnersResp } from '@/types/partnersTypes';
 
 export const getSettings = async (
@@ -49,4 +49,10 @@ export const getAdministrationMembers = async (
   language: string
 ): Promise<{ members: Member[] }> => {
   return sanityFetch(administrationQuery, { language });
+};
+
+export const getUkrainianWorks = async (
+  language: string
+): Promise<IUkrWorks> => {
+  return sanityFetch(ukrWorksQuery, { language });
 };

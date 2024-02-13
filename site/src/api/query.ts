@@ -116,3 +116,8 @@ export const administrationQuery = groq`*[_type == 'administration'][0] {
     img
     },
 }`;
+
+export const ukrWorksQuery = groq`*[_type == 'ukrainianWorks'][0] {
+     'text': text[_key ==$language][0].value,
+    'list': list[_key ==$language][0].value,
+ }`;

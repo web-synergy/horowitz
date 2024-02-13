@@ -5,6 +5,7 @@ import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
 import { Partner } from './partnersTypes';
 import { Member } from './administrationTypes';
 import { NavigationType } from './routes';
+import { IUkrWorks } from './ukranianWorks';
 
 export interface SettingsStoreState {
   sociable: SociableType | null;
@@ -53,4 +54,9 @@ export interface AdministrationStoreState {
   administrationData: { members: Member[] } | null;
   isLoading: boolean;
   fetchAdministrationData: (language: string) => Promise<void>;
+}
+
+export interface UkrWorksStoreState {
+  works: IUkrWorks | null;
+  fetchWorks: (language: string) => Promise<void>;
 }
