@@ -7,48 +7,15 @@ interface BannerWrapperProps {
 export const BannerWrapper = styled(Box)<BannerWrapperProps>(
   ({ theme, img }) => ({
     width: "100%",
-    height: "314px",
+    height: "46vw",
+    minHeight: "200px",
+    maxHeight: "40vh",
 
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
+    backgroundPosition: "left",
     backgroundImage: `linear-gradient(to right, rgba(8, 7, 8, 0.60), rgba(8, 7, 8, 0.60)), url(${img})`,
     [theme.breakpoints.up("md")]: { height: "468px" },
-    [theme.breakpoints.up("lg")]: {},
+    [theme.breakpoints.up("lg")]: { height: "596px" },
   })
 );
-
-export const WrapperImg = styled(Box)(({ theme }) => ({
-  maxWidth: "320px",
-
-  "& img": {
-    display: "block",
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-
-    [theme.breakpoints.up("md")]: {
-      width: "144px",
-      height: "144px",
-    },
-
-    [theme.breakpoints.up("lg")]: {
-      width: "262px",
-      height: "262px",
-    },
-  },
-}));
-
-export const TextBlock = styled("p")(({ theme }) => ({
-  margin: 0,
-  fontSize: "16px",
-  lineHeight: "24px",
-
-  [theme.breakpoints.up("md")]: {
-    lineHeight: "28px",
-  },
-
-  [theme.breakpoints.up("lg")]: {
-    fontSize: "18px",
-  },
-}));

@@ -1,25 +1,18 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 import Breadcrumbs from "@/components/Common/Breadcrumbs";
 import { Routes } from "@/types/routes.d";
 import { BannerWrapper } from "../styled";
 
-import administrationDeskBanner from "@/assets/images/administrationDeskBanner.webp";
-import administrationTabletBanner from "@/assets/images/administrationTabletBanner.webp";
+import banner_img from "@/assets/images/bg_about_competition.webp";
 
 const BannerComponent: React.FC = () => {
   const { t } = useTranslation();
-  const theme = useTheme();
-  const isLargeScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
   return (
-    <BannerWrapper
-      img={
-        isLargeScreen ? administrationTabletBanner : administrationDeskBanner
-      }
-    >
+    <BannerWrapper img={banner_img}>
       <Container
         sx={{
           height: "100%",

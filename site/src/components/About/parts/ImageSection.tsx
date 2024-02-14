@@ -9,16 +9,15 @@ interface LogotypesGalleryProps {
 
 const ImageSection: FC<LogotypesGalleryProps> = ({ image }) => {
   return (
-    <Box>
+    <Box sx={{ alignItems: "center", textAlign: "center" }}>
       <Box
         component={"img"}
         src={urlFor(image).url().toString()}
         alt="Зображення історії"
         sx={{
+          display: "block",
           height: "auto",
           width: "100%",
-          maxWidth: "100%",
-          fontSize: 0,
         }}
       />
     </Box>

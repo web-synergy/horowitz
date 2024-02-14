@@ -48,54 +48,31 @@ const AboutPage: FC = () => {
   return (
     <PageTemplate>
       <BannerComponent />
-
-      <Container>
+      <Container
+        sx={{
+          paddingTop: { xs: "48px", lg: "120px" },
+          paddingBottom: { xs: "72px", md: "96px", lg: "120px" },
+        }}
+      >
         <Box
           sx={{
-            paddingTop: { xs: "48px", md: "54px", lg: "80px" },
-            paddingBottom: { xs: "24px", lg: "80px" },
+            marginBottom: { xs: "24px", lg: "48px" },
+            textAlign: "center",
+            textTransform: "uppercase",
           }}
         >
-          <Typography
-            variant="h1"
-            component={"p"}
-            sx={{
-              textTransform: "uppercase",
-              marginBottom: "24px",
-              textAlign: "center",
-            }}
-          >
+          <Typography variant="h1">
             {t(`navigation.${Routes.DETAILS}`)}
           </Typography>
         </Box>
-        <Box
-          sx={{
-            padding: { xs: "24px 0px", lg: "80px 0px" },
-          }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>
           <TextBlockSection blocks={upperTextBlock} />
+          {imgHistoryOne && <ImageSection image={imgHistoryOne} />}
+          {middleTextBlock && <TextBlockSection blocks={middleTextBlock} />}
+          {imgHistoryTwo && <ImageSection image={imgHistoryTwo} />}
+          {lowerTextBlock && <TextBlockSection blocks={lowerTextBlock} />}
+          {imgStatistics && <ImageSection image={imgStatistics} />}
         </Box>
-        {imgHistoryOne && <ImageSection image={imgHistoryOne} />}
-        {middleTextBlock && (
-          <Box
-            sx={{
-              padding: { xs: "24px 0px", lg: "80px 0px" },
-            }}
-          >
-            <TextBlockSection blocks={middleTextBlock} />
-          </Box>
-        )}
-        {imgHistoryTwo && <ImageSection image={imgHistoryTwo} />}
-        {lowerTextBlock && (
-          <Box
-            sx={{
-              padding: { xs: "24px 0px", lg: "80px 0px" },
-            }}
-          >
-            <TextBlockSection blocks={lowerTextBlock} />
-          </Box>
-        )}
-        {imgStatistics && <ImageSection image={imgStatistics} />}
       </Container>
     </PageTemplate>
   );
