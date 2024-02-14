@@ -85,7 +85,7 @@ export default {
   sponsorsPage: {
     [Sponsors.MAIN_TITLE]: 'Партнери і друзі',
     [Sponsors.COMP_ORG]: 'Організатори конкурсу',
-    [Sponsors.MAIN_PART]: 'Головний партнер',
+    [Sponsors.MAIN_PART]: 'Головні партнери',
     [Sponsors.SPONSORS]: 'Спонсори',
     [Sponsors.GEN_INFO_PART]: 'Головні інформаційні партнери',
     [Sponsors.PARTNERS]: 'Партнери',

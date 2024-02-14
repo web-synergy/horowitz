@@ -6,9 +6,9 @@ import {LuContact} from 'react-icons/lu'
 import {MdOutlineSettingsBrightness} from 'react-icons/md'
 import {RiPagesLine} from 'react-icons/ri'
 import {SiGithubsponsors} from 'react-icons/si'
+import {BsMusicNoteList} from 'react-icons/bs'
 import {FaPeopleGroup} from 'react-icons/fa6'
 import {preview} from './preview'
-import {languages} from '../../languages'
 import {newsStructure} from './newsStructure'
 
 const singleSchemaTittles = [
@@ -22,6 +22,7 @@ const singleSchemaTittles = [
   'Партнери і спонсори',
   'Адміністрація конкурсу',
   'Конкурс Горовиця',
+  'Твори українських композиторів',
 ]
 
 const structure = (S: StructureBuilder) =>
@@ -49,6 +50,7 @@ const structure = (S: StructureBuilder) =>
         MdOutlineSettingsBrightness,
       ),
       singleDocument(S, 'partners', 'Партнери і спонсори').icon(SiGithubsponsors),
+      singleDocument(S, 'ukrainianWorks', 'Твори українських композиторів').icon(BsMusicNoteList),
       S.divider(),
       S.listItem()
         .title('Налаштування')
