@@ -1,7 +1,7 @@
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage, IPortableImgGallery } from '@/types/newsTypes';
 import { Box } from '@mui/material';
-import { FC, Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { PortableSwiper } from './Swiper/Swiper';
 
 import GrowView from '@/components/Common/GrowView';
@@ -36,10 +36,8 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
     </GrowView>
   );
 };
-export const ImagesArray: FC<IPortableImgGallery> = ({ value }) => {
-  const { option } = value;
-
-  if (option) {
+export const ImagesArray = ({ value }: { value: IPortableImgGallery }) => {
+  if (value.option) {
     return (
       <Suspense>
         <GridGallery value={value} />

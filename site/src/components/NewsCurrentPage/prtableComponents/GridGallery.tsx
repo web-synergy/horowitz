@@ -6,14 +6,14 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material';
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
 import GrowView from '@/components/Common/GrowView';
 import { theme } from '@/theme';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage, IPortableImgGallery } from '@/types/newsTypes';
 
-const GridGallery: FC<IPortableImgGallery> = ({ value }) => {
+const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
   const { images, title } = value;
   const [open, setOpen] = useState(false);
   const [imgSrc, setImg] = useState<IImage>();
