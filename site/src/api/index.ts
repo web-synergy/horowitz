@@ -1,5 +1,10 @@
 import { IHorowitzData } from '@/types/horowitzTypes';
-import { horowitzQuery } from './query';
+import {
+  currentArticleQuery,
+  horowitzQuery,
+  virtuososArticleQuery,
+  virtuososQuery,
+} from './query';
 
 import { INews } from '@/types/newsTypes';
 import { Member } from '@/types/administrationTypes';
@@ -14,6 +19,7 @@ import {
 } from './query';
 
 import { PartnersResp } from '@/types/partnersTypes';
+import { IVirtuosos } from '@/types/virtuososTypes';
 
 export const getSettings = async (
   language: string
@@ -49,4 +55,23 @@ export const getAdministrationMembers = async (
   language: string
 ): Promise<{ members: Member[] }> => {
   return sanityFetch(administrationQuery, { language });
+};
+
+export const getVirtuosos = async (language: string): Promise<IVirtuosos> => {
+  return sanityFetch(virtuososQuery, { language });
+};
+
+export const getVirtuososArticle = async (
+  language: string,
+  firstEl: number,
+  lastEl: number
+): Promise<INews[]> => {
+  return sanityFetch(virtuososArticleQuery, { language, firstEl, lastEl });
+};
+
+export const getCurrentArticle = async (
+  language: string,
+  slug: string
+): Promise<INews> => {
+  return sanityFetch(currentArticleQuery, { language, slug });
 };

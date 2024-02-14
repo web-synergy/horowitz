@@ -17,6 +17,8 @@ import membersAdministration from './objects/membersAdministration'
 import video from './objects/video'
 import winners from './objects/winners'
 import {youtube} from './objects/youtube'
+import virtuosos from './documents/virtuosos'
+import virtuososArticle from './documents/virtuososArticle'
 
 export const schemaTypes = [
   //documents
@@ -30,6 +32,8 @@ export const schemaTypes = [
   horowitz,
   partners,
   administration,
+  virtuosos,
+  virtuososArticle,
 
   //objects
   winners,

@@ -8,8 +8,9 @@ import {RiPagesLine} from 'react-icons/ri'
 import {SiGithubsponsors} from 'react-icons/si'
 import {FaPeopleGroup} from 'react-icons/fa6'
 import {preview} from './preview'
-import {languages} from '../../languages'
+
 import {newsStructure} from './newsStructure'
+import {virtuososStructure} from './virtuososStructure'
 
 const singleSchemaTittles = [
   'Головна',
@@ -21,6 +22,8 @@ const singleSchemaTittles = [
   'Новини',
   'Партнери і спонсори',
   'Адміністрація конкурсу',
+  'Статті',
+  'Віртуози планет',
 ]
 
 const structure = (S: StructureBuilder) =>
@@ -31,7 +34,9 @@ const structure = (S: StructureBuilder) =>
       ...S.documentTypeListItems().filter(
         (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
       ),
+
       ...newsStructure(S),
+      ...virtuososStructure(S),
       singleDocument(
         S,
         'administration',

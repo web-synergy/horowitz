@@ -30,9 +30,11 @@ import MainPage from '../../components/Main/MainPage';
 import MasterClassPage from '../../components/MasterClass/MasterClassPage';
 import NotFoundPage from '../../components/NotFound/NotFoundPage';
 import SummerSchoolPage from '../../components/SummerSchool/SummerSchoolPage';
-import VirtuosesPage from '../../components/Virtuoses/VirtuosesPage';
+import VirtuosesPage from '../../components/Virtuoses/Main/VirtuosesPage';
 import ApplyPage from '@/components/Apply/ApplyPage';
 import SupportUsPage from '@/components/SupportUs/SupportUsPage';
+import VirtuosasArticles from '@/components/Virtuoses/VirtuosesArticles/VirtuosasArticles';
+import VirtuososCurrentArticle from '@/components/Virtuoses/VirtuososCurrentArticle/VirtuososCurrentArticle';
 
 const routes = createBrowserRouter([
   {
@@ -68,6 +70,12 @@ const routes = createBrowserRouter([
       { path: Routes.MASTER_CLASS, element: <MasterClassPage /> },
       { path: Routes.SUMMER_SCHOOL, element: <SummerSchoolPage /> },
       { path: Routes.VIRTUOSES, element: <VirtuosesPage /> },
+      { path: Routes.VIRTUOSES_ARTICLE, element: <VirtuosasArticles /> },
+      {
+        path: Routes.VIRTUOSES_CURRENT_ARTICLE,
+        element: <VirtuososCurrentArticle />,
+      },
+
       { path: Routes.NEWS, element: <NewsPageList /> },
       { path: Routes.CURRENT_NEWS, element: <NewsCurrentPage /> },
       { path: Routes.CONTACTS, element: <ContactsPage /> },
