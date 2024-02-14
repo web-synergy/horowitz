@@ -27,6 +27,7 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
         width: "100%",
         backgroundColor: "#0D0C06",
         height: { xs: "314px", md: "468px" },
+
         "::before": {
           content: '""',
           position: "absolute",

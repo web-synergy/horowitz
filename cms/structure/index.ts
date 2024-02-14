@@ -21,6 +21,7 @@ const singleSchemaTittles = [
   'Новини',
   'Партнери і спонсори',
   'Адміністрація конкурсу',
+  'Конкурс Горовиця',
   'Твори українських композиторів',
 ]
 
@@ -33,6 +34,12 @@ const structure = (S: StructureBuilder) =>
         (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
       ),
       ...newsStructure(S),
+      singleDocument(
+        S,
+        'aboutHorowitzCompetition',
+        'Конкурс Горовиця',
+        preview(S, 'aboutHorowitzCompetition'),
+      ).icon(MdOutlineSettingsBrightness),
       singleDocument(
         S,
         'administration',

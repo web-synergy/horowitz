@@ -6,7 +6,7 @@ import Breadcrumbs from "@/components/Common/Breadcrumbs";
 import { Routes } from "@/types/routes.d";
 import { BannerWrapper } from "../styled";
 
-import banner_img from "@/assets/images/bg_administration.webp";
+import banner_img from "@/assets/images/bg_about_competition.webp";
 
 const BannerComponent: React.FC = () => {
   const { t } = useTranslation();

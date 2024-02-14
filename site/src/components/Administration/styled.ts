@@ -4,19 +4,17 @@ interface BannerWrapperProps {
   img: string;
 }
 
-export const BannerWrapper = styled(Box)<BannerWrapperProps>(
-  ({ theme, img }) => ({
-    width: "100%",
-    height: "314px",
+export const BannerWrapper = styled(Box)<BannerWrapperProps>(({ img }) => ({
+  width: "100%",
+  height: "46vw",
+  minHeight: "314px",
+  maxHeight: "42vh",
 
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundImage: `linear-gradient(to right, rgba(8, 7, 8, 0.60), rgba(8, 7, 8, 0.60)), url(${img})`,
-    [theme.breakpoints.up("md")]: { height: "468px" },
-    [theme.breakpoints.up("lg")]: {},
-  })
-);
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "center",
+  backgroundImage: `linear-gradient(to right, rgba(8, 7, 8, 0.60), rgba(8, 7, 8, 0.60)), url(${img})`,
+}));
 
 export const WrapperImg = styled(Box)(({ theme }) => ({
   maxWidth: "320px",

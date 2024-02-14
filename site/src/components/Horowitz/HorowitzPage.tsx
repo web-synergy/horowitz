@@ -73,7 +73,6 @@ const HorowitzPage: FC = () => {
         >
           <Typography
             variant="h1"
-            component={"p"}
             sx={{
               textTransform: "uppercase",
               marginBottom: "24px",

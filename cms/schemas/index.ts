@@ -4,6 +4,7 @@ import home from './documents/home'
 import horowitz from './documents/horowitz'
 import news from './documents/news'
 import partners from './documents/partners'
+import aboutHorowitzCompetition from './documents/aboutCompetition'
 import administration from './documents/administration'
 import settings from './documents/settings'
 import social from './documents/social'
@@ -32,6 +33,7 @@ export const schemaTypes = [
   horowitz,
   partners,
   administration,
+  aboutHorowitzCompetition,
   ukrainianWorks,
 
   //objects
