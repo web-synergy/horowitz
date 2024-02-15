@@ -1,6 +1,6 @@
 import { Box, Typography, useMediaQuery } from '@mui/material';
 import { urlFor } from '@/config/sanity/imageUrl';
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { Navigation, Thumbs, FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
@@ -13,7 +13,7 @@ import { IPortableImgGallery } from '@/types/newsTypes';
 import GrowView from '@/components/Common/GrowView';
 import { theme } from '@/theme';
 
-export const PortableSwiper: FC<IPortableImgGallery> = ({ value }) => {
+export const PortableSwiper = ({ value }: { value: IPortableImgGallery }) => {
   const { images, title } = value;
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>();
   const isMob = useMediaQuery(theme.breakpoints.down('md'));

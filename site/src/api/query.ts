@@ -1,4 +1,4 @@
-import groq from "groq";
+import groq from 'groq';
 export const homeQuery = groq`*[_type == 'home'][0]{
  'quote':quote{
        'author': author[_key ==$language].value,
@@ -126,6 +126,38 @@ export const administrationQuery = groq`*[_type == 'administration'][0] {
     },
 }`;
 
+export const virtuososQuery = groq`*[_type == 'virtuosos'][0]{
+  banner,
+  gallery,
+  'description':description[_key ==$language].value,
+    'article':*[_type == 'virtuososArticle']| order( _createdAt desc) [0 ...3]{
+   _id,
+   img,
+   'title':  title[_key ==$language].value,
+   'slug':slug.current,}
+} `;
+
+export const virtuososArticleQuery = groq`*[_type == 'virtuososArticle' && length(title[_key ==$language].value) != 0] | order( _createdAt desc
+) [$firstEl ...$lastEl]{
+  _id,
+   dateStart,
+   dateEnd,
+   img,
+   'title':  title[_key ==$language].value,
+   'slug':slug.current,
+   'shortDescription':shortDescription[_key ==$language].value,
+   'count':count(*[_type == "virtuososArticle" && length(title[_key ==$language].value) != 0])
+}`;
+
+export const currentArticleQuery = groq`*[_type == 'virtuososArticle'&& slug.current == $slug][0]{
+   _id,
+   dateStart,
+   dateEnd,
+   img,
+   'title': coalesce( title[_key ==$language][0].value, title[][0].value), 
+   'slug':slug.current,
+   'description': coalesce(description[_key ==$language][0].value, description[][0].value)
+}`;
 export const ukrWorksQuery = groq`*[_type == 'ukrainianWorks'][0] {
      'text': text[_key ==$language][0].value,
     'list': list[_key ==$language][0].value,

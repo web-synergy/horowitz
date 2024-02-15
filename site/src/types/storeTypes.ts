@@ -1,12 +1,13 @@
-import { PortableTextBlock } from "@portabletext/types";
-import { INews } from "./newsTypes";
+import { PortableTextBlock } from '@portabletext/types';
+import { INews } from './newsTypes';
 
-import { ContactsType, SettingsResp, SociableType } from "./contactsTypes";
-import { Partner } from "./partnersTypes";
-import { AboutCompetitionImage } from "./aboutCompetitionTypes";
-import { Member } from "./administrationTypes";
-import { NavigationType } from "./routes";
-import { IUkrWorks } from "./ukranianWorks";
+import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
+import { Partner } from './partnersTypes';
+import { AboutCompetitionImage } from './aboutCompetitionTypes';
+import { Member } from './administrationTypes';
+import { NavigationType } from './routes';
+import { IUkrWorks } from './ukranianWorks';
+import { IVirtuosos } from './virtuososTypes';
 
 export interface SettingsStoreState {
   sociable: SociableType | null;
@@ -68,6 +69,14 @@ export interface AdministrationStoreState {
   fetchAdministrationData: (language: string) => Promise<void>;
 }
 
+export interface VirtuososStoreState {
+  articleList: INews[];
+  loading: boolean;
+  pageQty: number;
+  virtuosos: { [key: string]: IVirtuosos | null };
+  fetchVirtuosos: (language: string) => Promise<void>;
+  fetchVirtuososArticles: (language: string, page: number) => Promise<void>;
+}
 export interface UkrWorksStoreState {
   works: IUkrWorks | null;
   fetchWorks: (language: string) => Promise<void>;

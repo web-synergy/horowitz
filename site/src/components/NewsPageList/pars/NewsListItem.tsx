@@ -39,7 +39,7 @@ const NewsListItem = ({
   return (
     <ListItem>
       <GrowView>
-        <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+        <Stack flex={1} direction={{ xs: 'column', md: 'row' }} spacing={3}>
           <Box
             component={'img'}
             sx={{ objectFit: 'cover' }}
@@ -59,22 +59,19 @@ const NewsListItem = ({
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '16px',
-              }}
-            >
+              }}>
               <Typography
-                sx={{ color: (theme) => theme.palette.neutral[50] }}
-                variant="bodyLight"
-              >
+                sx={{ color: theme => theme.palette.neutral[50] }}
+                variant='bodyLight'>
                 {dateStart && parseAndFormatDate(dateStart)}
                 {dateEnd && ` - ${parseAndFormatDate(dateEnd)}`}
               </Typography>
-              <Typography variant="subhead">{title}</Typography>
+              <Typography variant='subhead'>{title}</Typography>
               <Typography
                 sx={{
-                  color: (theme) => theme.palette.neutral[40],
+                  color: theme => theme.palette.neutral[40],
                 }}
-                variant="bodyRegular"
-              >
+                variant='bodyRegular'>
                 {shortDescription}
               </Typography>
               <Box>
@@ -83,12 +80,11 @@ const NewsListItem = ({
                   to={slug}
                   endIcon={
                     <SvgSpriteIcon
-                      icon="arrow"
+                      icon='arrow'
                       sx={{ transform: 'rotate(270deg)' }}
                     />
                   }
-                  variant="tertiary"
-                >
+                  variant='tertiary'>
                   {t(`buttons.${Buttons.READ_MORE}`)}
                 </Button>
               </Box>

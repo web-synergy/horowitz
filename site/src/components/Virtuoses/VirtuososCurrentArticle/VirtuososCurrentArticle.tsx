@@ -1,37 +1,39 @@
 import { useParams } from 'react-router-dom';
-
 import { Box, Container, Typography, useMediaQuery } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { PortableText } from '@portabletext/react';
-import { components } from './prtableComponents';
+
 import { useLiveQuery } from '@sanity/preview-kit';
-import { currentNewsQuery } from '@/api/query';
+import { currentArticleQuery } from '@/api/query';
 import { INews } from '@/types/newsTypes';
-import GrowView from '../Common/GrowView';
-import Loader from '../Common/Loader';
 
 import { theme } from '@/theme';
 import { parseAndFormatDate } from '@/utils/helpers';
-import PageTemplate from '../Common/PageTemplate';
 
-import { useFetch } from '@/hook/useFetch';
-import GoBackBtn from '../Common/GoBackBtn';
+import Loader from '@/components/Common/Loader';
+import PageTemplate from '@/components/Common/PageTemplate';
+import GrowView from '@/components/Common/GrowView';
+import { components } from '@/components/NewsCurrentPage/prtableComponents';
+
+import { useFetch } from '../../../hook/useFetch';
+import GoBackBtn from '@/components/Common/GoBackBtn';
 import { Routes } from '@/types/routes.d';
 
-const NewsCurrentPage = () => {
+const VirtuososCurrentArticle = () => {
   const { slug } = useParams();
 
   const {
     i18n: { language },
   } = useTranslation();
-
-  const { responseData, loading, error } = useFetch<INews>(currentNewsQuery, {
-    slug,
-    language,
-  });
-
-  const [data] = useLiveQuery(responseData, currentNewsQuery, {
+  const { responseData, error, loading } = useFetch<INews>(
+    currentArticleQuery,
+    {
+      language,
+      slug,
+    }
+  );
+  const [data] = useLiveQuery(responseData, currentArticleQuery, {
     slug,
     language,
   });
@@ -42,6 +44,7 @@ const NewsCurrentPage = () => {
   if (error) {
     console.error(error);
   }
+
   return (
     <PageTemplate>
       <Container>
@@ -95,8 +98,8 @@ const NewsCurrentPage = () => {
           </Box>
         )}
       </Container>
-      <GoBackBtn href={Routes.NEWS} />
+      <GoBackBtn href={Routes.VIRTUOSES_ARTICLE} />
     </PageTemplate>
   );
 };
-export default NewsCurrentPage;
+export default VirtuososCurrentArticle;

@@ -9,7 +9,9 @@ import {SiGithubsponsors} from 'react-icons/si'
 import {BsMusicNoteList} from 'react-icons/bs'
 import {FaPeopleGroup} from 'react-icons/fa6'
 import {preview} from './preview'
+
 import {newsStructure} from './newsStructure'
+import {virtuososStructure} from './virtuososStructure'
 
 const singleSchemaTittles = [
   'Головна',
@@ -21,6 +23,8 @@ const singleSchemaTittles = [
   'Новини',
   'Партнери і спонсори',
   'Адміністрація конкурсу',
+  'Статті',
+  'Віртуози планет',
   'Конкурс Горовиця',
   'Твори українських композиторів',
 ]
@@ -33,7 +37,9 @@ const structure = (S: StructureBuilder) =>
       ...S.documentTypeListItems().filter(
         (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
       ),
+
       ...newsStructure(S),
+      ...virtuososStructure(S),
       singleDocument(
         S,
         'aboutHorowitzCompetition',

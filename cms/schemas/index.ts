@@ -18,6 +18,8 @@ import membersAdministration from './objects/membersAdministration'
 import video from './objects/video'
 import winners from './objects/winners'
 import {youtube} from './objects/youtube'
+import virtuosos from './documents/virtuosos'
+import virtuososArticle from './documents/virtuososArticle'
 import ukrainianWorks from './documents/ukrainianWorks'
 import article from './objects/article'
 
@@ -33,6 +35,8 @@ export const schemaTypes = [
   horowitz,
   partners,
   administration,
+  virtuosos,
+  virtuososArticle,
   aboutHorowitzCompetition,
   ukrainianWorks,
 

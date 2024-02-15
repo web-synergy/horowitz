@@ -1,10 +1,10 @@
-import { IHorowitzData } from "@/types/horowitzTypes";
-import { INews } from "@/types/newsTypes";
-import { Member } from "@/types/administrationTypes";
-import { IUkrWorks } from "@/types/ukranianWorks";
-import { sanityFetch } from "../config/sanity/client";
-import { SettingsResp } from "../types/contactsTypes";
-import { AboutCompetitionResp } from "@/types/aboutCompetitionTypes";
+import { IHorowitzData } from '@/types/horowitzTypes';
+import { INews } from '@/types/newsTypes';
+import { Member } from '@/types/administrationTypes';
+import { IUkrWorks } from '@/types/ukranianWorks';
+import { sanityFetch } from '../config/sanity/client';
+import { SettingsResp } from '../types/contactsTypes';
+import { AboutCompetitionResp } from '@/types/aboutCompetitionTypes';
 import {
   currentNewsQuery,
   partners,
@@ -14,8 +14,12 @@ import {
   horowitzQuery,
   ukrWorksQuery,
   aboutCompetitionQuery,
-} from "./query";
-import { PartnersResp } from "@/types/partnersTypes";
+  virtuososQuery,
+  virtuososArticleQuery,
+  currentArticleQuery,
+} from './query';
+import { PartnersResp } from '@/types/partnersTypes';
+import { IVirtuosos } from '@/types/virtuososTypes';
 
 export const getSettings = async (
   language: string
@@ -59,6 +63,24 @@ export const getAdministrationMembers = async (
   return sanityFetch(administrationQuery, { language });
 };
 
+export const getVirtuosos = async (language: string): Promise<IVirtuosos> => {
+  return sanityFetch(virtuososQuery, { language });
+};
+
+export const getVirtuososArticle = async (
+  language: string,
+  firstEl: number,
+  lastEl: number
+): Promise<INews[]> => {
+  return sanityFetch(virtuososArticleQuery, { language, firstEl, lastEl });
+};
+
+export const getCurrentArticle = async (
+  language: string,
+  slug: string
+): Promise<INews> => {
+  return sanityFetch(currentArticleQuery, { language, slug });
+};
 export const getUkrainianWorks = async (
   language: string
 ): Promise<IUkrWorks> => {
