@@ -1,12 +1,6 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import {
-  Box,
-  Button,
-  Container,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { Box, Container, Typography, useMediaQuery } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { PortableText } from '@portabletext/react';
@@ -16,19 +10,19 @@ import { currentNewsQuery } from '@/api/query';
 import { INews } from '@/types/newsTypes';
 import GrowView from '../Common/GrowView';
 import Loader from '../Common/Loader';
-import SvgSpriteIcon from '../Common/SvgSpriteIcon';
+
 import { theme } from '@/theme';
 import { parseAndFormatDate } from '@/utils/helpers';
 import PageTemplate from '../Common/PageTemplate';
-import { Buttons } from '@/types/translation.d';
+
 import { useFetch } from '@/hook/useFetch';
+import GoBackBtn from '../Common/GoBackBtn';
+import { Routes } from '@/types/routes.d';
 
 const NewsCurrentPage = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
 
   const {
-    t,
     i18n: { language },
   } = useTranslation();
 
@@ -97,23 +91,11 @@ const NewsCurrentPage = () => {
                   />
                 )}
               </Box>
-
-              <Button
-                variant='tertiary'
-                onClick={() => navigate(-1)}
-                startIcon={
-                  <SvgSpriteIcon
-                    icon='arrow'
-                    sx={{ transform: 'rotate(90deg)' }}
-                  />
-                }
-                sx={{ mt: 6 }}>
-                {t(`buttons.${Buttons.GO_NEWS}`)}
-              </Button>
             </Box>
           </Box>
         )}
       </Container>
+      <GoBackBtn href={Routes.NEWS} />
     </PageTemplate>
   );
 };

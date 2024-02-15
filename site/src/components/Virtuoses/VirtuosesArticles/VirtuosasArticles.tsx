@@ -15,6 +15,7 @@ import PageTemplate from '@/components/Common/PageTemplate';
 import NewsListItem from '@/components/NewsPageList/pars/NewsListItem';
 import PaginationNews from '@/components/NewsPageList/pars/PaginationNews';
 import { useVirtuososStore } from '@/store/virtuososStor';
+import GoBackBtn from '@/components/Common/GoBackBtn';
 
 const VirtuosasArticles = () => {
   const {
@@ -84,6 +85,7 @@ const VirtuosasArticles = () => {
           </Box>
         </Stack>
       </Container>
+      <GoBackBtn href={Routes.VIRTUOSES} />
     </PageTemplate>
   );
 };

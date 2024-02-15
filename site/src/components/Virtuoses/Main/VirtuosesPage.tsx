@@ -34,7 +34,7 @@ const VirtuosesPage = () => {
     t,
     i18n: { language },
   } = useTranslation();
-  
+
   const { virtuosos, fetchVirtuosos } = useVirtuososStore(state => ({
     virtuosos: state.virtuosos[language],
     fetchVirtuosos: state.fetchVirtuosos,
@@ -45,9 +45,7 @@ const VirtuosesPage = () => {
       fetchVirtuosos(language);
     }
   }, [language]);
-  
-  
-  
+
   const [data] = useLiveQuery(virtuosos, virtuososQuery, {
     language,
   });

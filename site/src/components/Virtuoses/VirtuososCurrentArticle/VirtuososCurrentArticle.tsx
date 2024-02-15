@@ -1,11 +1,5 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import {
-  Box,
-  Button,
-  Container,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { useParams } from 'react-router-dom';
+import { Box, Container, Typography, useMediaQuery } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { PortableText } from '@portabletext/react';
@@ -17,21 +11,19 @@ import { INews } from '@/types/newsTypes';
 import { theme } from '@/theme';
 import { parseAndFormatDate } from '@/utils/helpers';
 
-import { Buttons } from '@/types/translation.d';
 import Loader from '@/components/Common/Loader';
 import PageTemplate from '@/components/Common/PageTemplate';
 import GrowView from '@/components/Common/GrowView';
-import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import { components } from '@/components/NewsCurrentPage/prtableComponents';
 
 import { useFetch } from '../../../hook/useFetch';
+import GoBackBtn from '@/components/Common/GoBackBtn';
+import { Routes } from '@/types/routes.d';
 
 const VirtuososCurrentArticle = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
 
   const {
-    t,
     i18n: { language },
   } = useTranslation();
   const { responseData, error, loading } = useFetch<INews>(
@@ -102,23 +94,11 @@ const VirtuososCurrentArticle = () => {
                   />
                 )}
               </Box>
-
-              <Button
-                variant='tertiary'
-                onClick={() => navigate(-1)}
-                startIcon={
-                  <SvgSpriteIcon
-                    icon='arrow'
-                    sx={{ transform: 'rotate(90deg)' }}
-                  />
-                }
-                sx={{ mt: 6 }}>
-                {t(`buttons.${Buttons.GO_NEWS}`)}
-              </Button>
             </Box>
           </Box>
         )}
       </Container>
+      <GoBackBtn href={Routes.VIRTUOSES_ARTICLE} />
     </PageTemplate>
   );
 };

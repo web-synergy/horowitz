@@ -5,7 +5,7 @@ import 'swiper/swiper-bundle.css';
 import { sliceNewsTitle } from '@/utils/helpers';
 
 import { Routes } from '@/types/routes.d';
-import { MainPage, Buttons } from '@/types/translation.d';
+import { Buttons, Virtuosos } from '@/types/translation.d';
 
 import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import ShowMoreBtn from '@/components/Main/parts/NewsSection/ShowMoreBtn';
@@ -32,7 +32,7 @@ const ArticleSection = ({ article }: { article: IArticle[] }) => {
           mb: { xs: '32px', md: '48px' },
         }}>
         <Typography component={'h2'} variant='h1'>
-          {t(`mainPage.${MainPage.NEWS}`)}
+          {t(`virtuosos.${Virtuosos.NEWS}`)}
         </Typography>
         <Box>
           <ShowMoreBtn
