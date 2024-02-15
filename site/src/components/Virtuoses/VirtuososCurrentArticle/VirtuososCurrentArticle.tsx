@@ -6,7 +6,6 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { PortableText } from '@portabletext/react';
@@ -24,39 +23,35 @@ import PageTemplate from '@/components/Common/PageTemplate';
 import GrowView from '@/components/Common/GrowView';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import { components } from '@/components/NewsCurrentPage/prtableComponents';
-import { getCurrentArticle } from '@/api';
+
+import { useFetch } from '../../../hook/useFetch';
 
 const VirtuososCurrentArticle = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const [loader, setLoader] = useState(true);
-  const [currentNews, setCurrentNews] = useState<INews | null>(null);
-  console.log('ssssss', slug);
 
   const {
     t,
     i18n: { language },
   } = useTranslation();
-
-  useEffect(() => {
-    const getData = async () => {
-      if (slug) {
-        const response = await getCurrentArticle(language, slug);
-        setCurrentNews(response);
-      }
-      setLoader(false);
-    };
-    getData();
-  }, [slug, language]);
-
-  const [data] = useLiveQuery(currentNews, currentArticleQuery, {
+  const { responseData, error, loading } = useFetch<INews>(
+    currentArticleQuery,
+    {
+      language,
+      slug,
+    }
+  );
+  const [data] = useLiveQuery(responseData, currentArticleQuery, {
     slug,
     language,
   });
 
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
 
-  if (loader) return <Loader />;
+  if (loading) return <Loader />;
+  if (error) {
+    console.error(error);
+  }
 
   return (
     <PageTemplate>

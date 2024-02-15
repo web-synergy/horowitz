@@ -7,6 +7,7 @@ type TArticle = {
 };
 
 export interface IVirtuosos {
+  banner: IImage;
   description: PortableTextBlock[];
   gallery: IPortableImgGallery;
   article: TArticle[];

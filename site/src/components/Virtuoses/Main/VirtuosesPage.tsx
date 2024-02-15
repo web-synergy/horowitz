@@ -10,6 +10,7 @@ import { ImagesArray } from '../../NewsCurrentPage/prtableComponents/ImageCompon
 import ArticleSection from './parts/ArticleSection';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { virtuososQuery } from '@/api/query';
+import { urlFor } from '@/config/sanity/imageUrl';
 
 const components: PortableTextComponents = {
   block: {
@@ -33,6 +34,7 @@ const VirtuosesPage = () => {
     t,
     i18n: { language },
   } = useTranslation();
+  
   const { virtuosos, fetchVirtuosos } = useVirtuososStore(state => ({
     virtuosos: state.virtuosos[language],
     fetchVirtuosos: state.fetchVirtuosos,
@@ -43,37 +45,60 @@ const VirtuosesPage = () => {
       fetchVirtuosos(language);
     }
   }, [language]);
+  
+  
+  
   const [data] = useLiveQuery(virtuosos, virtuososQuery, {
     language,
   });
-
-  return (
-    <PageTemplate>
-      <Container>
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Typography component={'h1'} variant='h1'>
-            {t(`navigation.${Routes.VIRTUOSES}`)}
-          </Typography>
-        </Box>
-        {data && (
-          <>
-            <Box
-              sx={{
-                columnCount: { lg: 2 },
-                columnGap: { lg: 3 },
-              }}>
-              <PortableText
-                components={components}
-                value={data.description[0]}
-              />
-            </Box>
-            <ArticleSection article={data.article} />
-            <ImagesArray value={data.gallery} />
-          </>
-        )}
-      </Container>
-    </PageTemplate>
-  );
+  if (virtuosos)
+    return (
+      <PageTemplate>
+        <Box
+          sx={{
+            width: '100%',
+            height: ' 60vh',
+            objectFit: 'cover',
+          }}
+          src={urlFor(virtuosos.banner)
+            .width(1920)
+            .height(880)
+            .auto('format')
+            .fit('fill')
+            .url()
+            .toString()}
+          component={'img'}></Box>
+        <Container>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              mb: { xs: '24px', md: '48px' },
+              mt: { xs: '24px', md: '32px' },
+            }}>
+            <Typography component={'h1'} variant='h1'>
+              {t(`navigation.${Routes.VIRTUOSES}`)}
+            </Typography>
+          </Box>
+          {data && (
+            <>
+              <Box
+                sx={{
+                  columnCount: { lg: 2 },
+                  columnGap: { lg: 3 },
+                }}>
+                <PortableText
+                  components={components}
+                  value={data.description[0]}
+                />
+              </Box>
+              <ArticleSection article={data.article} />
+              <ImagesArray value={data.gallery} />
+            </>
+          )}
+        </Container>
+      </PageTemplate>
+    );
 };
 
 export default VirtuosesPage;

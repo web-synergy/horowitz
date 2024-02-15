@@ -7,14 +7,7 @@ import { sliceNewsTitle } from '@/utils/helpers';
 import { Routes } from '@/types/routes.d';
 import { MainPage, Buttons } from '@/types/translation.d';
 
-import {
-  Box,
-  Container,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import ShowMoreBtn from '@/components/Main/parts/NewsSection/ShowMoreBtn';
 import { IImage } from '@/types/newsTypes';
 import ArticleCard from './ArticleCard';
@@ -30,27 +23,25 @@ const ArticleSection = ({ article }: { article: IArticle[] }) => {
   const { t } = useTranslation();
 
   return (
-    <>
-      <Container>
-        <Stack
-          sx={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: '48px',
-          }}>
-          <Typography component={'h2'} variant='h1'>
-            {t(`mainPage.${MainPage.NEWS}`)}
-          </Typography>
-          <Box>
-            <ShowMoreBtn
-              title={t(`buttons.${Buttons.VIEW_ALL}`)}
-              link={`/${[Routes.VIRTUOSES_ARTICLE]}`}
-              isTitleVisible={!isMobile}
-            />
-          </Box>
-        </Stack>
-      </Container>
+    <Box sx={{ my: { xs: '24px', md: '48px' } }}>
+      <Stack
+        sx={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          mb: { xs: '32px', md: '48px' },
+        }}>
+        <Typography component={'h2'} variant='h1'>
+          {t(`mainPage.${MainPage.NEWS}`)}
+        </Typography>
+        <Box>
+          <ShowMoreBtn
+            title={t(`buttons.${Buttons.VIEW_ALL}`)}
+            link={`/${[Routes.VIRTUOSES_ARTICLE]}`}
+            isTitleVisible={!isMobile}
+          />
+        </Box>
+      </Stack>
 
       <Swiper
         spaceBetween={24}
@@ -75,7 +66,7 @@ const ArticleSection = ({ article }: { article: IArticle[] }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </Box>
   );
 };
 

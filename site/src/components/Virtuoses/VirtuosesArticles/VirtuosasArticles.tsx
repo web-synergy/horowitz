@@ -27,15 +27,12 @@ const VirtuosasArticles = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const urlPage = +(searchParams.get('page') || 1);
-  console.log(articleList);
 
   useEffect(() => {
     if (isNaN(urlPage)) {
       return navigate('/404');
     }
-    // if (urlPage > pageQty) {
-    //   return navigate('/404');
-    // }
+
     if (urlPage <= 0) {
       return navigate('/404');
     }

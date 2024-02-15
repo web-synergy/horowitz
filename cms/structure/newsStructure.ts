@@ -18,6 +18,7 @@ export const newsStructure = (S: StructureBuilder) => [
               .schemaType('news')
               .child(
                 S.documentList()
+                  .defaultOrdering([{field: 'priority', direction: 'desc'}])
                   .apiVersion('v2023-08-01')
                   .id(language.id)
                   .title(`${language.title} Новини`)
@@ -32,6 +33,7 @@ export const newsStructure = (S: StructureBuilder) => [
             .schemaType('news')
             .child(
               S.documentList()
+                .defaultOrdering([{field: 'priority', direction: 'desc'}])
                 .id(`all-news`)
                 .apiVersion('v2023-08-01')
                 .title(`Всі новини`)

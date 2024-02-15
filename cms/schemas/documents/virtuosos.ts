@@ -6,6 +6,12 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'banner',
+      title: 'Баннер',
+      type: 'image',
+      options: {hotspot: true},
+    }),
+    defineField({
       name: 'description',
       title: 'Опис новини',
       type: 'internationalizedArrayContent',

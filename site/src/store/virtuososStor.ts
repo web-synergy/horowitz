@@ -6,7 +6,10 @@ export const useVirtuososStore = create<VirtuososStoreState>()(set => ({
   loading: false,
   articleList: [],
   pageQty: 1,
+  
   virtuosos: { ua: null, en: null },
+ 
+ 
   fetchVirtuosos: async language => {
     set({ loading: true });
     try {
