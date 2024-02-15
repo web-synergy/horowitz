@@ -17,7 +17,7 @@ export default {
     [Routes.ABOUT]: 'About Us',
     [Routes.DETAILS]: 'Horowitz Competition',
     [Routes.ADMINISTRATION]: 'The Competition`s Administration',
-    [Routes.UKRAINIAN_WORKS]: 'Ukrainian Works',
+    [Routes.UKRAINIAN_WORKS]: 'Works By Ukrainian Composers',
     [Routes.KYIV_GENEVA]: 'Horowitz Competition Kyiv-Geneva',
     [Routes.HOROWITZ]: 'Vladimir Horowitz',
     [Routes.COMPETITIONS]: 'Competition',
@@ -28,15 +28,15 @@ export default {
     [Routes.NEWS]: 'News',
     [Routes.CONTACTS]: 'Contacts',
     [Routes.ARCHIVE]: 'Website-archive',
-    [Routes.KYIV_GENEVA_CONDITIONS]: 'Competition Rules',
-    [Routes.KYIV_GENEVA_JURY]: 'The Jury',
+    [Routes.KYIV_GENEVA_CONDITIONS]: 'Сonditions',
+    [Routes.KYIV_GENEVA_JURY]: 'Jury',
     [Routes.KYIV_GENEVA_PARTICIPANTS]: 'Participants',
     [Routes.KYIV_GENEVA_REQUIREMENTS]: 'Repertoire',
     [Routes.KYIV_GENEVA_SELECTION_JURY]: 'Preselection Jury',
     [Routes.KYIV_GENEVA_WINNERS]: 'Prizewinners',
     [Routes.KYIV_GENEVA_REWARDS]: 'Prizes',
     [Routes.KYIV_GENEVA_ORCHESTRA]: 'Artists',
-    [Routes.KYIV_GENEVA_TIMETABLE]: 'Competition Schedule',
+    [Routes.KYIV_GENEVA_TIMETABLE]: 'Competition regulations',
   },
   buttons: {
     [Buttons.READ_MORE]: 'Read more',
@@ -49,9 +49,7 @@ export default {
     [Buttons.GO_HOME]: 'Back to Home Page',
     [Buttons.GO_BACK_HOME]: 'Back to Home page',
     [Buttons.GO_NEWS]: 'Back to News page',
-    [Buttons.GO_KYIV_GENEVA]: 'Go Back',
-    [Buttons.GO_KG_JURY]: 'Back to Jury',
-    [Buttons.GO_KG_SEL_JURY]: 'Back to Selection Jury',
+    [Buttons.GO_BACK]: 'Go Back',
   },
   [Header.SEARCH]: 'Search',
   contacts: {
@@ -95,5 +93,10 @@ export default {
     'International Competition for Young Pianists in Memory of Vladimir Horowitz',
   kyivGeneva: {
     [KyivGeneva.GOVERNMENT]: 'Government agencies',
+  },
+
+  archive: {
+    title: '27 years of the Competition history',
+    btn: 'Follow the link',
   },
 };

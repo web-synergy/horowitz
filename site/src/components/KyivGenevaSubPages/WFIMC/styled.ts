@@ -1,16 +1,16 @@
-import { Box, styled } from '@mui/material'
+import { Box, styled } from '@mui/material';
 
 export const MainBox = styled(Box)(({ theme: { breakpoints } }) => ({
-  marginTop: '48px',
-  marginBottom: '72px',
+  paddingTop: '48px',
+  paddingBottom: '72px',
 
   [breakpoints.up('md')]: {
-    marginBottom: '96px',
+    paddingBottom: '96px',
   },
   [breakpoints.up('lg')]: {
-    margin: '120px 0',
+    padding: '120px 0',
   },
-}))
+}));
 
 export const ImgBox = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -19,4 +19,4 @@ export const ImgBox = styled(Box)(({ theme }) => ({
     width: 'calc(50% - 12px)',
     marginLeft: '24px',
   },
-}))
+}));

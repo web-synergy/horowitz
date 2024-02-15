@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import { Typography, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { getLangValue } from '@/libs/getLangValue';
+import { getLangValue } from '@/utils/getLangValue';
 import { Wrapper, TextBlock } from './styled';
 
 import { IJury } from '@/types/kyivGeneva';

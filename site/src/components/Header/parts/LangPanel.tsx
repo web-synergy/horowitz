@@ -24,10 +24,13 @@ const LangPanel: FC<LangPanelProps> = ({ additionalClickFn }) => {
     }
     const value = (event.target as HTMLInputElement).value;
     changeLanguage(value);
-    setSearchParams((prev) => {
-      prev.set(langKey, value);
-      return prev;
-    });
+    setSearchParams(
+      (prev) => {
+        prev.set(langKey, value);
+        return prev;
+      },
+      { replace: true }
+    );
   };
 
   return (

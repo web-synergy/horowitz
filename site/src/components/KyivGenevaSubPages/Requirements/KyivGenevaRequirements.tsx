@@ -3,8 +3,7 @@ import PageTemplate from '@/components/Common/PageTemplate';
 import { useTranslation } from 'react-i18next';
 
 import { Routes } from '@/types/routes.d';
-import LinkGoBack from '@/components/KyivGenevaSubPages/Common/LinkGoBack';
-import { Buttons } from '@/types/translation.d';
+import GoBackBtn from '@/components/Common/GoBackBtn';
 import { requirementsData } from '@/assets/kyiv-geneva/KyivGenevaRequirements';
 import { theme } from '@/theme';
 
@@ -38,45 +37,40 @@ const KyivGenevaRequirements = () => {
         <Typography
           component={'h1'}
           sx={{ mb: { xs: '-24px', lg: '0px' } }}
-          variant='h1'>
+          variant="h1"
+        >
           {t(`navigation.${Routes.KYIV_GENEVA_REQUIREMENTS}`)}
         </Typography>
         <Box sx={{ mb: { xs: '-8px', lg: '-16px' } }}>
-          <Title variant='h3'>{qualifyingRound.title}</Title>
+          <Title variant="h3">{qualifyingRound.title}</Title>
 
           {qualifyingRound.list?.map((item, index) => (
-            <RichText key={index} variant='bodyRegular'>
+            <RichText key={index} variant="bodyRegular">
               {item}
             </RichText>
           ))}
-          <Title variant='h3'>{firstRound.title}</Title>
-          <RichText variant='bodyRegular'>{firstRound.p}</RichText>
+          <Title variant="h3">{firstRound.title}</Title>
+          <RichText variant="bodyRegular">{firstRound.p}</RichText>
           {firstRound.list?.map((item, index) => (
-            <RichText key={index} variant='bodyRegular'>
+            <RichText key={index} variant="bodyRegular">
               {item}
             </RichText>
           ))}
-          <Title variant='h3'>{secondRound.title}</Title>
-          <RichText variant='bodyRegular'>{secondRound.p}</RichText>
+          <Title variant="h3">{secondRound.title}</Title>
+          <RichText variant="bodyRegular">{secondRound.p}</RichText>
           {secondRound.list?.map((item, index) => (
-            <RichText key={index} variant='bodyRegular'>
+            <RichText key={index} variant="bodyRegular">
               {item}
             </RichText>
           ))}
-          <Title variant='h3'>{thirdRound.title}</Title>
-          <RichText variant='bodyRegular'>{thirdRound.p}</RichText>
-          <Title variant='h3'>{finalRound.title}</Title>
-          <RichText variant='bodyRegular'>{finalRound.p}</RichText>
-          <RichText variant='bodyRegular'>{finalRound.p2}</RichText>
-        </Box>
-
-        <Box sx={{ mt: { xs: '48px', lg: '62px' } }}>
-          <LinkGoBack
-            title={t(`buttons.${Buttons.GO_KYIV_GENEVA}`)}
-            href={`/${Routes.KYIV_GENEVA}`}
-          />
+          <Title variant="h3">{thirdRound.title}</Title>
+          <RichText variant="bodyRegular">{thirdRound.p}</RichText>
+          <Title variant="h3">{finalRound.title}</Title>
+          <RichText variant="bodyRegular">{finalRound.p}</RichText>
+          <RichText variant="bodyRegular">{finalRound.p2}</RichText>
         </Box>
       </Container>
+      <GoBackBtn href={Routes.KYIV_GENEVA} />
     </PageTemplate>
   );
 };

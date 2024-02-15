@@ -3,7 +3,7 @@ import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Container, Typography } from '@mui/material';
-import Breadcrumbs from '../Common/Breadcrumbs';
+
 import ContactsDetails from './parts/ContactsDetails';
 import { ContentWrapper, InfoDivider, MainBox, Section } from './styled';
 
@@ -38,7 +38,6 @@ const ContactsPage: FC = () => {
   return (
     <Section component={'section'}>
       <Container>
-        <Breadcrumbs title={t(`navigation.${Routes.CONTACTS}`)} mode="dark" />
         <MainBox>
           <Typography
             variant="h2"

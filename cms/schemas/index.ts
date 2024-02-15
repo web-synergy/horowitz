@@ -4,6 +4,7 @@ import home from './documents/home'
 import horowitz from './documents/horowitz'
 import news from './documents/news'
 import partners from './documents/partners'
+import aboutHorowitzCompetition from './documents/aboutCompetition'
 import administration from './documents/administration'
 import settings from './documents/settings'
 import social from './documents/social'
@@ -19,6 +20,8 @@ import winners from './objects/winners'
 import {youtube} from './objects/youtube'
 import virtuosos from './documents/virtuosos'
 import virtuososArticle from './documents/virtuososArticle'
+import ukrainianWorks from './documents/ukrainianWorks'
+import article from './objects/article'
 
 export const schemaTypes = [
   //documents
@@ -34,6 +37,8 @@ export const schemaTypes = [
   administration,
   virtuosos,
   virtuososArticle,
+  aboutHorowitzCompetition,
+  ukrainianWorks,
 
   //objects
   winners,
@@ -43,4 +48,5 @@ export const schemaTypes = [
   content,
   youtube,
   imageGalleryType,
+  article,
 ]

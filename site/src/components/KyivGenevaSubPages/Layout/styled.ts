@@ -10,7 +10,7 @@ export const ImageWrapper = styled(Box)(({ theme }) => ({
   width: '100%',
   height: '42vw',
   minHeight: 161,
-  maxHeight: '544px',
+  maxHeight: '45vh',
 
   '&:after, &:before': {
     content: "''",

@@ -20,6 +20,8 @@ const PageTemplate: FC<PropsWithChildren<PageTemplateProps>> = ({
           mode === 'dark'
             ? theme.palette.common.white
             : theme.palette.common.black,
+        flexGrow: 1,
+        position: 'relative',
       }}
     >
       {children}

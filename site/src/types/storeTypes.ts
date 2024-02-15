@@ -3,8 +3,10 @@ import { INews } from './newsTypes';
 
 import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
 import { Partner } from './partnersTypes';
+import { AboutCompetitionImage } from './aboutCompetitionTypes';
 import { Member } from './administrationTypes';
 import { NavigationType } from './routes';
+import { IUkrWorks } from './ukranianWorks';
 import { IVirtuosos } from './virtuososTypes';
 
 export interface SettingsStoreState {
@@ -14,6 +16,17 @@ export interface SettingsStoreState {
   competitions: { [key: string]: NavigationType[] | null };
   fetchSettings: (language: string) => Promise<void>;
   getPreviewSettings: (settings: SettingsResp[], language: string) => void;
+}
+
+export interface AboutCompetitionState {
+  upperTextBlock: PortableTextBlock[];
+  middleTextBlock: PortableTextBlock[];
+  lowerTextBlock: PortableTextBlock[];
+  imgHistoryOne: AboutCompetitionImage | null;
+  imgHistoryTwo: AboutCompetitionImage | null;
+  imgStatistics: AboutCompetitionImage | null;
+  isLoading: boolean;
+  fetchAboutCompetitionData: (language: string) => Promise<void>;
 }
 
 export interface HorowitzStoreState {
@@ -63,4 +76,8 @@ export interface VirtuososStoreState {
   virtuosos: { [key: string]: IVirtuosos | null };
   fetchVirtuosos: (language: string) => Promise<void>;
   fetchVirtuososArticles: (language: string, page: number) => Promise<void>;
+}
+export interface UkrWorksStoreState {
+  works: IUkrWorks | null;
+  fetchWorks: (language: string) => Promise<void>;
 }

@@ -1,12 +1,13 @@
-import { Components, Theme } from '@mui/material/styles'
+import { Components, Theme } from '@mui/material/styles';
 
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
-    primary: true
-    secondary: true
-    link: true
-    transparent: true
-    tertiary: true
+    primary: true;
+    secondary: true;
+    link: true;
+    transparent: true;
+    tertiary: true;
+    goBack: true;
   }
 }
 export const MuiButton: Components<Theme>['MuiButton'] = {
@@ -214,5 +215,37 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
         },
       }),
     },
+    {
+      props: { variant: 'goBack' },
+      style: ({ theme }) => ({
+        '&.MuiButton-root': {
+          padding: 8,
+        },
+
+        border: '1px solid',
+        fontSize: '1rem',
+        lineHeight: 1.5,
+        boxShadow: '0px 4px 4px 0px #00000040',
+        [theme.breakpoints.up('lg')]: {
+          fontSize: '1.125rem',
+          lineHeight: 1.333,
+        },
+
+        borderColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.common.white,
+        color: theme.palette.neutral[60],
+
+        '&:hover, &:focus-visible': {
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.common.black,
+        },
+
+        '&:active': {
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.common.black,
+          boxShadow: '0px 4px 4px 0px #00000038 inset',
+        },
+      }),
+    },
   ],
-}
+};

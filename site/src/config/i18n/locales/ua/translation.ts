@@ -49,9 +49,7 @@ export default {
     [Buttons.GO_HOME]: 'На головну сторінку',
     [Buttons.GO_BACK_HOME]: 'Повернутись до Головної сторінки',
     [Buttons.GO_NEWS]: 'Повернутись до Новин',
-    [Buttons.GO_KYIV_GENEVA]: 'Повернутись назад',
-    [Buttons.GO_KG_JURY]: 'Повернутись до Журі',
-    [Buttons.GO_KG_SEL_JURY]: 'Повернутись до Журі відбіркового туру',
+    [Buttons.GO_BACK]: 'Повернутись назад',
   },
   [Header.SEARCH]: 'Пошук',
   contacts: {
@@ -85,7 +83,7 @@ export default {
   sponsorsPage: {
     [Sponsors.MAIN_TITLE]: 'Партнери і друзі',
     [Sponsors.COMP_ORG]: 'Організатори конкурсу',
-    [Sponsors.MAIN_PART]: 'Головний партнер',
+    [Sponsors.MAIN_PART]: 'Головні партнери',
     [Sponsors.SPONSORS]: 'Спонсори',
     [Sponsors.GEN_INFO_PART]: 'Головні інформаційні партнери',
     [Sponsors.PARTNERS]: 'Партнери',
@@ -97,7 +95,9 @@ export default {
   kyivGeneva: {
     [KyivGeneva.GOVERNMENT]: 'Державні установи',
   },
-  jury: {
-    return_jury: 'Повернутись до Журі',
+
+  archive: {
+    title: '27 років історії Конкурсу ',
+    btn: 'Перейти за посиланням',
   },
 };

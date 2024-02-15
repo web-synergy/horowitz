@@ -109,6 +109,15 @@ export const partners = groq`*[_type == 'partners'][0]{
   },
 }`;
 
+export const aboutCompetitionQuery = groq`*[_type == 'aboutHorowitzCompetition'][0] {
+  'upperTextBlock': upperTextBlock[_key ==$language][0].value,
+  'middleTextBlock': middleTextBlock[_key ==$language][0].value,
+  'lowerTextBlock': lowerTextBlock[_key ==$language][0].value,
+  'imgHistoryOne': imgHistoryOne[_key ==$language][0].value,
+  'imgHistoryTwo': imgHistoryTwo[_key ==$language][0].value,
+  'imgStatistics': imgStatistics[_key ==$language][0].value,
+}`;
+
 export const administrationQuery = groq`*[_type == 'administration'][0] {
   'members':members[]{
     'name': name[_key ==$language][0].value,
@@ -149,3 +158,7 @@ export const currentArticleQuery = groq`*[_type == 'virtuososArticle'&& slug.cur
    'slug':slug.current,
    'description': coalesce(description[_key ==$language][0].value, description[][0].value)
 }`;
+export const ukrWorksQuery = groq`*[_type == 'ukrainianWorks'][0] {
+     'text': text[_key ==$language][0].value,
+    'list': list[_key ==$language][0].value,
+ }`;
