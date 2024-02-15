@@ -1,26 +1,28 @@
-import { useTranslation } from 'react-i18next'
-import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
-import PageTemplate from '@/components/Common/PageTemplate'
-import { Caption } from '@/components/KyivGeneva/parts/styled'
-import GoBackBtn from '@/components/Sponsors/parts/GoBackBtn'
-import { Box, Container, Link, Stack, Typography } from '@mui/material'
-import { FC, useEffect } from 'react'
-import { ImgBox, MainBox } from './syled'
+import PageTemplate from '@/components/Common/PageTemplate';
+import { Caption } from '@/components/KyivGeneva/parts/styled';
 
-import membersImg from '@/assets/images/kyiv-geneva/wfimc/wfimc.jpeg'
-import content from '@/assets/kyiv-geneva/main/geneva_mainPage.json'
+import { Box, Container, Link, Stack, Typography } from '@mui/material';
+import { FC, useEffect } from 'react';
+import { ImgBox, MainBox } from './syled';
+import GoBackBtn from '@/components/Common/GoBackBtn';
+import { Routes } from '@/types/routes.d';
+
+import membersImg from '@/assets/images/kyiv-geneva/wfimc/wfimc.jpeg';
+import content from '@/assets/kyiv-geneva/main/geneva_mainPage.json';
 
 const KyivGenevaWFIMCPage: FC = () => {
   const {
     t,
     i18n: { language },
-  } = useTranslation()
-  const navigate = useNavigate()
+  } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    scrollTo(0, 0)
-  }, [])
+    scrollTo(0, 0);
+  }, []);
 
   if (language === 'ua' || language === 'en')
     return (
@@ -41,7 +43,12 @@ const KyivGenevaWFIMCPage: FC = () => {
             </Typography>
             <Box>
               <ImgBox>
-                <Box component={'img'} alt={'WFIMC members'} src={membersImg} maxWidth={'100%'} />
+                <Box
+                  component={'img'}
+                  alt={'WFIMC members'}
+                  src={membersImg}
+                  maxWidth={'100%'}
+                />
                 <Caption>{content[language].wfimc.photoCaption}</Caption>
               </ImgBox>
               <Box>
@@ -50,7 +57,10 @@ const KyivGenevaWFIMCPage: FC = () => {
                     key={i}
                     component={'p'}
                     variant="bodyRegular"
-                    sx={{ marginTop: { xs: '8px', lg: '16px' }, textAlign: 'justify' }}
+                    sx={{
+                      marginTop: { xs: '8px', lg: '16px' },
+                      textAlign: 'justify',
+                    }}
                   >
                     {item}
                   </Typography>
@@ -59,7 +69,7 @@ const KyivGenevaWFIMCPage: FC = () => {
             </Box>
             <Box sx={{ clear: 'both' }}></Box>
 
-            <Stack
+            {/* <Stack
               sx={{
                 marginTop: {
                   xs: '24px',
@@ -77,19 +87,13 @@ const KyivGenevaWFIMCPage: FC = () => {
                 <GoBackBtn title={t('genevaMainPage.BTN_GO_BACK')} onClick={() => navigate(-1)} />
               </Box>
 
-              <Link
-                component={RouterLink}
-                to={'https://www.wfimc.org/'}
-                target="_blank"
-                sx={{ alignSelf: 'end', color: '#0B2DA3', fontWeight: '500' }}
-              >
-                WFIMC
-              </Link>
-            </Stack>
+             
+            </Stack> */}
           </MainBox>
         </Container>
+        <GoBackBtn href={Routes.KYIV_GENEVA} />
       </PageTemplate>
-    )
-}
+    );
+};
 
-export default KyivGenevaWFIMCPage
+export default KyivGenevaWFIMCPage;
