@@ -16,6 +16,7 @@ import NewsListItem from '@/components/NewsPageList/pars/NewsListItem';
 import PaginationNews from '@/components/NewsPageList/pars/PaginationNews';
 import { useVirtuososStore } from '@/store/virtuososStor';
 import GoBackBtn from '@/components/Common/GoBackBtn';
+import { Virtuosos } from '@/types/translation.d';
 
 const VirtuosasArticles = () => {
   const {
@@ -50,7 +51,7 @@ const VirtuosasArticles = () => {
               my: { xs: '48px', lg: '56px' },
             }}
             variant='h2'>
-            {t(`navigation.${Routes.NEWS}`)}
+            {t(`virtuosos.${Virtuosos.NEWS}`)}
           </Typography>
           <List
             sx={{
