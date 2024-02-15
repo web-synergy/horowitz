@@ -10,10 +10,11 @@ import { IUkrWorks } from './ukranianWorks';
 import { IVirtuosos } from './virtuososTypes';
 
 export interface SettingsStoreState {
+  requestLang: string;
   sociable: SociableType | null;
   logo: string | null;
-  contacts: { [key: string]: ContactsType | null };
-  competitions: { [key: string]: NavigationType[] | null };
+  contacts: ContactsType | null;
+  competitions: NavigationType[] | null;
   fetchSettings: (language: string) => Promise<void>;
   getPreviewSettings: (settings: SettingsResp[], language: string) => void;
 }
