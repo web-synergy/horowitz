@@ -19,9 +19,7 @@ export enum Buttons {
   GO_HOME = 'goHome',
   GO_BACK_HOME = 'goBackHome',
   GO_NEWS = 'goNewsPage',
-  GO_KYIV_GENEVA = 'goKyivGeneva',
-  GO_KG_JURY = 'KG-goJury',
-  GO_KG_SEL_JURY = 'KG-goSelectionJury',
+  GO_BACK = 'goBack',
 }
 
 export enum NotFound {

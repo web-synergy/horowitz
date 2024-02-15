@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import PageTemplate from '@/components/Common/PageTemplate';
 import imageEn from '@/assets/images/kyiv-geneva/sponsors/partners_eng.png';
 import imageUa from '@/assets/images/kyiv-geneva/sponsors/partners_ukr.png';
+import GoBackBtn from '@/components/Common/GoBackBtn';
+import { Routes } from '@/types/routes.d';
 
 const KyivGenevaSponsorsPage = () => {
   const {
@@ -23,6 +25,7 @@ const KyivGenevaSponsorsPage = () => {
           }}
         />
       </Container>
+      <GoBackBtn href={Routes.KYIV_GENEVA} />
     </PageTemplate>
   );
 };

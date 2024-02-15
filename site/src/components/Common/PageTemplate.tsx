@@ -21,6 +21,7 @@ const PageTemplate: FC<PropsWithChildren<PageTemplateProps>> = ({
             ? theme.palette.common.white
             : theme.palette.common.black,
         flexGrow: 1,
+        position: 'relative',
       }}
     >
       {children}

@@ -4,8 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Routes } from '@/types/routes.d';
 import { orchestraData } from '@/assets/kyiv-geneva/KyivGenevaOrchestra';
 import { theme } from '@/theme';
-import LinkGoBack from '@/components/KyivGenevaSubPages/Common/LinkGoBack';
-import { Buttons } from '@/types/translation.d';
+import GoBackBtn from '@/components/Common/GoBackBtn';
 
 const RichText = styled(Typography)(() => ({
   display: 'block',
@@ -32,7 +31,8 @@ const KyivGenevaOrchestra = () => {
             mb: { xs: '24px', lg: '48px' },
           }}
           component={'h1'}
-          variant='h1'>
+          variant="h1"
+        >
           {t(`navigation.${Routes.KYIV_GENEVA_ORCHESTRA}`)}
         </Typography>
 
@@ -41,7 +41,8 @@ const KyivGenevaOrchestra = () => {
             <Typography
               sx={{ mb: { xs: '24px', lg: '48px' } }}
               component={'h3'}
-              variant='h3'>
+              variant="h3"
+            >
               {item.title}
             </Typography>
             <Box
@@ -49,7 +50,8 @@ const KyivGenevaOrchestra = () => {
                 columnCount: { lg: 2 },
                 columnGap: { lg: 3 },
                 mb: { xs: '24px', lg: '48px' },
-              }}>
+              }}
+            >
               {item.text.map((item, index) => (
                 <RichText key={index}>{item}</RichText>
               ))}
@@ -62,18 +64,16 @@ const KyivGenevaOrchestra = () => {
                 alt={item.img.title}
               />
               <Typography
-                sx={{ color: theme => theme.palette.neutral[60] }}
-                variant='smallText'>
+                sx={{ color: (theme) => theme.palette.neutral[60] }}
+                variant="smallText"
+              >
                 {item.img.title}
               </Typography>
             </Box>
           </Box>
         ))}
-        <LinkGoBack
-          title={t(`buttons.${Buttons.GO_KYIV_GENEVA}`)}
-          href={`/${Routes.KYIV_GENEVA}`}
-        />
       </Container>
+      <GoBackBtn href={Routes.KYIV_GENEVA} />
     </PageTemplate>
   );
 };

@@ -1,11 +1,10 @@
-import { Container, Typography, Box } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import PageTemplate from '@/components/Common/PageTemplate';
 import JuryList from '../Common/JuryList/JuryList';
-import LinkGoBack from '../Common/LinkGoBack';
+import GoBackBtn from '@/components/Common/GoBackBtn';
 import { Routes } from '@/types/routes.d';
 import { content } from '@/assets/kyiv-geneva/KyivGenevaPreselectionJury';
-import { Buttons } from '@/types/translation.d';
 
 const KyivGenevaPreselectionJuryList = () => {
   const { t } = useTranslation();
@@ -15,15 +14,10 @@ const KyivGenevaPreselectionJuryList = () => {
         <Typography variant="h1" mb={{ xs: 3, lg: 6 }}>
           {t(`navigation.${Routes.KYIV_GENEVA_SELECTION_JURY}`)}
         </Typography>
-        <Box sx={{ mb: 6 }}>
-          <JuryList juryList={content.list} />
-        </Box>
 
-        <LinkGoBack
-          href={`/${Routes.KYIV_GENEVA}`}
-          title={t(`buttons.${Buttons.GO_KYIV_GENEVA}`)}
-        />
+        <JuryList juryList={content.list} />
       </Container>
+      <GoBackBtn href={Routes.KYIV_GENEVA} />
     </PageTemplate>
   );
 };

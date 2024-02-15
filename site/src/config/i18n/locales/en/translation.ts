@@ -49,9 +49,7 @@ export default {
     [Buttons.GO_HOME]: 'Back to Home Page',
     [Buttons.GO_BACK_HOME]: 'Back to Home page',
     [Buttons.GO_NEWS]: 'Back to News page',
-    [Buttons.GO_KYIV_GENEVA]: 'Go Back',
-    [Buttons.GO_KG_JURY]: 'Back to Jury',
-    [Buttons.GO_KG_SEL_JURY]: 'Back to Selection Jury',
+    [Buttons.GO_BACK]: 'Go Back',
   },
   [Header.SEARCH]: 'Search',
   contacts: {
