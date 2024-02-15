@@ -57,3 +57,6 @@ export enum Sponsors {
 export enum KyivGeneva {
   GOVERNMENT = 'government',
 }
+export enum Virtuosos {
+  NEWS = 'news',
+}

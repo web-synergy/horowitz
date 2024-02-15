@@ -9,6 +9,7 @@ import {
   Contacts,
   Buttons,
   WarState,
+  Virtuosos,
 } from '@/types/translation.d';
 
 export default {
@@ -99,5 +100,8 @@ export default {
   archive: {
     title: '27 років історії Конкурсу ',
     btn: 'Перейти за посиланням',
+  },
+  virtuosos: {
+    [Virtuosos.NEWS]: 'Останні новини',
   },
 };
