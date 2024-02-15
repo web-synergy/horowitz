@@ -7,7 +7,6 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { PortableText } from '@portabletext/react';
@@ -15,7 +14,6 @@ import { components } from './prtableComponents';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { currentNewsQuery } from '@/api/query';
 import { INews } from '@/types/newsTypes';
-import { getCurrentNews } from '@/api';
 import GrowView from '../Common/GrowView';
 import Loader from '../Common/Loader';
 import SvgSpriteIcon from '../Common/SvgSpriteIcon';
@@ -23,38 +21,33 @@ import { theme } from '@/theme';
 import { parseAndFormatDate } from '@/utils/helpers';
 import PageTemplate from '../Common/PageTemplate';
 import { Buttons } from '@/types/translation.d';
+import { useFetch } from '@/hook/useFetch';
 
 const NewsCurrentPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const [loader, setLoader] = useState(true);
-  const [currentNews, setCurrentNews] = useState<INews | null>(null);
 
   const {
     t,
     i18n: { language },
   } = useTranslation();
 
-  useEffect(() => {
-    const getData = async () => {
-      if (slug) {
-        const response = await getCurrentNews(language, slug);
-        setCurrentNews(response);
-      }
-      setLoader(false);
-    };
-    getData();
-  }, [slug, language]);
+  const { responseData, loading, error } = useFetch<INews>(currentNewsQuery, {
+    slug,
+    language,
+  });
 
-  const [data] = useLiveQuery(currentNews, currentNewsQuery, {
+  const [data] = useLiveQuery(responseData, currentNewsQuery, {
     slug,
     language,
   });
 
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
 
-  if (loader) return <Loader />;
-
+  if (loading) return <Loader />;
+  if (error) {
+    console.error(error);
+  }
   return (
     <PageTemplate>
       <Container>
