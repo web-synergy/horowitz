@@ -1,5 +1,4 @@
 import { useLocation, Navigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { useSettingsStore } from '@/store/settingStore';
 import PageTemplate from '../Common/PageTemplate';
 import { Container } from '@mui/material';
@@ -11,16 +10,13 @@ const CompetitionPage = () => {
   const { pathname } = useLocation();
 
   const { competitions } = useSettingsStore();
-  const {
-    i18n: { language },
-  } = useTranslation();
 
-  const langCompetitions = competitions[language];
+  const langCompetitions = competitions;
   const title = langCompetitions ? langCompetitions[0]?.title[0] : '';
 
   const competitionName = pathname.slice(1);
   const isCompetitionExist = langCompetitions?.find(
-    (item) => item.slug === competitionName
+    item => item.slug === competitionName
   );
 
   if (!isCompetitionExist) {

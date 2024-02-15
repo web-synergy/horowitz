@@ -12,12 +12,9 @@ const MobileView: FC = () => {
   const { breakpoints } = useTheme();
   const isMobile = useMediaQuery(breakpoints.down('md'));
 
-  const {
-    t,
-    i18n: { language },
-  } = useTranslation();
+  const { t } = useTranslation();
 
-  const contacts = useSettingsStore((state) => state.contacts[language]);
+  const contacts = useSettingsStore(state => state.contacts);
 
   if (!contacts) return null;
 
