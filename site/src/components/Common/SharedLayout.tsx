@@ -19,7 +19,8 @@ const SharedLayout = () => {
 
   const langParam = searchParams.get(lang);
   const draftMod = searchParams.get(draft);
-  const { contacts, fetchSettings, getPreviewSettings } = useSettingsStore();
+  const { contacts, fetchSettings, getPreviewSettings, requestLang } =
+    useSettingsStore();
 
   const [data] = useLiveQuery(null, settingsQuery, {
     language,
@@ -37,23 +38,15 @@ const SharedLayout = () => {
   }, [language, data]);
 
   useEffect(() => {
-    const existedContacts = contacts[language];
-
-    const getData = async () => {
-      await fetchSettings(language);
-    };
-
-    if (!existedContacts && !draftMod) {
-      getData();
-    }
+    if (requestLang === language) return;
+    fetchSettings(language);
   }, [contacts, fetchSettings, language, draftMod]);
 
   useEffect(() => {
     const needChangeParams = !langParam || langParam !== language;
     if (needChangeParams) {
-      // setSearchParams({ [lang]:  }, { replace: true });
       setSearchParams(
-        (prev) => {
+        prev => {
           prev.set(lang, language);
           return prev;
         },
@@ -63,9 +56,9 @@ const SharedLayout = () => {
   }, [langParam, language, searchParams, setSearchParams]);
 
   return (
-    <Stack minHeight="100vh">
+    <Stack minHeight='100vh'>
       <Header />
-      <Stack component="main" minHeight="100%" flex="1 1 auto">
+      <Stack component='main' minHeight='100%' flex='1 1 auto'>
         <Outlet />
       </Stack>
       <Footer />

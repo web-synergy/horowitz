@@ -14,7 +14,7 @@ import SocialMedia from '../Common/SocialMedia';
 const components: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <Typography variant="bodyRegular" component={'p'}>
+      <Typography variant='bodyRegular' component={'p'}>
         {children}
       </Typography>
     ),
@@ -25,12 +25,9 @@ const ContactsPage: FC = () => {
     scroll(0, 0);
   }, []);
 
-  const {
-    i18n: { language },
-    t,
-  } = useTranslation();
+  const { t } = useTranslation();
 
-  const contacts = useSettingsStore((state) => state.contacts[language]);
+  const contacts = useSettingsStore(state => state.contacts);
   if (!contacts) return null;
 
   const { address: location, phone, email, pressCenter, about } = contacts;
@@ -40,15 +37,14 @@ const ContactsPage: FC = () => {
       <Container>
         <MainBox>
           <Typography
-            variant="h2"
+            variant='h2'
             component={'h1'}
             sx={{
               marginBottom: {
                 xs: '24px',
                 md: '40px',
               },
-            }}
-          >
+            }}>
             {t(`navigation.${Routes.CONTACTS}`)}
           </Typography>
           <ContentWrapper>
@@ -57,7 +53,7 @@ const ContactsPage: FC = () => {
                 <PortableText value={about[0]} components={components} />
               </Box>
 
-              <InfoDivider variant="light" />
+              <InfoDivider variant='light' />
             </Box>
             <Box sx={{ width: '100%' }}>
               <ContactsDetails {...{ location, phone, email }} />

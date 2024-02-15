@@ -86,7 +86,7 @@ const VirtuosasArticles = () => {
           </Box>
         </Stack>
       </Container>
-      <GoBackBtn href={Routes.VIRTUOSES} />
+      <GoBackBtn href={`/${Routes.VIRTUOSES}`} />
     </PageTemplate>
   );
 };

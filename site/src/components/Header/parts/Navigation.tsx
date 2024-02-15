@@ -12,20 +12,17 @@ interface NavigationProps {
 
 const Navigation: FC<NavigationProps> = ({ onCloseMobileMenu }) => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const {
-    t,
-    i18n: { language },
-  } = useTranslation();
+  const { t } = useTranslation();
   const { competitions } = useSettingsStore();
 
   const onOpenMenu = (panel: string) =>
-    setActiveMenu((prev) => (prev === panel ? null : panel));
+    setActiveMenu(prev => (prev === panel ? null : panel));
 
-  const competitionNav = competitions[language] ?? [];
+  const competitionNav = competitions ?? [];
 
-  const navigationForRender = navigation.map((item) => {
+  const navigationForRender = navigation.map(item => {
     const children = item.children
-      ? item.children.map((child) => ({
+      ? item.children.map(child => ({
           ...child,
           title: t(`navigation.${child.title}`),
         }))
@@ -46,8 +43,8 @@ const Navigation: FC<NavigationProps> = ({ onCloseMobileMenu }) => {
   });
 
   return (
-    <NavList component="nav">
-      {navigationForRender.map((item) => (
+    <NavList component='nav'>
+      {navigationForRender.map(item => (
         <MainMenu
           key={item.title}
           title={item.title}

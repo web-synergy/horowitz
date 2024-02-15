@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { getPartners } from '@/api';
 import { PartnersStoreState } from '@/types/storeTypes';
 
-export const usePartnersStore = create<PartnersStoreState>()((set) => ({
+export const usePartnersStore = create<PartnersStoreState>()(set => ({
   organizers: null,
   mainPartners: null,
   sponsors: null,
@@ -10,7 +10,7 @@ export const usePartnersStore = create<PartnersStoreState>()((set) => ({
   mainInfoPartners: null,
   officialInfoPartners: null,
   partners: null,
-  requestLang: null,
+  requestLang: '',
 
   fetchPartners: async (language: string) => {
     try {
