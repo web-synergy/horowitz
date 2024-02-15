@@ -1,15 +1,15 @@
-import { useEffect } from "react";
-import { Container, Typography, Grid, Box } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import { useEffect } from 'react';
+import { Container, Typography, Grid, Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
-import PageTemplate from "../Common/PageTemplate";
-import { useAdministrationStore } from "@/store/administrationStore";
-import { Routes } from "@/types/routes.d";
-import BannerComponent from "./parts/BannerComponent";
-import MemberCardItem from "./parts/MemberCardItem";
-import Loader from "../Common/Loader";
-import { useLiveQuery } from "@sanity/preview-kit";
-import { administrationQuery } from "@/api/query";
+import PageTemplate from '../Common/PageTemplate';
+import { useAdministrationStore } from '@/store/administrationStore';
+import { Routes } from '@/types/routes.d';
+import BannerComponent from './parts/BannerComponent';
+import MemberCardItem from './parts/MemberCardItem';
+import Loader from '../Common/Loader';
+import { useLiveQuery } from '@sanity/preview-kit';
+import { administrationQuery } from '@/api/query';
 
 const AdministrationPage = () => {
   const {
@@ -17,15 +17,19 @@ const AdministrationPage = () => {
     t,
   } = useTranslation();
 
-  const fetchAdministrationData = useAdministrationStore(
-    (state) => state.fetchAdministrationData
+  const { fetchAdministrationData, data, requestLang } = useAdministrationStore(
+    state => ({
+      fetchAdministrationData: state.fetchAdministrationData,
+      data: state.administrationData,
+      requestLang: state.requestLang,
+    })
   );
 
   useEffect(() => {
+    if (requestLang === language) return;
     fetchAdministrationData(language);
   }, [fetchAdministrationData, language]);
 
-  const data = useAdministrationStore((state) => state.administrationData);
   const [administrationDataLive, isLoading] = useLiveQuery(
     data,
     administrationQuery,
@@ -44,22 +48,20 @@ const AdministrationPage = () => {
       <BannerComponent />
       <Container
         sx={{
-          paddingTop: { xs: "48px", lg: "120px" },
-          paddingBottom: { xs: "72px", md: "96px", lg: "120px" },
-        }}
-      >
+          paddingTop: { xs: '48px', lg: '120px' },
+          paddingBottom: { xs: '72px', md: '96px', lg: '120px' },
+        }}>
         <Typography
           sx={{
-            marginBottom: { xs: "24px", md: "48px" },
-            textAlign: "center",
+            marginBottom: { xs: '24px', md: '48px' },
+            textAlign: 'center',
           }}
-          variant="h1"
-          gutterBottom
-        >
+          variant='h1'
+          gutterBottom>
           {t(`navigation.${Routes.ADMINISTRATION}`)}
         </Typography>
-        <Box sx={{ width: "100%" }}>
-          <Grid container rowSpacing="48px" columnSpacing={{ md: "26px" }}>
+        <Box sx={{ width: '100%' }}>
+          <Grid container rowSpacing='48px' columnSpacing={{ md: '26px' }}>
             {administrationData &&
               administrationData.map((member, index) => (
                 <Grid item xs={12} md={6} key={index}>

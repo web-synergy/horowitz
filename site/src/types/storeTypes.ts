@@ -26,6 +26,8 @@ export interface AboutCompetitionState {
   imgHistoryTwo: AboutCompetitionImage | null;
   imgStatistics: AboutCompetitionImage | null;
   isLoading: boolean;
+  requestLang: string;
+
   fetchAboutCompetitionData: (language: string) => Promise<void>;
 }
 
@@ -39,6 +41,7 @@ export interface HorowitzStoreState {
   lowerTextBlock: PortableTextBlock[];
   literature: PortableTextBlock[];
   isLoading: boolean;
+  requestLang: string;
   fetchHorowitzData: (language: string) => Promise<void>;
 }
 
@@ -58,12 +61,13 @@ export interface PartnersStoreState {
   mainInfoPartners: Partner[] | null;
   officialInfoPartners: Partner[] | null;
   partners: Partner[] | null;
-  requestLang: string | null;
+  requestLang: string;
 
   fetchPartners: (language: string) => Promise<void>;
 }
 
 export interface AdministrationStoreState {
+  requestLang: string;
   administrationData: { members: Member[] } | null;
   isLoading: boolean;
   fetchAdministrationData: (language: string) => Promise<void>;
@@ -73,11 +77,13 @@ export interface VirtuososStoreState {
   articleList: INews[];
   loading: boolean;
   pageQty: number;
-  virtuosos: { [key: string]: IVirtuosos | null };
+  requestLang: string;
+  virtuosos: IVirtuosos | null;
   fetchVirtuosos: (language: string) => Promise<void>;
   fetchVirtuososArticles: (language: string, page: number) => Promise<void>;
 }
 export interface UkrWorksStoreState {
+  requestLang: string;
   works: IUkrWorks | null;
   fetchWorks: (language: string) => Promise<void>;
 }

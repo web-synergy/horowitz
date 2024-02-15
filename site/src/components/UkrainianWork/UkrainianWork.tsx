@@ -14,17 +14,16 @@ const UkrainianComposition = () => {
     t,
     i18n: { language },
   } = useTranslation();
-  const { works, fetchWorks } = useUkrWorksStore();
+  const { works, fetchWorks, requestLang } = useUkrWorksStore();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (language === requestLang) return;
     setLoading(true);
-    const getWorks = async () => {
-      await fetchWorks(language);
-      setLoading(false);
-    };
 
-    getWorks();
+    fetchWorks(language);
+    setLoading(false);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language]);
 
@@ -36,7 +35,7 @@ const UkrainianComposition = () => {
     <PageTemplate>
       <Banner />
       <Container sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
-        <Typography variant="h1" textAlign="center" mb={{ xs: 3, md: 6 }}>
+        <Typography variant='h1' textAlign='center' mb={{ xs: 3, md: 6 }}>
           {t(`navigation.${Routes.UKRAINIAN_WORKS}`)}
         </Typography>
         {works && (

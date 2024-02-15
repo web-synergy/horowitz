@@ -6,18 +6,18 @@ export const useVirtuososStore = create<VirtuososStoreState>()(set => ({
   loading: false,
   articleList: [],
   pageQty: 1,
-  
-  virtuosos: { ua: null, en: null },
- 
- 
+  virtuosos: null,
+  requestLang: '',
+
   fetchVirtuosos: async language => {
     set({ loading: true });
+
     try {
       const virtuosos = await getVirtuosos(language);
-      set(state => ({
-        virtuosos: { ...state.virtuosos, [language]: virtuosos },
-      }));
-
+      set({
+        virtuosos,
+        requestLang: language,
+      });
       set({ loading: false });
     } catch (error) {
       set({ loading: false });

@@ -1,18 +1,18 @@
-import { FC, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Routes } from "@/types/routes.d";
-import { Box, Button, Container, Typography } from "@mui/material";
-import Loader from "../Common/Loader";
-import PageTemplate from "../Common/PageTemplate";
+import { FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Routes } from '@/types/routes.d';
+import { Box, Button, Container, Typography } from '@mui/material';
+import Loader from '../Common/Loader';
+import PageTemplate from '../Common/PageTemplate';
 
-import { useHorowitzStore } from "@/store/horowitzStore";
-import BannerComponent from "./parts/BannerComponent";
-import LiteratureSection from "./parts/LiteratureSection";
-import QuoteSection from "./parts/QuoteSection";
-import TextBlockSection from "./parts/TextBlockSection.tsx";
-import { Buttons } from "@/types/translation.d";
-import { useLiveQuery } from "@sanity/preview-kit";
-import { horowitzQuery } from "@/api/query.ts";
+import { useHorowitzStore } from '@/store/horowitzStore';
+import BannerComponent from './parts/BannerComponent';
+import LiteratureSection from './parts/LiteratureSection';
+import QuoteSection from './parts/QuoteSection';
+import TextBlockSection from './parts/TextBlockSection.tsx';
+import { Buttons } from '@/types/translation.d';
+import { useLiveQuery } from '@sanity/preview-kit';
+import { horowitzQuery } from '@/api/query.ts';
 
 const HorowitzPage: FC = () => {
   const {
@@ -20,11 +20,13 @@ const HorowitzPage: FC = () => {
     t,
   } = useTranslation();
 
-  const fetchHorowitzData = useHorowitzStore(
-    (state) => state.fetchHorowitzData
-  );
+  const { fetchHorowitzData, requestLang } = useHorowitzStore(state => ({
+    fetchHorowitzData: state.fetchHorowitzData,
+    requestLang: state.requestLang,
+  }));
 
   useEffect(() => {
+    if (requestLang === language) return;
     fetchHorowitzData(language);
   }, [fetchHorowitzData, language]);
 
@@ -67,18 +69,16 @@ const HorowitzPage: FC = () => {
       <Container>
         <Box
           sx={{
-            paddingTop: { xs: "48px", md: "54px", lg: "80px" },
-            paddingBottom: { xs: "24px", lg: "80px" },
-          }}
-        >
+            paddingTop: { xs: '48px', md: '54px', lg: '80px' },
+            paddingBottom: { xs: '24px', lg: '80px' },
+          }}>
           <Typography
-            variant="h1"
+            variant='h1'
             sx={{
-              textTransform: "uppercase",
-              marginBottom: "24px",
-              textAlign: "center",
-            }}
-          >
+              textTransform: 'uppercase',
+              marginBottom: '24px',
+              textAlign: 'center',
+            }}>
             {t(`navigation.${Routes.HOROWITZ}`)}
           </Typography>
           <TextBlockSection blocks={upperTextBlock} />
@@ -89,14 +89,13 @@ const HorowitzPage: FC = () => {
         {lowerTextBlock && (
           <Box
             sx={{
-              padding: { xs: "24px 0px", lg: "80px 0px" },
-            }}
-          >
+              padding: { xs: '24px 0px', lg: '80px 0px' },
+            }}>
             <TextBlockSection blocks={lowerTextBlock} />
           </Box>
         )}
 
-        <Typography variant="subhead" sx={{ textAlign: "left" }} gutterBottom>
+        <Typography variant='subhead' sx={{ textAlign: 'left' }} gutterBottom>
           {t(`horowitzPage.literature`)}:
         </Typography>
         {literature && (
@@ -107,18 +106,16 @@ const HorowitzPage: FC = () => {
         )}
         <Box
           sx={{
-            width: "100%",
-            textAlign: "center",
-            marginTop: { xs: "48px", md: "54px", lg: "80px" },
-            marginBottom: { xs: "72px", md: "96px", lg: "118px" },
-          }}
-        >
+            width: '100%',
+            textAlign: 'center',
+            marginTop: { xs: '48px', md: '54px', lg: '80px' },
+            marginBottom: { xs: '72px', md: '96px', lg: '118px' },
+          }}>
           <Button
-            sx={{ width: "288px" }}
-            variant="transparent"
+            sx={{ width: '288px' }}
+            variant='transparent'
             onClick={handleShowMore}
-            disabled={isAllLiteratureVisible}
-          >
+            disabled={isAllLiteratureVisible}>
             {t(`buttons.${Buttons.SHOW_MORE}`)}
           </Button>
         </Box>

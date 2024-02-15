@@ -11,7 +11,7 @@ import { MainTitle, TwoGalleryStack } from './styled';
 import { Routes } from '@/types/routes.d';
 
 const SponsorsPage: FC = () => {
-  const fetchData = usePartnersStore((state) => state.fetchPartners);
+  const fetchData = usePartnersStore(state => state.fetchPartners);
   const {
     organizers,
     mainPartners,
@@ -20,6 +20,7 @@ const SponsorsPage: FC = () => {
     partners,
     mainInfoPartners,
     officialInfoPartners,
+    requestLang,
   } = usePartnersStore();
 
   const {
@@ -28,6 +29,7 @@ const SponsorsPage: FC = () => {
   } = useTranslation();
 
   useEffect(() => {
+    if (requestLang === language) return;
     fetchData(language);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language]);

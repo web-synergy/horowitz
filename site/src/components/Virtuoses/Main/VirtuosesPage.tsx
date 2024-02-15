@@ -35,15 +35,17 @@ const VirtuosesPage = () => {
     i18n: { language },
   } = useTranslation();
 
-  const { virtuosos, fetchVirtuosos } = useVirtuososStore(state => ({
-    virtuosos: state.virtuosos[language],
-    fetchVirtuosos: state.fetchVirtuosos,
-  }));
+  const { virtuosos, fetchVirtuosos, requestLang } = useVirtuososStore(
+    state => ({
+      virtuosos: state.virtuosos,
+      fetchVirtuosos: state.fetchVirtuosos,
+      requestLang: state.requestLang,
+    })
+  );
 
   useEffect(() => {
-    if (!virtuosos) {
-      fetchVirtuosos(language);
-    }
+    if (requestLang === language) return;
+    fetchVirtuosos(language);
   }, [language]);
 
   const [data] = useLiveQuery(virtuosos, virtuososQuery, {
