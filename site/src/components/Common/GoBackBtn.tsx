@@ -15,7 +15,7 @@ const GoBackBtn: FC<GoBackBtnProps> = ({ href }) => {
 
   const onClickButton = () => {
     const historyStack = window.history.state.idx;
-    const goBackHref = historyStack !== 0 ? (-1 as To) : href;
+    const goBackHref = historyStack !== 0 ? (-1 as To) : `/${href}`;
     const goBackOptions = historyStack !== 0 ? {} : { replace: true };
     navigate(goBackHref, goBackOptions);
   };
@@ -26,17 +26,15 @@ const GoBackBtn: FC<GoBackBtnProps> = ({ href }) => {
           position: 'absolute',
           bottom: { xs: 5, lg: 20 },
           left: { xs: 10, lg: 20 },
-        }}
-      >
+        }}>
         <Button
-          variant="goBack"
-          role="link"
-          aria-label="go back"
+          variant='goBack'
+          role='link'
+          aria-label='go back'
           onClick={onClickButton}
           startIcon={
-            <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(90deg)' }} />
-          }
-        >
+            <SvgSpriteIcon icon='arrow' sx={{ transform: 'rotate(90deg)' }} />
+          }>
           {t(`buttons.${Buttons.GO_BACK}`)}
         </Button>
       </Box>
