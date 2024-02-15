@@ -55,7 +55,8 @@ const VirtuosesPage = () => {
         <Box
           sx={{
             width: '100%',
-            height: ' 60vh',
+            height: '50vw',
+            maxHeight: '50vh',
             objectFit: 'cover',
           }}
           src={urlFor(virtuosos.banner)
