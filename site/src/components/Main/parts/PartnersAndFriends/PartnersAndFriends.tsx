@@ -51,7 +51,15 @@ const PartnersAndFriends: FC = () => {
       <MainTitle component={'h2'} sx={{ textAlign: 'center' }}>
         {t(`mainPage.${MainPage.FRIENDS}`)}
       </MainTitle>
-      <Box sx={{ height: '150px' }}>
+      <Box
+        sx={{
+          height: {
+            xs: '72px',
+            md: '124px',
+            lg: '150px',
+          },
+        }}
+      >
         <Swiper
           breakpoints={{
             320: {
