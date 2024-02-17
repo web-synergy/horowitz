@@ -15,11 +15,11 @@ const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery }) => {
       <Stack
         sx={{
           flexDirection: 'row',
-          columnGap: {
-            xs: '28px',
-            lg: '16px',
+          columnGap: '28px',
+          rowGap: {
+            xs: '16px',
+            md: '28px',
           },
-          rowGap: '24px',
           flexWrap: {
             xs: 'wrap',
             lg: 'nowrap',
