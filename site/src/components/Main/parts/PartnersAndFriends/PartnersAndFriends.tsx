@@ -1,22 +1,22 @@
-import { FC } from 'react';
+import { FC } from 'react'
 
-import { Box, Stack } from '@mui/material';
-import { MainTitle } from '../../styled';
-import { ShowMoreBtn } from './styled';
+import { Box, Stack } from '@mui/material'
+import { MainTitle } from '../../styled'
+import { ShowMoreBtn } from './styled'
 
-import { Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.css';
+import { Autoplay } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.css'
 
-import { urlFor } from '@/config/sanity/imageUrl';
-import { usePartnersStore } from '@/store/partnersStore';
-import { Routes } from '@/types/routes.d';
-import { MainPage, Buttons } from '@/types/translation.d';
-import { useTranslation } from 'react-i18next';
-import { Link as RouterLink } from 'react-router-dom';
+import { urlFor } from '@/config/sanity/imageUrl'
+import { usePartnersStore } from '@/store/partnersStore'
+import { Routes } from '@/types/routes.d'
+import { Buttons, MainPage } from '@/types/translation.d'
+import { useTranslation } from 'react-i18next'
+import { Link as RouterLink } from 'react-router-dom'
 
 const PartnersAndFriends: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const {
     generalInfoPartners,
     mainInfoPartners,
@@ -24,7 +24,7 @@ const PartnersAndFriends: FC = () => {
     officialInfoPartners,
     partners,
     sponsors,
-  } = usePartnersStore();
+  } = usePartnersStore()
 
   const commonList = [
     ...(mainPartners || []),
@@ -33,7 +33,9 @@ const PartnersAndFriends: FC = () => {
     ...(partners ?? []),
     ...(mainInfoPartners ?? []),
     ...(officialInfoPartners ?? []),
-  ];
+  ]
+
+  if (!commonList.length) return null // fix slider error (Loop Warning)
 
   return (
     <Stack
@@ -51,18 +53,19 @@ const PartnersAndFriends: FC = () => {
       </MainTitle>
       <Box sx={{ height: '150px' }}>
         <Swiper
-          centeredSlides={true}
           breakpoints={{
             320: {
               spaceBetween: 40,
               slidesPerView: 1.5,
+              centeredSlides: false,
             },
             768: {
               slidesPerView: 1.9,
+              centeredSlides: true,
             },
             1280: {
-              spaceBetween: 150,
               slidesPerView: 2.2,
+              centeredSlides: true,
             },
           }}
           loop={true}
@@ -73,7 +76,7 @@ const PartnersAndFriends: FC = () => {
           }}
           modules={[Autoplay]}
         >
-          {commonList.length > 0 &&
+          {commonList.length &&
             commonList.map(({ _key, img, title }) => (
               <SwiperSlide key={_key}>
                 <img
@@ -90,16 +93,12 @@ const PartnersAndFriends: FC = () => {
         </Swiper>
       </Box>
       <Box sx={{ alignSelf: 'center' }}>
-        <ShowMoreBtn
-          variant="secondary"
-          component={RouterLink}
-          to={Routes.SPONSORS}
-        >
+        <ShowMoreBtn variant="secondary" component={RouterLink} to={Routes.SPONSORS}>
           {t(`buttons.${Buttons.VIEW_ALL}`)}
         </ShowMoreBtn>
       </Box>
     </Stack>
-  );
-};
+  )
+}
 
-export default PartnersAndFriends;
+export default PartnersAndFriends
