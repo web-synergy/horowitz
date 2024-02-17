@@ -62,6 +62,7 @@ const PartnersAndFriends: FC = () => {
             768: {
               slidesPerView: 1.9,
               centeredSlides: true,
+              spaceBetween: 40,
             },
             1280: {
               slidesPerView: 2.2,
