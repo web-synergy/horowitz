@@ -1,12 +1,12 @@
-import { urlFor } from '@/config/sanity/imageUrl';
-import { Partner } from '@/types/partnersTypes';
-import { Box, Stack, Typography } from '@mui/material';
-import { FC } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { urlFor } from '@/config/sanity/imageUrl'
+import { Partner } from '@/types/partnersTypes'
+import { Box, Stack, Typography } from '@mui/material'
+import { FC } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 
 interface LogotypesGalleryProps {
-  title: string;
-  gallery: Partner[];
+  title: string
+  gallery: Partner[]
 }
 const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery }) => {
   return (
@@ -32,12 +32,13 @@ const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery }) => {
         }}
       >
         {gallery.length &&
-          gallery.map((item) => (
+          gallery.map(item => (
             <Box key={item._key}>
               <RouterLink
                 to={item.link}
                 target="_blank"
-                onClick={(e) => !item.link && e.preventDefault()}
+                onClick={e => !item.link && e.preventDefault()}
+                style={{ cursor: !item.link ? 'default' : '' }}
               >
                 <Box
                   component={'img'}
@@ -59,7 +60,7 @@ const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery }) => {
           ))}
       </Stack>
     </Box>
-  );
-};
+  )
+}
 
-export default LogotypesGallery;
+export default LogotypesGallery
