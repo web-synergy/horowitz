@@ -9,6 +9,7 @@ import administration from './documents/administration'
 import settings from './documents/settings'
 import social from './documents/social'
 import content from './objects/content'
+import banner from './objects/banner'
 
 import competition from './documents/competition'
 import competitionDocument from './documents/competitionDocument'
@@ -49,4 +50,5 @@ export const schemaTypes = [
   youtube,
   imageGalleryType,
   article,
+  banner,
 ]

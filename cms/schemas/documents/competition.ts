@@ -2,7 +2,7 @@ import {defineField, defineType} from 'sanity'
 import {GiMusicalKeyboard as icon} from 'react-icons/gi'
 export default defineType({
   name: 'competitions',
-  title: 'Конкурс',
+  title: 'Конкурси',
   type: 'document',
   icon,
   fields: [

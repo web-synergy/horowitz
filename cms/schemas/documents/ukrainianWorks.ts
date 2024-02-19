@@ -7,6 +7,11 @@ export default defineType({
 
   fields: [
     defineField({
+      name: 'mainBanner',
+      title: 'Головний банер',
+      type: 'banner',
+    }),
+    defineField({
       name: 'text',
       title: 'Текст',
       type: 'internationalizedArrayArticle',
