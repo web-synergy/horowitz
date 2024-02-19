@@ -1,5 +1,5 @@
 import type {PreviewProps} from 'sanity'
-import {Button, Flex, Text} from '@sanity/ui'
+import {Flex, Text} from '@sanity/ui'
 import YouTubePlayer from 'react-player/youtube'
 
 interface PreviewYouTubeProps extends PreviewProps {

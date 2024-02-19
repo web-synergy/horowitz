@@ -34,30 +34,34 @@ const structure = (S: StructureBuilder) =>
     .title('Контент')
     .items([
       singleDocument(S, 'home', 'Головна', preview(S)).icon(RiPagesLine),
+      S.divider(),
+      ...newsStructure(S),
+      S.divider(),
       ...S.documentTypeListItems().filter(
         (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
       ),
-
-      ...newsStructure(S),
+      singleDocument(S, 'ukrainianWorks', 'Твори українських композиторів').icon(BsMusicNoteList),
+      S.divider(),
       ...virtuososStructure(S),
+
+      S.divider(),
       singleDocument(
         S,
         'aboutHorowitzCompetition',
         'Конкурс Горовиця',
         preview(S, 'aboutHorowitzCompetition'),
       ).icon(MdOutlineSettingsBrightness),
+      singleDocument(S, 'horowitz', 'Володимир Горовиць', preview(S, 'horowitz')).icon(
+        MdOutlineSettingsBrightness,
+      ),
       singleDocument(
         S,
         'administration',
         'Адміністрація конкурсу',
         preview(S, 'administration'),
       ).icon(FaPeopleGroup),
-      singleDocument(S, 'horowitz', 'Володимир Горовиць', preview(S, 'horowitz')).icon(
-        MdOutlineSettingsBrightness,
-      ),
-      singleDocument(S, 'partners', 'Партнери і спонсори').icon(SiGithubsponsors),
-      singleDocument(S, 'ukrainianWorks', 'Твори українських композиторів').icon(BsMusicNoteList),
       S.divider(),
+      singleDocument(S, 'partners', 'Партнери і спонсори').icon(SiGithubsponsors),
       S.listItem()
         .title('Налаштування')
         .icon(IoSettingsSharp)

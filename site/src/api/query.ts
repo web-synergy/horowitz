@@ -158,7 +158,8 @@ export const currentArticleQuery = groq`*[_type == 'virtuososArticle'&& slug.cur
    'slug':slug.current,
    'description': coalesce(description[_key ==$language][0].value, description[][0].value)
 }`;
-export const ukrWorksQuery = groq`*[_type == 'ukrainianWorks'][0] {
-     'text': text[_key ==$language][0].value,
+export const ukrWorksQuery = groq`*[_type == 'ukrainianWorks'][0]{
+ 'text': text[_key ==$language][0].value,
     'list': list[_key ==$language][0].value,
- }`;
+    'banner': mainBanner
+}`;

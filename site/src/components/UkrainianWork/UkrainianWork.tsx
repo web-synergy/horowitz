@@ -4,10 +4,11 @@ import { Container, Typography, Box, ListItem } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { PortableText } from '@portabletext/react';
 import PageTemplate from '../Common/PageTemplate';
-import { Banner, List } from './styled';
+import { List } from './styled';
 import { Routes } from '@/types/routes.d';
 import { useUkrWorksStore } from '@/store/ukrainianWorksStore';
 import { components } from './components';
+import MainBanner from '../Common/MainBanner';
 
 const UkrainianComposition = () => {
   const {
@@ -33,13 +34,16 @@ const UkrainianComposition = () => {
 
   return (
     <PageTemplate>
-      <Banner />
-      <Container sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
-        <Typography variant='h1' textAlign='center' mb={{ xs: 3, md: 6 }}>
-          {t(`navigation.${Routes.UKRAINIAN_WORKS}`)}
-        </Typography>
-        {works && (
-          <>
+      {works && (
+        <>
+          <MainBanner banner={works.banner} />
+          <Container
+            sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}
+          >
+            <Typography variant="h1" textAlign="center" mb={{ xs: 3, md: 6 }}>
+              {t(`navigation.${Routes.UKRAINIAN_WORKS}`)}
+            </Typography>
+
             <Box sx={{ mb: { xs: 3, lg: 6 } }}>
               <PortableText value={works.text} components={components} />
             </Box>
@@ -51,9 +55,9 @@ const UkrainianComposition = () => {
                 </ListItem>
               ))}
             </List>
-          </>
-        )}
-      </Container>
+          </Container>
+        </>
+      )}
     </PageTemplate>
   );
 };
