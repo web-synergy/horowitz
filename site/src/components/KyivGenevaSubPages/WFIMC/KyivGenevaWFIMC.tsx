@@ -1,25 +1,21 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
 
-import PageTemplate from '@/components/Common/PageTemplate';
-import { Caption } from '@/components/KyivGeneva/parts/styled';
+import PageTemplate from '@/components/Common/PageTemplate'
+import { Caption } from '@/components/KyivGeneva/parts/styled'
 
-import { Box, Container, Typography } from '@mui/material';
-import { FC, useEffect } from 'react';
-import { ImgBox, MainBox } from './styled';
-import GoBackBtn from '@/components/Common/GoBackBtn';
-import { Routes } from '@/types/routes.d';
+import GoBackBtn from '@/components/Common/GoBackBtn'
+import { Routes } from '@/types/routes.d'
+import { Box, Container, Typography } from '@mui/material'
+import { FC } from 'react'
+import { ImgBox, MainBox } from './styled'
 
-import membersImg from '@/assets/images/kyiv-geneva/wfimc/wfimc.jpeg';
-import content from '@/assets/kyiv-geneva/main/geneva_mainPage.json';
+import membersImg from '@/assets/images/kyiv-geneva/wfimc/wfimc.jpeg'
+import content from '@/assets/kyiv-geneva/main/geneva_mainPage.json'
 
 const KyivGenevaWFIMCPage: FC = () => {
   const {
     i18n: { language },
-  } = useTranslation();
-
-  useEffect(() => {
-    scrollTo(0, 0);
-  }, []);
+  } = useTranslation()
 
   if (language === 'ua' || language === 'en')
     return (
@@ -40,12 +36,7 @@ const KyivGenevaWFIMCPage: FC = () => {
             </Typography>
             <Box>
               <ImgBox>
-                <Box
-                  component={'img'}
-                  alt={'WFIMC members'}
-                  src={membersImg}
-                  maxWidth={'100%'}
-                />
+                <Box component={'img'} alt={'WFIMC members'} src={membersImg} maxWidth={'100%'} />
                 <Caption>{content[language].wfimc.photoCaption}</Caption>
               </ImgBox>
               <Box>
@@ -69,7 +60,7 @@ const KyivGenevaWFIMCPage: FC = () => {
         </Container>
         <GoBackBtn href={Routes.KYIV_GENEVA} />
       </PageTemplate>
-    );
-};
+    )
+}
 
-export default KyivGenevaWFIMCPage;
+export default KyivGenevaWFIMCPage

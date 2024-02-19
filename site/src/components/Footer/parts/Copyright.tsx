@@ -10,8 +10,8 @@ const Copyright: FC = () => {
   return (
     <Box sx={{ textAlign: 'center', marginTop: '56px' }}>
       <CopyrightTypography>
-        {`© ${currentYear}, International Сompetition for Young Pianists in Memory of Vladimir Horowitz, All
-        right reserved.`}
+        {`© ${currentYear}. International Сompetition for Young Pianists in Memory of Vladimir Horowitz. All
+        rights reserved.`}
       </CopyrightTypography>
     </Box>
   )
