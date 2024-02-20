@@ -25,7 +25,7 @@ export default {
     [Routes.PROJECTS]: 'Проєкти',
     [Routes.MASTER_CLASS]: 'Майстеркласи',
     [Routes.SUMMER_SCHOOL]: 'Літня музична академія',
-    [Routes.VIRTUOSES]: 'Віртуоза планети',
+    [Routes.VIRTUOSES]: 'Віртуози планети',
     [Routes.NEWS]: 'Новини',
     [Routes.CONTACTS]: 'Контакти',
     [Routes.ARCHIVE]: 'Сайт-архів',
