@@ -26,8 +26,10 @@ const SponsorsSection: FC = () => {
           </Typography>
           <Stack
             sx={{
-              flexDirection: 'row',
-              flexWrap: 'wrap',
+              flexDirection: {
+                xs: 'column',
+                md: 'row',
+              },
               gap: '28px',
             }}
           >
@@ -38,6 +40,7 @@ const SponsorsSection: FC = () => {
                   src={logo}
                   alt="logotype"
                   sx={{
+                    display: 'block',
                     maxHeight: {
                       xs: '102px',
                       md: '72px',
