@@ -40,7 +40,13 @@ const UkrainianComposition = () => {
           <Container
             sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}
           >
-            <Typography variant="h1" textAlign="center" mb={{ xs: 3, md: 6 }}>
+            <Typography
+              variant="h1"
+              textAlign="center"
+              mb={{ xs: 3, lg: 6 }}
+              maxWidth={{ xs: '80%' }}
+              mx="auto"
+            >
               {t(`navigation.${Routes.UKRAINIAN_WORKS}`)}
             </Typography>
 
