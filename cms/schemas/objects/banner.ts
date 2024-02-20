@@ -1,5 +1,4 @@
 import {defineType, defineField} from 'sanity'
-import {ColorBoxPreview} from '../../components/ColorBox'
 
 const banner = defineType({
   name: 'banner',
@@ -82,6 +81,7 @@ const banner = defineType({
           name: 'colors',
           title: 'Набір кольорів для градієнту',
           type: 'array',
+          options: {sortable: false},
           of: [
             {
               name: 'color',
@@ -98,13 +98,6 @@ const banner = defineType({
                   type: 'number',
                 },
               ],
-              components: {preview: ColorBoxPreview},
-              preview: {
-                select: {
-                  color: 'value',
-                  position: 'position',
-                },
-              },
             },
           ],
         },

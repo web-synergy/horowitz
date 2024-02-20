@@ -19,7 +19,7 @@ const KyivGenevaJury = () => {
       <Container sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
         <Jury jury={juryData} />
       </Container>
-      <GoBackBtn href={Routes.KYIV_GENEVA} />
+      <GoBackBtn href={`${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_JURY}`} />
     </PageTemplate>
   );
 };
