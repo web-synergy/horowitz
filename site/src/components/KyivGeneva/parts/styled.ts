@@ -57,11 +57,11 @@ export const AboutTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
 export const AboutStack = styled(Stack)(({ theme }) => ({
   maxHeight: '100%',
   flexWrap: 'wrap',
-  columnGap: '24px',
-  rowGap: '24px',
+  gap: '8px',
   [theme.breakpoints.up('lg')]: {
     maxHeight: '350px',
     rowGap: '16px',
+    columnGap: '24px',
   },
 }))
 
