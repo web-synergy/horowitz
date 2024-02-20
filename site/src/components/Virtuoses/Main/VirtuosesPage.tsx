@@ -10,7 +10,9 @@ import { ImagesArray } from '../../NewsCurrentPage/prtableComponents/ImageCompon
 import ArticleSection from './parts/ArticleSection';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { virtuososQuery } from '@/api/query';
-import { urlFor } from '@/config/sanity/imageUrl';
+
+import MainBanner from '@/components/Common/MainBanner';
+import Loader from '@/components/Common/Loader';
 
 const components: PortableTextComponents = {
   block: {
@@ -35,11 +37,12 @@ const VirtuosesPage = () => {
     i18n: { language },
   } = useTranslation();
 
-  const { virtuosos, fetchVirtuosos, requestLang } = useVirtuososStore(
+  const { virtuosos, fetchVirtuosos, requestLang, loading } = useVirtuososStore(
     state => ({
       virtuosos: state.virtuosos,
       fetchVirtuosos: state.fetchVirtuosos,
       requestLang: state.requestLang,
+      loading: state.loading,
     })
   );
 
@@ -51,24 +54,13 @@ const VirtuosesPage = () => {
   const [data] = useLiveQuery(virtuosos, virtuososQuery, {
     language,
   });
-  if (virtuosos)
+
+  if (loading) return <Loader />;
+
+  if (data)
     return (
       <PageTemplate>
-        <Box
-          sx={{
-            width: '100%',
-            height: '50vw',
-            maxHeight: '50vh',
-            objectFit: 'cover',
-          }}
-          src={urlFor(virtuosos.banner)
-            .width(1920)
-            .height(880)
-            .auto('format')
-            .fit('fill')
-            .url()
-            .toString()}
-          component={'img'}></Box>
+        <MainBanner banner={data.banner} />
         <Container>
           <Box
             sx={{
@@ -93,7 +85,9 @@ const VirtuosesPage = () => {
                   value={data.description[0]}
                 />
               </Box>
-              <ArticleSection article={data.article} />
+              {data.article.length ? (
+                <ArticleSection article={data.article} />
+              ) : null}
               <ImagesArray value={data.gallery} />
             </>
           )}

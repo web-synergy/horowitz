@@ -1,5 +1,6 @@
 import { PortableTextBlock } from '@portabletext/types';
 import { IImage, IPortableImgGallery } from './newsTypes';
+import { IBanner } from './bannerType';
 type TArticle = {
   img: IImage;
   title: string;
@@ -7,7 +8,7 @@ type TArticle = {
 };
 
 export interface IVirtuosos {
-  banner: IImage;
+  banner: IBanner;
   description: PortableTextBlock[];
   gallery: IPortableImgGallery;
   article: TArticle[];

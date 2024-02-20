@@ -7,9 +7,8 @@ export default defineType({
   fields: [
     defineField({
       name: 'banner',
-      title: 'Баннер',
-      type: 'image',
-      options: {hotspot: true},
+      // title: 'Баннер',
+      type: 'banner',
     }),
     defineField({
       name: 'description',
