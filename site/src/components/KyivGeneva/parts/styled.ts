@@ -17,6 +17,7 @@ export const Caption = styled(Typography)<TypographyProps>(
     fontSize: '0.5rem',
     lineHeight: 2,
     marginTop: '8px',
+    textAlign: 'justify',
     [breakpoints.up('md')]: {
       fontSize: '0.75rem',
       lineHeight: 1.33,
@@ -39,7 +40,7 @@ export const StyledButton = styled(Button)<ButtonProps & LinkProps>(({ theme }) 
   },
   [theme.breakpoints.up('lg')]: {
     position: 'absolute',
-    bottom: 0,
+    bottom: '36px',
     right: 0,
   },
 }))
@@ -115,6 +116,7 @@ export const ContentStack = styled(Stack)(({ theme }) => ({
 
 export const ImageBox = styled(Box)(({ theme }) => ({
   width: '100%',
+  height: '100%',
   [theme.breakpoints.up('lg')]: {
     width: 'calc(50% - 12px)',
   },
