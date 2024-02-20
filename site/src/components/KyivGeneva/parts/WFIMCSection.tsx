@@ -20,7 +20,7 @@ const WFIMCSection: FC<WFIMCSectionProps> = ({ image, wfimc_content: { about, ph
   return (
     <Box>
       <Container>
-        <Typography variant="h1" sx={{ marginBottom: { xs: '24px', lg: '48px' } }}>
+        <Typography variant="h2" sx={{ marginBottom: { xs: '24px', lg: '48px' } }}>
           WFIMC
         </Typography>
         <ContentStack>
