@@ -142,7 +142,7 @@ export const virtuososArticleQuery = groq`*[_type == 'virtuososArticle' && lengt
   _id,
    dateStart,
    dateEnd,
-   img,
+   mainBanner,
    'title':  title[_key ==$language].value,
    'slug':slug.current,
    'shortDescription':shortDescription[_key ==$language].value,
