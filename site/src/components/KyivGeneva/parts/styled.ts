@@ -89,19 +89,19 @@ export const BgImage = styled(Box)<BoxProps & ImgHTMLAttributes<string>>(() => (
 }))
 
 export const ButtonsListStack = styled(Stack)(({ theme }) => ({
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  columnGap: '56px',
-  rowGap: '24px',
   margin: '48px 0',
-  justifyContent: 'center',
-
+  rowGap: '24px',
+  alignItems: 'center',
   [theme.breakpoints.up('md')]: {
     margin: '115px 0 105px',
-    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    height: '381px',
+    columnGap: '68px',
   },
   [theme.breakpoints.up('lg')]: {
     margin: '160px 0',
+    height: '277px',
+    columnGap: '56px',
     rowGap: '48px',
   },
 }))
