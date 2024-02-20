@@ -127,7 +127,7 @@ export const administrationQuery = groq`*[_type == 'administration'][0] {
 }`;
 
 export const virtuososQuery = groq`*[_type == 'virtuosos'][0]{
-  banner,
+ banner,
   gallery,
   'description':description[_key ==$language].value,
     'article':*[_type == 'virtuososArticle']| order( _createdAt desc) [0 ...3]{
@@ -142,7 +142,7 @@ export const virtuososArticleQuery = groq`*[_type == 'virtuososArticle' && lengt
   _id,
    dateStart,
    dateEnd,
-   mainBanner,
+   img,
    'title':  title[_key ==$language].value,
    'slug':slug.current,
    'shortDescription':shortDescription[_key ==$language].value,
