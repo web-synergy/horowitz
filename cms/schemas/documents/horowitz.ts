@@ -25,28 +25,33 @@ export default defineType({
   ],
 
   fields: [
+    // defineField({
+    //   name: 'bannerData',
+    //   title: 'Баннер',
+    //   type: 'object',
+    //   fields: [
+    //     defineField({
+    //       name: 'mainBanner',
+    //       title: 'Головний банер',
+    //       type: 'banner',
+    //     }),
+    //     defineField({
+    //       name: 'bannerCopyright',
+    //       title: 'Текст авторського права',
+    //       type: 'string',
+    //     }),
+    //   ],
+    // }),
+
     defineField({
-      name: 'bannerData',
-      title: 'Баннер',
-      type: 'object',
-      options: {
-        collapsible: true,
-      },
-      fields: [
-        defineField({
-          name: 'bannerImg',
-          title: 'Фото',
-          type: 'image',
-          options: {
-            hotspot: true,
-          },
-        }),
-        defineField({
-          name: 'bannerCopyright',
-          title: 'Текст авторського права',
-          type: 'string',
-        }),
-      ],
+      name: 'mainBanner',
+      title: 'Головний банер',
+      type: 'banner',
+    }),
+    defineField({
+      name: 'bannerCopyright',
+      title: 'Текст авторського права',
+      type: 'string',
     }),
 
     defineField({

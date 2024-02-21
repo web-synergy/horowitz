@@ -1,4 +1,4 @@
-import groq from 'groq';
+import groq from "groq";
 export const homeQuery = groq`*[_type == 'home'][0]{
  'quote':quote{
        'author': author[_key ==$language].value,
@@ -50,10 +50,8 @@ export const settingsQuery = groq`*[_type == 'settings']{
 }`;
 
 export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
-  'bannerData': {
-    'bannerImg': bannerData.bannerImg.asset->url,
-    'bannerCopyright': bannerData.bannerCopyright
-  },
+  'banner': mainBanner,
+  'bannerCopyright': bannerData.bannerCopyright,
   'upperTextBlock': upperTextBlock[_key ==$language][0].value,
   'quote':quote{
     'author': author[_key ==$language].value,
