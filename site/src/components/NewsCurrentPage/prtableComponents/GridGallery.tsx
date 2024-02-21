@@ -29,7 +29,11 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
   return (
     <GrowView>
       <Box sx={{ mb: '24px' }}>
-        <ImageList variant='quilted' cols={4} rowHeight={isMob ? 'auto' : 230}>
+        <ImageList
+          variant='quilted'
+          cols={4}
+          gap={8}
+          rowHeight={isMob ? 'auto' : 230}>
           {images.map(item => {
             if (item.asset)
               return (
@@ -61,7 +65,7 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
           open={open}>
           {imgSrc && (
             <img
-              style={{ width: '100%', objectFit: 'contain' }}
+              style={{ width: '100%' }}
               width={'100%'}
               height={'auto'}
               src={urlFor(imgSrc).auto('format').url()}
