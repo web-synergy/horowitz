@@ -77,8 +77,7 @@ const VirtuososCurrentArticle = () => {
                   color: theme => theme.palette.neutral[50],
                 }}
                 variant='bodyLight'>
-                {data.dateStart && parseAndFormatDate(data.dateStart)}
-                {data.dateEnd && ` - ${parseAndFormatDate(data.dateEnd)}`}
+                {parseAndFormatDate(data._createdAt)}
               </Typography>
 
               <Typography variant='h2'>{data.title}</Typography>

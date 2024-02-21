@@ -8,6 +8,7 @@ export const useVirtuososStore = create<VirtuososStoreState>()(set => ({
   pageQty: 1,
   virtuosos: null,
   requestLang: '',
+  currentPage: 0,
 
   fetchVirtuosos: async language => {
     set({ loading: true });
@@ -25,11 +26,11 @@ export const useVirtuososStore = create<VirtuososStoreState>()(set => ({
     }
   },
   fetchVirtuososArticles: async (language, page) => {
-    const PAGE_SIZE = 5;
+    const PAGE_SIZE = 10;
     const start = (page - 1) * PAGE_SIZE;
     const end = start + PAGE_SIZE;
 
-    set({ loading: true });
+    set({ loading: true, requestLang: language, currentPage: page });
     try {
       const articles = await getVirtuososArticle(language, start, end);
 

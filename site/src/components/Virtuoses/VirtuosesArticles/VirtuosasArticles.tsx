@@ -24,8 +24,14 @@ const VirtuosasArticles = () => {
     i18n: { language },
   } = useTranslation();
 
-  const { articleList, fetchVirtuososArticles, pageQty, loading } =
-    useVirtuososStore();
+  const {
+    articleList,
+    fetchVirtuososArticles,
+    pageQty,
+    loading,
+    requestLang,
+    currentPage,
+  } = useVirtuososStore();
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const urlPage = +(searchParams.get('page') || 1);
@@ -38,7 +44,9 @@ const VirtuosasArticles = () => {
     if (urlPage <= 0) {
       return navigate('/404');
     }
-    fetchVirtuososArticles(language, urlPage);
+    if (currentPage !== urlPage || requestLang !== language) {
+      fetchVirtuososArticles(language, urlPage);
+    }
   }, [language, urlPage]);
 
   if (loading) return <Loader />;
@@ -65,8 +73,7 @@ const VirtuosasArticles = () => {
                 <NewsListItem
                   key={index}
                   title={news.title}
-                  dateStart={news.dateStart}
-                  dateEnd={news.dateEnd}
+                  _createdAt={news._createdAt}
                   img={news.img}
                   slug={news.slug}
                   shortDescription={news.shortDescription}
