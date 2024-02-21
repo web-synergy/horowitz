@@ -15,7 +15,7 @@ export const virtuososStructure = (S: StructureBuilder) => [
           ),
           S.divider(),
           S.listItem()
-            .title(`Список статей`)
+            .title(`Список новин`)
             .schemaType('virtuososArticle')
             .child(
               S.documentList()
