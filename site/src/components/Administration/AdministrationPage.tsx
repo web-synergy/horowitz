@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
-import { Container, Typography, Grid, Box } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import { useEffect } from "react";
+import { Container, Typography, Grid, Box } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
-import PageTemplate from '../Common/PageTemplate';
-import { useAdministrationStore } from '@/store/administrationStore';
-import { Routes } from '@/types/routes.d';
-import BannerComponent from './parts/BannerComponent';
-import MemberCardItem from './parts/MemberCardItem';
-import Loader from '../Common/Loader';
-import { useLiveQuery } from '@sanity/preview-kit';
-import { administrationQuery } from '@/api/query';
+import PageTemplate from "../Common/PageTemplate";
+import { useAdministrationStore } from "@/store/administrationStore";
+import { Routes } from "@/types/routes.d";
+import MemberCardItem from "./parts/MemberCardItem";
+import Loader from "../Common/Loader";
+import { useLiveQuery } from "@sanity/preview-kit";
+import { administrationQuery } from "@/api/query";
+import MainBanner from "../Common/MainBanner";
 
 const AdministrationPage = () => {
   const {
@@ -18,7 +18,7 @@ const AdministrationPage = () => {
   } = useTranslation();
 
   const { fetchAdministrationData, data, requestLang } = useAdministrationStore(
-    state => ({
+    (state) => ({
       fetchAdministrationData: state.fetchAdministrationData,
       data: state.administrationData,
       requestLang: state.requestLang,
@@ -37,7 +37,8 @@ const AdministrationPage = () => {
       language,
     }
   );
-  const administrationData = administrationDataLive?.members;
+  const members = administrationDataLive?.members;
+  const banner = administrationDataLive?.banner;
 
   if (isLoading) {
     return <Loader />;
@@ -45,25 +46,27 @@ const AdministrationPage = () => {
 
   return (
     <PageTemplate>
-      <BannerComponent />
+      {banner && <MainBanner banner={banner} />}
       <Container
         sx={{
-          paddingTop: { xs: '48px', lg: '120px' },
-          paddingBottom: { xs: '72px', md: '96px', lg: '120px' },
-        }}>
+          paddingTop: { xs: "48px", lg: "120px" },
+          paddingBottom: { xs: "72px", md: "96px", lg: "120px" },
+        }}
+      >
         <Typography
           sx={{
-            marginBottom: { xs: '24px', md: '48px' },
-            textAlign: 'center',
+            marginBottom: { xs: "24px", md: "48px" },
+            textAlign: "center",
           }}
-          variant='h1'
-          gutterBottom>
+          variant="h1"
+          gutterBottom
+        >
           {t(`navigation.${Routes.ADMINISTRATION}`)}
         </Typography>
-        <Box sx={{ width: '100%' }}>
-          <Grid container rowSpacing='48px' columnSpacing={{ md: '26px' }}>
-            {administrationData &&
-              administrationData.map((member, index) => (
+        <Box sx={{ width: "100%" }}>
+          <Grid container rowSpacing="48px" columnSpacing={{ md: "26px" }}>
+            {members &&
+              members.map((member, index) => (
                 <Grid item xs={12} md={6} key={index}>
                   <MemberCardItem member={member} />
                 </Grid>

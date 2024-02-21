@@ -33,8 +33,8 @@ const BannerComponent: React.FC<BannerComponentProps> = ({
               component="p"
               sx={{
                 margin: 0,
-                fontSize: "12px",
-                lineHeight: "12px",
+                fontSize: "0.75rem",
+                lineHeight: 1,
                 color: (theme) => theme.palette.neutral[60],
               }}
             >

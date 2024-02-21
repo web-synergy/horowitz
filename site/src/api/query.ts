@@ -117,6 +117,7 @@ export const aboutCompetitionQuery = groq`*[_type == 'aboutHorowitzCompetition']
 }`;
 
 export const administrationQuery = groq`*[_type == 'administration'][0] {
+  'banner': mainBanner,
   'members':members[]{
     'name': name[_key ==$language][0].value,
     'role': role[_key ==$language][0].value,

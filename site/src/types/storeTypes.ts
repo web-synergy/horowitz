@@ -4,7 +4,7 @@ import { INews } from "./newsTypes";
 import { ContactsType, SettingsResp, SociableType } from "./contactsTypes";
 import { Partner } from "./partnersTypes";
 import { AboutCompetitionImage } from "./aboutCompetitionTypes";
-import { Member } from "./administrationTypes";
+import { IAdministration } from "./administrationTypes";
 import { NavigationType } from "./routes";
 import { IUkrWorks } from "./ukranianWorks";
 import { IVirtuosos } from "./virtuososTypes";
@@ -68,7 +68,7 @@ export interface PartnersStoreState {
 
 export interface AdministrationStoreState {
   requestLang: string;
-  administrationData: { members: Member[] } | null;
+  administrationData: IAdministration | null;
   isLoading: boolean;
   fetchAdministrationData: (language: string) => Promise<void>;
 }
