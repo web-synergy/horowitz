@@ -20,22 +20,23 @@ const NewsPageList = () => {
     i18n: { language },
   } = useTranslation();
 
-  const { fetchNews, newsList, pageQty, loading } = useNewsStore();
+  const { fetchNews, newsList, pageQty, loading, currentPage, requestLang } =
+    useNewsStore();
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const urlPage = +(searchParams.get('page') || 1);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (isNaN(urlPage)) {
       return navigate('/404');
     }
-    // if (urlPage > pageQty) {
-    //   return navigate('/404');
-    // }
     if (urlPage <= 0) {
       return navigate('/404');
     }
-    fetchNews(language, urlPage);
+    if (currentPage !== urlPage || requestLang !== language) {
+      fetchNews(language, urlPage);
+    }
   }, [language, urlPage]);
 
   if (loading) return <Loader />;
@@ -61,9 +62,8 @@ const NewsPageList = () => {
               newsList.map((news: INews, index) => (
                 <NewsListItem
                   key={index}
+                  _createdAt={news._createdAt}
                   title={news.title}
-                  dateStart={news.dateStart}
-                  dateEnd={news.dateEnd}
                   img={news.img}
                   slug={news.slug}
                   shortDescription={news.shortDescription}
