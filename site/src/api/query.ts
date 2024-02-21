@@ -124,7 +124,7 @@ export const administrationQuery = groq`*[_type == 'administration'][0] {
 }`;
 
 export const virtuososQuery = groq`*[_type == 'virtuosos'][0]{
-  banner,
+ banner,
   gallery,
   'description':description[_key ==$language].value,
     'article':*[_type == 'virtuososArticle']| order( _createdAt desc) [0 ...3]{
