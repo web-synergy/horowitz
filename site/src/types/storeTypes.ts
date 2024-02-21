@@ -48,7 +48,9 @@ export interface HorowitzStoreState {
 
 export interface NewsStoreState {
   newsList: INews[];
+  currentPage: number;
   loading: boolean;
+  requestLang: string;
   error: string | unknown;
   pageQty: number;
   fetchNews: (language: string, page: number) => Promise<void>;
@@ -77,8 +79,10 @@ export interface AdministrationStoreState {
 export interface VirtuososStoreState {
   articleList: INews[];
   loading: boolean;
+  currentPage: number;
   pageQty: number;
   requestLang: string;
+
   virtuosos: IVirtuosos | null;
   fetchVirtuosos: (language: string) => Promise<void>;
   fetchVirtuososArticles: (language: string, page: number) => Promise<void>;
