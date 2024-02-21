@@ -1,4 +1,4 @@
-import { NavigationItemType, Routes } from '@/types/routes.d';
+import { NavigationItemType, Routes } from '@/types/routes.d'
 
 export const navigation: NavigationItemType[] = [
   {
@@ -33,33 +33,30 @@ export const navigation: NavigationItemType[] = [
   },
   { title: Routes.NEWS, children: null },
   { title: Routes.CONTACTS, children: null },
-];
+]
 
 export const kyivGenevaNavigation = [
   { title: Routes.KYIV_GENEVA_CONDITIONS },
-  { title: Routes.KYIV_GENEVA_JURY },
-  { title: Routes.KYIV_GENEVA_PARTICIPANTS },
   { title: Routes.KYIV_GENEVA_REQUIREMENTS },
-  { title: Routes.KYIV_GENEVA_SELECTION_JURY },
-  { title: Routes.KYIV_GENEVA_WINNERS },
   { title: Routes.KYIV_GENEVA_REWARDS },
+  { title: Routes.KYIV_GENEVA_JURY },
+  { title: Routes.KYIV_GENEVA_SELECTION_JURY },
   { title: Routes.KYIV_GENEVA_ORCHESTRA },
+  { title: Routes.KYIV_GENEVA_PARTICIPANTS },
+  { title: Routes.KYIV_GENEVA_WINNERS },
   { title: Routes.KYIV_GENEVA_TIMETABLE },
-];
+]
 
-type Navigate = { title: string; parent: string | null };
+type Navigate = { title: string; parent: string | null }
 
-export const overallNavigation = navigation.reduce(
-  (acc, { title, children }) => {
-    const mainElement = { title: title, parent: null };
-    acc.push(mainElement);
-    if (children) {
-      children.forEach((item) => {
-        const element = { title: item.title, parent: title };
-        acc.push(element);
-      });
-    }
-    return acc;
-  },
-  [] as Navigate[]
-);
+export const overallNavigation = navigation.reduce((acc, { title, children }) => {
+  const mainElement = { title: title, parent: null }
+  acc.push(mainElement)
+  if (children) {
+    children.forEach(item => {
+      const element = { title: item.title, parent: title }
+      acc.push(element)
+    })
+  }
+  return acc
+}, [] as Navigate[])

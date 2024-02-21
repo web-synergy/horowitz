@@ -1,19 +1,19 @@
-import { Box, Button, Container, Stack, Typography } from '@mui/material';
-import { FC } from 'react';
+import { Box, Button, Container, Stack, Typography } from '@mui/material'
+import { FC } from 'react'
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
 
-import logo_1 from '@/assets/images/kyiv-geneva/mainPage/sponsors/sponsor_logo_1.png';
-import logo_2 from '@/assets/images/kyiv-geneva/mainPage/sponsors/sponsor_logo_2.png';
-import logo_3 from '@/assets/images/kyiv-geneva/mainPage/sponsors/sponsor_logo_3.png';
-import logo_4 from '@/assets/images/kyiv-geneva/mainPage/sponsors/sponsor_logo_4.png';
-import { Routes } from '@/types/routes.d';
-import { Sponsors, KyivGeneva, Buttons } from '@/types/translation.d';
-import { Link } from 'react-router-dom';
+import logo_1 from '@/assets/images/kyiv-geneva/mainPage/sponsors/sponsor_logo_1.png'
+import logo_2 from '@/assets/images/kyiv-geneva/mainPage/sponsors/sponsor_logo_2.png'
+import logo_3 from '@/assets/images/kyiv-geneva/mainPage/sponsors/sponsor_logo_3.png'
+import logo_4 from '@/assets/images/kyiv-geneva/mainPage/sponsors/sponsor_logo_4.png'
+import { Routes } from '@/types/routes.d'
+import { Buttons, KyivGeneva, Sponsors } from '@/types/translation.d'
+import { Link } from 'react-router-dom'
 
 const SponsorsSection: FC = () => {
-  const { t } = useTranslation();
-  const logotypes = [logo_1, logo_2, logo_3, logo_4];
+  const { t } = useTranslation()
+  const logotypes = [logo_1, logo_2, logo_3, logo_4]
   return (
     <Box>
       <Container>
@@ -26,8 +26,10 @@ const SponsorsSection: FC = () => {
           </Typography>
           <Stack
             sx={{
-              flexDirection: 'row',
-              flexWrap: 'wrap',
+              flexDirection: {
+                xs: 'column',
+                md: 'row',
+              },
               gap: '28px',
             }}
           >
@@ -38,6 +40,7 @@ const SponsorsSection: FC = () => {
                   src={logo}
                   alt="logotype"
                   sx={{
+                    display: 'block',
                     maxHeight: {
                       xs: '102px',
                       md: '72px',
@@ -56,19 +59,19 @@ const SponsorsSection: FC = () => {
             to={`/${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_SPONSORS}`}
             sx={{
               width: '288px',
-              border: (theme) => `1px solid ${theme.palette.common.black}`,
+              border: theme => `1px solid ${theme.palette.common.black}`,
               marginTop: {
                 xs: '24px',
                 md: '48px',
               },
             }}
           >
-            {t(`buttons.${Buttons.SHOW_MORE}`)}
+            {t(`buttons.${Buttons.VIEW_ALL}`)}
           </Button>
         </Box>
       </Container>
     </Box>
-  );
-};
+  )
+}
 
-export default SponsorsSection;
+export default SponsorsSection

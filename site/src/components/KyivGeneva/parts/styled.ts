@@ -17,6 +17,7 @@ export const Caption = styled(Typography)<TypographyProps>(
     fontSize: '0.5rem',
     lineHeight: 2,
     marginTop: '8px',
+    textAlign: 'justify',
     [breakpoints.up('md')]: {
       fontSize: '0.75rem',
       lineHeight: 1.33,
@@ -39,7 +40,7 @@ export const StyledButton = styled(Button)<ButtonProps & LinkProps>(({ theme }) 
   },
   [theme.breakpoints.up('lg')]: {
     position: 'absolute',
-    bottom: 0,
+    bottom: '36px',
     right: 0,
   },
 }))
@@ -57,11 +58,11 @@ export const AboutTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
 export const AboutStack = styled(Stack)(({ theme }) => ({
   maxHeight: '100%',
   flexWrap: 'wrap',
-  columnGap: '24px',
-  rowGap: '24px',
+  gap: '8px',
   [theme.breakpoints.up('lg')]: {
     maxHeight: '350px',
     rowGap: '16px',
+    columnGap: '24px',
   },
 }))
 
@@ -88,19 +89,19 @@ export const BgImage = styled(Box)<BoxProps & ImgHTMLAttributes<string>>(() => (
 }))
 
 export const ButtonsListStack = styled(Stack)(({ theme }) => ({
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  columnGap: '56px',
-  rowGap: '24px',
   margin: '48px 0',
-  justifyContent: 'center',
-
+  rowGap: '24px',
+  alignItems: 'center',
   [theme.breakpoints.up('md')]: {
     margin: '115px 0 105px',
-    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    height: '381px',
+    columnGap: '68px',
   },
   [theme.breakpoints.up('lg')]: {
     margin: '160px 0',
+    height: '277px',
+    columnGap: '56px',
     rowGap: '48px',
   },
 }))
@@ -115,6 +116,7 @@ export const ContentStack = styled(Stack)(({ theme }) => ({
 
 export const ImageBox = styled(Box)(({ theme }) => ({
   width: '100%',
+  height: '100%',
   [theme.breakpoints.up('lg')]: {
     width: 'calc(50% - 12px)',
   },
