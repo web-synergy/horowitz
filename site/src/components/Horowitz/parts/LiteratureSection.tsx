@@ -2,8 +2,7 @@ import React from "react";
 import { Box, Collapse } from "@mui/material";
 
 import { PortableText } from "@portabletext/react";
-import { components } from "../portableComponents";
-import { collapsComponents } from "../portableComponents/CollapsComponents";
+import { collapsComponents, components } from "../portableComponents";
 import { LiteratureSectionProps } from "@/types/horowitzTypes";
 
 const LiteratureSection: React.FC<LiteratureSectionProps> = ({
