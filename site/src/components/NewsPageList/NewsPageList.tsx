@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import PageTemplate from '../Common/PageTemplate';
-import { Container, List, Typography, Box, Stack } from '@mui/material';
+import { Container, List, Typography, Stack } from '@mui/material';
 
 import { useNewsStore } from '@/store/newsStore';
 import { useNavigate } from 'react-router-dom';
@@ -20,22 +20,23 @@ const NewsPageList = () => {
     i18n: { language },
   } = useTranslation();
 
-  const { fetchNews, newsList, pageQty, loading } = useNewsStore();
+  const { fetchNews, newsList, pageQty, loading, currentPage, requestLang } =
+    useNewsStore();
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const urlPage = +(searchParams.get('page') || 1);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (isNaN(urlPage)) {
       return navigate('/404');
     }
-    // if (urlPage > pageQty) {
-    //   return navigate('/404');
-    // }
     if (urlPage <= 0) {
       return navigate('/404');
     }
-    fetchNews(language, urlPage);
+    if (currentPage !== urlPage || requestLang !== language) {
+      fetchNews(language, urlPage);
+    }
   }, [language, urlPage]);
 
   if (loading) return <Loader />;
@@ -45,7 +46,7 @@ const NewsPageList = () => {
         <Stack>
           <Typography
             sx={{
-              my: { xs: '48px', lg: '56px' },
+              py: { xs: '24px', md: '48px' },
             }}
             variant='h2'>
             {t(`navigation.${Routes.NEWS}`)}
@@ -61,26 +62,20 @@ const NewsPageList = () => {
               newsList.map((news: INews, index) => (
                 <NewsListItem
                   key={index}
+                  _createdAt={news._createdAt}
                   title={news.title}
-                  dateStart={news.dateStart}
-                  dateEnd={news.dateEnd}
                   img={news.img}
                   slug={news.slug}
                   shortDescription={news.shortDescription}
                 />
               ))}
           </List>
-          <Box
-            sx={{
-              my: { xs: '48px', lg: '56px' },
-              mx: 'auto',
-            }}>
-            <PaginationNews
-              pageQty={pageQty}
-              setSearchParams={setSearchParams}
-              urlPage={urlPage}
-            />
-          </Box>
+
+          <PaginationNews
+            pageQty={pageQty}
+            setSearchParams={setSearchParams}
+            urlPage={urlPage}
+          />
         </Stack>
       </Container>
     </PageTemplate>

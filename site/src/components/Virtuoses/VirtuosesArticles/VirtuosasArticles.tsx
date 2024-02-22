@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 
-import { Container, List, Typography, Box, Stack } from '@mui/material';
+import { Container, List, Typography, Stack } from '@mui/material';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -24,8 +24,14 @@ const VirtuosasArticles = () => {
     i18n: { language },
   } = useTranslation();
 
-  const { articleList, fetchVirtuososArticles, pageQty, loading } =
-    useVirtuososStore();
+  const {
+    articleList,
+    fetchVirtuososArticles,
+    pageQty,
+    loading,
+    requestLang,
+    currentPage,
+  } = useVirtuososStore();
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const urlPage = +(searchParams.get('page') || 1);
@@ -38,17 +44,19 @@ const VirtuosasArticles = () => {
     if (urlPage <= 0) {
       return navigate('/404');
     }
-    fetchVirtuososArticles(language, urlPage);
+    if (currentPage !== urlPage || requestLang !== language) {
+      fetchVirtuososArticles(language, urlPage);
+    }
   }, [language, urlPage]);
 
   if (loading) return <Loader />;
   return (
     <PageTemplate>
-      <Container>
+      <Container sx={{}}>
         <Stack>
           <Typography
             sx={{
-              my: { xs: '48px', lg: '56px' },
+              py: { xs: '24px', md: '48px' },
             }}
             variant='h2'>
             {t(`virtuosos.${Virtuosos.NEWS}`)}
@@ -65,25 +73,19 @@ const VirtuosasArticles = () => {
                 <NewsListItem
                   key={index}
                   title={news.title}
-                  dateStart={news.dateStart}
-                  dateEnd={news.dateEnd}
+                  _createdAt={news._createdAt}
                   img={news.img}
                   slug={news.slug}
                   shortDescription={news.shortDescription}
                 />
               ))}
           </List>
-          <Box
-            sx={{
-              my: { xs: '48px', lg: '56px' },
-              mx: 'auto',
-            }}>
-            <PaginationNews
-              pageQty={pageQty}
-              setSearchParams={setSearchParams}
-              urlPage={urlPage}
-            />
-          </Box>
+
+          <PaginationNews
+            pageQty={pageQty}
+            setSearchParams={setSearchParams}
+            urlPage={urlPage}
+          />
         </Stack>
       </Container>
       <GoBackBtn href={`/${Routes.VIRTUOSES}`} />

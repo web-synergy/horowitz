@@ -8,20 +8,18 @@ export const phoneNumberFormatting = (
   else return '+' + phone;
 };
 
-export const parseAndFormatDate = (inputDate: string): string => {
-  const [year, month, day] = inputDate.split('-');
-  return `${day}.${month}.${year}`;
+export const parseAndFormatDate = (dateString: string): string => {
+  const dateObject: Date = new Date(dateString);
+  const day: number = dateObject.getUTCDate();
+  const month: number = dateObject.getUTCMonth() + 1;
+  const year: number = dateObject.getUTCFullYear();
+
+  const formattedDate: string = `${day.toString().padStart(2, '0')}.${month
+    .toString()
+    .padStart(2, '0')}.${year}`;
+
+  return formattedDate;
 };
-
-export function processImageUrl(url: string) {
-  const parts = url.split('?');
-
-  const firstPart = parts[0];
-
-  const modifiedUrl = parts.length > 1 ? `${firstPart}?${parts[1]}` : firstPart;
-
-  return modifiedUrl;
-}
 
 export const sliceNewsTitle = (title: string, sliceIndex: number): string => {
   return title.length > sliceIndex ? title.slice(0, sliceIndex) + '...' : title;

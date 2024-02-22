@@ -46,34 +46,7 @@ export default defineType({
       },
       validation: (Rule) => Rule.required().error('Обовʼязкове поле'),
     }),
-    defineField({
-      name: 'dateStart',
-      type: 'date',
-      title: 'Дата початку події',
-      options: {
-        dateFormat: 'DD-MM-YYYY',
-      },
-      validation: (Rule) => [
-        Rule.required().error('Обовʼязкове поле'),
-        Rule.custom((duration, context) => {
-          const dateEnd = context.document?.dateEnd!
 
-          if (duration! >= dateEnd) {
-            return 'Дата початку повинна бути раніше за дату закінчення'
-          } else {
-            return true
-          }
-        }),
-      ],
-    }),
-    defineField({
-      name: 'dateEnd',
-      type: 'date',
-      title: 'Дата закінчення події',
-      options: {
-        dateFormat: 'DD-MM-YYYY',
-      },
-    }),
     defineField({
       name: 'img',
       title: 'Додати зображення',
@@ -99,8 +72,8 @@ export default defineType({
         Rule.custom((content) => {
           let errorMassage = ''
           for (const value of content as Icontent[]) {
-            if (value.value?.length > 150) {
-              errorMassage = `В поле ${value._key?.toUpperCase()} введено ${value.value.length} символів, доступно 150`
+            if (value.value?.length > 200) {
+              errorMassage = `В поле ${value._key?.toUpperCase()} введено ${value.value.length} символів, доступно 200`
             }
             if (!value.value?.length) {
               errorMassage = `Поле ${value._key?.toUpperCase()} обовʼязкове`
@@ -113,6 +86,16 @@ export default defineType({
       name: 'description',
       title: 'Опис новини',
       type: 'internationalizedArrayContent',
+      validation: (Rule) =>
+        Rule.custom((content) => {
+          let errorMassage = ''
+          for (const value of content as Icontent[]) {
+            if (!value.value?.length) {
+              errorMassage = `Поле ${value._key?.toUpperCase()} обовʼязкове`
+            }
+          }
+          return errorMassage || true
+        }),
     }),
   ],
   preview: {

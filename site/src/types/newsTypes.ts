@@ -2,14 +2,12 @@ import { PortableTextBlock } from '@portabletext/types';
 
 export interface INews {
   _id: string;
+  _createdAt: string;
   title: string;
-  dateEnd: string;
-  dateStart: string;
   img: IImage;
   slug: string;
   description: PortableTextBlock[];
   shortDescription: string;
-  date: string;
   count: number;
 }
 
@@ -29,6 +27,7 @@ interface IIGallery extends IImage {
 }
 export interface IPortableImgGallery {
   images: IIGallery[];
+  quantity: number;
   title: string;
   option: boolean;
 }

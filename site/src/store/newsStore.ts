@@ -8,12 +8,14 @@ export const useNewsStore = create<NewsStoreState>()(set => ({
   loading: false,
   error: '',
   pageQty: 1,
+  currentPage: 0,
+  requestLang: '',
   fetchNews: async (language, page) => {
-    const PAGE_SIZE = 5;
+    const PAGE_SIZE = 10;
     const start = (page - 1) * PAGE_SIZE;
     const end = start + PAGE_SIZE;
 
-    set({ loading: true });
+    set({ loading: true, currentPage: page, requestLang: language });
     try {
       const news = await getNews(language, start, end);
 

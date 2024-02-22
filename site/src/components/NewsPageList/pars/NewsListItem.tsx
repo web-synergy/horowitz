@@ -19,16 +19,14 @@ import { Link } from 'react-router-dom';
 
 interface INewsListItem {
   img: IImage;
+  _createdAt: string;
   title: string;
   shortDescription: string;
   slug: string;
-  dateStart: string;
-  dateEnd: string;
 }
 
 const NewsListItem = ({
-  dateStart,
-  dateEnd,
+  _createdAt,
   img,
   title,
   shortDescription,
@@ -63,8 +61,7 @@ const NewsListItem = ({
               <Typography
                 sx={{ color: theme => theme.palette.neutral[50] }}
                 variant='bodyLight'>
-                {dateStart && parseAndFormatDate(dateStart)}
-                {dateEnd && ` - ${parseAndFormatDate(dateEnd)}`}
+                {parseAndFormatDate(_createdAt)}
               </Typography>
               <Typography variant='subhead'>{title}</Typography>
               <Typography

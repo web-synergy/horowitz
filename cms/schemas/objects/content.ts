@@ -1,8 +1,11 @@
 import {defineType} from 'sanity'
+import NoWrap from '../../components/NoWrap'
+import {TbTextWrapDisabled as icon} from 'react-icons/tb'
 
 const content = defineType({
   name: 'content',
   type: 'array',
+
   of: [
     {
       type: 'block',
@@ -20,6 +23,7 @@ const content = defineType({
         decorators: [
           {title: 'Strong', value: 'strong'},
           {title: 'Emphasis', value: 'em'},
+          {title: 'No wrap', value: 'nw', icon, component: NoWrap},
         ],
         annotations: [
           {

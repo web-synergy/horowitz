@@ -15,6 +15,12 @@ export const imageGalleryType = defineType({
       type: 'boolean',
       title: 'Grid Gallery',
     }),
+    defineField({
+      name: 'quantity',
+      type: 'number',
+      hidden: ({parent}) => !parent?.option,
+      title: 'Кількість фото',
+    }),
     {
       name: 'images',
       type: 'array',
@@ -23,7 +29,6 @@ export const imageGalleryType = defineType({
         defineField({
           name: 'image',
           type: 'image',
-
           options: {hotspot: true},
           fields: [
             defineField({
@@ -43,9 +48,9 @@ export const imageGalleryType = defineType({
                   name: 'cols',
                   type: 'number',
                   title: 'Кількість колонок',
-                  initialValue: 2,
+                  initialValue: 3,
                   options: {
-                    list: [1, 2, 3, 4],
+                    list: [1, 2, 3, 4, 5, 6],
                     layout: 'radio',
                     direction: 'horizontal',
                   },

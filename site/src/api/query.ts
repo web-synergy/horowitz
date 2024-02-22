@@ -63,9 +63,7 @@ export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
 
 export const newsQuery = groq`*[_type == 'news' && length(title[_key ==$language].value) != 0] | order( _createdAt desc
 ) [$firstEl ...$lastEl]{
-  _id,
-   dateStart,
-   dateEnd,
+  _createdAt,
    img,
    'title':  title[_key ==$language].value,
    'slug':slug.current,
@@ -75,8 +73,7 @@ export const newsQuery = groq`*[_type == 'news' && length(title[_key ==$language
 
 export const currentNewsQuery = groq`*[_type == 'news'&& slug.current == $slug][0]{
    _id,
-   dateStart,
-   dateEnd,
+   _createdAt,
    img,
    'title': coalesce( title[_key ==$language][0].value, title[][0].value), 
    'slug':slug.current,
@@ -138,9 +135,7 @@ export const virtuososQuery = groq`*[_type == 'virtuosos'][0]{
 
 export const virtuososArticleQuery = groq`*[_type == 'virtuososArticle' && length(title[_key ==$language].value) != 0] | order( _createdAt desc
 ) [$firstEl ...$lastEl]{
-  _id,
-   dateStart,
-   dateEnd,
+_createdAt,
    img,
    'title':  title[_key ==$language].value,
    'slug':slug.current,
@@ -149,9 +144,7 @@ export const virtuososArticleQuery = groq`*[_type == 'virtuososArticle' && lengt
 }`;
 
 export const currentArticleQuery = groq`*[_type == 'virtuososArticle'&& slug.current == $slug][0]{
-   _id,
-   dateStart,
-   dateEnd,
+   _createdAt,
    img,
    'title': coalesce( title[_key ==$language][0].value, title[][0].value), 
    'slug':slug.current,

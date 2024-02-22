@@ -1,7 +1,6 @@
 import { Stack, Pagination, PaginationItem } from '@mui/material';
 import { FC } from 'react';
 import { SetURLSearchParams } from 'react-router-dom';
-import { Link as RouterLink } from 'react-router-dom';
 interface IPagination {
   pageQty: number;
   urlPage: number;
@@ -14,7 +13,13 @@ const PaginationNews: FC<IPagination> = ({
   setSearchParams,
 }) => {
   return (
-    <Stack spacing={2}>
+    <Stack
+      sx={{
+        pt: { xs: '24px', md: '48px' },
+        pb: { xs: '72px', md: '96px', lg: '120px' },
+        mx: 'auto',
+      }}
+      spacing={2}>
       <Pagination
         count={pageQty}
         variant='outlined'
@@ -27,13 +32,7 @@ const PaginationNews: FC<IPagination> = ({
           })
         }
         sx={{ marginY: 4, marginX: 'auto' }}
-        renderItem={item => (
-          <PaginationItem
-            component={RouterLink}
-            to={`/news/?page=${item.page}`}
-            {...item}
-          />
-        )}
+        renderItem={item => <PaginationItem {...item} />}
       />
     </Stack>
   );
