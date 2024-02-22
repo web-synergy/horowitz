@@ -11,14 +11,23 @@ import { useState } from 'react';
 import GrowView from '@/components/Common/GrowView';
 import { theme } from '@/theme';
 import { urlFor } from '@/config/sanity/imageUrl';
-import { IImage, IPortableImgGallery } from '@/types/newsTypes';
+import { IPortableImgGallery } from '@/types/newsTypes';
+
+import { Navigation, Thumbs, Keyboard } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
-  const { images, title } = value;
+  const { images, title, quantity } = value;
   const [open, setOpen] = useState(false);
-  const [imgSrc, setImg] = useState<IImage>();
-  const handleClickOpen = (img: IImage) => {
-    setImg(img);
+  const [sliderIndex, setSliderIndex] = useState(0);
+
+  const handleClickOpen = (index: number) => {
+    setSliderIndex(index);
+
     setOpen(true);
   };
   const handleClose = () => {
@@ -27,60 +36,84 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
   if (!images) return null;
   return (
-    <GrowView>
-      <Box sx={{ mb: '24px' }}>
-        <ImageList
-          variant='quilted'
-          cols={4}
-          gap={8}
-          rowHeight={isMob ? 'auto' : 230}>
-          {images.map(item => {
-            if (item.asset)
-              return (
+    <Box sx={{ mb: '24px' }}>
+      <ImageList variant='quilted' cols={6} rowHeight={isMob ? 'auto' : 150}>
+        {images.slice(0, quantity || images.length).map((item, index) => {
+          if (item.asset)
+            return (
+              <GrowView key={item._key}>
                 <ImageListItem
-                  key={item._key}
                   cols={item.photoLayout.cols || 1}
                   rows={item.photoLayout.rows || 1}>
                   <img
                     style={{ cursor: 'pointer' }}
-                    onClick={() => handleClickOpen(item)}
+                    onClick={() => handleClickOpen(index)}
                     src={urlFor(item)
-                      .width(700)
-                      .height(460)
+                      .width(155 * item.photoLayout.cols || 1)
+                      .height(150 * item.photoLayout.rows || 1)
                       .auto('format')
                       .url()}
                     alt={item.title || ''}
                     loading='lazy'
                   />
                 </ImageListItem>
+              </GrowView>
+            );
+        })}
+      </ImageList>
+
+      <Dialog
+        sx={{
+          '& .MuiDialog-paper': {
+            backgroundColor: 'inherit',
+            boxShadow: 'none',
+          },
+        }}
+        fullWidth={true}
+        maxWidth={'md'}
+        onClose={handleClose}
+        aria-labelledby='customized-dialog-title'
+        open={open}>
+        <Swiper
+          modules={[Navigation, Thumbs, Keyboard]}
+          initialSlide={sliderIndex}
+          loop={true}
+          autoHeight={true}
+          keyboard={{
+            enabled: true,
+          }}
+          spaceBetween={50}
+          navigation={true}
+          slidesPerView={1}
+          className='mySwiper'>
+          {images.map(item => {
+            if (item.asset)
+              return (
+                <SwiperSlide key={item._key}>
+                  <img
+                    loading='lazy'
+                    style={{
+                      width: '100%',
+                      maxHeight: '90vh',
+                      objectFit: 'contain',
+                    }}
+                    src={
+                      item &&
+                      urlFor(item).width(900).auto('format').fit('scale').url()
+                    }
+                  />
+                </SwiperSlide>
               );
           })}
-        </ImageList>
+        </Swiper>
+      </Dialog>
 
-        <Dialog
-          fullWidth={true}
-          maxWidth={'md'}
-          onClose={handleClose}
-          aria-labelledby='customized-dialog-title'
-          open={open}>
-          {imgSrc && (
-            <img
-              style={{ width: '100%' }}
-              width={'100%'}
-              height={'auto'}
-              src={urlFor(imgSrc).auto('format').url()}
-              loading='lazy'
-            />
-          )}
-        </Dialog>
-
-        <Typography
-          sx={{ color: theme => theme.palette.neutral[50] }}
-          variant='smallText'>
-          {title}
-        </Typography>
-      </Box>
-    </GrowView>
+      <Typography
+        sx={{ color: theme => theme.palette.neutral[50] }}
+        variant='smallText'>
+        {title}
+      </Typography>
+    </Box>
   );
 };
 
