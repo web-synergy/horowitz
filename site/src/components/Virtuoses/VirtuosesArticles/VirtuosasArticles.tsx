@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 
-import { Container, List, Typography, Box, Stack } from '@mui/material';
+import { Container, List, Typography, Stack } from '@mui/material';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -52,15 +52,11 @@ const VirtuosasArticles = () => {
   if (loading) return <Loader />;
   return (
     <PageTemplate>
-      <Container
-        sx={{
-          mt: { xs: '40px', md: '48px', lg: '56px' },
-          mb: { xs: '72px', md: '96px', lg: '120px' },
-        }}>
+      <Container sx={{}}>
         <Stack>
           <Typography
             sx={{
-              my: { xs: '48px', lg: '56px' },
+              py: { xs: '24px', md: '48px' },
             }}
             variant='h2'>
             {t(`virtuosos.${Virtuosos.NEWS}`)}
@@ -84,17 +80,12 @@ const VirtuosasArticles = () => {
                 />
               ))}
           </List>
-          <Box
-            sx={{
-              my: { xs: '48px', lg: '56px' },
-              mx: 'auto',
-            }}>
-            <PaginationNews
-              pageQty={pageQty}
-              setSearchParams={setSearchParams}
-              urlPage={urlPage}
-            />
-          </Box>
+
+          <PaginationNews
+            pageQty={pageQty}
+            setSearchParams={setSearchParams}
+            urlPage={urlPage}
+          />
         </Stack>
       </Container>
       <GoBackBtn href={`/${Routes.VIRTUOSES}`} />

@@ -13,7 +13,13 @@ const PaginationNews: FC<IPagination> = ({
   setSearchParams,
 }) => {
   return (
-    <Stack spacing={2}>
+    <Stack
+      sx={{
+        pt: { xs: '24px', md: '48px' },
+        pb: { xs: '72px', md: '96px', lg: '120px' },
+        mx: 'auto',
+      }}
+      spacing={2}>
       <Pagination
         count={pageQty}
         variant='outlined'

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import PageTemplate from '../Common/PageTemplate';
-import { Container, List, Typography, Box, Stack } from '@mui/material';
+import { Container, List, Typography, Stack } from '@mui/material';
 
 import { useNewsStore } from '@/store/newsStore';
 import { useNavigate } from 'react-router-dom';
@@ -46,7 +46,7 @@ const NewsPageList = () => {
         <Stack>
           <Typography
             sx={{
-              my: { xs: '48px', lg: '56px' },
+              py: { xs: '24px', md: '48px' },
             }}
             variant='h2'>
             {t(`navigation.${Routes.NEWS}`)}
@@ -70,17 +70,12 @@ const NewsPageList = () => {
                 />
               ))}
           </List>
-          <Box
-            sx={{
-              my: { xs: '48px', lg: '56px' },
-              mx: 'auto',
-            }}>
-            <PaginationNews
-              pageQty={pageQty}
-              setSearchParams={setSearchParams}
-              urlPage={urlPage}
-            />
-          </Box>
+
+          <PaginationNews
+            pageQty={pageQty}
+            setSearchParams={setSearchParams}
+            urlPage={urlPage}
+          />
         </Stack>
       </Container>
     </PageTemplate>
