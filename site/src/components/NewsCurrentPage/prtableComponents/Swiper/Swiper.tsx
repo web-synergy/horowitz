@@ -1,7 +1,7 @@
 import { Box, Typography, useMediaQuery } from '@mui/material';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { useState } from 'react';
-import { Navigation, Thumbs, FreeMode } from 'swiper/modules';
+import { Navigation, Thumbs, FreeMode, Keyboard } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 
@@ -27,12 +27,15 @@ export const PortableSwiper = ({ value }: { value: IPortableImgGallery }) => {
     <GrowView>
       <Box sx={{ my: { xs: '40px', md: '48px', lg: '56px' } }}>
         <Swiper
-          modules={[FreeMode, Navigation, Thumbs]}
+          modules={[Navigation, Thumbs, Keyboard]}
           loop={true}
           spaceBetween={50}
           navigation={true}
           slidesPerView={1}
           thumbs={{ swiper: thumbsSwiper }}
+          keyboard={{
+            enabled: true,
+          }}
           className='mySwiper'>
           {images.map(item => {
             if (item.asset)
@@ -63,7 +66,6 @@ export const PortableSwiper = ({ value }: { value: IPortableImgGallery }) => {
             slidesPerView={countSlidesPer}
             loop={imagesLength > countSlidesPer ? true : false}
             slideToClickedSlide
-            // slidesPerView={'auto'}
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             onSwiper={setThumbsSwiper}

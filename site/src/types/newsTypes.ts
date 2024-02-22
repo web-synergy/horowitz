@@ -27,6 +27,7 @@ interface IIGallery extends IImage {
 }
 export interface IPortableImgGallery {
   images: IIGallery[];
+  quantity: number;
   title: string;
   option: boolean;
 }
