@@ -74,6 +74,13 @@ export const components: PortableTextComponents = {
     ),
   },
   marks: {
+    nw: ({ children }) => {
+      return (
+        <Typography variant='bodyRegular' noWrap>
+          {children}
+        </Typography>
+      );
+    },
     link: ({ value, children }) => {
       const target = (value?.href || '').startsWith('http')
         ? '_blank'
