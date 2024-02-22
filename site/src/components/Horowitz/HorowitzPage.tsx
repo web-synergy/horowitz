@@ -27,7 +27,6 @@ const HorowitzPage: FC = () => {
   useEffect(() => {
     if (requestLang === language) return;
     fetchHorowitzData(language);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchHorowitzData, language]);
 
   const horowitzData = useHorowitzStore();
