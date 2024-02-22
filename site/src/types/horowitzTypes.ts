@@ -1,10 +1,10 @@
 import { PortableTextBlock } from "@portabletext/types";
+import { IBanner } from "./bannerType";
 
 export interface IHorowitzData {
-  bannerData: {
-    bannerCopyright: string;
-    bannerImg: string;
-  };
+  banner: IBanner | null;
+  bannerData: IBanner | null;
+  bannerCopyright: string;
   quote: {
     author: string[];
     quote: string[];
@@ -15,13 +15,13 @@ export interface IHorowitzData {
 }
 
 export interface BannerComponentProps {
-  imgSrc: string;
+  banner: IBanner;
   copyright: string;
 }
 
 export interface LiteratureSectionProps {
   literature: PortableTextBlock[];
-  visibleItems: number;
+  isAllLiteratureVisible: boolean;
 }
 
 export interface QuoteSectionProps {

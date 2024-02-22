@@ -1,13 +1,14 @@
-import { PortableTextBlock } from '@portabletext/types';
-import { INews } from './newsTypes';
+import { PortableTextBlock } from "@portabletext/types";
+import { INews } from "./newsTypes";
 
-import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
-import { Partner } from './partnersTypes';
-import { AboutCompetitionImage } from './aboutCompetitionTypes';
-import { Member } from './administrationTypes';
-import { NavigationType } from './routes';
-import { IUkrWorks } from './ukranianWorks';
-import { IVirtuosos } from './virtuososTypes';
+import { ContactsType, SettingsResp, SociableType } from "./contactsTypes";
+import { Partner } from "./partnersTypes";
+import { AboutCompetitionImage } from "./aboutCompetitionTypes";
+import { IAdministration } from "./administrationTypes";
+import { NavigationType } from "./routes";
+import { IUkrWorks } from "./ukranianWorks";
+import { IVirtuosos } from "./virtuososTypes";
+import { IBanner } from "./bannerType";
 
 export interface SettingsStoreState {
   requestLang: string;
@@ -33,10 +34,8 @@ export interface AboutCompetitionState {
 }
 
 export interface HorowitzStoreState {
-  bannerData: {
-    bannerCopyright: string;
-    bannerImg: string;
-  };
+  bannerData: IBanner | null;
+  bannerCopyright: string;
   quote: { author: string[]; quote: string[] };
   upperTextBlock: PortableTextBlock[];
   lowerTextBlock: PortableTextBlock[];
@@ -71,7 +70,7 @@ export interface PartnersStoreState {
 
 export interface AdministrationStoreState {
   requestLang: string;
-  administrationData: { members: Member[] } | null;
+  administrationData: IAdministration | null;
   isLoading: boolean;
   fetchAdministrationData: (language: string) => Promise<void>;
 }
