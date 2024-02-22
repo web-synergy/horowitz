@@ -67,7 +67,7 @@ const VirtuosesPage = () => {
               display: 'flex',
               justifyContent: 'center',
               mb: { xs: '24px', md: '48px' },
-              mt: { xs: '24px', md: '32px' },
+              mt: { xs: '48px', md: '120px' },
             }}>
             <Typography component={'h1'} variant='h1'>
               {t(`navigation.${Routes.VIRTUOSES}`)}

@@ -49,7 +49,11 @@ const VirtuososCurrentArticle = () => {
     <PageTemplate>
       <Container>
         {data && (
-          <Box sx={{ my: { xs: '40px', md: '48px', lg: '56px' } }}>
+          <Box
+            sx={{
+              mt: { xs: '24px', md: '48px' },
+              mb: { xs: '72px', md: '96px', lg: '120px' },
+            }}>
             <GrowView>
               <Box
                 sx={{
@@ -71,7 +75,7 @@ const VirtuososCurrentArticle = () => {
             <Box sx={{ maxWidth: '930px', mx: 'auto' }}>
               <Typography
                 sx={{
-                  mt: '54px',
+                  mt: { xs: '24px', md: '48px' },
                   mb: '24px',
                   display: 'block',
                   color: theme => theme.palette.neutral[50],

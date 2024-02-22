@@ -7,7 +7,6 @@ export default defineType({
   fields: [
     defineField({
       name: 'banner',
-      // title: 'Баннер',
       type: 'banner',
     }),
     defineField({

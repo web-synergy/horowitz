@@ -52,7 +52,11 @@ const VirtuosasArticles = () => {
   if (loading) return <Loader />;
   return (
     <PageTemplate>
-      <Container>
+      <Container
+        sx={{
+          mt: { xs: '40px', md: '48px', lg: '56px' },
+          mb: { xs: '72px', md: '96px', lg: '120px' },
+        }}>
         <Stack>
           <Typography
             sx={{
