@@ -19,7 +19,6 @@ export const useHorowitzStore = create<HorowitzStoreState>((set) => ({
 
     try {
       const horowitzData = await getHorowitzData(language);
-      console.log(horowitzData);
       if (!horowitzData) {
         throw new Error("Could not fetch the data from that resource");
       }

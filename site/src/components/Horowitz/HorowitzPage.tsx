@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Routes } from "@/types/routes.d";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Collapse, Container, Typography } from "@mui/material";
 import Loader from "../Common/Loader";
 import PageTemplate from "../Common/PageTemplate";
 
@@ -13,7 +13,6 @@ import TextBlockSection from "./parts/TextBlockSection.tsx";
 import { Buttons } from "@/types/translation.d";
 import { useLiveQuery } from "@sanity/preview-kit";
 import { horowitzQuery } from "@/api/query.ts";
-
 const HorowitzPage: FC = () => {
   const {
     i18n: { language },
@@ -53,6 +52,11 @@ const HorowitzPage: FC = () => {
   const handleShowMore = () => {
     setVisibleItemsLiterature(literature.length);
     setIsAllLiteratureVisible(true);
+  };
+
+  const handleShowLess = () => {
+    setVisibleItemsLiterature(4); // Устанавливаем начальное значение
+    setIsAllLiteratureVisible(false);
   };
 
   if (isLoading) {
@@ -100,11 +104,16 @@ const HorowitzPage: FC = () => {
           {t(`horowitzPage.literature`)}:
         </Typography>
         {literature && (
-          <LiteratureSection
-            literature={literature}
-            visibleItems={visibleItemsLiterature}
-          />
+          <>
+            <Collapse in={isAllLiteratureVisible} collapsedSize={200}>
+              <LiteratureSection
+                literature={literature}
+                visibleItems={visibleItemsLiterature}
+              />
+            </Collapse>
+          </>
         )}
+
         <Box
           sx={{
             width: "100%",
@@ -113,14 +122,24 @@ const HorowitzPage: FC = () => {
             marginBottom: { xs: "72px", md: "96px", lg: "118px" },
           }}
         >
-          <Button
-            sx={{ width: "288px" }}
-            variant="transparent"
-            onClick={handleShowMore}
-            disabled={isAllLiteratureVisible}
-          >
-            {t(`buttons.${Buttons.SHOW_MORE}`)}
-          </Button>
+          {isAllLiteratureVisible ? (
+            <Button
+              sx={{ width: "288px" }}
+              variant="transparent"
+              onClick={handleShowLess}
+            >
+              Показати менше
+            </Button>
+          ) : (
+            <Button
+              sx={{ width: "288px" }}
+              variant="transparent"
+              onClick={handleShowMore}
+              disabled={isAllLiteratureVisible}
+            >
+              {t(`buttons.${Buttons.SHOW_MORE}`)}
+            </Button>
+          )}
         </Box>
       </Container>
     </PageTemplate>

@@ -37,7 +37,7 @@ export const components: PortableTextComponents = {
         sx={{
           display: "flex",
           flexDirection: "column",
-          paddingLeft: "18px",
+          paddingLeft: "20px",
           gap: "16px",
         }}
         variant="bodyRegular"
