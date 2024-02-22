@@ -1,7 +1,7 @@
 import { PortableTextComponents } from "@portabletext/react";
 import { Typography } from "@mui/material";
 
-export const components: PortableTextComponents = {
+export const collapsComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
       <Typography
@@ -22,6 +22,7 @@ export const components: PortableTextComponents = {
         sx={{
           display: "flex",
           flexDirection: "column",
+          paddingTop: "16px",
           paddingLeft: "28px",
           gap: "16px",
         }}
@@ -34,11 +35,13 @@ export const components: PortableTextComponents = {
     number: ({ children }) => (
       <Typography
         component={"ol"}
+        start={5}
         sx={{
           display: "flex",
           flexDirection: "column",
           paddingLeft: "28px",
           gap: "16px",
+          paddingTop: "16px",
         }}
         variant="bodyRegular"
       >

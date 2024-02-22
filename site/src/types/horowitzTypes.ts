@@ -21,7 +21,7 @@ export interface BannerComponentProps {
 
 export interface LiteratureSectionProps {
   literature: PortableTextBlock[];
-  visibleItems: number;
+  isAllLiteratureVisible: boolean;
 }
 
 export interface QuoteSectionProps {

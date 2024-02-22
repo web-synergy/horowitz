@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Routes } from "@/types/routes.d";
-import { Box, Button, Collapse, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import Loader from "../Common/Loader";
 import PageTemplate from "../Common/PageTemplate";
 
@@ -45,18 +45,10 @@ const HorowitzPage: FC = () => {
     language,
   });
 
-  const [visibleItemsLiterature, setVisibleItemsLiterature] = useState(4);
-
   const [isAllLiteratureVisible, setIsAllLiteratureVisible] = useState(false);
 
   const handleShowMore = () => {
-    setVisibleItemsLiterature(literature.length);
-    setIsAllLiteratureVisible(true);
-  };
-
-  const handleShowLess = () => {
-    setVisibleItemsLiterature(4); // Устанавливаем начальное значение
-    setIsAllLiteratureVisible(false);
+    setIsAllLiteratureVisible(!isAllLiteratureVisible);
   };
 
   if (isLoading) {
@@ -104,14 +96,10 @@ const HorowitzPage: FC = () => {
           {t(`horowitzPage.literature`)}:
         </Typography>
         {literature && (
-          <>
-            <Collapse in={isAllLiteratureVisible} collapsedSize={200}>
-              <LiteratureSection
-                literature={literature}
-                visibleItems={visibleItemsLiterature}
-              />
-            </Collapse>
-          </>
+          <LiteratureSection
+            literature={literature}
+            isAllLiteratureVisible={isAllLiteratureVisible}
+          />
         )}
 
         <Box
@@ -126,7 +114,7 @@ const HorowitzPage: FC = () => {
             <Button
               sx={{ width: "288px" }}
               variant="transparent"
-              onClick={handleShowLess}
+              onClick={handleShowMore}
             >
               Показати менше
             </Button>
