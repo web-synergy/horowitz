@@ -28,6 +28,7 @@ const AdministrationPage = () => {
   useEffect(() => {
     if (requestLang === language) return;
     fetchAdministrationData(language);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchAdministrationData, language]);
 
   const [administrationDataLive, isLoading] = useLiveQuery(

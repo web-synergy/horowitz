@@ -13,7 +13,6 @@ import TextBlockSection from "./parts/TextBlockSection.tsx";
 import { Buttons } from "@/types/translation.d";
 import { useLiveQuery } from "@sanity/preview-kit";
 import { horowitzQuery } from "@/api/query.ts";
-
 const HorowitzPage: FC = () => {
   const {
     i18n: { language },
@@ -46,13 +45,10 @@ const HorowitzPage: FC = () => {
     language,
   });
 
-  const [visibleItemsLiterature, setVisibleItemsLiterature] = useState(4);
-
   const [isAllLiteratureVisible, setIsAllLiteratureVisible] = useState(false);
 
   const handleShowMore = () => {
-    setVisibleItemsLiterature(literature.length);
-    setIsAllLiteratureVisible(true);
+    setIsAllLiteratureVisible(!isAllLiteratureVisible);
   };
 
   if (isLoading) {
@@ -102,9 +98,10 @@ const HorowitzPage: FC = () => {
         {literature && (
           <LiteratureSection
             literature={literature}
-            visibleItems={visibleItemsLiterature}
+            isAllLiteratureVisible={isAllLiteratureVisible}
           />
         )}
+
         <Box
           sx={{
             width: "100%",
@@ -113,14 +110,24 @@ const HorowitzPage: FC = () => {
             marginBottom: { xs: "72px", md: "96px", lg: "118px" },
           }}
         >
-          <Button
-            sx={{ width: "288px" }}
-            variant="transparent"
-            onClick={handleShowMore}
-            disabled={isAllLiteratureVisible}
-          >
-            {t(`buttons.${Buttons.SHOW_MORE}`)}
-          </Button>
+          {isAllLiteratureVisible ? (
+            <Button
+              sx={{ width: "288px" }}
+              variant="transparent"
+              onClick={handleShowMore}
+            >
+              Показати менше
+            </Button>
+          ) : (
+            <Button
+              sx={{ width: "288px" }}
+              variant="transparent"
+              onClick={handleShowMore}
+              disabled={isAllLiteratureVisible}
+            >
+              {t(`buttons.${Buttons.SHOW_MORE}`)}
+            </Button>
+          )}
         </Box>
       </Container>
     </PageTemplate>
