@@ -18,19 +18,18 @@ const KyivGenevaRewards = () => {
 
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+      <Container sx={{ pt: { xs: 3, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
         <Typography
           sx={{ mb: { xs: '24px', lg: '48px' } }}
           component={'h1'}
-          variant="h1"
-        >
+          variant='h1'>
           {t(`navigation.${Routes.KYIV_GENEVA_REWARDS}`)}
         </Typography>
         {data.map((item, index) => (
           <Stack spacing={{ xs: '24px', lg: '48px' }} key={index}>
             <Box>
               {item.h3 && (
-                <Typography component={'h3'} variant="h3">
+                <Typography component={'h3'} variant='h3'>
                   {item.h3}
                 </Typography>
               )}
@@ -41,21 +40,19 @@ const KyivGenevaRewards = () => {
                     mb: { xs: '24px', lg: '48px' },
                   }}
                   component={'p'}
-                  variant="bodyRegular"
-                >
+                  variant='bodyRegular'>
                   {item.p}
                 </Typography>
               )}
             </Box>
-            {item.listStrong?.map((obj) =>
+            {item.listStrong?.map(obj =>
               Object.entries(obj).map(([key, value]) => (
                 <Stack key={value}>
                   <Typography
                     sx={{ textAlign: 'justify' }}
                     component={'p'}
-                    variant="bodyRegular"
-                  >
-                    <Typography variant="bodyMedium">{key}</Typography>
+                    variant='bodyRegular'>
+                    <Typography variant='bodyMedium'>{key}</Typography>
                     {value}
                   </Typography>
                 </Stack>
@@ -66,8 +63,7 @@ const KyivGenevaRewards = () => {
                 sx={{ textAlign: 'justify' }}
                 component={'p'}
                 key={index}
-                variant="bodyRegular"
-              >
+                variant='bodyRegular'>
                 {item}
               </Typography>
             ))}

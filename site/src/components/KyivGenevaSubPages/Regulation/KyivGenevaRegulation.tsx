@@ -22,26 +22,26 @@ const KyivGenevaRegulation = () => {
   const data = regulationData[language];
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
-        <Typography component={'h1'} variant="h1">
+      <Container sx={{ pt: { xs: 3, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+        <Typography component={'h1'} variant='h1'>
           {t(`navigation.${Routes.KYIV_GENEVA_REQUIREMENTS}`)}
         </Typography>
 
         <Stack sx={{ mt: '48px' }} direction={'column'} spacing={'48px'}>
-          {data.map((item) => (
+          {data.map(item => (
             <Stack direction={'column'} spacing={'48px'}>
               <Stack direction={'column'} spacing={'24px'}>
-                <Title variant="h3">{item.title}</Title>
+                <Title variant='h3'>{item.title}</Title>
 
-                {item.rules.map((item) => (
-                  <Text variant="bodyRegular">{item}</Text>
+                {item.rules.map(item => (
+                  <Text variant='bodyRegular'>{item}</Text>
                 ))}
               </Stack>
-              {item.date.map((item) => (
+              {item.date.map(item => (
                 <Stack direction={'column'} spacing={'24px'}>
-                  <Text variant="bodyMedium">{item.day}</Text>
-                  {item.description.map((item) => (
-                    <Text variant="bodyRegular">{item}</Text>
+                  <Text variant='bodyMedium'>{item.day}</Text>
+                  {item.description.map(item => (
+                    <Text variant='bodyRegular'>{item}</Text>
                   ))}
                 </Stack>
               ))}

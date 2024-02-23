@@ -33,41 +33,40 @@ const KyivGenevaRequirements = () => {
 
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+      <Container sx={{ pt: { xs: 3, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
         <Typography
           component={'h1'}
           sx={{ mb: { xs: '-24px', lg: '0px' } }}
-          variant="h1"
-        >
+          variant='h1'>
           {t(`navigation.${Routes.KYIV_GENEVA_REQUIREMENTS}`)}
         </Typography>
         <Box sx={{ mb: { xs: '-8px', lg: '-16px' } }}>
-          <Title variant="h3">{qualifyingRound.title}</Title>
+          <Title variant='h3'>{qualifyingRound.title}</Title>
 
           {qualifyingRound.list?.map((item, index) => (
-            <RichText key={index} variant="bodyRegular">
+            <RichText key={index} variant='bodyRegular'>
               {item}
             </RichText>
           ))}
-          <Title variant="h3">{firstRound.title}</Title>
-          <RichText variant="bodyRegular">{firstRound.p}</RichText>
+          <Title variant='h3'>{firstRound.title}</Title>
+          <RichText variant='bodyRegular'>{firstRound.p}</RichText>
           {firstRound.list?.map((item, index) => (
-            <RichText key={index} variant="bodyRegular">
+            <RichText key={index} variant='bodyRegular'>
               {item}
             </RichText>
           ))}
-          <Title variant="h3">{secondRound.title}</Title>
-          <RichText variant="bodyRegular">{secondRound.p}</RichText>
+          <Title variant='h3'>{secondRound.title}</Title>
+          <RichText variant='bodyRegular'>{secondRound.p}</RichText>
           {secondRound.list?.map((item, index) => (
-            <RichText key={index} variant="bodyRegular">
+            <RichText key={index} variant='bodyRegular'>
               {item}
             </RichText>
           ))}
-          <Title variant="h3">{thirdRound.title}</Title>
-          <RichText variant="bodyRegular">{thirdRound.p}</RichText>
-          <Title variant="h3">{finalRound.title}</Title>
-          <RichText variant="bodyRegular">{finalRound.p}</RichText>
-          <RichText variant="bodyRegular">{finalRound.p2}</RichText>
+          <Title variant='h3'>{thirdRound.title}</Title>
+          <RichText variant='bodyRegular'>{thirdRound.p}</RichText>
+          <Title variant='h3'>{finalRound.title}</Title>
+          <RichText variant='bodyRegular'>{finalRound.p}</RichText>
+          <RichText variant='bodyRegular'>{finalRound.p2}</RichText>
         </Box>
       </Container>
       <GoBackBtn href={Routes.KYIV_GENEVA} />
