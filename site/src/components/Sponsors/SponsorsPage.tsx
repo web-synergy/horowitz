@@ -36,7 +36,7 @@ const SponsorsPage: FC = () => {
 
   return (
     <PageTemplate>
-      <Container sx={{ py: { xs: 9, md: 12 }, paddingBottom: { lg: 15 } }}>
+      <Container sx={{ paddingTop: { xs: 3, md: 6 }, paddingBottom: { xs: 9, md: 12, lg: 15 } }}>
         <MainTitle component={'h1'}>{t(`sponsorsPage.${Sponsors.MAIN_TITLE}`)}</MainTitle>
         <Stack spacing={6}>
           {organizers && (
@@ -57,16 +57,22 @@ const SponsorsPage: FC = () => {
             <LogotypesGallery
               title={t(`sponsorsPage.${Sponsors.GEN_INFO_PART}`)}
               gallery={generalInfoPartners}
+              optRowGap={5}
             />
           )}
           <TwoGalleryStack>
             {partners && (
-              <LogotypesGallery title={t(`sponsorsPage.${Sponsors.PARTNERS}`)} gallery={partners} />
+              <LogotypesGallery
+                title={t(`sponsorsPage.${Sponsors.PARTNERS}`)}
+                gallery={partners}
+                optRowGap={5}
+              />
             )}
             {mainInfoPartners && (
               <LogotypesGallery
                 title={t(`sponsorsPage.${Sponsors.MAIN_INFO_PART}`)}
                 gallery={mainInfoPartners}
+                optRowGap={5}
               />
             )}
           </TwoGalleryStack>

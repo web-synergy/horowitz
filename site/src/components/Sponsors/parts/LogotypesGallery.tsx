@@ -7,15 +7,16 @@ import { Link as RouterLink } from 'react-router-dom'
 interface LogotypesGalleryProps {
   title: string
   gallery: Partner[]
+  optRowGap?: number
 }
-const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery }) => {
+const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery, optRowGap }) => {
   return (
     <Box>
       <Typography variant="subhead">{title}</Typography>
       <Stack
         sx={{
           flexDirection: 'row',
-          columnGap: '28px',
+          columnGap: { xs: '28px', md: optRowGap ? optRowGap : '28px' },
           rowGap: {
             xs: '16px',
             md: '28px',
