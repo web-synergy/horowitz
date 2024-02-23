@@ -47,7 +47,7 @@ const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery, optRowGap
                   alt={item.title}
                   sx={{
                     height: {
-                      xs: item.size * 0.75,
+                      xs: item.size * 0.64,
                       md: item.size * 0.8,
                       lg: item.size,
                     },
