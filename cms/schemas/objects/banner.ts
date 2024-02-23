@@ -13,6 +13,11 @@ const banner = defineType({
       },
     }),
     defineField({
+      name: 'copyright',
+      title: 'Автор зображення (*буде примітка на банері*)',
+      type: 'string',
+    }),
+    defineField({
       name: 'fullSize',
       title: 'На весь екран?',
       type: 'boolean',
@@ -84,7 +89,7 @@ const banner = defineType({
           options: {sortable: false},
           of: [
             {
-              name: 'color',
+              name: 'element',
               type: 'object',
               fields: [
                 {

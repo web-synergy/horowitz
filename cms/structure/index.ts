@@ -40,7 +40,12 @@ const structure = (S: StructureBuilder) =>
       ...S.documentTypeListItems().filter(
         (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
       ),
-      singleDocument(S, 'ukrainianWorks', 'Твори українських композиторів').icon(BsMusicNoteList),
+      singleDocument(
+        S,
+        'ukrainianWorks',
+        'Твори українських композиторів',
+        preview(S, 'ukrainian-works'),
+      ).icon(BsMusicNoteList),
       S.divider(),
       ...virtuososStructure(S),
 
