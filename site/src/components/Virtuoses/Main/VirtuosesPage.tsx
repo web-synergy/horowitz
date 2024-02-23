@@ -61,13 +61,13 @@ const VirtuosesPage = () => {
     return (
       <PageTemplate>
         <MainBanner banner={data.banner} />
-        <Container>
+        <Container sx={{ mb: { xs: 9, md: 12, lg: 15 } }}>
           <Box
             sx={{
               display: 'flex',
               justifyContent: 'center',
-              mb: { xs: '24px', md: '48px' },
-              mt: { xs: '48px', md: '120px' },
+              mt: { xs: '24px', md: '48px' },
+              mb: { xs: '24px', lg: '48px' },
             }}>
             <Typography component={'h1'} variant='h1'>
               {t(`navigation.${Routes.VIRTUOSES}`)}

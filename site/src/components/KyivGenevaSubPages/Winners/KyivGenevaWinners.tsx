@@ -20,14 +20,13 @@ const KyivGenevaWinners = () => {
     <PageTemplate>
       <Container
         sx={{
-          pt: { xs: 6, lg: 15 },
+          pt: { xs: 3, lg: 6 },
           pb: { xs: 9, md: 12, lg: 15 },
           display: 'flex',
           flexDirection: 'column',
           gap: { xs: '24px', lg: '48px' },
-        }}
-      >
-        <Typography component={'h1'} variant="h1">
+        }}>
+        <Typography component={'h1'} variant='h1'>
           {t(`navigation.${Routes.KYIV_GENEVA_WINNERS}`)}
         </Typography>
         <Grid container justifyContent={'center'} gap={'24px'}>
@@ -35,22 +34,20 @@ const KyivGenevaWinners = () => {
             <Grid key={index} xs={12} md={5.8} lg={3.8} item>
               <ImagePerson alt={winner.fullName} img={winner.img} />
               <Typography
-                variant="subhead"
+                variant='subhead'
                 component={'p'}
                 sx={{
                   margin: '24px 0px 16px',
-                }}
-              >
+                }}>
                 {winner.fullName}
               </Typography>
               <Typography
-                variant="bodyRegular"
+                variant='bodyRegular'
                 component={'p'}
                 sx={{
-                  color: (theme) => theme.palette.action.focus,
+                  color: theme => theme.palette.action.focus,
                   width: '100%',
-                }}
-              >
+                }}>
                 {winner.prizePlace}
               </Typography>
             </Grid>

@@ -25,24 +25,22 @@ const KyivGenevaOrchestra = () => {
 
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+      <Container sx={{ pt: { xs: 3, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
         <Typography
           sx={{
             mb: { xs: '24px', lg: '48px' },
           }}
           component={'h1'}
-          variant="h1"
-        >
+          variant='h1'>
           {t(`navigation.${Routes.KYIV_GENEVA_ORCHESTRA}`)}
         </Typography>
 
         {data.map((item, index) => (
           <Box key={index}>
             <Typography
-              sx={{ mb: { xs: '24px', lg: '48px' } }}
+              sx={{ my: { xs: '24px', lg: '48px' } }}
               component={'h3'}
-              variant="h3"
-            >
+              variant='h3'>
               {item.title}
             </Typography>
             <Box
@@ -50,13 +48,12 @@ const KyivGenevaOrchestra = () => {
                 columnCount: { lg: 2 },
                 columnGap: { lg: 3 },
                 mb: { xs: '24px', lg: '48px' },
-              }}
-            >
+              }}>
               {item.text.map((item, index) => (
                 <RichText key={index}>{item}</RichText>
               ))}
             </Box>
-            <Box sx={{ mb: { xs: '24px', lg: '48px' } }}>
+            <Box>
               <Box
                 sx={{ width: '100%', maxHeight: '681px', objectFit: 'cover' }}
                 component={'img'}
@@ -64,9 +61,8 @@ const KyivGenevaOrchestra = () => {
                 alt={item.img.title}
               />
               <Typography
-                sx={{ color: (theme) => theme.palette.neutral[60] }}
-                variant="smallText"
-              >
+                sx={{ color: theme => theme.palette.neutral[60] }}
+                variant='smallText'>
                 {item.img.title}
               </Typography>
             </Box>

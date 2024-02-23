@@ -25,12 +25,11 @@ const KyivGenevaConditions = () => {
   const data = conditionsData[language];
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+      <Container sx={{ pt: { xs: 3, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
         <Typography
           sx={{ mb: { xs: '-24px', lg: '0px' } }}
           component={'h1'}
-          variant="h1"
-        >
+          variant='h1'>
           {t(`navigation.${Routes.KYIV_GENEVA_CONDITIONS}`)}
         </Typography>
         {data.map((item, index) => (
