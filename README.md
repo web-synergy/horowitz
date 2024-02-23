@@ -13,3 +13,5 @@
     Сбілдити проект локально:
         "build-cms": "cd cms &&npm run build",
         "build-main": "cd site && npm run build"
+
+background: linear-gradient(252.35deg, rgba(8, 7, 8, 0.8) 41.6%, rgba(8, 7, 8, 0) 100%);

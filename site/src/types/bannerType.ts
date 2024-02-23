@@ -16,6 +16,7 @@ export interface ColorField {
 
 interface CommonProperty {
   img: IImage;
+  copyright?: string;
   fullSize: boolean;
   location?: {
     width: number;

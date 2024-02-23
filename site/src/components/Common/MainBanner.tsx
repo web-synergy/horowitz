@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Box } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { IBanner, ColorField } from '@/types/bannerType';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { createColor } from '@/utils/createColor';
@@ -9,9 +9,17 @@ interface MainBannerProps {
 }
 
 const MainBanner: FC<MainBannerProps> = ({ banner }) => {
-  const { background, fullSize, img, maxHeight, overlayType, location } =
-    banner;
+  const {
+    background,
+    fullSize,
+    img,
+    maxHeight,
+    overlayType,
+    location,
+    copyright,
+  } = banner;
 
+  console.log(banner);
   const createGradientColors = (
     colors: { value: ColorField; position: number }[] | undefined
   ) => {
@@ -79,6 +87,31 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
           ...overlayEffect,
         }}
       ></Box>
+      {copyright && (
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: 16,
+            left: 0,
+            right: 0,
+          }}
+        >
+          <Container>
+            <Typography
+              variant="smallText"
+              fontSize={{ xs: '0.75rem' }}
+              lineHeight={1}
+              color={(theme) => theme.palette.neutral[60]}
+              sx={{
+                backdropFilter: 'blur(6px)',
+                display: 'inline-block',
+              }}
+            >
+              {copyright}
+            </Typography>
+          </Container>
+        </Box>
+      )}
     </Box>
   );
 };
