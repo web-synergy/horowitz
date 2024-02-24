@@ -30,7 +30,9 @@ const WFIMCSection: FC<WFIMCSectionProps> = ({ image, wfimc_content: { about, ph
               src={image}
               sx={{ display: 'block', width: '100%', height: '100%' }}
             />
-            <Caption component={'p'}>{photoCaption}</Caption>
+            <Caption component={'p'} sx={{ marginTop: '8px' }}>
+              {photoCaption}
+            </Caption>
           </ImageBox>
           <Box
             position={'relative'}

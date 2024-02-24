@@ -1,16 +1,16 @@
 import { Stack, StackProps, styled } from '@mui/material'
 
 export const MainStack = styled(Stack)<StackProps>(({ theme }) => ({
-  marginTop: '48px',
-  marginBottom: '72px',
-  rowGap: '48px',
+  marginTop: 24,
+  marginBottom: 72,
+  rowGap: 24,
 
   [theme.breakpoints.up('md')]: {
-    marginBottom: '90px',
+    marginTop: 48,
+    marginBottom: 96,
+    rowGap: 48,
   },
   [theme.breakpoints.up('lg')]: {
-    marginBottom: '120px',
-    marginTop: '120px',
-    rowGap: '120px',
+    marginBottom: 120,
   },
 }))
