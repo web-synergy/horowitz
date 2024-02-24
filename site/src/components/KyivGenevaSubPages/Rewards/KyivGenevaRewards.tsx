@@ -18,7 +18,7 @@ const KyivGenevaRewards = () => {
 
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 3, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+      <Container sx={{ pt: { xs: 3, md: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
         <Typography
           sx={{ mb: { xs: '24px', lg: '48px' } }}
           component={'h1'}

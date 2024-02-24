@@ -15,7 +15,7 @@ const KyivGenevaParticipants = () => {
     <PageTemplate>
       <Container
         sx={{
-          pt: { xs: 3, lg: 6 },
+          pt: { xs: 3, md: 6 },
           pb: { xs: 9, md: 12, lg: 15 },
           display: 'flex',
           flexDirection: 'column',
