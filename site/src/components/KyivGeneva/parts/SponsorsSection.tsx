@@ -26,26 +26,29 @@ const SponsorsSection: FC = () => {
           </Typography>
           <Stack
             sx={{
-              flexDirection: {
-                xs: 'column',
-                md: 'row',
+              flexDirection: 'row',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: {
+                xs: '16px',
+                lg: '28px',
               },
-              gap: '28px',
             }}
           >
             {logotypes.map((logo, i) => (
-              <Box key={i}>
+              <Box key={i} sx={{ height: '72px' }}>
                 <Box
                   component={'img'}
                   src={logo}
                   alt="logotype"
                   sx={{
                     display: 'block',
-                    maxHeight: {
-                      xs: '102px',
-                      md: '72px',
-                      lg: '80px',
-                    },
+                    // maxHeight: {
+                    //   xs: '102px',
+                    //   md: '72px',
+                    //   lg: '80px',
+                    // },
+                    height: '63px',
                   }}
                 />
               </Box>
