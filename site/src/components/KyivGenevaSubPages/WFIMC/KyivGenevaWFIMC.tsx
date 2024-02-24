@@ -7,7 +7,7 @@ import GoBackBtn from '@/components/Common/GoBackBtn'
 import { Routes } from '@/types/routes.d'
 import { Box, Container, Typography } from '@mui/material'
 import { FC } from 'react'
-import { ImgBox, MainBox } from './styled'
+import { MainBox, Wrapper } from './styled'
 
 import membersImg from '@/assets/images/kyiv-geneva/wfimc/wfimc.jpeg'
 import content from '@/assets/kyiv-geneva/main/geneva_mainPage.json'
@@ -35,11 +35,16 @@ const KyivGenevaWFIMCPage: FC = () => {
               WFIMC
             </Typography>
             <Box>
-              <ImgBox>
-                <Box component={'img'} alt={'WFIMC members'} src={membersImg} maxWidth={'100%'} />
-                <Caption>{content[language].wfimc.photoCaption}</Caption>
-              </ImgBox>
-              <Box>
+              <Wrapper>
+                <Box>
+                  <Box
+                    component={'img'}
+                    alt={'WFIMC members'}
+                    src={membersImg}
+                    sx={{ maxWidth: '100%', display: 'block' }}
+                  />
+                  <Caption component={'p'}>{content[language].wfimc.photoCaption}</Caption>
+                </Box>
                 {content[language].wfimc.about.map((item, i) => (
                   <Typography
                     key={i}
@@ -53,9 +58,8 @@ const KyivGenevaWFIMCPage: FC = () => {
                     {item}
                   </Typography>
                 ))}
-              </Box>
+              </Wrapper>
             </Box>
-            <Box sx={{ clear: 'both' }}></Box>
           </MainBox>
         </Container>
         <GoBackBtn href={Routes.KYIV_GENEVA} />

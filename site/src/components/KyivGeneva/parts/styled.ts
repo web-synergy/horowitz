@@ -16,7 +16,6 @@ export const Caption = styled(Typography)<TypographyProps>(
     color: palette.neutral[60],
     fontSize: '0.5rem',
     lineHeight: 2,
-    marginTop: '8px',
     textAlign: 'justify',
     [breakpoints.up('md')]: {
       fontSize: '0.75rem',
