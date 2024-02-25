@@ -13,7 +13,6 @@ const LiteratureSection: React.FC<LiteratureSectionProps> = ({
     <Box
       sx={{
         paddingTop: { xs: "24px", md: "16px", lg: "24px" },
-        "p:not(:last-child)": { marginBottom: "16px" },
       }}
     >
       <PortableText value={literature.slice(0, 4)} components={components} />

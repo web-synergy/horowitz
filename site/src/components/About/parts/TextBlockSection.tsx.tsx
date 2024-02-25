@@ -12,7 +12,7 @@ const TextBlockSection: React.FC<TextBlockSectionProps> = ({ blocks }) => {
         columnCount: { xs: 1, lg: 2 },
         columnGap: "24px",
 
-        "& p:not(last-op-type)": {
+        "& p:not(:last-child)": {
           marginBottom: { xs: "8px", lg: "16px" },
         },
       }}
