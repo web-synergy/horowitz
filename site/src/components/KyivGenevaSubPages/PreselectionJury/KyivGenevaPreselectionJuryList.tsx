@@ -1,10 +1,11 @@
 import { Container, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import PageTemplate from '@/components/Common/PageTemplate';
-import JuryList from '../Common/JuryList/JuryList';
+import JuryListItem from '../Common/JuryListItem';
 import GoBackBtn from '@/components/Common/GoBackBtn';
 import { Routes } from '@/types/routes.d';
 import { content } from '@/assets/kyiv-geneva/KyivGenevaPreselectionJury';
+import GridTemplate from '@/components/Common/GridTemplate';
 
 const KyivGenevaPreselectionJuryList = () => {
   const { t } = useTranslation();
@@ -15,7 +16,7 @@ const KyivGenevaPreselectionJuryList = () => {
           {t(`navigation.${Routes.KYIV_GENEVA_SELECTION_JURY}`)}
         </Typography>
 
-        <JuryList juryList={content.list} />
+        <GridTemplate list={content.list} gridItem={JuryListItem} />
       </Container>
       <GoBackBtn href={Routes.KYIV_GENEVA} />
     </PageTemplate>

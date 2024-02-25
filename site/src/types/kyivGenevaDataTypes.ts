@@ -49,7 +49,7 @@ export interface IRegulation {
 
 export type TRegulation = { [key: string]: IRegulation[] };
 
-interface IKGWinners {
+export interface IKGWinners {
   fullName: string;
   prizePlace: string;
   img: string;
@@ -66,4 +66,13 @@ export interface IParticipants {
     ua: string;
   };
   img: string;
+}
+
+
+export interface IJury {
+  id: string;
+  name: { ua: string; en: string };
+  position?: { ua: string; en: string };
+  photo: string;
+  text: { ua: string; en: string };
 }

@@ -1,6 +1,7 @@
 import { Grow } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+
 export default function GrowView({
   children,
   timeout = 2100,
