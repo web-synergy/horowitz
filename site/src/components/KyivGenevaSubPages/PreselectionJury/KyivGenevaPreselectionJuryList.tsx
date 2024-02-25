@@ -10,7 +10,7 @@ const KyivGenevaPreselectionJuryList = () => {
   const { t } = useTranslation();
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+      <Container sx={{ pt: { xs: 3, md: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
         <Typography variant="h1" mb={{ xs: 3, lg: 6 }}>
           {t(`navigation.${Routes.KYIV_GENEVA_SELECTION_JURY}`)}
         </Typography>

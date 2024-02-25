@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Box, Stack, Typography, Button } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
@@ -39,21 +39,16 @@ const JuryListItem: FC<JuryItemProps> = ({ id, photo, name, position }) => {
           marginBottom: 3,
         }}
       />
-      <Stack
-        direction="row"
-        gap="5px"
-        alignItems="baseline"
-        mb={{ xs: 3, lg: 2 }}
-      >
-        <Typography variant="subhead" component="h3">
-          {language === 'ua' ? name.ua : name.en}
-          {position && (
-            <Typography sx={{ ml: 1 }}>
-              ({language === 'ua' ? position.ua : position.en})
-            </Typography>
-          )}
-        </Typography>
-      </Stack>
+
+      <Typography variant="subhead" component="h3" mb={{ xs: 3, lg: 2 }}>
+        {language === 'ua' ? name.ua : name.en}
+        {position && (
+          <Typography sx={{ ml: 1 }}>
+            ({language === 'ua' ? position.ua : position.en})
+          </Typography>
+        )}
+      </Typography>
+
       <Box sx={{ width: '100%', textAlign: 'end' }}>
         <Button
           variant="tertiary"
