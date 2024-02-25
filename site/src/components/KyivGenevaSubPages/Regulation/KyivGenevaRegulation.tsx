@@ -22,14 +22,14 @@ const KyivGenevaRegulation = () => {
   const data = regulationData[language];
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 3, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+      <Container sx={{ pt: { xs: 3, md: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
         <Typography component={'h1'} variant='h1'>
-          {t(`navigation.${Routes.KYIV_GENEVA_REQUIREMENTS}`)}
+          {t(`navigation.${Routes.KYIV_GENEVA_TIMETABLE}`)}
         </Typography>
 
         <Stack sx={{ mt: '48px' }} direction={'column'} spacing={'48px'}>
           {data.map(item => (
-            <Stack direction={'column'} spacing={'48px'}>
+            <Stack direction={'column'} spacing={{ xs: '24px', md: '48px' }}>
               <Stack direction={'column'} spacing={'24px'}>
                 <Title variant='h3'>{item.title}</Title>
 

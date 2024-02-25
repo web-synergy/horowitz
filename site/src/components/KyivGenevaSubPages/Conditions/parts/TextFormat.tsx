@@ -5,7 +5,10 @@ import { IConditionsData } from '@/types/kyivGenevaDataTypes';
 export default function TextFormat({ title, text }: IConditionsData) {
   return (
     <Box sx={{ mb: { xs: '-8px', lg: '-16px' } }}>
-      <Typography sx={{ mt: '48px', mb: '24px' }} component={'h3'} variant='h3'>
+      <Typography
+        sx={{ mt: { xs: '24px', md: '48px' }, mb: '24px' }}
+        component={'h3'}
+        variant='h3'>
         {title}
       </Typography>
       <Grid container spacing={{ md: 0, lg: 3 }}>
