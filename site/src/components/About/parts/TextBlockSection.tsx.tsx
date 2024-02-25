@@ -10,10 +10,10 @@ const TextBlockSection: React.FC<TextBlockSectionProps> = ({ blocks }) => {
     <Box
       sx={{
         columnCount: { xs: 1, lg: 2 },
-        columnGap: 3,
+        columnGap: "24px",
 
         "& p:not(last-op-type)": {
-          marginBottom: 2,
+          marginBottom: { xs: "8px", lg: "16px" },
         },
       }}
     >
