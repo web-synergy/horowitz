@@ -13,7 +13,7 @@ import { theme } from '@/theme';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IPortableImgGallery } from '@/types/newsTypes';
 
-import { Navigation, Thumbs, Keyboard } from 'swiper/modules';
+import { Navigation, Keyboard, Zoom } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -50,7 +50,7 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
                     onClick={() => handleClickOpen(index)}
                     src={urlFor(item)
                       .width(155 * item.photoLayout.cols || 1)
-                      .height(150 * item.photoLayout.rows || 1)
+                      .height(155 * item.photoLayout.rows || 1)
                       .auto('format')
                       .url()}
                     alt={item.title || ''}
@@ -75,7 +75,8 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
         aria-labelledby='customized-dialog-title'
         open={open}>
         <Swiper
-          modules={[Navigation, Thumbs, Keyboard]}
+          modules={[Zoom, Navigation, Keyboard]}
+          zoom={true}
           initialSlide={sliderIndex}
           loop={true}
           autoHeight={true}
@@ -90,18 +91,24 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
             if (item.asset)
               return (
                 <SwiperSlide key={item._key}>
-                  <img
-                    loading='lazy'
-                    style={{
-                      width: '100%',
-                      maxHeight: '90vh',
-                      objectFit: 'contain',
-                    }}
-                    src={
-                      item &&
-                      urlFor(item).width(900).auto('format').fit('scale').url()
-                    }
-                  />
+                  <div className='swiper-zoom-container'>
+                    <img
+                      loading='lazy'
+                      style={{
+                        width: '100%',
+                        maxHeight: '90vh',
+                        objectFit: 'contain',
+                      }}
+                      src={
+                        item &&
+                        urlFor(item)
+                          .width(900)
+                          .auto('format')
+                          .fit('scale')
+                          .url()
+                      }
+                    />
+                  </div>
                 </SwiperSlide>
               );
           })}

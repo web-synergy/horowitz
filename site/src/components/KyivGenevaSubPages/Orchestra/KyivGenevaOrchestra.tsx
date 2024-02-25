@@ -25,10 +25,10 @@ const KyivGenevaOrchestra = () => {
 
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 3, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+      <Container sx={{ pt: { xs: 3, md: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
         <Typography
           sx={{
-            mb: { xs: '24px', lg: '48px' },
+            mb: { xs: '24px', md: '-24px', lg: '48px' },
           }}
           component={'h1'}
           variant='h1'>
@@ -38,7 +38,10 @@ const KyivGenevaOrchestra = () => {
         {data.map((item, index) => (
           <Box key={index}>
             <Typography
-              sx={{ my: { xs: '24px', lg: '48px' } }}
+              sx={{
+                mt: { xs: '24px', md: '48px' },
+                mb: { xs: '24px', lg: '48px' },
+              }}
               component={'h3'}
               variant='h3'>
               {item.title}

@@ -11,6 +11,9 @@ const Title = styled(Typography)(() => ({
   display: 'block',
   textAlign: 'justify',
   margin: '48px 0 24px',
+  [theme.breakpoints.down('md')]: {
+    margin: '24px 0 24px',
+  },
 }));
 const RichText = styled(Typography)(() => ({
   display: 'block',
@@ -33,10 +36,10 @@ const KyivGenevaRequirements = () => {
 
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 3, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+      <Container sx={{ pt: { xs: 3, md: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
         <Typography
           component={'h1'}
-          sx={{ mb: { xs: '-24px', lg: '0px' } }}
+          sx={{ mb: { xs: '0px', md: '-24px', lg: '0px' } }}
           variant='h1'>
           {t(`navigation.${Routes.KYIV_GENEVA_REQUIREMENTS}`)}
         </Typography>
