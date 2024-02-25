@@ -55,13 +55,13 @@ export const TextBlock = styled(Typography)(({ theme }) => ({
   textAlign: 'justify',
   display: 'block',
 
-  '&:not(last-of-type)': {
+  '&:not(:last-of-type)': {
     marginBottom: 8,
   },
 
   [theme.breakpoints.up('lg')]: {
-    '&:not(last-of-type)': {
-      marginBottom: 24,
+    '&:not(:last-of-type)': {
+      marginBottom: 16,
     },
   },
 }));

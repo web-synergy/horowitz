@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Grid, Box, Stack, Typography, Button } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
@@ -19,54 +19,50 @@ const JuryListItem: FC<JuryItemProps> = ({ id, photo, name, position }) => {
   } = useTranslation();
 
   return (
-    <Grid item xs={12} md={6} lg={4}>
-      <Box sx={{ maxWidth: { xs: 320, md: 'unset' }, margin: '0 auto' }}>
-        <Box
-          component="img"
-          src={photo}
-          sx={{
-            display: 'block',
-            width: '100%',
+    <Box
+      sx={{
+        maxWidth: { xs: 320, md: 350, lg: 355 },
+        margin: '0 auto',
+      }}
+    >
+      <Box
+        component="img"
+        src={photo}
+        sx={{
+          display: 'block',
+          width: '100%',
 
-            height: 'auto',
-            aspectRatio: { xs: '1/1', lg: '2/2.9' },
-            objectFit: 'cover',
-            objectPosition: 'center top',
-            marginBottom: 3,
-          }}
-        />
-        <Stack
-          direction="row"
-          gap="5px"
-          alignItems="baseline"
-          mb={{ xs: 3, lg: 2 }}
-        >
-          <Typography variant="subhead" component="h3">
-            {language === 'ua' ? name.ua : name.en}
+          height: 'auto',
+          aspectRatio: { xs: '1/1', lg: '2/2.9' },
+          objectFit: 'cover',
+          objectPosition: 'center top',
+          marginBottom: 3,
+        }}
+      />
+
+      <Typography variant="subhead" component="h3" mb={{ xs: 3, lg: 2 }}>
+        {language === 'ua' ? name.ua : name.en}
+        {position && (
+          <Typography sx={{ ml: 1 }}>
+            ({language === 'ua' ? position.ua : position.en})
           </Typography>
-          {position && (
-            <Typography>
-              ({language === 'ua' ? position.ua : position.en})
-            </Typography>
-          )}
-        </Stack>
-        <Box sx={{ width: '100%', textAlign: 'end' }}>
-          <Button
-            variant="tertiary"
-            component={Link}
-            to={`${id}`}
-            endIcon={
-              <SvgSpriteIcon
-                icon="arrow"
-                sx={{ transform: 'rotate(-90deg)' }}
-              />
-            }
-          >
-            {t(`buttons.${Buttons.READ_MORE}`)}
-          </Button>
-        </Box>
+        )}
+      </Typography>
+
+      <Box sx={{ width: '100%', textAlign: 'end' }}>
+        <Button
+          variant="tertiary"
+          component={Link}
+          to={`${id}`}
+          endIcon={
+            <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(-90deg)' }} />
+          }
+          sx={{ fontSize: { xs: '1rem' }, lineHeight: { xs: 1.5 } }}
+        >
+          {t(`buttons.${Buttons.READ_MORE}`)}
+        </Button>
       </Box>
-    </Grid>
+    </Box>
   );
 };
 

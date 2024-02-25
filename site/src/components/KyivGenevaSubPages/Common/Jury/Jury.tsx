@@ -25,14 +25,15 @@ const Jury: FC<JuryProps> = ({ jury }) => {
       <Typography variant="h1" mb={{ xs: 3, lg: 6 }}>
         {getLangValue(language, jury.name)}
       </Typography>
-      <Box>
-        <Wrapper>
-          <Box component="img" src={jury.photo} />
+
+      <Wrapper>
+        <Box component="img" src={jury.photo} />
+        <Box>
           {textArray.map((text, index) => (
             <TextBlock key={index}>{text}</TextBlock>
           ))}
-        </Wrapper>
-      </Box>
+        </Box>
+      </Wrapper>
     </>
   );
 };
