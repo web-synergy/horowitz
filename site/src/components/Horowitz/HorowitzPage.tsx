@@ -6,13 +6,13 @@ import Loader from "../Common/Loader";
 import PageTemplate from "../Common/PageTemplate";
 
 import { useHorowitzStore } from "@/store/horowitzStore";
-import BannerComponent from "./parts/BannerComponent";
 import LiteratureSection from "./parts/LiteratureSection";
 import QuoteSection from "./parts/QuoteSection";
 import TextBlockSection from "./parts/TextBlockSection.tsx";
 import { Buttons } from "@/types/translation.d";
 import { useLiveQuery } from "@sanity/preview-kit";
 import { horowitzQuery } from "@/api/query.ts";
+import MainBanner from "../Common/MainBanner.tsx";
 const HorowitzPage: FC = () => {
   const {
     i18n: { language },
@@ -51,27 +51,26 @@ const HorowitzPage: FC = () => {
     setIsAllLiteratureVisible(!isAllLiteratureVisible);
   };
 
+  console.log(bannerCopyright);
+
   if (isLoading) {
     return <Loader />;
   }
   return (
     <PageTemplate>
-      {bannerData && (
-        <BannerComponent banner={bannerData} copyright={bannerCopyright} />
-      )}
-
+      {bannerData && <MainBanner banner={bannerData} />}
       <Container>
         <Box
           sx={{
-            paddingTop: { xs: "48px", md: "54px", lg: "80px" },
-            paddingBottom: { xs: "24px", lg: "80px" },
+            paddingTop: { xs: "24px", md: "48px" },
+            paddingBottom: { xs: "24px", md: "48px" },
           }}
         >
           <Typography
             variant="h1"
             sx={{
               textTransform: "uppercase",
-              marginBottom: "24px",
+              marginBottom: { xs: "24px", lg: "48px" },
               textAlign: "center",
             }}
           >
@@ -85,7 +84,8 @@ const HorowitzPage: FC = () => {
         {lowerTextBlock && (
           <Box
             sx={{
-              padding: { xs: "24px 0px", lg: "80px 0px" },
+              paddingTop: { xs: "24px", md: "48px" },
+              paddingBottom: { xs: "24px", md: "48px" },
             }}
           >
             <TextBlockSection blocks={lowerTextBlock} />
@@ -106,8 +106,8 @@ const HorowitzPage: FC = () => {
           sx={{
             width: "100%",
             textAlign: "center",
-            marginTop: { xs: "48px", md: "54px", lg: "80px" },
-            marginBottom: { xs: "72px", md: "96px", lg: "118px" },
+            marginTop: "48px",
+            marginBottom: { xs: "72px", md: "96px", lg: "120px" },
           }}
         >
           {isAllLiteratureVisible ? (
@@ -116,7 +116,7 @@ const HorowitzPage: FC = () => {
               variant="transparent"
               onClick={handleShowMore}
             >
-              Показати менше
+              {t(`buttons.${Buttons.SHOW_LESS}`)}
             </Button>
           ) : (
             <Button
