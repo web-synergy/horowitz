@@ -16,7 +16,7 @@ const KyivGenevaJury = () => {
 
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+      <Container sx={{ pt: { xs: 3, md: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
         <Jury jury={juryData} />
       </Container>
       <GoBackBtn href={`${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_JURY}`} />
