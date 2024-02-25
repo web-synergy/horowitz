@@ -6,13 +6,13 @@ import Loader from "../Common/Loader";
 import PageTemplate from "../Common/PageTemplate";
 
 import { useHorowitzStore } from "@/store/horowitzStore";
-import BannerComponent from "./parts/BannerComponent";
 import LiteratureSection from "./parts/LiteratureSection";
 import QuoteSection from "./parts/QuoteSection";
 import TextBlockSection from "./parts/TextBlockSection.tsx";
 import { Buttons } from "@/types/translation.d";
 import { useLiveQuery } from "@sanity/preview-kit";
 import { horowitzQuery } from "@/api/query.ts";
+import MainBanner from "../Common/MainBanner.tsx";
 const HorowitzPage: FC = () => {
   const {
     i18n: { language },
@@ -51,15 +51,14 @@ const HorowitzPage: FC = () => {
     setIsAllLiteratureVisible(!isAllLiteratureVisible);
   };
 
+  console.log(bannerCopyright);
+
   if (isLoading) {
     return <Loader />;
   }
   return (
     <PageTemplate>
-      {bannerData && (
-        <BannerComponent banner={bannerData} copyright={bannerCopyright} />
-      )}
-
+      {bannerData && <MainBanner banner={bannerData} />}
       <Container>
         <Box
           sx={{
@@ -117,7 +116,7 @@ const HorowitzPage: FC = () => {
               variant="transparent"
               onClick={handleShowMore}
             >
-              Показати менше
+              {t(`buttons.${Buttons.SHOW_LESS}`)}
             </Button>
           ) : (
             <Button

@@ -50,13 +50,13 @@ const AdministrationPage = () => {
       {banner && <MainBanner banner={banner} />}
       <Container
         sx={{
-          paddingTop: { xs: "48px", lg: "120px" },
+          paddingTop: { xs: "24px", md: "48px" },
           paddingBottom: { xs: "72px", md: "96px", lg: "120px" },
         }}
       >
         <Typography
           sx={{
-            marginBottom: { xs: "24px", md: "48px" },
+            marginBottom: { xs: "24px", lg: "48px" },
             textAlign: "center",
           }}
           variant="h1"
@@ -65,7 +65,11 @@ const AdministrationPage = () => {
           {t(`navigation.${Routes.ADMINISTRATION}`)}
         </Typography>
         <Box sx={{ width: "100%" }}>
-          <Grid container rowSpacing="48px" columnSpacing={{ md: "26px" }}>
+          <Grid
+            container
+            rowSpacing={{ xs: "24px", md: "48px" }}
+            columnSpacing={{ md: "26px" }}
+          >
             {members &&
               members.map((member, index) => (
                 <Grid item xs={12} md={6} key={index}>
