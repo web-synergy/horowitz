@@ -1,19 +1,19 @@
-import { create } from "zustand";
-import { getAdministrationMembers } from "@/api";
-import { AdministrationStoreState } from "@/types/storeTypes";
+import { create } from 'zustand';
+import { getAdministrationMembers } from '@/api';
+import { AdministrationStoreState } from '@/types/storeTypes';
 
 export const useAdministrationStore = create<AdministrationStoreState>(
   (set) => ({
     administrationData: null,
     isLoading: false,
-    requestLang: "",
+    requestLang: '',
     fetchAdministrationData: async (language) => {
       set({ isLoading: true });
       try {
         const responseData = await getAdministrationMembers(language);
-        console.log(responseData);
+
         if (!responseData) {
-          throw new Error("Could not fetch the data from that resource");
+          throw new Error('Could not fetch the data from that resource');
         }
         set({
           administrationData: responseData,

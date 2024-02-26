@@ -5,6 +5,7 @@ import imageEn from '@/assets/images/kyiv-geneva/sponsors/partners_eng.png';
 import imageUa from '@/assets/images/kyiv-geneva/sponsors/partners_ukr.png';
 import GoBackBtn from '@/components/Common/GoBackBtn';
 import { Routes } from '@/types/routes.d';
+import GrowView from '@/components/Common/GrowView';
 
 const KyivGenevaSponsorsPage = () => {
   const {
@@ -12,19 +13,22 @@ const KyivGenevaSponsorsPage = () => {
   } = useTranslation();
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 3, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
-        <Box
-          component='img'
-          src={language === 'ua' ? imageUa : imageEn}
-          sx={{
-            display: 'block',
-            width: '100%',
-            height: 'auto',
+      <GrowView>
+        <Container sx={{ pt: { xs: 3, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+          <Box
+            component="img"
+            src={language === 'ua' ? imageUa : imageEn}
+            sx={{
+              display: 'block',
+              width: '100%',
+              height: 'auto',
 
-            transform: 'scale(1.05)',
-          }}
-        />
-      </Container>
+              transform: 'scale(1.05)',
+            }}
+          />
+        </Container>
+      </GrowView>
+
       <GoBackBtn href={Routes.KYIV_GENEVA} />
     </PageTemplate>
   );

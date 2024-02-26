@@ -26,6 +26,11 @@ export default defineType({
 
   fields: [
     defineField({
+      name: 'mainBanner',
+      title: 'Головний банер',
+      type: 'banner',
+    }),
+    defineField({
       group: ['upperTextBlock'],
       name: 'upperTextBlock',
       title: 'Верхній блок тексту',
