@@ -7,7 +7,7 @@ import ho from '@/assets/images/kyiv-geneva/jury/Ho.jpeg';
 import lane from '@/assets/images/kyiv-geneva/jury/Lane.jpeg';
 import muravska from '@/assets/images/kyiv-geneva/jury/Muravska.jpeg';
 import ye from '@/assets/images/kyiv-geneva/jury/Ye.jpeg';
-import { IJury } from '@/types/kyivGeneva';
+import { IJury } from '@/types/kyivGenevaDataTypes';
 
 interface IContent {
   text: {

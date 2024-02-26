@@ -1,7 +1,7 @@
 import { Container } from '@mui/material';
 import { useParams, Navigate } from 'react-router-dom';
 import PageTemplate from '@/components/Common/PageTemplate';
-import Jury from '../Common/Jury/Jury';
+import Jury from '../Common/JuryBio';
 import { Routes } from '@/types/routes.d';
 import { content } from '@/assets/kyiv-geneva/KyivGenevaPreselectionJury';
 

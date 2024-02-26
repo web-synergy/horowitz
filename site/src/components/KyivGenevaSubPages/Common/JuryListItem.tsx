@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import { Buttons } from '@/types/translation.d';
-import { IJury } from '@/types/kyivGeneva';
+import { IJury } from '@/types/kyivGenevaDataTypes';
 import ImagePerson from './ImagePerson';
 
 interface JuryItemProps {
