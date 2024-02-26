@@ -27,7 +27,10 @@ const KyivGenevaRegulation = () => {
           {t(`navigation.${Routes.KYIV_GENEVA_TIMETABLE}`)}
         </Typography>
 
-        <Stack sx={{ mt: '48px' }} direction={'column'} spacing={'48px'}>
+        <Stack
+          sx={{ mt: { xs: '24px', lg: '48px' } }}
+          direction={'column'}
+          spacing={'48px'}>
           {data.map(item => (
             <Stack direction={'column'} spacing={{ xs: '24px', md: '48px' }}>
               <Stack direction={'column'} spacing={'24px'}>
