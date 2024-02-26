@@ -24,7 +24,9 @@ export const virtuososStructure = (S: StructureBuilder) => [
                 .apiVersion('v2023-08-01')
                 .title(`Всі новини`)
                 .schemaType('virtuososArticle')
-                .filter('_type == "virtuososArticle"'),
+                .filter('_type == "virtuososArticle"')
+                //@ts-ignore
+                .menuItems([...S.documentTypeList('virtuososArticle').getMenuItems()]),
             ),
         ]),
     ),
