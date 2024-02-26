@@ -19,7 +19,6 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
     copyright,
   } = banner;
 
-  console.log(banner);
   const createGradientColors = (
     colors: { value: ColorField; position: number }[] | undefined
   ) => {
@@ -42,7 +41,12 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
           }deg, ${createGradientColors(banner.linearGradient?.colors)})`,
         };
 
-  const image = urlFor(img).auto('format').fit('fill').toString();
+  const windowWidth = window.innerWidth;
+  const windowHeight = Math.floor(window.innerHeight * (maxHeight / 100));
+
+  const image = fullSize
+    ? urlFor(img).auto('format').width(windowWidth).height(windowHeight).url()
+    : urlFor(img).auto('format').url();
 
   const imageLocation = location
     ? location
@@ -72,7 +76,6 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
             display: 'block',
             width: fullSize ? '100%' : `${imageLocation.width}%`,
             height: '100%',
-            objectFit: 'cover',
           }}
         />
       </Box>

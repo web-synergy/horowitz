@@ -1,14 +1,14 @@
-import { PortableTextBlock } from "@portabletext/types";
-import { INews } from "./newsTypes";
+import { PortableTextBlock } from '@portabletext/types';
+import { INews } from './newsTypes';
 
-import { ContactsType, SettingsResp, SociableType } from "./contactsTypes";
-import { Partner } from "./partnersTypes";
-import { AboutCompetitionImage } from "./aboutCompetitionTypes";
-import { IAdministration } from "./administrationTypes";
-import { NavigationType } from "./routes";
-import { IUkrWorks } from "./ukranianWorks";
-import { IVirtuosos } from "./virtuososTypes";
-import { IBanner } from "./bannerType";
+import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
+import { Partner } from './partnersTypes';
+import { AboutCompetitionImage } from './aboutCompetitionTypes';
+import { IAdministration } from './administrationTypes';
+import { NavigationType } from './routes';
+import { IUkrWorks } from './ukranianWorks';
+import { IVirtuosos } from './virtuososTypes';
+import { IBanner } from './bannerType';
 
 export interface SettingsStoreState {
   requestLang: string;
@@ -21,6 +21,7 @@ export interface SettingsStoreState {
 }
 
 export interface AboutCompetitionState {
+  mainBanner: IBanner | null;
   upperTextBlock: PortableTextBlock[];
   middleTextBlock: PortableTextBlock[];
   lowerTextBlock: PortableTextBlock[];

@@ -12,17 +12,6 @@ function GridTemplate<T>(props: GridTemplateProps<T>) {
   const { gridItem: GridItem, list, justify = 'left' } = props;
 
   const isCentered = justify !== 'left';
-  // const parentStyle =
-  //   justify === 'left'
-  //     ? {
-  //         display: 'grid',
-  //         gridTemplateColumns: 'repeat(auto-fill, minmax(288px, 1fr))',
-  //       }
-  //     : {
-  //         display: 'flex',
-  //         flexDirection: 'row',
-  //         flexWrap: 'wrap',
-  //       };
 
   return (
     <Box
