@@ -1,7 +1,7 @@
-import {DefaultDocumentNodeResolver, StructureBuilder} from 'sanity/desk'
 import {Iframe} from 'sanity-plugin-iframe-pane'
 import {SanityDocument} from 'sanity'
 import {previewUrl} from '../environment'
+import {StructureBuilder} from 'sanity/structure'
 
 interface DocProps extends SanityDocument {
   slug?: {

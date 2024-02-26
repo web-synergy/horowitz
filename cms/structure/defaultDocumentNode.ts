@@ -1,4 +1,4 @@
-import {DefaultDocumentNodeResolver} from 'sanity/desk'
+import {DefaultDocumentNodeResolver} from 'sanity/structure'
 import {preview} from './preview'
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType}) => {

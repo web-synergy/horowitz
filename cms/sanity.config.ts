@@ -9,6 +9,7 @@ import {languages} from './../languages'
 import {projectId} from './environment'
 import structure from './structure'
 import {defaultDocumentNode} from './structure/defaultDocumentNode'
+import {structureTool} from 'sanity/structure'
 
 const langByDefault = languages.find((lang) => lang.default)?.id || languages[0].id
 
@@ -20,7 +21,8 @@ export default defineConfig({
   dataset: 'production',
 
   plugins: [
-    deskTool({structure, defaultDocumentNode}),
+    // deskTool({structure, defaultDocumentNode}),
+    structureTool({structure, defaultDocumentNode}),
     visionTool(),
     colorInput(),
     internationalizedArray({

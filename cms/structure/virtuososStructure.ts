@@ -1,7 +1,7 @@
-import {StructureBuilder} from 'sanity/desk'
 import {GiGrandPiano} from 'react-icons/gi'
 import {singleDocument} from './singleDocument'
 import {preview} from './preview'
+import {StructureBuilder} from 'sanity/structure'
 export const virtuososStructure = (S: StructureBuilder) => [
   S.listItem()
     .title('Віртуози планет')
@@ -24,7 +24,9 @@ export const virtuososStructure = (S: StructureBuilder) => [
                 .apiVersion('v2023-08-01')
                 .title(`Всі новини`)
                 .schemaType('virtuososArticle')
-                .filter('_type == "virtuososArticle"'),
+                .filter('_type == "virtuososArticle"')
+                //@ts-ignore
+                .menuItems([...S.documentTypeList('virtuososArticle').getMenuItems()]),
             ),
         ]),
     ),
