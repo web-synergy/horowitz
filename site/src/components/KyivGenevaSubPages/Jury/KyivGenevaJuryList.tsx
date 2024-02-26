@@ -1,10 +1,11 @@
 import { Container, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import PageTemplate from '@/components/Common/PageTemplate';
-import JuryList from '../Common/JuryList/JuryList';
+import JuryListItem from '../Common/JuryListItem';
 import { content } from '@/assets/kyiv-geneva/KyivGenevaJury';
 import { Routes } from '@/types/routes.d';
 import GoBackBtn from '@/components/Common/GoBackBtn';
+import GridTemplate from '@/components/Common/GridTemplate';
 
 const KyivGenevaJuryList = () => {
   const {
@@ -28,8 +29,7 @@ const KyivGenevaJuryList = () => {
         >
           {language === 'ua' ? content.text.ua : content.text.en}
         </Typography>
-
-        <JuryList juryList={content.list} />
+        <GridTemplate list={content.list} gridItem={JuryListItem} />
       </Container>
       <GoBackBtn href={Routes.KYIV_GENEVA} />
     </PageTemplate>

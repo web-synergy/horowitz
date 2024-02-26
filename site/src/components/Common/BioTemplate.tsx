@@ -1,4 +1,32 @@
+import { FC } from 'react';
 import { styled, Box, Typography } from '@mui/material';
+
+interface BioTemplateProps {
+  title: string;
+  textArray: string[];
+  img: string;
+}
+
+const BioTemplate: FC<BioTemplateProps> = ({ title, textArray, img }) => {
+  return (
+    <>
+      <Typography variant="h1" mb={{ xs: 3, lg: 6 }}>
+        {title}
+      </Typography>
+
+      <Wrapper>
+        <Box component="img" src={img} alt={`photo of ${name}`} />
+        <Box>
+          {textArray.map((text, index) => (
+            <TextBlock key={index}>{text}</TextBlock>
+          ))}
+        </Box>
+      </Wrapper>
+    </>
+  );
+};
+
+export default BioTemplate;
 
 export const Wrapper = styled(Box)(({ theme }) => ({
   width: '100%',

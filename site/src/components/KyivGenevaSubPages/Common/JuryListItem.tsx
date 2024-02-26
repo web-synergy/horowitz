@@ -4,41 +4,23 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import { Buttons } from '@/types/translation.d';
+import { IJury } from '@/types/kyivGenevaDataTypes';
+import ImagePerson from './ImagePerson';
 
 interface JuryItemProps {
-  id: string;
-  photo: string;
-  name: { ua: string; en: string };
-  position?: { ua: string; en: string };
+  item: IJury;
 }
 
-const JuryListItem: FC<JuryItemProps> = ({ id, photo, name, position }) => {
+const JuryListItem: FC<JuryItemProps> = ({ item }) => {
+  const { id, photo, name, position } = item;
   const {
     t,
     i18n: { language },
   } = useTranslation();
 
   return (
-    <Box
-      sx={{
-        maxWidth: { xs: 320, md: 350, lg: 355 },
-        margin: '0 auto',
-      }}
-    >
-      <Box
-        component="img"
-        src={photo}
-        sx={{
-          display: 'block',
-          width: '100%',
-
-          height: 'auto',
-          aspectRatio: { xs: '1/1', lg: '2/2.9' },
-          objectFit: 'cover',
-          objectPosition: 'center top',
-          marginBottom: 3,
-        }}
-      />
+    <>
+      <ImagePerson img={photo} />
 
       <Typography variant="subhead" component="h3" mb={{ xs: 3, lg: 2 }}>
         {language === 'ua' ? name.ua : name.en}
@@ -62,7 +44,7 @@ const JuryListItem: FC<JuryItemProps> = ({ id, photo, name, position }) => {
           {t(`buttons.${Buttons.READ_MORE}`)}
         </Button>
       </Box>
-    </Box>
+    </>
   );
 };
 
