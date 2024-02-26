@@ -61,7 +61,7 @@ export const imageGalleryType = defineType({
                   title: 'Кількість рядків',
                   initialValue: 3,
                   options: {
-                    list: [1, 2, 3, 4],
+                    list: [1, 2, 3, 4, 5, 6],
                     layout: 'radio',
                     direction: 'horizontal',
                   },

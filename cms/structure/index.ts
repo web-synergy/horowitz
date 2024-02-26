@@ -1,4 +1,3 @@
-import {StructureBuilder} from 'sanity/desk'
 import {singleDocument} from './singleDocument'
 
 import {IoSettingsSharp, IoShareSocialOutline} from 'react-icons/io5'
@@ -12,6 +11,7 @@ import {preview} from './preview'
 
 import {newsStructure} from './newsStructure'
 import {virtuososStructure} from './virtuososStructure'
+import {StructureBuilder} from 'sanity/structure'
 
 const singleSchemaTittles = [
   'Головна',

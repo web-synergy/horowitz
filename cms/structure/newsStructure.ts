@@ -1,7 +1,7 @@
-import {StructureBuilder} from 'sanity/desk'
 import {languages} from '../../languages'
 import {IoNewspaperOutline} from 'react-icons/io5'
 import {IoLanguage} from 'react-icons/io5'
+import {StructureBuilder} from 'sanity/structure'
 export const newsStructure = (S: StructureBuilder) => [
   S.listItem()
     .title('Новини')
@@ -18,13 +18,14 @@ export const newsStructure = (S: StructureBuilder) => [
               .schemaType('news')
               .child(
                 S.documentList()
-                  .defaultOrdering([{field: 'priority', direction: 'desc'}])
                   .apiVersion('v2023-08-01')
                   .id(language.id)
                   .title(`${language.title} Новини`)
                   .schemaType('news')
                   .filter('_type == "news" && length(title[_key !=$language].value) !=1')
-                  .params({language: language.id}),
+                  .params({language: language.id})
+                  //@ts-ignore
+                  .menuItems([...S.documentTypeList('news').getMenuItems()]),
               ),
           ),
           S.divider(),
@@ -33,12 +34,12 @@ export const newsStructure = (S: StructureBuilder) => [
             .schemaType('news')
             .child(
               S.documentList()
-                .defaultOrdering([{field: 'priority', direction: 'desc'}])
                 .id(`all-news`)
                 .apiVersion('v2023-08-01')
                 .title(`Всі новини`)
                 .schemaType('news')
-                .filter('_type == "news"'),
+                .filter('_type == "news"')
+                .menuItems([...S.documentTypeList('news').getMenuItems()]),
             ),
         ]),
     ),

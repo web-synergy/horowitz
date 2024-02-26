@@ -1,4 +1,4 @@
-import {StructureBuilder} from 'sanity/desk'
+import {StructureBuilder} from 'sanity/structure'
 
 export const singleDocument = (S: StructureBuilder, id: string, title: string, preview?: any) => {
   return S.listItem()

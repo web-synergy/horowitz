@@ -1,7 +1,7 @@
-import {StructureBuilder} from 'sanity/desk'
 import {GiGrandPiano} from 'react-icons/gi'
 import {singleDocument} from './singleDocument'
 import {preview} from './preview'
+import {StructureBuilder} from 'sanity/structure'
 export const virtuososStructure = (S: StructureBuilder) => [
   S.listItem()
     .title('Віртуози планет')
