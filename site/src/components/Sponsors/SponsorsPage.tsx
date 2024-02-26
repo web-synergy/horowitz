@@ -1,46 +1,63 @@
-import { usePartnersStore } from '@/store/partnersStore'
-import { Sponsors } from '@/types/translation.d'
-import { Container, Stack } from '@mui/material'
-import { FC, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import PageTemplate from '../Common/PageTemplate'
+import { usePartnersStore } from '@/store/partnersStore';
+import { Sponsors } from '@/types/translation.d';
+import { Container, Stack } from '@mui/material';
+import { FC, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import PageTemplate from '../Common/PageTemplate';
 
-import { Routes } from '@/types/routes.d'
-import GoBackBtn from '../Common/GoBackBtn'
-import LogotypesGallery from './parts/LogotypesGallery'
-import { MainTitle, TwoGalleryStack } from './styled'
+import { Routes } from '@/types/routes.d';
+import GoBackBtn from '../Common/GoBackBtn';
+import LogotypesGallery from './parts/LogotypesGallery';
+import { MainTitle, TwoGalleryStack } from './styled';
+
+import { partners as partnersQuery } from '@/api/query';
+import { useLiveQuery } from '@sanity/preview-kit';
 
 const SponsorsPage: FC = () => {
-  const fetchData = usePartnersStore(state => state.fetchPartners)
-  const {
-    organizers,
-    mainPartners,
-    sponsors,
-    generalInfoPartners,
-    partners,
-    mainInfoPartners,
-    officialInfoPartners,
-    requestLang,
-  } = usePartnersStore()
-
+  const fetchData = usePartnersStore(state => state.fetchPartners);
+  const data = usePartnersStore();
+  //
   const {
     t,
     i18n: { language },
-  } = useTranslation()
+  } = useTranslation();
 
+  const [
+    {
+      organizers,
+      mainPartners,
+      sponsors,
+      generalInfoPartners,
+      partners,
+      mainInfoPartners,
+      officialInfoPartners,
+      requestLang,
+    },
+  ] = useLiveQuery(data, partnersQuery, {
+    language,
+  });
   useEffect(() => {
-    if (requestLang === language) return
-    fetchData(language)
+    if (requestLang === language) return;
+    fetchData(language);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language])
+  }, [language]);
 
   return (
     <PageTemplate>
-      <Container sx={{ paddingTop: { xs: 3, md: 6 }, paddingBottom: { xs: 9, md: 12, lg: 15 } }}>
-        <MainTitle component={'h1'}>{t(`sponsorsPage.${Sponsors.MAIN_TITLE}`)}</MainTitle>
+      <Container
+        sx={{
+          paddingTop: { xs: 3, md: 6 },
+          paddingBottom: { xs: 9, md: 12, lg: 15 },
+        }}>
+        <MainTitle component={'h1'}>
+          {t(`sponsorsPage.${Sponsors.MAIN_TITLE}`)}
+        </MainTitle>
         <Stack spacing={6}>
           {organizers && (
-            <LogotypesGallery title={t(`sponsorsPage.${Sponsors.COMP_ORG}`)} gallery={organizers} />
+            <LogotypesGallery
+              title={t(`sponsorsPage.${Sponsors.COMP_ORG}`)}
+              gallery={organizers}
+            />
           )}
           <TwoGalleryStack>
             {mainPartners && (
@@ -50,7 +67,10 @@ const SponsorsPage: FC = () => {
               />
             )}
             {sponsors && (
-              <LogotypesGallery title={t(`sponsorsPage.${Sponsors.SPONSORS}`)} gallery={sponsors} />
+              <LogotypesGallery
+                title={t(`sponsorsPage.${Sponsors.SPONSORS}`)}
+                gallery={sponsors}
+              />
             )}
           </TwoGalleryStack>
           {generalInfoPartners && (
@@ -86,6 +106,6 @@ const SponsorsPage: FC = () => {
       </Container>
       <GoBackBtn href={Routes.HOME} />
     </PageTemplate>
-  )
-}
-export default SponsorsPage
+  );
+};
+export default SponsorsPage;

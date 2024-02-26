@@ -50,12 +50,9 @@ const structure = (S: StructureBuilder) =>
       ...virtuososStructure(S),
 
       S.divider(),
-      singleDocument(
-        S,
-        'aboutHorowitzCompetition',
-        'Конкурс Горовиця',
-        preview(S, 'aboutHorowitzCompetition'),
-      ).icon(MdOutlineSettingsBrightness),
+      singleDocument(S, 'aboutHorowitzCompetition', 'Конкурс Горовиця', preview(S, 'details')).icon(
+        MdOutlineSettingsBrightness,
+      ),
       singleDocument(S, 'horowitz', 'Володимир Горовиць', preview(S, 'horowitz')).icon(
         MdOutlineSettingsBrightness,
       ),
@@ -66,7 +63,9 @@ const structure = (S: StructureBuilder) =>
         preview(S, 'administration'),
       ).icon(FaPeopleGroup),
       S.divider(),
-      singleDocument(S, 'partners', 'Партнери і спонсори').icon(SiGithubsponsors),
+      singleDocument(S, 'partners', 'Партнери і спонсори', preview(S, 'sponsors')).icon(
+        SiGithubsponsors,
+      ),
       S.listItem()
         .title('Налаштування')
         .icon(IoSettingsSharp)
