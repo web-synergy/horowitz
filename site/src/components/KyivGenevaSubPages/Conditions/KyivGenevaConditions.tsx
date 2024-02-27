@@ -27,7 +27,7 @@ const KyivGenevaConditions = () => {
     <PageTemplate>
       <Container sx={{ pt: { xs: 3, md: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
         <Typography
-          sx={{ mb: { xs: '0px', md: '24px', lg: '0px' } }}
+          sx={{ mb: { xs: '0px', md: '-24px', lg: '0px' } }}
           component={'h1'}
           variant='h1'>
           {t(`navigation.${Routes.KYIV_GENEVA_CONDITIONS}`)}

@@ -1,6 +1,8 @@
 import {defineType} from 'sanity'
 import NoWrap from '../../components/NoWrap'
-import {TbTextWrapDisabled as icon} from 'react-icons/tb'
+import {TbTextWrapDisabled} from 'react-icons/tb'
+import {IoIosColorPalette} from 'react-icons/io'
+import ColorText from '../../components/ColorText'
 
 const content = defineType({
   name: 'content',
@@ -23,9 +25,24 @@ const content = defineType({
         decorators: [
           {title: 'Strong', value: 'strong'},
           {title: 'Emphasis', value: 'em'},
-          {title: 'No wrap', value: 'nw', icon, component: NoWrap},
+          {title: 'No wrap', value: 'nw', icon: TbTextWrapDisabled, component: NoWrap},
         ],
         annotations: [
+          {
+            title: 'Color',
+            type: 'object',
+            name: 'color',
+            icon: IoIosColorPalette,
+            fields: [
+              {
+                name: 'color',
+                type: 'color',
+              },
+            ],
+            components: {
+              annotation: ColorText,
+            },
+          },
           {
             name: 'link',
             type: 'object',

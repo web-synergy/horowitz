@@ -10,6 +10,28 @@ export const components: PortableTextComponents = {
     youtube: YouTube,
     image: ImageComponent,
   },
+  marks: {
+    nw: ({ children }) => {
+      return <span style={{ textWrap: 'nowrap' }}>{children}</span>;
+    },
+    color: ({ value, children }) => {
+      return <span style={{ color: value?.color?.hex }}>{children}</span>;
+    },
+    link: ({ value, children }) => {
+      const target = (value?.href || '').startsWith('http')
+        ? '_blank'
+        : undefined;
+      return (
+        <Link
+          component={RouterLink}
+          variant='linkBlock'
+          to={value?.href}
+          target={target}>
+          {children}
+        </Link>
+      );
+    },
+  },
   block: {
     h2: ({ children }) => (
       <Typography
@@ -56,9 +78,6 @@ export const components: PortableTextComponents = {
         {children}
       </Typography>
     ),
-    p: ({ children }) => (
-      <Typography variant='bodyRegular'>{children}</Typography>
-    ),
     blockquote: ({ children }) => (
       <Typography
         component={'blockquote'}
@@ -73,29 +92,7 @@ export const components: PortableTextComponents = {
       </Typography>
     ),
   },
-  marks: {
-    nw: ({ children }) => {
-      return (
-        <Typography variant='bodyRegular' noWrap>
-          {children}
-        </Typography>
-      );
-    },
-    link: ({ value, children }) => {
-      const target = (value?.href || '').startsWith('http')
-        ? '_blank'
-        : undefined;
-      return (
-        <Link
-          component={RouterLink}
-          variant='linkBlock'
-          to={value?.href}
-          target={target}>
-          {children}
-        </Link>
-      );
-    },
-  },
+
   list: {
     bullet: ({ children }) => {
       return (
