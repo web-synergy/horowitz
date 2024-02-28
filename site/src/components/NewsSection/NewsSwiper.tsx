@@ -68,7 +68,7 @@ const NewsSwiper = ({
         {news.map(({ slug, img, title }) => (
           <SwiperSlide key={slug}>
             <NewsCart
-              title={sliceNewsTitle(title, 70)}
+              title={sliceNewsTitle(title, 49)}
               img={img}
               slug={`/${link}/${slug}`}
             />
