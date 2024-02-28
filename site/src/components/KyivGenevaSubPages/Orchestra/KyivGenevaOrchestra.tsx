@@ -10,6 +10,7 @@ const RichText = styled(Typography)(() => ({
   display: 'block',
   textAlign: 'justify',
   marginBottom: '8px',
+
   [theme.breakpoints.up('lg')]: {
     marginBottom: '0px',
   },
@@ -25,13 +26,16 @@ const KyivGenevaOrchestra = () => {
 
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 3, md: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+      <Container
+        sx={{ pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}
+      >
         <Typography
           sx={{
             mb: { xs: '24px', md: '-24px', lg: '48px' },
           }}
           component={'h1'}
-          variant='h1'>
+          variant="h1"
+        >
           {t(`navigation.${Routes.KYIV_GENEVA_ORCHESTRA}`)}
         </Typography>
 
@@ -43,7 +47,8 @@ const KyivGenevaOrchestra = () => {
                 mb: { xs: '24px', lg: '48px' },
               }}
               component={'h3'}
-              variant='h3'>
+              variant="h3"
+            >
               {item.title}
             </Typography>
             <Box
@@ -51,7 +56,8 @@ const KyivGenevaOrchestra = () => {
                 columnCount: { lg: 2 },
                 columnGap: { lg: 3 },
                 mb: { xs: '24px', lg: '48px' },
-              }}>
+              }}
+            >
               {item.text.map((item, index) => (
                 <RichText key={index}>{item}</RichText>
               ))}
@@ -64,8 +70,9 @@ const KyivGenevaOrchestra = () => {
                 alt={item.img.title}
               />
               <Typography
-                sx={{ color: theme => theme.palette.neutral[60] }}
-                variant='smallText'>
+                sx={{ color: (theme) => theme.palette.neutral[60] }}
+                variant="smallText"
+              >
                 {item.img.title}
               </Typography>
             </Box>
