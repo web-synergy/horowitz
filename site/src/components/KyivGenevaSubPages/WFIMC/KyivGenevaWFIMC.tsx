@@ -27,8 +27,9 @@ const KyivGenevaWFIMCPage: FC = () => {
               variant={'h1'}
               sx={{
                 marginBottom: {
-                  xs: '24px',
-                  lg: '48px',
+                  xs: 3,
+                  md: 5,
+                  lg: 6,
                 },
               }}
             >
@@ -36,12 +37,15 @@ const KyivGenevaWFIMCPage: FC = () => {
             </Typography>
             <Box>
               <Wrapper>
-                <Box>
+                <Box sx={{ mb: { xs: 3, md: 0 } }}>
                   <Box
                     component={'img'}
                     alt={'WFIMC members'}
                     src={membersImg}
-                    sx={{ maxWidth: '100%', display: 'block' }}
+                    sx={{
+                      maxWidth: '100%',
+                      display: 'block',
+                    }}
                   />
                   <Caption component={'p'}>
                     {content[language].wfimc.photoCaption}
@@ -53,7 +57,7 @@ const KyivGenevaWFIMCPage: FC = () => {
                     component={'p'}
                     variant="bodyRegular"
                     sx={{
-                      marginTop: { xs: '8px', lg: '16px' },
+                      marginTop: 2,
                       textAlign: 'justify',
                     }}
                   >

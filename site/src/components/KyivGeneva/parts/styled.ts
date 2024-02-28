@@ -17,6 +17,7 @@ export const Caption = styled(Typography)<TypographyProps>(
     fontSize: '0.5rem',
     lineHeight: 2,
     textAlign: 'justify',
+
     [breakpoints.up('md')]: {
       fontSize: '0.75rem',
       lineHeight: 1.33,

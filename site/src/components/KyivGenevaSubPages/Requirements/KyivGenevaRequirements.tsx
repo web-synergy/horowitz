@@ -10,18 +10,23 @@ import { theme } from '@/theme';
 const Title = styled(Typography)(() => ({
   display: 'block',
   textAlign: 'justify',
-  margin: '48px 0 24px',
-  [theme.breakpoints.down('md')]: {
-    margin: '24px 0 24px',
+  margin: '24px 0',
+  [theme.breakpoints.up('md')]: {
+    margin: '40px 0',
+  },
+
+  [theme.breakpoints.up('lg')]: {
+    margin: '48px 0 ',
   },
 }));
 const RichText = styled(Typography)(() => ({
   display: 'block',
   textAlign: 'justify',
-  marginBottom: '8px',
-  [theme.breakpoints.up('lg')]: {
-    marginBottom: '24px',
-  },
+  marginBottom: '16px',
+
+  // [theme.breakpoints.up('lg')]: {
+  //   marginBottom: '24px',
+  // },
 }));
 const KyivGenevaRequirements = () => {
   const {
@@ -36,40 +41,42 @@ const KyivGenevaRequirements = () => {
 
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 3, md: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
-        <Typography
-          component={'h1'}
-          sx={{ mb: { xs: '0px', md: '-24px', lg: '0px' } }}
-          variant='h1'>
+      <Container
+        sx={{
+          pt: { xs: 3, md: 5, lg: 6 },
+          pb: { xs: 9, md: 12, lg: 15 },
+        }}
+      >
+        <Typography component={'h1'} variant="h1">
           {t(`navigation.${Routes.KYIV_GENEVA_REQUIREMENTS}`)}
         </Typography>
-        <Box sx={{ mb: { xs: '-8px', lg: '-16px' } }}>
-          <Title variant='h3'>{qualifyingRound.title}</Title>
+        <Box sx={{ mb: '-16px' }}>
+          <Title variant="h3">{qualifyingRound.title}</Title>
 
           {qualifyingRound.list?.map((item, index) => (
-            <RichText key={index} variant='bodyRegular'>
+            <RichText key={index} variant="bodyRegular">
               {item}
             </RichText>
           ))}
-          <Title variant='h3'>{firstRound.title}</Title>
-          <RichText variant='bodyRegular'>{firstRound.p}</RichText>
+          <Title variant="h3">{firstRound.title}</Title>
+          <RichText variant="bodyRegular">{firstRound.p}</RichText>
           {firstRound.list?.map((item, index) => (
-            <RichText key={index} variant='bodyRegular'>
+            <RichText key={index} variant="bodyRegular">
               {item}
             </RichText>
           ))}
-          <Title variant='h3'>{secondRound.title}</Title>
-          <RichText variant='bodyRegular'>{secondRound.p}</RichText>
+          <Title variant="h3">{secondRound.title}</Title>
+          <RichText variant="bodyRegular">{secondRound.p}</RichText>
           {secondRound.list?.map((item, index) => (
-            <RichText key={index} variant='bodyRegular'>
+            <RichText key={index} variant="bodyRegular">
               {item}
             </RichText>
           ))}
-          <Title variant='h3'>{thirdRound.title}</Title>
-          <RichText variant='bodyRegular'>{thirdRound.p}</RichText>
-          <Title variant='h3'>{finalRound.title}</Title>
-          <RichText variant='bodyRegular'>{finalRound.p}</RichText>
-          <RichText variant='bodyRegular'>{finalRound.p2}</RichText>
+          <Title variant="h3">{thirdRound.title}</Title>
+          <RichText variant="bodyRegular">{thirdRound.p}</RichText>
+          <Title variant="h3">{finalRound.title}</Title>
+          <RichText variant="bodyRegular">{finalRound.p}</RichText>
+          <RichText variant="bodyRegular">{finalRound.p2}</RichText>
         </Box>
       </Container>
       <GoBackBtn href={Routes.KYIV_GENEVA} />
