@@ -20,16 +20,24 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       textTransform: 'none',
-      fontSize: '1.125rem',
-      lineHeight: '1.556',
-      padding: '12px 32px',
+      fontSize: '1rem',
+      lineHeight: '1.75',
+
       border: '2px solid',
       minWidth: 226,
       transition: 'all .3s ease-in', // плавна анімація
+
       [theme.breakpoints.up('md')]: {
         fontSize: '1.125rem',
         lineHeight: '1.556',
-        padding: '14px 32px',
+      },
+
+      '&.MuiButton-root': {
+        padding: '8px 32px',
+
+        [theme.breakpoints.up('md')]: {
+          padding: '14px 32px',
+        },
       },
     }),
     startIcon: {
@@ -75,11 +83,17 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
       props: { variant: 'secondary' },
       style: ({ theme }) => ({
         '&.MuiButton-root': {
-          padding: '16px 20px',
+          padding: '9px 20px',
+
+          [theme.breakpoints.up('md')]: {
+            padding: '15px 20px',
+          },
         },
         backgroundColor: 'transparent',
         borderColor: theme.palette.primary.main,
         color: 'inherit',
+        borderWidth: 1,
+
         '&:hover': {
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.common.black,
@@ -138,6 +152,15 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
         backgroundColor: 'transparent',
         borderColor: theme.palette.common.black,
         color: theme.palette.common.black,
+        borderWidth: 1,
+
+        '&.MuiButton-root': {
+          padding: '9px 20px',
+
+          [theme.breakpoints.up('md')]: {
+            padding: '15px 20px',
+          },
+        },
 
         '&:hover': {
           backgroundColor: theme.palette.primary.main,

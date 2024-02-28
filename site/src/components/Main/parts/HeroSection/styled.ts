@@ -9,8 +9,8 @@ import {
   Typography,
   TypographyProps,
   styled,
-} from '@mui/material'
-import { LinkProps } from 'react-router-dom'
+} from '@mui/material';
+import { LinkProps } from 'react-router-dom';
 
 export const Video = styled('video')(() => ({
   position: 'absolute',
@@ -19,7 +19,7 @@ export const Video = styled('video')(() => ({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-}))
+}));
 
 export const Overlay = styled(Box)<BoxProps>(() => ({
   position: 'absolute',
@@ -30,14 +30,14 @@ export const Overlay = styled(Box)<BoxProps>(() => ({
   zIndex: 5,
   backgroundColor: 'rgba(0, 0, 0, 0.70)',
   backdropFilter: 'blur(4px)',
-}))
+}));
 
 export const StyledContainer = styled(Container)(({ theme: { palette } }) => ({
   height: '100%',
   display: 'flex',
   alignItems: 'center',
   color: palette.common.white,
-}))
+}));
 
 export const SocialMediaBox = styled(Box)<BoxProps>(({ theme }) => ({
   [theme.breakpoints.up('xs')]: {
@@ -51,7 +51,7 @@ export const SocialMediaBox = styled(Box)<BoxProps>(({ theme }) => ({
     top: 0,
     right: 0,
   },
-}))
+}));
 
 export const ContentStack = styled(Stack)<StackProps>(({ theme }) => ({
   [theme.breakpoints.up('xs')]: {
@@ -60,7 +60,7 @@ export const ContentStack = styled(Stack)<StackProps>(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     rowGap: '40px',
   },
-}))
+}));
 
 export const MainTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
   lineHeight: 1.25,
@@ -77,7 +77,7 @@ export const MainTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
     fontSize: '4rem',
     maxWidth: '900px',
   },
-}))
+}));
 
 export const ButtonsStack = styled(Stack)<StackProps>(({ theme }) => ({
   [theme.breakpoints.up('xs')]: {
@@ -88,17 +88,18 @@ export const ButtonsStack = styled(Stack)<StackProps>(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     gap: '24px',
   },
-}))
+}));
 
-export const StyledButton = styled(Button)<ButtonProps & LinkProps>(({ theme }) => ({
-  height: '60px',
-  [theme.breakpoints.up('xs')]: {
-    width: '288px',
-  },
-  [theme.breakpoints.up('md')]: {
-    width: '226px',
-  },
-}))
+export const StyledButton = styled(Button)<ButtonProps & LinkProps>(
+  ({ theme }) => ({
+    [theme.breakpoints.up('xs')]: {
+      width: '288px',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '226px',
+    },
+  })
+);
 
 export const LogotypesStack = styled(Stack)<StackProps>(({ theme }) => ({
   flexDirection: 'row',
@@ -109,4 +110,4 @@ export const LogotypesStack = styled(Stack)<StackProps>(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     gap: '24px',
   },
-}))
+}));

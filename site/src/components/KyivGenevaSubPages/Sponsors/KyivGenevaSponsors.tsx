@@ -1,8 +1,8 @@
 import { Box, Container } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import PageTemplate from '@/components/Common/PageTemplate';
-import imageEn from '@/assets/images/kyiv-geneva/sponsors/partners_eng.png';
-import imageUa from '@/assets/images/kyiv-geneva/sponsors/partners_ukr.png';
+import imageEn from '@/assets/images/kyiv-geneva/sponsors/partners_eng.webp';
+import imageUa from '@/assets/images/kyiv-geneva/sponsors/partners_ukr.webp';
 import GoBackBtn from '@/components/Common/GoBackBtn';
 import { Routes } from '@/types/routes.d';
 import GrowView from '@/components/Common/GrowView';

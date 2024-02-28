@@ -1,6 +1,6 @@
 import { Box, Typography, styled, TypographyProps } from '@mui/material';
 
-import bgImage from '@/assets/images/archive.jpg';
+import bgImage from '@/assets/images/archive.webp';
 
 export const Banner = styled(Box)(() => ({
   backgroundImage: `url(${bgImage})`,

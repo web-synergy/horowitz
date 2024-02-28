@@ -1,17 +1,26 @@
-import { Box, Typography, Zoom } from '@mui/material'
-import { FC } from 'react'
+import { Box, Typography, Zoom } from '@mui/material';
+import { FC } from 'react';
 
 interface WinnerCardProps {
-  image: string
-  winnerName: string
-  prizePlace: string
-  isVisible: boolean
-  delay: number
+  image: string;
+  winnerName: string;
+  prizePlace: string;
+  isVisible: boolean;
+  delay: number;
 }
 
-const WinnerCard: FC<WinnerCardProps> = ({ image, winnerName, prizePlace, isVisible, delay }) => {
+const WinnerCard: FC<WinnerCardProps> = ({
+  image,
+  winnerName,
+  prizePlace,
+  isVisible,
+  delay,
+}) => {
   return (
-    <Zoom in={isVisible} style={{ transitionDelay: isVisible ? `${delay}00ms` : '0ms' }}>
+    <Zoom
+      in={isVisible}
+      style={{ transitionDelay: isVisible ? `${delay}00ms` : '0ms' }}
+    >
       <Box
         sx={{
           maxWidth: {
@@ -22,7 +31,12 @@ const WinnerCard: FC<WinnerCardProps> = ({ image, winnerName, prizePlace, isVisi
           lineHeight: 0,
         }}
       >
-        <Box component={'img'} src={image} alt="winner photo" sx={{ width: '100%' }} />
+        <Box
+          component={'img'}
+          src={image}
+          alt="winner photo"
+          sx={{ width: '100%' }}
+        />
         <Typography
           variant="subhead"
           component={'p'}
@@ -35,13 +49,13 @@ const WinnerCard: FC<WinnerCardProps> = ({ image, winnerName, prizePlace, isVisi
         <Typography
           variant="bodyRegular"
           component={'p'}
-          sx={{ color: theme => theme.palette.primary.dark }}
+          sx={{ color: (theme) => theme.palette.primary.dark }}
         >
           {prizePlace}
         </Typography>
       </Box>
     </Zoom>
-  )
-}
+  );
+};
 
-export default WinnerCard
+export default WinnerCard;
