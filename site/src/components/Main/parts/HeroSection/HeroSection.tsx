@@ -1,15 +1,15 @@
-import { FC, useRef } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material'
+import { FC, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Link as RouterLink } from 'react-router-dom'
 
-import SocialMedia from '@/components/Common/SocialMedia';
+import SocialMedia from '@/components/Common/SocialMedia'
 
-import { Routes } from '@/types/routes.d';
-import { Buttons } from '@/types/translation.d';
+import { Routes } from '@/types/routes.d'
+import { Buttons } from '@/types/translation.d'
 
-import LogoImg from './LogoImg';
-import ScrollDownBtn from './ScrollDownBtn';
+import LogoImg from './LogoImg'
+import ScrollDownBtn from './ScrollDownBtn'
 import {
   ButtonsStack,
   ContentStack,
@@ -20,22 +20,22 @@ import {
   StyledButton,
   StyledContainer,
   Video,
-} from './styled';
+} from './styled'
 
-import bgVideo from '@/assets/bg_video.mp4';
-import poster from '@/assets/images//bg_video_poster.webp';
+import bgVideo from '@/assets/bg_video.mp4'
+import poster from '@/assets/images//bg_video_poster.webp'
 
-import EUMCY_logo from '../../temp/EUMCY_logo.svg';
-import WFIMC_logo from '../../temp/WFIMC_logo.svg';
+import EUMCY_logo from '../../temp/EUMCY_logo.svg'
+import WFIMC_logo from '../../temp/WFIMC_logo.svg'
 
 const HeroSection: FC = () => {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  if (videoRef.current) videoRef.current.playbackRate = 0.5;
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  if (videoRef.current) videoRef.current.playbackRate = 0.5
 
-  const { breakpoints } = useTheme();
-  const isMobile = useMediaQuery(breakpoints.down('lg'));
+  const { breakpoints } = useTheme()
+  const isMobile = useMediaQuery(breakpoints.down('lg'))
 
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <Box
@@ -46,7 +46,7 @@ const HeroSection: FC = () => {
         height: '100svh',
       }}
     >
-      <Video src={bgVideo} autoPlay loop muted ref={videoRef} poster={poster} />
+      <Video src={bgVideo} autoPlay loop muted ref={videoRef} poster={poster} playsInline />
       <Overlay>
         <StyledContainer>
           <Box position={'relative'} sx={{ width: '100%' }}>
@@ -59,11 +59,7 @@ const HeroSection: FC = () => {
                 <StyledButton component={RouterLink} to={Routes.APPLY}>
                   {t(`buttons.${Buttons.APPLY}`)}
                 </StyledButton>
-                <StyledButton
-                  variant="secondary"
-                  component={RouterLink}
-                  to={Routes.SUPPORT}
-                >
+                <StyledButton variant="secondary" component={RouterLink} to={Routes.SUPPORT}>
                   {t(`buttons.${Buttons.SUPPORT}`)}
                 </StyledButton>
               </ButtonsStack>
@@ -77,13 +73,11 @@ const HeroSection: FC = () => {
               </LogotypesStack>
             </ContentStack>
           </Box>
-          <ScrollDownBtn
-            onClick={() => scrollTo({ top: innerHeight, behavior: 'smooth' })}
-          />
+          <ScrollDownBtn onClick={() => scrollTo({ top: innerHeight, behavior: 'smooth' })} />
         </StyledContainer>
       </Overlay>
     </Box>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default HeroSection
