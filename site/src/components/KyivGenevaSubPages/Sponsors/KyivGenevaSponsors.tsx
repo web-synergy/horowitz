@@ -14,7 +14,9 @@ const KyivGenevaSponsorsPage = () => {
   return (
     <PageTemplate>
       <GrowView>
-        <Container sx={{ pt: { xs: 3, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+        <Container
+          sx={{ pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}
+        >
           <Box
             component="img"
             src={language === 'ua' ? imageUa : imageEn}
