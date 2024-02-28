@@ -6,7 +6,7 @@ import { useVirtuososStore } from '@/store/virtuososStor';
 import { useEffect } from 'react';
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 
-import { ImagesArray } from '../../NewsCurrentPage/prtableComponents/ImageComponent';
+import { ImagesArray } from '../../PortableComponent/ImageComponent';
 
 import { useLiveQuery } from '@sanity/preview-kit';
 import { virtuososQuery } from '@/api/query';

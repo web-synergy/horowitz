@@ -4,7 +4,7 @@ import { Box, Container, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { PortableText } from '@portabletext/react';
-import { components } from './prtableComponents';
+import { components } from './PortableNews';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { currentNewsQuery } from '@/api/query';
 import { INews } from '@/types/newsTypes';

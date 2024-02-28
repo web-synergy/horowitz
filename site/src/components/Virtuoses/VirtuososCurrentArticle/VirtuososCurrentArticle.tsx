@@ -14,7 +14,7 @@ import { parseAndFormatDate } from '@/utils/helpers';
 import Loader from '@/components/Common/Loader';
 import PageTemplate from '@/components/Common/PageTemplate';
 import GrowView from '@/components/Common/GrowView';
-import { components } from '@/components/NewsCurrentPage/prtableComponents';
+import { components } from '@/components/NewsCurrentPage/PortableNews';
 
 import { useFetch } from '../../../hook/useFetch';
 import GoBackBtn from '@/components/Common/GoBackBtn';
