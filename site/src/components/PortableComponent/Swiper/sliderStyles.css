@@ -13,7 +13,7 @@
   height: 32px !important;
   border-radius: 50%;
   background-color: rgba(207, 207, 207, 0.4);
-  background-image: url('../../../../assets/images/chevron.svg');
+  background-image: url('../../../assets/images/chevron.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -23,7 +23,7 @@
   height: 32px !important;
   border-radius: 50%;
   background-color: rgba(207, 207, 207, 0.4);
-  background-image: url('../../../../assets/images/chevron.svg');
+  background-image: url('../../../assets/images/chevron.svg');
   transform: rotate(180deg);
   background-repeat: no-repeat;
   background-position: center;

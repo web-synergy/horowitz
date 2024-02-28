@@ -6,13 +6,15 @@ import { useVirtuososStore } from '@/store/virtuososStor';
 import { useEffect } from 'react';
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 
-import { ImagesArray } from '../../NewsCurrentPage/prtableComponents/ImageComponent';
-import ArticleSection from './parts/ArticleSection';
+import { ImagesArray } from '../../PortableComponent/ImageComponent';
+
 import { useLiveQuery } from '@sanity/preview-kit';
 import { virtuososQuery } from '@/api/query';
 
 import MainBanner from '@/components/Common/MainBanner';
 import Loader from '@/components/Common/Loader';
+import NewsSwiper from '../../NewsSection/NewsSwiper';
+import { Virtuosos } from '@/types/translation.d';
 
 const components: PortableTextComponents = {
   block: {
@@ -86,7 +88,11 @@ const VirtuosesPage = () => {
                 />
               </Box>
               {data.article.length ? (
-                <ArticleSection article={data.article} />
+                <NewsSwiper
+                  title={t(`virtuosos.${Virtuosos.NEWS}`)}
+                  link={Routes.VIRTUOSES_ARTICLE}
+                  news={data.article}
+                />
               ) : null}
               <ImagesArray value={data.gallery} />
             </>

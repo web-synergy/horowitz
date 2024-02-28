@@ -40,7 +40,11 @@ const NewsListItem = ({
         <Stack flex={1} direction={{ xs: 'column', md: 'row' }} spacing={3}>
           <Box
             component={'img'}
-            sx={{ objectFit: 'cover' }}
+            sx={{
+              objectFit: 'cover',
+              width: { md: '332px', lg: '357px' },
+              height: { xs: 'auto', lg: '248px' },
+            }}
             src={urlFor(img)
               .auto('format')
               .width(isMob ? 288 : 357)

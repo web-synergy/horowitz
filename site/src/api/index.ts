@@ -17,9 +17,14 @@ import {
   virtuososQuery,
   virtuososArticleQuery,
   currentArticleQuery,
+  homeQuery,
 } from './query';
 import { PartnersResp } from '@/types/partnersTypes';
 import { IVirtuosos } from '@/types/virtuososTypes';
+import { HomeData } from '@/types/homeTypes';
+export const getHomeData = async (language: string): Promise<HomeData> => {
+  return sanityFetch(homeQuery, { language });
+};
 
 export const getSettings = async (
   language: string
