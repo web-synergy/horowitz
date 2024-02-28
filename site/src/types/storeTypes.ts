@@ -92,3 +92,11 @@ export interface UkrWorksStoreState {
   works: IUkrWorks | null;
   fetchWorks: (language: string) => Promise<void>;
 }
+
+export interface HomeStoreState {
+  requestLang: string;
+  loading: boolean;
+  error: string;
+  news: INews[];
+  fetchHome: (language: string) => Promise<void>;
+}

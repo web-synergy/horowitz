@@ -5,13 +5,7 @@ export const homeQuery = groq`*[_type == 'home'][0]{
          'quote':quote[_key ==$language].value,
      },
          
-      'banner':banner{
-      'title':  title[_key ==$language].value,
-       'dateEvent':dateEvent[_key ==$language].value,
-       'img':img.asset->url,
-       srcVideo
-
-
+   
       },
     'winner':winner[]{
     'name': name[_key ==$language].value,
@@ -20,17 +14,12 @@ export const homeQuery = groq`*[_type == 'home'][0]{
 
 
     },
-    'news':news[]->{
-      'description':description[_key ==$language].value,
-      'title':title[_key ==$language].value,
-      img
+    'news':*[_type == 'news'  && length(title[_key ==$language].value) != 0]| order( _createdAt desc) [0 ...3]{
+     img,
+    'title':  title[_key ==$language ][0].value,
+    'slug':slug.current,}
 
-    },
-    sponsors,
-    'videos':videos[]{
-      'title':title[_key ==$language].value,
-      link
-    },
+ 
 }`;
 
 export const settingsQuery = groq`*[_type == 'settings']{
@@ -127,10 +116,10 @@ export const virtuososQuery = groq`*[_type == 'virtuosos'][0]{
  banner,
   gallery,
   'description':description[_key ==$language].value,
-    'article':*[_type == 'virtuososArticle']| order( _createdAt desc) [0 ...3]{
+    'article':*[_type == 'virtuososArticle'  && length(title[_key ==$language].value) != 0]| order( _createdAt desc) [0 ...3]{
    _id,
    img,
-   'title':  title[_key ==$language].value,
+   'title':   title[_key ==$language][0].value,
    'slug':slug.current,}
 } `;
 
