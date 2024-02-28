@@ -9,7 +9,7 @@ import GoBackBtn from '@/components/Common/GoBackBtn';
 const RichText = styled(Typography)(() => ({
   display: 'block',
   textAlign: 'justify',
-  marginBottom: '8px',
+  marginBottom: '16px',
 
   [theme.breakpoints.up('lg')]: {
     marginBottom: '0px',
@@ -29,13 +29,7 @@ const KyivGenevaOrchestra = () => {
       <Container
         sx={{ pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}
       >
-        <Typography
-          sx={{
-            mb: { xs: '24px', md: '-24px', lg: '48px' },
-          }}
-          component={'h1'}
-          variant="h1"
-        >
+        <Typography component={'h1'} variant="h1">
           {t(`navigation.${Routes.KYIV_GENEVA_ORCHESTRA}`)}
         </Typography>
 
@@ -43,8 +37,8 @@ const KyivGenevaOrchestra = () => {
           <Box key={index}>
             <Typography
               sx={{
-                mt: { xs: '24px', md: '48px' },
-                mb: { xs: '24px', lg: '48px' },
+                mt: { xs: 3, md: 5, lg: 6 },
+                mb: { xs: 3, md: 5, lg: 6 },
               }}
               component={'h3'}
               variant="h3"
@@ -55,7 +49,7 @@ const KyivGenevaOrchestra = () => {
               sx={{
                 columnCount: { lg: 2 },
                 columnGap: { lg: 3 },
-                mb: { xs: '24px', lg: '48px' },
+                mb: { xs: 3, md: 5, lg: 6 },
               }}
             >
               {item.text.map((item, index) => (
@@ -64,7 +58,11 @@ const KyivGenevaOrchestra = () => {
             </Box>
             <Box>
               <Box
-                sx={{ width: '100%', maxHeight: '681px', objectFit: 'cover' }}
+                sx={{
+                  width: '100%',
+                  maxHeight: '681px',
+                  objectFit: 'cover',
+                }}
                 component={'img'}
                 src={item.img.src}
                 alt={item.img.title}
