@@ -1,13 +1,15 @@
-import PageTemplate from '../Common/PageTemplate';
-import { Container } from '@mui/material';
+// import PageTemplate from '../Common/PageTemplate';
+// import { Container } from '@mui/material';
+import InDevelopmentPage from '../InDevelopmentPage/InDevelopmentPage';
 
 const MasterClassPage = () => {
   return (
-    <PageTemplate>
-      <Container>
-        <div>MasterClassPage</div>
-      </Container>
-    </PageTemplate>
+    <InDevelopmentPage />
+    // <PageTemplate>
+    //   <Container>
+    //     <div>MasterClassPage</div>
+    //   </Container>
+    // </PageTemplate>
   );
 };
 

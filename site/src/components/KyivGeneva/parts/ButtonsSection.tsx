@@ -26,14 +26,19 @@ const ButtonsSection: FC<ButtonsSectionProps> = ({ bgImage }) => {
                 component={Link}
                 sx={{
                   '&.MuiButton-root': {
-                    padding: '14px',
+                    paddingLeft: '10px',
+                    paddingRight: '10px',
                     fontSize: {
                       xs: '16px',
                       lg: '18px',
                     },
                   },
                   width: 'calc(33.3333% - 38px)',
-                  minWidth: '288px',
+                  minWidth: 288,
+                  height: {
+                    xs: 48,
+                    md: 60,
+                  },
                 }}
                 to={`/${Routes.KYIV_GENEVA}/${navigation.title}`}
               >

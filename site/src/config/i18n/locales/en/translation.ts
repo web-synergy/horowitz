@@ -18,7 +18,7 @@ export default {
     [Routes.ABOUT]: "About Us",
     [Routes.DETAILS]: "Horowitz Competition",
     [Routes.ADMINISTRATION]: "The Competition`s Administration",
-    [Routes.UKRAINIAN_WORKS]: "Works By Ukrainian Composers",
+    [Routes.UKRAINIAN_WORKS]: "Works by Ukrainian Composers",
     [Routes.KYIV_GENEVA]: "Horowitz Competition Kyiv-Geneva",
     [Routes.HOROWITZ]: "Vladimir Horowitz",
     [Routes.COMPETITIONS]: "Competition",

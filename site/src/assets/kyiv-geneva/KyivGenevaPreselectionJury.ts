@@ -1,8 +1,8 @@
-import baryshevskyi from '@/assets/images/kyiv-geneva/select-jury/baryshevskyi.jpg';
-import dvarionas from '@/assets/images/kyiv-geneva/select-jury/dvarionas.jpg';
-import kikuchi from '@/assets/images/kyiv-geneva/select-jury/kikuchi.jpg';
-import meerovitch from '@/assets/images/kyiv-geneva/select-jury/meerovitch.png';
-import szymanowski from '@/assets/images/kyiv-geneva/select-jury/szymanowski.jpeg';
+import baryshevskyi from '@/assets/images/kyiv-geneva/select-jury/baryshevskyi.webp';
+import dvarionas from '@/assets/images/kyiv-geneva/select-jury/dvarionas.webp';
+import kikuchi from '@/assets/images/kyiv-geneva/select-jury/kikuchi.webp';
+import meerovitch from '@/assets/images/kyiv-geneva/select-jury/meerovitch.webp';
+import szymanowski from '@/assets/images/kyiv-geneva/select-jury/szymanowski.webp';
 
 export const content = {
   list: [

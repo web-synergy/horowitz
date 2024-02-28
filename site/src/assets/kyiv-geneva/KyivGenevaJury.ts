@@ -1,12 +1,12 @@
-import karabits from '@/assets/images/kyiv-geneva/jury/Karabits.jpeg';
-import albanese from '@/assets/images/kyiv-geneva/jury/Albanese.jpeg';
-import beroff from '@/assets/images/kyiv-geneva/jury/Beroff.jpg';
-import gorlatch from '@/assets/images/kyiv-geneva/jury/Gorlatch.jpg';
-import gulda from '@/assets/images/kyiv-geneva/jury/Gulda.jpeg';
-import ho from '@/assets/images/kyiv-geneva/jury/Ho.jpeg';
-import lane from '@/assets/images/kyiv-geneva/jury/Lane.jpeg';
-import muravska from '@/assets/images/kyiv-geneva/jury/Muravska.jpeg';
-import ye from '@/assets/images/kyiv-geneva/jury/Ye.jpeg';
+import karabits from '@/assets/images/kyiv-geneva/jury/Karabits.webp';
+import albanese from '@/assets/images/kyiv-geneva/jury/Albanese.webp';
+import beroff from '@/assets/images/kyiv-geneva/jury/Beroff.webp';
+import gorlatch from '@/assets/images/kyiv-geneva/jury/Gorlatch.webp';
+import gulda from '@/assets/images/kyiv-geneva/jury/Gulda.webp';
+import ho from '@/assets/images/kyiv-geneva/jury/Ho.webp';
+import lane from '@/assets/images/kyiv-geneva/jury/Lane.webp';
+import muravska from '@/assets/images/kyiv-geneva/jury/Muravska.webp';
+import ye from '@/assets/images/kyiv-geneva/jury/Ye.webp';
 import { IJury } from '@/types/kyivGenevaDataTypes';
 
 interface IContent {

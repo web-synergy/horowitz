@@ -43,16 +43,11 @@ const CompetitionOrganizers: FC = () => {
                   key={organizer._key}
                   component={'img'}
                   sx={{
-                    maxWidth: {
-                      xs: '100%',
-                      md: '232px',
-                      lg: '480px',
-                    },
                     width: 'auto',
                     height: {
-                      xs: 58,
-                      md: 60,
-                      lg: 88,
+                      xs: Math.floor(organizer.size * 0.8),
+                      md: Math.floor(organizer.size * 0.9),
+                      lg: organizer.size,
                     },
                   }}
                   src={

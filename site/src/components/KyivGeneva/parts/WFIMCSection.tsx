@@ -1,26 +1,32 @@
-import { Routes } from '@/types/routes.d'
-import { Buttons } from '@/types/translation.d'
-import { Box, Container, Typography } from '@mui/material'
-import { FC } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
-import { Caption, ContentStack, ImageBox, StyledButton } from './styled'
+import { Routes } from '@/types/routes.d';
+import { Buttons } from '@/types/translation.d';
+import { Box, Container, Typography } from '@mui/material';
+import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { Caption, ContentStack, ImageBox, StyledButton } from './styled';
 
 type WFIMCSectionProps = {
-  image: string
+  image: string;
   wfimc_content: {
-    about: Array<string>
-    photoCaption: string
-  }
-}
+    about: Array<string>;
+    photoCaption: string;
+  };
+};
 
-const WFIMCSection: FC<WFIMCSectionProps> = ({ image, wfimc_content: { about, photoCaption } }) => {
-  const { t } = useTranslation()
+const WFIMCSection: FC<WFIMCSectionProps> = ({
+  image,
+  wfimc_content: { about, photoCaption },
+}) => {
+  const { t } = useTranslation();
 
   return (
     <Box>
       <Container>
-        <Typography variant="h2" sx={{ marginBottom: { xs: '24px', lg: '48px' } }}>
+        <Typography
+          variant="h2"
+          sx={{ marginBottom: { xs: '24px', lg: '48px' } }}
+        >
           WFIMC
         </Typography>
         <ContentStack>
@@ -43,11 +49,15 @@ const WFIMCSection: FC<WFIMCSectionProps> = ({ image, wfimc_content: { about, ph
               },
             }}
           >
-            <Typography variant="bodyRegular" component={'p'} sx={{ textAlign: 'justify' }}>
+            <Typography
+              variant="bodyRegular"
+              component={'p'}
+              sx={{ textAlign: 'justify' }}
+            >
               {about[0]}
             </Typography>
             <StyledButton
-              variant="secondary"
+              variant="transparent"
               component={Link}
               to={`/${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_WFIMC}`}
             >
@@ -57,7 +67,7 @@ const WFIMCSection: FC<WFIMCSectionProps> = ({ image, wfimc_content: { about, ph
         </ContentStack>
       </Container>
     </Box>
-  )
-}
+  );
+};
 
-export default WFIMCSection
+export default WFIMCSection;

@@ -1,4 +1,4 @@
-import { Box, BoxProps, Stack, styled } from '@mui/material'
+import { Box, BoxProps, Stack, styled } from '@mui/material';
 
 export const Wrapper = styled(Box)<BoxProps>(({ theme: { breakpoints } }) => ({
   [breakpoints.up('xs')]: {
@@ -10,7 +10,7 @@ export const Wrapper = styled(Box)<BoxProps>(({ theme: { breakpoints } }) => ({
   [breakpoints.up('lg')]: {
     marginBottom: '120px',
   },
-}))
+}));
 
 export const LogotypesStack = styled(Stack)(({ theme: { breakpoints } }) => ({
   flexDirection: 'row',
@@ -23,9 +23,9 @@ export const LogotypesStack = styled(Stack)(({ theme: { breakpoints } }) => ({
   },
   [breakpoints.up('md')]: {
     rowGap: '48px',
+    columnGap: '24px',
   },
   [breakpoints.up('lg')]: {
-    columnGap: '40px',
-    rowGap: '120px',
+    columnGap: '48px',
   },
-}))
+}));
