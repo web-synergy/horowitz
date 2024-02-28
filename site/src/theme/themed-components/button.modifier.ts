@@ -123,7 +123,10 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
     {
       props: { variant: 'link' },
       style: ({ theme }) => ({
-        padding: 0,
+        '&.MuiButton-root': {
+          padding: 0,
+        },
+
         backgroundColor: 'transparent',
         display: 'block',
         color: 'inherit',
@@ -190,9 +193,12 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
     {
       props: { variant: 'tertiary' },
       style: ({ theme }) => ({
+        '&.MuiButton-root': {
+          padding: 0,
+          paddingBottom: 2,
+        },
         minWidth: 0,
-        padding: 0,
-        paddingBottom: '2px',
+
         border: 'none',
         fontSize: '1rem',
         lineHeight: 1.5,
