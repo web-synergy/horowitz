@@ -12,18 +12,9 @@ import { MainTitle, WinnersCardsStack, Wrapper } from './styled';
 
 // !TEMP
 import fakeData from '../../temp/fakeDataWinners.json';
-import {
-  default as winner1Img,
-  default as winner4Img,
-} from '../../temp/winner_1.jpg';
-import {
-  default as winner2Img,
-  default as winner5Img,
-} from '../../temp/winner_2.jpg';
-import {
-  default as winner3Img,
-  default as winner6Img,
-} from '../../temp/winner_3.jpg';
+import winner1Img from '../../temp/winner_1.jpg';
+import winner2Img from '../../temp/winner_2.jpg';
+import winner3Img from '../../temp/winner_3.jpg';
 import { ShowMoreBtn } from '@/components/NewsSection/ShowMoreBtn';
 
 const CompetitionWinners: FC = () => {
@@ -34,14 +25,7 @@ const CompetitionWinners: FC = () => {
   const { t } = useTranslation();
 
   // !TEMP
-  const images = [
-    winner1Img,
-    winner2Img,
-    winner3Img,
-    winner4Img,
-    winner5Img,
-    winner6Img,
-  ];
+  const images = [winner1Img, winner2Img, winner3Img];
 
   return (
     <Wrapper component={'section'} ref={ref}>

@@ -1,21 +1,21 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
-import PageTemplate from '@/components/Common/PageTemplate'
-import { Caption } from '@/components/KyivGeneva/parts/styled'
+import PageTemplate from '@/components/Common/PageTemplate';
+import { Caption } from '@/components/KyivGeneva/parts/styled';
 
-import GoBackBtn from '@/components/Common/GoBackBtn'
-import { Routes } from '@/types/routes.d'
-import { Box, Container, Typography } from '@mui/material'
-import { FC } from 'react'
-import { MainBox, Wrapper } from './styled'
+import GoBackBtn from '@/components/Common/GoBackBtn';
+import { Routes } from '@/types/routes.d';
+import { Box, Container, Typography } from '@mui/material';
+import { FC } from 'react';
+import { MainBox, Wrapper } from './styled';
 
-import membersImg from '@/assets/images/kyiv-geneva/wfimc/wfimc.jpeg'
-import content from '@/assets/kyiv-geneva/main/geneva_mainPage.json'
+import membersImg from '@/assets/images/kyiv-geneva/wfimc/wfimc.webp';
+import content from '@/assets/kyiv-geneva/main/geneva_mainPage.json';
 
 const KyivGenevaWFIMCPage: FC = () => {
   const {
     i18n: { language },
-  } = useTranslation()
+  } = useTranslation();
 
   if (language === 'ua' || language === 'en')
     return (
@@ -43,7 +43,9 @@ const KyivGenevaWFIMCPage: FC = () => {
                     src={membersImg}
                     sx={{ maxWidth: '100%', display: 'block' }}
                   />
-                  <Caption component={'p'}>{content[language].wfimc.photoCaption}</Caption>
+                  <Caption component={'p'}>
+                    {content[language].wfimc.photoCaption}
+                  </Caption>
                 </Box>
                 {content[language].wfimc.about.map((item, i) => (
                   <Typography
@@ -64,7 +66,7 @@ const KyivGenevaWFIMCPage: FC = () => {
         </Container>
         <GoBackBtn href={Routes.KYIV_GENEVA} />
       </PageTemplate>
-    )
-}
+    );
+};
 
-export default KyivGenevaWFIMCPage
+export default KyivGenevaWFIMCPage;

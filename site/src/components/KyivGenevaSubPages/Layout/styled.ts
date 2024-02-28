@@ -1,5 +1,5 @@
 import { Box, styled } from '@mui/material';
-import banner from '@/assets/images/kyiv-geneva/banner.jpg';
+import banner from '@/assets/images/kyiv-geneva/banner.webp';
 import text from '@/assets/images/kyiv-geneva/text-eng.svg';
 
 export const ImageWrapper = styled(Box)(({ theme }) => ({

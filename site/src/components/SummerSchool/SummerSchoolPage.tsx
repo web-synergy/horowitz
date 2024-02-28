@@ -1,14 +1,7 @@
-import PageTemplate from '../Common/PageTemplate';
-import { Container } from '@mui/material';
+import InDevelopmentPage from '../InDevelopmentPage/InDevelopmentPage';
 
 const SummerSchoolPage = () => {
-  return (
-    <PageTemplate>
-      <Container>
-        <div>SummerSchool</div>;
-      </Container>
-    </PageTemplate>
-  );
+  return <InDevelopmentPage />;
 };
 
 export default SummerSchoolPage;

@@ -7,8 +7,8 @@ import ButtonsSection from './parts/ButtonsSection';
 import SponsorsSection from './parts/SponsorsSection';
 import WFIMCSection from './parts/WFIMCSection';
 
-import pianoImg from '@/assets/images/kyiv-geneva/mainPage/geneva_bg_piano.jpg';
-import WFIMC_members from '@/assets/images/kyiv-geneva/wfimc/wfimc.jpeg';
+import pianoImg from '@/assets/images/kyiv-geneva/mainPage/geneva_bg_piano.webp';
+import WFIMC_members from '@/assets/images/kyiv-geneva/wfimc/wfimc.webp';
 import pageData from '@/assets/kyiv-geneva/main/geneva_mainPage.json';
 
 const KyivGenevaPage = () => {

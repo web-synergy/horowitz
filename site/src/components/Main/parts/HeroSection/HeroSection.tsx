@@ -23,7 +23,7 @@ import {
 } from './styled';
 
 import bgVideo from '@/assets/bg_video.mp4';
-import poster from '@/assets/images//bg_video_poster.jpg';
+import poster from '@/assets/images//bg_video_poster.webp';
 
 import EUMCY_logo from '../../temp/EUMCY_logo.svg';
 import WFIMC_logo from '../../temp/WFIMC_logo.svg';
