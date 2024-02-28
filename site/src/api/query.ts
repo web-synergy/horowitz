@@ -1,19 +1,6 @@
 import groq from 'groq';
 export const homeQuery = groq`*[_type == 'home'][0]{
- 'quote':quote{
-       'author': author[_key ==$language].value,
-         'quote':quote[_key ==$language].value,
-     },
-         
-   
-
-    'winner':winner[]{
-    'name': name[_key ==$language].value,
-    'champion': champion[_key ==$language].value,
-      img
-
-
-    },
+      
     'news':*[_type == 'news'  && length(title[_key ==$language].value) != 0]| order( _createdAt desc) [0 ...3]{
      img,
     'title':  title[_key ==$language ][0].value,
