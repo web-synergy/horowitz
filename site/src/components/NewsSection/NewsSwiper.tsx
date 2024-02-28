@@ -4,26 +4,35 @@ import 'swiper/swiper-bundle.css';
 
 import { sliceNewsTitle } from '@/utils/helpers';
 
-import { Routes } from '@/types/routes.d';
-import { Buttons, Virtuosos } from '@/types/translation.d';
+import { Buttons } from '@/types/translation.d';
 
 import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
-import ShowMoreBtn from '@/components/Main/parts/NewsSection/ShowMoreBtn';
+
 import { IImage } from '@/types/newsTypes';
-import ArticleCard from './ArticleCard';
-interface IArticle {
+import NewsCart from './NewsCart';
+import { ShowMoreBtn } from './ShowMoreBtn';
+
+interface INews {
   title: string;
   slug: string;
   img: IImage;
 }
-const ArticleSection = ({ article }: { article: IArticle[] }) => {
+const NewsSwiper = ({
+  news,
+  title,
+  link,
+}: {
+  news: INews[];
+  title: string;
+  link: string;
+}) => {
   const { breakpoints } = useTheme();
   const isMobile = useMediaQuery(breakpoints.down('md'));
 
   const { t } = useTranslation();
 
   return (
-    <Box sx={{ my: { xs: '24px', md: '48px' } }}>
+    <Box>
       <Stack
         sx={{
           flexDirection: 'row',
@@ -32,12 +41,12 @@ const ArticleSection = ({ article }: { article: IArticle[] }) => {
           mb: { xs: '32px', md: '48px' },
         }}>
         <Typography component={'h2'} variant='h1'>
-          {t(`virtuosos.${Virtuosos.NEWS}`)}
+          {title}
         </Typography>
         <Box>
           <ShowMoreBtn
             title={t(`buttons.${Buttons.VIEW_ALL}`)}
-            link={`/${[Routes.VIRTUOSES_ARTICLE]}`}
+            link={`/${link}`}
             isTitleVisible={!isMobile}
           />
         </Box>
@@ -47,7 +56,7 @@ const ArticleSection = ({ article }: { article: IArticle[] }) => {
         spaceBetween={24}
         breakpoints={{
           300: {
-            slidesPerView: 1.2,
+            slidesPerView: 1.7,
           },
           768: {
             slidesPerView: 2.1,
@@ -56,12 +65,12 @@ const ArticleSection = ({ article }: { article: IArticle[] }) => {
             slidesPerView: 3,
           },
         }}>
-        {article.map(({ slug, img, title }) => (
+        {news.map(({ slug, img, title }) => (
           <SwiperSlide key={slug}>
-            <ArticleCard
-              title={sliceNewsTitle(title, 48)}
+            <NewsCart
+              title={sliceNewsTitle(title, 70)}
               img={img}
-              slug={slug}
+              slug={`/${link}/${slug}`}
             />
           </SwiperSlide>
         ))}
@@ -70,4 +79,4 @@ const ArticleSection = ({ article }: { article: IArticle[] }) => {
   );
 };
 
-export default ArticleSection;
+export default NewsSwiper;

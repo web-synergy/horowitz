@@ -37,8 +37,7 @@ export const components: PortableTextComponents = {
       <Typography
         component={'h2'}
         sx={{
-          mb: { xs: '24px', md: '32px' },
-          mt: { xs: '24px', md: '40px' },
+          my: { xs: '24px', md: '40px', lg: '48px' },
         }}
         variant='h2'>
         {children}
@@ -48,8 +47,7 @@ export const components: PortableTextComponents = {
       <Typography
         component={'h3'}
         sx={{
-          mb: { xs: '24px', md: '32px' },
-          mt: { xs: '24px', md: '40px' },
+          my: { xs: '24px', md: '40px', lg: '48px' },
         }}
         variant='h3'>
         {children}
@@ -59,8 +57,7 @@ export const components: PortableTextComponents = {
       <Typography
         component={'h4'}
         sx={{
-          mb: { xs: '24px', md: '32px' },
-          mt: { xs: '24px', md: '40px' },
+          my: { xs: '24px', md: '32px', lg: '40px' },
         }}
         variant='h3Block'>
         {children}
@@ -71,7 +68,7 @@ export const components: PortableTextComponents = {
         component={'p'}
         sx={{
           display: 'block',
-          my: { xs: '24px', lg: '32px' },
+          my: '16px',
           textAlign: 'justify',
         }}
         variant='bodyRegular'>
@@ -85,7 +82,7 @@ export const components: PortableTextComponents = {
           display: 'block',
           pl: '16px',
           borderLeft: 'solid 2px #141414',
-          my: { xs: '24px', lg: '32px' },
+          my: '16px',
         }}
         variant='blockquote'>
         {children}
@@ -102,7 +99,7 @@ export const components: PortableTextComponents = {
             display: 'flex',
             gap: '8px',
             flexDirection: 'column',
-            my: { xs: '24px', md: '24px', lg: '32px' },
+            my: '16px',
             pl: { xs: '24px', md: '32px' },
             lineHeight: { sx: '24px', md: '28px' },
           }}
@@ -119,7 +116,8 @@ export const components: PortableTextComponents = {
           display: 'flex',
           gap: '8px',
           flexDirection: 'column',
-          my: { xs: '24px', md: '32px' },
+          my: '16px',
+          pl: { xs: '24px', md: '32px' },
           lineHeight: { sx: '24px', md: '28px' },
         }}
         variant='bodyRegular'>

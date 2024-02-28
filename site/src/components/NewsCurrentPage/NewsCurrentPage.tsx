@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { Box, Container, Typography, useMediaQuery } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { PortableText } from '@portabletext/react';
@@ -11,7 +11,6 @@ import { INews } from '@/types/newsTypes';
 import GrowView from '../Common/GrowView';
 import Loader from '../Common/Loader';
 
-import { theme } from '@/theme';
 import { parseAndFormatDate } from '@/utils/helpers';
 import PageTemplate from '../Common/PageTemplate';
 
@@ -36,12 +35,11 @@ const NewsCurrentPage = () => {
     language,
   });
 
-  const isMob = useMediaQuery(theme.breakpoints.down('md'));
-
   if (loading) return <Loader />;
   if (error) {
     console.error(error);
   }
+
   return (
     <PageTemplate>
       <Container>
@@ -55,16 +53,14 @@ const NewsCurrentPage = () => {
               <Box
                 sx={{
                   width: '100%',
+                  maxHeight: { md: '408px' },
                   height: 'auto',
+                  aspectRatio: { xs: '2/1.7', lg: '16/9' },
+                  objectFit: 'cover',
                 }}
                 src={
                   data.img?.asset &&
-                  urlFor(data.img)
-                    .width(isMob ? 400 : 920)
-                    .height(isMob ? 340 : 408)
-                    .fit('fill')
-                    .url()
-                    .toString()
+                  urlFor(data.img).width(920).height(408).url().toString()
                 }
                 alt={data.img?.alt}
                 component={'img'}></Box>

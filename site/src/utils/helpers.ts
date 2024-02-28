@@ -22,5 +22,7 @@ export const parseAndFormatDate = (dateString: string): string => {
 };
 
 export const sliceNewsTitle = (title: string, sliceIndex: number): string => {
-  return title.length > sliceIndex ? title.slice(0, sliceIndex) + '...' : title;
+  return title?.length > sliceIndex
+    ? title.slice(0, sliceIndex) + '...'
+    : title;
 };
