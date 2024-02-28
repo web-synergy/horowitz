@@ -6,7 +6,7 @@ export const homeQuery = groq`*[_type == 'home'][0]{
      },
          
    
-      },
+
     'winner':winner[]{
     'name': name[_key ==$language].value,
     'champion': champion[_key ==$language].value,
@@ -18,7 +18,6 @@ export const homeQuery = groq`*[_type == 'home'][0]{
      img,
     'title':  title[_key ==$language ][0].value,
     'slug':slug.current,}
-
  
 }`;
 

@@ -15,8 +15,9 @@ const MainPage: FC = () => {
   const {
     i18n: { language },
   } = useTranslation();
-  const fetchHome = useHomeStore(state => state.fetchHome);
+  const { fetchHome, requestLang } = useHomeStore();
   useEffect(() => {
+    if (requestLang === language) return;
     fetchHome(language);
   }, [language]);
   return (
