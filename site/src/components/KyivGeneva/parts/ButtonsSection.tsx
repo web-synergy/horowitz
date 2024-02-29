@@ -1,55 +1,41 @@
-import { kyivGenevaNavigation } from '@/config/routes/navigation';
-import { Routes } from '@/types/routes.d';
-import { Box, Button, Container } from '@mui/material';
-import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import { BgImage, ButtonsListStack, MainBox } from './styled';
+import { kyivGenevaNavigation } from '@/config/routes/navigation'
+import { Routes } from '@/types/routes.d'
+
+import { Box, Container } from '@mui/material'
+import { FC } from 'react'
+
+import LinksList from '@/components/Common/LinksList'
+import { BgImage, MainBox } from './styled'
 
 type ButtonsSectionProps = {
-  bgImage: string;
-};
+  bgImage: string
+}
 
 const ButtonsSection: FC<ButtonsSectionProps> = ({ bgImage }) => {
-  const { t } = useTranslation();
-
   return (
     <MainBox>
       <BgImage component={'img'} src={bgImage} alt="background image" />
       <Box position={'relative'} zIndex={5}>
         <Container>
-          <ButtonsListStack>
-            {kyivGenevaNavigation.map((navigation, i) => (
-              <Button
-                key={i}
-                fullWidth
-                component={Link}
-                sx={{
-                  '&.MuiButton-root': {
-                    paddingLeft: '10px',
-                    paddingRight: '10px',
-                    fontSize: {
-                      xs: '16px',
-                      lg: '18px',
-                    },
-                  },
-                  width: 'calc(33.3333% - 38px)',
-                  minWidth: 288,
-                  height: {
-                    xs: 48,
-                    md: 60,
-                  },
-                }}
-                to={`/${Routes.KYIV_GENEVA}/${navigation.title}`}
-              >
-                {t(`navigation.${navigation.title}`)}
-              </Button>
-            ))}
-          </ButtonsListStack>
+          <Box
+            sx={{
+              margin: {
+                xs: '48px 0',
+                md: '96px 0',
+                lg: '120px 0',
+              },
+              height: {
+                md: '396px',
+                lg: '277px',
+              },
+            }}
+          >
+            <LinksList linksList={kyivGenevaNavigation} path={Routes.KYIV_GENEVA} />
+          </Box>
         </Container>
       </Box>
     </MainBox>
-  );
-};
+  )
+}
 
-export default ButtonsSection;
+export default ButtonsSection
