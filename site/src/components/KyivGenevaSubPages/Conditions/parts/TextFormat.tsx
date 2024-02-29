@@ -4,29 +4,27 @@ import { IConditionsData } from '@/types/kyivGenevaDataTypes';
 
 export default function TextFormat({ title, text }: IConditionsData) {
   return (
-    <Box sx={{ mb: { xs: '-8px', lg: '-16px' } }}>
+    <Box sx={{ marginBottom: '-16px' }}>
       <Typography
-        sx={{ mt: { xs: '24px', md: '48px' }, mb: '24px' }}
+        sx={{ my: { xs: 3, md: 5, lg: 6 } }}
         component={'h3'}
-        variant='h3'>
+        variant="h3"
+      >
         {title}
       </Typography>
-      <Grid container spacing={{ md: 0, lg: 3 }}>
+      <Grid container spacing={{ xs: 0, lg: 3 }}>
         <Grid item lg={6}>
           {text.slice(0, text.length / 2).map((text, index) => (
             <Box key={index}>
               {text.h4 && (
-                <Typography
-                  sx={{ mb: '16px' }}
-                  component={'h4'}
-                  variant='subhead'>
+                <Typography component={'h4'} variant="subhead" sx={{ mb: 3 }}>
                   {text.h4}
                 </Typography>
               )}
-              <RichText variant='bodyRegular'>
+              <RichText variant="bodyRegular">
                 {text.p}
                 {text.list?.map((item, index) => (
-                  <Typography component={'p'} variant='bodyRegular' key={index}>
+                  <Typography component={'p'} variant="bodyRegular" key={index}>
                     {item}
                   </Typography>
                 ))}
@@ -36,7 +34,7 @@ export default function TextFormat({ title, text }: IConditionsData) {
         </Grid>
         <Grid item lg={6}>
           {text.slice(text.length / 2).map((text, index) => (
-            <RichText key={index} variant='bodyRegular'>
+            <RichText key={index} variant="bodyRegular">
               {text.p}
             </RichText>
           ))}

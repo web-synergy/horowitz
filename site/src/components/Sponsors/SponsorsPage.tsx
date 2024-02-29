@@ -14,7 +14,7 @@ import { partners as partnersQuery } from '@/api/query';
 import { useLiveQuery } from '@sanity/preview-kit';
 
 const SponsorsPage: FC = () => {
-  const fetchData = usePartnersStore(state => state.fetchPartners);
+  const fetchData = usePartnersStore((state) => state.fetchPartners);
   const data = usePartnersStore();
   //
   const {
@@ -48,7 +48,8 @@ const SponsorsPage: FC = () => {
         sx={{
           paddingTop: { xs: 3, md: 6 },
           paddingBottom: { xs: 9, md: 12, lg: 15 },
-        }}>
+        }}
+      >
         <MainTitle component={'h1'}>
           {t(`sponsorsPage.${Sponsors.MAIN_TITLE}`)}
         </MainTitle>

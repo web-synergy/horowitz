@@ -30,11 +30,6 @@ const banner = defineType({
       hidden: ({parent}) => parent?.fullSize,
       fields: [
         {
-          name: 'width',
-          title: 'Ширина у %',
-          type: 'number',
-        },
-        {
           name: 'position',
           title: 'Розміщення',
           type: 'string',

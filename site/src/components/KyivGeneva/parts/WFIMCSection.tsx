@@ -24,8 +24,9 @@ const WFIMCSection: FC<WFIMCSectionProps> = ({
     <Box>
       <Container>
         <Typography
-          variant="h2"
-          sx={{ marginBottom: { xs: '24px', lg: '48px' } }}
+          variant="h1"
+          component="h2"
+          sx={{ marginBottom: { xs: 3, md: 5, lg: 6 } }}
         >
           WFIMC
         </Typography>

@@ -48,9 +48,7 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
     ? urlFor(img).auto('format').width(windowWidth).height(windowHeight).url()
     : urlFor(img).auto('format').url();
 
-  const imageLocation = location
-    ? location
-    : { width: 100, position: 'center' };
+  const imageLocation = location ? location : { position: 'center' };
 
   return (
     <Box
@@ -74,8 +72,9 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
           src={image}
           sx={{
             display: 'block',
-            width: fullSize ? '100%' : `${imageLocation.width}%`,
+            width: fullSize ? '100%' : 'auto',
             height: '100%',
+            objectFit: 'cover',
           }}
         />
       </Box>

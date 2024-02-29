@@ -14,8 +14,10 @@ const KyivGenevaJuryList = () => {
   } = useTranslation();
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 3, md: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
-        <Typography variant="h1" mb={{ xs: 3, lg: 6 }}>
+      <Container
+        sx={{ pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}
+      >
+        <Typography variant="h1" mb={{ xs: 3, md: 5, lg: 6 }}>
           {t(`navigation.${Routes.KYIV_GENEVA_JURY}`)}
         </Typography>
         <Typography
@@ -24,7 +26,7 @@ const KyivGenevaJuryList = () => {
             textAlign: 'justify',
             columnCount: { xs: 1, lg: 2 },
             columnGap: 3,
-            mb: { xs: 3, md: 6 },
+            mb: { xs: 3, md: 5, lg: 6 },
           }}
         >
           {language === 'ua' ? content.text.ua : content.text.en}

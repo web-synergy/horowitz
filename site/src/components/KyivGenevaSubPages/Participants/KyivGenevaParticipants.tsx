@@ -17,7 +17,7 @@ const KyivGenevaParticipants = () => {
           pb: { xs: 9, md: 12, lg: 15 },
           display: 'flex',
           flexDirection: 'column',
-          gap: { xs: '24px', lg: '48px' },
+          gap: { xs: 3, md: 5, lg: 6 },
         }}
       >
         <Typography component={'h1'} variant="h1">

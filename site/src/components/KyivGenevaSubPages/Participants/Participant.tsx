@@ -19,7 +19,7 @@ const Participant: FC<ParticipantProps> = ({ item }) => {
         variant="subhead"
         component={'p'}
         sx={{
-          margin: '24px 0px 16px',
+          marginTop: 3,
         }}
       >
         {language === 'ua' ? item.fullName.ua : item.fullName.en}

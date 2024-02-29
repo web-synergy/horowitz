@@ -60,15 +60,15 @@ const HorowitzPage: FC = () => {
       <Container>
         <Box
           sx={{
-            paddingTop: { xs: '24px', md: '48px' },
-            paddingBottom: { xs: '24px', md: '48px' },
+            paddingTop: { xs: 3, md: 5, lg: 6 },
+            paddingBottom: { xs: 3, md: 5, lg: 6 },
           }}
         >
           <Typography
             variant="h1"
             sx={{
               textTransform: 'uppercase',
-              marginBottom: { xs: '24px', lg: '48px' },
+              marginBottom: { xs: 3, md: 5, lg: 6 },
               textAlign: 'center',
             }}
           >
@@ -82,8 +82,8 @@ const HorowitzPage: FC = () => {
         {lowerTextBlock && (
           <Box
             sx={{
-              paddingTop: { xs: '24px', md: '48px' },
-              paddingBottom: { xs: '24px', md: '48px' },
+              paddingTop: { xs: 3, md: 5, lg: 6 },
+              paddingBottom: { xs: 3, md: 5, lg: 6 },
             }}
           >
             <TextBlockSection blocks={lowerTextBlock} />
