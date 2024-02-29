@@ -44,17 +44,19 @@ const UkrainianComposition = () => {
         <>
           <MainBanner banner={data?.banner} />
           <Container
-            sx={{ pt: { xs: 6, lg: 15 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+            sx={{ pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}
+          >
             <Typography
-              variant='h1'
-              textAlign='center'
-              mb={{ xs: 3, lg: 6 }}
+              variant="h1"
+              textAlign="center"
+              mb={{ xs: 3, md: 5, lg: 6 }}
               maxWidth={{ xs: '80%' }}
-              mx='auto'>
+              mx="auto"
+            >
               {t(`navigation.${Routes.UKRAINIAN_WORKS}`)}
             </Typography>
 
-            <Box sx={{ mb: { xs: 3, lg: 6 } }}>
+            <Box sx={{ mb: { xs: 3, md: 5, lg: 6 } }}>
               <PortableText value={data.text} components={components} />
             </Box>
 

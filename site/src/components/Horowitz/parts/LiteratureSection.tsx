@@ -1,9 +1,9 @@
-import React from "react";
-import { Box, Collapse } from "@mui/material";
+import React from 'react';
+import { Box, Collapse } from '@mui/material';
 
-import { PortableText } from "@portabletext/react";
-import { collapsComponents, components } from "../portableComponents";
-import { LiteratureSectionProps } from "@/types/horowitzTypes";
+import { PortableText } from '@portabletext/react';
+import { collapsComponents, components } from '../portableComponents';
+import { LiteratureSectionProps } from '@/types/horowitzTypes';
 
 const LiteratureSection: React.FC<LiteratureSectionProps> = ({
   literature,
@@ -12,7 +12,7 @@ const LiteratureSection: React.FC<LiteratureSectionProps> = ({
   return (
     <Box
       sx={{
-        paddingTop: { xs: "24px", md: "16px", lg: "24px" },
+        paddingTop: 3,
       }}
     >
       <PortableText value={literature.slice(0, 4)} components={components} />
