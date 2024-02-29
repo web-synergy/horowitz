@@ -19,7 +19,6 @@ interface CommonProperty {
   copyright?: string;
   fullSize: boolean;
   location?: {
-    width: number;
     position: 'center' | 'left' | 'right';
   };
   maxHeight: number;
