@@ -31,7 +31,7 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
         height: Math.floor(imgWidth / aspectRatio),
       });
     }
-  }, [containerSize]);
+  }, [containerSize, value]);
 
   return (
     <GrowView>

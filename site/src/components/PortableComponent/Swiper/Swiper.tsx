@@ -36,7 +36,7 @@ export const PortableSwiper = ({ value }: { value: IPortableImgGallery }) => {
         480
       ),
     });
-  }, [containerSize]);
+  }, [containerSize, value]);
   if (!images) return null;
 
   const imagesLength = images.length;

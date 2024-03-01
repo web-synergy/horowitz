@@ -34,7 +34,7 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
       const imgWidth = Math.floor(containerSize / QTY_COLUMN);
       setSize(imgWidth);
     }
-  }, [containerSize]);
+  }, [containerSize, value]);
 
   const handleClickOpen = (index: number) => {
     setSliderIndex(index);
