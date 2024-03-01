@@ -20,14 +20,14 @@ import { Link as RouterLink } from 'react-router-dom';
 
 interface INewsListItem {
   img: IImage;
-  _createdAt: string;
   title: string;
   shortDescription: string;
   slug: string;
+  date: string;
 }
 
 const NewsListItem = ({
-  _createdAt,
+  date,
   img,
   title,
   shortDescription,
@@ -35,6 +35,7 @@ const NewsListItem = ({
 }: INewsListItem) => {
   const theme = useTheme();
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <ListItem>
       <GrowView>
@@ -66,7 +67,7 @@ const NewsListItem = ({
               <Typography
                 sx={{ color: theme => theme.palette.neutral[50] }}
                 variant='bodyLight'>
-                {parseAndFormatDate(_createdAt)}
+                {parseAndFormatDate(date)}
               </Typography>
               <Link component={RouterLink} to={slug}>
                 <Typography variant='subhead'>{title}</Typography>
