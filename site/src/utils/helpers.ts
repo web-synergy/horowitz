@@ -9,6 +9,7 @@ export const phoneNumberFormatting = (
 };
 
 export const parseAndFormatDate = (dateString: string): string => {
+  if (!dateString) return '';
   const dateObject: Date = new Date(dateString);
   const day: number = dateObject.getUTCDate();
   const month: number = dateObject.getUTCMonth() + 1;
