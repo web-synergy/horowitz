@@ -12,7 +12,7 @@ export default function NewsBanner({ img }: { img: IImage }) {
     height: number;
   }>({
     width: 0,
-    height: 480,
+    height: 408,
   });
   const { containerSize, containerRef } = useWidthBlokSize();
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
@@ -23,7 +23,7 @@ export default function NewsBanner({ img }: { img: IImage }) {
         width: containerSize,
         height: Math.min(
           Math.floor(isMob ? containerSize / 0.93 : containerSize / 1.93),
-          480
+          408
         ),
       });
     }
