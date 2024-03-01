@@ -10,7 +10,7 @@ interface BioTemplateProps {
 const BioTemplate: FC<BioTemplateProps> = ({ title, textArray, img }) => {
   return (
     <>
-      <Typography variant="h1" mb={{ xs: 3, lg: 6 }}>
+      <Typography variant="h1" mb={{ xs: 3, md: 5, lg: 6 }}>
         {title}
       </Typography>
 
@@ -79,17 +79,11 @@ export const Wrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const TextBlock = styled(Typography)(({ theme }) => ({
+export const TextBlock = styled(Typography)(() => ({
   textAlign: 'justify',
   display: 'block',
 
   '&:not(:last-of-type)': {
-    marginBottom: 8,
-  },
-
-  [theme.breakpoints.up('lg')]: {
-    '&:not(:last-of-type)': {
-      marginBottom: 16,
-    },
+    marginBottom: 16,
   },
 }));

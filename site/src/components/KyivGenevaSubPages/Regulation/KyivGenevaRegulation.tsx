@@ -8,6 +8,7 @@ import GoBackBtn from '@/components/Common/GoBackBtn';
 const Title = styled(Typography)(() => ({
   display: 'block',
 }));
+
 const Text = styled(Typography)(() => ({
   display: 'block',
   textAlign: 'justify',
@@ -20,31 +21,36 @@ const KyivGenevaRegulation = () => {
   } = useTranslation();
 
   const data = regulationData[language];
+
+  console.log(data);
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 3, md: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
-        <Typography component={'h1'} variant='h1'>
+      <Container
+        sx={{ pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}
+      >
+        <Typography component={'h1'} variant="h1">
           {t(`navigation.${Routes.KYIV_GENEVA_TIMETABLE}`)}
         </Typography>
 
         <Stack
-          sx={{ mt: { xs: '24px', lg: '48px' } }}
+          sx={{ mt: { xs: 3, md: 5, lg: 6 } }}
           direction={'column'}
-          spacing={'48px'}>
-          {data.map(item => (
-            <Stack direction={'column'} spacing={{ xs: '24px', md: '48px' }}>
-              <Stack direction={'column'} spacing={'24px'}>
-                <Title variant='h3'>{item.title}</Title>
-
-                {item.rules.map(item => (
-                  <Text variant='bodyRegular'>{item}</Text>
+          spacing={{ xs: 3, md: 5, lg: 6 }}
+        >
+          {data.map((item) => (
+            <Stack direction={'column'} spacing={{ xs: 3, md: 5, lg: 6 }}>
+              <Title variant="h3">{item.title}</Title>
+              <Stack direction={'column'} spacing={2}>
+                {item.rules.map((item) => (
+                  <Text variant="bodyRegular">{item}</Text>
                 ))}
               </Stack>
-              {item.date.map(item => (
-                <Stack direction={'column'} spacing={'24px'}>
-                  <Text variant='bodyMedium'>{item.day}</Text>
-                  {item.description.map(item => (
-                    <Text variant='bodyRegular'>{item}</Text>
+
+              {item.date.map((item) => (
+                <Stack direction={'column'} spacing={2}>
+                  <Text variant="bodyMedium">{item.day}</Text>
+                  {item.description.map((item) => (
+                    <Text variant="bodyRegular">{item}</Text>
                   ))}
                 </Stack>
               ))}

@@ -17,6 +17,7 @@ export const Caption = styled(Typography)<TypographyProps>(
     fontSize: '0.5rem',
     lineHeight: 2,
     textAlign: 'justify',
+
     [breakpoints.up('md')]: {
       fontSize: '0.75rem',
       lineHeight: 1.33,
@@ -27,7 +28,7 @@ export const Caption = styled(Typography)<TypographyProps>(
 export const StyledButton = styled(Button)<ButtonProps & LinkProps>(
   ({ theme }) => ({
     width: '288px',
-    marginTop: '24px',
+    marginTop: '48px',
     textAlign: 'center',
 
     [theme.breakpoints.up('xs')]: {
@@ -36,6 +37,7 @@ export const StyledButton = styled(Button)<ButtonProps & LinkProps>(
     [theme.breakpoints.up('md')]: {
       display: 'block',
       marginLeft: 'auto',
+      marginTop: '24px',
     },
     [theme.breakpoints.up('lg')]: {
       position: 'absolute',
@@ -50,6 +52,10 @@ export const AboutTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
   textTransform: 'capitalize',
   marginBottom: '24px',
 
+  [theme.breakpoints.up('md')]: {
+    marginBottom: '40px',
+  },
+
   [theme.breakpoints.up('lg')]: {
     marginBottom: '48px',
   },
@@ -58,10 +64,10 @@ export const AboutTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
 export const AboutStack = styled(Stack)(({ theme }) => ({
   maxHeight: '100%',
   flexWrap: 'wrap',
-  gap: '8px',
+  rowGap: '16px',
+
   [theme.breakpoints.up('lg')]: {
     maxHeight: '350px',
-    rowGap: '16px',
     columnGap: '24px',
   },
 }));
@@ -96,13 +102,13 @@ export const ButtonsListStack = styled(Stack)(({ theme }) => ({
   alignItems: 'center',
 
   [theme.breakpoints.up('md')]: {
-    margin: '115px 0 105px',
+    margin: '96px 0',
     flexWrap: 'wrap',
     height: '396px',
     columnGap: '68px',
   },
   [theme.breakpoints.up('lg')]: {
-    margin: '160px 0',
+    margin: '120px 0',
     height: '277px',
     columnGap: '56px',
     rowGap: '48px',
@@ -112,7 +118,13 @@ export const ButtonsListStack = styled(Stack)(({ theme }) => ({
 export const ContentStack = styled(Stack)(({ theme }) => ({
   gap: '24px',
   flexWrap: 'wrap',
+
+  [theme.breakpoints.up('md')]: {
+    gap: '16px',
+  },
+
   [theme.breakpoints.up('lg')]: {
+    gap: '24px',
     flexDirection: 'row',
   },
 }));

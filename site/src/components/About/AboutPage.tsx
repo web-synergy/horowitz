@@ -29,6 +29,7 @@ const AboutPage: FC = () => {
   useEffect(() => {
     if (requestLang === language) return;
     fetchAboutCompetitionData(language);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchAboutCompetitionData, language]);
 
   const aboutCompetitionData = useAboutCompetitionStore();
@@ -48,7 +49,6 @@ const AboutPage: FC = () => {
     language,
   });
 
-  console.log(mainBanner);
   if (isLoading) {
     return <Loader />;
   }
@@ -57,13 +57,13 @@ const AboutPage: FC = () => {
       {mainBanner && <MainBanner banner={mainBanner} />}
       <Container
         sx={{
-          paddingTop: { xs: '24px', md: '48px' },
+          paddingTop: { xs: 3, md: 5, lg: 6 },
           paddingBottom: { xs: '72px', md: '96px', lg: '120px' },
         }}
       >
         <Box
           sx={{
-            marginBottom: { xs: '24px', lg: '48px' },
+            marginBottom: { xs: 3, md: 5, lg: 6 },
             textAlign: 'center',
             textTransform: 'uppercase',
           }}
@@ -72,7 +72,13 @@ const AboutPage: FC = () => {
             {t(`navigation.${Routes.DETAILS}`)}
           </Typography>
         </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: { xs: 3, md: 5, lg: 6 },
+          }}
+        >
           <TextBlockSection blocks={upperTextBlock} />
           {imgHistoryOne && <ImageSection image={imgHistoryOne} />}
           {middleTextBlock && <TextBlockSection blocks={middleTextBlock} />}

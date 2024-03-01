@@ -1,19 +1,19 @@
-import React from "react";
-import { Box } from "@mui/material";
+import React from 'react';
+import { Box } from '@mui/material';
 
-import { PortableText } from "@portabletext/react";
-import { components } from "../portableComponents";
-import { TextBlockSectionProps } from "@/types/horowitzTypes";
+import { PortableText } from '@portabletext/react';
+import { components } from '../portableComponents';
+import { TextBlockSectionProps } from '@/types/horowitzTypes';
 
 const TextBlockSection: React.FC<TextBlockSectionProps> = ({ blocks }) => {
   return (
     <Box
       sx={{
         columnCount: { xs: 1, lg: 2 },
-        columnGap: "24px",
+        columnGap: '24px',
 
-        "& p:not(:last-child)": {
-          marginBottom: { xs: "8px", lg: "16px" },
+        '& p:not(:last-child)': {
+          marginBottom: 2,
         },
       }}
     >

@@ -1,15 +1,15 @@
-import { useEffect } from "react";
-import { Container, Typography, Grid, Box } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import { useEffect } from 'react';
+import { Container, Typography, Grid, Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
-import PageTemplate from "../Common/PageTemplate";
-import { useAdministrationStore } from "@/store/administrationStore";
-import { Routes } from "@/types/routes.d";
-import MemberCardItem from "./parts/MemberCardItem";
-import Loader from "../Common/Loader";
-import { useLiveQuery } from "@sanity/preview-kit";
-import { administrationQuery } from "@/api/query";
-import MainBanner from "../Common/MainBanner";
+import PageTemplate from '../Common/PageTemplate';
+import { useAdministrationStore } from '@/store/administrationStore';
+import { Routes } from '@/types/routes.d';
+import MemberCardItem from './parts/MemberCardItem';
+import Loader from '../Common/Loader';
+import { useLiveQuery } from '@sanity/preview-kit';
+import { administrationQuery } from '@/api/query';
+import MainBanner from '../Common/MainBanner';
 
 const AdministrationPage = () => {
   const {
@@ -50,25 +50,25 @@ const AdministrationPage = () => {
       {banner && <MainBanner banner={banner} />}
       <Container
         sx={{
-          paddingTop: { xs: "24px", md: "48px" },
-          paddingBottom: { xs: "72px", md: "96px", lg: "120px" },
+          paddingTop: { xs: 3, md: 5, lg: 6 },
+          paddingBottom: { xs: '72px', md: '96px', lg: '120px' },
         }}
       >
         <Typography
           sx={{
-            marginBottom: { xs: "24px", lg: "48px" },
-            textAlign: "center",
+            marginBottom: { xs: 3, md: 5, lg: 6 },
+            textAlign: 'center',
           }}
           variant="h1"
           gutterBottom
         >
           {t(`navigation.${Routes.ADMINISTRATION}`)}
         </Typography>
-        <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: '100%' }}>
           <Grid
             container
-            rowSpacing={{ xs: "24px", md: "48px" }}
-            columnSpacing={{ md: "26px" }}
+            rowSpacing={{ xs: 3, md: 5, lg: 6 }}
+            columnSpacing={{ md: '26px' }}
           >
             {members &&
               members.map((member, index) => (

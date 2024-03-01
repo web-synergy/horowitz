@@ -17,7 +17,7 @@ const SponsorsSection: FC = () => {
   return (
     <Box>
       <Container>
-        <Stack sx={{ gap: { xs: '24px', lg: '48px' } }}>
+        <Stack sx={{ gap: { xs: 3, md: 5, lg: 6 } }}>
           <Typography variant="h1" component={'h2'}>
             {t(`sponsorsPage.${Sponsors.PARTNERS}`)}
           </Typography>
@@ -43,11 +43,6 @@ const SponsorsSection: FC = () => {
                   alt="logotype"
                   sx={{
                     display: 'block',
-                    // maxHeight: {
-                    //   xs: '102px',
-                    //   md: '72px',
-                    //   lg: '80px',
-                    // },
                     height: '63px',
                   }}
                 />
@@ -63,10 +58,7 @@ const SponsorsSection: FC = () => {
             sx={{
               width: '288px',
               border: (theme) => `1px solid ${theme.palette.common.black}`,
-              marginTop: {
-                xs: '24px',
-                md: '48px',
-              },
+              marginTop: 6,
             }}
           >
             {t(`buttons.${Buttons.VIEW_ALL}`)}

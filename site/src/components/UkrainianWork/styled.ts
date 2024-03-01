@@ -3,7 +3,7 @@ import { styled, List as MuiList, Link as MuiLink } from '@mui/material';
 export const List = styled(MuiList)(() => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: 24,
+  gap: 16,
 }));
 
 export const Link = styled(MuiLink)(({ theme }) => ({

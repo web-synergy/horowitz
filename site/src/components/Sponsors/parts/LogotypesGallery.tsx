@@ -1,15 +1,20 @@
-import { urlFor } from '@/config/sanity/imageUrl'
-import { Partner } from '@/types/partnersTypes'
-import { Box, Stack, Typography } from '@mui/material'
-import { FC } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { urlFor } from '@/config/sanity/imageUrl';
+import { Partner } from '@/types/partnersTypes';
+import { Box, Stack, Typography } from '@mui/material';
+import { FC } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import GrowView from '@/components/Common/GrowView';
 
 interface LogotypesGalleryProps {
-  title: string
-  gallery: Partner[]
-  optRowGap?: number
+  title: string;
+  gallery: Partner[];
+  optRowGap?: number;
 }
-const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery, optRowGap }) => {
+const LogotypesGallery: FC<LogotypesGalleryProps> = ({
+  title,
+  gallery,
+  optRowGap,
+}) => {
   return (
     <Box>
       <Typography variant="subhead">{title}</Typography>
@@ -33,35 +38,37 @@ const LogotypesGallery: FC<LogotypesGalleryProps> = ({ title, gallery, optRowGap
         }}
       >
         {gallery.length &&
-          gallery.map(item => (
+          gallery.map((item) => (
             <Box key={item._key}>
               <RouterLink
                 to={item.link}
                 target="_blank"
-                onClick={e => !item.link && e.preventDefault()}
+                onClick={(e) => !item.link && e.preventDefault()}
                 style={{ cursor: !item.link ? 'default' : '' }}
               >
-                <Box
-                  component={'img'}
-                  src={urlFor(item.img).url().toString()}
-                  alt={item.title}
-                  sx={{
-                    height: {
-                      xs: item.size * 0.64,
-                      md: item.size * 0.8,
-                      lg: item.size,
-                    },
-                    width: 'auto',
-                    maxWidth: '100%',
-                    fontSize: 0,
-                  }}
-                />
+                <GrowView>
+                  <Box
+                    component={'img'}
+                    src={urlFor(item.img).url().toString()}
+                    alt={item.title}
+                    sx={{
+                      height: {
+                        xs: item.size * 0.64,
+                        md: item.size * 0.8,
+                        lg: item.size,
+                      },
+                      width: 'auto',
+                      maxWidth: '100%',
+                      fontSize: 0,
+                    }}
+                  />
+                </GrowView>
               </RouterLink>
             </Box>
           ))}
       </Stack>
     </Box>
-  )
-}
+  );
+};
 
-export default LogotypesGallery
+export default LogotypesGallery;

@@ -17,7 +17,9 @@ const KyivGenevaPreselectionJury = () => {
 
   return (
     <PageTemplate>
-      <Container sx={{ pt: { xs: 3, md: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}>
+      <Container
+        sx={{ pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}
+      >
         <Jury jury={juryData} />
       </Container>
       <GoBackBtn
