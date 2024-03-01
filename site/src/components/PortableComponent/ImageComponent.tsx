@@ -1,35 +1,79 @@
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage, IPortableImgGallery } from '@/types/newsTypes';
-import { Box } from '@mui/material';
-import { Suspense, lazy } from 'react';
+import { Box, useMediaQuery } from '@mui/material';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { PortableSwiper } from './Swiper/Swiper';
 
 import GrowView from '@/components/Common/GrowView';
+import { theme } from '@/theme';
+import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 const GridGallery = lazy(() => import('./GridGallery'));
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ImageComponent = ({ value }: { value: IImage }) => {
+  const [imgSize, setImgSize] = useState<{
+    width: number;
+    height: number;
+  }>({
+    width: 0,
+    height: 0,
+  });
+
+  const isMob = useMediaQuery(theme.breakpoints.down('md'));
+
+  const { width, aspectRatio, asset, alt, position, isEmbed } = value;
+  const { containerSize, containerRef } = useWidthBlokSize();
+  useEffect(() => {
+    if (containerSize) {
+      const imgWidth = Math.floor(containerSize / 100) * (isMob ? 100 : width);
+      setImgSize({
+        width: imgWidth,
+        height: Math.floor(imgWidth / aspectRatio),
+      });
+    }
+  }, [containerSize, value]);
+
   return (
     <GrowView>
-      <Box sx={{ my: { xs: '32px', md: '40px' } }}>
+      <Box
+        sx={{
+          display: {
+            xs: 'flex',
+            md: isEmbed && position !== 'center' ? 'block' : 'flex',
+          },
+          justifyContent: { xs: 'center', md: position },
+        }}
+        ref={containerRef}>
         <Box
           component={'img'}
           sx={{
-            width: '100%',
-            height: { xs: 'auto', md: '408px' },
-            objectFit: { sx: 'none', md: 'cover' },
+            float: isEmbed || position === 'center' ? position : ' none',
+            justifyContent: { xs: 'center', md: position },
+            width: `${width}%`,
+            minWidth: '260px',
+            ml: {
+              xs: 0,
+              md: position === 'left' || position === 'center' ? '0px' : '16px',
+            },
+            mr: {
+              xs: 0,
+              md:
+                position === 'right' || position === 'center' ? '0px' : '16px',
+            },
+
+            mt: { xs: 0, md: '8px' },
+            objectFit: 'cover',
           }}
           src={
-            value.asset &&
+            asset &&
             urlFor(value)
               .auto('format')
-              .width(920)
-              .height(520)
-              .fit('fill')
+              .width(imgSize.width)
+              .height(imgSize.height)
               .url()
               .toString()
           }
-          alt={value.alt || ''}
+          alt={alt || 'foto'}
           loading='lazy'
         />
       </Box>

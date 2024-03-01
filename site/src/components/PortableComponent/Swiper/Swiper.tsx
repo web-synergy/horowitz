@@ -1,6 +1,6 @@
 import { Box, Typography, useMediaQuery } from '@mui/material';
 import { urlFor } from '@/config/sanity/imageUrl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigation, Thumbs, FreeMode, Keyboard } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
@@ -12,20 +12,42 @@ import './sliderStyles.css';
 import { IPortableImgGallery } from '@/types/newsTypes';
 import GrowView from '@/components/Common/GrowView';
 import { theme } from '@/theme';
+import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 
 export const PortableSwiper = ({ value }: { value: IPortableImgGallery }) => {
   const { images, title } = value;
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>();
+
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
+  const [imgSize, setImgSize] = useState<{
+    width: number;
+    height: number;
+  }>({
+    width: 0,
+    height: 0,
+  });
+  const { containerSize, containerRef } = useWidthBlokSize();
+
+  useEffect(() => {
+    setImgSize({
+      width: containerSize,
+      height: Math.min(
+        Math.floor(isMob ? containerSize / 0.93 : containerSize / 1.93),
+        480
+      ),
+    });
+  }, [containerSize, value]);
   if (!images) return null;
 
   const imagesLength = images.length;
 
-  const countSlidesPer = isMob ? 2 : imagesLength > 4 ? 4 : imagesLength;
+  const countSlidesPer = isMob ? 3 : imagesLength > 4 ? 4 : imagesLength;
 
   return (
     <GrowView>
-      <Box sx={{ my: { xs: '40px', md: '48px', lg: '56px' } }}>
+      <Box
+        ref={containerRef}
+        sx={{ my: { xs: '40px', md: '48px', lg: '56px' } }}>
         <Swiper
           modules={[Navigation, Thumbs, Keyboard]}
           loop={true}
@@ -41,14 +63,14 @@ export const PortableSwiper = ({ value }: { value: IPortableImgGallery }) => {
             if (item.asset)
               return (
                 <SwiperSlide key={item._key}>
-                  <Box
-                    component={'img'}
+                  <img
                     loading='lazy'
+                    style={{ width: imgSize.width, height: imgSize.height }}
                     src={
                       item &&
                       urlFor(item)
-                        .width(isMob ? 288 : 930)
-                        .height(isMob ? 309 : 480)
+                        .width(imgSize.width)
+                        .height(imgSize.height)
                         .auto('format')
                         .fit('fill')
                         .url()

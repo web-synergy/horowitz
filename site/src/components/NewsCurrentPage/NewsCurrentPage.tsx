@@ -2,13 +2,13 @@ import { useParams } from 'react-router-dom';
 
 import { Box, Container, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { urlFor } from '@/config/sanity/imageUrl';
+
 import { PortableText } from '@portabletext/react';
 import { components } from './PortableNews';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { currentNewsQuery } from '@/api/query';
 import { INews } from '@/types/newsTypes';
-import GrowView from '../Common/GrowView';
+
 import Loader from '../Common/Loader';
 
 import { parseAndFormatDate } from '@/utils/helpers';
@@ -17,6 +17,7 @@ import PageTemplate from '../Common/PageTemplate';
 import { useFetch } from '@/hook/useFetch';
 import GoBackBtn from '../Common/GoBackBtn';
 import { Routes } from '@/types/routes.d';
+import NewsBanner from '../Common/NewsBanner';
 
 const NewsCurrentPage = () => {
   const { slug } = useParams();
@@ -39,33 +40,16 @@ const NewsCurrentPage = () => {
   if (error) {
     console.error(error);
   }
-
-  return (
-    <PageTemplate>
-      <Container>
-        {data && (
+  if (data)
+    return (
+      <PageTemplate>
+        <Container>
           <Box
             sx={{
               mt: { xs: '24px', md: '48px' },
               mb: { xs: '72px', md: '96px', lg: '120px' },
             }}>
-            <GrowView>
-              <Box
-                sx={{
-                  width: '100%',
-                  maxHeight: { md: '408px' },
-                  height: 'auto',
-                  aspectRatio: { xs: '2/1.7', lg: '16/9' },
-                  objectFit: 'cover',
-                }}
-                src={
-                  data.img?.asset &&
-                  urlFor(data.img).width(920).height(408).url().toString()
-                }
-                alt={data.img?.alt}
-                component={'img'}></Box>
-            </GrowView>
-
+            <NewsBanner img={data?.img} />
             <Box sx={{ maxWidth: '930px', mx: 'auto' }}>
               <Typography
                 sx={{
@@ -77,7 +61,6 @@ const NewsCurrentPage = () => {
                 variant='bodyLight'>
                 {parseAndFormatDate(data._createdAt)}
               </Typography>
-
               <Typography variant='h2'>{data.title}</Typography>
               <Box
                 sx={{
@@ -93,10 +76,9 @@ const NewsCurrentPage = () => {
               </Box>
             </Box>
           </Box>
-        )}
-      </Container>
-      <GoBackBtn href={Routes.NEWS} />
-    </PageTemplate>
-  );
+        </Container>
+        <GoBackBtn href={Routes.NEWS} />
+      </PageTemplate>
+    );
 };
 export default NewsCurrentPage;

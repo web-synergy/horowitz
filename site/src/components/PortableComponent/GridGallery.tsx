@@ -4,12 +4,10 @@ import {
   ImageList,
   ImageListItem,
   Typography,
-  useMediaQuery,
 } from '@mui/material';
-import { useState } from 'react';
-
+import { useLayoutEffect, useState } from 'react';
 import GrowView from '@/components/Common/GrowView';
-import { theme } from '@/theme';
+
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IPortableImgGallery } from '@/types/newsTypes';
 
@@ -19,11 +17,24 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 
 const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
   const { images, title, quantity } = value;
   const [open, setOpen] = useState(false);
+
   const [sliderIndex, setSliderIndex] = useState(0);
+  const [imgSize, setSize] = useState(0);
+  const { containerSize, containerRef } = useWidthBlokSize();
+
+  const QTY_COLUMN = 6;
+
+  useLayoutEffect(() => {
+    if (containerSize) {
+      const imgWidth = Math.floor(containerSize / QTY_COLUMN);
+      setSize(imgWidth);
+    }
+  }, [containerSize, value]);
 
   const handleClickOpen = (index: number) => {
     setSliderIndex(index);
@@ -33,24 +44,26 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
   const handleClose = () => {
     setOpen(false);
   };
-  const isMob = useMediaQuery(theme.breakpoints.down('md'));
+
   if (!images) return null;
   return (
-    <Box sx={{ mb: '24px' }}>
-      <ImageList variant='quilted' cols={6} rowHeight={isMob ? 'auto' : 150}>
+    <Box ref={containerRef} sx={{ mb: '24px' }}>
+      <ImageList variant='quilted' cols={QTY_COLUMN} rowHeight={imgSize}>
         {images.slice(0, quantity || images.length).map((item, index) => {
           if (item.asset)
             return (
               <GrowView key={item._key}>
                 <ImageListItem
-                  cols={item.photoLayout.cols || 1}
-                  rows={item.photoLayout.rows || 1}>
+                  cols={item.photoLayout.cols}
+                  rows={item.photoLayout.rows}>
                   <img
-                    style={{ cursor: 'pointer' }}
+                    style={{
+                      cursor: 'pointer',
+                    }}
                     onClick={() => handleClickOpen(index)}
                     src={urlFor(item)
-                      .width(155 * item.photoLayout.cols || 1)
-                      .height(155 * item.photoLayout.rows || 1)
+                      .width(imgSize * item.photoLayout.cols)
+                      .height(imgSize * item.photoLayout.rows)
                       .auto('format')
                       .url()}
                     alt={item.title || ''}

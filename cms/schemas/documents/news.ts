@@ -61,6 +61,7 @@ export default defineType({
           title: 'Alt',
         }),
       ],
+
       validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
     }),
 
