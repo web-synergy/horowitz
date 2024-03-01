@@ -1,24 +1,23 @@
 import { useParams } from 'react-router-dom';
-import { Box, Container, Typography, useMediaQuery } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { urlFor } from '@/config/sanity/imageUrl';
 import { PortableText } from '@portabletext/react';
 
 import { useLiveQuery } from '@sanity/preview-kit';
 import { currentArticleQuery } from '@/api/query';
 import { INews } from '@/types/newsTypes';
 
-import { theme } from '@/theme';
 import { parseAndFormatDate } from '@/utils/helpers';
 
 import Loader from '@/components/Common/Loader';
 import PageTemplate from '@/components/Common/PageTemplate';
-import GrowView from '@/components/Common/GrowView';
+
 import { components } from '@/components/NewsCurrentPage/PortableNews';
 
 import { useFetch } from '../../../hook/useFetch';
 import GoBackBtn from '@/components/Common/GoBackBtn';
 import { Routes } from '@/types/routes.d';
+import NewsBanner from '@/components/Common/NewsBanner';
 
 const VirtuososCurrentArticle = () => {
   const { slug } = useParams();
@@ -38,8 +37,6 @@ const VirtuososCurrentArticle = () => {
     language,
   });
 
-  const isMob = useMediaQuery(theme.breakpoints.down('md'));
-
   if (loading) return <Loader />;
   if (error) {
     console.error(error);
@@ -54,23 +51,7 @@ const VirtuososCurrentArticle = () => {
               mt: { xs: '24px', md: '48px' },
               mb: { xs: '72px', md: '96px', lg: '120px' },
             }}>
-            <GrowView>
-              <Box
-                sx={{
-                  width: '100%',
-                }}
-                src={
-                  data.img?.asset &&
-                  urlFor(data.img)
-                    .width(isMob ? 400 : 920)
-                    .height(isMob ? 340 : 408)
-                    .fit('fill')
-                    .url()
-                    .toString()
-                }
-                alt={data.img?.alt}
-                component={'img'}></Box>
-            </GrowView>
+            <NewsBanner img={data?.img} />
 
             <Box sx={{ maxWidth: '930px', mx: 'auto' }}>
               <Typography

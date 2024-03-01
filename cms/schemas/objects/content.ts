@@ -70,6 +70,49 @@ const content = defineType({
       },
       fields: [
         {
+          name: 'width',
+          title: 'Ширина у %',
+          type: 'number',
+          initialValue: 100,
+        },
+        {
+          name: 'isEmbed',
+          title: 'Вмонтувати в текст',
+          type: 'boolean',
+          options: {layout: 'checkbox'},
+        },
+
+        {
+          name: 'position',
+          title: 'Розміщення',
+          type: 'string',
+          initialValue: 'center',
+          options: {
+            list: [
+              {title: 'Зліва', value: 'left'},
+              {title: 'По центру', value: 'center'},
+              {title: 'Справа', value: 'right'},
+            ],
+            layout: 'radio',
+            direction: 'horizontal',
+          },
+        },
+        {
+          name: 'aspectRatio',
+          title: 'Формат зображення',
+          type: 'number',
+          initialValue: 1.77,
+          options: {
+            list: [
+              {title: '3:4', value: 0.75},
+              {title: 'Квадрат', value: 1},
+              {title: '16:9', value: 1.77},
+            ],
+            layout: 'radio',
+            direction: 'horizontal',
+          },
+        },
+        {
           name: 'alt',
           type: 'string',
           title: 'Alt',
