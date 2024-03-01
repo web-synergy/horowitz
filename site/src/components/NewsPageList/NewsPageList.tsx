@@ -62,7 +62,7 @@ const NewsPageList = () => {
               newsList.map((news: INews, index) => (
                 <NewsListItem
                   key={index}
-                  _createdAt={news._createdAt}
+                  date={news.date}
                   title={news.title}
                   img={news.img}
                   slug={news.slug}

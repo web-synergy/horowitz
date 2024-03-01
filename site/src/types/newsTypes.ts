@@ -4,6 +4,7 @@ export interface INews {
   _id: string;
   _createdAt: string;
   title: string;
+  date: string;
   img: IImage;
   slug: string;
   description: PortableTextBlock[];

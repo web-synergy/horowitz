@@ -73,7 +73,7 @@ const VirtuosasArticles = () => {
                 <NewsListItem
                   key={index}
                   title={news.title}
-                  _createdAt={news._createdAt}
+                  date={news.date}
                   img={news.img}
                   slug={news.slug}
                   shortDescription={news.shortDescription}

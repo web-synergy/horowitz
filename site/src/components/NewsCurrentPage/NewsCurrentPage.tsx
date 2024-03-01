@@ -59,7 +59,7 @@ const NewsCurrentPage = () => {
                   color: theme => theme.palette.neutral[50],
                 }}
                 variant='bodyLight'>
-                {parseAndFormatDate(data._createdAt)}
+                {parseAndFormatDate(data.date)}
               </Typography>
               <Typography variant='h2'>{data.title}</Typography>
               <Box

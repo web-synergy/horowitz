@@ -46,6 +46,12 @@ export default defineType({
       },
       validation: (Rule) => Rule.required().error('Обовʼязкове поле'),
     }),
+    defineField({
+      name: 'date',
+      type: 'datetime',
+      title: 'Дата новини',
+      validation: (Rule) => Rule.required().error('Обовʼязкове поле'),
+    }),
 
     defineField({
       name: 'img',
