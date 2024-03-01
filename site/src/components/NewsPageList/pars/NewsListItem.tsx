@@ -8,6 +8,7 @@ import { Buttons } from '@/types/translation.d';
 import {
   Box,
   Button,
+  Link,
   ListItem,
   Stack,
   Typography,
@@ -15,7 +16,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { t } from 'i18next';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 interface INewsListItem {
   img: IImage;
@@ -67,7 +68,9 @@ const NewsListItem = ({
                 variant='bodyLight'>
                 {parseAndFormatDate(_createdAt)}
               </Typography>
-              <Typography variant='subhead'>{title}</Typography>
+              <Link component={RouterLink} to={slug}>
+                <Typography variant='subhead'>{title}</Typography>
+              </Link>
               <Typography
                 sx={{
                   color: theme => theme.palette.neutral[40],
@@ -77,7 +80,7 @@ const NewsListItem = ({
               </Typography>
               <Box>
                 <Button
-                  component={Link}
+                  component={RouterLink}
                   to={slug}
                   endIcon={
                     <SvgSpriteIcon
