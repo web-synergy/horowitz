@@ -61,7 +61,6 @@ export const components: PortableTextComponents = {
       <Typography
         component={'p'}
         sx={{
-          display: 'block',
           my: '16px',
           textAlign: 'justify',
         }}
