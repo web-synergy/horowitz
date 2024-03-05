@@ -1,28 +1,36 @@
-import { useTranslation } from 'react-i18next'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper-bundle.css'
-import './sliderSettings.css'
+import { useTranslation } from 'react-i18next';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
+import './sliderSettings.css';
 
-import { sliceNewsTitle } from '@/utils/helpers'
+import { sliceNewsTitle } from '@/utils/helpers';
 
-import { Buttons } from '@/types/translation.d'
+import { Buttons } from '@/types/translation.d';
 
-import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 
-import { IImage } from '@/types/newsTypes'
-import NewsCart from './NewsCart'
-import { ShowMoreBtn } from './ShowMoreBtn'
+import { IImage } from '@/types/commonTypes';
+import NewsCart from './NewsCart';
+import { ShowMoreBtn } from './ShowMoreBtn';
 
 interface INews {
-  title: string
-  slug: string
-  img: IImage
+  title: string;
+  slug: string;
+  img: IImage;
 }
-const NewsSwiper = ({ news, title, link }: { news: INews[]; title: string; link: string }) => {
-  const { breakpoints } = useTheme()
-  const isMobile = useMediaQuery(breakpoints.down('md'))
+const NewsSwiper = ({
+  news,
+  title,
+  link,
+}: {
+  news: INews[];
+  title: string;
+  link: string;
+}) => {
+  const { breakpoints } = useTheme();
+  const isMobile = useMediaQuery(breakpoints.down('md'));
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Box>
@@ -62,12 +70,16 @@ const NewsSwiper = ({ news, title, link }: { news: INews[]; title: string; link:
       >
         {news.map(({ slug, img, title }) => (
           <SwiperSlide key={slug} style={{ height: 'auto' }}>
-            <NewsCart title={sliceNewsTitle(title, 49)} img={img} slug={`/${link}/${slug}`} />
+            <NewsCart
+              title={sliceNewsTitle(title, 49)}
+              img={img}
+              slug={`/${link}/${slug}`}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
     </Box>
-  )
-}
+  );
+};
 
-export default NewsSwiper
+export default NewsSwiper;
