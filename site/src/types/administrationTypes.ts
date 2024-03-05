@@ -1,17 +1,10 @@
-import { IBanner } from "./bannerType";
-
-export interface MemberImage {
-  asset: {
-    _ref: string;
-  };
-  _key: string;
-  alt: string;
-}
+import { IBanner } from './bannerType';
+import { IImage } from './commonTypes';
 
 export interface Member {
   name: string;
   role: string;
-  img: MemberImage;
+  img: IImage;
 }
 
 export interface IAdministration {

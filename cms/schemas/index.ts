@@ -23,6 +23,7 @@ import virtuosos from './documents/virtuosos'
 import virtuososArticle from './documents/virtuososArticle'
 import ukrainianWorks from './documents/ukrainianWorks'
 import article from './objects/article'
+import quote from './objects/quote'
 
 export const schemaTypes = [
   //documents
@@ -51,4 +52,5 @@ export const schemaTypes = [
   imageGalleryType,
   article,
   banner,
+  quote,
 ]

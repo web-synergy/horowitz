@@ -1,14 +1,15 @@
 import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Routes } from '@/types/routes.d';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Typography, Stack } from '@mui/material';
 import Loader from '../Common/Loader';
 import PageTemplate from '../Common/PageTemplate';
 
 import { useAboutCompetitionStore } from '@/store/aboutCompetitionStore';
-// import BannerComponent from './parts/BannerComponent';
+
 import TextBlockSection from './parts/TextBlockSection.tsx';
 import ImageSection from './parts/ImageSection.tsx';
+import QuoteTemplate from '../Common/QuoteTemplate.tsx';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { aboutCompetitionQuery } from '@/api/query.ts';
 import MainBanner from '../Common/MainBanner.tsx';
@@ -34,24 +35,18 @@ const AboutPage: FC = () => {
 
   const aboutCompetitionData = useAboutCompetitionStore();
 
-  const [
+  const [{ mainBanner, content, isLoading }] = useLiveQuery(
+    aboutCompetitionData,
+    aboutCompetitionQuery,
     {
-      mainBanner,
-      upperTextBlock,
-      middleTextBlock,
-      lowerTextBlock,
-      imgHistoryOne,
-      imgHistoryTwo,
-      imgStatistics,
-      isLoading,
-    },
-  ] = useLiveQuery(aboutCompetitionData, aboutCompetitionQuery, {
-    language,
-  });
+      language,
+    }
+  );
 
   if (isLoading) {
     return <Loader />;
   }
+
   return (
     <PageTemplate>
       {mainBanner && <MainBanner banner={mainBanner} />}
@@ -72,20 +67,30 @@ const AboutPage: FC = () => {
             {t(`navigation.${Routes.DETAILS}`)}
           </Typography>
         </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: { xs: 3, md: 5, lg: 6 },
-          }}
-        >
-          <TextBlockSection blocks={upperTextBlock} />
-          {imgHistoryOne && <ImageSection image={imgHistoryOne} />}
-          {middleTextBlock && <TextBlockSection blocks={middleTextBlock} />}
-          {imgHistoryTwo && <ImageSection image={imgHistoryTwo} />}
-          {lowerTextBlock && <TextBlockSection blocks={lowerTextBlock} />}
-          {imgStatistics && <ImageSection image={imgStatistics} />}
-        </Box>
+        <Stack direction="column" gap={{ xs: 3, md: 5, lg: 6 }}>
+          {content &&
+            content.map(({ data, type }, index) => {
+              if (type === 'textBlock') {
+                return <TextBlockSection blocks={data} key={index} />;
+              }
+
+              if (type === 'imageBlock') {
+                return <ImageSection image={data} key={index} />;
+              }
+
+              if (type === 'quoteBlock') {
+                return (
+                  <QuoteTemplate
+                    key={index}
+                    author={data.author}
+                    quote={data.quote}
+                  />
+                );
+              }
+
+              return null;
+            })}
+        </Stack>
       </Container>
     </PageTemplate>
   );

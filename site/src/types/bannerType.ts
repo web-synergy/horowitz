@@ -1,4 +1,4 @@
-import { IImage } from './newsTypes';
+import { IImage } from './commonTypes';
 
 export type IBanner =
   | BannerWithOverlay
