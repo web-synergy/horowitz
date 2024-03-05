@@ -1,11 +1,11 @@
 import { urlFor } from '@/config/sanity/imageUrl';
 import { Box } from '@mui/material';
 import { FC } from 'react';
-import { AboutCompetitionImage } from '@/types/aboutCompetitionTypes';
+import { IImage } from '@/types/commonTypes';
 import ZoomImg from '@/components/Common/ZoomImage';
 
 interface LogotypesGalleryProps {
-  image: AboutCompetitionImage;
+  image: IImage;
 }
 
 const ImageSection: FC<LogotypesGalleryProps> = ({ image }) => {
@@ -15,7 +15,7 @@ const ImageSection: FC<LogotypesGalleryProps> = ({ image }) => {
         <Box
           component={'img'}
           src={urlFor(image).auto('format').url().toString()}
-          alt='Зображення історії'
+          alt={image.alt}
           sx={{
             display: 'block',
             height: 'auto',

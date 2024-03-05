@@ -3,7 +3,7 @@ import { INews } from './newsTypes';
 
 import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
 import { Partner } from './partnersTypes';
-import { AboutCompetitionImage } from './aboutCompetitionTypes';
+import { AboutCompetitionContentType } from './aboutCompetitionTypes';
 import { IAdministration } from './administrationTypes';
 import { NavigationType } from './routes';
 import { IUkrWorks } from './ukranianWorks';
@@ -22,12 +22,7 @@ export interface SettingsStoreState {
 
 export interface AboutCompetitionState {
   mainBanner: IBanner | null;
-  upperTextBlock: PortableTextBlock[];
-  middleTextBlock: PortableTextBlock[];
-  lowerTextBlock: PortableTextBlock[];
-  imgHistoryOne: AboutCompetitionImage | null;
-  imgHistoryTwo: AboutCompetitionImage | null;
-  imgStatistics: AboutCompetitionImage | null;
+  content: AboutCompetitionContentType[];
   isLoading: boolean;
   requestLang: string;
 

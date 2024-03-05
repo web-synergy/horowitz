@@ -1,15 +1,9 @@
-interface PartnerImage {
-  asset: {
-    _ref: string;
-  };
-  _key: string;
-  alt: string;
-}
+import { IImage } from './commonTypes';
 
 export interface Partner {
   _key: string;
   title: string;
-  img: PartnerImage;
+  img: IImage;
   link: string;
   size: number;
 }

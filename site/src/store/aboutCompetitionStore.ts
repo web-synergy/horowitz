@@ -5,12 +5,13 @@ import { AboutCompetitionState } from '@/types/storeTypes';
 export const useAboutCompetitionStore = create<AboutCompetitionState>(
   (set) => ({
     mainBanner: null,
-    upperTextBlock: [],
-    middleTextBlock: [],
-    lowerTextBlock: [],
-    imgHistoryOne: null,
-    imgHistoryTwo: null,
-    imgStatistics: null,
+    content: [],
+    // upperTextBlock: [],
+    // middleTextBlock: [],
+    // lowerTextBlock: [],
+    // imgHistoryOne: null,
+    // imgHistoryTwo: null,
+    // imgStatistics: null,
     isLoading: false,
     requestLang: '',
     fetchAboutCompetitionData: async (language) => {
@@ -18,6 +19,7 @@ export const useAboutCompetitionStore = create<AboutCompetitionState>(
 
       try {
         const response = await getAboutCompetition(language);
+        console.log(response);
         if (!response) {
           throw new Error('Could not fetch the data from that resource');
         }
