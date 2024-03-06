@@ -89,7 +89,9 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
         open={open}>
         <Swiper
           modules={[Zoom, Navigation, Keyboard]}
-          zoom={true}
+          zoom={{
+            maxRatio: 2,
+          }}
           initialSlide={sliderIndex}
           loop={true}
           autoHeight={true}

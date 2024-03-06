@@ -2,7 +2,7 @@ import { IHorowitzData } from '@/types/horowitzTypes';
 import { INews } from '@/types/newsTypes';
 import { IAdministration } from '@/types/administrationTypes';
 import { IUkrWorks } from '@/types/ukranianWorks';
-import { sanityFetch } from '../config/sanity/client';
+import { clientFile, sanityFetch } from '../config/sanity/client';
 import { SettingsResp } from '../types/contactsTypes';
 import { AboutCompetitionResp } from '@/types/aboutCompetitionTypes';
 import {
@@ -92,3 +92,11 @@ export const getUkrainianWorks = async (
 ): Promise<IUkrWorks> => {
   return sanityFetch(ukrWorksQuery, { language });
 };
+
+export async function getPDF(name: string) {
+  return clientFile.fetch(`* [_type == 'files' && name == '${name}']{
+  name,
+  "URL": pdf.asset->url
+}
+`);
+}

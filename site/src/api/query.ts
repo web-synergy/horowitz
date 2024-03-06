@@ -1,3 +1,4 @@
+import { clientFile } from '@/config/sanity/client';
 import groq from 'groq';
 export const homeQuery = groq`*[_type == 'home'][0]{
       

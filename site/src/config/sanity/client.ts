@@ -1,14 +1,14 @@
-import { createClient, QueryParams } from "@sanity/client";
+import { createClient, QueryParams } from '@sanity/client';
 
 export const token = import.meta.env.VITE_SANITY_SECRET_TOKEN;
 const projectId = import.meta.env.VITE_SANITY_PROJECT_ID;
 
 export const client = createClient({
   projectId: projectId,
-  dataset: "production",
-  apiVersion: "2023-05-03",
+  dataset: 'production',
+  apiVersion: '2023-05-03',
   useCdn: true,
-  perspective: "published",
+  perspective: 'published',
   ignoreBrowserTokenWarning: true,
 });
 
@@ -18,14 +18,14 @@ export async function sanityFetch<T>(
   params = DEFAULT_PARAMS,
   draft = false
 ): Promise<T> {
-  const secretToken = draft ? token : "";
+  const secretToken = draft ? token : '';
   if (draft && secretToken) {
     throw new Error(
-      "The `VITE_SANITY_SECRET_TOKEN` environment variable is required."
+      'The `VITE_SANITY_SECRET_TOKEN` environment variable is required.'
     );
   }
 
-  const perspective = draft ? "previewDrafts" : "published";
+  const perspective = draft ? 'previewDrafts' : 'published';
 
   if (draft) {
     return client
@@ -35,3 +35,12 @@ export async function sanityFetch<T>(
 
   return client.fetch<T>(query, params);
 }
+
+export const clientFile = createClient({
+  projectId: 'oqxqohoj',
+  dataset: 'production',
+  useCdn: true,
+  apiVersion: '2023-05-03',
+
+  ignoreBrowserTokenWarning: false,
+});

@@ -35,6 +35,7 @@ import ApplyPage from '@/components/Apply/ApplyPage';
 import SupportUsPage from '@/components/SupportUs/SupportUsPage';
 import VirtuosasArticles from '@/components/Virtuoses/VirtuosesArticles/VirtuosasArticles';
 import VirtuososCurrentArticle from '@/components/Virtuoses/VirtuososCurrentArticle/VirtuososCurrentArticle';
+import PdfPage from '@/components/PdfRender/PdfPage';
 
 const routes = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const routes = createBrowserRouter([
       {
         path: `${Routes.ARCHIVE}`,
         element: <ArchivePage />,
+      },
+      {
+        path: `pdf/:name`,
+        element: <PdfPage />,
       },
 
       { path: Routes.MASTER_CLASS, element: <MasterClassPage /> },
