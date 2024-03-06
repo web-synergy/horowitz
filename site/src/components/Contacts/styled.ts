@@ -22,16 +22,12 @@ export const ContentWrapper = styled(Stack)<StackProps>(({ theme }) => ({
   },
 }))
 
-export const DescBox = styled(Box)<BoxProps>(() => ({
-  width: '119px',
-  flexShrink: 0,
-}))
-
 export const InfoDivider = styled(Divider)<DividerProps>(() => ({
   marginTop: '24px',
 }))
 
 export const Section = styled(Box)<BoxProps>(({ theme }) => ({
+  display: 'block',
   backgroundColor: theme.palette.neutral[90],
   color: theme.palette.neutral[20],
   flexGrow: 1,

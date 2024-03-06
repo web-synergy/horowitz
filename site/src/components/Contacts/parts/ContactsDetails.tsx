@@ -1,15 +1,15 @@
-import { t } from 'i18next';
+import { t } from 'i18next'
 
-import { ContactsDetailsProps } from '@/types/contactsTypes';
-import { FC } from 'react';
+import { ContactsDetailsProps } from '@/types/contactsTypes'
+import { FC } from 'react'
 
-import { phoneNumberFormatting } from '../../../utils/helpers';
+import { phoneNumberFormatting } from '../../../utils/helpers'
 
-import { Box, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
-import { DescBox, InfoDivider } from '../styled';
-import { ContentStack, StyledStack } from './styled';
-import { Contacts } from '@/types/translation.d';
+import { Contacts } from '@/types/translation.d'
+import { Box, Link, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Link as RouterLink } from 'react-router-dom'
+import { InfoDivider } from '../styled'
+import { ContentStack, StyledStack, Title } from './styled'
 
 const ContactsDetails: FC<ContactsDetailsProps> = ({
   location,
@@ -18,19 +18,15 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
   pressCenterPhone,
   pressCenterEmail,
 }) => {
-  const { breakpoints } = useTheme();
-  const isMobile = useMediaQuery(breakpoints.down('md'));
+  const { breakpoints } = useTheme()
+  const isMobile = useMediaQuery(breakpoints.down('md'))
 
   return (
     <Box>
       <ContentStack>
         {location && (
           <StyledStack>
-            <DescBox>
-              <Typography variant="bodyMedium">
-                {t(`contacts.${Contacts.ADDRESS}`)}:
-              </Typography>
-            </DescBox>
+            <Title variant="bodyMedium">{t(`contacts.${Contacts.ADDRESS}`)}:</Title>
             <Typography variant="bodyRegular" component={'p'}>
               {location}
             </Typography>
@@ -38,11 +34,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
         )}
         {phone && (
           <StyledStack>
-            <DescBox>
-              <Typography variant="bodyMedium">
-                {t(`contacts.${Contacts.PHONE}`)}:
-              </Typography>
-            </DescBox>
+            <Title variant="bodyMedium">{t(`contacts.${Contacts.PHONE}`)}:</Title>
             <Box
               component={RouterLink}
               to={isMobile ? `tel:${phone}` : ''}
@@ -52,7 +44,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
                 cursor: 'text',
                 width: 'fit-content',
               }}
-              onClick={(e) => !isMobile && e.preventDefault()}
+              onClick={e => !isMobile && e.preventDefault()}
             >
               <Typography variant="bodyRegular" component={'p'}>
                 {phoneNumberFormatting(phone)}
@@ -62,9 +54,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
         )}
         {email && (
           <StyledStack>
-            <DescBox>
-              <Typography variant="bodyMedium">E-mail:</Typography>
-            </DescBox>
+            <Title variant="bodyMedium">E-mail:</Title>
             <Link href={`mailto:${email}`}>
               <Typography variant="bodyRegular" component={'p'}>
                 {email}
@@ -74,11 +64,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
         )}
         {pressCenterPhone && (
           <StyledStack>
-            <DescBox>
-              <Typography variant="bodyMedium">
-                {t(`contacts.${Contacts.PRESS_CENTER}`)}:
-              </Typography>
-            </DescBox>
+            <Title variant="bodyMedium">{t(`contacts.${Contacts.PRESS_CENTER}`)}:</Title>
             <Box
               component={RouterLink}
               to={isMobile ? `tel:${pressCenterPhone}` : ''}
@@ -88,7 +74,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
                 cursor: 'text',
                 width: 'fit-content',
               }}
-              onClick={(e) => !isMobile && e.preventDefault()}
+              onClick={e => !isMobile && e.preventDefault()}
             >
               <Typography variant="bodyRegular" component={'p'}>
                 {phoneNumberFormatting(pressCenterPhone)}
@@ -98,9 +84,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
         )}
         {pressCenterEmail && (
           <StyledStack>
-            <DescBox>
-              <Typography variant="bodyMedium">E-mail:</Typography>
-            </DescBox>
+            <Title variant="bodyMedium">E-mail:</Title>
             <Link href={`mailto:${pressCenterEmail}`}>
               <Typography variant="bodyRegular" component={'p'}>
                 {pressCenterEmail}
@@ -111,7 +95,7 @@ const ContactsDetails: FC<ContactsDetailsProps> = ({
       </ContentStack>
       <InfoDivider variant="light" />
     </Box>
-  );
-};
+  )
+}
 
-export default ContactsDetails;
+export default ContactsDetails
