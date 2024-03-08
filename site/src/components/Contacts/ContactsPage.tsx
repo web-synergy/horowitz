@@ -2,14 +2,16 @@ import { Routes } from '@/types/routes.d'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Container, Divider, Typography } from '@mui/material'
+import SocialMedia from '../Common/SocialMedia'
+import ContactsField from './parts/ContactsField'
 
-import ContactsDetails from './parts/ContactsDetails'
-import { ContentWrapper, InfoDivider, MainBox, Section } from './styled'
+import { ContentStack, ContentWrapper, MainBox, Section } from './styled'
 
 import { useSettingsStore } from '@/store/settingStore'
+import { Contacts } from '@/types/translation.d'
+
 import { PortableText, PortableTextComponents } from '@portabletext/react'
-import SocialMedia from '../Common/SocialMedia'
 
 const components: PortableTextComponents = {
   block: {
@@ -49,18 +51,31 @@ const ContactsPage: FC = () => {
               <Box sx={{ '& :first-of-type': { marginBottom: 2 } }}>
                 <PortableText value={about[0]} components={components} />
               </Box>
+              <Divider variant="light" sx={{ marginTop: 3 }} />
+            </Box>
 
-              <InfoDivider variant="light" />
-            </Box>
-            <Box sx={{ width: '100%' }}>
-              <ContactsDetails {...{ location, phone, email }} />
-            </Box>
-            <Box sx={{ width: '100%' }}>
-              <ContactsDetails
-                pressCenterPhone={pressCenter.phone}
-                pressCenterEmail={pressCenter.email}
+            {/* location, phone, email */}
+            <ContentStack>
+              <ContactsField title={t(`contacts.${Contacts.ADDRESS}`)} details={location} />
+              <ContactsField
+                variant="phone"
+                title={t(`contacts.${Contacts.PHONE}`)}
+                details={phone}
               />
-            </Box>
+              <ContactsField variant="email" title="E-mail" details={email} />
+              <Divider variant="light" />
+            </ContentStack>
+
+            {/* press center */}
+            <ContentStack>
+              <ContactsField
+                variant="phone"
+                title={t(`contacts.${Contacts.PRESS_CENTER}`)}
+                details={pressCenter.phone}
+              />
+              <ContactsField variant="email" title="E-mail" details={pressCenter.email} />
+              <Divider variant="light" />
+            </ContentStack>
             <SocialMedia />
           </ContentWrapper>
         </MainBox>

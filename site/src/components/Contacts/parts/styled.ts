@@ -11,15 +11,6 @@ export const StyledStack = styled(Stack)<StackProps>(({ theme }) => ({
   },
 }))
 
-export const ContentStack = styled(Stack)<StackProps>(({ theme }) => ({
-  [theme.breakpoints.up('xs')]: {
-    rowGap: '24px',
-  },
-  [theme.breakpoints.up('md')]: {
-    rowGap: '18px',
-  },
-}))
-
 export const Title = styled(Typography)<TypographyProps>(({ theme }) => ({
   color: theme.palette.common.white,
   width: '119px',
