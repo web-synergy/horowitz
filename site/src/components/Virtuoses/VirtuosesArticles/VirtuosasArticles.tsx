@@ -15,7 +15,7 @@ import PageTemplate from '@/components/Common/PageTemplate';
 import NewsListItem from '@/components/NewsPageList/parts/NewsListItem';
 import PaginationNews from '@/components/NewsPageList/parts/PaginationNews';
 import { useVirtuososStore } from '@/store/virtuososStor';
-import GoBackBtn from '@/components/Common/GoBackBtn';
+
 import { Virtuosos } from '@/types/translation.d';
 
 const VirtuosasArticles = () => {
@@ -51,49 +51,46 @@ const VirtuosasArticles = () => {
 
   if (loading) return <Loader />;
   return (
-    <>
-      <PageTemplate>
-        <Container>
-          <Stack>
-            <Typography
-              sx={{
-                pb: { xs: 3, md: 5, lg: 6 },
-              }}
-              variant="h2"
-            >
-              {t(`virtuosos.${Virtuosos.NEWS}`)}
-            </Typography>
-            <List
-              sx={{
-                display: 'grid',
-                flexDirection: 'column',
-                gap: { xs: 5, md: 6, lg: 7 },
-                justifyContent: { xs: 'center', md: 'flex-start' },
-              }}
-            >
-              {articleList &&
-                articleList.map((news: INews, index) => (
-                  <NewsListItem
-                    key={index}
-                    title={news.title}
-                    date={news.date}
-                    img={news.img}
-                    slug={news.slug}
-                    shortDescription={news.shortDescription}
-                  />
-                ))}
-            </List>
+    <PageTemplate goBackUrl={Routes.VIRTUOSES}>
+      <Container>
+        <Stack>
+          <Typography
+            sx={{
+              pb: { xs: 3, md: 5, lg: 6 },
+            }}
+            variant="h2"
+          >
+            {t(`virtuosos.${Virtuosos.NEWS}`)}
+          </Typography>
+          <List
+            sx={{
+              display: 'grid',
+              flexDirection: 'column',
+              gap: { xs: 5, md: 6, lg: 7 },
+              justifyContent: { xs: 'center', md: 'flex-start' },
+            }}
+          >
+            {articleList &&
+              articleList.map((news: INews, index) => (
+                <NewsListItem
+                  key={index}
+                  title={news.title}
+                  date={news.date}
+                  img={news.img}
+                  slug={news.slug}
+                  shortDescription={news.shortDescription}
+                />
+              ))}
+          </List>
 
-            <PaginationNews
-              pageQty={pageQty}
-              setSearchParams={setSearchParams}
-              urlPage={urlPage}
-            />
-          </Stack>
-        </Container>
-      </PageTemplate>
-      <GoBackBtn href={`/${Routes.VIRTUOSES}`} />
-    </>
+          <PaginationNews
+            pageQty={pageQty}
+            setSearchParams={setSearchParams}
+            urlPage={urlPage}
+          />
+        </Stack>
+      </Container>
+    </PageTemplate>
   );
 };
 

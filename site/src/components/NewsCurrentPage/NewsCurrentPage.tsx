@@ -13,7 +13,6 @@ import { parseAndFormatDate } from '@/utils/helpers';
 import PageTemplate from '../Common/PageTemplate';
 
 import { useFetch } from '@/hook/useFetch';
-import GoBackBtn from '../Common/GoBackBtn';
 import { Routes } from '@/types/routes.d';
 import NewsBanner from '../Common/NewsBanner';
 import PortableComponent from '../Templates/PortableComponent/PortableComponent';
@@ -41,38 +40,35 @@ const NewsCurrentPage = () => {
   }
   if (data)
     return (
-      <>
-        <PageTemplate>
-          <Container>
-            <NewsBanner img={data?.img} />
-            <Box sx={{ maxWidth: '930px', mx: 'auto' }}>
-              <Typography
-                sx={{
-                  mt: { xs: '24px', md: '48px' },
-                  mb: '24px',
-                  display: 'block',
-                  color: (theme) => theme.palette.neutral[50],
-                }}
-                variant="bodyLight"
-              >
-                {parseAndFormatDate(data.date)}
-              </Typography>
-              <Typography variant="h2">{data.title}</Typography>
-              <Box
-                sx={{
-                  mb: { xs: '40px', md: '48px', lg: '56px' },
-                  mt: { xs: '24px', md: '32px' },
-                }}
-              >
-                {data.description && (
-                  <PortableComponent data={data.description} />
-                )}
-              </Box>
+      <PageTemplate goBackUrl={Routes.NEWS}>
+        <Container>
+          <NewsBanner img={data?.img} />
+          <Box sx={{ maxWidth: '930px', mx: 'auto' }}>
+            <Typography
+              sx={{
+                mt: { xs: '24px', md: '48px' },
+                mb: '24px',
+                display: 'block',
+                color: (theme) => theme.palette.neutral[50],
+              }}
+              variant="bodyLight"
+            >
+              {parseAndFormatDate(data.date)}
+            </Typography>
+            <Typography variant="h2">{data.title}</Typography>
+            <Box
+              sx={{
+                mb: { xs: '40px', md: '48px', lg: '56px' },
+                mt: { xs: '24px', md: '32px' },
+              }}
+            >
+              {data.description && (
+                <PortableComponent data={data.description} />
+              )}
             </Box>
-          </Container>
-        </PageTemplate>
-        <GoBackBtn href={Routes.NEWS} />
-      </>
+          </Box>
+        </Container>
+      </PageTemplate>
     );
 };
 export default NewsCurrentPage;

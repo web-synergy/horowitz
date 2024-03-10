@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Caption } from '@/components/KyivGeneva/parts/styled';
 
-import GoBackBtn from '@/components/Common/GoBackBtn';
 import { Routes } from '@/types/routes.d';
 import { Box, Container, Typography } from '@mui/material';
 import { FC } from 'react';
@@ -19,57 +18,54 @@ const KyivGenevaWFIMCPage: FC = () => {
 
   if (language === 'ua' || language === 'en')
     return (
-      <>
-        <PageTemplate>
-          <Container>
-            <Typography
-              component={'h1'}
-              variant={'h1'}
-              sx={{
-                marginBottom: {
-                  xs: 3,
-                  md: 5,
-                  lg: 6,
-                },
-              }}
-            >
-              WFIMC
-            </Typography>
-            <Box>
-              <Wrapper>
-                <Box sx={{ mb: { xs: 3, md: 0 } }}>
-                  <Box
-                    component={'img'}
-                    alt={'WFIMC members'}
-                    src={membersImg}
-                    sx={{
-                      maxWidth: '100%',
-                      display: 'block',
-                    }}
-                  />
-                  <Caption component={'p'}>
-                    {content[language].wfimc.photoCaption}
-                  </Caption>
-                </Box>
-                {content[language].wfimc.about.map((item, i) => (
-                  <Typography
-                    key={i}
-                    component={'p'}
-                    variant="bodyRegular"
-                    sx={{
-                      marginTop: 2,
-                      textAlign: 'justify',
-                    }}
-                  >
-                    {item}
-                  </Typography>
-                ))}
-              </Wrapper>
-            </Box>
-          </Container>
-        </PageTemplate>
-        <GoBackBtn href={Routes.KYIV_GENEVA} />
-      </>
+      <PageTemplate goBackUrl={Routes.KYIV_GENEVA}>
+        <Container>
+          <Typography
+            component={'h1'}
+            variant={'h1'}
+            sx={{
+              marginBottom: {
+                xs: 3,
+                md: 5,
+                lg: 6,
+              },
+            }}
+          >
+            WFIMC
+          </Typography>
+          <Box>
+            <Wrapper>
+              <Box sx={{ mb: { xs: 3, md: 0 } }}>
+                <Box
+                  component={'img'}
+                  alt={'WFIMC members'}
+                  src={membersImg}
+                  sx={{
+                    maxWidth: '100%',
+                    display: 'block',
+                  }}
+                />
+                <Caption component={'p'}>
+                  {content[language].wfimc.photoCaption}
+                </Caption>
+              </Box>
+              {content[language].wfimc.about.map((item, i) => (
+                <Typography
+                  key={i}
+                  component={'p'}
+                  variant="bodyRegular"
+                  sx={{
+                    marginTop: 2,
+                    textAlign: 'justify',
+                  }}
+                >
+                  {item}
+                </Typography>
+              ))}
+            </Wrapper>
+          </Box>
+        </Container>
+      </PageTemplate>
     );
 };
 

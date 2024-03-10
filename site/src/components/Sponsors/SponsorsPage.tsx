@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import PageTemplate from '../Common/PageTemplate';
 
 import { Routes } from '@/types/routes.d';
-import GoBackBtn from '../Common/GoBackBtn';
 import LogotypesGallery from './parts/LogotypesGallery';
 import { MainTitle, TwoGalleryStack } from './styled';
 
@@ -43,67 +42,64 @@ const SponsorsPage: FC = () => {
   }, [language]);
 
   return (
-    <>
-      <PageTemplate>
-        <Container>
-          <MainTitle component={'h1'}>
-            {t(`sponsorsPage.${Sponsors.MAIN_TITLE}`)}
-          </MainTitle>
-          <Stack spacing={6}>
-            {organizers && (
+    <PageTemplate goBackUrl={Routes.HOME}>
+      <Container>
+        <MainTitle component={'h1'}>
+          {t(`sponsorsPage.${Sponsors.MAIN_TITLE}`)}
+        </MainTitle>
+        <Stack spacing={6}>
+          {organizers && (
+            <LogotypesGallery
+              title={t(`sponsorsPage.${Sponsors.COMP_ORG}`)}
+              gallery={organizers}
+            />
+          )}
+          <TwoGalleryStack>
+            {mainPartners && (
               <LogotypesGallery
-                title={t(`sponsorsPage.${Sponsors.COMP_ORG}`)}
-                gallery={organizers}
+                title={t(`sponsorsPage.${Sponsors.MAIN_PART}`)}
+                gallery={mainPartners}
               />
             )}
-            <TwoGalleryStack>
-              {mainPartners && (
-                <LogotypesGallery
-                  title={t(`sponsorsPage.${Sponsors.MAIN_PART}`)}
-                  gallery={mainPartners}
-                />
-              )}
-              {sponsors && (
-                <LogotypesGallery
-                  title={t(`sponsorsPage.${Sponsors.SPONSORS}`)}
-                  gallery={sponsors}
-                />
-              )}
-            </TwoGalleryStack>
-            {generalInfoPartners && (
+            {sponsors && (
               <LogotypesGallery
-                title={t(`sponsorsPage.${Sponsors.GEN_INFO_PART}`)}
-                gallery={generalInfoPartners}
+                title={t(`sponsorsPage.${Sponsors.SPONSORS}`)}
+                gallery={sponsors}
+              />
+            )}
+          </TwoGalleryStack>
+          {generalInfoPartners && (
+            <LogotypesGallery
+              title={t(`sponsorsPage.${Sponsors.GEN_INFO_PART}`)}
+              gallery={generalInfoPartners}
+              optRowGap={5}
+            />
+          )}
+          <TwoGalleryStack>
+            {partners && (
+              <LogotypesGallery
+                title={t(`sponsorsPage.${Sponsors.PARTNERS}`)}
+                gallery={partners}
                 optRowGap={5}
               />
             )}
-            <TwoGalleryStack>
-              {partners && (
-                <LogotypesGallery
-                  title={t(`sponsorsPage.${Sponsors.PARTNERS}`)}
-                  gallery={partners}
-                  optRowGap={5}
-                />
-              )}
-              {mainInfoPartners && (
-                <LogotypesGallery
-                  title={t(`sponsorsPage.${Sponsors.MAIN_INFO_PART}`)}
-                  gallery={mainInfoPartners}
-                  optRowGap={5}
-                />
-              )}
-            </TwoGalleryStack>
-            {officialInfoPartners && (
+            {mainInfoPartners && (
               <LogotypesGallery
-                title={t(`sponsorsPage.${Sponsors.OFF_INFO_PART}`)}
-                gallery={officialInfoPartners}
+                title={t(`sponsorsPage.${Sponsors.MAIN_INFO_PART}`)}
+                gallery={mainInfoPartners}
+                optRowGap={5}
               />
             )}
-          </Stack>
-        </Container>
-      </PageTemplate>
-      <GoBackBtn href={Routes.HOME} />
-    </>
+          </TwoGalleryStack>
+          {officialInfoPartners && (
+            <LogotypesGallery
+              title={t(`sponsorsPage.${Sponsors.OFF_INFO_PART}`)}
+              gallery={officialInfoPartners}
+            />
+          )}
+        </Stack>
+      </Container>
+    </PageTemplate>
   );
 };
 export default SponsorsPage;

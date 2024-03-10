@@ -5,8 +5,6 @@ import Jury from '../Common/JuryBio';
 import { Routes } from '@/types/routes.d';
 import { content } from '@/assets/kyiv-geneva/KyivGenevaPreselectionJury';
 
-import GoBackBtn from '@/components/Common/GoBackBtn';
-
 const KyivGenevaPreselectionJury = () => {
   const { id } = useParams();
   const juryData = content.list.find((item) => item.id === id);
@@ -16,16 +14,13 @@ const KyivGenevaPreselectionJury = () => {
   }
 
   return (
-    <>
-      <PageTemplate>
-        <Container>
-          <Jury jury={juryData} />
-        </Container>
-      </PageTemplate>
-      <GoBackBtn
-        href={`${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_SELECTION_JURY}`}
-      />
-    </>
+    <PageTemplate
+      goBackUrl={`${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_SELECTION_JURY}`}
+    >
+      <Container>
+        <Jury jury={juryData} />
+      </Container>
+    </PageTemplate>
   );
 };
 

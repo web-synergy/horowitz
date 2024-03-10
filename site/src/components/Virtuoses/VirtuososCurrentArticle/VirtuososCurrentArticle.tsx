@@ -11,8 +11,7 @@ import { parseAndFormatDate } from '@/utils/helpers';
 import Loader from '@/components/Common/Loader';
 import PageTemplate from '@/components/Common/PageTemplate';
 
-import { useFetch } from '../../../hook/useFetch';
-import GoBackBtn from '@/components/Common/GoBackBtn';
+import { useFetch } from '@/hook/useFetch';
 import { Routes } from '@/types/routes.d';
 import NewsBanner from '@/components/Common/NewsBanner';
 import PortableComponent from '@/components/Templates/PortableComponent/PortableComponent';
@@ -41,44 +40,41 @@ const VirtuososCurrentArticle = () => {
   }
 
   return (
-    <>
-      <PageTemplate>
-        <Container>
-          {data && (
-            <>
-              <NewsBanner img={data?.img} />
+    <PageTemplate goBackUrl={Routes.VIRTUOSES_ARTICLE}>
+      <Container>
+        {data && (
+          <>
+            <NewsBanner img={data?.img} />
 
-              <Box sx={{ maxWidth: '930px', mx: 'auto' }}>
-                <Typography
-                  sx={{
-                    mt: { xs: '24px', md: '48px' },
-                    mb: '24px',
-                    display: 'block',
-                    color: (theme) => theme.palette.neutral[50],
-                  }}
-                  variant="bodyLight"
-                >
-                  {parseAndFormatDate(data.date)}
-                </Typography>
+            <Box sx={{ maxWidth: '930px', mx: 'auto' }}>
+              <Typography
+                sx={{
+                  mt: { xs: '24px', md: '48px' },
+                  mb: '24px',
+                  display: 'block',
+                  color: (theme) => theme.palette.neutral[50],
+                }}
+                variant="bodyLight"
+              >
+                {parseAndFormatDate(data.date)}
+              </Typography>
 
-                <Typography variant="h2">{data.title}</Typography>
-                <Box
-                  sx={{
-                    mb: { xs: '40px', md: '48px', lg: '56px' },
-                    mt: { xs: '24px', md: '32px' },
-                  }}
-                >
-                  {data.description && (
-                    <PortableComponent data={data.description} />
-                  )}
-                </Box>
+              <Typography variant="h2">{data.title}</Typography>
+              <Box
+                sx={{
+                  mb: { xs: '40px', md: '48px', lg: '56px' },
+                  mt: { xs: '24px', md: '32px' },
+                }}
+              >
+                {data.description && (
+                  <PortableComponent data={data.description} />
+                )}
               </Box>
-            </>
-          )}
-        </Container>
-      </PageTemplate>
-      <GoBackBtn href={Routes.VIRTUOSES_ARTICLE} />
-    </>
+            </Box>
+          </>
+        )}
+      </Container>
+    </PageTemplate>
   );
 };
 export default VirtuososCurrentArticle;
