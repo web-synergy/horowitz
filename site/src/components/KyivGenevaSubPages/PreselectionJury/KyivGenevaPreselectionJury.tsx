@@ -16,16 +16,16 @@ const KyivGenevaPreselectionJury = () => {
   }
 
   return (
-    <PageTemplate>
-      <Container
-        sx={{ pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}
-      >
-        <Jury jury={juryData} />
-      </Container>
+    <>
+      <PageTemplate>
+        <Container>
+          <Jury jury={juryData} />
+        </Container>
+      </PageTemplate>
       <GoBackBtn
         href={`${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_SELECTION_JURY}`}
       />
-    </PageTemplate>
+    </>
   );
 };
 

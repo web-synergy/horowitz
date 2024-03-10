@@ -1,19 +1,5 @@
 import { Box, styled } from '@mui/material';
 
-export const MainBox = styled(Box)(({ theme: { breakpoints } }) => ({
-  paddingTop: 24,
-  paddingBottom: 72,
-
-  [breakpoints.up('md')]: {
-    paddingTop: 40,
-    paddingBottom: 96,
-  },
-  [breakpoints.up('lg')]: {
-    paddingTop: 48,
-    paddingBottom: 120,
-  },
-}));
-
 export const Wrapper = styled(Box)(({ theme }) => ({
   width: '100%',
   position: 'relative',

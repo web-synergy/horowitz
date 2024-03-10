@@ -5,14 +5,14 @@ import { Container, List, Typography, Stack } from '@mui/material';
 
 import { useNewsStore } from '@/store/newsStore';
 import { useNavigate } from 'react-router-dom';
-import NewsListItem from './pars/NewsListItem';
+import NewsListItem from './parts/NewsListItem';
 import { INews } from '@/types/newsTypes';
 import { useTranslation } from 'react-i18next';
 import { Routes } from '@/types/routes.d';
 
 import { useSearchParams } from 'react-router-dom';
 import Loader from '../Common/Loader';
-import PaginationNews from './pars/PaginationNews';
+import PaginationNews from './parts/PaginationNews';
 
 const NewsPageList = () => {
   const {
@@ -40,15 +40,17 @@ const NewsPageList = () => {
   }, [language, urlPage]);
 
   if (loading) return <Loader />;
+
   return (
     <PageTemplate>
       <Container>
         <Stack>
           <Typography
             sx={{
-              py: { xs: '24px', md: '48px' },
+              mb: { xs: '24px', md: '48px' },
             }}
-            variant='h2'>
+            variant="h2"
+          >
             {t(`navigation.${Routes.NEWS}`)}
           </Typography>
           <List
@@ -57,7 +59,8 @@ const NewsPageList = () => {
               flexDirection: 'column',
               gap: { xs: 5, md: 6, lg: 7 },
               justifyContent: { xs: 'center', md: 'flex-start' },
-            }}>
+            }}
+          >
             {newsList &&
               newsList.map((news: INews, index) => (
                 <NewsListItem

@@ -43,70 +43,67 @@ const SponsorsPage: FC = () => {
   }, [language]);
 
   return (
-    <PageTemplate>
-      <Container
-        sx={{
-          paddingTop: { xs: 3, md: 6 },
-          paddingBottom: { xs: 9, md: 12, lg: 15 },
-        }}
-      >
-        <MainTitle component={'h1'}>
-          {t(`sponsorsPage.${Sponsors.MAIN_TITLE}`)}
-        </MainTitle>
-        <Stack spacing={6}>
-          {organizers && (
-            <LogotypesGallery
-              title={t(`sponsorsPage.${Sponsors.COMP_ORG}`)}
-              gallery={organizers}
-            />
-          )}
-          <TwoGalleryStack>
-            {mainPartners && (
+    <>
+      <PageTemplate>
+        <Container>
+          <MainTitle component={'h1'}>
+            {t(`sponsorsPage.${Sponsors.MAIN_TITLE}`)}
+          </MainTitle>
+          <Stack spacing={6}>
+            {organizers && (
               <LogotypesGallery
-                title={t(`sponsorsPage.${Sponsors.MAIN_PART}`)}
-                gallery={mainPartners}
+                title={t(`sponsorsPage.${Sponsors.COMP_ORG}`)}
+                gallery={organizers}
               />
             )}
-            {sponsors && (
+            <TwoGalleryStack>
+              {mainPartners && (
+                <LogotypesGallery
+                  title={t(`sponsorsPage.${Sponsors.MAIN_PART}`)}
+                  gallery={mainPartners}
+                />
+              )}
+              {sponsors && (
+                <LogotypesGallery
+                  title={t(`sponsorsPage.${Sponsors.SPONSORS}`)}
+                  gallery={sponsors}
+                />
+              )}
+            </TwoGalleryStack>
+            {generalInfoPartners && (
               <LogotypesGallery
-                title={t(`sponsorsPage.${Sponsors.SPONSORS}`)}
-                gallery={sponsors}
-              />
-            )}
-          </TwoGalleryStack>
-          {generalInfoPartners && (
-            <LogotypesGallery
-              title={t(`sponsorsPage.${Sponsors.GEN_INFO_PART}`)}
-              gallery={generalInfoPartners}
-              optRowGap={5}
-            />
-          )}
-          <TwoGalleryStack>
-            {partners && (
-              <LogotypesGallery
-                title={t(`sponsorsPage.${Sponsors.PARTNERS}`)}
-                gallery={partners}
+                title={t(`sponsorsPage.${Sponsors.GEN_INFO_PART}`)}
+                gallery={generalInfoPartners}
                 optRowGap={5}
               />
             )}
-            {mainInfoPartners && (
+            <TwoGalleryStack>
+              {partners && (
+                <LogotypesGallery
+                  title={t(`sponsorsPage.${Sponsors.PARTNERS}`)}
+                  gallery={partners}
+                  optRowGap={5}
+                />
+              )}
+              {mainInfoPartners && (
+                <LogotypesGallery
+                  title={t(`sponsorsPage.${Sponsors.MAIN_INFO_PART}`)}
+                  gallery={mainInfoPartners}
+                  optRowGap={5}
+                />
+              )}
+            </TwoGalleryStack>
+            {officialInfoPartners && (
               <LogotypesGallery
-                title={t(`sponsorsPage.${Sponsors.MAIN_INFO_PART}`)}
-                gallery={mainInfoPartners}
-                optRowGap={5}
+                title={t(`sponsorsPage.${Sponsors.OFF_INFO_PART}`)}
+                gallery={officialInfoPartners}
               />
             )}
-          </TwoGalleryStack>
-          {officialInfoPartners && (
-            <LogotypesGallery
-              title={t(`sponsorsPage.${Sponsors.OFF_INFO_PART}`)}
-              gallery={officialInfoPartners}
-            />
-          )}
-        </Stack>
-      </Container>
+          </Stack>
+        </Container>
+      </PageTemplate>
       <GoBackBtn href={Routes.HOME} />
-    </PageTemplate>
+    </>
   );
 };
 export default SponsorsPage;

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { getLangValue } from '@/utils/getLangValue';
 
 import { IJury } from '@/types/kyivGenevaDataTypes';
-import BioTemplate from '@/components/Common/BioTemplate';
+import BioTemplate from '@/components/Templates/BioTemplate/BioTemplate';
 
 interface JuryProps {
   jury: IJury;

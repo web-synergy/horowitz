@@ -1,7 +1,5 @@
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
-// import Breadcrumbs from '@/components/Common/Breadcrumbs';
-
 import { ImageWrapper, TextWrapper, Image, Text } from './styled';
 
 const KyivGenevaLayout = () => {

@@ -9,7 +9,7 @@ const NotFoundPage = () => {
   const { t } = useTranslation();
 
   return (
-    <PageTemplate>
+    <PageTemplate padding={false}>
       <Container
         sx={{
           paddingTop: { xs: '100px', md: '130px', lg: 20 },

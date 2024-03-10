@@ -15,24 +15,25 @@ const PaginationNews: FC<IPagination> = ({
   return (
     <Stack
       sx={{
-        pt: { xs: '24px', md: '48px' },
-        pb: { xs: '72px', md: '96px', lg: '120px' },
+        mt: { xs: '24px', md: '48px' },
+
         mx: 'auto',
       }}
-      spacing={2}>
+      spacing={2}
+    >
       <Pagination
         count={pageQty}
-        variant='outlined'
-        size='large'
+        variant="outlined"
+        size="large"
         page={urlPage}
         onChange={(_, num) =>
-          setSearchParams(prev => {
+          setSearchParams((prev) => {
             prev.set('page', num.toString());
             return prev;
           })
         }
         sx={{ marginY: 4, marginX: 'auto' }}
-        renderItem={item => <PaginationItem {...item} />}
+        renderItem={(item) => <PaginationItem {...item} />}
       />
     </Stack>
   );

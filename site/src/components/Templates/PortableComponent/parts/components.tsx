@@ -1,11 +1,8 @@
 import { PortableTextComponents } from '@portabletext/react';
-import {
-  ImageComponent,
-  ImagesArray,
-} from '../PortableComponent/ImageComponent';
+import { ImageComponent, ImagesArray } from './ImageComponent';
 import { Typography } from '@mui/material';
 
-import YouTube from '../PortableComponent/YouTube';
+import YouTube from './YouTube';
 import {
   Blockquote,
   ColorText,
@@ -13,7 +10,7 @@ import {
   Ol,
   TextLink,
   Ul,
-} from '@/components/PortableComponent';
+} from '@/components/Templates/PortableComponent/parts';
 
 export const components: PortableTextComponents = {
   types: {
@@ -33,7 +30,8 @@ export const components: PortableTextComponents = {
         sx={{
           my: { xs: '24px', md: '40px', lg: '48px' },
         }}
-        variant='h2'>
+        variant="h2"
+      >
         {children}
       </Typography>
     ),
@@ -43,7 +41,8 @@ export const components: PortableTextComponents = {
         sx={{
           my: { xs: '24px', md: '40px', lg: '48px' },
         }}
-        variant='h3'>
+        variant="h3"
+      >
         {children}
       </Typography>
     ),
@@ -53,7 +52,8 @@ export const components: PortableTextComponents = {
         sx={{
           my: { xs: '24px', md: '32px', lg: '40px' },
         }}
-        variant='h3Block'>
+        variant="h3Block"
+      >
         {children}
       </Typography>
     ),
@@ -64,7 +64,8 @@ export const components: PortableTextComponents = {
           my: '16px',
           textAlign: 'justify',
         }}
-        variant='bodyRegular'>
+        variant="bodyRegular"
+      >
         {children}
       </Typography>
     ),

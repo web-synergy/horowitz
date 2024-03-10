@@ -4,7 +4,7 @@ import {
   Ol,
   TextLink,
   Ul,
-} from '@/components/PortableComponent';
+} from '@/components/Templates/PortableComponent/parts';
 import { Typography } from '@mui/material';
 import { PortableTextComponents } from '@portabletext/react';
 
@@ -21,7 +21,8 @@ export const PortableVirtuosos: PortableTextComponents = {
         sx={{
           my: { xs: '24px', md: '40px', lg: '48px' },
         }}
-        variant='h2'>
+        variant="h2"
+      >
         {children}
       </Typography>
     ),
@@ -31,7 +32,8 @@ export const PortableVirtuosos: PortableTextComponents = {
         sx={{
           my: { xs: '24px', md: '40px', lg: '48px' },
         }}
-        variant='h3'>
+        variant="h3"
+      >
         {children}
       </Typography>
     ),
@@ -41,7 +43,8 @@ export const PortableVirtuosos: PortableTextComponents = {
         sx={{
           my: { xs: '24px', md: '32px', lg: '40px' },
         }}
-        variant='h3Block'>
+        variant="h3Block"
+      >
         {children}
       </Typography>
     ),
@@ -53,7 +56,8 @@ export const PortableVirtuosos: PortableTextComponents = {
           my: { xs: '24px', lg: '32px' },
           textAlign: 'justify',
         }}
-        variant='bodyRegular'>
+        variant="bodyRegular"
+      >
         {children}
       </Typography>
     ),

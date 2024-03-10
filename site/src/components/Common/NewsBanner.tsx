@@ -28,14 +28,15 @@ export default function NewsBanner({ img }: { img: IImage }) {
       });
     }
   }, [img, containerSize]);
+
   return (
     <GrowView>
       <div ref={containerRef}>
         <Box
           sx={{
+            display: 'block',
             width: imgSize.width,
             height: imgSize.height,
-
             objectFit: 'cover',
           }}
           src={

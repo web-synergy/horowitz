@@ -13,6 +13,7 @@ import { Buttons } from '@/types/translation.d';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { horowitzQuery } from '@/api/query.ts';
 import MainBanner from '../Common/MainBanner.tsx';
+
 const HorowitzPage: FC = () => {
   const {
     i18n: { language },
@@ -55,14 +56,12 @@ const HorowitzPage: FC = () => {
     return <Loader />;
   }
   return (
-    <PageTemplate>
+    <>
       {bannerData && <MainBanner banner={bannerData} />}
-      <Container>
-        <Box
-          sx={{
-            paddingTop: { xs: 3, md: 5, lg: 6 },
-            paddingBottom: { xs: 3, md: 5, lg: 6 },
-          }}
+      <PageTemplate>
+        <Container
+          sx={{ marginBottom: { xs: 3, md: 5, lg: 6 } }}
+          component="section"
         >
           <Typography
             variant="h1"
@@ -75,60 +74,59 @@ const HorowitzPage: FC = () => {
             {t(`navigation.${Routes.HOROWITZ}`)}
           </Typography>
           <TextBlockSection blocks={upperTextBlock} />
-        </Box>
-      </Container>
-      {quote && <QuoteSection quote={quote} />}
-      <Container>
-        {lowerTextBlock && (
+        </Container>
+        {quote && <QuoteSection quote={quote} />}
+        <Container component="section">
+          {lowerTextBlock && (
+            <Box
+              sx={{
+                paddingTop: { xs: 3, md: 5, lg: 6 },
+                paddingBottom: { xs: 3, md: 5, lg: 6 },
+              }}
+            >
+              <TextBlockSection blocks={lowerTextBlock} />
+            </Box>
+          )}
+
+          <Typography variant="subhead" sx={{ textAlign: 'left' }} gutterBottom>
+            {t(`horowitzPage.literature`)}:
+          </Typography>
+          {literature && (
+            <LiteratureSection
+              literature={literature}
+              isAllLiteratureVisible={isAllLiteratureVisible}
+            />
+          )}
+
           <Box
             sx={{
-              paddingTop: { xs: 3, md: 5, lg: 6 },
-              paddingBottom: { xs: 3, md: 5, lg: 6 },
+              width: '100%',
+              textAlign: 'center',
+              marginTop: '48px',
             }}
           >
-            <TextBlockSection blocks={lowerTextBlock} />
+            {isAllLiteratureVisible ? (
+              <Button
+                sx={{ width: '288px' }}
+                variant="transparent"
+                onClick={handleShowMore}
+              >
+                {t(`buttons.${Buttons.SHOW_LESS}`)}
+              </Button>
+            ) : (
+              <Button
+                sx={{ width: '288px' }}
+                variant="transparent"
+                onClick={handleShowMore}
+                disabled={isAllLiteratureVisible}
+              >
+                {t(`buttons.${Buttons.SHOW_MORE}`)}
+              </Button>
+            )}
           </Box>
-        )}
-
-        <Typography variant="subhead" sx={{ textAlign: 'left' }} gutterBottom>
-          {t(`horowitzPage.literature`)}:
-        </Typography>
-        {literature && (
-          <LiteratureSection
-            literature={literature}
-            isAllLiteratureVisible={isAllLiteratureVisible}
-          />
-        )}
-
-        <Box
-          sx={{
-            width: '100%',
-            textAlign: 'center',
-            marginTop: '48px',
-            marginBottom: { xs: '72px', md: '96px', lg: '120px' },
-          }}
-        >
-          {isAllLiteratureVisible ? (
-            <Button
-              sx={{ width: '288px' }}
-              variant="transparent"
-              onClick={handleShowMore}
-            >
-              {t(`buttons.${Buttons.SHOW_LESS}`)}
-            </Button>
-          ) : (
-            <Button
-              sx={{ width: '288px' }}
-              variant="transparent"
-              onClick={handleShowMore}
-              disabled={isAllLiteratureVisible}
-            >
-              {t(`buttons.${Buttons.SHOW_MORE}`)}
-            </Button>
-          )}
-        </Box>
-      </Container>
-    </PageTemplate>
+        </Container>
+      </PageTemplate>
+    </>
   );
 };
 

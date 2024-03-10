@@ -46,3 +46,6 @@
                 Переглянути всі
                 <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(-90deg)' }} />
             </Link>
+
+5. Папка з шаблонами (Templates):
+   -

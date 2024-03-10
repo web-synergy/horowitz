@@ -3,12 +3,17 @@ import { Box } from '@mui/material';
 
 interface PageTemplateProps {
   mode?: 'dark' | 'light';
+  padding?: boolean;
 }
 
 const PageTemplate: FC<PropsWithChildren<PageTemplateProps>> = ({
   mode = 'light',
+  padding = true,
   children,
 }) => {
+  const pagePaddings = padding
+    ? { pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }
+    : { padding: 0 };
   return (
     <Box
       sx={{
@@ -22,6 +27,7 @@ const PageTemplate: FC<PropsWithChildren<PageTemplateProps>> = ({
             : theme.palette.common.black,
         flexGrow: 1,
         position: 'relative',
+        ...pagePaddings,
       }}
     >
       {children}

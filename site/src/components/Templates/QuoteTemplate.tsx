@@ -12,7 +12,6 @@ const QuoteTemplate: FC<QuoteTemplateProps> = ({ quote, author }) => {
       sx={{ backgroundColor: (theme) => theme.palette.common.black }}
       component={'section'}
     >
-      {' '}
       <Box
         sx={{
           textAlign: 'center',

@@ -1,33 +1,33 @@
-import { FC } from 'react'
-import useWinners from './useWinners'
+import { FC } from 'react';
+import useWinners from './useWinners';
 
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
-import { Buttons } from '@/types/translation.d'
+import { Buttons } from '@/types/translation.d';
 
-import { Container, Stack, useMediaQuery, useTheme } from '@mui/material'
+import { Container, Stack, useMediaQuery, useTheme } from '@mui/material';
 
-import WinnerCard from './WinnerCard'
-import { MainTitle, WinnersCardsStack, Wrapper } from './styled'
+import WinnerCard from './WinnerCard';
+import { MainTitle, WinnersCardsStack, Wrapper } from './styled';
 
-import { Routes } from '@/types/routes.d'
+import { Routes } from '@/types/routes.d';
 
 // !TEMP
-import { ShowMoreBtn } from '@/components/NewsSection/ShowMoreBtn'
-import fakeData from '../../temp/fakeDataWinners.json'
-import winner1Img from '../../temp/winner_1.jpg'
-import winner2Img from '../../temp/winner_2.jpg'
-import winner3Img from '../../temp/winner_3.jpg'
+import { ShowMoreBtn } from '@/components/NewsSection/ShowMoreBtn';
+import fakeData from '../../temp/fakeDataWinners.json';
+import winner1Img from '../../temp/winner_1.jpg';
+import winner2Img from '../../temp/winner_2.jpg';
+import winner3Img from '../../temp/winner_3.jpg';
 
 const CompetitionWinners: FC = () => {
-  const { isVisible, ref } = useWinners()
+  const { isVisible, ref } = useWinners();
 
-  const { breakpoints } = useTheme()
-  const isMobile = useMediaQuery(breakpoints.down('md'))
-  const { t } = useTranslation()
+  const { breakpoints } = useTheme();
+  const isMobile = useMediaQuery(breakpoints.down('md'));
+  const { t } = useTranslation();
 
   // !TEMP
-  const images = [winner1Img, winner2Img, winner3Img]
+  const images = [winner1Img, winner2Img, winner3Img];
 
   return (
     <Wrapper component={'section'} ref={ref}>
@@ -50,13 +50,16 @@ const CompetitionWinners: FC = () => {
           {/* ! TEMP */}
           {fakeData.map(({ id, ...props }, i) => {
             return (
-              <WinnerCard key={id} {...{ ...props, image: images[i], isVisible, delay: i + 2 }} />
-            )
+              <WinnerCard
+                key={id}
+                {...{ ...props, image: images[i], isVisible, delay: i + 2 }}
+              />
+            );
           })}
         </WinnersCardsStack>
       </Container>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default CompetitionWinners
+export default CompetitionWinners;

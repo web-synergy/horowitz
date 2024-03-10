@@ -1,16 +1,16 @@
 import { useTranslation } from 'react-i18next';
 
-import PageTemplate from '@/components/Common/PageTemplate';
 import { Caption } from '@/components/KyivGeneva/parts/styled';
 
 import GoBackBtn from '@/components/Common/GoBackBtn';
 import { Routes } from '@/types/routes.d';
 import { Box, Container, Typography } from '@mui/material';
 import { FC } from 'react';
-import { MainBox, Wrapper } from './styled';
+import { Wrapper } from './styled';
 
 import membersImg from '@/assets/images/kyiv-geneva/wfimc/wfimc.webp';
 import content from '@/assets/kyiv-geneva/main/geneva_mainPage.json';
+import PageTemplate from '@/components/Common/PageTemplate';
 
 const KyivGenevaWFIMCPage: FC = () => {
   const {
@@ -19,9 +19,9 @@ const KyivGenevaWFIMCPage: FC = () => {
 
   if (language === 'ua' || language === 'en')
     return (
-      <PageTemplate>
-        <Container>
-          <MainBox>
+      <>
+        <PageTemplate>
+          <Container>
             <Typography
               component={'h1'}
               variant={'h1'}
@@ -66,10 +66,10 @@ const KyivGenevaWFIMCPage: FC = () => {
                 ))}
               </Wrapper>
             </Box>
-          </MainBox>
-        </Container>
+          </Container>
+        </PageTemplate>
         <GoBackBtn href={Routes.KYIV_GENEVA} />
-      </PageTemplate>
+      </>
     );
 };
 

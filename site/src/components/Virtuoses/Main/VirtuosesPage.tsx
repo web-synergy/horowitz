@@ -6,7 +6,7 @@ import { useVirtuososStore } from '@/store/virtuososStor';
 import { useEffect } from 'react';
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 
-import { ImagesArray } from '../../PortableComponent/ImageComponent';
+import { ImagesArray } from '../../Templates/PortableComponent/parts/ImageComponent';
 
 import { useLiveQuery } from '@sanity/preview-kit';
 import { virtuososQuery } from '@/api/query';
@@ -26,7 +26,8 @@ const components: PortableTextComponents = {
           mb: { xs: '24px' },
           textAlign: 'justify',
         }}
-        variant='bodyRegular'>
+        variant="bodyRegular"
+      >
         {children}
       </Typography>
     ),
@@ -40,7 +41,7 @@ const VirtuosesPage = () => {
   } = useTranslation();
 
   const { virtuosos, fetchVirtuosos, requestLang, loading } = useVirtuososStore(
-    state => ({
+    (state) => ({
       virtuosos: state.virtuosos,
       fetchVirtuosos: state.fetchVirtuosos,
       requestLang: state.requestLang,
@@ -61,44 +62,47 @@ const VirtuosesPage = () => {
 
   if (data)
     return (
-      <PageTemplate>
+      <>
         <MainBanner banner={data.banner} />
-        <Container sx={{ mb: { xs: 9, md: 12, lg: 15 } }}>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              mt: { xs: '24px', md: '48px' },
-              mb: { xs: '24px', lg: '48px' },
-            }}>
-            <Typography component={'h1'} variant='h1'>
-              {t(`navigation.${Routes.VIRTUOSES}`)}
-            </Typography>
-          </Box>
-          {data && (
-            <>
-              <Box
-                sx={{
-                  columnCount: { lg: 2 },
-                  columnGap: { lg: 3 },
-                }}>
-                <PortableText
-                  components={components}
-                  value={data.description[0]}
-                />
-              </Box>
-              {data.article.length ? (
-                <NewsSwiper
-                  title={t(`virtuosos.${Virtuosos.NEWS}`)}
-                  link={Routes.VIRTUOSES_ARTICLE}
-                  news={data.article}
-                />
-              ) : null}
-              <ImagesArray value={data.gallery} />
-            </>
-          )}
-        </Container>
-      </PageTemplate>
+        <PageTemplate>
+          <Container>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                mb: { xs: '24px', lg: '48px' },
+              }}
+            >
+              <Typography component={'h1'} variant="h1">
+                {t(`navigation.${Routes.VIRTUOSES}`)}
+              </Typography>
+            </Box>
+            {data && (
+              <>
+                <Box
+                  sx={{
+                    columnCount: { lg: 2 },
+                    columnGap: { lg: 3 },
+                  }}
+                >
+                  <PortableText
+                    components={components}
+                    value={data.description[0]}
+                  />
+                </Box>
+                {data.article.length ? (
+                  <NewsSwiper
+                    title={t(`virtuosos.${Virtuosos.NEWS}`)}
+                    link={Routes.VIRTUOSES_ARTICLE}
+                    news={data.article}
+                  />
+                ) : null}
+                <ImagesArray value={data.gallery} />
+              </>
+            )}
+          </Container>
+        </PageTemplate>
+      </>
     );
 };
 
