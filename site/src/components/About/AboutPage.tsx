@@ -9,7 +9,6 @@ import { useAboutCompetitionStore } from '@/store/aboutCompetitionStore';
 
 import TextBlockSection from './parts/TextBlockSection.tsx';
 import ImageSection from './parts/ImageSection.tsx';
-import QuoteTemplate from '../Templates/QuoteTemplate.tsx';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { aboutCompetitionQuery } from '@/api/query.ts';
 import MainBanner from '../Common/MainBanner.tsx';
@@ -72,16 +71,6 @@ const AboutPage: FC = () => {
 
                 if (type === 'imageBlock') {
                   return <ImageSection image={data} key={index} />;
-                }
-
-                if (type === 'quoteBlock') {
-                  return (
-                    <QuoteTemplate
-                      key={index}
-                      author={data.author}
-                      quote={data.quote}
-                    />
-                  );
                 }
 
                 return null;

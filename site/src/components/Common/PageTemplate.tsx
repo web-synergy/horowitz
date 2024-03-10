@@ -14,6 +14,7 @@ const PageTemplate: FC<PropsWithChildren<PageTemplateProps>> = ({
   const pagePaddings = padding
     ? { pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }
     : { padding: 0 };
+
   return (
     <Box
       sx={{
