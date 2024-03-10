@@ -36,9 +36,6 @@ const NewsSection: FC = () => {
             <Button component={Link} to={'pdf/Prada'}>
               Prada
             </Button>
-            <Button component={Link} to={'pdf/sql'}>
-              Презентація
-            </Button>
             <Button component={Link} to={'pdf/Буклет'}>
               Буклет
             </Button>

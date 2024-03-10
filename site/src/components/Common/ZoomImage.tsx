@@ -20,14 +20,15 @@ const ZoomImage = ({ children }: { children: React.ReactElement }) => {
 
   return (
     <QuickPinchZoom
-      maxZoom={3}
+      maxZoom={2}
+      setOffsetsOnce={false}
       inertiaFriction={0.96}
       tapZoomFactor={1}
-      zoomOutFactor={1.6}
+      draggableUnZoomed={false}
+      zoomOutFactor={1.9}
       doubleTapZoomOutOnMaxScale={true}
       centerContained={true}
-      onUpdate={onUpdate}
-      lockDragAxis={true}>
+      onUpdate={onUpdate}>
       <Box ref={imgRef}>{children}</Box>
     </QuickPinchZoom>
   );

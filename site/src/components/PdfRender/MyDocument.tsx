@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/TextLayer.css';
@@ -6,7 +6,7 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 import HTMLFlipBook from 'react-pageflip';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-import { Box, Button, useMediaQuery } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 
 import { Navigation, Keyboard, Zoom, EffectCreative } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -19,13 +19,14 @@ import '../PortableComponent/Swiper/sliderStyles.css';
 import DownloadPdfButton from './DownloadPdfButton';
 import { theme } from '@/theme';
 import { getPgfSize } from './helpers';
+import ZoomImage from '../Common/ZoomImage';
 const PagePdf = React.forwardRef(
   ({ pageNumber, pdfSize, isOnePage }: { pageNumber: number }, ref) => {
     return (
       <Box
         sx={{
           boxShadow: isOnePage ? 'none' : '0px 0px 4px rgba(0, 0, 0, 0.2)',
-          overflow: isOnePage ? 'none' : 'hidden',
+          // overflow: isOnePage ? 'none' : 'hidden',
         }}
         ref={ref}>
         <Page
@@ -39,14 +40,11 @@ const PagePdf = React.forwardRef(
 );
 
 const PDFReader = ({ file }) => {
+  const [totalPage, setTotalPage] = useState(0);
   const [pageNumber, setPageNumber] = useState<number[]>();
   const [isOnePage, setIsOnePage] = useState(true);
-  const [isZoom, setIsZoom] = useState(false);
-  const [scale, setScale] = useState(1);
   const [loading, setLoading] = useState(false);
-  const imageRef = useRef(null);
-  const startPosition = useRef({ x: 0, y: 0 });
-
+  const flipBookRef = useRef(null);
   const isMd = useMediaQuery(theme.breakpoints.down('lg'));
   const [pdfSize, setPdfSize] = useState<{
     width: number;
@@ -55,7 +53,19 @@ const PDFReader = ({ file }) => {
     width: 0,
     height: 0,
   });
+
   const minusHeader = isMd ? 64 : 102;
+
+  const nextButtonClick = () => {
+    flipBookRef?.current?.pageFlip().flipNext();
+  };
+
+  const prevButtonClick = () => {
+    flipBookRef?.current?.pageFlip().flipPrev();
+  };
+  const onPage = e => {
+    setTotalPage(e.data);
+  };
 
   useEffect(() => {
     async function fetchPdfDimensions() {
@@ -92,165 +102,46 @@ const PDFReader = ({ file }) => {
 
     fetchPdfDimensions();
   }, [file]);
-  useEffect(() => {
-    const iszoom = scale <= 1;
-    if (iszoom) {
-      setIsZoom(false);
-      setScale(1);
-    } else {
-      setIsZoom(true);
-    }
-  }, [scale]);
 
-  const handleMouseDown = event => {
-    startPosition.current = {
-      x: event.clientX,
-      y: event.clientY,
-    };
-  };
-
-  const handleMouseMove = event => {
-    let deltaX = event.clientX;
-    let deltaY = event.clientY;
-    if (!isZoom) {
-      deltaX = 0;
-      deltaY = 0;
-    } else {
-      deltaX = event.clientX - startPosition.current.x;
-      deltaY = event.clientY - startPosition.current.y;
-    }
-
-    const image = imageRef.current;
-    if (image) {
-      image.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-    }
-  };
-
-  const handleMouseUp = event => {
-    let deltaX = event.clientX;
-    let deltaY = event.clientY;
-    if (!isZoom) {
-      deltaX = 0;
-      deltaY = 0;
-    } else {
-      deltaX = event.clientX - startPosition.current.x;
-      deltaY = event.clientY - startPosition.current.y;
-    }
-
-    const image = imageRef.current;
-    if (image) {
-      image.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-    }
-  };
-  const handleTouchStart = event => {
-    const touch = event.touches[0];
-    // console.log(startPosition.current.x);
-    if (startPosition.current.x == 0)
-      startPosition.current = {
-        x: touch.clientX,
-        y: touch.clientY,
-      };
-  };
-
-  const handleTouchMove = event => {
-    event.preventDefault();
-    const touch = event.touches[0];
-    let deltaX = touch.clientX;
-    let deltaY = touch.clientY;
-    if (!isZoom) {
-      deltaX = 0;
-      deltaY = 0;
-    } else {
-      deltaX = touch.clientX - startPosition.current.x;
-      deltaY = touch.clientY - startPosition.current.y;
-    }
-
-    const image = imageRef.current;
-    if (image) {
-      image.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-    }
-  };
-
-  const handleTouchEnd = event => {
-    const touch = event.changedTouches[0];
-    let deltaX = touch.clientX;
-    let deltaY = touch.clientY;
-    if (!isZoom) {
-      deltaX = 0;
-      deltaY = 0;
-    } else {
-      deltaX = touch.clientX - startPosition.current.x;
-      deltaY = touch.clientY - startPosition.current.y;
-    }
-
-    // Additional logic for touch end if needed
-  };
-  const image = imageRef.current;
-  if (image) {
-    image.addEventListener('touchstart', handleTouchStart);
-    image.addEventListener('touchmove', handleTouchMove);
-    image.addEventListener('touchend', handleTouchEnd);
-  }
-
-  const handelClickZoom = () => {
-    if (isZoom) {
-      setScale(1);
-    } else {
-      setScale(scale + 0.8);
-    }
-  };
-  console.log(pageNumber);
-  const isOnePageZoomSsze = isOnePage ? 0.8 : 2 * 0.8;
   if (loading) return <Loader />;
   if (!pdfSize.width) return;
   return (
     <Box
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
       sx={{
-        overflow: 'hidden',
-        transform: `scale(${scale})`,
         mb: 7,
       }}>
       <DownloadPdfButton pdfUrl={file} name={'document'} />
       <Box
-        onMouseDown={handleMouseDown}
-        ref={imageRef}
         sx={{
           width: `${isOnePage ? pdfSize.width : pdfSize.width * 2}px`,
           height: `${pdfSize.height}px`,
         }}>
-        <Box
-          onTouchMove={e => e.stopPropagation()}
-          onClick={handelClickZoom}
-          sx={{
-            cursor: isZoom ? 'zoom-out' : 'zoom-in',
-            position: 'absolute',
-            width: isZoom ? '100vw' : `${pdfSize.width * isOnePageZoomSsze}px`,
-            height: isZoom ? '100vh' : `${pdfSize.height}px`,
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            zIndex: 1,
-          }}></Box>
         <Document file={file}>
           {!isOnePage ? (
-            <HTMLFlipBook
-              autoSize={false}
-              flippingTime={700}
-              maxShadowOpacity={0.1}
-              mobileScrollSupport={true}
-              height={pdfSize.height}
-              width={pdfSize.width}>
-              {pageNumber?.map(page => (
-                <PagePdf
-                  isOnePage={isOnePage}
-                  pdfSize={pdfSize}
-                  key={page}
-                  pageNumber={page}
-                />
-              ))}
-            </HTMLFlipBook>
+            <ZoomImage>
+              <button onClick={prevButtonClick}>Prev Page</button>
+              <button onClick={nextButtonClick}>Next Page</button>
+              <HTMLFlipBook
+                ref={flipBookRef}
+                onFlip={onPage}
+                drawShadow={true}
+                autoSize={false}
+                flippingTime={700}
+                maxShadowOpacity={0.1}
+                disableFlipByClick={true}
+                mobileScrollSupport={true}
+                height={pdfSize.height}
+                width={pdfSize.width}>
+                {pageNumber?.slice(0, totalPage + 5).map(page => (
+                  <PagePdf
+                    isOnePage={isOnePage}
+                    pdfSize={pdfSize}
+                    key={page}
+                    pageNumber={page}
+                  />
+                ))}
+              </HTMLFlipBook>
+            </ZoomImage>
           ) : (
             <Swiper
               modules={[Zoom, Navigation, Keyboard, EffectCreative]}
