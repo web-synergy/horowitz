@@ -29,7 +29,7 @@ export default defineConfig({
       languages: languages,
       defaultLanguages: [langByDefault],
       buttonAddAll: false,
-      fieldTypes: ['string', 'text', 'content', 'image', 'article', 'quote'],
+      fieldTypes: ['string', 'text', 'content', 'image', 'article'],
     }),
   ],
 

@@ -1,10 +1,32 @@
 import {defineField, defineType} from 'sanity'
-import TitlePreview from '../../components/TitlePreview'
 
 export default defineType({
   name: 'aboutHorowitzCompetition',
   title: 'Конкурс Горовиця',
   type: 'document',
+
+  groups: [
+    {
+      name: 'upperTextBlock',
+      title: 'Верхній текст',
+    },
+    {
+      name: 'middleTextBlock',
+      title: 'Середній текст',
+    },
+    {
+      name: 'lowerTextBlock',
+      title: 'Нижній текст',
+    },
+    {
+      name: 'images',
+      title: 'Зображення',
+    },
+    {
+      name: 'addText',
+      title: 'Додаткові дані',
+    },
+  ],
 
   fields: [
     defineField({
@@ -12,94 +34,61 @@ export default defineType({
       title: 'Головний банер',
       type: 'banner',
     }),
+    defineField({
+      group: ['upperTextBlock'],
+      name: 'upperTextBlock',
+      title: 'Верхній блок тексту',
+      type: 'internationalizedArrayArticle',
+      validation: (Rule) =>
+        Rule.custom((content: {_key?: string; value?: string}[]) => {
+          for (const value of content) {
+            if (!value.value?.length) {
+              return `Поле ${value._key?.toUpperCase()} обовʼязкове`
+            }
+          }
+          return true // All checks passed
+        }),
+    }),
 
     defineField({
-      name: 'content',
-      type: 'array',
-      title: 'Контент',
-
-      of: [
-        {
-          name: 'textBlock',
-          title: 'Текстовий контент',
-          type: 'object',
-          fields: [{name: 'data', type: 'internationalizedArrayArticle'}],
-          components: {preview: TitlePreview},
-          preview: {
-            select: {
-              title: 'title',
-            },
-          },
-        },
-        {
-          name: 'imageBlock',
-          title: 'Зображення',
-          type: 'object',
-          fields: [{name: 'data', type: 'internationalizedArrayImage'}],
-          components: {preview: TitlePreview},
-          preview: {
-            select: {
-              title: 'title',
-            },
-          },
-        },
-        {
-          name: 'quoteBlock',
-          title: 'Цитата',
-          components: {preview: TitlePreview},
-          type: 'object',
-          fields: [{name: 'data', type: 'internationalizedArrayQuote'}],
-          preview: {
-            select: {
-              title: 'title',
-            },
-          },
-        },
-      ],
+      name: 'imgHistoryOne',
+      title: 'Зображення Історія 1',
+      type: 'internationalizedArrayImage',
+      group: 'images',
     }),
-    // defineField({
-    //   name: 'upperTextBlock',
-    //   title: 'Верхній блок тексту',
-    //   type: 'internationalizedArrayContent',
-    //   validation: (Rule) =>
-    //     Rule.custom((content: {_key?: string; value?: string}[]) => {
-    //       for (const value of content) {
-    //         if (!value.value?.length) {
-    //           return `Поле ${value._key?.toUpperCase()} обовʼязкове`
-    //         }
-    //       }
-    //       return true // All checks passed
-    //     }),
-    // }),
 
-    // defineField({
-    //   name: 'imgHistoryOne',
-    //   title: 'Зображення Історія 1',
-    //   type: 'internationalizedArrayImage',
-    // }),
+    defineField({
+      group: ['middleTextBlock'],
+      name: 'middleTextBlock',
+      title: 'Середній блок тексту',
+      type: 'internationalizedArrayArticle',
+    }),
 
-    // defineField({
-    //   name: 'middleTextBlock',
-    //   title: 'Середній блок тексту',
-    //   type: 'internationalizedArrayContent',
-    // }),
+    defineField({
+      name: 'imgHistoryTwo',
+      title: 'Зображення Історія 2',
+      type: 'internationalizedArrayImage',
+      group: 'images',
+    }),
 
-    // defineField({
-    //   name: 'imgHistoryTwo',
-    //   title: 'Зображення Історія 2',
-    //   type: 'internationalizedArrayImage',
-    // }),
+    defineField({
+      group: ['lowerTextBlock'],
+      name: 'lowerTextBlock',
+      title: 'Нижній блок тексту',
+      type: 'internationalizedArrayArticle',
+    }),
 
-    // defineField({
-    //   name: 'lowerTextBlock',
-    //   title: 'Нижній блок тексту',
-    //   type: 'internationalizedArrayContent',
-    // }),
+    defineField({
+      name: 'imgStatistics',
+      title: 'Зображення Статистика',
+      type: 'internationalizedArrayImage',
+      group: 'images',
+    }),
 
-    // defineField({
-    //   name: 'imgStatistics',
-    //   title: 'Зображення Статистика',
-    //   type: 'internationalizedArrayImage',
-    // }),
+    defineField({
+      name: 'additionalText',
+      title: 'Додаткова інформація',
+      type: 'internationalizedArrayContent',
+    }),
   ],
 })
