@@ -84,10 +84,14 @@ export const partners = groq`*[_type == 'partners'][0]{
 
 export const aboutCompetitionQuery = groq`*[_type == 'aboutHorowitzCompetition'][0] {
   'mainBanner': mainBanner,
-  "content": content[]{
-    'data': data[_key == $language][0].value,
-    'type': _type
-  }
+  'upperTextBlock': upperTextBlock[_key ==$language][0].value,
+  'middleTextBlock': middleTextBlock[_key ==$language][0].value,
+  'lowerTextBlock': lowerTextBlock[_key ==$language][0].value,
+  'imgHistoryOne': imgHistoryOne[_key ==$language][0].value,
+  'imgHistoryTwo': imgHistoryTwo[_key ==$language][0].value,
+  'imgStatistics': imgStatistics[_key ==$language][0].value,
+  'additionalText': additionalText[_key ==$language][0].value,
+
 }`;
 
 export const administrationQuery = groq`*[_type == 'administration'][0] {

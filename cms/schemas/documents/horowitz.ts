@@ -25,34 +25,14 @@ export default defineType({
   ],
 
   fields: [
-    // defineField({
-    //   name: 'bannerData',
-    //   title: 'Баннер',
-    //   type: 'object',
-    //   fields: [
-    //     defineField({
-    //       name: 'mainBanner',
-    //       title: 'Головний банер',
-    //       type: 'banner',
-    //     }),
-    //     defineField({
-    //       name: 'bannerCopyright',
-    //       title: 'Текст авторського права',
-    //       type: 'string',
-    //     }),
-    //   ],
-    // }),
+ 
 
     defineField({
       name: 'mainBanner',
       title: 'Головний банер',
       type: 'banner',
     }),
-    defineField({
-      name: 'bannerCopyright',
-      title: 'Текст авторського права',
-      type: 'string',
-    }),
+   
 
     defineField({
       group: ['upperTextBlock'],

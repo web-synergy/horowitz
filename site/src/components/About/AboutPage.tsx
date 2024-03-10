@@ -9,6 +9,7 @@ import { useAboutCompetitionStore } from '@/store/aboutCompetitionStore';
 
 import TextBlockSection from './parts/TextBlockSection.tsx';
 import ImageSection from './parts/ImageSection.tsx';
+import PortableComponent from '../Templates/PortableComponent/PortableComponent.tsx';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { aboutCompetitionQuery } from '@/api/query.ts';
 import MainBanner from '../Common/MainBanner.tsx';
@@ -34,17 +35,27 @@ const AboutPage: FC = () => {
 
   const aboutCompetitionData = useAboutCompetitionStore();
 
-  const [{ mainBanner, content, isLoading }] = useLiveQuery(
-    aboutCompetitionData,
-    aboutCompetitionQuery,
+  const [
     {
-      language,
-    }
-  );
+      mainBanner,
+      upperTextBlock,
+      middleTextBlock,
+      lowerTextBlock,
+      imgHistoryOne,
+      imgHistoryTwo,
+      imgStatistics,
+      additionalText,
+      isLoading,
+    },
+  ] = useLiveQuery(aboutCompetitionData, aboutCompetitionQuery, {
+    language,
+  });
 
   if (isLoading) {
     return <Loader />;
   }
+
+  console.log(upperTextBlock);
 
   return (
     <>
@@ -63,18 +74,15 @@ const AboutPage: FC = () => {
             </Typography>
           </Box>
           <Stack direction="column" gap={{ xs: 3, md: 5, lg: 6 }}>
-            {content &&
-              content.map(({ data, type }, index) => {
-                if (type === 'textBlock') {
-                  return <TextBlockSection blocks={data} key={index} />;
-                }
-
-                if (type === 'imageBlock') {
-                  return <ImageSection image={data} key={index} />;
-                }
-
-                return null;
-              })}
+            <TextBlockSection blocks={upperTextBlock} />
+            {imgHistoryOne && <ImageSection image={imgHistoryOne} />}
+            {middleTextBlock && <TextBlockSection blocks={middleTextBlock} />}
+            {imgHistoryTwo && <ImageSection image={imgHistoryTwo} />}
+            {lowerTextBlock && <TextBlockSection blocks={lowerTextBlock} />}
+            {imgStatistics && <ImageSection image={imgStatistics} />}
+            <Box>
+              {additionalText && <PortableComponent data={additionalText} />}
+            </Box>
           </Stack>
         </Container>
       </PageTemplate>
