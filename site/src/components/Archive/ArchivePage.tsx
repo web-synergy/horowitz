@@ -8,7 +8,7 @@ import { archiveUrl } from '@/libs/archiveUrl';
 const ArchivePage = () => {
   const { t } = useTranslation();
   return (
-    <PageTemplate mode="dark">
+    <PageTemplate mode="dark" padding={false}>
       <Banner>
         <Overlay />
         <Container sx={{ py: { xs: 9, md: 20 } }}>

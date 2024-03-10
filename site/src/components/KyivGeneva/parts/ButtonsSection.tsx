@@ -1,15 +1,15 @@
-import { kyivGenevaNavigation } from '@/config/routes/navigation'
-import { Routes } from '@/types/routes.d'
+import { kyivGenevaNavigation } from '@/config/routes/navigation';
+import { Routes } from '@/types/routes.d';
 
-import { Box, Container } from '@mui/material'
-import { FC } from 'react'
+import { Box, Container } from '@mui/material';
+import { FC } from 'react';
 
-import LinksList from '@/components/Common/LinksList'
-import { BgImage, MainBox } from './styled'
+import LinksList from '@/components/Templates/NavList/NavList';
+import { BgImage, MainBox } from './styled';
 
 type ButtonsSectionProps = {
-  bgImage: string
-}
+  bgImage: string;
+};
 
 const ButtonsSection: FC<ButtonsSectionProps> = ({ bgImage }) => {
   return (
@@ -30,12 +30,15 @@ const ButtonsSection: FC<ButtonsSectionProps> = ({ bgImage }) => {
               },
             }}
           >
-            <LinksList linksList={kyivGenevaNavigation} path={Routes.KYIV_GENEVA} />
+            <LinksList
+              linksList={kyivGenevaNavigation}
+              path={Routes.KYIV_GENEVA}
+            />
           </Box>
         </Container>
       </Box>
     </MainBox>
-  )
-}
+  );
+};
 
-export default ButtonsSection
+export default ButtonsSection;

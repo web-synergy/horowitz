@@ -11,7 +11,8 @@
         - загальні компоненти в папці Common.
         - ділимо компоненти в залежності від розміщення.
         - структура в папці components:
-                Common => SharedLayout, Templates, Button, SvgIcon...
+                Common => SharedLayout, Button, SvgIcon...
+                Templates => all Templates for different components such as Grid, Button section etc.
                 Header
                 Footer
                 NotFound
@@ -46,3 +47,9 @@
                 Переглянути всі
                 <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(-90deg)' }} />
             </Link>
+
+5. Папка з шаблонами (Templates):
+   - NavList - list with nav buttons in pages Competition, Summer Academy;
+   - PortableComponent - component for sanity schema content (with images, image galleries, swiper, text in 1 column)
+   - TextBlockComponent - component for text in two columns with image and without
+   - GridTemplate - for list of cards such as juries, participants, winners.

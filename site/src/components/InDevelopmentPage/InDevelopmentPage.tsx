@@ -11,7 +11,7 @@ const InDevelopmentPage: FC = () => {
   const { t } = useTranslation();
 
   return (
-    <PageTemplate mode="dark">
+    <PageTemplate mode="dark" padding={false}>
       <StyledContainer>
         <StyledBox>
           <StyledTypography variant="subhead" component={'p'}>

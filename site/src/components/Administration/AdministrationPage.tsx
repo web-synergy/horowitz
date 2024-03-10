@@ -46,40 +46,37 @@ const AdministrationPage = () => {
   }
 
   return (
-    <PageTemplate>
+    <>
       {banner && <MainBanner banner={banner} />}
-      <Container
-        sx={{
-          paddingTop: { xs: 3, md: 5, lg: 6 },
-          paddingBottom: { xs: '72px', md: '96px', lg: '120px' },
-        }}
-      >
-        <Typography
-          sx={{
-            marginBottom: { xs: 3, md: 5, lg: 6 },
-            textAlign: 'center',
-          }}
-          variant="h1"
-          gutterBottom
-        >
-          {t(`navigation.${Routes.ADMINISTRATION}`)}
-        </Typography>
-        <Box sx={{ width: '100%' }}>
-          <Grid
-            container
-            rowSpacing={{ xs: 3, md: 5, lg: 6 }}
-            columnSpacing={{ md: '26px' }}
+      <PageTemplate>
+        <Container>
+          <Typography
+            sx={{
+              marginBottom: { xs: 3, md: 5, lg: 6 },
+              textAlign: 'center',
+            }}
+            variant="h1"
+            gutterBottom
           >
-            {members &&
-              members.map((member, index) => (
-                <Grid item xs={12} md={6} key={index}>
-                  <MemberCardItem member={member} />
-                </Grid>
-              ))}
-          </Grid>
-        </Box>
-      </Container>
-    </PageTemplate>
+            {t(`navigation.${Routes.ADMINISTRATION}`)}
+          </Typography>
+          <Box sx={{ width: '100%' }}>
+            <Grid
+              container
+              rowSpacing={{ xs: 3, md: 5, lg: 6 }}
+              columnSpacing={{ md: '26px' }}
+            >
+              {members &&
+                members.map((member, index) => (
+                  <Grid item xs={12} md={6} key={index}>
+                    <MemberCardItem member={member} />
+                  </Grid>
+                ))}
+            </Grid>
+          </Box>
+        </Container>
+      </PageTemplate>
+    </>
   );
 };
 

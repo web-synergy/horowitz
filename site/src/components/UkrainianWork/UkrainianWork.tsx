@@ -39,13 +39,11 @@ const UkrainianComposition = () => {
   }
 
   return (
-    <PageTemplate>
-      {data && (
-        <>
-          <MainBanner banner={data?.banner} />
-          <Container
-            sx={{ pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}
-          >
+    <>
+      {data && <MainBanner banner={data?.banner} />}
+      <PageTemplate>
+        {data && (
+          <Container>
             <Typography
               variant="h1"
               textAlign="center"
@@ -68,9 +66,9 @@ const UkrainianComposition = () => {
               ))}
             </List>
           </Container>
-        </>
-      )}
-    </PageTemplate>
+        )}
+      </PageTemplate>
+    </>
   );
 };
 

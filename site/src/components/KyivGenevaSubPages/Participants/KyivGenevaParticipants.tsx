@@ -3,18 +3,15 @@ import PageTemplate from '@/components/Common/PageTemplate';
 import { useTranslation } from 'react-i18next';
 import { Routes } from '@/types/routes.d';
 import { participantsData } from '@/assets/kyiv-geneva/KyivGenevaParticipants';
-import GridTemplate from '@/components/Common/GridTemplate';
-import GoBackBtn from '@/components/Common/GoBackBtn';
+import GridTemplate from '@/components/Templates/GridTemplate';
 import Participant from './Participant';
 
 const KyivGenevaParticipants = () => {
   const { t } = useTranslation();
   return (
-    <PageTemplate>
+    <PageTemplate goBackUrl={Routes.KYIV_GENEVA}>
       <Container
         sx={{
-          pt: { xs: 3, md: 6 },
-          pb: { xs: 9, md: 12, lg: 15 },
           display: 'flex',
           flexDirection: 'column',
           gap: { xs: 3, md: 5, lg: 6 },
@@ -25,7 +22,6 @@ const KyivGenevaParticipants = () => {
         </Typography>
         <GridTemplate list={participantsData} gridItem={Participant} />
       </Container>
-      <GoBackBtn href={Routes.KYIV_GENEVA} />
     </PageTemplate>
   );
 };

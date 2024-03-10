@@ -3,10 +3,8 @@ import PageTemplate from '@/components/Common/PageTemplate';
 import { useTranslation } from 'react-i18next';
 import { Routes } from '@/types/routes.d';
 import { orchestraData } from '@/assets/kyiv-geneva/KyivGenevaOrchestra';
-import { theme } from '@/theme';
-import GoBackBtn from '@/components/Common/GoBackBtn';
 
-const RichText = styled(Typography)(() => ({
+const RichText = styled(Typography)(({ theme }) => ({
   display: 'block',
   textAlign: 'justify',
   marginBottom: '16px',
@@ -25,10 +23,8 @@ const KyivGenevaOrchestra = () => {
   const data = orchestraData[language];
 
   return (
-    <PageTemplate>
-      <Container
-        sx={{ pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}
-      >
+    <PageTemplate goBackUrl={Routes.KYIV_GENEVA}>
+      <Container>
         <Typography component={'h1'} variant="h1">
           {t(`navigation.${Routes.KYIV_GENEVA_ORCHESTRA}`)}
         </Typography>
@@ -77,7 +73,6 @@ const KyivGenevaOrchestra = () => {
           </Box>
         ))}
       </Container>
-      <GoBackBtn href={Routes.KYIV_GENEVA} />
     </PageTemplate>
   );
 };

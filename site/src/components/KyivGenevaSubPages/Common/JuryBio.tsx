@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { getLangValue } from '@/utils/getLangValue';
 
 import { IJury } from '@/types/kyivGenevaDataTypes';
-import BioTemplate from '@/components/Common/BioTemplate';
+import TextBlockComponent from '@/components/Templates/TextBlockComponent/TextBlockComponent';
 
 interface JuryProps {
   jury: IJury;
@@ -22,7 +22,9 @@ const Jury: FC<JuryProps> = ({ jury }) => {
 
   const name = getLangValue(language, jury.name);
 
-  return <BioTemplate title={name} textArray={textArray} img={jury.photo} />;
+  return (
+    <TextBlockComponent title={name} textArray={textArray} img={jury.photo} />
+  );
 };
 
 export default Jury;
