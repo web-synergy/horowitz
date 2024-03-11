@@ -1,4 +1,4 @@
-import { Box, Link, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Link, useMediaQuery, useTheme } from '@mui/material'
 import { FC } from 'react'
 import { CustomTypography, StyledStack, Title } from './styled'
 
