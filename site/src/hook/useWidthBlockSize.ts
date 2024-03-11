@@ -17,6 +17,7 @@ export const useWidthBlokSize = () => {
     return () => {
       window.removeEventListener('resize', debouncedUpdateContainerWidth);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerRef.current]);
 
   return { containerSize, containerRef };

@@ -15,7 +15,8 @@ const CompetitionPage = () => {
   const langCompetitions = competitions;
   const title = langCompetitions ? langCompetitions[0]?.title[0] : '';
 
-  const competitionName = pathname.slice(1);
+  const competitionName = pathname.split('/').slice(-1)[0];
+
   const isCompetitionExist = langCompetitions?.find(
     (item) => item.slug === competitionName
   );
