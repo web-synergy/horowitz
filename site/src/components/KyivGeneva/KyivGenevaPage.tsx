@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { MainStack } from './styled';
+import { Box } from '@mui/material';
 
 import AboutSection from './parts/AboutSection';
 import ButtonsSection from './parts/ButtonsSection';
@@ -16,20 +17,23 @@ const KyivGenevaPage = () => {
     i18n: { language },
   } = useTranslation();
 
-  if (language === 'ua' || language === 'en')
-    return (
-      <PageTemplate>
-        <MainStack>
-          <AboutSection content={pageData[language]} />
-          <ButtonsSection bgImage={pianoImg} />
-          <WFIMCSection
-            image={WFIMC_members}
-            wfimc_content={pageData[language].wfimc}
-          />
-          <SponsorsSection />
-        </MainStack>
-      </PageTemplate>
-    );
+  if (!(language === 'ua' || language === 'en')) {
+    return <Box />;
+  }
+
+  return (
+    <PageTemplate>
+      <MainStack>
+        <AboutSection content={pageData[language]} />
+        <ButtonsSection bgImage={pianoImg} />
+        <WFIMCSection
+          image={WFIMC_members}
+          wfimc_content={pageData[language].wfimc}
+        />
+        <SponsorsSection />
+      </MainStack>
+    </PageTemplate>
+  );
 };
 
 export default KyivGenevaPage;

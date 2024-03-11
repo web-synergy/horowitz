@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Routes } from '@/types/routes.d';
 import { Box, Container, Typography, Stack } from '@mui/material';
@@ -14,7 +14,7 @@ import { useLiveQuery } from '@sanity/preview-kit';
 import { aboutCompetitionQuery } from '@/api/query.ts';
 import MainBanner from '../Common/MainBanner.tsx';
 
-const AboutPage: FC = () => {
+const AboutPage = () => {
   const {
     i18n: { language },
     t,
@@ -54,8 +54,6 @@ const AboutPage: FC = () => {
   if (isLoading) {
     return <Loader />;
   }
-
-  console.log(upperTextBlock);
 
   return (
     <>
