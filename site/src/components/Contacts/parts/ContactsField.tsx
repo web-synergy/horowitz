@@ -1,6 +1,6 @@
 import { Box, Link, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { FC } from 'react'
-import { StyledStack, Title } from './styled'
+import { CustomTypography, StyledStack, Title } from './styled'
 
 import { phoneNumberFormatting } from '@/utils/phoneNumberFormatting'
 import { Link as RouterLink } from 'react-router-dom'
@@ -52,7 +52,7 @@ type EmailFieldProp = {
 }
 
 const TextField: FC<TextFieldProp> = ({ content }) => {
-  return <Typography variant="bodyRegular">{content}</Typography>
+  return <CustomTypography variant="bodyRegular">{content}</CustomTypography>
 }
 
 const PhoneField: FC<PhoneFieldProp> = ({ phone }) => {
@@ -67,7 +67,7 @@ const PhoneField: FC<PhoneFieldProp> = ({ phone }) => {
         width: 'fit-content',
       }}
     >
-      <Typography variant="bodyRegular">{phoneNumberFormatting(phone)}</Typography>
+      <CustomTypography variant="bodyRegular">{phoneNumberFormatting(phone)}</CustomTypography>
     </Box>
   )
 }
@@ -75,7 +75,7 @@ const PhoneField: FC<PhoneFieldProp> = ({ phone }) => {
 const EmailField: FC<EmailFieldProp> = ({ email }) => {
   return (
     <Link href={`mailto:${email}`}>
-      <Typography variant="bodyRegular">{email}</Typography>
+      <CustomTypography variant="bodyRegular">{email}</CustomTypography>
     </Link>
   )
 }

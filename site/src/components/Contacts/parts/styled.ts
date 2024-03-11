@@ -16,3 +16,9 @@ export const Title = styled(Typography)<TypographyProps>(({ theme }) => ({
   width: '119px',
   flexShrink: 0,
 }))
+
+export const CustomTypography = styled(Typography)<TypographyProps>(({ theme, variant }) => ({
+  ...(variant === 'bodyRegular' && {
+    color: theme.palette.neutral[20],
+  }),
+}))
