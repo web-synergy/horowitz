@@ -1,75 +1,90 @@
-import { Routes } from '@/types/routes.d';
-import { FC, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Routes } from '@/types/routes.d'
+import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Divider, Typography } from '@mui/material'
+import SocialMedia from '../Common/SocialMedia'
+import ContactsField from './parts/ContactsField'
 
-import ContactsDetails from './parts/ContactsDetails';
-import { ContentWrapper, InfoDivider, MainBox, Section } from './styled';
+import { ContentStack, ContentWrapper } from './styled'
 
-import { useSettingsStore } from '@/store/settingStore';
-import { PortableText, PortableTextComponents } from '@portabletext/react';
-import SocialMedia from '../Common/SocialMedia';
+import { useSettingsStore } from '@/store/settingStore'
+import { Contacts } from '@/types/translation.d'
+
+import { PortableText, PortableTextComponents } from '@portabletext/react'
+import PageTemplate from '../Common/PageTemplate'
 
 const components: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <Typography variant='bodyRegular' component={'p'}>
+      <Typography
+        variant="bodyRegular"
+        sx={{ color: theme => theme.palette.neutral[20] }}
+        component={'p'}
+      >
         {children}
       </Typography>
     ),
   },
-};
+}
 const ContactsPage: FC = () => {
-  useEffect(() => {
-    scroll(0, 0);
-  }, []);
+  const { t } = useTranslation()
 
-  const { t } = useTranslation();
+  const contacts = useSettingsStore(state => state.contacts)
+  if (!contacts) return null
 
-  const contacts = useSettingsStore(state => state.contacts);
-  if (!contacts) return null;
-
-  const { address: location, phone, email, pressCenter, about } = contacts;
+  const { address: location, phone, email, pressCenter, about } = contacts
 
   return (
-    <Section component={'section'}>
+    <PageTemplate mode="dark">
       <Container>
-        <MainBox>
-          <Typography
-            variant='h2'
-            component={'h1'}
-            sx={{
-              marginBottom: {
-                xs: '24px',
-                md: '40px',
-              },
-            }}>
-            {t(`navigation.${Routes.CONTACTS}`)}
-          </Typography>
-          <ContentWrapper>
-            <Box>
-              <Box sx={{ '& :first-of-type': { marginBottom: 2 } }}>
-                <PortableText value={about[0]} components={components} />
-              </Box>
+        <Typography
+          variant="h2"
+          component={'h1'}
+          sx={{
+            marginBottom: {
+              xs: '24px',
+              md: '40px',
+            },
+          }}
+        >
+          {t(`navigation.${Routes.CONTACTS}`)}
+        </Typography>
+        <ContentWrapper>
+          <Box>
+            <Box sx={{ '& :first-of-type': { marginBottom: 2 } }}>
+              <PortableText value={about[0]} components={components} />
+            </Box>
+            <Divider variant="light" sx={{ marginTop: 3 }} />
+          </Box>
 
-              <InfoDivider variant='light' />
-            </Box>
-            <Box sx={{ width: '100%' }}>
-              <ContactsDetails {...{ location, phone, email }} />
-            </Box>
-            <Box sx={{ width: '100%' }}>
-              <ContactsDetails
-                pressCenterPhone={pressCenter.phone}
-                pressCenterEmail={pressCenter.email}
-              />
-            </Box>
-            <SocialMedia />
-          </ContentWrapper>
-        </MainBox>
+          {/* location, phone, email */}
+          <ContentStack>
+            <ContactsField title={t(`contacts.${Contacts.ADDRESS}`)} details={location} />
+            <ContactsField
+              variant="phone"
+              title={t(`contacts.${Contacts.PHONE}`)}
+              details={phone}
+            />
+            <ContactsField variant="email" title="E-mail" details={email} />
+            <Divider variant="light" />
+          </ContentStack>
+
+          {/* press center */}
+          <ContentStack>
+            <ContactsField
+              variant="phone"
+              title={t(`contacts.${Contacts.PRESS_CENTER}`)}
+              details={pressCenter.phone}
+            />
+            <ContactsField variant="email" title="E-mail" details={pressCenter.email} />
+            <Divider variant="light" />
+          </ContentStack>
+          <SocialMedia />
+        </ContentWrapper>
       </Container>
-    </Section>
-  );
-};
+    </PageTemplate>
+  )
+}
 
-export default ContactsPage;
+export default ContactsPage
