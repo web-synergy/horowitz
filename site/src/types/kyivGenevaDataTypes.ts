@@ -68,7 +68,6 @@ export interface IParticipants {
   img: string;
 }
 
-
 export interface IJury {
   id: string;
   name: { ua: string; en: string };

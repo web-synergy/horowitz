@@ -12,7 +12,9 @@ export const useAboutCompetitionStore = create<AboutCompetitionState>(
     imgHistoryTwo: null,
     imgStatistics: null,
     isLoading: false,
+    additionalText: [],
     requestLang: '',
+
     fetchAboutCompetitionData: async (language) => {
       set({ isLoading: true });
 

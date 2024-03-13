@@ -1,4 +1,5 @@
 import { PortableTextBlock } from '@portabletext/types';
+import { IImage } from './commonTypes';
 
 export interface INews {
   _id: string;
@@ -12,19 +13,6 @@ export interface INews {
   count: number;
 }
 
-export interface IImage {
-  alt: string;
-  aspectRatio: number;
-  width: number;
-  isEmbed: boolean;
-  position: string;
-  embedPosition: string;
-
-  asset: {
-    _ref: string;
-  };
-  _key: string;
-}
 interface IIGallery extends IImage {
   photoLayout: {
     cols: number;

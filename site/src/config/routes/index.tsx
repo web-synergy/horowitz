@@ -1,40 +1,47 @@
-import AdministrationPage from '@/components/Administration/AdministrationPage';
-import ArchivePage from '@/components/Archive/ArchivePage';
-import KyivGenevaConditions from '@/components/KyivGenevaSubPages/Conditions/KyivGenevaConditions';
-import KyivGenevaOrchestra from '@/components/KyivGenevaSubPages/Orchestra/KyivGenevaOrchestra';
-import KyivGenevaParticipants from '@/components/KyivGenevaSubPages/Participants/KyivGenevaParticipants';
-import KyivGenevaRegulation from '@/components/KyivGenevaSubPages/Regulation/KyivGenevaRegulation';
-import KyivGenevaRequirements from '@/components/KyivGenevaSubPages/Requirements/KyivGenevaRequirements';
-import KyivGenevaRewards from '@/components/KyivGenevaSubPages/Rewards/KyivGenevaRewards';
-import KyivGenevaPreselectionJury from '@/components/KyivGenevaSubPages/PreselectionJury/KyivGenevaPreselectionJury';
-import KyivGenevaPreselectionJuryList from '@/components/KyivGenevaSubPages/PreselectionJury/KyivGenevaPreselectionJuryList';
-import KyivGenevaWinners from '@/components/KyivGenevaSubPages/Winners/KyivGenevaWinners';
-import KyivGenevaSponsorsPage from '@/components/KyivGenevaSubPages/Sponsors/KyivGenevaSponsors';
-import KyivGenevaWFIMCPage from '@/components/KyivGenevaSubPages/WFIMC/KyivGenevaWFIMC';
-import KyivGenevaLayout from '@/components/KyivGenevaSubPages/Layout/KyivGenevaLayout';
-import KyivGenevaJuryList from '@/components/KyivGenevaSubPages/Jury/KyivGenevaJuryList';
-import KyivGenevaJury from '@/components/KyivGenevaSubPages/Jury/KyivGenevaJury';
-import UkrainianWorks from '@/components/UkrainianWork/UkrainianWork';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
+
+import { Routes } from '@/types/routes.d';
+
+import LazyAdministrationPage from '@/components/Administration/LazyAdministrationPage';
+import LazyAboutPage from '@/components/About/LazyAboutPage';
+import LazyHorowitzPage from '@/components/Horowitz/LazyHorowitzvPage';
+import LazyUkrainianWork from '@/components/UkrainianWork/LazyUkrainianWirk';
+import LazyArchivePage from '@/components/Archive/LazyArchivePage';
+import LazySponsorsPage from '@/components/Sponsors/LazySponsorsPage';
+// import SuspenseComponent from '@/components/Common/SuspenseComponent';
+import LazyKyivGenevaPage from '@/components/KyivGeneva/LazyKyivGenevaPage';
+import LazyKyivGenevaConditions from '@/components/KyivGenevaSubPages/Conditions/LazyKyivGenevaConditionsPage';
+import LazyKyivGenevaOrchestra from '@/components/KyivGenevaSubPages/Orchestra/LazyKyivGenevaArchestra';
+import LazyKyivGenevaParticipants from '@/components/KyivGenevaSubPages/Participants/LazyKyivGenevaParticipants';
+import LazyKyivGenevaRegulation from '@/components/KyivGenevaSubPages/Regulation/LazyKyivGenevaRegulation';
+import LazyKyivGenevaRequirements from '@/components/KyivGenevaSubPages/Requirements/LazyKyivGenevaRequirements';
+import LazyKyivGenevaRewards from '@/components/KyivGenevaSubPages/Rewards/LazyKyivGenevaRewards';
+import LazyKyivGenevaPreselectionJury from '@/components/KyivGenevaSubPages/PreselectionJury/LazyKyivGenevaPreselectionJury';
+import LazyKyivGenevaPreselectionJuryList from '@/components/KyivGenevaSubPages/PreselectionJury/LazyKyivGenevaPreselectionJuryList';
+import LazyKyivGenevaWinners from '@/components/KyivGenevaSubPages/Winners/LazyKyivGenevaWinners';
+import LazyKyivGenevaSponsorsPage from '@/components/KyivGenevaSubPages/Sponsors/LazyKyivGenevaSpomsors';
+import LazyKyivGenevaWFIMCPage from '@/components/KyivGenevaSubPages/WFIMC/LazyKyivGenevaWFIMC';
+import LazyKyivGenevaLayout from '@/components/KyivGenevaSubPages/Layout/LazyKyivGenevaLayout';
+import LazyKyivGenevaJuryList from '@/components/KyivGenevaSubPages/Jury/LazyKyivGenevaJuryList';
+import LazyKyivGenevaJury from '@/components/KyivGenevaSubPages/Jury/LazyKyivGenevaJury';
+
+import LazyVirtuosesPage from '../../components/Virtuoses/Main/LazyVirtuosesPage';
+import LazyVirtuosasArticles from '@/components/Virtuoses/VirtuosesArticles/LazyVirtuosasArticles';
+import LazyVirtuososCurrentArticle from '@/components/Virtuoses/VirtuososCurrentArticle/LazyVirtuososCurrentArticle';
+
+import WithPreview from '@/components/SanityPreview/WithPreview';
+
 import NewsCurrentPage from '@/components/NewsCurrentPage/NewsCurrentPage';
 import NewsPageList from '@/components/NewsPageList/NewsPageList';
-import WithPreview from '@/components/SanityPreview/WithPreview';
-import SponsorsPage from '@/components/Sponsors/SponsorsPage';
-import { Routes } from '@/types/routes.d';
-import { Navigate, createBrowserRouter } from 'react-router-dom';
-import AboutPage from '../../components/About/AboutPage';
 import CompetitionPage from '../../components/Competition/CompetitionPage';
 import ContactsPage from '../../components/Contacts/ContactsPage';
-import HorowitzPage from '../../components/Horowitz/HorowitzPage';
-import KyivGenevaPage from '../../components/KyivGeneva/KyivGenevaPage';
 import MainPage from '../../components/Main/MainPage';
 import MasterClassPage from '../../components/MasterClass/MasterClassPage';
 import NotFoundPage from '../../components/NotFound/NotFoundPage';
 import SummerSchoolPage from '../../components/SummerSchool/SummerSchoolPage';
-import VirtuosesPage from '../../components/Virtuoses/Main/VirtuosesPage';
+
 import ApplyPage from '@/components/Apply/ApplyPage';
 import SupportUsPage from '@/components/SupportUs/SupportUsPage';
-import VirtuosasArticles from '@/components/Virtuoses/VirtuosesArticles/VirtuosasArticles';
-import VirtuososCurrentArticle from '@/components/Virtuoses/VirtuososCurrentArticle/VirtuososCurrentArticle';
 import PdfPage from '@/components/PdfRender/PdfPage';
 
 const routes = createBrowserRouter([
@@ -48,24 +55,28 @@ const routes = createBrowserRouter([
       },
       {
         path: Routes.DETAILS,
-        element: <AboutPage />,
+        element: <LazyAboutPage />,
       },
 
       {
         path: Routes.HOROWITZ,
-        element: <HorowitzPage />,
+        element: <LazyHorowitzPage />,
+      },
+      {
+        path: Routes.ADMINISTRATION,
+        element: <LazyAdministrationPage />,
       },
       {
         path: Routes.UKRAINIAN_WORKS,
-        element: <UkrainianWorks />,
+        element: <LazyUkrainianWork />,
       },
       {
-        path: `:${Routes.COMPETITION}`,
+        path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}`,
         element: <CompetitionPage />,
       },
       {
         path: `${Routes.ARCHIVE}`,
-        element: <ArchivePage />,
+        element: <LazyArchivePage />,
       },
       {
         path: `pdf/:name`,
@@ -74,83 +85,89 @@ const routes = createBrowserRouter([
 
       { path: Routes.MASTER_CLASS, element: <MasterClassPage /> },
       { path: Routes.SUMMER_SCHOOL, element: <SummerSchoolPage /> },
-      { path: Routes.VIRTUOSES, element: <VirtuosesPage /> },
-      { path: Routes.VIRTUOSES_ARTICLE, element: <VirtuosasArticles /> },
+      {
+        path: Routes.VIRTUOSES,
+        element: <LazyVirtuosesPage />,
+      },
+      {
+        path: Routes.VIRTUOSES_ARTICLE,
+        element: <LazyVirtuosasArticles />,
+      },
       {
         path: Routes.VIRTUOSES_CURRENT_ARTICLE,
-        element: <VirtuososCurrentArticle />,
+        element: <LazyVirtuososCurrentArticle />,
       },
 
       { path: Routes.NEWS, element: <NewsPageList /> },
       { path: Routes.CURRENT_NEWS, element: <NewsCurrentPage /> },
       { path: Routes.CONTACTS, element: <ContactsPage /> },
-      { path: Routes.ADMINISTRATION, element: <AdministrationPage /> },
+
       {
         path: Routes.SPONSORS,
-        element: <SponsorsPage />,
+        element: <LazySponsorsPage />,
       },
 
       {
         path: Routes.KYIV_GENEVA,
-        element: <KyivGenevaLayout />,
+        element: <LazyKyivGenevaLayout />,
         children: [
           {
             index: true,
-            element: <KyivGenevaPage />,
+            element: <LazyKyivGenevaPage />,
           },
           {
             path: Routes.KYIV_GENEVA_CONDITIONS,
-            element: <KyivGenevaConditions />,
+            element: <LazyKyivGenevaConditions />,
           },
           {
             path: Routes.KYIV_GENEVA_JURY,
-            element: <KyivGenevaJuryList />,
+            element: <LazyKyivGenevaJuryList />,
           },
           {
             path: `${Routes.KYIV_GENEVA_JURY}/:id`,
-            element: <KyivGenevaJury />,
+            element: <LazyKyivGenevaJury />,
           },
           {
             path: Routes.KYIV_GENEVA_PARTICIPANTS,
-            element: <KyivGenevaParticipants />,
+            element: <LazyKyivGenevaParticipants />,
           },
           {
             path: Routes.KYIV_GENEVA_REQUIREMENTS,
-            element: <KyivGenevaRequirements />,
+            element: <LazyKyivGenevaRequirements />,
           },
           {
             path: Routes.KYIV_GENEVA_SELECTION_JURY,
-            element: <KyivGenevaPreselectionJuryList />,
+            element: <LazyKyivGenevaPreselectionJuryList />,
           },
 
           {
             path: `${Routes.KYIV_GENEVA_SELECTION_JURY}/:id`,
-            element: <KyivGenevaPreselectionJury />,
+            element: <LazyKyivGenevaPreselectionJury />,
           },
 
           {
             path: Routes.KYIV_GENEVA_WINNERS,
-            element: <KyivGenevaWinners />,
+            element: <LazyKyivGenevaWinners />,
           },
           {
             path: Routes.KYIV_GENEVA_REWARDS,
-            element: <KyivGenevaRewards />,
+            element: <LazyKyivGenevaRewards />,
           },
           {
             path: Routes.KYIV_GENEVA_ORCHESTRA,
-            element: <KyivGenevaOrchestra />,
+            element: <LazyKyivGenevaOrchestra />,
           },
           {
             path: Routes.KYIV_GENEVA_TIMETABLE,
-            element: <KyivGenevaRegulation />,
+            element: <LazyKyivGenevaRegulation />,
           },
           {
             path: Routes.KYIV_GENEVA_SPONSORS,
-            element: <KyivGenevaSponsorsPage />,
+            element: <LazyKyivGenevaSponsorsPage />,
           },
           {
             path: Routes.KYIV_GENEVA_WFIMC,
-            element: <KyivGenevaWFIMCPage />,
+            element: <LazyKyivGenevaWFIMCPage />,
           },
         ],
       },

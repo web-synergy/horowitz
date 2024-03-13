@@ -22,6 +22,10 @@ export default defineType({
       name: 'images',
       title: 'Зображення',
     },
+    {
+      name: 'addText',
+      title: 'Додаткові дані',
+    },
   ],
 
   fields: [
@@ -34,7 +38,7 @@ export default defineType({
       group: ['upperTextBlock'],
       name: 'upperTextBlock',
       title: 'Верхній блок тексту',
-      type: 'internationalizedArrayContent',
+      type: 'internationalizedArrayArticle',
       validation: (Rule) =>
         Rule.custom((content: {_key?: string; value?: string}[]) => {
           for (const value of content) {
@@ -57,7 +61,7 @@ export default defineType({
       group: ['middleTextBlock'],
       name: 'middleTextBlock',
       title: 'Середній блок тексту',
-      type: 'internationalizedArrayContent',
+      type: 'internationalizedArrayArticle',
     }),
 
     defineField({
@@ -71,7 +75,7 @@ export default defineType({
       group: ['lowerTextBlock'],
       name: 'lowerTextBlock',
       title: 'Нижній блок тексту',
-      type: 'internationalizedArrayContent',
+      type: 'internationalizedArrayArticle',
     }),
 
     defineField({
@@ -79,6 +83,12 @@ export default defineType({
       title: 'Зображення Статистика',
       type: 'internationalizedArrayImage',
       group: 'images',
+    }),
+
+    defineField({
+      name: 'additionalText',
+      title: 'Додаткова інформація',
+      type: 'internationalizedArrayContent',
     }),
   ],
 })

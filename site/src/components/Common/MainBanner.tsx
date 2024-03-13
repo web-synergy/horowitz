@@ -3,12 +3,14 @@ import { Box, Container, Typography } from '@mui/material';
 import { IBanner, ColorField } from '@/types/bannerType';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { createColor } from '@/utils/createColor';
+import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 
 interface MainBannerProps {
   banner: IBanner;
 }
 
 const MainBanner: FC<MainBannerProps> = ({ banner }) => {
+  const { containerSize, containerRef } = useWidthBlokSize();
   const {
     background,
     fullSize,
@@ -41,21 +43,26 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
           }deg, ${createGradientColors(banner.linearGradient?.colors)})`,
         };
 
-  const windowWidth = window.innerWidth;
-  const windowHeight = Math.floor(window.innerHeight * (maxHeight / 100));
+  const imageWidth = containerSize;
+  const imageHeight = containerRef.current?.offsetHeight || 408;
 
   const image = fullSize
-    ? urlFor(img).auto('format').width(windowWidth).height(windowHeight).url()
-    : urlFor(img).auto('format').url();
+    ? urlFor(img).auto('format').width(imageWidth).height(imageHeight).url()
+    : urlFor(img).auto('format').height(imageHeight).url();
 
   const imageLocation = location ? location : { position: 'center' };
 
   return (
     <Box
+      ref={containerRef}
       sx={{
         backgroundColor: createColor(background),
         height: `${maxHeight}vh`,
         position: 'relative',
+        '&::before': {
+          content: `url(${image})`,
+          display: 'none',
+        },
       }}
     >
       <Box
@@ -70,8 +77,9 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
         <Box
           component={'img'}
           src={image}
+          width={imageWidth}
+          height={imageHeight}
           sx={{
-            display: 'block',
             width: fullSize ? '100%' : 'auto',
             height: '100%',
             objectFit: 'cover',

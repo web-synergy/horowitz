@@ -1,18 +1,14 @@
-import { PortableTextBlock } from "@portabletext/types";
-
-export interface AboutCompetitionImage {
-  asset: {
-    _ref: string;
-  };
-  _key: string;
-  alt: string;
-}
+import { PortableTextBlock } from '@portabletext/types';
+import { IImage } from './commonTypes';
+import { IBanner } from './bannerType';
 
 export interface AboutCompetitionResp {
+  mainBanner: IBanner;
   upperTextBlock: PortableTextBlock[];
   middleTextBlock: PortableTextBlock[];
   lowerTextBlock: PortableTextBlock[];
-  imgHistoryOne: AboutCompetitionImage;
-  imgHistoryTwo: AboutCompetitionImage;
-  imgStatistics: AboutCompetitionImage;
+  imgHistoryOne: IImage;
+  imgHistoryTwo: IImage;
+  imgStatistics: IImage;
+  additionalText: PortableTextBlock[];
 }

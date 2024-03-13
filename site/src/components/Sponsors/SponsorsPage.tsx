@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import PageTemplate from '../Common/PageTemplate';
 
 import { Routes } from '@/types/routes.d';
-import GoBackBtn from '../Common/GoBackBtn';
 import LogotypesGallery from './parts/LogotypesGallery';
 import { MainTitle, TwoGalleryStack } from './styled';
 
@@ -43,13 +42,8 @@ const SponsorsPage: FC = () => {
   }, [language]);
 
   return (
-    <PageTemplate>
-      <Container
-        sx={{
-          paddingTop: { xs: 3, md: 6 },
-          paddingBottom: { xs: 9, md: 12, lg: 15 },
-        }}
-      >
+    <PageTemplate goBackUrl={Routes.HOME}>
+      <Container>
         <MainTitle component={'h1'}>
           {t(`sponsorsPage.${Sponsors.MAIN_TITLE}`)}
         </MainTitle>
@@ -105,7 +99,6 @@ const SponsorsPage: FC = () => {
           )}
         </Stack>
       </Container>
-      <GoBackBtn href={Routes.HOME} />
     </PageTemplate>
   );
 };

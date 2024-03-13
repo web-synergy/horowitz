@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import PageTemplate from '@/components/Common/PageTemplate';
 
-import GoBackBtn from '@/components/Common/GoBackBtn';
-
 import { Routes } from '@/types/routes.d';
 import { rewardsData } from '@/assets/kyiv-geneva/KyivGenevaRewards';
 
@@ -17,10 +15,8 @@ const KyivGenevaRewards = () => {
   const data = rewardsData[language];
 
   return (
-    <PageTemplate>
-      <Container
-        sx={{ pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}
-      >
+    <PageTemplate goBackUrl={Routes.KYIV_GENEVA}>
+      <Container>
         <Typography
           sx={{ mb: { xs: 3, md: 5, lg: 6 } }}
           component={'h1'}
@@ -82,7 +78,6 @@ const KyivGenevaRewards = () => {
           </>
         ))}
       </Container>
-      <GoBackBtn href={Routes.KYIV_GENEVA} />
     </PageTemplate>
   );
 };

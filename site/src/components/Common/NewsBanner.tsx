@@ -1,7 +1,7 @@
 import { Box, useMediaQuery } from '@mui/material';
 import GrowView from './GrowView';
 import { urlFor } from '@/config/sanity/imageUrl';
-import { IImage } from '@/types/newsTypes';
+import { IImage } from '@/types/commonTypes';
 import { useEffect, useState } from 'react';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 import { theme } from '@/theme';
@@ -28,6 +28,7 @@ export default function NewsBanner({ img }: { img: IImage }) {
       });
     }
   }, [img, containerSize]);
+
   return (
     <GrowView>
       <div ref={containerRef}>
@@ -35,7 +36,6 @@ export default function NewsBanner({ img }: { img: IImage }) {
           sx={{
             width: imgSize.width,
             height: imgSize.height,
-
             objectFit: 'cover',
           }}
           src={
@@ -48,7 +48,8 @@ export default function NewsBanner({ img }: { img: IImage }) {
               .toString()
           }
           alt={img?.alt}
-          component={'img'}></Box>
+          component={'img'}
+        ></Box>
       </div>
     </GrowView>
   );

@@ -1,4 +1,4 @@
-import { Stack, StackProps, styled } from '@mui/material'
+import { Stack, StackProps, Typography, TypographyProps, styled } from '@mui/material'
 
 export const StyledStack = styled(Stack)<StackProps>(({ theme }) => ({
   [theme.breakpoints.up('xs')]: {
@@ -11,11 +11,14 @@ export const StyledStack = styled(Stack)<StackProps>(({ theme }) => ({
   },
 }))
 
-export const ContentStack = styled(Stack)<StackProps>(({ theme }) => ({
-  [theme.breakpoints.up('xs')]: {
-    rowGap: '24px',
-  },
-  [theme.breakpoints.up('md')]: {
-    rowGap: '18px',
-  },
+export const Title = styled(Typography)<TypographyProps>(({ theme }) => ({
+  color: theme.palette.common.white,
+  width: '119px',
+  flexShrink: 0,
+}))
+
+export const CustomTypography = styled(Typography)<TypographyProps>(({ theme, variant }) => ({
+  ...(variant === 'bodyRegular' && {
+    color: theme.palette.neutral[20],
+  }),
 }))

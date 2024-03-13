@@ -4,7 +4,6 @@ import PageTemplate from '@/components/Common/PageTemplate';
 import Jury from '../Common/JuryBio';
 import { Routes } from '@/types/routes.d';
 import { content } from '@/assets/kyiv-geneva/KyivGenevaJury';
-import GoBackBtn from '@/components/Common/GoBackBtn';
 
 const KyivGenevaJury = () => {
   const { id } = useParams();
@@ -15,13 +14,12 @@ const KyivGenevaJury = () => {
   }
 
   return (
-    <PageTemplate>
-      <Container
-        sx={{ pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}
-      >
+    <PageTemplate
+      goBackUrl={`${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_JURY}`}
+    >
+      <Container>
         <Jury jury={juryData} />
       </Container>
-      <GoBackBtn href={`${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_JURY}`} />
     </PageTemplate>
   );
 };

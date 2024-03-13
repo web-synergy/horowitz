@@ -16,13 +16,13 @@ const Navigation: FC<NavigationProps> = ({ onCloseMobileMenu }) => {
   const { competitions } = useSettingsStore();
 
   const onOpenMenu = (panel: string) =>
-    setActiveMenu(prev => (prev === panel ? null : panel));
+    setActiveMenu((prev) => (prev === panel ? null : panel));
 
   const competitionNav = competitions ?? [];
 
-  const navigationForRender = navigation.map(item => {
+  const navigationForRender = navigation.map((item) => {
     const children = item.children
-      ? item.children.map(child => ({
+      ? item.children.map((child) => ({
           ...child,
           title: t(`navigation.${child.title}`),
         }))
@@ -33,7 +33,10 @@ const Navigation: FC<NavigationProps> = ({ onCloseMobileMenu }) => {
           ...item,
           children: [
             ...(children ? [children[0]] : ([] as NavigationType[])),
-            ...competitionNav,
+            ...competitionNav.map((item) => ({
+              ...item,
+              slug: `${Routes.COMPETITIONS}/${item.slug}`,
+            })),
             ...(children && children.length > 1
               ? children.slice(1)
               : ([] as NavigationType[])),
@@ -43,8 +46,8 @@ const Navigation: FC<NavigationProps> = ({ onCloseMobileMenu }) => {
   });
 
   return (
-    <NavList component='nav'>
-      {navigationForRender.map(item => (
+    <NavList component="nav">
+      {navigationForRender.map((item) => (
         <MainMenu
           key={item.title}
           title={item.title}

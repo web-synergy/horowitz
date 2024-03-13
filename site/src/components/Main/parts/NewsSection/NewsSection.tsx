@@ -16,7 +16,7 @@ import NewsSwiper from '@/components/NewsSection/NewsSwiper';
 import { Link } from 'react-router-dom';
 
 const NewsSection: FC = () => {
-  const news = useHomeStore(state => state.news);
+  const news = useHomeStore((state) => state.news);
   const { t } = useTranslation();
 
   return (

@@ -5,6 +5,7 @@ import { IUkrWorks } from '@/types/ukranianWorks';
 import { sanityFetch } from '../config/sanity/client';
 import { SettingsResp } from '../types/contactsTypes';
 import { AboutCompetitionResp } from '@/types/aboutCompetitionTypes';
+
 import {
   currentNewsQuery,
   partners,

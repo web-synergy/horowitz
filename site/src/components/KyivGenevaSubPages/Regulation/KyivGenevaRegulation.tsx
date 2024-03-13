@@ -3,7 +3,6 @@ import PageTemplate from '@/components/Common/PageTemplate';
 import { regulationData } from '@/assets/kyiv-geneva/KyivGenevaRegulation';
 import { useTranslation } from 'react-i18next';
 import { Routes } from '@/types/routes.d';
-import GoBackBtn from '@/components/Common/GoBackBtn';
 
 const Title = styled(Typography)(() => ({
   display: 'block',
@@ -22,12 +21,9 @@ const KyivGenevaRegulation = () => {
 
   const data = regulationData[language];
 
-  console.log(data);
   return (
-    <PageTemplate>
-      <Container
-        sx={{ pt: { xs: 3, md: 5, lg: 6 }, pb: { xs: 9, md: 12, lg: 15 } }}
-      >
+    <PageTemplate goBackUrl={Routes.KYIV_GENEVA}>
+      <Container>
         <Typography component={'h1'} variant="h1">
           {t(`navigation.${Routes.KYIV_GENEVA_TIMETABLE}`)}
         </Typography>
@@ -58,7 +54,6 @@ const KyivGenevaRegulation = () => {
           ))}
         </Stack>
       </Container>
-      <GoBackBtn href={Routes.KYIV_GENEVA} />
     </PageTemplate>
   );
 };

@@ -1,8 +1,9 @@
 import { urlFor } from '@/config/sanity/imageUrl';
-import { IImage, IPortableImgGallery } from '@/types/newsTypes';
+import { IImage } from '@/types/commonTypes';
+import { IPortableImgGallery } from '@/types/newsTypes';
 import { Box, useMediaQuery } from '@mui/material';
 import { Suspense, lazy, useEffect, useState } from 'react';
-import { PortableSwiper } from './Swiper/Swiper';
+import { PortableSwiper } from '../Swiper/Swiper';
 
 import GrowView from '@/components/Common/GrowView';
 import { theme } from '@/theme';
@@ -43,7 +44,8 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
           },
           justifyContent: { xs: 'center', md: position },
         }}
-        ref={containerRef}>
+        ref={containerRef}
+      >
         <Box
           component={'img'}
           sx={{
@@ -74,7 +76,7 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
               .toString()
           }
           alt={alt || 'foto'}
-          loading='lazy'
+          loading="lazy"
         />
       </Box>
     </GrowView>

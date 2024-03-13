@@ -12,10 +12,10 @@ import { Routes } from '@/types/routes.d';
 import { useSearchParams } from 'react-router-dom';
 import Loader from '@/components/Common/Loader';
 import PageTemplate from '@/components/Common/PageTemplate';
-import NewsListItem from '@/components/NewsPageList/pars/NewsListItem';
-import PaginationNews from '@/components/NewsPageList/pars/PaginationNews';
+import NewsListItem from '@/components/NewsPageList/parts/NewsListItem';
+import PaginationNews from '@/components/NewsPageList/parts/PaginationNews';
 import { useVirtuososStore } from '@/store/virtuososStor';
-import GoBackBtn from '@/components/Common/GoBackBtn';
+
 import { Virtuosos } from '@/types/translation.d';
 
 const VirtuosasArticles = () => {
@@ -51,14 +51,15 @@ const VirtuosasArticles = () => {
 
   if (loading) return <Loader />;
   return (
-    <PageTemplate>
-      <Container sx={{}}>
+    <PageTemplate goBackUrl={Routes.VIRTUOSES}>
+      <Container>
         <Stack>
           <Typography
             sx={{
-              py: { xs: '24px', md: '48px' },
+              pb: { xs: 3, md: 5, lg: 6 },
             }}
-            variant='h2'>
+            variant="h2"
+          >
             {t(`virtuosos.${Virtuosos.NEWS}`)}
           </Typography>
           <List
@@ -67,7 +68,8 @@ const VirtuosasArticles = () => {
               flexDirection: 'column',
               gap: { xs: 5, md: 6, lg: 7 },
               justifyContent: { xs: 'center', md: 'flex-start' },
-            }}>
+            }}
+          >
             {articleList &&
               articleList.map((news: INews, index) => (
                 <NewsListItem
@@ -88,7 +90,6 @@ const VirtuosasArticles = () => {
           />
         </Stack>
       </Container>
-      <GoBackBtn href={`/${Routes.VIRTUOSES}`} />
     </PageTemplate>
   );
 };

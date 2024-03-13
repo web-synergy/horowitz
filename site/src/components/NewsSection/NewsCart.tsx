@@ -1,20 +1,20 @@
-import { urlFor } from '@/config/sanity/imageUrl'
-import { IImage } from '@/types/newsTypes'
+import { urlFor } from '@/config/sanity/imageUrl';
+import { IImage } from '@/types/commonTypes';
 
-import { Buttons } from '@/types/translation.d'
-import { Box, Stack, Typography, TypographyProps, styled } from '@mui/material'
-import { FC } from 'react'
-import { useTranslation } from 'react-i18next'
-import { ShowMoreBtn } from './ShowMoreBtn'
+import { Buttons } from '@/types/translation.d';
+import { Box, Stack, Typography, TypographyProps, styled } from '@mui/material';
+import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ShowMoreBtn } from './ShowMoreBtn';
 
 interface INewsCart {
-  img: IImage
-  title: string
-  slug: string
+  img: IImage;
+  title: string;
+  slug: string;
 }
 
 const NewsCart: FC<INewsCart> = ({ img, title, slug }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <Stack
       sx={{
@@ -42,9 +42,9 @@ const NewsCart: FC<INewsCart> = ({ img, title, slug }) => {
         <ShowMoreBtn title={t(`buttons.${Buttons.READ_MORE}`)} link={slug} />
       </Box>
     </Stack>
-  )
-}
-export default NewsCart
+  );
+};
+export default NewsCart;
 
 // ========== PARTS ==========
 
@@ -72,4 +72,4 @@ const CardTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
     fontSize: '1.5rem',
     lineHeight: 1.333,
   },
-}))
+}));

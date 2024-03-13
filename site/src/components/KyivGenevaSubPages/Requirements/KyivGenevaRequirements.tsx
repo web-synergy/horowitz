@@ -1,33 +1,11 @@
-import { Box, Container, Typography, styled } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import PageTemplate from '@/components/Common/PageTemplate';
 import { useTranslation } from 'react-i18next';
 
 import { Routes } from '@/types/routes.d';
-import GoBackBtn from '@/components/Common/GoBackBtn';
 import { requirementsData } from '@/assets/kyiv-geneva/KyivGenevaRequirements';
-import { theme } from '@/theme';
+import { RichText, Title } from './styled';
 
-const Title = styled(Typography)(() => ({
-  display: 'block',
-  textAlign: 'justify',
-  margin: '24px 0',
-  [theme.breakpoints.up('md')]: {
-    margin: '40px 0',
-  },
-
-  [theme.breakpoints.up('lg')]: {
-    margin: '48px 0 ',
-  },
-}));
-const RichText = styled(Typography)(() => ({
-  display: 'block',
-  textAlign: 'justify',
-  marginBottom: '16px',
-
-  // [theme.breakpoints.up('lg')]: {
-  //   marginBottom: '24px',
-  // },
-}));
 const KyivGenevaRequirements = () => {
   const {
     t,
@@ -40,13 +18,8 @@ const KyivGenevaRequirements = () => {
     data;
 
   return (
-    <PageTemplate>
-      <Container
-        sx={{
-          pt: { xs: 3, md: 5, lg: 6 },
-          pb: { xs: 9, md: 12, lg: 15 },
-        }}
-      >
+    <PageTemplate goBackUrl={Routes.KYIV_GENEVA}>
+      <Container>
         <Typography component={'h1'} variant="h1">
           {t(`navigation.${Routes.KYIV_GENEVA_REQUIREMENTS}`)}
         </Typography>
@@ -79,7 +52,6 @@ const KyivGenevaRequirements = () => {
           <RichText variant="bodyRegular">{finalRound.p2}</RichText>
         </Box>
       </Container>
-      <GoBackBtn href={Routes.KYIV_GENEVA} />
     </PageTemplate>
   );
 };

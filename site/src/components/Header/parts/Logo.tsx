@@ -13,9 +13,11 @@ const Logo = () => {
     <Link to={'/'} style={{ fontSize: 0 }}>
       <Box
         component="img"
+        width={{ xs: 53, lg: 84 }}
+        height={{ xs: 64, lg: 102 }}
         src={logo}
         alt="logo"
-        sx={{ height: { xs: 64, lg: 102 }, width: 'auto' }}
+        sx={{ minHeight: '100%', width: 'auto' }}
       />
     </Link>
   );

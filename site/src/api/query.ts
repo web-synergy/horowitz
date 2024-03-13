@@ -90,6 +90,8 @@ export const aboutCompetitionQuery = groq`*[_type == 'aboutHorowitzCompetition']
   'imgHistoryOne': imgHistoryOne[_key ==$language][0].value,
   'imgHistoryTwo': imgHistoryTwo[_key ==$language][0].value,
   'imgStatistics': imgStatistics[_key ==$language][0].value,
+  'additionalText': additionalText[_key ==$language][0].value,
+
 }`;
 
 export const administrationQuery = groq`*[_type == 'administration'][0] {

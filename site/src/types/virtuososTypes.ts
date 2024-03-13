@@ -1,6 +1,8 @@
 import { PortableTextBlock } from '@portabletext/types';
-import { IImage, IPortableImgGallery } from './newsTypes';
+import { IImage } from './commonTypes';
+import { IPortableImgGallery } from './newsTypes';
 import { IBanner } from './bannerType';
+
 type TArticle = {
   img: IImage;
   title: string;
