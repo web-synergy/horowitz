@@ -24,18 +24,13 @@ const NewsSection: FC = () => {
       <>
         <Container>
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <Button component={Link} to={'pdf/Котики'}>
-              Котики
+            <Button component={Link} to={'pdf/sql'}>
+              SQL
             </Button>
-            <Button component={Link} to={'pdf/Менеджмент'}>
-              Менеджмент
+            <Button component={Link} to={'pdf/Книжка'}>
+              Книжка
             </Button>
-            <Button component={Link} to={'pdf/BMW'}>
-              BMW
-            </Button>
-            <Button component={Link} to={'pdf/Prada'}>
-              Prada
-            </Button>
+
             <Button component={Link} to={'pdf/Буклет'}>
               Буклет
             </Button>
