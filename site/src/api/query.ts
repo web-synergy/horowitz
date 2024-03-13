@@ -1,4 +1,3 @@
-import { clientFile } from '@/config/sanity/client';
 import groq from 'groq';
 export const homeQuery = groq`*[_type == 'home'][0]{
       
@@ -136,4 +135,9 @@ export const ukrWorksQuery = groq`*[_type == 'ukrainianWorks'][0]{
  'text': text[_key ==$language][0].value,
     'list': list[_key ==$language][0].value,
     'banner': mainBanner
+}`;
+
+export const getPDFQuery = groq`*[_type == 'magazinePdf' && title[_key ==$language][0].value == $name][0]{
+  'title':title[_key ==$language][0].value,
+  "URL": file.asset->url
 }`;
