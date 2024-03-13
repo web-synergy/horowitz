@@ -1,6 +1,6 @@
 import { Routes } from '@/types/routes.d';
 import PageTemplate from '../../Common/PageTemplate';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useVirtuososStore } from '@/store/virtuososStor';
 import { useEffect } from 'react';
@@ -15,6 +15,7 @@ import MainBanner from '@/components/Common/MainBanner';
 import Loader from '@/components/Common/Loader';
 import NewsSwiper from '../../NewsSection/NewsSwiper';
 import { Virtuosos } from '@/types/translation.d';
+import { Link } from 'react-router-dom';
 
 const components: PortableTextComponents = {
   block: {
@@ -26,8 +27,7 @@ const components: PortableTextComponents = {
           mb: { xs: '24px' },
           textAlign: 'justify',
         }}
-        variant="bodyRegular"
-      >
+        variant='bodyRegular'>
         {children}
       </Typography>
     ),
@@ -41,7 +41,7 @@ const VirtuosesPage = () => {
   } = useTranslation();
 
   const { virtuosos, fetchVirtuosos, requestLang, loading } = useVirtuososStore(
-    (state) => ({
+    state => ({
       virtuosos: state.virtuosos,
       fetchVirtuosos: state.fetchVirtuosos,
       requestLang: state.requestLang,
@@ -68,12 +68,29 @@ const VirtuosesPage = () => {
           <Container>
             <Box
               sx={{
+                my: 1,
+                display: 'flex',
+                gap: 1,
+                flexDirection: { xs: 'column', md: 'row' },
+              }}>
+              <Button component={Link} to={'/pdf/sql'}>
+                SQL
+              </Button>
+              <Button component={Link} to={'/pdf/Книжка'}>
+                Книжка
+              </Button>
+
+              <Button component={Link} to={'/pdf/Буклет'}>
+                Буклет
+              </Button>
+            </Box>
+            <Box
+              sx={{
                 display: 'flex',
                 justifyContent: 'center',
                 mb: { xs: '24px', lg: '48px' },
-              }}
-            >
-              <Typography component={'h1'} variant="h1">
+              }}>
+              <Typography component={'h1'} variant='h1'>
                 {t(`navigation.${Routes.VIRTUOSES}`)}
               </Typography>
             </Box>
@@ -83,8 +100,7 @@ const VirtuosesPage = () => {
                   sx={{
                     columnCount: { lg: 2 },
                     columnGap: { lg: 3 },
-                  }}
-                >
+                  }}>
                   <PortableText
                     components={components}
                     value={data.description[0]}
