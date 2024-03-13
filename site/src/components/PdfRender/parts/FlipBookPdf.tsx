@@ -5,7 +5,7 @@ import HTMLFlipBook from 'react-pageflip';
 import { PagePdf } from './PagePdf';
 import ZoomImage from '@/components/Common/ZoomImage';
 import { Box, Stack } from '@mui/material';
-import '../../PortableComponent/Swiper/sliderStyles.css';
+import '../../Templates/PortableComponent/Swiper/sliderStyles.css';
 import { IPdfViewer } from '@/types/pdfTypes';
 export default function FlipBookPdf({
   pdfSize,

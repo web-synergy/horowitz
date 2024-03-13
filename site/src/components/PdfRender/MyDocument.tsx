@@ -12,7 +12,7 @@ import DownloadPdfButton from './parts/DownloadPdfButton';
 import { getPgfSize } from './parts/helpers';
 import FlipBookPdf from './parts/FlipBookPdf';
 import SwiperPdf from './parts/SwiperPdf';
-import '../PortableComponent/Swiper/sliderStyles.css';
+
 import { IFileResponse } from '@/types/pdfTypes';
 
 const PDFReader = ({ title, URL }: IFileResponse) => {
@@ -74,7 +74,7 @@ const PDFReader = ({ title, URL }: IFileResponse) => {
     <Box
       sx={{
         mt: '16px',
-        mb: { xs: '56px' },
+        mb: { xs: '56px', lg: '72px' },
       }}>
       <DownloadPdfButton pdfUrl={URL} title={title} />
       <Box
