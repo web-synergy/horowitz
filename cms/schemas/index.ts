@@ -23,6 +23,7 @@ import virtuosos from './documents/virtuosos'
 import virtuososArticle from './documents/virtuososArticle'
 import ukrainianWorks from './documents/ukrainianWorks'
 import article from './objects/article'
+import magazinePdf from './documents/magazinePdf'
 
 export const schemaTypes = [
   //documents
@@ -33,6 +34,7 @@ export const schemaTypes = [
   contacts,
   social,
   competitionDocument,
+  magazinePdf,
   horowitz,
   partners,
   administration,

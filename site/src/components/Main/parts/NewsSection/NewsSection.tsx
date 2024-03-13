@@ -15,7 +15,7 @@ import { useHomeStore } from '@/store/homeStore';
 import NewsSwiper from '@/components/NewsSection/NewsSwiper';
 
 const NewsSection: FC = () => {
-  const news = useHomeStore((state) => state.news);
+  const news = useHomeStore(state => state.news);
   const { t } = useTranslation();
 
   return (

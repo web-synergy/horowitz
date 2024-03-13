@@ -138,3 +138,8 @@ export const ukrWorksQuery = groq`*[_type == 'ukrainianWorks'][0]{
     'list': list[_key ==$language][0].value,
     'banner': mainBanner
 }`;
+
+export const getPDFQuery = groq`*[_type == 'magazinePdf' && title[_key ==$language][0].value == $name][0]{
+  'title':title[_key ==$language][0].value,
+  "URL": file.asset->url
+}`;

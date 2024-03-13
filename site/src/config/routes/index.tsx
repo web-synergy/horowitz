@@ -42,6 +42,7 @@ import SummerSchoolPage from '../../components/SummerSchool/SummerSchoolPage';
 
 import ApplyPage from '@/components/Apply/ApplyPage';
 import SupportUsPage from '@/components/SupportUs/SupportUsPage';
+import PdfPage from '@/components/PdfRender/PdfPage';
 
 const routes = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const routes = createBrowserRouter([
       {
         path: `${Routes.ARCHIVE}`,
         element: <LazyArchivePage />,
+      },
+      {
+        path: `pdf/:name`,
+        element: <PdfPage />,
       },
 
       { path: Routes.MASTER_CLASS, element: <MasterClassPage /> },

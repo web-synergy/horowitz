@@ -19,6 +19,7 @@ import {
   virtuososArticleQuery,
   currentArticleQuery,
   homeQuery,
+  getPDFQuery,
 } from './query';
 import { PartnersResp } from '@/types/partnersTypes';
 import { IVirtuosos } from '@/types/virtuososTypes';
@@ -93,3 +94,7 @@ export const getUkrainianWorks = async (
 ): Promise<IUkrWorks> => {
   return sanityFetch(ukrWorksQuery, { language });
 };
+
+export async function getPDF(name: string) {
+  return sanityFetch(getPDFQuery, { name });
+}

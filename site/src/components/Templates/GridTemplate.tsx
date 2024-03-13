@@ -23,18 +23,17 @@ function GridTemplate<T>(props: GridTemplateProps<T>) {
         gridTemplateColumns: 'repeat(auto-fill, minmax(288px, 1fr))',
         flexDirection: 'row',
         flexWrap: 'wrap',
-      }}
-    >
+      }}>
       {list.map((item, index) => (
         <GrowView key={index}>
           <Box
             sx={{
+              boxShadow: '3px 3px 3px rgba(0, 0, 0, 0.1)',
               minWidth: 288,
               width: isCentered ? { xs: '45%', md: '30%' } : '100%',
               maxWidth: { xs: 320, md: 350, lg: 355 },
               margin: '0 auto',
-            }}
-          >
+            }}>
             <GridItem item={item} />
           </Box>
         </GrowView>

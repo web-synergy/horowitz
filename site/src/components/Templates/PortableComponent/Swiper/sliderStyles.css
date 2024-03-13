@@ -13,7 +13,7 @@
   height: 32px !important;
   border-radius: 50%;
   background-color: rgba(207, 207, 207, 0.4);
-  background-image: url('../../../assets/images/chevron.svg');
+  background-image: url('../../../../assets/images/chevron.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -23,7 +23,7 @@
   height: 32px !important;
   border-radius: 50%;
   background-color: rgba(207, 207, 207, 0.4);
-  background-image: url('../../../assets/images/chevron.svg');
+  background-image: url('../../../../assets/images/chevron.svg');
   transform: rotate(180deg);
   background-repeat: no-repeat;
   background-position: center;
@@ -47,6 +47,18 @@
 .swiper-slide img {
   display: block;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   object-fit: cover;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  overflow: hidden;
+}
+.zoom {
+  width: 100vw;
 }

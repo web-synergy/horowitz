@@ -22,7 +22,7 @@ const KyivGenevaConditions = () => {
   return (
     <PageTemplate goBackUrl={Routes.KYIV_GENEVA}>
       <Container>
-        <Typography component={'h1'} variant="h1">
+        <Typography component={'h1'} variant='h1'>
           {t(`navigation.${Routes.KYIV_GENEVA_CONDITIONS}`)}
         </Typography>
         {data.map((item, index) => (
