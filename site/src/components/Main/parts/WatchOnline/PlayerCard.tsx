@@ -1,6 +1,6 @@
+import DisplayVideoCard from '@/components/Templates/DisplayVideoCard/DisplayVideoCard'
 import { Stack, Typography } from '@mui/material'
 import { FC } from 'react'
-import { Iframe } from './styled'
 
 interface PlayerCardProps {
   url: string
@@ -22,13 +22,7 @@ const PlayerCard: FC<PlayerCardProps> = ({ url, title }) => {
         },
       }}
     >
-      <Iframe
-        src={url}
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        sandbox="allow-scripts allow-presentation allow-same-origin allow-popups"
-      />
+      <DisplayVideoCard url={url} />
       <Typography
         sx={{
           fontSize: {
