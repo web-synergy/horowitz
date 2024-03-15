@@ -1,19 +1,25 @@
+import { useHomeStore } from '@/store/homeStore'
+
+import { MainPage } from '@/types/translation.d'
 import { FC } from 'react'
+
 import PlayerCard from './PlayerCard'
 import { StyledContainer, Wrapper } from './styled'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css'
 
-import { MainPage } from '@/types/translation.d'
-
 import { useTranslation } from 'react-i18next'
 import { MainTitle } from '../../styled'
-// !temp
-import urlList from '../../temp/watchOnlineList.json'
 
 const WatchOnline: FC = () => {
   const { t } = useTranslation()
+
+  const videos = useHomeStore(state => state.videos)
+
+  console.log(videos)
+
+  if (!videos) return null
 
   return (
     <Wrapper component={'section'}>
@@ -44,9 +50,9 @@ const WatchOnline: FC = () => {
             },
           }}
         >
-          {urlList.map(({ id, ...props }) => (
-            <SwiperSlide key={id}>
-              <PlayerCard {...props} />
+          {videos.map(video => (
+            <SwiperSlide key={video._key} style={{ height: 'auto' }}>
+              <PlayerCard {...video} />
             </SwiperSlide>
           ))}
         </Swiper>

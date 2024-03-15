@@ -3,15 +3,16 @@ import { FC, PropsWithChildren, useState } from 'react'
 
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon'
 import { Iframe } from '@/components/Main/parts/WatchOnline/styled'
-// !TEMP
-import poster from './temp/video_poster.jpg'
+import { urlFor } from '@/config/sanity/imageUrl'
+import { IImage } from '@/types/commonTypes'
 
 type DisplayVideoCard = {
-  url: string
+  link: string
+  poster: IImage
   icon?: string
 }
 
-const DisplayVideoCard: FC<DisplayVideoCard> = ({ url, icon = 'mediaPlayer' }) => {
+const DisplayVideoCard: FC<DisplayVideoCard> = ({ link, icon = 'mediaPlayer', poster }) => {
   const [open, setOpen] = useState(false)
 
   const handleClose = () => setOpen(false)
@@ -19,10 +20,10 @@ const DisplayVideoCard: FC<DisplayVideoCard> = ({ url, icon = 'mediaPlayer' }) =
 
   return (
     <Box position={'relative'}>
-      <img src={poster} alt="video poster" />
+      <img src={urlFor(poster).auto('format').url().toString()} alt="video poster" />
 
       <Overlay>
-        <PlayerIcon mediaPlayerIcon={icon} onClick={handleClickOpen} />
+        <WebPlayerIcon icon={icon} onClick={handleClickOpen} />
       </Overlay>
 
       <Dialog
@@ -52,7 +53,7 @@ const DisplayVideoCard: FC<DisplayVideoCard> = ({ url, icon = 'mediaPlayer' }) =
           />
         </IconButton>
         <Iframe
-          src={url}
+          src={link}
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
@@ -86,11 +87,11 @@ const Overlay: FC<PropsWithChildren> = ({ children }) => {
   )
 }
 
-type PlayerIconProps = {
+type WebPlayerIconProps = {
   onClick: () => void
-  mediaPlayerIcon: string
+  icon: string
 }
-const PlayerIcon: FC<PlayerIconProps> = ({ onClick, mediaPlayerIcon }) => {
+const WebPlayerIcon: FC<WebPlayerIconProps> = ({ onClick, icon }) => {
   return (
     <Box
       sx={{
@@ -104,14 +105,16 @@ const PlayerIcon: FC<PlayerIconProps> = ({ onClick, mediaPlayerIcon }) => {
       <Box
         sx={{
           borderRadius: '50%',
-          transition: 'background-color 0.1s allow-discrete 0.2s',
+          transition: 'background-color 0.1s ease-in-out 0.2s',
           ':hover': {
-            backgroundColor: '#ffffff2b',
+            lg: {
+              backgroundColor: '#ffffff2b',
+            },
           },
         }}
       >
         <SvgSpriteIcon
-          icon={mediaPlayerIcon}
+          icon={icon}
           sx={{
             fontSize: {
               xs: '63px',

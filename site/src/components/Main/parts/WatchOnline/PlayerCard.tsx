@@ -1,13 +1,16 @@
 import DisplayVideoCard from '@/components/Templates/DisplayVideoCard/DisplayVideoCard'
+import { IImage } from '@/types/commonTypes'
 import { Stack, Typography } from '@mui/material'
 import { FC } from 'react'
 
 interface PlayerCardProps {
-  url: string
+  link: string
+
   title: string
+  img: IImage
 }
 
-const PlayerCard: FC<PlayerCardProps> = ({ url, title }) => {
+const PlayerCard: FC<PlayerCardProps> = ({ link, title, img }) => {
   return (
     <Stack
       sx={{
@@ -20,23 +23,11 @@ const PlayerCard: FC<PlayerCardProps> = ({ url, title }) => {
           md: '332px',
           lg: '357px',
         },
+        height: '100%',
       }}
     >
-      <DisplayVideoCard url={url} />
-      <Typography
-        sx={{
-          fontSize: {
-            xs: '1rem',
-            md: '1.375rem',
-            lg: '1.5rem',
-          },
-          lineHeight: {
-            xs: 1.5,
-            md: 1.36,
-            lg: 1.33,
-          },
-        }}
-      >
+      <DisplayVideoCard link={link} poster={img} />
+      <Typography variant="subhead" sx={{ marginTop: 'auto' }}>
         {title}
       </Typography>
     </Stack>
