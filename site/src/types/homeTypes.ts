@@ -1,5 +1,7 @@
-import { INews } from './newsTypes';
+import { IVideo } from './commonTypes'
+import { INews } from './newsTypes'
 
 export interface HomeData {
-  news: INews[];
+  news: INews[]
+  videos: IVideo[]
 }

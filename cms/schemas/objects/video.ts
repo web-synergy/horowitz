@@ -15,6 +15,14 @@ export default defineType({
       title: 'Посилання на відео',
       type: 'url',
     }),
+    defineField({
+      name: 'img',
+      title: 'Додати постер',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
   ],
   preview: {
     select: {
