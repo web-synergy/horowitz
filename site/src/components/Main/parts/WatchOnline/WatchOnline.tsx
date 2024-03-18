@@ -16,10 +16,7 @@ const WatchOnline: FC = () => {
   const { t } = useTranslation()
 
   const videos = useHomeStore(state => state.videos)
-
-  console.log(videos)
-
-  if (!videos) return null
+  if (!videos.length) return null
 
   return (
     <Wrapper component={'section'}>

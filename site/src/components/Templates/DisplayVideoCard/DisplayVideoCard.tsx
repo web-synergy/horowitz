@@ -3,12 +3,10 @@ import { FC, PropsWithChildren, useState } from 'react'
 
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon'
 import { Iframe } from '@/components/Main/parts/WatchOnline/styled'
-import { urlFor } from '@/config/sanity/imageUrl'
-import { IImage } from '@/types/commonTypes'
 
 type DisplayVideoCard = {
   link: string
-  poster: IImage
+  poster: string
   icon?: string
 }
 
@@ -20,8 +18,14 @@ const DisplayVideoCard: FC<DisplayVideoCard> = ({ link, icon = 'mediaPlayer', po
   console.log('link', link)
 
   return (
-    <Box sx={{ position: 'relative', flexGrow: 1, img: { height: '100%' } }}>
-      <img src={urlFor(poster).auto('format').url().toString()} alt="video poster" />
+    <Box
+      sx={{
+        position: 'relative',
+        flexGrow: 1,
+        img: { aspectRatio: { xs: 1.33, lg: 1.17 }, objectFit: 'cover' },
+      }}
+    >
+      <img src={poster} alt="video poster" />
 
       <Overlay>
         <WebPlayerIcon icon={icon} onClick={handleClickOpen} />
