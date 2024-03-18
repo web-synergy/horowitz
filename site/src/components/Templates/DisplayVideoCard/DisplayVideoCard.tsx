@@ -1,34 +1,27 @@
-import { Box, Dialog, IconButton } from '@mui/material';
-import { FC, PropsWithChildren, useState } from 'react';
+import { Box, Dialog, IconButton } from '@mui/material'
+import { FC, PropsWithChildren, useState } from 'react'
 
-import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
-import { Iframe } from '@/components/Main/parts/WatchOnline/styled';
-import { urlFor } from '@/config/sanity/imageUrl';
-import { IImage } from '@/types/commonTypes';
+import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon'
+import { Iframe } from '@/components/Main/parts/WatchOnline/styled'
+import { urlFor } from '@/config/sanity/imageUrl'
+import { IImage } from '@/types/commonTypes'
 
 type DisplayVideoCard = {
-  link: string;
-  poster: IImage;
-  icon?: string;
-};
+  link: string
+  poster: IImage
+  icon?: string
+}
 
-const DisplayVideoCard: FC<DisplayVideoCard> = ({
-  link,
-  icon = 'mediaPlayer',
-  poster,
-}) => {
-  const [open, setOpen] = useState(false);
+const DisplayVideoCard: FC<DisplayVideoCard> = ({ link, icon = 'mediaPlayer', poster }) => {
+  const [open, setOpen] = useState(false)
 
-  const handleClose = () => setOpen(false);
-  const handleClickOpen = () => setOpen(true);
-  console.log('link', link);
+  const handleClose = () => setOpen(false)
+  const handleClickOpen = () => setOpen(true)
+  console.log('link', link)
 
   return (
-    <Box position={'relative'}>
-      <img
-        src={urlFor(poster).auto('format').url().toString()}
-        alt="video poster"
-      />
+    <Box sx={{ position: 'relative', flexGrow: 1, img: { height: '100%' } }}>
+      <img src={urlFor(poster).auto('format').url().toString()} alt="video poster" />
 
       <Overlay>
         <WebPlayerIcon icon={icon} onClick={handleClickOpen} />
@@ -42,7 +35,7 @@ const DisplayVideoCard: FC<DisplayVideoCard> = ({
           sx: {
             maxWidth: '100%',
             overflow: 'hidden',
-            bgcolor: (theme) => theme.palette.common.black,
+            bgcolor: theme => theme.palette.common.black,
           },
         }}
       >
@@ -58,7 +51,7 @@ const DisplayVideoCard: FC<DisplayVideoCard> = ({
           <SvgSpriteIcon
             icon="close"
             sx={{
-              fill: (theme) => theme.palette.common.white,
+              fill: theme => theme.palette.common.white,
               bgcolor: 'inherit',
               fontSize: '32px',
             }}
@@ -75,10 +68,10 @@ const DisplayVideoCard: FC<DisplayVideoCard> = ({
         />
       </Dialog>
     </Box>
-  );
-};
+  )
+}
 
-export default DisplayVideoCard;
+export default DisplayVideoCard
 
 // ==================== PARTS ====================
 
@@ -97,13 +90,13 @@ const Overlay: FC<PropsWithChildren> = ({ children }) => {
     >
       {children}
     </Box>
-  );
-};
+  )
+}
 
 type WebPlayerIconProps = {
-  onClick: () => void;
-  icon: string;
-};
+  onClick: () => void
+  icon: string
+}
 const WebPlayerIcon: FC<WebPlayerIconProps> = ({ onClick, icon }) => {
   return (
     <Box
@@ -138,5 +131,5 @@ const WebPlayerIcon: FC<WebPlayerIconProps> = ({ onClick, icon }) => {
         />
       </Box>
     </Box>
-  );
-};
+  )
+}
