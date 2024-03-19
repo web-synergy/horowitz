@@ -60,7 +60,7 @@ const ContactsPage: FC = () => {
           </Box>
 
           {/* location, phone, email */}
-          <ContentStack>
+          <ContentStack sx={{ position: 'relative' }}>
             <ContactsField title={t(`contacts.${Contacts.ADDRESS}`)} details={location} />
             <ContactsField
               variant="phone"
@@ -68,7 +68,12 @@ const ContactsPage: FC = () => {
               details={phone}
             />
             <ContactsField variant="email" title="E-mail" details={email} />
-            <Divider variant="light" />
+            <Divider
+              variant="light"
+              sx={{
+                marginTop: { md: '6px' },
+              }}
+            />
           </ContentStack>
 
           {/* press center */}
@@ -79,7 +84,12 @@ const ContactsPage: FC = () => {
               details={pressCenter.phone}
             />
             <ContactsField variant="email" title="E-mail" details={pressCenter.email} />
-            <Divider variant="light" />
+            <Divider
+              variant="light"
+              sx={{
+                marginTop: { md: '6px' },
+              }}
+            />
           </ContentStack>
           <SocialMedia />
         </ContentWrapper>
