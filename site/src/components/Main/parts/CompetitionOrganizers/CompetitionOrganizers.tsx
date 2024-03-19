@@ -1,9 +1,9 @@
 import { FC, useEffect } from 'react';
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { LogotypesStack, Wrapper } from './styled';
 
 import { MainPage } from '@/types/translation.d';
-import { Box, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { MainTitle } from '../../styled';
 
@@ -39,17 +39,10 @@ const CompetitionOrganizers: FC = () => {
             </MainTitle>
             <LogotypesStack>
               {organizers.map((organizer) => (
-                <Box
+                <LazyLoadImage
                   key={organizer._key}
-                  component={'img'}
-                  sx={{
-                    width: 'auto',
-                    height: {
-                      xs: Math.floor(organizer.size * 0.8),
-                      md: Math.floor(organizer.size * 0.9),
-                      lg: organizer.size,
-                    },
-                  }}
+                  height={organizer.size}
+                  width="auto"
                   src={
                     organizer.img?.asset &&
                     urlFor(organizer.img).url().toString()
