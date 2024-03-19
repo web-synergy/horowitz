@@ -22,7 +22,8 @@ const DisplayVideoCard: FC<DisplayVideoCard> = ({ link, icon = 'mediaPlayer', po
       sx={{
         position: 'relative',
         flexGrow: 1,
-        img: { aspectRatio: { xs: 1.33, lg: 1.17 }, objectFit: 'cover' },
+        height: '100%',
+        img: { display: 'block', width: '100%', height: '100%', objectFit: 'fill' },
       }}
     >
       <img src={poster} alt="video poster" />

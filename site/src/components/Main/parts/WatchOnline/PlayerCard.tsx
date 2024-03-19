@@ -1,7 +1,7 @@
 import DisplayVideoCard from '@/components/Templates/DisplayVideoCard/DisplayVideoCard'
 import { IImage } from '@/types/commonTypes'
 import { getPosterLink } from '@/utils/helpers'
-import { Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { FC } from 'react'
 
 interface PlayerCardProps {
@@ -32,7 +32,9 @@ const PlayerCard: FC<PlayerCardProps> = ({ link, title }) => {
         height: '100%',
       }}
     >
-      <DisplayVideoCard link={link} poster={posterLink} />
+      <Box sx={{ aspectRatio: { xs: 1.33, lg: 1.17 } }}>
+        <DisplayVideoCard link={link} poster={posterLink} />
+      </Box>
       <Typography variant="subhead" sx={{ marginTop: 'auto' }}>
         {title}
       </Typography>
