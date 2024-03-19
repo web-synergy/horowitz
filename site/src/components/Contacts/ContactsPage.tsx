@@ -43,8 +43,9 @@ const ContactsPage: FC = () => {
           component={'h1'}
           sx={{
             marginBottom: {
-              xs: '24px',
-              md: '40px',
+              xs: 3,
+              md: 5,
+              lg: 6,
             },
           }}
         >
