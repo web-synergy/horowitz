@@ -1,5 +1,4 @@
 import DisplayVideoCard from '@/components/Templates/DisplayVideoCard/DisplayVideoCard'
-import { IImage } from '@/types/commonTypes'
 import { getPosterLink } from '@/utils/helpers'
 import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { FC } from 'react'
@@ -7,7 +6,6 @@ import { FC } from 'react'
 interface PlayerCardProps {
   link: string
   title: string
-  img: IImage
 }
 
 const PlayerCard: FC<PlayerCardProps> = ({ link, title }) => {
