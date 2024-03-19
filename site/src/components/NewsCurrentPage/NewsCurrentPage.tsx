@@ -49,19 +49,19 @@ const NewsCurrentPage = () => {
                 mt: { xs: '24px', md: '48px' },
                 mb: '24px',
                 display: 'block',
-                color: (theme) => theme.palette.neutral[50],
+                color: theme => theme.palette.neutral[50],
               }}
-              variant="bodyLight"
-            >
+              variant='bodyLight'>
               {parseAndFormatDate(data.date)}
             </Typography>
-            <Typography variant="h2">{data.title}</Typography>
+            <Typography variant='h2'>{data.title}</Typography>
             <Box
               sx={{
-                mb: { xs: '40px', md: '48px', lg: '56px' },
+                '*:last-child': {
+                  marginBottom: '0px',
+                },
                 mt: { xs: '24px', md: '32px' },
-              }}
-            >
+              }}>
               {data.description && (
                 <PortableComponent data={data.description} />
               )}

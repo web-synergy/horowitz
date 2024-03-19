@@ -56,6 +56,7 @@ export const currentNewsQuery = groq`*[_type == 'news'&& slug.current == $slug][
    'title': coalesce( title[_key ==$language][0].value, title[][0].value), 
    'slug':slug.current,
    'description': coalesce(description[_key ==$language][0].value, description[][0].value)
+
 }`;
 
 export const partners = groq`*[_type == 'partners'][0]{
