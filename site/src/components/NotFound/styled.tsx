@@ -9,7 +9,7 @@ export const Wrapper = styled(Box)(({ theme }) => ({
   '&:after': {
     content: '""',
     position: 'absolute',
-    bottom: 0,
+    bottom: 11,
     left: '50%',
     transform: 'translateX(-50%)',
     backgroundImage: `url(${notFound})`,
@@ -22,9 +22,9 @@ export const Wrapper = styled(Box)(({ theme }) => ({
   },
 
   [theme.breakpoints.up('md')]: {
-    marginBottom: 18,
+    marginBottom: 16,
     '&::after': {
-      bottom: 19,
+      bottom: 22,
       width: 175,
       height: 256,
     },
@@ -33,7 +33,7 @@ export const Wrapper = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
     marginBottom: 40,
     '&::after': {
-      bottom: 38,
+      bottom: 37,
       width: 210,
       height: 307,
     },
@@ -46,9 +46,11 @@ export const MainTitle = styled(Typography)(({ theme }) => ({
   fontSize: '7.5rem',
   fontWeight: 500,
   lineHeight: 'normal',
+  display: 'block',
 
   [theme.breakpoints.up('md')]: {
     fontSize: '11.875rem',
+    lineHeight: 1.184,
   },
 
   [theme.breakpoints.up('lg')]: {
