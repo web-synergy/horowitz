@@ -15,7 +15,9 @@ const FooterPressCenter: FC<FooterPressCenterProps> = ({ email, phone, isMobile 
   const formattedPhoneNum = phoneNumberFormatting(phone)
   return (
     <Stack spacing={3} maxWidth={'299px'}>
-      <Typography variant="subhead">{t('contacts.pressCenter')}</Typography>
+      <Typography variant="subhead" sx={{ color: theme => theme.palette.common.white }}>
+        {t('contacts.pressCenter')}
+      </Typography>
 
       <Box>
         <EmailDetails email={email} />
