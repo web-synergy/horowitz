@@ -6,7 +6,6 @@ export const homeQuery = groq`*[_type == 'home'][0]{
     'title':  title[_key ==$language ][0].value,
     'slug':slug.current,},
     'videos':videos[]{
-      img,
       'title':title[_key==$language][0].value,
       link,
       _key
