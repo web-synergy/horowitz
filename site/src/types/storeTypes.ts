@@ -1,14 +1,15 @@
 import { PortableTextBlock } from '@portabletext/types';
 import { INews } from './newsTypes';
 
+import { IAdministration } from './administrationTypes';
+import { IBanner } from './bannerType';
+import { IImage, IVideo } from './commonTypes';
 import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
 import { Partner } from './partnersTypes';
-import { IAdministration } from './administrationTypes';
 import { NavigationType } from './routes';
 import { IUkrWorks } from './ukranianWorks';
 import { IVirtuosos } from './virtuososTypes';
-import { IBanner } from './bannerType';
-import { IImage } from './commonTypes';
+import { bannerType } from './homeTypes';
 
 export interface SettingsStoreState {
   requestLang: string;
@@ -99,5 +100,7 @@ export interface HomeStoreState {
   loading: boolean;
   error: string;
   news: INews[];
+  videos: IVideo[];
+  banner: bannerType | null;
   fetchHome: (language: string) => Promise<void>;
 }

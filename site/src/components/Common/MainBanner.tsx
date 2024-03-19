@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Box, Container, Typography } from '@mui/material';
-import { IBanner, ColorField } from '@/types/bannerType';
+import { IBanner } from '@/types/bannerType';
+import { IColorField } from '@/types/commonTypes';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { createColor } from '@/utils/createColor';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
@@ -22,7 +23,7 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
   } = banner;
 
   const createGradientColors = (
-    colors: { value: ColorField; position: number }[] | undefined
+    colors: { value: IColorField; position: number }[] | undefined
   ) => {
     if (!colors) {
       return 'transparent';

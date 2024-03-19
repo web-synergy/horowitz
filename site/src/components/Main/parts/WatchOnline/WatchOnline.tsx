@@ -1,19 +1,22 @@
-import { FC } from 'react';
-import PlayerCard from './PlayerCard';
-import { StyledContainer, Wrapper } from './styled';
+import { useHomeStore } from '@/store/homeStore'
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.css';
+import { MainPage } from '@/types/translation.d'
+import { FC } from 'react'
 
-import { MainPage } from '@/types/translation.d';
+import PlayerCard from './PlayerCard'
+import { StyledContainer, Wrapper } from './styled'
 
-// !temp
-import { useTranslation } from 'react-i18next';
-import { MainTitle } from '../../styled';
-import urlList from '../../temp/watchOnlineList.json';
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.css'
+
+import { useTranslation } from 'react-i18next'
+import { MainTitle } from '../../styled'
 
 const WatchOnline: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
+
+  const videos = useHomeStore(state => state.videos)
+  if (!videos.length) return null
 
   return (
     <Wrapper component={'section'}>
@@ -44,15 +47,15 @@ const WatchOnline: FC = () => {
             },
           }}
         >
-          {urlList.map(({ id, ...props }) => (
-            <SwiperSlide key={id}>
-              <PlayerCard {...props} />
+          {videos.map(video => (
+            <SwiperSlide key={video._key} style={{ height: 'auto' }}>
+              <PlayerCard {...video} />
             </SwiperSlide>
           ))}
         </Swiper>
       </StyledContainer>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default WatchOnline;
+export default WatchOnline

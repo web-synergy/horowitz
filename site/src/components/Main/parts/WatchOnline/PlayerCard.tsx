@@ -1,48 +1,39 @@
-import { Stack, Typography } from '@mui/material'
+import DisplayVideoCard from '@/components/Templates/DisplayVideoCard/DisplayVideoCard'
+import { getPosterLink } from '@/utils/helpers'
+import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { FC } from 'react'
-import { Iframe } from './styled'
 
 interface PlayerCardProps {
-  url: string
+  link: string
   title: string
 }
 
-const PlayerCard: FC<PlayerCardProps> = ({ url, title }) => {
+const PlayerCard: FC<PlayerCardProps> = ({ link, title }) => {
+  const theme = useTheme()
+  const isTablet = useMediaQuery(theme.breakpoints.only('md'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+
+  const posterLink = getPosterLink(link, isTablet, isMobile)
+
   return (
     <Stack
       sx={{
         gap: {
-          xs: '16px',
-          md: '24px',
+          xs: 2,
+          md: 3,
         },
         width: {
           xs: '247px',
           md: '332px',
           lg: '357px',
         },
+        height: '100%',
       }}
     >
-      <Iframe
-        src={url}
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        sandbox="allow-scripts allow-presentation allow-same-origin allow-popups"
-      />
-      <Typography
-        sx={{
-          fontSize: {
-            xs: '1rem',
-            md: '1.375rem',
-            lg: '1.5rem',
-          },
-          lineHeight: {
-            xs: 1.5,
-            md: 1.36,
-            lg: 1.33,
-          },
-        }}
-      >
+      <Box sx={{ aspectRatio: { xs: 1.33, lg: 1.17 } }}>
+        <DisplayVideoCard link={link} poster={posterLink} />
+      </Box>
+      <Typography variant="subhead" sx={{ marginTop: 'auto' }}>
         {title}
       </Typography>
     </Stack>

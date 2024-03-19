@@ -18,19 +18,8 @@ export const StyledContainer = styled(Container)(({ theme }) => ({
   },
 }))
 
-export const Iframe = styled('iframe')(({ theme }) => ({
-  // width: '247px',
-  height: '185px',
-  maxWidth: '100%',
-
+export const Iframe = styled('iframe')(() => ({
+  height: '100%',
+  width: '100%',
   border: 'none',
-
-  [theme.breakpoints.up('md')]: {
-    // width: '332px',
-    height: '248px',
-  },
-  [theme.breakpoints.up('lg')]: {
-    // width: '357px',
-    height: '304px',
-  },
 }))

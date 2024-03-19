@@ -7,16 +7,8 @@ export default defineType({
 
   groups: [
     {
-      name: 'organizers',
-      title: 'Організатори',
-    },
-    {
-      name: 'sponsors',
-      title: 'Спонсори',
-    },
-    {
-      name: 'news',
-      title: 'Новини',
+      name: 'baner',
+      title: 'Рекламний банер',
     },
     {
       name: 'winner',
@@ -38,48 +30,18 @@ export default defineType({
       },
       fields: [
         defineField({
-          name: 'title',
-          title: 'Заголовок',
-          type: 'internationalizedArrayString',
+          name: 'background',
+          title: 'Фон',
+          type: 'color',
         }),
-        defineField({
-          name: 'srcVideo',
-          title: 'Відео',
-          type: 'string',
-        }),
-        defineField({
-          name: 'dateEvent',
-          title: 'Дата Події',
-          type: 'internationalizedArrayString',
-        }),
+
         defineField({
           name: 'img',
-          title: 'Фото',
-          type: 'image',
+          title: 'Фото (розмір 16/9)',
+          type: 'internationalizedArrayImage',
           options: {
             hotspot: true,
           },
-        }),
-      ],
-    }),
-
-    defineField({
-      name: 'quote',
-      title: 'Змінити цитату',
-      type: 'object',
-      options: {
-        collapsible: true,
-      },
-      fields: [
-        defineField({
-          name: 'quote',
-          title: 'Цитата',
-          type: 'internationalizedArrayText',
-        }),
-        defineField({
-          name: 'author',
-          title: 'Автор',
-          type: 'internationalizedArrayString',
         }),
       ],
     }),
@@ -98,20 +60,6 @@ export default defineType({
       title: 'Відео',
       type: 'array',
       of: [{type: 'video'}],
-    }),
-    defineField({
-      group: ['organizers'],
-      name: 'organizers',
-      title: 'Організатори',
-      type: 'array',
-      of: [{type: 'sponsor'}],
-    }),
-    defineField({
-      group: ['sponsors'],
-      name: 'sponsors',
-      title: 'Спонсори',
-      type: 'array',
-      of: [{type: 'sponsor'}],
     }),
   ],
 })

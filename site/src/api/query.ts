@@ -1,11 +1,20 @@
 import groq from 'groq';
 export const homeQuery = groq`*[_type == 'home'][0]{
-      
     'news':*[_type == 'news'  && length(title[_key ==$language].value) != 0]| order( dateTime(date)  desc) [0 ...3]{
       date,
      img,
     'title':  title[_key ==$language ][0].value,
-    'slug':slug.current,}
+    'slug':slug.current,},
+    'videos':videos[]{
+      'title':title[_key==$language][0].value,
+      link,
+      _key
+    }, 
+    'banner': banner{
+      background, 
+      'img':  img[_key ==$language ][0].value
+    }
+
  
 }`;
 
