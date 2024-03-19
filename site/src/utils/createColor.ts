@@ -1,6 +1,6 @@
-import { ColorField } from '@/types/bannerType';
+import { IColorField } from '@/types/commonTypes';
 
-export const createColor = (color: ColorField | undefined) => {
+export const createColor = (color: IColorField | undefined) => {
   if (!color) {
     return 'transparent';
   }
