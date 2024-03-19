@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { Box, Stack } from '@mui/material';
 import { MainTitle } from '../../styled';
 import { ShowMoreBtn } from './styled';
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
@@ -83,12 +83,12 @@ const PartnersAndFriends: FC = () => {
         {commonList.length &&
           commonList.map(({ _key, img, size, title }) => (
             <SwiperSlide key={_key}>
-              <img
+              <LazyLoadImage
                 src={img.asset && urlFor(img).url().toString()}
                 alt={title}
+                height={size}
+                width="auto"
                 style={{
-                  height: size,
-                  width: 'auto',
                   objectFit: 'contain',
                 }}
               />

@@ -1,18 +1,10 @@
 import { IImage } from './commonTypes';
+import { IColorField } from './commonTypes';
 
 export type IBanner =
   | BannerWithOverlay
   | BannerWithGradient
   | BannerWithoutEffects;
-
-export interface ColorField {
-  rgb: {
-    a: number;
-    b: number;
-    g: number;
-    r: number;
-  };
-}
 
 interface CommonProperty {
   img: IImage;
@@ -22,19 +14,19 @@ interface CommonProperty {
     position: 'center' | 'left' | 'right';
   };
   maxHeight: number;
-  background: ColorField;
+  background: IColorField;
 }
 
 interface BannerWithOverlay extends CommonProperty {
   overlayType: 'monochrome';
-  overlayColor: ColorField;
+  overlayColor: IColorField;
 }
 
 interface BannerWithGradient extends CommonProperty {
   overlayType: 'gradient';
   linearGradient?: {
     degree: number;
-    colors: { value: ColorField; position: number }[];
+    colors: { value: IColorField; position: number }[];
   };
 }
 

@@ -17,7 +17,12 @@ const Logo = () => {
         height={{ xs: 64, lg: 102 }}
         src={logo}
         alt="logo"
-        sx={{ minHeight: '100%', width: 'auto' }}
+        sx={{
+          minHeight: '100%',
+          width: 'auto',
+          borderBottom: '1px solid',
+          borderColor: (theme) => theme.palette.common.black,
+        }}
       />
     </Link>
   );
