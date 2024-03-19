@@ -12,22 +12,22 @@ const NotFoundPage = () => {
     <PageTemplate padding={false}>
       <Container
         sx={{
-          paddingTop: { xs: '100px', md: '130px', lg: 20 },
-          paddingBottom: { xs: '46px', md: 10, lg: '100px' },
+          paddingTop: { xs: '100px', md: '132px', lg: 20 },
+          paddingBottom: { xs: 6, md: 9, lg: 10 },
           textAlign: 'center',
         }}
       >
         <Wrapper>
           <MainTitle>404</MainTitle>
         </Wrapper>
-        <Typography
-          component="h2"
-          variant="h2"
-          mb={{ xs: '6px', md: 2, lg: '12px' }}
-        >
+        <Typography component="h2" variant="h2" mb={{ xs: 1, md: 2 }}>
           {t(`notFound.${NotFound.TITLE}`)}
         </Typography>
-        <Typography component={'p'} variant="subhead" mb={{ xs: 2, md: 5 }}>
+        <Typography
+          component={'p'}
+          variant="subhead"
+          mb={{ xs: 5, md: 4, lg: 5 }}
+        >
           {t(`notFound.${NotFound.TEXT}`)}
         </Typography>
         <Button component={Link} to={'/'}>
