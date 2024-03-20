@@ -15,7 +15,6 @@ const DisplayVideoCard: FC<DisplayVideoCard> = ({ link, icon = 'mediaPlayer', po
 
   const handleClose = () => setOpen(false)
   const handleClickOpen = () => setOpen(true)
-  console.log('link', link)
 
   return (
     <Box

@@ -21,7 +21,9 @@ const FooterContacts: FC<FooterContactsProps> = ({ location, email, phone, isMob
 
   return (
     <Stack spacing={3} sx={{ maxWidth: '364px' }}>
-      <Typography variant="subhead">{t(`navigation.${Routes.CONTACTS}`)}</Typography>
+      <Typography variant="subhead" sx={{ color: theme => theme.palette.common.white }}>
+        {t(`navigation.${Routes.CONTACTS}`)}
+      </Typography>
 
       <LocationDetails location={location} />
 
