@@ -24,6 +24,8 @@ import virtuososArticle from './documents/virtuososArticle'
 import ukrainianWorks from './documents/ukrainianWorks'
 import article from './objects/article'
 import magazinePdf from './documents/magazinePdf'
+import summerSchool from './documents/summerSchool'
+import annualSummerSchool from './documents/annualSummerSchool'
 
 export const schemaTypes = [
   //documents
@@ -42,6 +44,8 @@ export const schemaTypes = [
   virtuososArticle,
   aboutHorowitzCompetition,
   ukrainianWorks,
+  summerSchool,
+  annualSummerSchool,
 
   //objects
   winners,

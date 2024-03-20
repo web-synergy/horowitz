@@ -1,4 +1,5 @@
 import {singleDocument} from './singleDocument'
+import {StructureBuilder} from 'sanity/structure'
 
 import {IoSettingsSharp, IoShareSocialOutline} from 'react-icons/io5'
 import {LuContact} from 'react-icons/lu'
@@ -7,11 +8,12 @@ import {RiPagesLine} from 'react-icons/ri'
 import {SiGithubsponsors} from 'react-icons/si'
 import {BsMusicNoteList} from 'react-icons/bs'
 import {FaPeopleGroup} from 'react-icons/fa6'
+import {FaRegSun} from 'react-icons/fa'
 import {preview} from './preview'
 
 import {newsStructure} from './newsStructure'
 import {virtuososStructure} from './virtuososStructure'
-import {StructureBuilder} from 'sanity/structure'
+import {summerSchoolStructure} from './summerSchoolStructure'
 
 const singleSchemaTittles = [
   'Головна',
@@ -27,6 +29,8 @@ const singleSchemaTittles = [
   'Віртуози планет',
   'Конкурс Горовиця',
   'Твори українських композиторів',
+  'Літня академія',
+  'Річна Літня академія',
 ]
 
 const structure = (S: StructureBuilder) =>
@@ -48,6 +52,10 @@ const structure = (S: StructureBuilder) =>
       ).icon(BsMusicNoteList),
       S.divider(),
       ...virtuososStructure(S),
+      singleDocument(S, 'summerSchool', 'Літня музична академія', preview(S, 'summerSchool')).icon(
+        FaRegSun,
+      ),
+      ...summerSchoolStructure(S),
 
       S.divider(),
       singleDocument(S, 'aboutHorowitzCompetition', 'Конкурс Горовиця', preview(S, 'details')).icon(
