@@ -26,6 +26,12 @@ import article from './objects/article'
 import magazinePdf from './documents/magazinePdf'
 import summerSchool from './documents/summerSchool'
 import annualSummerSchool from './documents/annualSummerSchool'
+import conditions from './objects/conditions'
+import picture from './objects/picture'
+import profile from './objects/profile'
+import participant from './objects/participant'
+import participantShort from './objects/participantShort'
+import textBlock from './objects/textBlock'
 
 export const schemaTypes = [
   //documents
@@ -57,4 +63,10 @@ export const schemaTypes = [
   imageGalleryType,
   article,
   banner,
+  conditions,
+  picture,
+  profile,
+  participant,
+  participantShort,
+  textBlock,
 ]

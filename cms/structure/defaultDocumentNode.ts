@@ -9,7 +9,8 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, {schemaType}
       return S.document().views(preview(S, 'news'))
     case `virtuososArticle`:
       return S.document().views(preview(S, 'virtuosos/article'))
-
+    case `annualSummerSchool`:
+      return S.document().views(preview(S, 'summer-school'))
     default:
       return S.document().views([S.view.form()])
   }

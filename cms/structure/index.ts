@@ -52,7 +52,7 @@ const structure = (S: StructureBuilder) =>
       ).icon(BsMusicNoteList),
       S.divider(),
       ...virtuososStructure(S),
-      singleDocument(S, 'summerSchool', 'Літня музична академія', preview(S, 'summerSchool')).icon(
+      singleDocument(S, 'summerSchool', 'Літня музична академія', preview(S, 'summer-school')).icon(
         FaRegSun,
       ),
       ...summerSchoolStructure(S),
