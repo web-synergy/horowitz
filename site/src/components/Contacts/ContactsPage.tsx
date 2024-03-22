@@ -13,6 +13,7 @@ import { Contacts } from '@/types/translation.d'
 
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import PageTemplate from '../Common/PageTemplate'
+import { CommonStackWrapper } from '../Common/styledComponents'
 
 const components: PortableTextComponents = {
   block: {
@@ -51,7 +52,7 @@ const ContactsPage: FC = () => {
         >
           {t(`navigation.${Routes.CONTACTS}`)}
         </Typography>
-        <ContentWrapper>
+        <CommonStackWrapper sx={{ width: 'fit-content' }}>
           <Box>
             <Box sx={{ '& :first-of-type': { marginBottom: 2 } }}>
               <PortableText value={about[0]} components={components} />
@@ -92,7 +93,7 @@ const ContactsPage: FC = () => {
             />
           </ContentStack>
           <SocialMedia />
-        </ContentWrapper>
+        </CommonStackWrapper>
       </Container>
     </PageTemplate>
   )

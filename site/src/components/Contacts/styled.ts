@@ -1,16 +1,4 @@
-import { Box, BoxProps, Stack, StackProps, styled } from '@mui/material'
-
-export const ContentWrapper = styled(Stack)<StackProps>(({ theme }) => ({
-  width: 'fit-content', // по ширині контенту, щоб Divider більше не розтягувався
-  rowGap: 24,
-
-  [theme.breakpoints.up('md')]: {
-    rowGap: 40,
-  },
-  [theme.breakpoints.up('lg')]: {
-    rowGap: 48,
-  },
-}))
+import { Box, BoxProps, Stack, styled } from '@mui/material'
 
 export const Section = styled(Box)<BoxProps>(({ theme }) => ({
   display: 'block',
