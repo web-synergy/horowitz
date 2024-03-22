@@ -32,6 +32,9 @@ import profile from './objects/profile'
 import participant from './objects/participant'
 import participantShort from './objects/participantShort'
 import textBlock from './objects/textBlock'
+import professor from './objects/professor'
+import rehearsal from './objects/rehearsal'
+import schedule from './objects/schedule'
 
 export const schemaTypes = [
   //documents
@@ -69,4 +72,7 @@ export const schemaTypes = [
   participant,
   participantShort,
   textBlock,
+  professor,
+  rehearsal,
+  schedule,
 ]
