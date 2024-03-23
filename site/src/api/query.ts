@@ -154,5 +154,6 @@ export const getPDFQuery = groq`*[_type == 'magazinePdf' && title[_key ==$langua
 }`
 
 export const schoolData = groq`*[_type == 'summerSchool'][0]{
-  'topText': topText[_key ==$language][0].value
+  'topText': topText[_key ==$language][0].value,
+  'infographic': infographic[_key ==$language][0].value,
 }`

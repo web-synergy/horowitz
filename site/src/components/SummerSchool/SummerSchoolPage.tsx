@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import PageTemplate from '../Common/PageTemplate'
 import { CommonStackWrapper } from '../Common/styledComponents'
 
+import ImageSection from '../About/parts/ImageSection'
 import { RegularText } from './parts/RegularText'
 
 const SummerSchoolPage: FC = () => {
@@ -14,9 +15,10 @@ const SummerSchoolPage: FC = () => {
     i18n: { language },
   } = useTranslation()
 
-  const { topText, fetchData } = useSummerSchoolStore(state => ({
+  const { topText, fetchData, infographicImg } = useSummerSchoolStore(state => ({
     topText: state.topText,
     fetchData: state.fetchSchoolData,
+    infographicImg: state.infographic,
   }))
 
   useEffect(() => {
@@ -24,7 +26,6 @@ const SummerSchoolPage: FC = () => {
   }, [language])
 
   if (!topText.length) return null
-  console.log(topText)
 
   return (
     <PageTemplate>
@@ -34,6 +35,7 @@ const SummerSchoolPage: FC = () => {
             {t(`summerSchool.${SummerSchool.TITLE}`)}
           </Typography>
           <RegularText blocks={topText} />
+          {infographicImg && <ImageSection image={infographicImg} />}
         </CommonStackWrapper>
       </Container>
     </PageTemplate>

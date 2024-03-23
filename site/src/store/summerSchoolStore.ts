@@ -8,6 +8,7 @@ interface SummerSchoolState extends ISummerSchool {
 
 export const useSummerSchoolStore = create<SummerSchoolState>()(set => ({
   topText: [],
+  infographic: null,
 
   fetchSchoolData: async (language: string) => {
     try {
