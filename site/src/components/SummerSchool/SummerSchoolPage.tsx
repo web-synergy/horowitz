@@ -15,10 +15,11 @@ const SummerSchoolPage: FC = () => {
     i18n: { language },
   } = useTranslation()
 
-  const { topText, fetchData, infographicImg } = useSummerSchoolStore(state => ({
+  const { topText, bottomText, fetchData, infographicImg } = useSummerSchoolStore(state => ({
     topText: state.topText,
     fetchData: state.fetchSchoolData,
     infographicImg: state.infographic,
+    bottomText: state.bottomText,
   }))
 
   useEffect(() => {
@@ -36,6 +37,7 @@ const SummerSchoolPage: FC = () => {
           </Typography>
           <RegularText blocks={topText} />
           {infographicImg && <ImageSection image={infographicImg} />}
+          <RegularText blocks={bottomText} />
         </CommonStackWrapper>
       </Container>
     </PageTemplate>

@@ -3,5 +3,6 @@ import { IImage } from './commonTypes'
 
 export type ISummerSchool = {
   topText: PortableTextBlock[]
+  bottomText: PortableTextBlock[]
   infographic: IImage | null
 }
