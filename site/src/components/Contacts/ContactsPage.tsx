@@ -6,7 +6,7 @@ import { Box, Container, Divider, Typography } from '@mui/material'
 import SocialMedia from '../Common/SocialMedia'
 import ContactsField from './parts/ContactsField'
 
-import { ContentStack, ContentWrapper } from './styled'
+import { ContentStack } from './styled'
 
 import { useSettingsStore } from '@/store/settingStore'
 import { Contacts } from '@/types/translation.d'
