@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Container, Typography } from '@mui/material'
 import ImageSection from '../About/parts/ImageSection'
+import Loader from '../Common/Loader'
 import PageTemplate from '../Common/PageTemplate'
 import { CommonStackWrapper } from '../Common/styledComponents'
 import ImagesArea from './parts/ImagesArea'
@@ -16,21 +17,23 @@ const SummerSchoolPage: FC = () => {
     i18n: { language },
   } = useTranslation()
 
-  const { topText, bottomText, fetchData, infographicImg, gallery } = useSummerSchoolStore(
-    state => ({
+  const { topText, bottomText, fetchData, infographicImg, gallery, requestLang, isLoading } =
+    useSummerSchoolStore(state => ({
       topText: state.topText,
       fetchData: state.fetchSchoolData,
       infographicImg: state.infographic,
       bottomText: state.bottomText,
       gallery: state.gallery.images,
-    })
-  )
+      requestLang: state.requestLang,
+      isLoading: state.isLoading,
+    }))
 
   useEffect(() => {
+    if (requestLang === language) return
     fetchData(language)
   }, [language])
 
-  if (!topText.length) return null
+  if (isLoading) return <Loader />
 
   return (
     <PageTemplate>
