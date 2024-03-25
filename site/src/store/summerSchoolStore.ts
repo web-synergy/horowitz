@@ -10,6 +10,7 @@ export const useSummerSchoolStore = create<SummerSchoolState>()(set => ({
   topText: [],
   bottomText: [],
   infographic: null,
+  gallery: { images: [] },
 
   fetchSchoolData: async (language: string) => {
     try {

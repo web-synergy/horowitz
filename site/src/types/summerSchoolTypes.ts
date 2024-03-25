@@ -5,4 +5,5 @@ export type ISummerSchool = {
   topText: PortableTextBlock[]
   bottomText: PortableTextBlock[]
   infographic: IImage | null
+  gallery: { images: IImage[] }
 }
