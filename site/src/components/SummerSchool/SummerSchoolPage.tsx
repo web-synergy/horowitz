@@ -34,6 +34,7 @@ const SummerSchoolPage: FC = () => {
   }, [language])
 
   if (isLoading) return <Loader />
+  if (!requestLang.length) return null
 
   return (
     <PageTemplate>
