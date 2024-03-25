@@ -63,7 +63,7 @@ const AdministrationPage = () => {
           <Box sx={{ width: '100%' }}>
             <Grid
               container
-              rowSpacing={{ xs: 3, md: 5, lg: 6 }}
+              rowSpacing={{ xs: 7, md: 5, lg: 6 }}
               columnSpacing={{ md: '26px' }}
             >
               {members &&
