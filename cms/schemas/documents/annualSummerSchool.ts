@@ -62,7 +62,7 @@ export default defineType({
     }),
     defineField({
       name: 'applicationLink',
-      title: 'Посилання для подачи заявки',
+      title: 'Посилання для подачі заявки',
       type: 'url',
       hidden: ({parent}) => !parent?.isActive,
       group: 'common',

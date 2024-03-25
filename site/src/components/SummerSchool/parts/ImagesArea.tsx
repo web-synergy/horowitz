@@ -20,8 +20,7 @@ const ImagesArea: FC<ImagesAreaProps> = ({ gallery }) => {
         },
         gridTemplateRows: {
           xs: 'repeat(6, 1fr)',
-          // md: '242px 1fr 242px 1fr',
-          md: '14% 1fr 14% 1fr',
+          md: '14% 1fr 14% 1fr', // md: '242px 1fr 242px 1fr',
           lg: '218px 1fr 218px',
         },
         gridTemplateAreas: {

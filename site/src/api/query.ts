@@ -153,9 +153,16 @@ export const getPDFQuery = groq`*[_type == 'magazinePdf' && title[_key ==$langua
   "URL": file.asset->url
 }`
 
-export const schoolData = groq`*[_type == 'summerSchool'][0]{
+export const schoolData = groq`*
+[_type == 'summerSchool'][0]{
   'topText': topText[_key ==$language][0].value,
   'bottomText': bottomText[_key ==$language][0].value,
   'infographic': infographic[_key ==$language][0].value,
-  gallery
+  gallery,
+  'annualSummerSchool': *[_type == 'annualSummerSchool'][0]{
+    button,
+    slug,
+    isActive,
+    applicationLink,
+  }
 }`
