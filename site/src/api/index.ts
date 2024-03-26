@@ -1,15 +1,16 @@
+import { sanityFetch } from '../config/sanity/client'
+
 import { AboutCompetitionResp } from '@/types/aboutCompetitionTypes'
 import { IAdministration } from '@/types/administrationTypes'
+import { HomeData } from '@/types/homeTypes'
 import { IHorowitzData } from '@/types/horowitzTypes'
 import { INews } from '@/types/newsTypes'
-import { IUkrWorks } from '@/types/ukranianWorks'
-import { sanityFetch } from '../config/sanity/client'
-import { SettingsResp } from '../types/contactsTypes'
-import { ISummerSchool } from '@/types/summerSchoolTypes'
-
-import { HomeData } from '@/types/homeTypes'
 import { PartnersResp } from '@/types/partnersTypes'
+import { ISummerSchool } from '@/types/summerSchoolTypes'
+import { IUkrWorks } from '@/types/ukranianWorks'
 import { IVirtuosos } from '@/types/virtuososTypes'
+import { SettingsResp } from '../types/contactsTypes'
+
 import {
   aboutCompetitionQuery,
   administrationQuery,
