@@ -3,6 +3,7 @@ import image1 from '../../assets/images/variant1.jpg'
 import image2 from '../../assets/images/variant2.jpg'
 import image3 from '../../assets/images/variant3.jpg'
 import {Buttons} from '../../components/Buttons'
+import {SiHtmlacademy} from 'react-icons/si'
 
 export const BUTTONS = [
   {title: '1', value: '1', image: image1},
@@ -14,6 +15,7 @@ export default defineType({
   name: 'annualSummerSchool',
   title: 'Річна Літня академія',
   type: 'document',
+  icon: SiHtmlacademy,
   groups: [
     {name: 'common', title: 'Загальні дані'},
     {name: 'conditions', title: 'Умови участі'},
@@ -95,7 +97,7 @@ export default defineType({
       name: 'professors',
       title: 'Професори',
       type: 'array',
-      of: [{type: 'profile'}],
+      of: [{type: 'professor'}],
       group: 'professors',
       hidden: ({parent}) => !parent?.isActiveProfessors,
     }),
@@ -108,16 +110,24 @@ export default defineType({
     defineField({
       name: 'participants',
       title: 'Учасники',
-      type: 'array',
-      of: [{type: 'participantShort'}],
       group: 'participants',
       hidden: ({parent}) => !parent?.isActiveParticipants,
+      type: 'array',
+      of: [{type: 'participantShort'}],
     }),
     defineField({
       name: 'isActiveSchedule',
-      title: 'Додати умови розклади',
+      title: 'Додати розклад',
       type: 'boolean',
       group: 'schedules',
+    }),
+    defineField({
+      name: 'schedules',
+      title: 'Розклад',
+      type: 'array',
+      of: [{type: 'schedule'}],
+      group: 'schedules',
+      hidden: ({parent}) => !parent?.isActiveSchedule,
     }),
     defineField({
       name: 'isActiveConcerts',
@@ -134,8 +144,7 @@ export default defineType({
     defineField({
       name: 'orchestra',
       title: 'Оркестр та локації',
-      type: 'array',
-      of: [{type: 'textBlock'}],
+      type: 'internationalizedArrayContent',
       group: 'orchestra',
       hidden: ({parent}) => !parent?.isActiveOrchestra,
     }),

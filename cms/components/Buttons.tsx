@@ -1,6 +1,6 @@
 import {StringInputProps, set} from 'sanity'
 import {useCallback} from 'react'
-import {Stack, Button, Grid, Label, Text} from '@sanity/ui'
+import {Button, Grid} from '@sanity/ui'
 import {BUTTONS} from '../schemas/documents/annualSummerSchool'
 
 export function Buttons(props: StringInputProps) {
