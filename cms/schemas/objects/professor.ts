@@ -1,5 +1,15 @@
+import {PictureType} from './picture'
 import {defineField, defineType} from 'sanity'
 import {CgProfile} from 'react-icons/cg'
+import {Value} from 'sanity-plugin-internationalized-array'
+
+export interface ProfessorSchema {
+  _key: string
+  name: Value[]
+  avatar: PictureType
+  instrument: Value[]
+  about: Value[]
+}
 
 export default defineType({
   name: 'professor',

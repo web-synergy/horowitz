@@ -3,6 +3,7 @@ import image1 from '../../assets/images/variant1.jpg'
 import image2 from '../../assets/images/variant2.jpg'
 import image3 from '../../assets/images/variant3.jpg'
 import {Buttons} from '../../components/Buttons'
+import {SiHtmlacademy} from 'react-icons/si'
 
 export const BUTTONS = [
   {title: '1', value: '1', image: image1},
@@ -14,6 +15,7 @@ export default defineType({
   name: 'annualSummerSchool',
   title: 'Річна Літня академія',
   type: 'document',
+  icon: SiHtmlacademy,
   groups: [
     {name: 'common', title: 'Загальні дані'},
     {name: 'conditions', title: 'Умови участі'},

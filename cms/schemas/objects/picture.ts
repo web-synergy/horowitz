@@ -1,5 +1,10 @@
-import {defineField, defineType} from 'sanity'
+import {ImageSchemaType, defineField, defineType} from 'sanity'
 
+export interface PictureType {
+  image: ImageSchemaType
+  alt: string
+  aspectRatio: string
+}
 export default defineType({
   name: 'picture',
   title: 'Картинка',

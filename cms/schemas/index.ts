@@ -35,6 +35,7 @@ import textBlock from './objects/textBlock'
 import professor from './objects/professor'
 import rehearsal from './objects/rehearsal'
 import schedule from './objects/schedule'
+import timeInput from './objects/time'
 
 export const schemaTypes = [
   //documents
@@ -75,4 +76,5 @@ export const schemaTypes = [
   professor,
   rehearsal,
   schedule,
+  timeInput,
 ]
