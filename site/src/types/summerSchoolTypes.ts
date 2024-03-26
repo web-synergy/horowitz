@@ -1,14 +1,6 @@
 import { PortableTextBlock } from '@portabletext/types'
 import { IImage } from './commonTypes'
-
-type AnnualSummerSchoolTypes = {
-  button: string
-  isActive: boolean
-  applicationLink: string | null
-  slug: {
-    current: string
-  }
-}
+import { AnnualSummerSchoolTypes } from './annualSummerSchoolTypes'
 
 export type ISummerSchool = {
   topText: PortableTextBlock[]

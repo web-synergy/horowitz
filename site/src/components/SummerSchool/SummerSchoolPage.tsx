@@ -12,16 +12,6 @@ import ButtonsArea from './parts/ButtonsArea'
 import ImagesArea from './parts/ImagesArea'
 import { RegularText } from './parts/RegularText'
 
-import btn1 from '@/assets/images/buttonsBg/variant1.jpg'
-import btn2 from '@/assets/images/buttonsBg/variant2.jpg'
-import btn3 from '@/assets/images/buttonsBg/variant3.jpg'
-
-const buttonsBg = [
-  { title: '1', image: btn1 },
-  { title: '2', image: btn2 },
-  { title: '3', image: btn3 },
-]
-
 const SummerSchoolPage: FC = () => {
   const {
     t,
@@ -48,13 +38,6 @@ const SummerSchoolPage: FC = () => {
     annualSummerSchool: state.annualSummerSchool,
   }))
 
-  const currBg = buttonsBg.length
-    ? buttonsBg.filter(bg => bg.title === annualSummerSchool.button).pop()
-    : undefined
-  const restBgs = buttonsBg.filter(bg => bg.title !== annualSummerSchool.button)
-
-  console.log(currBg)
-
   useEffect(() => {
     if (requestLang === language) return
     fetchData(language)
@@ -73,7 +56,7 @@ const SummerSchoolPage: FC = () => {
           <RegularText blocks={topText} />
           {infographicImg && <ImageSection image={infographicImg} />}
           <RegularText blocks={bottomText} />
-          <ButtonsArea currentBg={currBg?.image} restBgs={restBgs} />
+          <ButtonsArea data={annualSummerSchool} />
           <ImagesArea gallery={gallery} />
         </CommonStackWrapper>
       </Container>
@@ -82,5 +65,3 @@ const SummerSchoolPage: FC = () => {
 }
 
 export default SummerSchoolPage
-
-//  ============  PARTS  ============

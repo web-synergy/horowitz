@@ -1,25 +1,35 @@
+import { AnnualSummerSchoolTypes } from '@/types/annualSummerSchoolTypes'
 import { FC } from 'react'
 
 import { Box, Button, Stack } from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom'
 
-type ButtonBG = {
-  title: string
-  image: string
-}
+//  ========== ! TEMP ==========
+import btn1 from '@/assets/images/buttonsBg/variant1.jpg'
+import btn2 from '@/assets/images/buttonsBg/variant2.jpg'
+import btn3 from '@/assets/images/buttonsBg/variant3.jpg'
+const buttonsBg = [
+  { title: '1', image: btn1 },
+  { title: '2', image: btn2 },
+  { title: '3', image: btn3 },
+]
+//  ========== ! TEMP ==========
 
 type ButtonsAreaProps = {
-  currentBg: string | undefined
-  restBgs: ButtonBG[]
+  data: AnnualSummerSchoolTypes
 }
-const ButtonsArea: FC<ButtonsAreaProps> = ({ currentBg, restBgs }) => {
-  if (!currentBg) return null
-  return <ListItem bgImage={currentBg} />
+const ButtonsArea: FC<ButtonsAreaProps> = ({ data: { button, isActive } }) => {
+  const currentBg = buttonsBg.filter(item => item.title === button).pop()
+  return <ListItem bgImage={currentBg?.image} isActive={isActive} />
 }
 
 export default ButtonsArea
 
-const ListItem = ({ bgImage }: { bgImage: string }) => {
+type ListItemProps = {
+  bgImage: string | undefined
+  isActive: boolean
+}
+const ListItem: FC<ListItemProps> = ({ bgImage, isActive }) => {
   return (
     <Box
       sx={{
@@ -65,10 +75,15 @@ const ListItem = ({ bgImage }: { bgImage: string }) => {
         <Button
           variant="transparent"
           component={RouterLink}
+          disabled={!isActive}
           to={'/'}
           sx={{
             borderColor: theme => theme.palette.neutral[70],
             backgroundColor: theme => theme.palette.common.white,
+            '&.Mui-disabled': {
+              color: theme => theme.palette.neutral[50],
+              bgcolor: theme => theme.palette.neutral[20],
+            },
           }}
         >
           Заявка на участь
