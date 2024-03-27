@@ -166,3 +166,39 @@ export const schoolData = groq`*
     applicationLink,
   }
 }`;
+export const annualSchoolData = groq`*[_type== 'annualSummerSchool'][0]{
+  applicationLink, 
+  button, 
+  isActive, 
+  isActiveConcert, 
+  isActiveConditions, 
+  isActiveOrchestra, 
+  isActiveParticipants, 
+  isActiveProfessors, 
+  isActiveSchedule, 
+  slug,
+  year,
+  "description": description[_key ==$language][0].value, 
+  "conditions": conditions[_key ==$language][0].value, 
+  "orchestra": orchestra[_key ==$language][0].value, 
+  "participants": participants[]{
+    _key, avatar,birthday,
+    "about": about[_key ==$language][0].value, 
+    "country": country[_key ==$language][0].value, 
+    "name": name[_key ==$language][0].value
+    }, 
+  "professors": professors[]{
+    _key, avatar, 
+    "about": about[_key ==$language][0].value, 
+    "instrument": instrument[_key ==$language][0].value, 
+    "name": name[_key ==$language][0].value, 
+  },
+  "schedules": schedules[]{
+    _key, lecture, date, 
+    "rehearsal": rehearsal[]{
+      _key, time, 
+      "event": event[_key ==$language][0].value, 
+    }, 
+    concerts,
+  } 
+}`;

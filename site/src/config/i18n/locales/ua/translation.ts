@@ -1,4 +1,4 @@
-import { Routes } from '@/types/routes.d'
+import { Routes } from '@/types/routes.d';
 import {
   Buttons,
   Contacts,
@@ -11,7 +11,7 @@ import {
   SummerSchool,
   Virtuosos,
   WarState,
-} from '@/types/translation.d'
+} from '@/types/translation.d';
 
 export default {
   navigation: {
@@ -26,6 +26,15 @@ export default {
     [Routes.PROJECTS]: 'Проєкти',
     [Routes.MASTER_CLASS]: 'Майстеркласи',
     [Routes.SUMMER_SCHOOL]: 'Літня музична академія',
+    [Routes.SUMMER_SCHOOL_MAIN]: 'Літня музична академія',
+    [Routes.SUMMER_SCHOOL_CONDITIONS]: 'Умови участі',
+    [Routes.SUMMER_SCHOOL_PROFESSORS]: 'Професори',
+    [Routes.SUMMER_SCHOOL_PROFESSOR]: 'ПРофесор',
+    [Routes.SUMMER_SCHOOL_STUDENTS]: 'Учасники',
+    [Routes.SUMMER_SCHOOL_SCHEDULES]: 'Розклад',
+    [Routes.SUMMER_SCHOOL_CONCERTS]: 'Концерти',
+    [Routes.SUMMER_SCHOOL_PROGRAM]: 'Програма концерту',
+    [Routes.SUMMER_SCHOOL_PLACES]: 'Оркестри та локації',
     [Routes.VIRTUOSES]: 'Віртуози планети',
     [Routes.NEWS]: 'Новини',
     [Routes.CONTACTS]: 'Контакти',
@@ -69,10 +78,12 @@ export default {
   },
   notFound: {
     [NotFound.TITLE]: 'Вибачте, сторінку не знайдено',
-    [NotFound.TEXT]: 'Сторінка, яку ви шукаєте, видалена або тимчасово недоступна',
+    [NotFound.TEXT]:
+      'Сторінка, яку ви шукаєте, видалена або тимчасово недоступна',
   },
   inDevelopment: {
-    [InDevelopment.MSG]: 'Вибачте, на даний момент ця сторінка знаходиться в розробці',
+    [InDevelopment.MSG]:
+      'Вибачте, на даний момент ця сторінка знаходиться в розробці',
   },
   mainPage: {
     [MainPage.NEWS]: 'Новини',
@@ -91,7 +102,8 @@ export default {
     [Sponsors.MAIN_INFO_PART]: 'Головні інформаційні партнери',
     [Sponsors.OFF_INFO_PART]: 'Офіційні інформаційні партнери',
   },
-  institutional_name: 'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
+  institutional_name:
+    'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
   kyivGeneva: {
     [KyivGeneva.GOVERNMENT]: 'Державні установи',
   },
@@ -106,4 +118,4 @@ export default {
   summerSchool: {
     [SummerSchool.TITLE]: 'Літня музична академія',
   },
-}
+};
