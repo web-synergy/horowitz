@@ -1,11 +1,11 @@
-import { PortableTextBlock } from '@portabletext/types'
-import { IImage } from './commonTypes'
-import { AnnualSummerSchoolTypes } from './annualSummerSchoolTypes'
+import { PortableTextBlock } from '@portabletext/types';
+import { IImage } from './commonTypes';
+import { MainAnnualSummerSchoolTypes } from './annualSummerSchoolTypes';
 
 export type ISummerSchool = {
-  topText: PortableTextBlock[]
-  bottomText: PortableTextBlock[]
-  infographic: IImage | null
-  gallery: { images: IImage[] }
-  annualSummerSchool: AnnualSummerSchoolTypes
-}
+  topText: PortableTextBlock[];
+  bottomText: PortableTextBlock[];
+  infographic: IImage | null;
+  gallery: { images: IImage[] };
+  annualSummerSchool: MainAnnualSummerSchoolTypes;
+};

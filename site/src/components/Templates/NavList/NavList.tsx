@@ -22,7 +22,7 @@ const NavList: FC<NavListProps> = ({ linksList, path }) => {
           key={i}
           variant="primary"
           component={RouterLink}
-          to={path ? `/${path}/${navigation.title}` : navigation.title}
+          to={path ? `${path}/${navigation.title}` : navigation.title}
           sx={{
             width: {
               xs: 288,

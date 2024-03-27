@@ -1,47 +1,56 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom'
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 
-import { Routes } from '@/types/routes.d'
+import { Routes } from '@/types/routes.d';
+import WithPreview from '@/components/SanityPreview/WithPreview';
+//цієї сторінки не буде, замість неї буде посилання на анкету для участі
+import ApplyPage from '@/components/Apply/ApplyPage';
 
-import LazyAboutPage from '@/components/About/LazyAboutPage'
-import LazyAdministrationPage from '@/components/Administration/LazyAdministrationPage'
-import LazyArchivePage from '@/components/Archive/LazyArchivePage'
-import LazyHorowitzPage from '@/components/Horowitz/LazyHorowitzvPage'
-import LazySponsorsPage from '@/components/Sponsors/LazySponsorsPage'
-import LazyUkrainianWork from '@/components/UkrainianWork/LazyUkrainianWirk'
-// import SuspenseComponent from '@/components/Common/SuspenseComponent';
-import LazyKyivGenevaPage from '@/components/KyivGeneva/LazyKyivGenevaPage'
-import LazyKyivGenevaConditions from '@/components/KyivGenevaSubPages/Conditions/LazyKyivGenevaConditionsPage'
-import LazyKyivGenevaJury from '@/components/KyivGenevaSubPages/Jury/LazyKyivGenevaJury'
-import LazyKyivGenevaJuryList from '@/components/KyivGenevaSubPages/Jury/LazyKyivGenevaJuryList'
-import LazyKyivGenevaLayout from '@/components/KyivGenevaSubPages/Layout/LazyKyivGenevaLayout'
-import LazyKyivGenevaOrchestra from '@/components/KyivGenevaSubPages/Orchestra/LazyKyivGenevaArchestra'
-import LazyKyivGenevaParticipants from '@/components/KyivGenevaSubPages/Participants/LazyKyivGenevaParticipants'
-import LazyKyivGenevaPreselectionJury from '@/components/KyivGenevaSubPages/PreselectionJury/LazyKyivGenevaPreselectionJury'
-import LazyKyivGenevaPreselectionJuryList from '@/components/KyivGenevaSubPages/PreselectionJury/LazyKyivGenevaPreselectionJuryList'
-import LazyKyivGenevaRegulation from '@/components/KyivGenevaSubPages/Regulation/LazyKyivGenevaRegulation'
-import LazyKyivGenevaRequirements from '@/components/KyivGenevaSubPages/Requirements/LazyKyivGenevaRequirements'
-import LazyKyivGenevaRewards from '@/components/KyivGenevaSubPages/Rewards/LazyKyivGenevaRewards'
-import LazyKyivGenevaSponsorsPage from '@/components/KyivGenevaSubPages/Sponsors/LazyKyivGenevaSpomsors'
-import LazyKyivGenevaWFIMCPage from '@/components/KyivGenevaSubPages/WFIMC/LazyKyivGenevaWFIMC'
-import LazyKyivGenevaWinners from '@/components/KyivGenevaSubPages/Winners/LazyKyivGenevaWinners'
+import LazyAboutPage from '@/components/About/LazyAboutPage';
+import LazyAdministrationPage from '@/components/Administration/LazyAdministrationPage';
+import LazyArchivePage from '@/components/Archive/LazyArchivePage';
+import LazyHorowitzPage from '@/components/Horowitz/LazyHorowitzvPage';
+import LazySponsorsPage from '@/components/Sponsors/LazySponsorsPage';
+import LazyUkrainianWork from '@/components/UkrainianWork/LazyUkrainianWirk';
+import LazyKyivGenevaPage from '@/components/KyivGeneva/LazyKyivGenevaPage';
+import LazyKyivGenevaConditions from '@/components/KyivGenevaSubPages/Conditions/LazyKyivGenevaConditionsPage';
+import LazyKyivGenevaJury from '@/components/KyivGenevaSubPages/Jury/LazyKyivGenevaJury';
+import LazyKyivGenevaJuryList from '@/components/KyivGenevaSubPages/Jury/LazyKyivGenevaJuryList';
+import LazyKyivGenevaLayout from '@/components/KyivGenevaSubPages/Layout/LazyKyivGenevaLayout';
+import LazyKyivGenevaOrchestra from '@/components/KyivGenevaSubPages/Orchestra/LazyKyivGenevaArchestra';
+import LazyKyivGenevaParticipants from '@/components/KyivGenevaSubPages/Participants/LazyKyivGenevaParticipants';
+import LazyKyivGenevaPreselectionJury from '@/components/KyivGenevaSubPages/PreselectionJury/LazyKyivGenevaPreselectionJury';
+import LazyKyivGenevaPreselectionJuryList from '@/components/KyivGenevaSubPages/PreselectionJury/LazyKyivGenevaPreselectionJuryList';
+import LazyKyivGenevaRegulation from '@/components/KyivGenevaSubPages/Regulation/LazyKyivGenevaRegulation';
+import LazyKyivGenevaRequirements from '@/components/KyivGenevaSubPages/Requirements/LazyKyivGenevaRequirements';
+import LazyKyivGenevaRewards from '@/components/KyivGenevaSubPages/Rewards/LazyKyivGenevaRewards';
+import LazyKyivGenevaSponsorsPage from '@/components/KyivGenevaSubPages/Sponsors/LazyKyivGenevaSpomsors';
+import LazyKyivGenevaWFIMCPage from '@/components/KyivGenevaSubPages/WFIMC/LazyKyivGenevaWFIMC';
+import LazyKyivGenevaWinners from '@/components/KyivGenevaSubPages/Winners/LazyKyivGenevaWinners';
 
-import LazySummerSchoolPage from '@/components/SummerSchool/LazySummerSchoolPage'
-import LazyVirtuosasArticles from '@/components/Virtuoses/VirtuosesArticles/LazyVirtuosasArticles'
-import LazyVirtuososCurrentArticle from '@/components/Virtuoses/VirtuososCurrentArticle/LazyVirtuososCurrentArticle'
-import LazyVirtuosesPage from '../../components/Virtuoses/Main/LazyVirtuosesPage'
+import LazySummerSchoolPage from '@/components/SummerSchool/LazySummerSchoolPage';
+import LazyMainSchool from '@/components/SummerSchoolSubPages/Main/LazyMainSchool';
+import LazyEnvironments from '@/components/SummerSchoolSubPages/Environments/LazyEnvironments';
+import LazyProfessors from '@/components/SummerSchoolSubPages/Professors/LazyProfessors';
+import LazyProfessor from '@/components/SummerSchoolSubPages/Professor/LazyProfessor';
+import LazyStudents from '@/components/SummerSchoolSubPages/Students/LazySturdents';
+import LazySchedules from '@/components/SummerSchoolSubPages/Schedules/LazySchedules';
+import LazyConcerts from '@/components/SummerSchoolSubPages/Concerts/LazyConcerts';
+import LazyProgram from '@/components/SummerSchoolSubPages/Program/LazyProgram';
+import LazyPlaces from '@/components/SummerSchoolSubPages/Places/LazyPlaces';
 
-import WithPreview from '@/components/SanityPreview/WithPreview'
+import LazyVirtuosasArticles from '@/components/Virtuoses/VirtuosesArticles/LazyVirtuosasArticles';
+import LazyVirtuososCurrentArticle from '@/components/Virtuoses/VirtuososCurrentArticle/LazyVirtuososCurrentArticle';
+import LazyVirtuosesPage from '../../components/Virtuoses/Main/LazyVirtuosesPage';
 
-import ApplyPage from '@/components/Apply/ApplyPage'
-import NewsCurrentPage from '@/components/NewsCurrentPage/NewsCurrentPage'
-import NewsPageList from '@/components/NewsPageList/NewsPageList'
-import PdfPage from '@/components/PdfRender/PdfPage'
-import SupportUsPage from '@/components/SupportUs/SupportUsPage'
-import CompetitionPage from '../../components/Competition/CompetitionPage'
-import ContactsPage from '../../components/Contacts/ContactsPage'
-import MainPage from '../../components/Main/MainPage'
-import MasterClassPage from '../../components/MasterClass/MasterClassPage'
-import NotFoundPage from '../../components/NotFound/NotFoundPage'
+import LazyPdfPage from '@/components/PdfRender/LazyPdfPage';
+import LazyNewsCurrentPage from '@/components/NewsCurrentPage/LazyNewsCurrentPage';
+import LazyNewsPageList from '@/components/NewsPageList/LazyNewsPageList';
+import LazySupportUsPage from '@/components/SupportUs/LazySupportUsPage';
+import LazyCompetitionPage from '@/components/Competition/LazyCompetitionPage';
+import LazyContactsPage from '@/components/Contacts/LazyContactsPage';
+import LazyMainPage from '@/components/Main/LazyMainPage';
+import LazyMasterClassPage from '@/components/MasterClass/LazyMasterClassPage';
+import LazyNotFoundPage from '@/components/NotFound/LazyNotFoundPage';
 
 const routes = createBrowserRouter([
   {
@@ -50,7 +59,7 @@ const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <MainPage />,
+        element: <LazyMainPage />,
       },
       {
         path: Routes.DETAILS,
@@ -71,7 +80,7 @@ const routes = createBrowserRouter([
       },
       {
         path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}`,
-        element: <CompetitionPage />,
+        element: <LazyCompetitionPage />,
       },
       {
         path: `${Routes.ARCHIVE}`,
@@ -79,11 +88,47 @@ const routes = createBrowserRouter([
       },
       {
         path: `pdf/:name`,
-        element: <PdfPage />,
+        element: <LazyPdfPage />,
       },
 
-      { path: Routes.MASTER_CLASS, element: <MasterClassPage /> },
+      { path: Routes.MASTER_CLASS, element: <LazyMasterClassPage /> },
       { path: Routes.SUMMER_SCHOOL, element: <LazySummerSchoolPage /> },
+      {
+        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}`,
+        element: <LazyMainSchool />,
+      },
+      {
+        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_CONDITIONS}`,
+        element: <LazyEnvironments />,
+      },
+      {
+        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_PROFESSORS}`,
+        element: <LazyProfessors />,
+      },
+      {
+        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_PROFESSOR}`,
+        element: <LazyProfessor />,
+      },
+      {
+        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_STUDENTS}`,
+        element: <LazyStudents />,
+      },
+      {
+        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_SCHEDULES}`,
+        element: <LazySchedules />,
+      },
+      {
+        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_CONCERTS}`,
+        element: <LazyConcerts />,
+      },
+      {
+        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_PROGRAM}`,
+        element: <LazyProgram />,
+      },
+      {
+        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_PLACES}`,
+        element: <LazyPlaces />,
+      },
       {
         path: Routes.VIRTUOSES,
         element: <LazyVirtuosesPage />,
@@ -97,9 +142,9 @@ const routes = createBrowserRouter([
         element: <LazyVirtuososCurrentArticle />,
       },
 
-      { path: Routes.NEWS, element: <NewsPageList /> },
-      { path: Routes.CURRENT_NEWS, element: <NewsCurrentPage /> },
-      { path: Routes.CONTACTS, element: <ContactsPage /> },
+      { path: Routes.NEWS, element: <LazyNewsPageList /> },
+      { path: Routes.CURRENT_NEWS, element: <LazyNewsCurrentPage /> },
+      { path: Routes.CONTACTS, element: <LazyContactsPage /> },
 
       {
         path: Routes.SPONSORS,
@@ -177,11 +222,11 @@ const routes = createBrowserRouter([
       },
       {
         path: Routes.SUPPORT,
-        element: <SupportUsPage />,
+        element: <LazySupportUsPage />,
       },
       {
         path: '404',
-        element: <NotFoundPage />,
+        element: <LazyNotFoundPage />,
       },
     ],
   },
@@ -189,6 +234,6 @@ const routes = createBrowserRouter([
     path: '*',
     element: <Navigate to={'404'} />,
   },
-])
+]);
 
-export default routes
+export default routes;
