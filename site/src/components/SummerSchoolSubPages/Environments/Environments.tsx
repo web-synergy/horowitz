@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Environments = () => {
   return <div>Summer School Conditions</div>;
 };
