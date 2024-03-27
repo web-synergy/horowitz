@@ -129,9 +129,9 @@ const HorowitzPage: FC = () => {
               sx={{ width: "288px" }}
               variant="transparent"
               onClick={handleShowMore}
-              onTouchStart={handleLongPress} // Обработчик для долгого нажатия
-              onTouchEnd={handleCancelLongPress} // Обработчик для отмены долгого нажатия
-              onContextMenu={handleContextMenu} // Обработчик для предотвращения всплывания контекстного меню
+              onTouchStart={handleLongPress}
+              onTouchEnd={handleCancelLongPress}
+              onContextMenu={handleContextMenu}
             >
               {t(
                 `buttons.${
