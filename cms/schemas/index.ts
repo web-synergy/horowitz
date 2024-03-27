@@ -24,6 +24,18 @@ import virtuososArticle from './documents/virtuososArticle'
 import ukrainianWorks from './documents/ukrainianWorks'
 import article from './objects/article'
 import magazinePdf from './documents/magazinePdf'
+import summerSchool from './documents/summerSchool'
+import annualSummerSchool from './documents/annualSummerSchool'
+import conditions from './objects/conditions'
+import picture from './objects/picture'
+import profile from './objects/profile'
+import participant from './objects/participant'
+import participantShort from './objects/participantShort'
+import textBlock from './objects/textBlock'
+import professor from './objects/professor'
+import rehearsal from './objects/rehearsal'
+import schedule from './objects/schedule'
+import timeInput from './objects/time'
 
 export const schemaTypes = [
   //documents
@@ -42,6 +54,8 @@ export const schemaTypes = [
   virtuososArticle,
   aboutHorowitzCompetition,
   ukrainianWorks,
+  summerSchool,
+  annualSummerSchool,
 
   //objects
   winners,
@@ -53,4 +67,14 @@ export const schemaTypes = [
   imageGalleryType,
   article,
   banner,
+  conditions,
+  picture,
+  profile,
+  participant,
+  participantShort,
+  textBlock,
+  professor,
+  rehearsal,
+  schedule,
+  timeInput,
 ]

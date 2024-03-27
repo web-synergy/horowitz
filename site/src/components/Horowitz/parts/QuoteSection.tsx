@@ -1,7 +1,7 @@
-import React from "react";
-import { Box, Typography, useTheme } from "@mui/material";
-import { Section } from "@/components/Contacts/styled";
-import { QuoteSectionProps } from "@/types/horowitzTypes";
+import React from 'react';
+import { Box, Typography, useTheme } from '@mui/material';
+import { Section } from '@/components/Contacts/styled';
+import { QuoteSectionProps } from '@/types/horowitzTypes';
 
 const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
   const theme = useTheme();
@@ -9,14 +9,14 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
   return (
     <Section
       sx={{ backgroundColor: theme.palette.common.black }}
-      component={"section"}
+      component={'section'}
     >
       <Box
         sx={{
-          textAlign: "center",
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: { xs: "24px 16px", md: "72px 54px", lg: "148px 172px" },
+          textAlign: 'center',
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: { xs: '24px 16px', md: '72px 54px', lg: '148px 172px' },
         }}
       >
         <Typography
@@ -25,9 +25,9 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
           sx={{
             marginBottom: {
               color: theme.palette.common.white,
-              xs: "16px",
-              md: "32px",
-              lg: "24px",
+              xs: '16px',
+              md: '32px',
+              lg: '24px',
             },
           }}
         >
@@ -39,7 +39,7 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
             color: theme.palette.primary.main,
           }}
         >
-          — {quote.author}
+          {quote.author}
         </Typography>
       </Box>
     </Section>

@@ -6,13 +6,14 @@ import { Box, Container, Divider, Typography } from '@mui/material'
 import SocialMedia from '../Common/SocialMedia'
 import ContactsField from './parts/ContactsField'
 
-import { ContentStack, ContentWrapper } from './styled'
+import { ContentStack } from './styled'
 
 import { useSettingsStore } from '@/store/settingStore'
 import { Contacts } from '@/types/translation.d'
 
 import { PortableText, PortableTextComponents } from '@portabletext/react'
 import PageTemplate from '../Common/PageTemplate'
+import { CommonStackWrapper } from '../Common/styledComponents'
 
 const components: PortableTextComponents = {
   block: {
@@ -43,14 +44,15 @@ const ContactsPage: FC = () => {
           component={'h1'}
           sx={{
             marginBottom: {
-              xs: '24px',
-              md: '40px',
+              xs: 3,
+              md: 5,
+              lg: 6,
             },
           }}
         >
           {t(`navigation.${Routes.CONTACTS}`)}
         </Typography>
-        <ContentWrapper>
+        <CommonStackWrapper sx={{ width: 'fit-content' }}>
           <Box>
             <Box sx={{ '& :first-of-type': { marginBottom: 2 } }}>
               <PortableText value={about[0]} components={components} />
@@ -59,7 +61,7 @@ const ContactsPage: FC = () => {
           </Box>
 
           {/* location, phone, email */}
-          <ContentStack>
+          <ContentStack sx={{ position: 'relative' }}>
             <ContactsField title={t(`contacts.${Contacts.ADDRESS}`)} details={location} />
             <ContactsField
               variant="phone"
@@ -67,7 +69,12 @@ const ContactsPage: FC = () => {
               details={phone}
             />
             <ContactsField variant="email" title="E-mail" details={email} />
-            <Divider variant="light" />
+            <Divider
+              variant="light"
+              sx={{
+                marginTop: { md: '6px' },
+              }}
+            />
           </ContentStack>
 
           {/* press center */}
@@ -78,10 +85,15 @@ const ContactsPage: FC = () => {
               details={pressCenter.phone}
             />
             <ContactsField variant="email" title="E-mail" details={pressCenter.email} />
-            <Divider variant="light" />
+            <Divider
+              variant="light"
+              sx={{
+                marginTop: { md: '6px' },
+              }}
+            />
           </ContentStack>
           <SocialMedia />
-        </ContentWrapper>
+        </CommonStackWrapper>
       </Container>
     </PageTemplate>
   )

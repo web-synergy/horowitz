@@ -65,7 +65,6 @@ export const currentNewsQuery = groq`*[_type == 'news'&& slug.current == $slug][
    'title': coalesce( title[_key ==$language][0].value, title[][0].value), 
    'slug':slug.current,
    'description': coalesce(description[_key ==$language][0].value, description[][0].value)
-
 }`;
 
 export const partners = groq`*[_type == 'partners'][0]{
@@ -152,4 +151,18 @@ export const ukrWorksQuery = groq`*[_type == 'ukrainianWorks'][0]{
 export const getPDFQuery = groq`*[_type == 'magazinePdf' && title[_key ==$language][0].value == $name][0]{
   'title':title[_key ==$language][0].value,
   "URL": file.asset->url
+}`;
+
+export const schoolData = groq`*
+[_type == 'summerSchool'][0]{
+  'topText': topText[_key ==$language][0].value,
+  'bottomText': bottomText[_key ==$language][0].value,
+  'infographic': infographic[_key ==$language][0].value,
+  gallery,
+  'annualSummerSchool': *[_type == 'annualSummerSchool'][0]{
+    button,
+    slug,
+    isActive,
+    applicationLink,
+  }
 }`;

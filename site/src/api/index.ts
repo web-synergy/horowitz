@@ -1,14 +1,16 @@
+import { sanityFetch } from '../config/sanity/client'
+
 import { AboutCompetitionResp } from '@/types/aboutCompetitionTypes'
 import { IAdministration } from '@/types/administrationTypes'
+import { HomeData } from '@/types/homeTypes'
 import { IHorowitzData } from '@/types/horowitzTypes'
 import { INews } from '@/types/newsTypes'
+import { PartnersResp } from '@/types/partnersTypes'
+import { ISummerSchool } from '@/types/summerSchoolTypes'
 import { IUkrWorks } from '@/types/ukranianWorks'
-import { sanityFetch } from '../config/sanity/client'
+import { IVirtuosos } from '@/types/virtuososTypes'
 import { SettingsResp } from '../types/contactsTypes'
 
-import { HomeData } from '@/types/homeTypes'
-import { PartnersResp } from '@/types/partnersTypes'
-import { IVirtuosos } from '@/types/virtuososTypes'
 import {
   aboutCompetitionQuery,
   administrationQuery,
@@ -19,11 +21,13 @@ import {
   horowitzQuery,
   newsQuery,
   partners,
+  schoolData,
   settingsQuery,
   ukrWorksQuery,
   virtuososArticleQuery,
   virtuososQuery,
 } from './query'
+
 export const getHomeData = async (language: string): Promise<HomeData> => {
   return sanityFetch(homeQuery, { language })
 }
@@ -81,4 +85,8 @@ export const getUkrainianWorks = async (language: string): Promise<IUkrWorks> =>
 
 export async function getPDF(name: string) {
   return sanityFetch(getPDFQuery, { name })
+}
+
+export const getSummerSchoolData = (language: string): Promise<ISummerSchool> => {
+  return sanityFetch(schoolData, { language })
 }
