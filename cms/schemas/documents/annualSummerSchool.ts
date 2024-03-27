@@ -83,7 +83,7 @@ export default defineType({
     defineField({
       name: 'conditions',
       title: 'Умови участі',
-      type: 'conditions',
+      type: 'internationalizedArrayArticle',
       group: 'conditions',
       hidden: ({parent}) => !parent?.isActiveConditions,
     }),
