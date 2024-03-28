@@ -29,6 +29,7 @@ export const useAnnualSummerSchoolStore = create<AnnualSummerSchoolStoreState>(
       set({ isLoading: true });
       try {
         const resp = await getAnnualSchoolData(language, year);
+
         if (!resp)
           throw new Error('Could not fetch the data from that resource');
         set({ ...resp, requestLang: language, isLoading: false });

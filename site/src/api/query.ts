@@ -166,7 +166,7 @@ export const schoolData = groq`*
     applicationLink,
   }
 }`;
-export const annualSchoolData = groq`*[_type== 'annualSummerSchool'][0]{
+export const annualSchoolData = groq`*[_type== 'annualSummerSchool' && year==$year][0]{
   applicationLink, 
   button, 
   isActive, 

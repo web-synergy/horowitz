@@ -12,9 +12,10 @@ export const TextLink: FC<PortableTextMarkComponentProps> = ({
   return (
     <Link
       component={RouterLink}
-      variant='linkBlock'
+      variant="linkBlock"
       to={value?.href}
-      target={target}>
+      target={target}
+    >
       {children}
     </Link>
   );
@@ -32,7 +33,6 @@ export const NowRap: FC<PortableTextMarkComponentProps> = ({ children }) => {
 };
 
 export const Ul = ({ children }: { children: ReactNode }) => {
-  console.log(children);
   return (
     <Typography
       component={'ul'}
@@ -44,7 +44,8 @@ export const Ul = ({ children }: { children: ReactNode }) => {
         pl: { xs: '24px', md: '32px' },
         lineHeight: { sx: '24px', md: '28px' },
       }}
-      variant='bodyRegular'>
+      variant="bodyRegular"
+    >
       {children}
     </Typography>
   );
@@ -62,7 +63,8 @@ export const Ol = ({ children }: { children: ReactNode }) => {
         pl: { xs: '24px', md: '32px' },
         lineHeight: { sx: '24px', md: '28px' },
       }}
-      variant='bodyRegular'>
+      variant="bodyRegular"
+    >
       {children}
     </Typography>
   );
@@ -78,7 +80,8 @@ export const Blockquote = ({ children }: { children: ReactNode }) => {
         borderLeft: 'solid 2px #141414',
         my: '16px',
       }}
-      variant='blockquote'>
+      variant="blockquote"
+    >
       {children}
     </Typography>
   );
