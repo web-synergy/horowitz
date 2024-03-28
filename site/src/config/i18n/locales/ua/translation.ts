@@ -26,7 +26,7 @@ export default {
     [Routes.PROJECTS]: 'Проєкти',
     [Routes.MASTER_CLASS]: 'Майстеркласи',
     [Routes.SUMMER_SCHOOL]: 'Літня музична академія',
-    [Routes.SUMMER_SCHOOL_MAIN]: 'Літня музична академія',
+    [Routes.SUMMER_SCHOOL_MAIN]: 'Літня музична академія - {{year}} р.',
     [Routes.SUMMER_SCHOOL_CONDITIONS]: 'Умови участі',
     [Routes.SUMMER_SCHOOL_PROFESSORS]: 'Професори',
     [Routes.SUMMER_SCHOOL_PROFESSOR]: 'ПРофесор',
