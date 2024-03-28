@@ -10,6 +10,7 @@ import { NavigationType } from './routes';
 import { IUkrWorks } from './ukranianWorks';
 import { IVirtuosos } from './virtuososTypes';
 import { bannerType } from './homeTypes';
+import { AnnualSummerSchoolTypes } from './annualSummerSchoolTypes';
 
 export interface SettingsStoreState {
   requestLang: string;
@@ -103,4 +104,10 @@ export interface HomeStoreState {
   videos: IVideo[];
   banner: bannerType | null;
   fetchHome: (language: string) => Promise<void>;
+}
+
+export interface AnnualSummerSchoolStoreState extends AnnualSummerSchoolTypes {
+  requestLang: string;
+  isLoading: boolean;
+  fetchAnnualSummerSchool: (language: string, year: string) => Promise<void>;
 }

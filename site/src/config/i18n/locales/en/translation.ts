@@ -1,4 +1,4 @@
-import { Routes } from '@/types/routes.d'
+import { Routes } from '@/types/routes.d';
 import {
   InDevelopment,
   MainPage,
@@ -11,7 +11,7 @@ import {
   WarState,
   Virtuosos,
   SummerSchool,
-} from '@/types/translation.d'
+} from '@/types/translation.d';
 
 export default {
   navigation: {
@@ -26,6 +26,15 @@ export default {
     [Routes.PROJECTS]: 'Projects',
     [Routes.MASTER_CLASS]: 'Masterclasses',
     [Routes.SUMMER_SCHOOL]: 'Summer Music Academy',
+    [Routes.SUMMER_SCHOOL_MAIN]: 'Summer Music Academy - {{year}}',
+    [Routes.SUMMER_SCHOOL_CONDITIONS]: 'Conditions',
+    [Routes.SUMMER_SCHOOL_PROFESSORS]: 'Professors',
+    [Routes.SUMMER_SCHOOL_PROFESSOR]: 'Professor',
+    [Routes.SUMMER_SCHOOL_STUDENTS]: 'Participants',
+    [Routes.SUMMER_SCHOOL_SCHEDULES]: 'Schedule',
+    [Routes.SUMMER_SCHOOL_CONCERTS]: 'Concerts',
+    [Routes.SUMMER_SCHOOL_PROGRAM]: "Concert's program",
+    [Routes.SUMMER_SCHOOL_PLACES]: 'Orchestras and locations',
     [Routes.VIRTUOSES]: 'Virtuosos of the Planet',
     [Routes.NEWS]: 'News',
     [Routes.CONTACTS]: 'Contacts',
@@ -69,7 +78,8 @@ export default {
   },
   notFound: {
     [NotFound.TITLE]: 'Sorry, the page is not found.',
-    [NotFound.TEXT]: 'The page you are searching for, is deleted or temporary unavailable',
+    [NotFound.TEXT]:
+      'The page you are searching for, is deleted or temporary unavailable',
   },
   inDevelopment: {
     [InDevelopment.MSG]: 'Sorry, the page is in development.',
@@ -91,7 +101,8 @@ export default {
     [Sponsors.MAIN_INFO_PART]: 'Main Media Partners',
     [Sponsors.OFF_INFO_PART]: 'Official Media Partners',
   },
-  institutional_name: 'International Competition for Young Pianists in Memory of Vladimir Horowitz',
+  institutional_name:
+    'International Competition for Young Pianists in Memory of Vladimir Horowitz',
   kyivGeneva: {
     [KyivGeneva.GOVERNMENT]: 'Government agencies',
   },
@@ -106,4 +117,4 @@ export default {
   summerSchool: {
     [SummerSchool.TITLE]: 'Summer music academy',
   },
-}
+};

@@ -10,7 +10,6 @@ export enum Routes {
   COMPETITION = 'competition',
   PROJECTS = 'projects',
   MASTER_CLASS = 'master-class',
-  SUMMER_SCHOOL = 'summer-school',
   VIRTUOSES = 'virtuosos',
   VIRTUOSES_ARTICLE = `${VIRTUOSES}/article`,
   VIRTUOSES_CURRENT_ARTICLE = `${VIRTUOSES_ARTICLE}/:slug`,
@@ -32,6 +31,16 @@ export enum Routes {
   SPONSORS = 'sponsors',
   APPLY = 'apply',
   SUPPORT = 'support',
+  SUMMER_SCHOOL = 'summer-school',
+  SUMMER_SCHOOL_MAIN = 'sa-name',
+  SUMMER_SCHOOL_CONDITIONS = 'sa-conditions',
+  SUMMER_SCHOOL_PROFESSORS = 'sa-professors',
+  SUMMER_SCHOOL_PROFESSOR = 'sa-professor',
+  SUMMER_SCHOOL_STUDENTS = 'sa-participants',
+  SUMMER_SCHOOL_SCHEDULES = 'sa-schedules',
+  SUMMER_SCHOOL_CONCERTS = 'sa-concerts',
+  SUMMER_SCHOOL_PROGRAM = 'sa-program',
+  SUMMER_SCHOOL_PLACES = 'sa-places',
 }
 
 export type NavigationType = { title: string; slug: string };
