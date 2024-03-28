@@ -57,7 +57,9 @@ const SummerSchoolPage: FC = () => {
           <RegularText blocks={topText} />
           {infographicImg && <ImageSection image={infographicImg} />}
           <RegularText blocks={bottomText} />
+
           <ButtonsArea data={annualSummerSchool} />
+
           <ImagesArea gallery={gallery} />
         </CommonStackWrapper>
       </Container>
