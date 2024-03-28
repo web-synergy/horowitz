@@ -2,7 +2,7 @@ import {defineField, defineType} from 'sanity'
 
 const concert = defineType({
   name: 'concert',
-  type: 'document',
+  type: 'object',
   fields: [
     defineField({
       name: 'title',
@@ -10,20 +10,9 @@ const concert = defineType({
       type: 'internationalizedArrayString',
     }),
     defineField({
-      name: 'slugaa',
-      type: 'slug',
-      title: 'Slug',
-      options: {
-        source: 'title[0].value',
-      },
-    }),
-    defineField({
       name: 'img',
       title: 'Афіша',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      type: 'internationalizedArrayImage',
     }),
     defineField({
       name: 'concertPrograms',
@@ -38,7 +27,7 @@ const concert = defineType({
     },
     prepare: ({title, image}) => ({
       title: title[0].value,
-      media: image,
+      media: image[0].value,
     }),
   },
 })

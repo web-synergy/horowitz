@@ -132,16 +132,16 @@ export default defineType({
     }),
     defineField({
       name: 'isActiveConcerts',
-      title: 'Додати умови концерти',
+      title: 'Додати концерти',
       type: 'boolean',
       group: 'concerts',
     }),
     defineField({
-      title: 'Умови концерту',
+      title: 'Концерти',
       name: 'concerts',
       type: 'array',
-      of: [{type: 'reference', to: [{type: 'concert'}]}],
-      // hidden: ({parent}) => !parent?.isActiveConcerts,
+      of: [{type: 'concert'}],
+      hidden: ({parent}) => !parent?.isActiveConcerts,
       group: 'concerts',
     }),
     defineField({
