@@ -39,6 +39,7 @@ export enum Routes {
   SUMMER_SCHOOL_STUDENTS = 'sa-participants',
   SUMMER_SCHOOL_SCHEDULES = 'sa-schedules',
   SUMMER_SCHOOL_CONCERTS = 'sa-concerts',
+  SUMMER_SCHOOL_CURRENT_CONCERTS = `${SUMMER_SCHOOL_CONCERTS}/:key`,
   SUMMER_SCHOOL_PROGRAM = 'sa-program',
   SUMMER_SCHOOL_PLACES = 'sa-places',
 }
