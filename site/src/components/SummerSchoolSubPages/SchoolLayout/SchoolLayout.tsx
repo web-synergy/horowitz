@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Box } from '@mui/material';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
@@ -23,9 +24,16 @@ const SchoolLayout = () => {
   }, [language, yearFromPath]);
 
   return (
-    <div>
+    <>
+      <Box
+        sx={{
+          width: '100%',
+          height: '40vh',
+          backgroundColor: (theme) => theme.palette.neutral[30],
+        }}
+      />
       <Outlet />
-    </div>
+    </>
   );
 };
 
