@@ -62,6 +62,7 @@ export default {
     [Buttons.GO_BACK_HOME]: 'Повернутись до Головної сторінки',
     [Buttons.GO_NEWS]: 'Повернутись до Новин',
     [Buttons.GO_BACK]: 'Повернутись назад',
+    [Buttons.CONCERT_PROGRAM]: 'Програма концерту',
   },
   [Header.SEARCH]: 'Пошук',
   contacts: {
@@ -117,5 +118,7 @@ export default {
   },
   summerSchool: {
     [SummerSchool.TITLE]: 'Літня музична академія',
+    [SummerSchool.CONCERTS]: 'Концерти',
+    [SummerSchool.CONCERT_PROGRAM]: 'Програма концерту',
   },
 };
