@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { Box, Container, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
+import { Box, Container, Typography } from '@mui/material';
+
 import { useTranslation } from 'react-i18next';
 import PageTemplate from '@/components/Common/PageTemplate';
 import NavList from '@/components/Templates/NavList/NavList';
@@ -10,21 +10,9 @@ import PortableComponent from '@/components/Templates/PortableComponent/Portable
 import { Routes } from '@/types/routes.d';
 
 const MainSchool = () => {
+  const { t } = useTranslation();
+  const { year, description } = useAnnualSummerSchoolStore();
   const { pathname } = useLocation();
-  const {
-    i18n: { language },
-    t,
-  } = useTranslation();
-  const { requestLang, fetchAnnualSummerSchool, year, description } =
-    useAnnualSummerSchoolStore();
-
-  const yearFromPath = pathname.slice(-4);
-
-  useEffect(() => {
-    if (requestLang === language) return;
-    fetchAnnualSummerSchool(language, yearFromPath);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language, yearFromPath]);
 
   return (
     <PageTemplate>
