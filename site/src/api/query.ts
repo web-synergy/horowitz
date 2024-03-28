@@ -178,6 +178,12 @@ export const annualSchoolData = groq`*[_type== 'annualSummerSchool' && year==$ye
   isActiveSchedule, 
   slug,
   year,
+  'concerts':concerts[]{
+    _key,
+    'img':coalesce( img[_key ==$language ][0].value, img[][0].value),
+    'title': coalesce( title[_key ==$language][0].value, title[][0].value),  
+    'concertPrograms':coalesce(concertPrograms[_key ==$language][0].value,concertPrograms[][0].value),
+  },
   "description": description[_key ==$language][0].value, 
   "conditions": conditions[_key ==$language][0].value, 
   "orchestra": orchestra[_key ==$language][0].value, 
@@ -199,6 +205,6 @@ export const annualSchoolData = groq`*[_type== 'annualSummerSchool' && year==$ye
       _key, time, 
       "event": event[_key ==$language][0].value, 
     }, 
-    concerts,
+
   } 
 }`;
