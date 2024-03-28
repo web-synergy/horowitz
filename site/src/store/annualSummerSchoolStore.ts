@@ -3,13 +3,14 @@ import { AnnualSummerSchoolStoreState } from '@/types/storeTypes';
 import { getAnnualSchoolData } from '@/api';
 
 export const useAnnualSummerSchoolStore = create<AnnualSummerSchoolStoreState>(
-  (set) => ({
+  set => ({
     requestLang: '',
     isLoading: false,
     applicationLink: null,
     button: '',
     isActive: false,
     concerts: null,
+    currentConcert: null,
     conditions: null,
     description: [],
     isActiveConcerts: false,
@@ -32,11 +33,21 @@ export const useAnnualSummerSchoolStore = create<AnnualSummerSchoolStoreState>(
 
         if (!resp)
           throw new Error('Could not fetch the data from that resource');
-        set({ ...resp, requestLang: language, isLoading: false });
+        set({
+          ...resp,
+          requestLang: language,
+          concerts: resp.concerts,
+          isLoading: false,
+        });
       } catch (error) {
         set({ isLoading: false });
         console.log(error);
       }
+    },
+    getCurrentConcert: key => {
+      set(state => ({
+        currentConcert: state.concerts?.find(concert => concert._key === key),
+      }));
     },
   })
 );

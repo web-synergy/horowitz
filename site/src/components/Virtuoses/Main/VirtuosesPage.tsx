@@ -65,7 +65,12 @@ const VirtuosesPage = () => {
       <>
         <MainBanner banner={data.banner} />
         <PageTemplate>
-          <Container>
+          <Container
+            sx={{
+              '*:last-child': {
+                marginBottom: '0px',
+              },
+            }}>
             <Box
               sx={{
                 my: 1,

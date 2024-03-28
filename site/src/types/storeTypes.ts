@@ -10,7 +10,7 @@ import { NavigationType } from './routes';
 import { IUkrWorks } from './ukranianWorks';
 import { IVirtuosos } from './virtuososTypes';
 import { bannerType } from './homeTypes';
-import { AnnualSummerSchoolTypes } from './annualSummerSchoolTypes';
+import { AnnualSummerSchoolTypes, IConcerts } from './annualSummerSchoolTypes';
 
 export interface SettingsStoreState {
   requestLang: string;
@@ -109,5 +109,7 @@ export interface HomeStoreState {
 export interface AnnualSummerSchoolStoreState extends AnnualSummerSchoolTypes {
   requestLang: string;
   isLoading: boolean;
+  currentConcert: IConcerts | null;
+  getCurrentConcert: (key: string) => void;
   fetchAnnualSummerSchool: (language: string, year: string) => Promise<void>;
 }

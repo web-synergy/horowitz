@@ -21,6 +21,7 @@ export enum Buttons {
   GO_BACK_HOME = 'goBackHome',
   GO_NEWS = 'goNewsPage',
   GO_BACK = 'goBack',
+  CONCERT_PROGRAM = 'concertProgram',
 }
 
 export enum NotFound {
@@ -64,4 +65,6 @@ export enum Virtuosos {
 
 export enum SummerSchool {
   TITLE = 'Summer School',
+  CONCERTS = 'concerts',
+  CONCERT_PROGRAM = 'concertProgram',
 }

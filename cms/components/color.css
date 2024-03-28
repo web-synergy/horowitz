@@ -1,0 +1,4 @@
+.colorText span:last-child {
+  color: inherit;
+  border-bottom: none;
+}

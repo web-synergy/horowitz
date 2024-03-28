@@ -1,6 +1,14 @@
 import { Box } from '@mui/material';
 
-const ImagePerson = ({ img, alt = 'photo' }: { img: string; alt?: string }) => {
+const ImagePerson = ({
+  img,
+  alt = 'photo',
+  mb = 3,
+}: {
+  img: string;
+  alt?: string;
+  mb?: number;
+}) => {
   return (
     <Box
       component={'img'}
@@ -13,7 +21,7 @@ const ImagePerson = ({ img, alt = 'photo' }: { img: string; alt?: string }) => {
         height: 'auto',
         aspectRatio: { xs: '1/1', lg: '2/2.9' },
         objectFit: 'cover',
-        mb: 3,
+        mb: mb,
       }}
     />
   );
