@@ -26,7 +26,7 @@ export default {
     [Routes.PROJECTS]: 'Projects',
     [Routes.MASTER_CLASS]: 'Masterclasses',
     [Routes.SUMMER_SCHOOL]: 'Summer Music Academy',
-    [Routes.SUMMER_SCHOOL_MAIN]: 'Summer Music Academy',
+    [Routes.SUMMER_SCHOOL_MAIN]: 'Summer Music Academy - {{year}}',
     [Routes.SUMMER_SCHOOL_CONDITIONS]: 'Conditions',
     [Routes.SUMMER_SCHOOL_PROFESSORS]: 'Professors',
     [Routes.SUMMER_SCHOOL_PROFESSOR]: 'Professor',

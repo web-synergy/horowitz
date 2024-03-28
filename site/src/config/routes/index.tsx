@@ -28,6 +28,7 @@ import LazyKyivGenevaWFIMCPage from '@/components/KyivGenevaSubPages/WFIMC/LazyK
 import LazyKyivGenevaWinners from '@/components/KyivGenevaSubPages/Winners/LazyKyivGenevaWinners';
 
 import LazySummerSchoolPage from '@/components/SummerSchool/LazySummerSchoolPage';
+import LazySchoolLayout from '@/components/SummerSchoolSubPages/SchoolLayout/LazySchoolLayout';
 import LazyMainSchool from '@/components/SummerSchoolSubPages/Main/LazyMainSchool';
 import LazyEnvironments from '@/components/SummerSchoolSubPages/Environments/LazyEnvironments';
 import LazyProfessors from '@/components/SummerSchoolSubPages/Professors/LazyProfessors';
@@ -95,40 +96,47 @@ const routes = createBrowserRouter([
       { path: Routes.SUMMER_SCHOOL, element: <LazySummerSchoolPage /> },
       {
         path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}`,
-        element: <LazyMainSchool />,
+        element: <LazySchoolLayout />,
+        children: [
+          {
+            index: true,
+            element: <LazyMainSchool />,
+          },
+          {
+            path: Routes.SUMMER_SCHOOL_CONDITIONS,
+            element: <LazyEnvironments />,
+          },
+          {
+            path: Routes.SUMMER_SCHOOL_PROFESSORS,
+            element: <LazyProfessors />,
+          },
+          {
+            path: Routes.SUMMER_SCHOOL_PROFESSOR,
+            element: <LazyProfessor />,
+          },
+          {
+            path: Routes.SUMMER_SCHOOL_STUDENTS,
+            element: <LazyStudents />,
+          },
+          {
+            path: Routes.SUMMER_SCHOOL_SCHEDULES,
+            element: <LazySchedules />,
+          },
+          {
+            path: Routes.SUMMER_SCHOOL_CONCERTS,
+            element: <LazyConcerts />,
+          },
+          {
+            path: Routes.SUMMER_SCHOOL_PROGRAM,
+            element: <LazyProgram />,
+          },
+          {
+            path: Routes.SUMMER_SCHOOL_PLACES,
+            element: <LazyPlaces />,
+          },
+        ],
       },
-      {
-        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_CONDITIONS}`,
-        element: <LazyEnvironments />,
-      },
-      {
-        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_PROFESSORS}`,
-        element: <LazyProfessors />,
-      },
-      {
-        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_PROFESSOR}`,
-        element: <LazyProfessor />,
-      },
-      {
-        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_STUDENTS}`,
-        element: <LazyStudents />,
-      },
-      {
-        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_SCHEDULES}`,
-        element: <LazySchedules />,
-      },
-      {
-        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_CONCERTS}`,
-        element: <LazyConcerts />,
-      },
-      {
-        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_PROGRAM}`,
-        element: <LazyProgram />,
-      },
-      {
-        path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}/${Routes.SUMMER_SCHOOL_PLACES}`,
-        element: <LazyPlaces />,
-      },
+
       {
         path: Routes.VIRTUOSES,
         element: <LazyVirtuosesPage />,
