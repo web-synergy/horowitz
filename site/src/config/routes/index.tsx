@@ -35,8 +35,7 @@ import LazyProfessors from '@/components/SummerSchoolSubPages/Professors/LazyPro
 import LazyProfessor from '@/components/SummerSchoolSubPages/Professor/LazyProfessor';
 import LazyStudents from '@/components/SummerSchoolSubPages/Students/LazySturdents';
 import LazySchedules from '@/components/SummerSchoolSubPages/Schedules/LazySchedules';
-import LazyConcerts from '@/components/SummerSchoolSubPages/Concerts/LazyConcerts';
-import LazyProgram from '@/components/SummerSchoolSubPages/Program/LazyProgram';
+
 import LazyPlaces from '@/components/SummerSchoolSubPages/Places/LazyPlaces';
 
 import LazyVirtuosasArticles from '@/components/Virtuoses/VirtuosesArticles/LazyVirtuosasArticles';
@@ -52,7 +51,8 @@ import LazyContactsPage from '@/components/Contacts/LazyContactsPage';
 import LazyMainPage from '@/components/Main/LazyMainPage';
 import LazyMasterClassPage from '@/components/MasterClass/LazyMasterClassPage';
 import LazyNotFoundPage from '@/components/NotFound/LazyNotFoundPage';
-import LazyCurrentConcert from '@/components/SummerSchoolSubPages/Concerts/LazyCurrentConcert';
+import LazyCurrentConcert from '@/components/SummerSchoolSubPages/Concerts/CurrentConcert/LazyCurrentConcert';
+import LazyConcertsList from '@/components/SummerSchoolSubPages/Concerts/ConcertsList/LazyConcertsList';
 
 const routes = createBrowserRouter([
   {
@@ -125,16 +125,11 @@ const routes = createBrowserRouter([
           },
           {
             path: Routes.SUMMER_SCHOOL_CONCERTS,
-            element: <LazyConcerts />,
+            element: <LazyConcertsList />,
           },
           {
             path: Routes.SUMMER_SCHOOL_CURRENT_CONCERTS,
             element: <LazyCurrentConcert />,
-          },
-
-          {
-            path: Routes.SUMMER_SCHOOL_PROGRAM,
-            element: <LazyProgram />,
           },
           {
             path: Routes.SUMMER_SCHOOL_PLACES,
