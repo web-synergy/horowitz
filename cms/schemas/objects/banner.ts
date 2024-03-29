@@ -17,11 +17,19 @@ const banner = defineType({
       title: 'Автор зображення (*буде примітка на банері*)',
       type: 'string',
     }),
+
     defineField({
       name: 'fullSize',
       title: 'На весь екран?',
       type: 'boolean',
       options: {layout: 'checkbox'},
+    }),
+    defineField({
+      name: 'maxHeight',
+      title: 'Максимальна висота у %',
+      type: 'number',
+      initialValue: 42,
+      hidden: ({parent}) => !parent?.fullSize,
     }),
     defineField({
       name: 'location',
@@ -45,18 +53,19 @@ const banner = defineType({
         },
       ],
     }),
+
     defineField({
-      name: 'maxHeight',
-      title: 'Максимальна висота у %',
-      type: 'number',
-      initialValue: 42,
+      name: 'format',
+      title: 'Формат картинки',
+      type: 'format',
+      hidden: ({parent}) => parent?.fullSize,
     }),
 
     defineField({
       name: 'overlayType',
       title: 'Візуальний ефект на банері',
       type: 'string',
-      initialValue: 'gradient',
+      initialValue: 'none',
       options: {
         list: [
           {title: 'Градіент', value: 'gradient'},
@@ -70,6 +79,7 @@ const banner = defineType({
 
     defineField({
       name: 'linearGradient',
+      title: 'Градієнт для зовнішнього ефекту',
       type: 'gradient',
       hidden: ({parent}) => parent?.overlayType !== 'gradient',
     }),
@@ -85,7 +95,7 @@ const banner = defineType({
       name: 'backgroundType',
       title: 'Фон',
       type: 'string',
-      initialValue: 'monochrome',
+      initialValue: 'none',
       options: {
         list: [
           {title: 'Градіент', value: 'gradient'},
@@ -98,9 +108,16 @@ const banner = defineType({
     }),
 
     defineField({
-      name: 'background',
-      title: 'Фон',
+      name: 'backgroundColor',
+      title: 'Колір фону',
       type: 'color',
+      hidden: ({parent}) => parent?.backgroundType !== 'monochrome',
+    }),
+    defineField({
+      name: 'backgroundGradient',
+      title: 'Градієнт для фону',
+      type: 'gradient',
+      hidden: ({parent}) => parent?.backgroundType !== 'gradient',
     }),
   ],
   options: {

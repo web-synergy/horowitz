@@ -1,8 +1,10 @@
+import ColorPreview from '../../components/ColorPreview'
 import {defineType} from 'sanity'
 
 export default defineType({
   name: 'gradient',
   type: 'object',
+
   fields: [
     {
       name: 'degree',
@@ -30,6 +32,21 @@ export default defineType({
               type: 'number',
             },
           ],
+          preview: {
+            select: {
+              color: 'value',
+              position: 'position',
+            },
+            prepare: ({position, color}) => {
+              return {
+                title: `Початок кольору з ${position}%`,
+                color: color,
+              }
+            },
+          },
+          components: {
+            preview: ColorPreview,
+          },
         },
       ],
     },

@@ -7,14 +7,9 @@ export default defineType({
   type: 'object',
   fields: [
     defineField({
-      name: 'start',
-      title: 'Час початку',
-      type: 'timeInput',
-    }),
-    defineField({
-      name: 'end',
-      title: 'Час кінця',
-      type: 'timeInput',
+      name: 'time',
+      title: 'Час',
+      type: 'string',
     }),
 
     defineField({
@@ -24,11 +19,10 @@ export default defineType({
     }),
   ],
   preview: {
-    select: {start: 'start', end: 'end'},
-    prepare: ({start, end}) => {
-      const startTime = start || ''
-      const endTime = end ? `- ${end}` : ''
-      return {title: `${startTime} ${endTime}`, media: IoTime}
+    select: {time: 'time'},
+    prepare: ({time}) => {
+      const startTime = time || ''
+      return {title: startTime, media: IoTime}
     },
   },
 })
