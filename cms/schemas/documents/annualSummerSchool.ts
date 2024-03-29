@@ -69,7 +69,7 @@ export default defineType({
       group: 'common',
     }),
     defineField({
-      name: 'baner',
+      name: 'banner',
       title: 'Головний банер',
       type: 'banner',
       group: 'common',

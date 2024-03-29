@@ -3,7 +3,7 @@ import { AnnualSummerSchoolStoreState } from '@/types/storeTypes';
 import { getAnnualSchoolData } from '@/api';
 
 export const useAnnualSummerSchoolStore = create<AnnualSummerSchoolStoreState>(
-  set => ({
+  (set) => ({
     requestLang: '',
     isLoading: false,
     applicationLink: null,
@@ -25,6 +25,7 @@ export const useAnnualSummerSchoolStore = create<AnnualSummerSchoolStoreState>(
     schedules: null,
     slug: { current: '' },
     year: '',
+    banner: null,
 
     fetchAnnualSummerSchool: async (language: string, year: string) => {
       set({ isLoading: true });
@@ -44,9 +45,9 @@ export const useAnnualSummerSchoolStore = create<AnnualSummerSchoolStoreState>(
         console.log(error);
       }
     },
-    getCurrentConcert: key => {
-      set(state => ({
-        currentConcert: state.concerts?.find(concert => concert._key === key),
+    getCurrentConcert: (key) => {
+      set((state) => ({
+        currentConcert: state.concerts?.find((concert) => concert._key === key),
       }));
     },
   })

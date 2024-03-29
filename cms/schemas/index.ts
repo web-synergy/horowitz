@@ -27,14 +27,12 @@ import magazinePdf from './documents/magazinePdf'
 import summerSchool from './documents/summerSchool'
 import annualSummerSchool from './documents/annualSummerSchool'
 import picture from './objects/picture'
-import profile from './objects/profile'
 import participant from './objects/participant'
 import participantShort from './objects/participantShort'
 import textBlock from './objects/textBlock'
 import professor from './objects/professor'
 import rehearsal from './objects/rehearsal'
 import schedule from './objects/schedule'
-import timeInput from './objects/time'
 import concert from './objects/concert'
 import gradient from './objects/gradient'
 import format from './objects/format'
@@ -70,14 +68,12 @@ export const schemaTypes = [
   article,
   banner,
   picture,
-  profile,
   participant,
   participantShort,
   textBlock,
   professor,
   rehearsal,
   schedule,
-  timeInput,
   concert,
   gradient,
   format,
