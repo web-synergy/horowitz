@@ -49,7 +49,22 @@ const ButtonsArea: FC<ButtonsAreaProps> = ({ data: { button, isActive } }) => {
   const renderList = getRenderList(buttonsList, buttonsBg, button)
 
   return (
-    <Swiper spaceBetween={24} slidesPerView={3.2}>
+    <Swiper
+      breakpoints={{
+        300: {
+          slidesPerView: 1.05,
+          spaceBetween: 8,
+        },
+        768: {
+          slidesPerView: 2.1,
+          spaceBetween: 24,
+        },
+        1280: {
+          slidesPerView: 3.2,
+          spaceBetween: 24,
+        },
+      }}
+    >
       {renderList.length &&
         renderList.map((button, idx) => (
           <SwiperSlide key={idx}>
