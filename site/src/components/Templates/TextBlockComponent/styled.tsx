@@ -1,13 +1,31 @@
 import { styled, Box, Typography } from '@mui/material';
 
-export const Wrapper = styled(Box)(({ theme }) => ({
+export const WithoutImage = styled(Box)(({ theme }) => ({
+  width: '100%',
+
+  [theme.breakpoints.up('lg')]: {
+    columnCount: 2,
+    columnGap: 24,
+  },
+}));
+
+interface WithImageProps {
+  imageHeight: number;
+  imageWidth: number;
+}
+
+export const WithImage = styled(Box, {
+  shouldForwardProp: (props) =>
+    props !== 'imageHeight' && props !== 'imageWidth',
+})<WithImageProps>(({ theme, imageHeight, imageWidth }) => ({
   width: '100%',
   position: 'relative',
 
   '& img': {
+    width: 'auto',
+    height: imageHeight,
+    maxHeight: 296,
     display: 'block',
-    maxWidth: '100%',
-    maxHeight: '40vh',
     margin: '0 auto',
     marginBottom: 24,
   },
@@ -17,8 +35,9 @@ export const Wrapper = styled(Box)(({ theme }) => ({
       float: 'right',
       marginLeft: 24,
       marginBottom: 8,
-      width: '50%',
-      maxHeight: '50vh',
+      maxWidth: 'unset',
+      maxHeight: 'unset',
+      width: imageWidth,
       objectFit: 'cover',
       objectPosition: 'center top',
     },
@@ -27,12 +46,13 @@ export const Wrapper = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
     columnCount: 2,
     columnGap: 24,
-    paddingTop: '46%',
+
+    paddingTop: imageHeight < imageWidth ? '29%' : '46%',
 
     '&:before': {
       content: '""',
       display: 'block',
-      marginBottom: '-95%',
+      marginBottom: imageHeight < imageWidth ? '-63%' : '-97%',
     },
 
     '& > *': {
@@ -43,9 +63,8 @@ export const Wrapper = styled(Box)(({ theme }) => ({
       position: 'absolute',
       top: 0,
       right: 0,
-      width: 'calc(50% - 12px)',
-      height: 500,
-      maxHeight: 'unset',
+      maxHeight: 500,
+
       margin: 0,
     },
   },

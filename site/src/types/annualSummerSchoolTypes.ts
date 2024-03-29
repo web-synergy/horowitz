@@ -42,6 +42,12 @@ export type MainAnnualSummerSchoolTypes = Pick<
   "button" | "year" | "slug" | "isActive" | "applicationLink"
 >;
 
+export interface IConcerts {
+  _key: string;
+  title: string;
+  img: IImage;
+  concertPrograms: PortableTextBlock[];
+}
 export type AnnualSummerSchoolTypes = {
   year: string;
   slug: {
@@ -64,6 +70,6 @@ export type AnnualSummerSchoolTypes = {
   participants: IParticipant[] | null;
   professors: IProfessor[] | null;
   schedules: ISchedule[] | null;
-  concerts: never[] | null;
+  concerts: IConcerts[] | null;
   orchestra: PortableTextBlock[] | null;
 };

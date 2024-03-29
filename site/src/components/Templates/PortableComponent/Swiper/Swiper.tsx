@@ -47,7 +47,7 @@ export const PortableSwiper = ({ value }: { value: IPortableImgGallery }) => {
     <GrowView>
       <Box
         ref={containerRef}
-        sx={{ my: { xs: '40px', md: '48px', lg: '56px' } }}>
+        sx={{ my: { xs: '24px', md: '40px', lg: '48px' } }}>
         <Swiper
           modules={[Navigation, Thumbs, Keyboard]}
           loop={true}

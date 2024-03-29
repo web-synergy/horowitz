@@ -13,6 +13,7 @@ const SchoolLayout = () => {
     useAnnualSummerSchoolStore();
 
   const yearFromPath = pathname.split('/')[2].slice(-4);
+  console.log();
 
   useEffect(() => {
     const isLangTheSame = requestLang === language;
@@ -29,7 +30,7 @@ const SchoolLayout = () => {
         sx={{
           width: '100%',
           height: '40vh',
-          backgroundColor: (theme) => theme.palette.neutral[30],
+          backgroundColor: theme => theme.palette.neutral[30],
         }}
       />
       <Outlet />

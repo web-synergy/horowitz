@@ -18,7 +18,7 @@ function GridTemplate<T>(props: GridTemplateProps<T>) {
       sx={{
         display: isCentered ? 'flex' : 'grid',
         columnGap: 3,
-        rowGap: { xs: 3, md: 5, lg: 6 },
+        rowGap: 7,
         justifyContent: 'center',
         gridTemplateColumns: 'repeat(auto-fill, minmax(288px, 1fr))',
         flexDirection: 'row',

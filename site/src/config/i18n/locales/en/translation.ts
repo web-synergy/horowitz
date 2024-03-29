@@ -62,6 +62,7 @@ export default {
     [Buttons.GO_BACK_HOME]: 'Back to Home page',
     [Buttons.GO_NEWS]: 'Back to News page',
     [Buttons.GO_BACK]: 'Go Back',
+    [Buttons.CONCERT_PROGRAM]: 'Concert program',
   },
   [Header.SEARCH]: 'Search',
   contacts: {
@@ -116,5 +117,7 @@ export default {
   },
   summerSchool: {
     [SummerSchool.TITLE]: 'Summer music academy',
+    [SummerSchool.CONCERTS]: 'Concerts',
+    [SummerSchool.CONCERT_PROGRAM]: 'Concert program',
   },
 };

@@ -28,6 +28,7 @@ import {
   virtuososQuery,
   annualSchoolData,
 } from './query';
+import { AnnualSummerSchoolTypes } from '@/types/annualSummerSchoolTypes';
 
 export const getHomeData = async (language: string): Promise<HomeData> => {
   return sanityFetch(homeQuery, { language });
@@ -110,6 +111,9 @@ export const getSummerSchoolData = (
   return sanityFetch(schoolData, { language });
 };
 
-export const getAnnualSchoolData = (language: string, year: string) => {
+export const getAnnualSchoolData = (
+  language: string,
+  year: string
+): Promise<AnnualSummerSchoolTypes> => {
   return sanityFetch(annualSchoolData, { language, year });
 };
