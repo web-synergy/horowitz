@@ -54,7 +54,7 @@ const banner = defineType({
 
     defineField({
       name: 'overlayType',
-      title: 'Візуальний ефект',
+      title: 'Візуальний ефект на банері',
       type: 'string',
       initialValue: 'gradient',
       options: {
@@ -67,41 +67,11 @@ const banner = defineType({
         direction: 'horizontal',
       },
     }),
+
     defineField({
       name: 'linearGradient',
-      type: 'object',
+      type: 'gradient',
       hidden: ({parent}) => parent?.overlayType !== 'gradient',
-      fields: [
-        {
-          name: 'degree',
-          title: 'Кут нахилу градієнту',
-          type: 'number',
-        },
-        {
-          name: 'colors',
-          title: 'Набір кольорів для градієнту',
-          type: 'array',
-          options: {sortable: false},
-          of: [
-            {
-              name: 'element',
-              type: 'object',
-              fields: [
-                {
-                  name: 'value',
-                  title: 'Колір градієнту',
-                  type: 'color',
-                },
-                {
-                  name: 'position',
-                  title: 'Початок дії кольору',
-                  type: 'number',
-                },
-              ],
-            },
-          ],
-        },
-      ],
     }),
 
     defineField({
@@ -109,6 +79,22 @@ const banner = defineType({
       title: 'Колір для затемнення зображення',
       type: 'color',
       hidden: ({parent}) => parent?.overlayType !== 'monochrome',
+    }),
+
+    defineField({
+      name: 'backgroundType',
+      title: 'Фон',
+      type: 'string',
+      initialValue: 'monochrome',
+      options: {
+        list: [
+          {title: 'Градіент', value: 'gradient'},
+          {title: 'Однотоний', value: 'monochrome'},
+          {title: 'Без ефекту', value: 'none'},
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
     }),
 
     defineField({

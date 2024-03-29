@@ -54,6 +54,7 @@ export default defineType({
       },
       group: 'common',
     }),
+
     defineField({
       name: 'isActive',
       title: 'Активувати подачу заявок',
@@ -65,6 +66,12 @@ export default defineType({
       title: 'Посилання для подачі заявки',
       type: 'url',
       hidden: ({parent}) => !parent?.isActive,
+      group: 'common',
+    }),
+    defineField({
+      name: 'baner',
+      title: 'Головний банер',
+      type: 'banner',
       group: 'common',
     }),
 
