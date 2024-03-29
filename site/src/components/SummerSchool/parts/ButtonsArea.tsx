@@ -11,6 +11,7 @@ import 'swiper/swiper-bundle.css'
 import btn1 from '@/assets/images/buttonsBg/variant1.jpg'
 import btn2 from '@/assets/images/buttonsBg/variant2.jpg'
 import btn3 from '@/assets/images/buttonsBg/variant3.jpg'
+import { getRenderList } from '../temp/helper'
 const buttonsBg = [
   { title: '1', image: btn1 },
   { title: '2', image: btn2 },
@@ -25,27 +26,6 @@ type ButtonsAreaProps = {
   data: MainAnnualSummerSchoolTypes
 }
 const ButtonsArea: FC<ButtonsAreaProps> = ({ data: { button, isActive } }) => {
-  // @ts-ignore
-  const getRenderList = (btnsList, imgsList, currBg) => {
-    // @ts-ignore
-    const firstBG = imgsList.splice(imgsList.findIndex(item => item.title === currBg)).pop()
-    let startIdxImages = 0
-    // @ts-ignore
-    const renderList = btnsList.reduce((acc, btn, idx) => {
-      if (idx === 0) {
-        acc.push({ ...btn, ...firstBG })
-        return acc
-      }
-      if (idx > imgsList.length - 1 && startIdxImages >= imgsList.length) {
-        startIdxImages = 0
-      }
-      acc.push({ ...btn, ...imgsList[startIdxImages] })
-      startIdxImages += 1
-      return acc
-    }, [])
-    return renderList
-  }
-
   const renderList = getRenderList(buttonsList, buttonsBg, button)
 
   return (

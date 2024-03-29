@@ -1,14 +1,14 @@
-import { getSummerSchoolData } from '@/api';
-import { ISummerSchool } from '@/types/summerSchoolTypes';
-import { create } from 'zustand';
+import { getSummerSchoolData } from '@/api'
+import { ISummerSchool } from '@/types/summerSchoolTypes'
+import { create } from 'zustand'
 
 interface SummerSchoolState extends ISummerSchool {
-  requestLang: string;
-  isLoading: boolean;
-  fetchSchoolData: (language: string) => Promise<void>;
+  requestLang: string
+  isLoading: boolean
+  fetchSchoolData: (language: string) => Promise<void>
 }
 
-export const useSummerSchoolStore = create<SummerSchoolState>()((set) => ({
+export const useSummerSchoolStore = create<SummerSchoolState>()(set => ({
   topText: [],
   bottomText: [],
   infographic: null,
@@ -26,18 +26,18 @@ export const useSummerSchoolStore = create<SummerSchoolState>()((set) => ({
   },
 
   fetchSchoolData: async (language: string) => {
-    set({ isLoading: true });
+    set({ isLoading: true })
     try {
-      const resp = await getSummerSchoolData(language);
+      const resp = await getSummerSchoolData(language)
 
-      if (!resp) throw new Error('Could not fetch the data from that resource');
+      if (!resp) throw new Error('Could not fetch the data from that resource')
 
-      set({ ...resp, requestLang: language, isLoading: false });
+      set({ ...resp, requestLang: language, isLoading: false })
 
       // console.log(resp)
     } catch (error) {
-      set({ isLoading: false });
-      console.log(error);
+      set({ isLoading: false })
+      console.log(error)
     }
   },
-}));
+}))
