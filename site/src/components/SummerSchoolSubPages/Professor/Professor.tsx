@@ -1,10 +1,10 @@
-import { useLocation } from 'react-router-dom';
-import PageTemplate from '@/components/Common/PageTemplate';
-import { Container, Typography } from '@mui/material';
-import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
-import TextBlockComponent from '@/components/Templates/TextBlockComponent/TextBlockComponent';
-import GoBackBtn from '@/components/Common/GoBackBtn';
-import { Routes } from '@/types/routes.d';
+import { useLocation } from "react-router-dom";
+import PageTemplate from "@/components/Common/PageTemplate";
+import { Container, Typography } from "@mui/material";
+import { useAnnualSummerSchoolStore } from "@/store/annualSummerSchoolStore";
+import TextBlockComponent from "@/components/Templates/TextBlockComponent/TextBlockComponent";
+import GoBackBtn from "@/components/Common/GoBackBtn";
+import { Routes } from "@/types/routes.d";
 
 const Professor = () => {
   const { pathname } = useLocation();
@@ -13,7 +13,7 @@ const Professor = () => {
   if (!professors) {
     return null;
   }
-  const profKey = pathname.split('/').slice(-1)[0];
+  const profKey = pathname.split("/:").slice(-1)[0];
 
   //add logic for finding current professor
   const professor = professors.find((prof) => prof._key === profKey);
@@ -32,12 +32,12 @@ const Professor = () => {
     <>
       <PageTemplate>
         <Container>
-          <Typography variant="h1" mb={1} sx={{ textTransform: 'capitalize' }}>
+          <Typography variant="h1" mb={1} sx={{ textTransform: "capitalize" }}>
             {professor.name}
           </Typography>
           <Typography
             variant="subhead"
-            component={'p'}
+            component={"p"}
             color={(theme) => theme.palette.neutral[60]}
             mb={{ xs: 3, md: 5, lg: 6 }}
           >
