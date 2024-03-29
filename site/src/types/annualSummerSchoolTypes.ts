@@ -1,9 +1,10 @@
-import { PortableTextBlock } from '@portabletext/types';
-import { IImage } from './commonTypes';
+import { PortableTextBlock } from "@portabletext/types";
+import { IImage } from "./commonTypes";
 
 export interface IAvatar {
   aspectRatio: string;
   image: IImage;
+  alt?: string;
 }
 
 export interface IParticipant {
@@ -38,7 +39,7 @@ export interface ISchedule {
 
 export type MainAnnualSummerSchoolTypes = Pick<
   AnnualSummerSchoolTypes,
-  'button' | 'year' | 'slug' | 'isActive' | 'applicationLink'
+  "button" | "year" | "slug" | "isActive" | "applicationLink"
 >;
 
 export interface IConcerts {
