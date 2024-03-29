@@ -1,5 +1,5 @@
 import { kyivGenevaNavigation } from '@/config/routes/navigation';
-import { Routes } from '@/types/routes.d';
+// import { Routes } from '@/types/routes.d';
 
 import { Box, Container } from '@mui/material';
 import { FC } from 'react';
@@ -32,7 +32,7 @@ const ButtonsSection: FC<ButtonsSectionProps> = ({ bgImage }) => {
           >
             <LinksList
               linksList={kyivGenevaNavigation}
-              path={Routes.KYIV_GENEVA}
+              // path={Routes.KYIV_GENEVA}
             />
           </Box>
         </Container>
