@@ -10,11 +10,17 @@ import { Routes } from '@/types/routes.d';
 import { summerSchoolNavigation } from '@/config/routes/navigation';
 import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
 
-
 const MainSchool = () => {
   const { t } = useTranslation();
   const { year, description } = useAnnualSummerSchoolStore();
   const { pathname } = useLocation();
+
+  const navigation = summerSchoolNavigation.map((item) => {
+    console.log(item);
+    return item;
+  });
+
+  console.log(navigation);
 
   return (
     <>
