@@ -46,8 +46,6 @@ const TextBlockComponent: FC<TextBlockProps> = ({ textArray, img }) => {
   const imageHeight = Math.floor(imageWidth / aspectValue);
   const imageUrl = urlFor(image).url().toString();
 
-  console.log('imageWidth', imageWidth);
-  console.log('imageHeight', imageHeight);
   return (
     <WithImage
       ref={containerRef}
