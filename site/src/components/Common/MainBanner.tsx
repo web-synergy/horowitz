@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState, useMemo } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import { IBanner } from '@/types/bannerType';
 import { IColorField } from '@/types/commonTypes';
@@ -11,16 +11,28 @@ interface MainBannerProps {
 }
 
 const MainBanner: FC<MainBannerProps> = ({ banner }) => {
+  const [imageWidth, setImageWidth] = useState(0);
+
   const { containerSize, containerRef } = useWidthBlokSize();
-  const {
-    background,
-    fullSize,
-    img,
-    maxHeight,
-    overlayType,
-    location,
-    copyright,
-  } = banner;
+  const { background, size, img, overlay, copyright } = banner;
+
+  const { overlayType } = overlay;
+  const { backgroundType } = background;
+  const { fullSize } = size;
+
+  useEffect(() => {
+    const imageWidth = fullSize
+      ? containerSize
+      : Math.min(
+          1280,
+          Math.floor(
+            ((refHeight as number) * size.format.width) / size.format.height
+          )
+        );
+
+    setImageWidth(imageWidth);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [containerSize]);
 
   const createGradientColors = (
     colors: { value: IColorField; position: number }[] | undefined
@@ -37,57 +49,85 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
     overlayType === 'none'
       ? {}
       : overlayType === 'monochrome'
-      ? { backgroundColor: createColor(banner.overlayColor) }
+      ? { backgroundColor: createColor(overlay.overlayColor) }
       : {
           background: `linear-gradient(${
-            banner.linearGradient?.degree
-          }deg, ${createGradientColors(banner.linearGradient?.colors)})`,
+            overlay.linearGradient.degree
+          }deg, ${createGradientColors(overlay.linearGradient.colors)})`,
         };
 
-  const imageWidth = containerSize;
-  const imageHeight = containerRef.current?.offsetHeight || 408;
+  const refHeight = useMemo(() => {
+    return fullSize
+      ? `${size.maxHeight}vh`
+      : Math.min(
+          Math.floor((containerSize * size.format.height) / size.format.width),
+          Math.floor((1280 * size.format.height) / size.format.width),
+          530
+        );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [containerSize, fullSize]);
+
+  const backgroundEffect =
+    backgroundType === 'none'
+      ? {}
+      : backgroundType === 'monochrome'
+      ? {
+          backgroundColor: createColor(background.backgroundColor),
+        }
+      : {
+          background: `linear-gradient(${
+            background.backgroundGradient.degree
+          }deg, ${createGradientColors(background.backgroundGradient.colors)})`,
+        };
 
   const image = fullSize
-    ? urlFor(img).auto('format').width(imageWidth).height(imageHeight).url()
-    : urlFor(img).auto('format').height(imageHeight).url();
-
-  const imageLocation = location ? location : { position: 'center' };
+    ? urlFor(img).auto('format').width(imageWidth).url()
+    : urlFor(img)
+        .auto('format')
+        .width(imageWidth)
+        .height(refHeight as number)
+        .url();
 
   return (
     <Box
       ref={containerRef}
       sx={{
-        backgroundColor: createColor(background),
-        height: `${maxHeight}vh`,
+        height: refHeight,
         position: 'relative',
-        '&::before': {
-          content: `url(${image})`,
-          display: 'none',
-        },
+        ...backgroundEffect,
       }}
     >
       <Box
         sx={{
-          maxWidth: fullSize ? '100%' : '1280px',
+          width: '100%',
+          maxWidth: fullSize ? 'unset' : 1280,
+          mx: 'auto',
           height: '100%',
-          margin: '0 auto',
-          display: 'flex',
-          justifyContent: imageLocation.position,
         }}
       >
-        <Box
-          component={'img'}
+        <img
           src={image}
-          width={imageWidth}
-          height={imageHeight}
-          sx={{
+          alt=""
+          style={{
             width: fullSize ? '100%' : 'auto',
             height: '100%',
-            objectFit: 'cover',
+            maxHeight: refHeight,
+            objectFit: fullSize ? 'cover' : 'contain',
+            marginLeft: fullSize
+              ? 'unset'
+              : size.location.position !== 'left'
+              ? 'auto'
+              : 0,
+            marginRight: fullSize
+              ? 'unset'
+              : size.location.position !== 'right'
+              ? 'auto'
+              : 0,
           }}
+          width={imageWidth}
+          height={refHeight}
         />
       </Box>
-
       <Box
         sx={{
           position: 'absolute',

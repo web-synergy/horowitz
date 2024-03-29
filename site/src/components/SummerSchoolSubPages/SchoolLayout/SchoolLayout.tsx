@@ -3,17 +3,17 @@ import { Box } from '@mui/material';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
+import MainBanner from '@/components/Common/MainBanner';
 
 const SchoolLayout = () => {
   const {
     i18n: { language },
   } = useTranslation();
   const { pathname } = useLocation();
-  const { requestLang, fetchAnnualSummerSchool, year } =
+  const { requestLang, fetchAnnualSummerSchool, year, banner } =
     useAnnualSummerSchoolStore();
 
   const yearFromPath = pathname.split('/')[2].slice(-4);
-  console.log();
 
   useEffect(() => {
     const isLangTheSame = requestLang === language;
@@ -24,15 +24,23 @@ const SchoolLayout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language, yearFromPath]);
 
+  if (!banner) {
+    return (
+      <>
+        <Box
+          sx={{
+            width: '100%',
+            height: '40vh',
+            backgroundColor: (theme) => theme.palette.neutral[30],
+          }}
+        />
+        <Outlet />
+      </>
+    );
+  }
   return (
     <>
-      <Box
-        sx={{
-          width: '100%',
-          height: '40vh',
-          backgroundColor: theme => theme.palette.neutral[30],
-        }}
-      />
+      <MainBanner banner={banner} />
       <Outlet />
     </>
   );
