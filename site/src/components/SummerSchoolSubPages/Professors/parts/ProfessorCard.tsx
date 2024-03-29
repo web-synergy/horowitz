@@ -1,5 +1,5 @@
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import { t } from "i18next";
 
@@ -14,7 +14,8 @@ interface ProfessorCardProps {
 }
 
 const ProfessorCard: React.FC<ProfessorCardProps> = ({ professor }) => {
-  console.log(professor);
+  const { pathname } = useLocation();
+
   return (
     <Box>
       <WrapperImg>
@@ -31,17 +32,10 @@ const ProfessorCard: React.FC<ProfessorCardProps> = ({ professor }) => {
           paddingTop: { xs: "8px", md: "16px", lg: "24px" },
         }}
       >
-        <Typography variant="subhead">
-          {professor.name}{" "}
-          {professor.avatar.alt && (
-            <Typography variant="caption" component="span">
-              ({professor.avatar.alt.toLowerCase()})
-            </Typography>
-          )}
-        </Typography>
+        <Typography variant="subhead">{professor.name}</Typography>
         <Button
           component={RouterLink}
-          to={"/"}
+          to={`${pathname}/:${professor._key}`}
           endIcon={
             <SvgSpriteIcon icon="arrow" sx={{ transform: "rotate(270deg)" }} />
           }
