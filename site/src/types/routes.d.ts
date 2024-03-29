@@ -35,7 +35,7 @@ export enum Routes {
   SUMMER_SCHOOL_MAIN = "sa-name",
   SUMMER_SCHOOL_CONDITIONS = "sa-conditions",
   SUMMER_SCHOOL_PROFESSORS = "sa-professors",
-  SUMMER_SCHOOL_PROFESSOR = "sa-professors/:key",
+  SUMMER_SCHOOL_PROFESSOR = "sa-professor/:key",
   SUMMER_SCHOOL_STUDENTS = "sa-participants",
   SUMMER_SCHOOL_SCHEDULES = "sa-schedules",
   SUMMER_SCHOOL_CONCERTS = "sa-concerts",

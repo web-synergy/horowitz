@@ -13,7 +13,7 @@ const Professor = () => {
   if (!professors) {
     return null;
   }
-  const profKey = pathname.split("/").slice(-1)[0];
+  const profKey = pathname.split("/:").slice(-1)[0];
 
   //add logic for finding current professor
   const professor = professors.find((prof) => prof._key === profKey);

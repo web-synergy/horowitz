@@ -15,6 +15,7 @@ interface ProfessorCardProps {
 
 const ProfessorCard: React.FC<ProfessorCardProps> = ({ professor }) => {
   const { pathname } = useLocation();
+  console.log(pathname);
 
   return (
     <Box>
@@ -35,7 +36,7 @@ const ProfessorCard: React.FC<ProfessorCardProps> = ({ professor }) => {
         <Typography variant="subhead">{professor.name}</Typography>
         <Button
           component={RouterLink}
-          to={`${pathname}/:${professor._key}`}
+          to={`${pathname}/sa-professor/:${professor._key}`}
           endIcon={
             <SvgSpriteIcon icon="arrow" sx={{ transform: "rotate(270deg)" }} />
           }
