@@ -36,6 +36,8 @@ import rehearsal from './objects/rehearsal'
 import schedule from './objects/schedule'
 import timeInput from './objects/time'
 import concert from './objects/concert'
+import gradient from './objects/gradient'
+import format from './objects/format'
 
 export const schemaTypes = [
   //documents
@@ -77,4 +79,6 @@ export const schemaTypes = [
   schedule,
   timeInput,
   concert,
+  gradient,
+  format,
 ]

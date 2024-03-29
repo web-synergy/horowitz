@@ -30,6 +30,11 @@ export default defineType({
       title: 'Музичний інструмент',
       type: 'internationalizedArrayString',
     }),
+    defineField({
+      name: 'role',
+      title: 'Роль (диригент/професор)',
+      type: 'internationalizedArrayString',
+    }),
 
     defineField({
       name: 'about',

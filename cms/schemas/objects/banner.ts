@@ -17,11 +17,19 @@ const banner = defineType({
       title: 'Автор зображення (*буде примітка на банері*)',
       type: 'string',
     }),
+
     defineField({
       name: 'fullSize',
       title: 'На весь екран?',
       type: 'boolean',
       options: {layout: 'checkbox'},
+    }),
+    defineField({
+      name: 'maxHeight',
+      title: 'Максимальна висота у %',
+      type: 'number',
+      initialValue: 42,
+      hidden: ({parent}) => !parent?.fullSize,
     }),
     defineField({
       name: 'location',
@@ -45,18 +53,19 @@ const banner = defineType({
         },
       ],
     }),
+
     defineField({
-      name: 'maxHeight',
-      title: 'Максимальна висота у %',
-      type: 'number',
-      initialValue: 42,
+      name: 'format',
+      title: 'Формат картинки',
+      type: 'format',
+      hidden: ({parent}) => parent?.fullSize,
     }),
 
     defineField({
       name: 'overlayType',
-      title: 'Візуальний ефект',
+      title: 'Візуальний ефект на банері',
       type: 'string',
-      initialValue: 'gradient',
+      initialValue: 'none',
       options: {
         list: [
           {title: 'Градіент', value: 'gradient'},
@@ -67,41 +76,12 @@ const banner = defineType({
         direction: 'horizontal',
       },
     }),
+
     defineField({
       name: 'linearGradient',
-      type: 'object',
+      title: 'Градієнт для зовнішнього ефекту',
+      type: 'gradient',
       hidden: ({parent}) => parent?.overlayType !== 'gradient',
-      fields: [
-        {
-          name: 'degree',
-          title: 'Кут нахилу градієнту',
-          type: 'number',
-        },
-        {
-          name: 'colors',
-          title: 'Набір кольорів для градієнту',
-          type: 'array',
-          options: {sortable: false},
-          of: [
-            {
-              name: 'element',
-              type: 'object',
-              fields: [
-                {
-                  name: 'value',
-                  title: 'Колір градієнту',
-                  type: 'color',
-                },
-                {
-                  name: 'position',
-                  title: 'Початок дії кольору',
-                  type: 'number',
-                },
-              ],
-            },
-          ],
-        },
-      ],
     }),
 
     defineField({
@@ -112,9 +92,32 @@ const banner = defineType({
     }),
 
     defineField({
-      name: 'background',
+      name: 'backgroundType',
       title: 'Фон',
+      type: 'string',
+      initialValue: 'none',
+      options: {
+        list: [
+          {title: 'Градіент', value: 'gradient'},
+          {title: 'Однотоний', value: 'monochrome'},
+          {title: 'Без ефекту', value: 'none'},
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+    }),
+
+    defineField({
+      name: 'backgroundColor',
+      title: 'Колір фону',
       type: 'color',
+      hidden: ({parent}) => parent?.backgroundType !== 'monochrome',
+    }),
+    defineField({
+      name: 'backgroundGradient',
+      title: 'Градієнт для фону',
+      type: 'gradient',
+      hidden: ({parent}) => parent?.backgroundType !== 'gradient',
     }),
   ],
   options: {
