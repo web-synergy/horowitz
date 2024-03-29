@@ -1,29 +1,66 @@
 import { FC } from 'react';
-import { Box, Typography } from '@mui/material';
-import { TextBlock, Wrapper } from './styled';
+import { Box, useTheme, useMediaQuery } from '@mui/material';
+import { PortableText } from '@portabletext/react';
+import { PortableTextBlock } from '@portabletext/types';
+import { urlFor } from '@/config/sanity/imageUrl';
+import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
+import { components } from '@/components/Templates/PortableComponent/parts/components';
+import { WithImage, WithoutImage } from './styled';
+import { IAvatar } from '@/types/annualSummerSchoolTypes';
 
+const ASPECT_RATIO = [
+  { title: '3/4', value: 0.75 },
+  { title: '1/1', value: 1 },
+  { title: '16/9', value: 1.777 },
+];
 interface TextBlockProps {
-  title: string;
-  textArray: string[];
-  img?: string;
+  textArray: PortableTextBlock[];
+  img?: IAvatar | undefined;
 }
 
-const TextBlockComponent: FC<TextBlockProps> = ({ title, textArray, img }) => {
-  return (
-    <Box>
-      <Typography variant="h1" mb={{ xs: 3, md: 5, lg: 6 }}>
-        {title}
-      </Typography>
+const TextBlockComponent: FC<TextBlockProps> = ({ textArray, img }) => {
+  const { containerRef, containerSize } = useWidthBlokSize();
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const isTablet = useMediaQuery(theme.breakpoints.only('md'));
 
-      <Wrapper>
-        <Box component="img" src={img} alt={`photo of ${name}`} />
-        <Box>
-          {textArray.map((text, index) => (
-            <TextBlock key={index}>{text}</TextBlock>
-          ))}
-        </Box>
-      </Wrapper>
-    </Box>
+  if (!img) {
+    return (
+      <WithoutImage>
+        {textArray.map((text, index) => (
+          <PortableText key={index} value={text} components={components} />
+        ))}
+      </WithoutImage>
+    );
+  }
+
+  const { aspectRatio, image } = img;
+  const imageWidth = isDesktop
+    ? 548
+    : isTablet
+    ? containerSize * 0.5
+    : containerSize;
+
+  const aspectValue =
+    ASPECT_RATIO.find((item) => item.title === aspectRatio)?.value || 1;
+  const imageHeight = Math.floor(imageWidth / aspectValue);
+  const imageUrl = urlFor(image).url().toString();
+
+  console.log('imageWidth', imageWidth);
+  console.log('imageHeight', imageHeight);
+  return (
+    <WithImage
+      ref={containerRef}
+      imageHeight={imageHeight}
+      imageWidth={imageWidth}
+    >
+      <img src={imageUrl} alt={`photo of ${name}`} />
+      <Box>
+        {textArray.map((text, index) => (
+          <PortableText key={index} value={text} components={components} />
+        ))}
+      </Box>
+    </WithImage>
   );
 };
 

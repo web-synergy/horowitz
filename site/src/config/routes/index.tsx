@@ -111,7 +111,7 @@ const routes = createBrowserRouter([
             element: <LazyProfessors />,
           },
           {
-            path: Routes.SUMMER_SCHOOL_PROFESSOR,
+            path: `${Routes.SUMMER_SCHOOL_PROFESSORS}/:${Routes.SUMMER_SCHOOL_PROFESSOR}`,
             element: <LazyProfessor />,
           },
           {
