@@ -7,7 +7,7 @@ export default defineType({
 
   groups: [
     {
-      name: 'baner',
+      name: 'banner',
       title: 'Рекламний банер',
     },
     {
@@ -25,23 +25,58 @@ export default defineType({
       name: 'banner',
       title: 'Баннер',
       type: 'object',
+      group: 'banner',
       options: {
         collapsible: true,
       },
       fields: [
         defineField({
-          name: 'background',
-          title: 'Фон',
-          type: 'color',
-        }),
-
-        defineField({
           name: 'img',
-          title: 'Фото (розмір 16/9)',
+          title: 'Фото',
           type: 'internationalizedArrayImage',
           options: {
             hotspot: true,
           },
+        }),
+        defineField({
+          name: 'format',
+          title: 'Формат картинки',
+          type: 'format',
+          hidden: ({parent}) => parent?.fullSize,
+        }),
+        defineField({
+          name: 'background',
+          title: 'Фон',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'backgroundType',
+              title: 'Фон',
+              type: 'string',
+              initialValue: 'none',
+              options: {
+                list: [
+                  {title: 'Градіент', value: 'gradient'},
+                  {title: 'Однотоний', value: 'monochrome'},
+                ],
+                layout: 'radio',
+                direction: 'horizontal',
+              },
+            }),
+
+            defineField({
+              name: 'backgroundColor',
+              title: 'Колір фону',
+              type: 'color',
+              hidden: ({parent}) => parent?.backgroundType !== 'monochrome',
+            }),
+            defineField({
+              name: 'backgroundGradient',
+              title: 'Градієнт для фону',
+              type: 'gradient',
+              hidden: ({parent}) => parent?.backgroundType !== 'gradient',
+            }),
+          ],
         }),
       ],
     }),

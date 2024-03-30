@@ -12,7 +12,9 @@ export const homeQuery = groq`*[_type == 'home'][0]{
     }, 
     'banner': banner{
       background, 
-      'img':  img[_key ==$language ][0].value
+      'img':  img[_key ==$language ][0].value, 
+      format
+      
     }
 
  

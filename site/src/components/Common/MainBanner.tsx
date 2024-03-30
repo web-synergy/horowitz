@@ -1,9 +1,9 @@
 import { FC, useEffect, useState, useMemo } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import { IBanner } from '@/types/bannerType';
-import { IColorField } from '@/types/commonTypes';
+
 import { urlFor } from '@/config/sanity/imageUrl';
-import { createColor } from '@/utils/createColor';
+import { createColor, createGradientColors } from '@/utils/createColor';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 
 interface MainBannerProps {
@@ -33,17 +33,6 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
     setImageWidth(imageWidth);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerSize]);
-
-  const createGradientColors = (
-    colors: { value: IColorField; position: number }[] | undefined
-  ) => {
-    if (!colors) {
-      return 'transparent';
-    }
-    return colors
-      .map(({ value, position }) => `${createColor(value)} ${position}%`)
-      .join(', ');
-  };
 
   const overlayEffect =
     overlayType === 'none'
@@ -93,6 +82,7 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
       ref={containerRef}
       sx={{
         height: refHeight,
+        maxHeight: '50vh',
         position: 'relative',
         ...backgroundEffect,
       }}

@@ -9,3 +9,14 @@ export const createColor = (color: IColorField | undefined) => {
   } = color;
   return `rgba(${r}, ${g}, ${b}, ${a})`;
 };
+
+export const createGradientColors = (
+  colors: { value: IColorField; position: number }[] | undefined
+) => {
+  if (!colors) {
+    return 'transparent';
+  }
+  return colors
+    .map(({ value, position }) => `${createColor(value)} ${position}%`)
+    .join(', ');
+};
