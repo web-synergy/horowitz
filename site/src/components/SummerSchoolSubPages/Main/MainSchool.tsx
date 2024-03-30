@@ -1,14 +1,18 @@
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import { Box, Container, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import PageTemplate from '@/components/Common/PageTemplate';
-import NavList from '@/components/Templates/NavList/NavList';
+
 import PortableComponent from '@/components/Templates/PortableComponent/PortableComponent';
 import GoBackBtn from '@/components/Common/GoBackBtn';
 import { Routes } from '@/types/routes.d';
 import { summerSchoolNavigation } from '@/config/routes/navigation';
 import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
 
+import pianoImg from '@/assets/images/kyiv-geneva/mainPage/geneva_bg_piano.webp';
+
+import ButtonsSection from '@/components/Templates/ButtonsSection';
+import { MainStack } from '@/components/KyivGeneva/styled';
 const MainSchool = () => {
   const { t } = useTranslation();
   const {
@@ -21,24 +25,25 @@ const MainSchool = () => {
     isActiveProfessors,
     isActiveSchedule,
   } = useAnnualSummerSchoolStore();
-  const { pathname } = useLocation();
 
-  const navigation = summerSchoolNavigation.map((item) => {
+  // const { pathname } = useLocation();
+
+  const navigation = summerSchoolNavigation.map(item => {
     switch (item.title) {
       case Routes.SUMMER_SCHOOL_CONCERTS:
-        return { ...item, isDisabled: isActiveConcerts };
+        return { ...item, isActive: isActiveConcerts };
       case Routes.SUMMER_SCHOOL_CONDITIONS:
-        return { ...item, isDisabled: isActiveConditions };
+        return { ...item, isActive: isActiveConditions };
       case Routes.SUMMER_SCHOOL_PROFESSORS:
-        return { ...item, isDisabled: isActiveProfessors };
+        return { ...item, isActive: isActiveProfessors };
       case Routes.SUMMER_SCHOOL_PLACES:
-        return { ...item, isDisabled: isActiveOrchestra };
+        return { ...item, isActive: isActiveOrchestra };
       case Routes.SUMMER_SCHOOL_SCHEDULES:
-        return { ...item, isDisabled: isActiveSchedule };
+        return { ...item, isActive: isActiveSchedule };
       case Routes.SUMMER_SCHOOL_STUDENTS:
-        return { ...item, isDisabled: isActiveParticipants };
+        return { ...item, isActive: isActiveParticipants };
       default:
-        return { ...item, isDisabled: true };
+        return { ...item, isActive: true };
     }
   });
 
@@ -56,7 +61,23 @@ const MainSchool = () => {
             </Box>
           )}
         </Container>
-        <NavList linksList={navigation} path={pathname} />
+        <MainStack>
+          <ButtonsSection
+            sx={{
+              margin: {
+                xs: '48px 0',
+                md: '96px 0',
+                lg: '120px 0',
+              },
+              height: {
+                md: '228px',
+                lg: '168px',
+              },
+            }}
+            bgImage={pianoImg}
+            linksList={navigation}
+          />
+        </MainStack>
       </PageTemplate>
       <GoBackBtn href={Routes.SUMMER_SCHOOL} />
     </>
