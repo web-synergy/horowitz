@@ -7,6 +7,7 @@ import {
   Container,
   Box,
   InputLabel,
+  styled,
 } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
@@ -18,6 +19,50 @@ import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
+
+const CustomTextField = styled(TextField)(({ theme, value }) => ({
+  "& .MuiInputBase-root": {
+    height: "60px",
+    width: "100%",
+    color: theme.palette.text.primary,
+    transition: theme.transitions.create("width"),
+
+    [theme.breakpoints.up("lg")]: {
+      width: (value as string).length > 0 ? 262 : 132,
+      "&.Mui-focused": { width: 262 },
+    },
+  },
+
+  "& .MuiOutlinedInput-root": {
+    padding: "8px",
+    "& fieldset": {
+      borderColor: theme.palette.common.black,
+    },
+    "&:hover fieldset": {
+      borderColor: theme.palette.primary.dark,
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: theme.palette.primary.main,
+    },
+  },
+}));
+
+const CustomDatePicker = styled(DatePicker)(({ theme }) => ({
+  "& .MuiPickersCalendar-week": {
+    backgroundColor: theme.palette.primary.light, // Цвет фона дней недели
+  },
+  "& .MuiPickersCalendarHeader-daysHeader": {
+    backgroundColor: theme.palette.secondary.main, // Цвет фона месяца
+    color: theme.palette.common.white, // Цвет текста месяца
+  },
+  "& .MuiPickersDay-day": {
+    backgroundColor: theme.palette.primary.main, // Цвет фона чисел
+    color: theme.palette.common.white, // Цвет текста чисел
+    "&:hover": {
+      backgroundColor: theme.palette.primary.dark, // Цвет фона чисел при наведении
+    },
+  },
+}));
 
 const SchedulePage = () => {
   const [professor, setProfessor] = useState("");
@@ -68,7 +113,7 @@ const SchedulePage = () => {
           <InputLabel sx={{ color: "black" }} htmlFor="professor-select">
             Выберите профессора
           </InputLabel>
-          <TextField
+          <CustomTextField
             sx={{ width: "328px" }}
             id="professor-select"
             select
@@ -87,12 +132,24 @@ const SchedulePage = () => {
               {professor.name}
             </MenuItem>
           ))} */}
-          </TextField>
+          </CustomTextField>
         </Box>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer sx={{ padding: 0 }} components={["DatePicker"]}>
             <DemoItem label="Дата репетиції">
               <DatePicker
+                slotProps={{
+                  layout: {
+                    sx: {
+                      color: "rgb(8, 7, 8)",
+                      borderRadius: "1px",
+                      borderWidth: "4px",
+                      borderColor: "#e91e63",
+                      border: "0px solid",
+                      backgroundColor: "rgba(217, 161, 69, 0.1)",
+                    },
+                  },
+                }}
                 sx={{ width: "328px", padding: 0 }}
                 // defaultValue={dayjs("2022-04-17")}
               />
@@ -101,11 +158,11 @@ const SchedulePage = () => {
         </LocalizationProvider>
         <Button
           sx={{ width: "328px" }}
-          variant="contained"
-          color="primary"
+          variant="primary"
+          // color="primary"
           onClick={handleShowSchedule}
         >
-          Показать график
+          Показати графік
         </Button>
       </Box>
     </Container>
