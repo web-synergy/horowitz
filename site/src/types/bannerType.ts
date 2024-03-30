@@ -42,7 +42,7 @@ interface NoEffectOverlay {
   overlayType: 'none';
 }
 
-interface GradientBackground {
+export interface GradientBackground {
   backgroundType: 'gradient';
   backgroundGradient: {
     degree: number;
@@ -50,7 +50,7 @@ interface GradientBackground {
   };
 }
 
-interface ColorBackground {
+export interface ColorBackground {
   backgroundType: 'monochrome';
   backgroundColor: IColorField;
 }

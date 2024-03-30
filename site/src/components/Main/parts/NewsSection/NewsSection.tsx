@@ -15,22 +15,20 @@ import { useHomeStore } from '@/store/homeStore';
 import NewsSwiper from '@/components/NewsSection/NewsSwiper';
 
 const NewsSection: FC = () => {
-  const news = useHomeStore(state => state.news);
+  const news = useHomeStore((state) => state.news);
   const { t } = useTranslation();
 
   return (
     <NewsBox component={'section'}>
-      <>
-        <Container>
-          {news && (
-            <NewsSwiper
-              title={t(`navigation.${Routes.NEWS}`)}
-              link={Routes.NEWS}
-              news={news}
-            />
-          )}
-        </Container>
-      </>
+      <Container>
+        {news && (
+          <NewsSwiper
+            title={t(`navigation.${Routes.NEWS}`)}
+            link={Routes.NEWS}
+            news={news}
+          />
+        )}
+      </Container>
     </NewsBox>
   );
 };
