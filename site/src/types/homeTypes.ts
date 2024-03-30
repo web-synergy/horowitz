@@ -1,14 +1,18 @@
-import { IVideo, IColorField, IImage } from './commonTypes';
+import { IVideo, IImage } from './commonTypes';
 import { INews } from './newsTypes';
+import { GradientBackground, ColorBackground } from './bannerType';
 
-
-export interface bannerType {
-  background: IColorField;
+export interface CardType {
+  background: GradientBackground | ColorBackground;
   img: IImage;
+  format: {
+    width: number;
+    height: number;
+  };
 }
+
 export interface HomeData {
   news: INews[];
   videos: IVideo[];
-  banner: bannerType;
+  banner: CardType | null;
 }
-

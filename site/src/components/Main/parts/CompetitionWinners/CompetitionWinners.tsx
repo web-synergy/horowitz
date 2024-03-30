@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Buttons } from '@/types/translation.d';
 
-import { Container, Stack, useMediaQuery, useTheme } from '@mui/material';
+import { Container, Stack, useMediaQuery, useTheme, Box } from '@mui/material';
 
 import WinnerCard from './WinnerCard';
 import { MainTitle, WinnersCardsStack, Wrapper } from './styled';
@@ -36,15 +36,19 @@ const CompetitionWinners: FC = () => {
           sx={{
             flexDirection: 'row',
             justifyContent: 'space-between',
+            alignItems: 'center',
             gap: '50px',
           }}
         >
           <MainTitle variant="h1">Переможці XIII Конкурсу</MainTitle>
-          <ShowMoreBtn
-            title={t(`buttons.${Buttons.VIEW_ALL}`)}
-            link={`/${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_WINNERS}`}
-            isTitleVisible={!isMobile}
-          />
+
+          <Box>
+            <ShowMoreBtn
+              title={t(`buttons.${Buttons.VIEW_ALL}`)}
+              link={`/${Routes.KYIV_GENEVA}/${Routes.KYIV_GENEVA_WINNERS}`}
+              isTitleVisible={!isMobile}
+            />
+          </Box>
         </Stack>
         <WinnersCardsStack>
           {/* ! TEMP */}
