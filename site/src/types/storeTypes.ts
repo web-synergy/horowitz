@@ -3,13 +3,13 @@ import { INews } from './newsTypes';
 
 import { IAdministration } from './administrationTypes';
 import { IBanner } from './bannerType';
-import { IImage, IVideo } from './commonTypes';
+import { IImage } from './commonTypes';
 import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
 import { Partner } from './partnersTypes';
 import { NavigationType } from './routes';
 import { IUkrWorks } from './ukranianWorks';
 import { IVirtuosos } from './virtuososTypes';
-import { bannerType } from './homeTypes';
+import { HomeData } from './homeTypes';
 import { AnnualSummerSchoolTypes, IConcerts } from './annualSummerSchoolTypes';
 
 export interface SettingsStoreState {
@@ -96,13 +96,11 @@ export interface UkrWorksStoreState {
   fetchWorks: (language: string) => Promise<void>;
 }
 
-export interface HomeStoreState {
+export interface HomeStoreState extends HomeData {
   requestLang: string;
   loading: boolean;
   error: string;
-  news: INews[];
-  videos: IVideo[];
-  banner: bannerType | null;
+
   fetchHome: (language: string) => Promise<void>;
 }
 

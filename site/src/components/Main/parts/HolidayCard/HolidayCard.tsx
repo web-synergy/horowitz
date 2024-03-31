@@ -1,35 +1,82 @@
+import { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
-
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useHomeStore } from '@/store/homeStore';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 import { urlFor } from '@/config/sanity/imageUrl';
-import { createColor } from '@/utils/createColor';
+import { createColor, createGradientColors } from '@/utils/createColor';
 
 const HolidayCard = () => {
-  const banner = useHomeStore((state) => state.banner);
+  const [imageWidth, setImageWidth] = useState(1);
+  const [refHeight, setReHeight] = useState(1);
+  const { banner } = useHomeStore();
   const { containerRef, containerSize } = useWidthBlokSize();
 
-  const imageHeight = Math.floor((containerSize * 9) / 16);
+  useEffect(() => {
+    if (!banner) {
+      return;
+    }
+    const {
+      format: { height, width },
+    } = banner;
+    const heightForRef = Math.floor((containerSize * height) / width);
+    const imageWidth = Math.min(
+      1280,
+      Math.floor((heightForRef * width) / height)
+    );
 
-  const color = createColor(banner?.background);
-  const url = banner
-    ? urlFor(banner.img)
-        .auto('format')
-        .width(containerSize)
-        .height(imageHeight)
-        .toString()
-    : '';
+    setImageWidth(imageWidth);
+    setReHeight(heightForRef);
+  }, [banner, containerSize]);
+
+  if (!banner) {
+    return;
+  }
+
+  const { background, img } = banner;
+  const { backgroundType } = background;
+
+  const backgroundEffect =
+    backgroundType === 'monochrome'
+      ? {
+          backgroundColor: createColor(background.backgroundColor),
+        }
+      : {
+          background: `linear-gradient(${
+            background.backgroundGradient.degree
+          }deg, ${createGradientColors(background.backgroundGradient.colors)})`,
+        };
+
+  const imageUrl = urlFor(img)
+    .auto('format')
+    .width(imageWidth)
+    .height(refHeight)
+    .url()
+    .toString();
 
   return (
-    <Box component={'section'} sx={{ lineHeight: 0, backgroundColor: color }}>
-      <Box sx={{ maxWidth: 1280, margin: '0 auto' }} ref={containerRef}>
+    <Box
+      component={'section'}
+      sx={{
+        lineHeight: 0,
+        width: '100%',
+        height: refHeight,
+        ...backgroundEffect,
+      }}
+    >
+      <Box
+        sx={{
+          maxWidth: 1280,
+          margin: '0 auto',
+        }}
+        ref={containerRef}
+      >
         <LazyLoadImage
           alt="holiday card"
-          height={imageHeight}
-          src={url}
-          width={containerSize}
-          effect="blur"
+          height={refHeight}
+          src={imageUrl}
+          width={imageWidth}
+          style={{ margin: '0 auto' }}
         />
       </Box>
     </Box>
