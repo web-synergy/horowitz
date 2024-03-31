@@ -48,18 +48,21 @@ const CustomTextField = styled(TextField)(({ theme, value }) => ({
 }));
 
 const CustomDatePicker = styled(DatePicker)(({ theme }) => ({
-  "& .MuiPickersCalendar-week": {
-    backgroundColor: theme.palette.primary.light, // Цвет фона дней недели
+  "& .MuiPickersLayout-root": {
+    backgroundColor: "#007bff", // Цвет фона дней недели
+  },
+  "& .MuiPickersLayout-root.MuiPickersCalendar-week": {
+    backgroundColor: "#007bff", // Цвет фона дней недели
   },
   "& .MuiPickersCalendarHeader-daysHeader": {
-    backgroundColor: theme.palette.secondary.main, // Цвет фона месяца
-    color: theme.palette.common.white, // Цвет текста месяца
+    backgroundColor: "#007bff", // Цвет фона месяца
+    color: "#007bff", // Цвет текста месяца
   },
-  "& .MuiPickersDay-day": {
-    backgroundColor: theme.palette.primary.main, // Цвет фона чисел
-    color: theme.palette.common.white, // Цвет текста чисел
+  "& .MuiTypography-root MuiTypography-caption MuiDayCalendar-weekDayLabel": {
+    backgroundColor: "#007bff", // Цвет фона чисел
+    color: "#007bff", // Цвет текста чисел
     "&:hover": {
-      backgroundColor: theme.palette.primary.dark, // Цвет фона чисел при наведении
+      backgroundColor: "#007bff", // Цвет фона чисел при наведении
     },
   },
 }));
@@ -135,18 +138,42 @@ const SchedulePage = () => {
           </CustomTextField>
         </Box>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DemoContainer sx={{ padding: 0 }} components={["DatePicker"]}>
+          <DemoContainer sx={{ padding: 0 }} components={["CustomDatePicker"]}>
             <DemoItem label="Дата репетиції">
-              <DatePicker
+              <CustomDatePicker
                 slotProps={{
                   layout: {
                     sx: {
                       color: "rgb(8, 7, 8)",
-                      borderRadius: "1px",
+                      borderRadius: "4px",
                       borderWidth: "4px",
                       borderColor: "#e91e63",
                       border: "0px solid",
-                      backgroundColor: "rgba(217, 161, 69, 0.1)",
+                      backgroundColor: "rgba(217, 161, 69)",
+                      "& .MuiPickersArrowSwitcher-button": {
+                        borderRadius: "4px",
+                        backgroundColor: "#007bff", // Цвет фона чисел
+                        color: "#007bff", // Цвет текста чисел
+                        "&:hover": {
+                          backgroundColor: "#e91e63", // Цвет фона чисел при наведении
+                        },
+                      },
+                      "& .MuiDayCalendar-weekDayLabel": {
+                        borderRadius: "4px",
+                        backgroundColor: "#007bff", // Цвет фона чисел
+                        color: "#007bff", // Цвет текста чисел
+                        "&:hover": {
+                          backgroundColor: "#e91e63", // Цвет фона чисел при наведении
+                        },
+                      },
+                      "& .MuiPickersDay-root": {
+                        borderRadius: "4px",
+                        backgroundColor: "#007bff", // Цвет фона чисел
+                        color: "#007bff", // Цвет текста чисел
+                        "&:hover": {
+                          backgroundColor: "#e91e63", // Цвет фона чисел при наведении
+                        },
+                      },
                     },
                   },
                 }}
