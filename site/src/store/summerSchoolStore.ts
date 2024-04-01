@@ -15,15 +15,7 @@ export const useSummerSchoolStore = create<SummerSchoolState>()(set => ({
   gallery: { images: [] },
   requestLang: '',
   isLoading: false,
-  annualSummerSchool: {
-    button: '',
-    year: '',
-    applicationLink: '',
-    isActive: false,
-    slug: {
-      current: '',
-    },
-  },
+  annualSummerSchool: [],
 
   fetchSchoolData: async (language: string) => {
     set({ isLoading: true })

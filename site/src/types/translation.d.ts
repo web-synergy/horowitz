@@ -67,4 +67,5 @@ export enum SummerSchool {
   TITLE = 'Summer School',
   CONCERTS = 'concerts',
   CONCERT_PROGRAM = 'concertProgram',
+  ACADEMY = 'Music academy',
 }

@@ -60,7 +60,7 @@ const SummerSchoolPage: FC = () => {
           <RegularText blocks={bottomText} />
 
           <StyledBox>
-            <ButtonsArea data={annualSummerSchool} />
+            <ButtonsArea btnsList={annualSummerSchool} />
           </StyledBox>
 
           <ImagesArea gallery={gallery} />

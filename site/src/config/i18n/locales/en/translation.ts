@@ -1,4 +1,4 @@
-import { Routes } from '@/types/routes.d';
+import { Routes } from '@/types/routes.d'
 import {
   InDevelopment,
   MainPage,
@@ -11,7 +11,7 @@ import {
   WarState,
   Virtuosos,
   SummerSchool,
-} from '@/types/translation.d';
+} from '@/types/translation.d'
 
 export default {
   navigation: {
@@ -79,8 +79,7 @@ export default {
   },
   notFound: {
     [NotFound.TITLE]: 'Sorry, the page is not found.',
-    [NotFound.TEXT]:
-      'The page you are searching for, is deleted or temporary unavailable',
+    [NotFound.TEXT]: 'The page you are searching for, is deleted or temporary unavailable',
   },
   inDevelopment: {
     [InDevelopment.MSG]: 'Sorry, the page is in development.',
@@ -102,8 +101,7 @@ export default {
     [Sponsors.MAIN_INFO_PART]: 'Main Media Partners',
     [Sponsors.OFF_INFO_PART]: 'Official Media Partners',
   },
-  institutional_name:
-    'International Competition for Young Pianists in Memory of Vladimir Horowitz',
+  institutional_name: 'International Competition for Young Pianists in Memory of Vladimir Horowitz',
   kyivGeneva: {
     [KyivGeneva.GOVERNMENT]: 'Government agencies',
   },
@@ -119,5 +117,6 @@ export default {
     [SummerSchool.TITLE]: 'Summer music academy',
     [SummerSchool.CONCERTS]: 'Concerts',
     [SummerSchool.CONCERT_PROGRAM]: 'Concert program',
+    [SummerSchool.ACADEMY]: 'Music academy',
   },
-};
+}
