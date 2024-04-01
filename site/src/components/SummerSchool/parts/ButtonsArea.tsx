@@ -1,103 +1,59 @@
-import { MainAnnualSummerSchoolTypes } from '@/types/annualSummerSchoolTypes';
-import { FC } from 'react';
+import { MainAnnualSummerSchoolTypes } from '@/types/annualSummerSchoolTypes'
+import { FC } from 'react'
 
-import { Box, Button, Stack } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.css'
 
 //  ========== ! TEMP ==========
-import btn1 from '@/assets/images/buttonsBg/variant1.jpg';
-import btn2 from '@/assets/images/buttonsBg/variant2.jpg';
-import btn3 from '@/assets/images/buttonsBg/variant3.jpg';
+import btn1 from '@/assets/images/buttonsBg/variant1.jpg'
+import btn2 from '@/assets/images/buttonsBg/variant2.jpg'
+import btn3 from '@/assets/images/buttonsBg/variant3.jpg'
+import ListItem from './ListItem'
 const buttonsBg = [
   { title: '1', image: btn1 },
   { title: '2', image: btn2 },
   { title: '3', image: btn3 },
-];
+]
+
 //  ========== ! TEMP ==========
 
 type ButtonsAreaProps = {
-  data: MainAnnualSummerSchoolTypes;
-};
-const ButtonsArea: FC<ButtonsAreaProps> = ({
-  data: { button, isActive, slug },
-}) => {
-  const currentBg = buttonsBg.filter((item) => item.title === button).pop();
-  return (
-    <ListItem
-      bgImage={currentBg?.image}
-      isActive={isActive}
-      slug={slug.current}
-    />
-  );
-};
+  btnsList: MainAnnualSummerSchoolTypes[]
+}
+const ButtonsArea: FC<ButtonsAreaProps> = ({ btnsList }) => {
+  btnsList = btnsList.sort((a, b) => parseInt(b.year) - parseInt(a.year))
 
-export default ButtonsArea;
+  const getImgSrc = (title: string): string => {
+    // @ts-ignore
+    return buttonsBg.find(btn => btn.title === title)?.image
+  }
 
-type ListItemProps = {
-  bgImage: string | undefined;
-  isActive: boolean;
-  slug: string;
-};
-const ListItem: FC<ListItemProps> = ({ bgImage, isActive, slug }) => {
+  if (!btnsList.length) return null
+
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        maxWidth: {
-          xs: '288px',
-          md: '332px',
-          lg: '357px',
+    <Swiper
+      breakpoints={{
+        300: {
+          slidesPerView: 1.05,
+          spaceBetween: 8,
         },
-        padding: {
-          xs: '40px 16px',
-          md: '40px 30px',
-          lg: '46px 24px',
+        768: {
+          slidesPerView: 2.1,
+          spaceBetween: 24,
         },
-        img: {
-          display: 'block',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
+        1280: {
+          slidesPerView: 3.2,
+          spaceBetween: 24,
         },
       }}
     >
-      <img src={bgImage} alt="background image" />
-      <Stack spacing={{ xs: 3, md: 5, lg: 6 }}>
-        <Button
-          variant="transparent"
-          component={RouterLink}
-          to={slug}
-          sx={{
-            borderColor: (theme) => theme.palette.neutral[70],
-            '&:hover': {
-              color: 'inherit',
-              bgcolor: 'transparent',
-              borderColor: (theme) => theme.palette.neutral[70],
-            },
-          }}
-        >
-          Музична академія 2025 р.
-        </Button>
-        <Button
-          variant="transparent"
-          component={RouterLink}
-          disabled={!isActive}
-          to={'/'}
-          sx={{
-            borderColor: (theme) => theme.palette.neutral[70],
-            backgroundColor: (theme) => theme.palette.common.white,
-            '&.Mui-disabled': {
-              color: (theme) => theme.palette.neutral[50],
-              bgcolor: (theme) => theme.palette.neutral[20],
-            },
-          }}
-        >
-          Заявка на участь
-        </Button>
-      </Stack>
-    </Box>
-  );
-};
+      {btnsList.map(button => (
+        <SwiperSlide key={button.slug.current}>
+          <ListItem bgImage={getImgSrc(button.button)} {...button} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  )
+}
+
+export default ButtonsArea
