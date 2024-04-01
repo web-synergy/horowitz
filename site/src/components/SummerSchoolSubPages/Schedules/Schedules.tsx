@@ -15,10 +15,60 @@ import { useAnnualSummerSchoolStore } from "@/store/annualSummerSchoolStore";
 import Loader from "@/components/Common/Loader";
 import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
-import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
-import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
+import { DemoItem } from "@mui/x-date-pickers/internals/demo";
+import updateLocale from "dayjs/plugin/updateLocale";
+import "dayjs/locale/uk";
+dayjs.locale("uk");
+
+dayjs.extend(updateLocale);
+
+dayjs.updateLocale("uk", {
+  months: [
+    "Січень",
+    "Лютий",
+    "Березень",
+    "Квітень",
+    "Травень",
+    "Червень",
+    "Липень",
+    "Серпень",
+    "Вересень",
+    "Жовтень",
+    "Листопад",
+    "Грудень",
+  ],
+});
+const ukLocaleText = {
+  previousMonth: "Попередній місяць",
+  nextMonth: "Наступний місяць",
+  openPreviousView: "Відкрити попередній місяць",
+  openNextView: "Відкрити наступний місяць",
+  calendarViewSwitchingButtonAriaLabel: (view) =>
+    view === "year" ? "Перегляд календаря, рік" : "Перегляд календаря, місяць",
+  calendarViewSwitchingHint: (view) =>
+    view === "year" ? "Перегляд календаря, рік" : "Перегляд календаря, місяць",
+  openViewSwitchingMenu: "Відкрити меню перегляду",
+  closeViewSwitchingMenu: "Закрити меню перегляду",
+  dayViewButton: "День",
+  monthViewButton: "Місяць",
+  yearViewButton: "Рік",
+  // Translate the days of the week and months
+  daysOfWeek: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"],
+  months: [
+    "Січень",
+    "Лютий",
+    "Березень",
+    "Квітень",
+    "Травень",
+    "Червень",
+    "Липень",
+    "Серпень",
+    "Вересень",
+    "Жовтень",
+    "Листопад",
+    "Грудень",
+  ],
+};
 
 const CustomTextField = styled(TextField)(({ theme, value }) => ({
   "& .MuiInputBase-root": {
@@ -51,6 +101,7 @@ const SchedulePage = () => {
   const [professor, setProfessor] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
   const { t } = useTranslation();
+  // const [locale, setLocale] = React.useState<LocaleKey>("en");
 
   // const { professors, isLoading, requestLang } = useAnnualSummerSchoolStore(
   //   (state) => ({
@@ -93,35 +144,44 @@ const SchedulePage = () => {
         }}
       >
         <Box>
-          <InputLabel sx={{ color: "black" }} htmlFor="professor-select">
+          {/* <InputLabel sx={{ color: "black" }} htmlFor="professor-select">
             Выберите профессора
-          </InputLabel>
-          <CustomTextField
-            sx={{ width: "328px" }}
-            id="professor-select"
-            select
-            value={professor}
-            onChange={handleProfessorChange}
-          >
-            {/* <MenuItem disabled value="">
-            <em>Выберите профессора</em>
+          </InputLabel> */}
+          <DemoItem label="Ім’я професора">
+            <CustomTextField
+              sx={{ width: "328px" }}
+              id="professor-select"
+              select
+              value={professor}
+              onChange={handleProfessorChange}
+            >
+              {/* <MenuItem disabled value="">
           </MenuItem> */}
-            {/* Пример элементов меню */}
-            <MenuItem value="Профессор 1">Профессор 1</MenuItem>
-            <MenuItem value="Профессор 2">Профессор 2</MenuItem>
-            <MenuItem value="Профессор 3">Профессор 3</MenuItem>
-            {/* {professors.map((professor) => (
+              {/* Пример элементов меню */}
+              <MenuItem value="Профессор 1">Профессор 1</MenuItem>
+              <MenuItem value="Профессор 2">Профессор 2</MenuItem>
+              <MenuItem value="Профессор 3">Профессор 3</MenuItem>
+              {/* {professors.map((professor) => (
             <MenuItem key={professor.id} value={professor.name}>
               {professor.name}
             </MenuItem>
           ))} */}
-          </CustomTextField>
+            </CustomTextField>{" "}
+          </DemoItem>
         </Box>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           {/* <DemoContainer sx={{ padding: 0 }} components={["CustomDatePicker"]}> */}
           <DemoItem label="Дата репетиції">
             <DatePicker
+              value={selectedDate}
+              onChange={handleDateChange}
               showDaysOutsideCurrentMonth
+              localeText={ukLocaleText}
+              // localeText={ukLocaleText}
+              dayOfWeekFormatter={(date) => {
+                const dayOfWeek = dayjs(date).format("dd");
+                return dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1);
+              }}
               slotProps={{
                 layout: {
                   sx: {
@@ -164,7 +224,6 @@ const SchedulePage = () => {
                 },
               }}
               sx={{ width: "328px", padding: 0 }}
-              // defaultValue={dayjs("2022-04-17")}
             />
           </DemoItem>
           {/* </DemoContainer> */}
