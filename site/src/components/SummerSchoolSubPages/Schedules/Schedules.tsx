@@ -10,7 +10,7 @@ import {
   styled,
 } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider, DatePicker, Day } from "@mui/x-date-pickers";
 import { useAnnualSummerSchoolStore } from "@/store/annualSummerSchoolStore";
 import Loader from "@/components/Common/Loader";
 import { useTranslation } from "react-i18next";
@@ -98,26 +98,29 @@ const CustomTextField = styled(TextField)(({ theme, value }) => ({
 }));
 
 const SchedulePage = () => {
-  const [professor, setProfessor] = useState("");
+  const [showFullTable, setShowFullTable] = useState(false);
+  const [actprofessor, setActprofessor] = useState("");
+  console.log(actprofessor);
   const [selectedDate, setSelectedDate] = useState(null);
   const { t } = useTranslation();
-  // const [locale, setLocale] = React.useState<LocaleKey>("en");
 
-  // const { professors, isLoading, requestLang } = useAnnualSummerSchoolStore(
-  //   (state) => ({
-  //     professors: state.professors,
-  //     isLoading: state.isLoading,
-  //     requestLang: state.requestLang,
-  //   })
-  // );
+  const { professors, schedules, isLoading, requestLang } =
+    useAnnualSummerSchoolStore((state) => ({
+      professors: state.professors,
+      schedules: state.schedules,
+      isLoading: state.isLoading,
+      requestLang: state.requestLang,
+    }));
 
-  // console.log(professors);
+  console.log(professors);
+
+  console.log(schedules);
 
   // if (isLoading) return <Loader />;
   // if (!requestLang.length) return null;
 
   const handleProfessorChange = (event) => {
-    setProfessor(event.target.value);
+    setActprofessor(event.target.value);
   };
 
   const handleDateChange = (date) => {
@@ -125,7 +128,33 @@ const SchedulePage = () => {
   };
 
   const handleShowSchedule = () => {
-    // Ваша логика по отображению графика
+    if (selectedDate && actprofessor) {
+      // Находим расписание для выбранного профессора
+      const professorSchedule = schedules.filter((schedule) => {
+        return schedule.professor === actprofessor;
+      });
+
+      // Фильтруем расписание по выбранной дате
+      const selectedDaySchedule = professorSchedule.filter((schedule) => {
+        return dayjs(schedule.date).isSame(selectedDate, "day");
+      });
+
+      // Выводим расписание на консоль или обновляем состояние компонента
+      console.log(
+        "Расписание на выбранную дату для профессора",
+        selectedDaySchedule
+      );
+    } else {
+      console.log("Выберите профессора и дату для просмотра расписания");
+    }
+  };
+
+  const handleShowMore = () => {
+    setShowFullTable(true);
+  };
+
+  const handleShowLess = () => {
+    setShowFullTable(false);
   };
 
   return (
@@ -144,43 +173,47 @@ const SchedulePage = () => {
         }}
       >
         <Box>
-          {/* <InputLabel sx={{ color: "black" }} htmlFor="professor-select">
-            Выберите профессора
-          </InputLabel> */}
-          <DemoItem label="Ім’я професора">
-            <CustomTextField
-              sx={{ width: "328px" }}
-              id="professor-select"
-              select
-              value={professor}
-              onChange={handleProfessorChange}
-            >
-              {/* <MenuItem disabled value="">
-          </MenuItem> */}
-              {/* Пример элементов меню */}
-              <MenuItem value="Профессор 1">Профессор 1</MenuItem>
-              <MenuItem value="Профессор 2">Профессор 2</MenuItem>
-              <MenuItem value="Профессор 3">Профессор 3</MenuItem>
-              {/* {professors.map((professor) => (
-            <MenuItem key={professor.id} value={professor.name}>
-              {professor.name}
-            </MenuItem>
-          ))} */}
-            </CustomTextField>{" "}
-          </DemoItem>
+          {professors && (
+            <DemoItem label="Ім’я професора">
+              <CustomTextField
+                sx={{ width: "328px" }}
+                id="professor-select"
+                select
+                value={professors[0].name}
+                onChange={handleProfessorChange}
+              >
+                {professors.map((professor) => (
+                  <MenuItem key={professor._key} value={professor.name}>
+                    {professor.name}
+                  </MenuItem>
+                ))}
+              </CustomTextField>{" "}
+            </DemoItem>
+          )}
         </Box>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <LocalizationProvider
+          dateAdapter={AdapterDayjs}
+          localeText={ukLocaleText}
+        >
           {/* <DemoContainer sx={{ padding: 0 }} components={["CustomDatePicker"]}> */}
           <DemoItem label="Дата репетиції">
             <DatePicker
               value={selectedDate}
               onChange={handleDateChange}
               showDaysOutsideCurrentMonth
-              localeText={ukLocaleText}
-              // localeText={ukLocaleText}
+              shouldDisableDate={(date) =>
+                schedules
+                  ? !schedules.some((schedule) =>
+                      dayjs(schedule.date).isSame(date, "day")
+                    )
+                  : true
+              }
+              disablePast
+              // openTo="month"
+              // views={["year", "month", "day"]}
               dayOfWeekFormatter={(date) => {
                 const dayOfWeek = dayjs(date).format("dd");
-                return dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1);
+                return dayOfWeek;
               }}
               slotProps={{
                 layout: {
@@ -191,6 +224,7 @@ const SchedulePage = () => {
                     border: "1px solid rgb(153, 153, 153)",
                     backgroundColor: "rgba(217, 161, 69, 0.1)",
                     width: "328px",
+                    height: "360px",
                     marginTop: "32px",
                     "& .MuiPickersArrowSwitcher-button": {
                       borderRadius: "4px",
@@ -206,19 +240,44 @@ const SchedulePage = () => {
                     "& .MuiDayCalendar-weekDayLabel": {
                       borderRadius: "4px",
                       color: "rgb(153, 153, 153)",
+                      fontSize: "18px",
+                      lineHeight: "28px",
+                      margin: 0,
+                      width: "40px",
                       // backgroundColor: "rgba(217, 161, 69, 0.1)", // Цвет фона чисел
                       // // Цвет текста чисел
+                      // "&:hover": {
+                      //   backgroundColor: "#e91e63", // Цвет фона чисел при наведении
+                      // },
+                    },
+                    "& .MuiPickersSlideTransition-root": {
+                      height: "280px",
+                    },
+                    "& .MuiDayCalendar-weekContainer": {
+                      marginTop: "6px",
+                      justifyContent: "space-between",
+                    },
+                    "& .MuiDayCalendar-header": {
+                      justifyContent: "space-between",
+                    },
+                    // "& .MuiDayCalendar-weekDayLabel": {
+                    //   fontSize: "18px",
+                    //   lineHeight: "28px",
+                    // },
+                    "& .MuiPickersDay-root": {
+                      height: "40px",
+                      width: "40px",
+                      borderRadius: "4px",
+                      fontSize: "18px",
+                      lineHeight: "28px",
+                      backgroundColor: "rgb(245, 245, 245)", // Цвет фона чисел
+                      color: "rgb(8, 7, 8)", // Цвет текста чисел
                       "&:hover": {
-                        backgroundColor: "#e91e63", // Цвет фона чисел при наведении
+                        backgroundColor: "#F9B33F", // Цвет фона чисел при наведении
                       },
                     },
-                    "& .MuiPickersDay-root": {
-                      borderRadius: "4px",
-                      backgroundColor: "rgb(245, 245, 245)", // Цвет фона чисел
-                      color: "#007bff", // Цвет текста чисел
-                      "&:hover": {
-                        backgroundColor: "#e91e63", // Цвет фона чисел при наведении
-                      },
+                    "& .MuiButtonBase-root.MuiPickersDay-root.Mui-selected": {
+                      backgroundColor: "rgb(217, 161, 69)",
                     },
                   },
                 },
@@ -237,6 +296,19 @@ const SchedulePage = () => {
           Показати графік
         </Button>
       </Box>
+      {showFullTable ? (
+        // Полная таблица
+        <Box>
+          <Button onClick={handleShowLess}>Показать меньше</Button>
+          {/* Ваша таблица с полной информацией */}
+        </Box>
+      ) : (
+        // Сокращенная таблица
+        <Box>
+          <Button onClick={handleShowMore}>Показать больше</Button>
+          {/* Ваша таблица с сокращенной информацией */}
+        </Box>
+      )}
     </Container>
   );
 };

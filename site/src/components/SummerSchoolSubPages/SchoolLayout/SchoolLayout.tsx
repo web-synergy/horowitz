@@ -40,7 +40,7 @@ const SchoolLayout = () => {
   }
   return (
     <>
-      {/* <MainBanner banner={banner} /> */}
+      <MainBanner banner={banner} />
       <Outlet />
     </>
   );
