@@ -65,7 +65,7 @@ export default defineType({
       name: 'applicationLink',
       title: 'Посилання для подачі заявки',
       type: 'url',
-      hidden: ({parent}) => !parent?.isActive,
+
       group: 'common',
     }),
     defineField({
@@ -92,7 +92,6 @@ export default defineType({
       title: 'Умови участі',
       type: 'internationalizedArrayArticle',
       group: 'conditions',
-      hidden: ({parent}) => !parent?.isActiveConditions,
     }),
     defineField({
       name: 'isActiveProfessors',
@@ -106,7 +105,6 @@ export default defineType({
       type: 'array',
       of: [{type: 'professor'}],
       group: 'professors',
-      hidden: ({parent}) => !parent?.isActiveProfessors,
     }),
     defineField({
       name: 'isActiveParticipants',
@@ -119,7 +117,7 @@ export default defineType({
       name: 'participants',
       title: 'Учасники',
       group: 'participants',
-      hidden: ({parent}) => !parent?.isActiveParticipants,
+
       type: 'array',
       of: [{type: 'participantShort'}],
     }),
@@ -135,7 +133,6 @@ export default defineType({
       type: 'array',
       of: [{type: 'schedule'}],
       group: 'schedules',
-      hidden: ({parent}) => !parent?.isActiveSchedule,
     }),
     defineField({
       name: 'isActiveConcerts',
@@ -148,7 +145,7 @@ export default defineType({
       name: 'concerts',
       type: 'array',
       of: [{type: 'concert'}],
-      hidden: ({parent}) => !parent?.isActiveConcerts,
+
       group: 'concerts',
     }),
     defineField({
@@ -162,7 +159,6 @@ export default defineType({
       title: 'Оркестр та локації',
       type: 'internationalizedArrayContent',
       group: 'orchestra',
-      hidden: ({parent}) => !parent?.isActiveOrchestra,
     }),
   ],
 
