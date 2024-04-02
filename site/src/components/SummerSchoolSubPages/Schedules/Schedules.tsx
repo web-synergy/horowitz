@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TextField,
   Button,
@@ -8,6 +8,7 @@ import {
   Box,
   InputLabel,
   styled,
+  Typography,
 } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider, DatePicker, Day } from "@mui/x-date-pickers";
@@ -99,9 +100,10 @@ const CustomTextField = styled(TextField)(({ theme, value }) => ({
 
 const SchedulePage = () => {
   const [showFullTable, setShowFullTable] = useState(false);
-  const [actprofessor, setActprofessor] = useState("");
-  console.log(actprofessor);
+  const [selectedProfessor, setSelectedProfessor] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedLectures, setSelectedLectures] = useState([]);
+
   const { t } = useTranslation();
 
   const { professors, schedules, isLoading, requestLang } =
@@ -112,6 +114,14 @@ const SchedulePage = () => {
       requestLang: state.requestLang,
     }));
 
+  useEffect(() => {
+    if (professors) {
+      setSelectedProfessor(professors[0].name);
+    }
+  }, [professors]);
+
+  console.log(`selectedProfessor:${selectedProfessor}`);
+
   console.log(professors);
 
   console.log(schedules);
@@ -120,7 +130,7 @@ const SchedulePage = () => {
   // if (!requestLang.length) return null;
 
   const handleProfessorChange = (event) => {
-    setActprofessor(event.target.value);
+    setSelectedProfessor(event.target.value);
   };
 
   const handleDateChange = (date) => {
@@ -128,25 +138,21 @@ const SchedulePage = () => {
   };
 
   const handleShowSchedule = () => {
-    if (selectedDate && actprofessor) {
-      // Находим расписание для выбранного профессора
-      const professorSchedule = schedules.filter((schedule) => {
-        return schedule.professor === actprofessor;
-      });
-
-      // Фильтруем расписание по выбранной дате
-      const selectedDaySchedule = professorSchedule.filter((schedule) => {
-        return dayjs(schedule.date).isSame(selectedDate, "day");
-      });
-
-      // Выводим расписание на консоль или обновляем состояние компонента
-      console.log(
-        "Расписание на выбранную дату для профессора",
-        selectedDaySchedule
+    let selectedProfessorObject = {};
+    let selectedLectures = [];
+    if (professors) {
+      selectedProfessorObject = professors.find(
+        (professor) => professor.name === selectedProfessor
       );
-    } else {
-      console.log("Выберите профессора и дату для просмотра расписания");
     }
+
+    if (schedules && selectedProfessorObject) {
+      selectedLectures = schedules.filter(
+        (schedule) => schedule.lecture === selectedProfessorObject._key
+      );
+    }
+    console.log(first);
+    setSelectedLectures(selectedLectures);
   };
 
   const handleShowMore = () => {
@@ -179,7 +185,7 @@ const SchedulePage = () => {
                 sx={{ width: "328px" }}
                 id="professor-select"
                 select
-                value={professors[0].name}
+                value={selectedProfessor || professors[0].name}
                 onChange={handleProfessorChange}
               >
                 {professors.map((professor) => (
@@ -187,7 +193,7 @@ const SchedulePage = () => {
                     {professor.name}
                   </MenuItem>
                 ))}
-              </CustomTextField>{" "}
+              </CustomTextField>
             </DemoItem>
           )}
         </Box>
@@ -200,7 +206,7 @@ const SchedulePage = () => {
             <DatePicker
               value={selectedDate}
               onChange={handleDateChange}
-              showDaysOutsideCurrentMonth
+              // showDaysOutsideCurrentMonth
               shouldDisableDate={(date) =>
                 schedules
                   ? !schedules.some((schedule) =>
@@ -251,7 +257,7 @@ const SchedulePage = () => {
                       // },
                     },
                     "& .MuiPickersSlideTransition-root": {
-                      height: "280px",
+                      height: "290px",
                     },
                     "& .MuiDayCalendar-weekContainer": {
                       marginTop: "6px",
@@ -296,19 +302,15 @@ const SchedulePage = () => {
           Показати графік
         </Button>
       </Box>
-      {showFullTable ? (
-        // Полная таблица
-        <Box>
-          <Button onClick={handleShowLess}>Показать меньше</Button>
-          {/* Ваша таблица с полной информацией */}
+
+      {selectedLectures.map((lecture) => (
+        <Box key={lecture._key}>
+          <Typography>{`Дата репетиції: ${lecture.date}`}</Typography>
+          <Typography>{`Час репетиції: ${lecture.time}`}</Typography>
+          <Typography>{`Диригент: ${lecture.conductor}`}</Typography>
+          <Typography>{`Опис: ${lecture.description}`}</Typography>
         </Box>
-      ) : (
-        // Сокращенная таблица
-        <Box>
-          <Button onClick={handleShowMore}>Показать больше</Button>
-          {/* Ваша таблица с сокращенной информацией */}
-        </Box>
-      )}
+      ))}
     </Container>
   );
 };
