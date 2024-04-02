@@ -31,19 +31,20 @@ const SchoolLayout = () => {
           sx={{
             width: '100%',
             height: '40vh',
-            backgroundColor: (theme) => theme.palette.neutral[30],
+            backgroundColor: theme => theme.palette.neutral[30],
           }}
         />
         <Outlet />
       </>
     );
   }
-  return (
-    <>
-      <MainBanner banner={banner} />
-      <Outlet />
-    </>
-  );
+  if (banner?.img)
+    return (
+      <>
+        <MainBanner banner={banner} />
+        <Outlet />
+      </>
+    );
 };
 
 export default SchoolLayout;
