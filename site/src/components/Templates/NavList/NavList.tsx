@@ -1,20 +1,20 @@
-import { Button } from '@mui/material';
-import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link as RouterLink } from 'react-router-dom';
-import { LinksListStack } from './styled';
+import { Button } from '@mui/material'
+import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Link as RouterLink } from 'react-router-dom'
+import { LinksListStack } from './styled'
 
 type ListItem = {
-  title: string;
-};
+  title: string
+}
 
 type NavListProps = {
-  linksList: ListItem[];
-  path?: string;
-};
+  linksList: ListItem[]
+  path?: string
+}
 
 const NavList: FC<NavListProps> = ({ linksList, path }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   return (
     <LinksListStack>
       {linksList.map((navigation, i) => (
@@ -45,7 +45,7 @@ const NavList: FC<NavListProps> = ({ linksList, path }) => {
         </Button>
       ))}
     </LinksListStack>
-  );
-};
+  )
+}
 
-export default NavList;
+export default NavList

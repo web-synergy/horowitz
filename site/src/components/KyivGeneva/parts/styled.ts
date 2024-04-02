@@ -1,15 +1,5 @@
-import {
-  Box,
-  BoxProps,
-  Button,
-  ButtonProps,
-  Stack,
-  Typography,
-  TypographyProps,
-  styled,
-} from '@mui/material';
-import { ImgHTMLAttributes } from 'react';
-import { LinkProps } from 'react-router-dom';
+import { Box, Button, ButtonProps, Stack, Typography, TypographyProps, styled } from '@mui/material'
+import { LinkProps } from 'react-router-dom'
 
 export const Caption = styled(Typography)<TypographyProps>(
   ({ theme: { breakpoints, palette } }) => ({
@@ -23,29 +13,27 @@ export const Caption = styled(Typography)<TypographyProps>(
       lineHeight: 1.33,
     },
   })
-);
+)
 
-export const StyledButton = styled(Button)<ButtonProps & LinkProps>(
-  ({ theme }) => ({
-    width: '288px',
-    marginTop: '48px',
-    textAlign: 'center',
+export const StyledButton = styled(Button)<ButtonProps & LinkProps>(({ theme }) => ({
+  width: '288px',
+  marginTop: '48px',
+  textAlign: 'center',
 
-    [theme.breakpoints.up('xs')]: {
-      marginLeft: 'calc(50% - 144px)',
-    },
-    [theme.breakpoints.up('md')]: {
-      display: 'block',
-      marginLeft: 'auto',
-      marginTop: '24px',
-    },
-    [theme.breakpoints.up('lg')]: {
-      position: 'absolute',
-      bottom: '36px',
-      right: 0,
-    },
-  })
-);
+  [theme.breakpoints.up('xs')]: {
+    marginLeft: 'calc(50% - 144px)',
+  },
+  [theme.breakpoints.up('md')]: {
+    display: 'block',
+    marginLeft: 'auto',
+    marginTop: '24px',
+  },
+  [theme.breakpoints.up('lg')]: {
+    position: 'absolute',
+    bottom: '36px',
+    right: 0,
+  },
+}))
 
 export const AboutTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
   textAlign: 'center',
@@ -59,7 +47,7 @@ export const AboutTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
     marginBottom: '48px',
   },
-}));
+}))
 
 export const AboutStack = styled(Stack)(({ theme }) => ({
   maxHeight: '100%',
@@ -70,31 +58,7 @@ export const AboutStack = styled(Stack)(({ theme }) => ({
     maxHeight: '350px',
     columnGap: '24px',
   },
-}));
-
-export const MainBox = styled(Box)(() => ({
-  position: 'relative',
-  '::after': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-  },
-}));
-
-export const BgImage = styled(Box)<BoxProps & ImgHTMLAttributes<string>>(
-  () => ({
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  })
-);
+}))
 
 export const ButtonsListStack = styled(Stack)(({ theme }) => ({
   margin: '48px 0',
@@ -113,7 +77,7 @@ export const ButtonsListStack = styled(Stack)(({ theme }) => ({
     columnGap: '56px',
     rowGap: '48px',
   },
-}));
+}))
 
 export const ContentStack = styled(Stack)(({ theme }) => ({
   gap: '24px',
@@ -127,7 +91,7 @@ export const ContentStack = styled(Stack)(({ theme }) => ({
     gap: '24px',
     flexDirection: 'row',
   },
-}));
+}))
 
 export const ImageBox = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -135,4 +99,4 @@ export const ImageBox = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
     width: 'calc(50% - 12px)',
   },
-}));
+}))
