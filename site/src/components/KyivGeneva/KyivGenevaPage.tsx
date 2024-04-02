@@ -3,10 +3,10 @@ import { MainStack } from './styled';
 import { Box } from '@mui/material';
 
 import AboutSection from './parts/AboutSection';
-import ButtonsSection from './parts/ButtonsSection';
+import ButtonsSection from '../Templates/ButtonsSection';
 import SponsorsSection from './parts/SponsorsSection';
 import WFIMCSection from './parts/WFIMCSection';
-
+import { kyivGenevaNavigation } from '@/config/routes/navigation';
 import pianoImg from '@/assets/images/kyiv-geneva/mainPage/geneva_bg_piano.webp';
 import WFIMC_members from '@/assets/images/kyiv-geneva/wfimc/wfimc.webp';
 import pageData from '@/assets/kyiv-geneva/main/geneva_mainPage.json';
@@ -25,7 +25,21 @@ const KyivGenevaPage = () => {
     <PageTemplate>
       <MainStack>
         <AboutSection content={pageData[language]} />
-        <ButtonsSection bgImage={pianoImg} />
+        <ButtonsSection
+          bgImage={pianoImg}
+          linksList={kyivGenevaNavigation}
+          sx={{
+            margin: {
+              xs: '48px 0',
+              md: '96px 0',
+              lg: '120px 0',
+            },
+            height: {
+              md: '396px',
+              lg: '277px',
+            },
+          }}
+        />
         <WFIMCSection
           image={WFIMC_members}
           wfimc_content={pageData[language].wfimc}

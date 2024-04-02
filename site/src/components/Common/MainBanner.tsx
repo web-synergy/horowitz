@@ -26,7 +26,7 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
       : Math.min(
           1280,
           Math.floor(
-            ((refHeight as number) * size.format.width) / size.format.height
+            ((refHeight as number) * size.format.width) / size.format?.height
           )
         );
 
@@ -85,19 +85,17 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
         maxHeight: '50vh',
         position: 'relative',
         ...backgroundEffect,
-      }}
-    >
+      }}>
       <Box
         sx={{
           width: '100%',
           maxWidth: fullSize ? 'unset' : 1280,
           mx: 'auto',
           height: '100%',
-        }}
-      >
+        }}>
         <img
           src={image}
-          alt=""
+          alt=''
           style={{
             width: fullSize ? '100%' : 'auto',
             height: '100%',
@@ -126,8 +124,7 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
           width: '100%',
           height: '100%',
           ...overlayEffect,
-        }}
-      ></Box>
+        }}></Box>
       {copyright && (
         <Box
           sx={{
@@ -135,19 +132,17 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
             bottom: 16,
             left: 0,
             right: 0,
-          }}
-        >
+          }}>
           <Container>
             <Typography
-              variant="smallText"
+              variant='smallText'
               fontSize={{ xs: '0.75rem' }}
               lineHeight={1}
-              color={(theme) => theme.palette.neutral[60]}
+              color={theme => theme.palette.neutral[60]}
               sx={{
                 backdropFilter: 'blur(6px)',
                 display: 'inline-block',
-              }}
-            >
+              }}>
               {copyright}
             </Typography>
           </Container>

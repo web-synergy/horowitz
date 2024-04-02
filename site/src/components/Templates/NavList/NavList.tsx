@@ -4,8 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 import { LinksListStack } from './styled';
 
-type ListItem = {
+export type ListItem = {
   title: string;
+  isActive: boolean;
 };
 
 type NavListProps = {
@@ -20,8 +21,9 @@ const NavList: FC<NavListProps> = ({ linksList, path }) => {
       {linksList.map((navigation, i) => (
         <Button
           key={i}
-          variant="primary"
-          component={RouterLink}
+          disabled={!navigation.isActive}
+          variant='primary'
+          component={navigation.isActive ? RouterLink : 'button'}
           to={path ? `${path}/${navigation.title}` : navigation.title}
           sx={{
             width: {
@@ -39,8 +41,7 @@ const NavList: FC<NavListProps> = ({ linksList, path }) => {
                 lg: '18px',
               },
             },
-          }}
-        >
+          }}>
           {t(`navigation.${navigation.title}`)}
         </Button>
       ))}

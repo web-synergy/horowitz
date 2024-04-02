@@ -36,15 +36,15 @@ export const navigation: NavigationItemType[] = [
 ];
 
 export const kyivGenevaNavigation = [
-  { title: Routes.KYIV_GENEVA_CONDITIONS },
-  { title: Routes.KYIV_GENEVA_REQUIREMENTS },
-  { title: Routes.KYIV_GENEVA_REWARDS },
-  { title: Routes.KYIV_GENEVA_JURY },
-  { title: Routes.KYIV_GENEVA_SELECTION_JURY },
-  { title: Routes.KYIV_GENEVA_ORCHESTRA },
-  { title: Routes.KYIV_GENEVA_PARTICIPANTS },
-  { title: Routes.KYIV_GENEVA_WINNERS },
-  { title: Routes.KYIV_GENEVA_TIMETABLE },
+  { title: Routes.KYIV_GENEVA_CONDITIONS, isActive: true },
+  { title: Routes.KYIV_GENEVA_REQUIREMENTS, isActive: true },
+  { title: Routes.KYIV_GENEVA_REWARDS, isActive: true },
+  { title: Routes.KYIV_GENEVA_JURY, isActive: true },
+  { title: Routes.KYIV_GENEVA_SELECTION_JURY, isActive: true },
+  { title: Routes.KYIV_GENEVA_ORCHESTRA, isActive: true },
+  { title: Routes.KYIV_GENEVA_PARTICIPANTS, isActive: true },
+  { title: Routes.KYIV_GENEVA_WINNERS, isActive: true },
+  { title: Routes.KYIV_GENEVA_TIMETABLE, isActive: true },
 ];
 
 export const summerSchoolNavigation = [
@@ -76,7 +76,7 @@ export const overallNavigation = navigation.reduce(
     const mainElement = { title: title, parent: null };
     acc.push(mainElement);
     if (children) {
-      children.forEach((item) => {
+      children.forEach(item => {
         const element = { title: item.title, parent: title };
         acc.push(element);
       });

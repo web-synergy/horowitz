@@ -12,7 +12,7 @@ export interface IParticipant {
   _key: string;
   about: PortableTextBlock[];
   avatar: IAvatar;
-  birthday: string;
+  age: number;
   country: string;
   name: string;
 }
