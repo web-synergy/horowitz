@@ -147,11 +147,20 @@ const SchedulePage = () => {
     }
 
     if (schedules && selectedProfessorObject) {
-      selectedLectures = schedules.filter(
-        (schedule) => schedule.lecture === selectedProfessorObject._key
-      );
+      if (selectedDate) {
+        // Фильтрация лекций только по выбранной дате
+        selectedLectures = schedules.filter(
+          (schedule) =>
+            schedule.lecture === selectedProfessorObject._key &&
+            dayjs(schedule.date).isSame(selectedDate, "day")
+        );
+      } else {
+        // Если дата не выбрана, показываем все лекции для выбранного профессора
+        selectedLectures = schedules.filter(
+          (schedule) => schedule.lecture === selectedProfessorObject._key
+        );
+      }
     }
-    console.log(first);
     setSelectedLectures(selectedLectures);
   };
 
@@ -222,6 +231,7 @@ const SchedulePage = () => {
                 return dayOfWeek;
               }}
               slotProps={{
+                field: { clearable: true },
                 layout: {
                   sx: {
                     color: "rgb(8, 7, 8)",
