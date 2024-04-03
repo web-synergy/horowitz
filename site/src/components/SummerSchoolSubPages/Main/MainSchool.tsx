@@ -1,20 +1,20 @@
 // import { useLocation } from 'react-router-dom';
-import { Box, Container, Typography } from '@mui/material';
-import { useTranslation } from 'react-i18next';
-import PageTemplate from '@/components/Common/PageTemplate';
+import PageTemplate from '@/components/Common/PageTemplate'
+import { Box, Container, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
-import PortableComponent from '@/components/Templates/PortableComponent/PortableComponent';
-import GoBackBtn from '@/components/Common/GoBackBtn';
-import { Routes } from '@/types/routes.d';
-import { summerSchoolNavigation } from '@/config/routes/navigation';
-import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
+import GoBackBtn from '@/components/Common/GoBackBtn'
+import PortableComponent from '@/components/Templates/PortableComponent/PortableComponent'
+import { summerSchoolNavigation } from '@/config/routes/navigation'
+import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore'
+import { Routes } from '@/types/routes.d'
 
-import pianoImg from '@/assets/images/kyiv-geneva/mainPage/geneva_bg_piano.webp';
+import pianoImg from '@/assets/images/kyiv-geneva/mainPage/geneva_bg_piano.webp'
 
-import ButtonsSection from '@/components/Templates/ButtonsSection';
-import { MainStack } from '@/components/KyivGeneva/styled';
+import { CommonStackWrapper } from '@/components/Common/styledComponents'
+import ButtonsSection from '@/components/Templates/ButtonsSection'
 const MainSchool = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const {
     year,
     description,
@@ -24,28 +24,28 @@ const MainSchool = () => {
     isActiveParticipants,
     isActiveProfessors,
     isActiveSchedule,
-  } = useAnnualSummerSchoolStore();
+  } = useAnnualSummerSchoolStore()
 
   // const { pathname } = useLocation();
 
   const navigation = summerSchoolNavigation.map(item => {
     switch (item.title) {
       case Routes.SUMMER_SCHOOL_CONCERTS:
-        return { ...item, isActive: isActiveConcerts };
+        return { ...item, isActive: isActiveConcerts }
       case Routes.SUMMER_SCHOOL_CONDITIONS:
-        return { ...item, isActive: isActiveConditions };
+        return { ...item, isActive: isActiveConditions }
       case Routes.SUMMER_SCHOOL_PROFESSORS:
-        return { ...item, isActive: isActiveProfessors };
+        return { ...item, isActive: isActiveProfessors }
       case Routes.SUMMER_SCHOOL_PLACES:
-        return { ...item, isActive: isActiveOrchestra };
+        return { ...item, isActive: isActiveOrchestra }
       case Routes.SUMMER_SCHOOL_SCHEDULES:
-        return { ...item, isActive: isActiveSchedule };
+        return { ...item, isActive: isActiveSchedule }
       case Routes.SUMMER_SCHOOL_STUDENTS:
-        return { ...item, isActive: isActiveParticipants };
+        return { ...item, isActive: isActiveParticipants }
       default:
-        return { ...item, isActive: true };
+        return { ...item, isActive: true }
     }
-  });
+  })
 
   return (
     <>
@@ -61,7 +61,7 @@ const MainSchool = () => {
             </Box>
           )}
         </Container>
-        <MainStack>
+        <CommonStackWrapper>
           <ButtonsSection
             sx={{
               margin: {
@@ -77,11 +77,11 @@ const MainSchool = () => {
             bgImage={pianoImg}
             linksList={navigation}
           />
-        </MainStack>
+        </CommonStackWrapper>
       </PageTemplate>
       <GoBackBtn href={Routes.SUMMER_SCHOOL} />
     </>
-  );
-};
+  )
+}
 
-export default MainSchool;
+export default MainSchool
