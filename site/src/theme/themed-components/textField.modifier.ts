@@ -12,7 +12,7 @@ export const MuiInputBase: Components<Theme>["MuiInputBase"] = {
 
         "&:placeholder": {
           opacity: 1,
-          color: theme.palette.neutral[40],
+          color: theme.palette.neutral[30],
         },
       },
 
@@ -26,7 +26,7 @@ export const MuiInputBase: Components<Theme>["MuiInputBase"] = {
 export const MuiTextField: Components<Theme>["MuiTextField"] = {
   styleOverrides: {
     root: ({ theme }) => ({
-      "--TextField-brandBorderColor": theme.palette.common.white,
+      "--TextField-brandBorderColor": theme.palette.common.black,
       "--TextField-brandBorderHoverColor": theme.palette.primary.main,
       "--TextField-brandBorderFocusedColor": theme.palette.action.focus,
     }),
@@ -37,14 +37,16 @@ export const MuiOutlinedInput: Components<Theme>["MuiOutlinedInput"] = {
   styleOverrides: {
     notchedOutline: {
       borderColor: "var(--TextField-brandBorderColor)",
-      borderRadius: 4,
+      borderRadius: 5,
+      transition: "all .3s ease-in",
     },
     root: ({ theme }) => ({
-      color: theme.palette.text.secondary,
-      padding: 16,
-      fontSize: "1rem",
+      color: theme.palette.text.primary,
+      backgroundColor: theme.palette.common.white,
+      padding: "16px 8px",
+      fontSize: "18px",
       lineHeight: 1.25,
-      height: 56,
+      height: 60,
 
       [theme.breakpoints.up("md")]: {
         fontSize: "1.125rem",

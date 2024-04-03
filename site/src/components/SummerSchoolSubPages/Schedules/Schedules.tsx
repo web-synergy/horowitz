@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import updateLocale from "dayjs/plugin/updateLocale";
+
 import "dayjs/locale/uk";
 dayjs.locale("uk");
 
@@ -190,11 +191,12 @@ const SchedulePage = () => {
         <Box>
           {professors && (
             <DemoItem label="Ім’я професора">
-              <CustomTextField
+              <TextField
                 sx={{ width: "328px" }}
                 id="professor-select"
                 select
-                value={selectedProfessor || professors[0].name}
+                defaultValue={professors[0].name}
+                value={selectedProfessor}
                 onChange={handleProfessorChange}
               >
                 {professors.map((professor) => (
@@ -202,7 +204,7 @@ const SchedulePage = () => {
                     {professor.name}
                   </MenuItem>
                 ))}
-              </CustomTextField>
+              </TextField>
             </DemoItem>
           )}
         </Box>
@@ -215,6 +217,7 @@ const SchedulePage = () => {
             <DatePicker
               value={selectedDate}
               onChange={handleDateChange}
+              defaultValue={dayjs("2022-04-17")}
               // showDaysOutsideCurrentMonth
               shouldDisableDate={(date) =>
                 schedules
@@ -230,6 +233,7 @@ const SchedulePage = () => {
                 const dayOfWeek = dayjs(date).format("dd");
                 return dayOfWeek;
               }}
+              // format="dd-MM-yy"
               slotProps={{
                 field: { clearable: true },
                 layout: {
