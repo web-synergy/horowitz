@@ -3,25 +3,24 @@
 import { Box, Container, SxProps } from '@mui/material'
 import { FC } from 'react'
 
-import LinksList, { ListItem } from '@/components/Templates/NavList/NavList'
-import { BgImage, MainBox } from '../KyivGeneva/parts/styled'
+import NavList, { ListItem } from '@/components/Templates/NavList/NavList'
+import { BgImage, MainBox } from '../../KyivGeneva/parts/styled'
 
 import bgImage from '@/assets/images/kyiv-geneva/mainPage/geneva_bg_piano.webp'
 
-type ButtonsSectionProps = {
-  // bgImage: string
+type NavListWrapperProps = {
   linksList: ListItem[]
   sx: SxProps
 }
 
-const ButtonsSection: FC<ButtonsSectionProps> = ({ linksList, ...sx }) => {
+const NavListWrapper: FC<NavListWrapperProps> = ({ linksList, ...sx }) => {
   return (
     <MainBox>
       <BgImage component={'img'} src={bgImage} alt="background image" />
       <Box position={'relative'} zIndex={5}>
         <Container>
           <Box {...sx}>
-            <LinksList
+            <NavList
               linksList={linksList}
               // path={Routes.KYIV_GENEVA}
             />
@@ -32,4 +31,4 @@ const ButtonsSection: FC<ButtonsSectionProps> = ({ linksList, ...sx }) => {
   )
 }
 
-export default ButtonsSection
+export default NavListWrapper

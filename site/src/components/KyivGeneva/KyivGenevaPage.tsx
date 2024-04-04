@@ -6,7 +6,7 @@ import pageData from '@/assets/kyiv-geneva/main/geneva_mainPage.json'
 import { kyivGenevaNavigation } from '@/config/routes/navigation'
 import PageTemplate from '../Common/PageTemplate'
 import { CommonStackWrapper } from '../Common/styledComponents'
-import ButtonsSection from '../Templates/ButtonsSection'
+import NavListWrapper from '../Templates/NavList/NavListWrapper'
 import AboutSection from './parts/AboutSection'
 import SponsorsSection from './parts/SponsorsSection'
 import WFIMCSection from './parts/WFIMCSection'
@@ -24,7 +24,7 @@ const KyivGenevaPage = () => {
     <PageTemplate>
       <CommonStackWrapper>
         <AboutSection content={pageData[language]} />
-        <ButtonsSection
+        <NavListWrapper
           linksList={kyivGenevaNavigation}
           sx={{
             margin: {

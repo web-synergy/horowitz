@@ -12,7 +12,7 @@ import { Routes } from '@/types/routes.d'
 import pianoImg from '@/assets/images/kyiv-geneva/mainPage/geneva_bg_piano.webp'
 
 import { CommonStackWrapper } from '@/components/Common/styledComponents'
-import ButtonsSection from '@/components/Templates/ButtonsSection'
+import ButtonsSection from '@/components/Templates/NavList/NavListWrapper'
 const MainSchool = () => {
   const { t } = useTranslation()
   const {
