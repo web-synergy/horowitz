@@ -10,16 +10,25 @@ import bgImage from '@/assets/images/kyiv-geneva/mainPage/geneva_bg_piano.webp'
 
 type NavListWrapperProps = {
   linksList: ListItem[]
-  sx: SxProps
+  sx: SxProps // потрібно передати висоту флекс контейнера для lg & md
 }
 
-const NavListWrapper: FC<NavListWrapperProps> = ({ linksList, ...sx }) => {
+const NavListWrapper: FC<NavListWrapperProps> = ({ linksList, sx }) => {
   return (
     <MainBox>
       <BgImage component={'img'} src={bgImage} alt="background image" />
       <Box position={'relative'} zIndex={5}>
         <Container>
-          <Box {...sx}>
+          <Box
+            sx={{
+              margin: {
+                xs: '48px 0',
+                md: '96px 0',
+                lg: '120px 0',
+              },
+              ...sx,
+            }}
+          >
             <NavList
               linksList={linksList}
               // path={Routes.KYIV_GENEVA}

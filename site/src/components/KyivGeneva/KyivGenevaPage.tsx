@@ -27,11 +27,6 @@ const KyivGenevaPage = () => {
         <NavListWrapper
           linksList={kyivGenevaNavigation}
           sx={{
-            margin: {
-              xs: '48px 0',
-              md: '96px 0',
-              lg: '120px 0',
-            },
             height: {
               md: '396px',
               lg: '277px',
