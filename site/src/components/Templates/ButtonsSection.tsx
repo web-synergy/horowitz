@@ -6,13 +6,15 @@ import { FC } from 'react'
 import LinksList, { ListItem } from '@/components/Templates/NavList/NavList'
 import { BgImage, MainBox } from '../KyivGeneva/parts/styled'
 
+import bgImage from '@/assets/images/kyiv-geneva/mainPage/geneva_bg_piano.webp'
+
 type ButtonsSectionProps = {
-  bgImage: string
+  // bgImage: string
   linksList: ListItem[]
   sx: SxProps
 }
 
-const ButtonsSection: FC<ButtonsSectionProps> = ({ bgImage, linksList, ...sx }) => {
+const ButtonsSection: FC<ButtonsSectionProps> = ({ linksList, ...sx }) => {
   return (
     <MainBox>
       <BgImage component={'img'} src={bgImage} alt="background image" />
