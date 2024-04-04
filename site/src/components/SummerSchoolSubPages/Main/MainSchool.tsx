@@ -9,10 +9,8 @@ import { summerSchoolNavigation } from '@/config/routes/navigation'
 import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore'
 import { Routes } from '@/types/routes.d'
 
-import pianoImg from '@/assets/images/kyiv-geneva/mainPage/geneva_bg_piano.webp'
-
 import { CommonStackWrapper } from '@/components/Common/styledComponents'
-import ButtonsSection from '@/components/Templates/ButtonsSection'
+import NavListWrapper from '@/components/Templates/NavList/NavListWrapper'
 const MainSchool = () => {
   const { t } = useTranslation()
   const {
@@ -62,19 +60,13 @@ const MainSchool = () => {
           )}
         </Container>
         <CommonStackWrapper>
-          <ButtonsSection
+          <NavListWrapper
             sx={{
-              margin: {
-                xs: '48px 0',
-                md: '96px 0',
-                lg: '120px 0',
-              },
               height: {
                 md: '228px',
                 lg: '168px',
               },
             }}
-            bgImage={pianoImg}
             linksList={navigation}
           />
         </CommonStackWrapper>
