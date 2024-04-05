@@ -1,3 +1,4 @@
+import ZoomImage from '@/components/Common/ZoomImage'
 import { Routes } from '@/types/routes.d'
 import { Buttons } from '@/types/translation.d'
 import { Box, Container, Stack, Typography } from '@mui/material'
@@ -24,7 +25,9 @@ const WFIMCSection: FC<WFIMCSectionProps> = ({ image, wfimc_content: { about, ph
       </Typography>
       <Stack sx={{ flexDirection: { md: 'row' }, gap: '24px' }}>
         <Box flex={1}>
-          <img src={image} alt="WFIMC members" />
+          <ZoomImage>
+            <img src={image} alt="WFIMC members" />
+          </ZoomImage>
           <Caption component={'p'} sx={{ marginTop: '8px' }}>
             {photoCaption}
           </Caption>
