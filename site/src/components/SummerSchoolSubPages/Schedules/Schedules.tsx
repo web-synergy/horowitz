@@ -20,6 +20,7 @@ import dayjs from "dayjs";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import updateLocale from "dayjs/plugin/updateLocale";
 import { PortableText } from "@portabletext/react";
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 
 import "dayjs/locale/uk";
 import { components } from "./portableComponents";
@@ -27,6 +28,7 @@ import TextBlockSection from "./parts/TextBlockSection.tsx";
 dayjs.locale("uk");
 
 dayjs.extend(updateLocale);
+dayjs.extend(isSameOrAfter);
 
 dayjs.updateLocale("uk", {
   months: [
@@ -76,36 +78,10 @@ const ukLocaleText = {
   ],
 };
 
-const CustomTextField = styled(TextField)(({ theme, value }) => ({
-  "& .MuiInputBase-root": {
-    height: "60px",
-    width: "100%",
-    color: theme.palette.text.primary,
-    transition: theme.transitions.create("width"),
-
-    [theme.breakpoints.up("lg")]: {
-      width: (value as string).length > 0 ? 262 : 132,
-      "&.Mui-focused": { width: 262 },
-    },
-  },
-
-  "& .MuiOutlinedInput-root": {
-    padding: "8px",
-    "& fieldset": {
-      borderColor: theme.palette.common.black,
-    },
-    "&:hover fieldset": {
-      borderColor: theme.palette.primary.dark,
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: theme.palette.primary.main,
-    },
-  },
-}));
-
 const SchedulePage = () => {
   const [showFullTable, setShowFullTable] = useState(false);
-  const [selectedProfessor, setSelectedProfessor] = useState(null);
+  const [selectedProfessorName, setSelectedProfessorName] = useState("");
+  const [selectedProfessorData, setSelectedProfessorData] = useState({});
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedLectures, setSelectedLectures] = useState([]);
 
@@ -121,13 +97,14 @@ const SchedulePage = () => {
 
   useEffect(() => {
     if (professors) {
-      setSelectedProfessor(professors[0].name);
+      setSelectedProfessorName(professors[0].name);
+      // setSelectedProfessorData(professors[0].name);
     }
   }, [professors]);
 
-  console.log(`selectedProfessor:${selectedProfessor}`);
+  console.log(`selectedProfessorData:${selectedProfessorData}`);
 
-  console.log(professors);
+  console.log(selectedProfessorData);
 
   console.log(selectedLectures);
 
@@ -135,7 +112,12 @@ const SchedulePage = () => {
   // if (!requestLang.length) return null;
 
   const handleProfessorChange = (event) => {
-    setSelectedProfessor(event.target.value);
+    const selectedProfessorName = event.target.value;
+    // const selectedProfessorObject = professors.find(
+    //   (professor) => professor.name === selectedProfessorName
+    // );
+    setSelectedProfessorName(selectedProfessorName);
+    // setSelectedProfessorData(selectedProfessorObject || {}); // Обновление состояния
   };
 
   const handleDateChange = (date) => {
@@ -147,7 +129,7 @@ const SchedulePage = () => {
     let selectedLectures = [];
     if (professors) {
       selectedProfessorObject = professors.find(
-        (professor) => professor.name === selectedProfessor
+        (professor) => professor.name === selectedProfessorName
       );
     }
 
@@ -162,12 +144,21 @@ const SchedulePage = () => {
       } else {
         // Если дата не выбрана, показываем все лекции для выбранного профессора
         selectedLectures = schedules.filter(
-          (schedule) => schedule.lecture === selectedProfessorObject._key
+          (schedule) =>
+            schedule.lecture === selectedProfessorObject._key &&
+            dayjs(schedule.date).isSameOrAfter(dayjs(), "day") // Исключаем прошедшие даты
         );
       }
     }
+    selectedLectures.sort((a, b) => {
+      return new Date(a.date) - new Date(b.date);
+    });
+
+    setSelectedProfessorData(selectedProfessorObject);
     setSelectedLectures(selectedLectures);
   };
+
+  let previousDate = null;
 
   const handleShowMore = () => {
     setShowFullTable(true);
@@ -177,7 +168,9 @@ const SchedulePage = () => {
     setShowFullTable(false);
   };
 
-  let previousDate = null;
+  const formatDate = (date) => {
+    return dayjs(date).format("DD.MM.YY"); // Форматируем дату в нужном формате
+  };
 
   return (
     <Container sx={{ marginTop: "40px" }}>
@@ -188,6 +181,7 @@ const SchedulePage = () => {
           marginTop: "40px",
           marginBottom: "40px",
           display: "flex",
+          flexDirection: { xs: "column", md: "row" },
           alignItems: "flex-end",
           gap: "30px",
           justifyContent: "space-between",
@@ -201,8 +195,8 @@ const SchedulePage = () => {
                 sx={{ width: "328px" }}
                 id="professor-select"
                 select
-                // defaultValue={professors[0].name}
-                value={selectedProfessor || professors[0].name}
+                defaultValue={professors[0].name}
+                value={selectedProfessorName}
                 onChange={handleProfessorChange}
               >
                 {professors.map((professor) => (
@@ -337,6 +331,7 @@ const SchedulePage = () => {
           <TextBlockSection blocks={selectedLectures[0].rehearsals[0].event} />
         )} */}
       </Box>
+      <Typography>Результати пошуку</Typography>
       <Box
         sx={{
           borderLeft: "1px solid black",
@@ -363,76 +358,128 @@ const SchedulePage = () => {
           >
             {/* <Typography>{`Диригент: ${lecture.conductor}`}</Typography> */}
             {lecture.rehearsals.map((rehearsal, index) => (
-              <Grid
-                container
+              <Box
+                // container
                 // spacing={2}
                 key={index}
-                // sx={{ border: "1px solid black" }}
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: {
+                    xs: " 1fr",
+                    md: "repeat(3, 140px) 1fr",
+                    lg: "repeat(3, 182px) 1fr",
+                  },
+                }}
               >
                 {index === 0 && (
-                  <Grid
-                    item
-                    xs={3}
+                  <Box
+                    // item
+                    // xs={2}
+
                     sx={{
                       borderRight: "1px solid black",
                       borderTop: "1px solid black",
+                      padding: {
+                        xs: "8px 8px",
+                        md: "40px 8px",
+                        lg: "48px 28px",
+                      },
+                      textAlign: "start",
+                      // paddingTop: "48px",
+                      // paddingLeft: "28px",
+                      // paddingRight: "28px",
                       // gridRow: "1/2",
                       // borderBottom: "1px solid black",
                     }}
                   >
                     {/* Выводим дату только один раз */}
-                    <Typography>{lecture.date}</Typography>
-                  </Grid>
+                    <Typography>{formatDate(lecture.date)}</Typography>
+                  </Box>
                 )}
                 {index > 0 && (
-                  <Grid
-                    item
-                    xs={3}
+                  <Box
                     sx={{
                       borderRight: "1px solid black",
+                      padding: {
+                        xs: "8px 8px",
+                        md: "40px 8px",
+                        lg: "48px 28px",
+                      },
+                      textAlign: "start",
                       // borderTop: "1px solid black",
                     }}
                   >
                     {/* Пустой контейнер */}
-                  </Grid>
+                  </Box>
                 )}
-                <Grid
-                  item
-                  xs={3}
+                <Box
                   sx={{
                     borderRight: "1px solid black",
                     borderTop: "1px solid black",
+                    padding: {
+                      xs: "8px 8px",
+                      md: "40px 8px",
+                      lg: "48px 28px",
+                    },
+                    textAlign: "start",
                     // borderBottom: "1px solid black",
                   }}
                 >
                   <Typography>{rehearsal.time} </Typography>
-                </Grid>
-                <Grid
-                  item
-                  xs={3}
+                </Box>
+                <Box
                   sx={{
                     borderRight: "1px solid black",
                     borderTop: "1px solid black",
+                    padding: {
+                      xs: "8px 8px",
+                      md: "40px 8px",
+                      lg: "48px 28px",
+                    },
+                    textAlign: "start",
                     // borderBottom: "1px solid black",
                   }}
                 >
-                  <Typography>Диригент – Юрій Літун</Typography>
-                </Grid>
-                <Grid
-                  item
-                  xs={3}
+                  <Typography>{`${
+                    selectedProfessorData?.role
+                      ? selectedProfessorData.role.charAt(0).toUpperCase() +
+                        selectedProfessorData.role.slice(1)
+                      : ""
+                  } - ${selectedProfessorData?.name || ""}`}</Typography>
+                  {/* <Typography>
+                    {selectedProfessor &&
+                      `${selectedProfessor.role} - ${selectedProfessor.name}`}
+                  </Typography> */}
+                </Box>
+                <Box
                   sx={{
                     borderTop: "1px solid black",
+                    padding: "48px",
                     // borderRight: "1px solid black",
                     // borderBottom: "1px solid black",
                   }}
                 >
                   <TextBlockSection blocks={rehearsal.event} />
-                </Grid>
-              </Grid>
+                </Box>
+              </Box>
             ))}
           </Box>
         ))}
+      </Box>
+      <Box
+        sx={{
+          width: "100%",
+          textAlign: "center",
+          marginTop: "48px",
+        }}
+      >
+        <Button
+          sx={{ width: "288px" }}
+          variant="transparent"
+          onClick={showFullTable ? handleShowLess : handleShowMore}
+        >
+          {showFullTable ? t("buttons.SHOW_LESS") : t("buttons.SHOW_MORE")}
+        </Button>
       </Box>
     </Container>
   );
