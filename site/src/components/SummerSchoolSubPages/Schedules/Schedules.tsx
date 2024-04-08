@@ -9,6 +9,7 @@ import {
   InputLabel,
   styled,
   Typography,
+  Grid,
 } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider, DatePicker, Day } from "@mui/x-date-pickers";
@@ -18,8 +19,11 @@ import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import updateLocale from "dayjs/plugin/updateLocale";
+import { PortableText } from "@portabletext/react";
 
 import "dayjs/locale/uk";
+import { components } from "./portableComponents";
+import TextBlockSection from "./parts/TextBlockSection.tsx";
 dayjs.locale("uk");
 
 dayjs.extend(updateLocale);
@@ -125,7 +129,7 @@ const SchedulePage = () => {
 
   console.log(professors);
 
-  console.log(schedules);
+  console.log(selectedLectures);
 
   // if (isLoading) return <Loader />;
   // if (!requestLang.length) return null;
@@ -173,6 +177,8 @@ const SchedulePage = () => {
     setShowFullTable(false);
   };
 
+  let previousDate = null;
+
   return (
     <Container sx={{ marginTop: "40px" }}>
       <Box
@@ -180,7 +186,7 @@ const SchedulePage = () => {
           padding: "16px 36px",
           backgroundColor: "rgba(176, 115, 15, 0.1);",
           marginTop: "40px",
-          marginBottom: "526px",
+          marginBottom: "40px",
           display: "flex",
           alignItems: "flex-end",
           gap: "30px",
@@ -190,13 +196,13 @@ const SchedulePage = () => {
       >
         <Box>
           {professors && (
-            <DemoItem label="Ім’я професора">
+            <DemoItem label="Ім’я професора / диригента">
               <TextField
                 sx={{ width: "328px" }}
                 id="professor-select"
                 select
-                defaultValue={professors[0].name}
-                value={selectedProfessor}
+                // defaultValue={professors[0].name}
+                value={selectedProfessor || professors[0].name}
                 onChange={handleProfessorChange}
               >
                 {professors.map((professor) => (
@@ -316,15 +322,118 @@ const SchedulePage = () => {
           Показати графік
         </Button>
       </Box>
-
-      {selectedLectures.map((lecture) => (
-        <Box key={lecture._key}>
-          <Typography>{`Дата репетиції: ${lecture.date}`}</Typography>
-          <Typography>{`Час репетиції: ${lecture.time}`}</Typography>
-          <Typography>{`Диригент: ${lecture.conductor}`}</Typography>
-          <Typography>{`Опис: ${lecture.description}`}</Typography>
-        </Box>
-      ))}
+      <Box
+        sx={
+          {
+            // columnCount: { xs: 1, lg: 2 },
+            // columnGap: "24px",
+            // "& p:not(:last-child)": {
+            //   marginBottom: 2,
+            // },
+          }
+        }
+      >
+        {/* {selectedLectures && (
+          <TextBlockSection blocks={selectedLectures[0].rehearsals[0].event} />
+        )} */}
+      </Box>
+      <Box
+        sx={{
+          borderLeft: "1px solid black",
+          borderRight: "1px solid black",
+          borderBottom:
+            selectedLectures && selectedLectures.length > 0
+              ? "1px solid black"
+              : "none",
+          marginBottom: "20px",
+          // gridRow: "1/2",
+          // borderBottom: "1px solid black",
+        }}
+      >
+        {selectedLectures.map((lecture) => (
+          <Box
+            key={lecture._key}
+            sx={
+              {
+                // border: "1px solid black",
+                // padding: "10px",
+                // marginBottom: "10px",
+              }
+            }
+          >
+            {/* <Typography>{`Диригент: ${lecture.conductor}`}</Typography> */}
+            {lecture.rehearsals.map((rehearsal, index) => (
+              <Grid
+                container
+                // spacing={2}
+                key={index}
+                // sx={{ border: "1px solid black" }}
+              >
+                {index === 0 && (
+                  <Grid
+                    item
+                    xs={3}
+                    sx={{
+                      borderRight: "1px solid black",
+                      borderTop: "1px solid black",
+                      // gridRow: "1/2",
+                      // borderBottom: "1px solid black",
+                    }}
+                  >
+                    {/* Выводим дату только один раз */}
+                    <Typography>{lecture.date}</Typography>
+                  </Grid>
+                )}
+                {index > 0 && (
+                  <Grid
+                    item
+                    xs={3}
+                    sx={{
+                      borderRight: "1px solid black",
+                      // borderTop: "1px solid black",
+                    }}
+                  >
+                    {/* Пустой контейнер */}
+                  </Grid>
+                )}
+                <Grid
+                  item
+                  xs={3}
+                  sx={{
+                    borderRight: "1px solid black",
+                    borderTop: "1px solid black",
+                    // borderBottom: "1px solid black",
+                  }}
+                >
+                  <Typography>{rehearsal.time} </Typography>
+                </Grid>
+                <Grid
+                  item
+                  xs={3}
+                  sx={{
+                    borderRight: "1px solid black",
+                    borderTop: "1px solid black",
+                    // borderBottom: "1px solid black",
+                  }}
+                >
+                  <Typography>Диригент – Юрій Літун</Typography>
+                </Grid>
+                <Grid
+                  item
+                  xs={3}
+                  sx={{
+                    borderTop: "1px solid black",
+                    // borderRight: "1px solid black",
+                    // borderBottom: "1px solid black",
+                  }}
+                >
+                  <TextBlockSection blocks={rehearsal.event} />
+                </Grid>
+              </Grid>
+            ))}
+          </Box>
+        ))}
+      </Box>
     </Container>
   );
 };
