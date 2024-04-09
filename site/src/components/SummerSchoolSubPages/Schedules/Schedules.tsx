@@ -10,6 +10,7 @@ import {
   styled,
   Typography,
   Grid,
+  Collapse,
 } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider, DatePicker, Day } from "@mui/x-date-pickers";
@@ -79,7 +80,8 @@ const ukLocaleText = {
 };
 
 const SchedulePage = () => {
-  const [showFullTable, setShowFullTable] = useState(false);
+  const [showAllLectures, setShowAllLectures] = useState(false);
+  const [isShowSearchResults, setIsShowSearchResults] = useState(false);
   const [selectedProfessorName, setSelectedProfessorName] = useState("");
   const [selectedProfessorData, setSelectedProfessorData] = useState({});
   const [selectedDate, setSelectedDate] = useState(null);
@@ -111,61 +113,134 @@ const SchedulePage = () => {
   // if (isLoading) return <Loader />;
   // if (!requestLang.length) return null;
 
+  // const handleShowSchedule = () => {
+  //   let selectedProfessorObject = {};
+  //   let selectedLectures = [];
+  //   if (professors) {
+  //     selectedProfessorObject = professors.find(
+  //       (professor) => professor.name === selectedProfessorName
+  //     );
+  //   }
+
+  //   if (schedules && selectedProfessorObject) {
+  //     if (selectedDate) {
+  //       // Фильтрация лекций только по выбранной дате
+  //       selectedLectures = schedules.filter(
+  //         (schedule) =>
+  //           schedule.lecture === selectedProfessorObject._key &&
+  //           dayjs(schedule.date).isSame(selectedDate, "day")
+  //       );
+  //     } else {
+  //       // Если дата не выбрана, показываем все лекции для выбранного профессора
+  //       selectedLectures = schedules.filter(
+  //         (schedule) =>
+  //           schedule.lecture === selectedProfessorObject._key &&
+  //           dayjs(schedule.date).isSameOrAfter(dayjs(), "day") // Исключаем прошедшие даты
+  //       );
+  //     }
+  //   }
+  //   selectedLectures.sort((a, b) => {
+  //     return new Date(a.date) - new Date(b.date);
+  //   });
+
+  //   setSelectedProfessorData(selectedProfessorObject);
+  //   setSelectedLectures(selectedLectures);
+  //   setIsShowSearchResults(true);
+  // };
+
+  // const handleProfessorChange = (event) => {
+  //   const selectedProfessorName = event.target.value;
+
+  //   let selectedProfessorObject = {};
+  //   let selectedLectures = [];
+  //   if (professors) {
+  //     selectedProfessorObject = professors.find(
+  //       (professor) => professor.name === selectedProfessorName
+  //     );
+  //   }
+
+  //   if (schedules && selectedProfessorObject) {
+  //     if (selectedDate) {
+  //       // Фильтрация лекций только по выбранной дате
+  //       selectedLectures = schedules.filter(
+  //         (schedule) =>
+  //           schedule.lecture === selectedProfessorObject._key &&
+  //           dayjs(schedule.date).isSame(selectedDate, "day")
+  //       );
+  //     } else {
+  //       // Если дата не выбрана, показываем все лекции для выбранного профессора
+  //       selectedLectures = schedules.filter(
+  //         (schedule) =>
+  //           schedule.lecture === selectedProfessorObject._key &&
+  //           dayjs(schedule.date).isSameOrAfter(dayjs(), "day") // Исключаем прошедшие даты
+  //       );
+  //     }
+  //   }
+  //   selectedLectures.sort((a, b) => {
+  //     return new Date(a.date) - new Date(b.date);
+  //   });
+  //   setSelectedProfessorName(selectedProfessorName);
+  //   setSelectedProfessorData(selectedProfessorObject || {});
+  //   setSelectedLectures(selectedLectures);
+  //   setShowAllLectures(false);
+  // };
+
+  const updateSchedule = (selectedProfessorName, selectedDate) => {
+    let updatedLectures = [];
+    let selectedProfessorObject = null; // Объявляем переменную здесь
+
+    if (schedules && professors) {
+      selectedProfessorObject = professors.find(
+        (professor) => professor.name === selectedProfessorName
+      );
+
+      if (selectedProfessorObject) {
+        if (selectedDate) {
+          updatedLectures = schedules.filter(
+            (schedule) =>
+              schedule.lecture === selectedProfessorObject._key &&
+              dayjs(schedule.date).isSame(selectedDate, "day")
+          );
+        } else {
+          updatedLectures = schedules.filter(
+            (schedule) =>
+              schedule.lecture === selectedProfessorObject._key &&
+              dayjs(schedule.date).isSameOrAfter(dayjs(), "day")
+          );
+        }
+      }
+    }
+
+    updatedLectures.sort((a, b) => new Date(a.date) - new Date(b.date));
+    setSelectedProfessorData(selectedProfessorObject || {});
+    setSelectedLectures(updatedLectures);
+    setIsShowSearchResults(true);
+  };
+
   const handleProfessorChange = (event) => {
     const selectedProfessorName = event.target.value;
-    // const selectedProfessorObject = professors.find(
-    //   (professor) => professor.name === selectedProfessorName
-    // );
     setSelectedProfessorName(selectedProfessorName);
-    // setSelectedProfessorData(selectedProfessorObject || {}); // Обновление состояния
+    setShowAllLectures(false);
+    updateSchedule(selectedProfessorName, selectedDate);
+  };
+
+  const handleShowSchedule = () => {
+    updateSchedule(selectedProfessorName, selectedDate);
   };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-  };
-
-  const handleShowSchedule = () => {
-    let selectedProfessorObject = {};
-    let selectedLectures = [];
-    if (professors) {
-      selectedProfessorObject = professors.find(
-        (professor) => professor.name === selectedProfessorName
-      );
-    }
-
-    if (schedules && selectedProfessorObject) {
-      if (selectedDate) {
-        // Фильтрация лекций только по выбранной дате
-        selectedLectures = schedules.filter(
-          (schedule) =>
-            schedule.lecture === selectedProfessorObject._key &&
-            dayjs(schedule.date).isSame(selectedDate, "day")
-        );
-      } else {
-        // Если дата не выбрана, показываем все лекции для выбранного профессора
-        selectedLectures = schedules.filter(
-          (schedule) =>
-            schedule.lecture === selectedProfessorObject._key &&
-            dayjs(schedule.date).isSameOrAfter(dayjs(), "day") // Исключаем прошедшие даты
-        );
-      }
-    }
-    selectedLectures.sort((a, b) => {
-      return new Date(a.date) - new Date(b.date);
-    });
-
-    setSelectedProfessorData(selectedProfessorObject);
-    setSelectedLectures(selectedLectures);
+    updateSchedule(selectedProfessorName, date);
   };
 
   let previousDate = null;
 
   const handleShowMore = () => {
-    setShowFullTable(true);
+    setShowAllLectures(true);
   };
 
   const handleShowLess = () => {
-    setShowFullTable(false);
+    setShowAllLectures(false);
   };
 
   const formatDate = (date) => {
@@ -332,50 +407,90 @@ const SchedulePage = () => {
         )} */}
       </Box>
       <Typography>Результати пошуку</Typography>
-      <Box
-        sx={{
-          borderLeft: "1px solid black",
-          borderRight: "1px solid black",
-          borderBottom:
-            selectedLectures && selectedLectures.length > 0
-              ? "1px solid black"
-              : "none",
-          marginBottom: "20px",
-          // gridRow: "1/2",
-          // borderBottom: "1px solid black",
-        }}
-      >
-        {selectedLectures.map((lecture) => (
-          <Box
-            key={lecture._key}
-            sx={
-              {
-                // border: "1px solid black",
-                // padding: "10px",
-                // marginBottom: "10px",
+      <Collapse in={isShowSearchResults} timeout={1000}>
+        <Box
+          sx={{
+            borderLeft: "1px solid black",
+            borderRight: "1px solid black",
+            borderBottom:
+              !showAllLectures &&
+              selectedLectures &&
+              selectedLectures.length > 0
+                ? "1px solid black"
+                : "none",
+            // marginBottom: "20px",
+            // gridRow: "1/2",
+            // borderBottom: "1px solid black",
+          }}
+        >
+          {selectedLectures.slice(0, 2).map((lecture) => (
+            <Box
+              key={lecture._key}
+              sx={
+                {
+                  // border: "1px solid black",
+                  // padding: "10px",
+                  // marginBottom: "10px",
+                }
               }
-            }
-          >
-            {/* <Typography>{`Диригент: ${lecture.conductor}`}</Typography> */}
-            {lecture.rehearsals.map((rehearsal, index) => (
-              <Box
-                // container
-                // spacing={2}
-                key={index}
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: {
-                    xs: " 1fr",
-                    md: "repeat(3, 140px) 1fr",
-                    lg: "repeat(3, 182px) 1fr",
-                  },
-                }}
-              >
-                {index === 0 && (
-                  <Box
-                    // item
-                    // xs={2}
+            >
+              {/* <Typography>{`Диригент: ${lecture.conductor}`}</Typography> */}
+              {lecture.rehearsals.map((rehearsal, index) => (
+                <Box
+                  // container
+                  // spacing={2}
+                  key={index}
+                  sx={{
+                    display: "grid",
+                    gridTemplateColumns: {
+                      xs: " 1fr",
+                      md: "repeat(3, 140px) 1fr",
+                      lg: "repeat(3, 182px) 1fr",
+                    },
+                  }}
+                >
+                  {index === 0 && (
+                    <Box
+                      // item
+                      // xs={2}
 
+                      sx={{
+                        borderRight: "1px solid black",
+                        borderTop: "1px solid black",
+                        padding: {
+                          xs: "8px 8px",
+                          md: "40px 8px",
+                          lg: "48px 28px",
+                        },
+                        textAlign: "start",
+                        // paddingTop: "48px",
+                        // paddingLeft: "28px",
+                        // paddingRight: "28px",
+                        // gridRow: "1/2",
+                        // borderBottom: "1px solid black",
+                      }}
+                    >
+                      {/* Выводим дату только один раз */}
+                      <Typography>{formatDate(lecture.date)}</Typography>
+                    </Box>
+                  )}
+                  {index > 0 && (
+                    <Box
+                      sx={{
+                        borderRight: "1px solid black",
+                        padding: {
+                          xs: "8px 8px",
+                          md: "40px 8px",
+                          lg: "48px 28px",
+                        },
+                        textAlign: "start",
+                        // borderTop: "1px solid black",
+                      }}
+                    >
+                      {/* Пустой контейнер */}
+                    </Box>
+                  )}
+                  <Box
                     sx={{
                       borderRight: "1px solid black",
                       borderTop: "1px solid black",
@@ -385,87 +500,187 @@ const SchedulePage = () => {
                         lg: "48px 28px",
                       },
                       textAlign: "start",
-                      // paddingTop: "48px",
-                      // paddingLeft: "28px",
-                      // paddingRight: "28px",
-                      // gridRow: "1/2",
                       // borderBottom: "1px solid black",
                     }}
                   >
-                    {/* Выводим дату только один раз */}
-                    <Typography>{formatDate(lecture.date)}</Typography>
+                    <Typography>{rehearsal.time} </Typography>
                   </Box>
-                )}
-                {index > 0 && (
                   <Box
                     sx={{
                       borderRight: "1px solid black",
+                      borderTop: "1px solid black",
                       padding: {
                         xs: "8px 8px",
                         md: "40px 8px",
                         lg: "48px 28px",
                       },
                       textAlign: "start",
-                      // borderTop: "1px solid black",
+                      // borderBottom: "1px solid black",
                     }}
                   >
-                    {/* Пустой контейнер */}
-                  </Box>
-                )}
-                <Box
-                  sx={{
-                    borderRight: "1px solid black",
-                    borderTop: "1px solid black",
-                    padding: {
-                      xs: "8px 8px",
-                      md: "40px 8px",
-                      lg: "48px 28px",
-                    },
-                    textAlign: "start",
-                    // borderBottom: "1px solid black",
-                  }}
-                >
-                  <Typography>{rehearsal.time} </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    borderRight: "1px solid black",
-                    borderTop: "1px solid black",
-                    padding: {
-                      xs: "8px 8px",
-                      md: "40px 8px",
-                      lg: "48px 28px",
-                    },
-                    textAlign: "start",
-                    // borderBottom: "1px solid black",
-                  }}
-                >
-                  <Typography>{`${
-                    selectedProfessorData?.role
-                      ? selectedProfessorData.role.charAt(0).toUpperCase() +
-                        selectedProfessorData.role.slice(1)
-                      : ""
-                  } - ${selectedProfessorData?.name || ""}`}</Typography>
-                  {/* <Typography>
+                    <Typography>{`${
+                      selectedProfessorData?.role
+                        ? selectedProfessorData.role.charAt(0).toUpperCase() +
+                          selectedProfessorData.role.slice(1)
+                        : ""
+                    } - ${selectedProfessorData?.name || ""}`}</Typography>
+                    {/* <Typography>
                     {selectedProfessor &&
                       `${selectedProfessor.role} - ${selectedProfessor.name}`}
                   </Typography> */}
+                  </Box>
+                  <Box
+                    sx={{
+                      borderTop: "1px solid black",
+                      padding: "48px",
+                      // borderRight: "1px solid black",
+                      // borderBottom: "1px solid black",
+                    }}
+                  >
+                    <TextBlockSection blocks={rehearsal.event} />
+                  </Box>
                 </Box>
+              ))}
+            </Box>
+          ))}
+        </Box>
+      </Collapse>
+      <Collapse in={showAllLectures} timeout={1000}>
+        <Box
+          sx={{
+            borderLeft: "1px solid black",
+            borderRight: "1px solid black",
+            borderBottom:
+              selectedLectures && selectedLectures.length > 0
+                ? "1px solid black"
+                : "none",
+            // marginBottom: "20px",
+            // gridRow: "1/2",
+            // borderBottom: "1px solid black",
+          }}
+        >
+          {selectedLectures.slice(2).map((lecture) => (
+            <Box
+              key={lecture._key}
+              sx={
+                {
+                  // border: "1px solid black",
+                  // padding: "10px",
+                  // marginBottom: "10px",
+                }
+              }
+            >
+              {/* <Typography>{`Диригент: ${lecture.conductor}`}</Typography> */}
+              {lecture.rehearsals.map((rehearsal, index) => (
                 <Box
+                  // container
+                  // spacing={2}
+                  key={index}
                   sx={{
-                    borderTop: "1px solid black",
-                    padding: "48px",
-                    // borderRight: "1px solid black",
-                    // borderBottom: "1px solid black",
+                    display: "grid",
+                    gridTemplateColumns: {
+                      xs: " 1fr",
+                      md: "repeat(3, 140px) 1fr",
+                      lg: "repeat(3, 182px) 1fr",
+                    },
                   }}
                 >
-                  <TextBlockSection blocks={rehearsal.event} />
+                  {index === 0 && (
+                    <Box
+                      // item
+                      // xs={2}
+
+                      sx={{
+                        borderRight: "1px solid black",
+                        borderTop: "1px solid black",
+                        padding: {
+                          xs: "8px 8px",
+                          md: "40px 8px",
+                          lg: "48px 28px",
+                        },
+                        textAlign: "start",
+                        // paddingTop: "48px",
+                        // paddingLeft: "28px",
+                        // paddingRight: "28px",
+                        // gridRow: "1/2",
+                        // borderBottom: "1px solid black",
+                      }}
+                    >
+                      {/* Выводим дату только один раз */}
+                      <Typography>{formatDate(lecture.date)}</Typography>
+                    </Box>
+                  )}
+                  {index > 0 && (
+                    <Box
+                      sx={{
+                        borderRight: "1px solid black",
+                        padding: {
+                          xs: "8px 8px",
+                          md: "40px 8px",
+                          lg: "48px 28px",
+                        },
+                        textAlign: "start",
+                        // borderTop: "1px solid black",
+                      }}
+                    >
+                      {/* Пустой контейнер */}
+                    </Box>
+                  )}
+                  <Box
+                    sx={{
+                      borderRight: "1px solid black",
+                      borderTop: "1px solid black",
+                      padding: {
+                        xs: "8px 8px",
+                        md: "40px 8px",
+                        lg: "48px 28px",
+                      },
+                      textAlign: "start",
+                      // borderBottom: "1px solid black",
+                    }}
+                  >
+                    <Typography>{rehearsal.time} </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      borderRight: "1px solid black",
+                      borderTop: "1px solid black",
+                      padding: {
+                        xs: "8px 8px",
+                        md: "40px 8px",
+                        lg: "48px 28px",
+                      },
+                      textAlign: "start",
+                      // borderBottom: "1px solid black",
+                    }}
+                  >
+                    <Typography>{`${
+                      selectedProfessorData?.role
+                        ? selectedProfessorData.role.charAt(0).toUpperCase() +
+                          selectedProfessorData.role.slice(1)
+                        : ""
+                    } - ${selectedProfessorData?.name || ""}`}</Typography>
+                    {/* <Typography>
+                    {selectedProfessor &&
+                      `${selectedProfessor.role} - ${selectedProfessor.name}`}
+                  </Typography> */}
+                  </Box>
+                  <Box
+                    sx={{
+                      borderTop: "1px solid black",
+                      padding: "48px",
+                      // borderRight: "1px solid black",
+                      // borderBottom: "1px solid black",
+                    }}
+                  >
+                    <TextBlockSection blocks={rehearsal.event} />
+                  </Box>
                 </Box>
-              </Box>
-            ))}
-          </Box>
-        ))}
-      </Box>
+              ))}
+            </Box>
+          ))}
+        </Box>
+      </Collapse>
       <Box
         sx={{
           width: "100%",
@@ -473,13 +688,16 @@ const SchedulePage = () => {
           marginTop: "48px",
         }}
       >
-        <Button
-          sx={{ width: "288px" }}
-          variant="transparent"
-          onClick={showFullTable ? handleShowLess : handleShowMore}
-        >
-          {showFullTable ? t("buttons.SHOW_LESS") : t("buttons.SHOW_MORE")}
-        </Button>
+        {" "}
+        {selectedLectures.length > 2 && (
+          <Button
+            sx={{ width: "288px" }}
+            variant="transparent"
+            onClick={showAllLectures ? handleShowLess : handleShowMore}
+          >
+            {showAllLectures ? t("buttons.SHOW_LESS") : t("buttons.SHOW_MORE")}
+          </Button>
+        )}
       </Box>
     </Container>
   );
