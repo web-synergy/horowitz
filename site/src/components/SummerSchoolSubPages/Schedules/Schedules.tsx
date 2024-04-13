@@ -11,6 +11,7 @@ import {
   Typography,
   Grid,
   Collapse,
+  Select,
 } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider, DatePicker, Day } from "@mui/x-date-pickers";
@@ -26,6 +27,7 @@ import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import "dayjs/locale/uk";
 import { components } from "./portableComponents";
 import TextBlockSection from "./parts/TextBlockSection.tsx";
+import { Buttons } from "@/types/translation.d";
 dayjs.locale("uk");
 
 dayjs.extend(updateLocale);
@@ -247,6 +249,16 @@ const SchedulePage = () => {
     return dayjs(date).format("DD.MM.YY"); // Форматируем дату в нужном формате
   };
 
+  const [isProfessorSelectOpen, setIsProfessorSelectOpen] = useState(false);
+
+  const handleProfessorSelectOpen = () => {
+    setIsProfessorSelectOpen(true);
+  };
+
+  const handleProfessorSelectClose = () => {
+    setIsProfessorSelectOpen(false);
+  };
+
   return (
     <Container sx={{ marginTop: "40px" }}>
       <Box
@@ -258,28 +270,59 @@ const SchedulePage = () => {
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           alignItems: "flex-end",
-          gap: "30px",
+          // gap: "30px",
           justifyContent: "space-between",
           // "& > *": { flexGrow: 1 },
         }}
       >
         <Box>
           {professors && (
-            <DemoItem label="Ім’я професора / диригента">
-              <TextField
-                sx={{ width: "328px" }}
+            <DemoItem
+              sx={{
+                width: "328px",
+                marginBottom: isProfessorSelectOpen ? "206px" : "0px",
+              }}
+              label="Ім’я професора / диригента"
+            >
+              <Select
+                sx={{
+                  width: "328px",
+                }}
                 id="professor-select"
-                select
-                defaultValue={professors[0].name}
+                // multiple
+                // select
+                // defaultValue={professors[0].name}
                 value={selectedProfessorName}
                 onChange={handleProfessorChange}
+                // onFocus={handleProfessorSelectOpen} // Добавляем обработчик onFocus для отслеживания открытия списка
+                // onBlur={handleProfessorSelectClose}
+                onOpen={handleProfessorSelectOpen}
+                onClose={handleProfessorSelectClose}
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      marginTop: "32px",
+                      padding: "16px",
+                      backgroundColor: "rgba(217, 161, 69, 0.1)",
+                      height: "198px",
+                      overflowY: "auto",
+
+                      "& .MuiMenuItem-root": {
+                        lineHeight: "24px",
+                        paddingX: 0,
+                        paddingY: "4px",
+                        gap: "20px",
+                      },
+                    },
+                  },
+                }}
               >
                 {professors.map((professor) => (
                   <MenuItem key={professor._key} value={professor.name}>
                     {professor.name}
                   </MenuItem>
                 ))}
-              </TextField>
+              </Select>
             </DemoItem>
           )}
         </Box>
@@ -406,7 +449,12 @@ const SchedulePage = () => {
           <TextBlockSection blocks={selectedLectures[0].rehearsals[0].event} />
         )} */}
       </Box>
-      <Typography>Результати пошуку</Typography>
+      {selectedLectures.length > 0 && (
+        <Typography>Результати пошуку</Typography>
+      )}
+      {selectedLectures.length === 0 && isShowSearchResults && (
+        <Typography>Нажаль за вашим запитом нічого не знайдено</Typography>
+      )}
       <Collapse in={isShowSearchResults} timeout={1000}>
         <Box
           sx={{
@@ -688,14 +736,18 @@ const SchedulePage = () => {
           marginTop: "48px",
         }}
       >
-        {" "}
         {selectedLectures.length > 2 && (
           <Button
             sx={{ width: "288px" }}
             variant="transparent"
             onClick={showAllLectures ? handleShowLess : handleShowMore}
           >
-            {showAllLectures ? t("buttons.SHOW_LESS") : t("buttons.SHOW_MORE")}
+            {/* {showAllLectures ? t("buttons.SHOW_LESS") : t("buttons.SHOW_MORE")} */}
+            {t(
+              `buttons.${
+                showAllLectures ? Buttons.SHOW_LESS : Buttons.SHOW_MORE
+              }`
+            )}
           </Button>
         )}
       </Box>
