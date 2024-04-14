@@ -14,7 +14,12 @@ import {
   Select,
 } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider, DatePicker, Day } from "@mui/x-date-pickers";
+import {
+  LocalizationProvider,
+  DatePicker,
+  Day,
+  DesktopDatePicker,
+} from "@mui/x-date-pickers";
 import { useAnnualSummerSchoolStore } from "@/store/annualSummerSchoolStore";
 import Loader from "@/components/Common/Loader";
 import { useTranslation } from "react-i18next";
@@ -28,6 +33,7 @@ import "dayjs/locale/uk";
 import { components } from "./portableComponents";
 import TextBlockSection from "./parts/TextBlockSection.tsx";
 import { Buttons } from "@/types/translation.d";
+import { Routes } from "@/types/routes.d";
 dayjs.locale("uk");
 
 dayjs.extend(updateLocale);
@@ -88,7 +94,8 @@ const SchedulePage = () => {
   const [selectedProfessorData, setSelectedProfessorData] = useState({});
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedLectures, setSelectedLectures] = useState([]);
-
+  const [isProfessorSelectOpen, setIsProfessorSelectOpen] = useState(false);
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const { t } = useTranslation();
 
   const { professors, schedules, isLoading, requestLang } =
@@ -235,8 +242,6 @@ const SchedulePage = () => {
     updateSchedule(selectedProfessorName, date);
   };
 
-  let previousDate = null;
-
   const handleShowMore = () => {
     setShowAllLectures(true);
   };
@@ -249,8 +254,6 @@ const SchedulePage = () => {
     return dayjs(date).format("DD.MM.YY"); // Форматируем дату в нужном формате
   };
 
-  const [isProfessorSelectOpen, setIsProfessorSelectOpen] = useState(false);
-
   const handleProfessorSelectOpen = () => {
     setIsProfessorSelectOpen(true);
   };
@@ -259,34 +262,67 @@ const SchedulePage = () => {
     setIsProfessorSelectOpen(false);
   };
 
+  const handleDatePickerOpen = () => {
+    setIsDatePickerOpen(true);
+  };
+
+  const handleDatePickerClose = () => {
+    setIsDatePickerOpen(false);
+  };
+
   return (
-    <Container sx={{ marginTop: "40px" }}>
+    <Container>
+      <Typography
+        variant="h1"
+        sx={{
+          marginTop: { xs: 3, md: 5, lg: 6 },
+          textAlign: "start",
+        }}
+      >
+        {t(`navigation.${Routes.SUMMER_SCHOOL_SCHEDULES}`)}
+      </Typography>
       <Box
         sx={{
-          padding: "16px 36px",
+          padding: { xs: "24px 8px", md: "16px 8px", lg: "16px 36px" },
           backgroundColor: "rgba(176, 115, 15, 0.1);",
-          marginTop: "40px",
+          marginTop: { xs: 3, md: 5, lg: 6 },
           marginBottom: "40px",
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
-          alignItems: "flex-end",
-          // gap: "30px",
+          alignItems: { xs: "center", md: "flex-end" },
+          // justifyItems: "center",
+          gap: { xs: "24px", md: "12px", lg: "32px" },
           justifyContent: "space-between",
+          borderRadius: "4px",
           // "& > *": { flexGrow: 1 },
         }}
       >
-        <Box>
+        <Box sx={{ width: "100%" }}>
           {professors && (
             <DemoItem
-              sx={{
-                width: "328px",
-                marginBottom: isProfessorSelectOpen ? "206px" : "0px",
-              }}
               label="Ім’я професора / диригента"
+              sx={{
+                marginBottom: isProfessorSelectOpen ? "206px" : "0px",
+                "& p": {
+                  fontSize: { xs: "14px", md: "16px" },
+                  lineHeight: { xs: "22px", md: "24px" },
+                },
+              }}
             >
               <Select
+                variant="outlined"
                 sx={{
-                  width: "328px",
+                  width: "100%",
+                  "&:hover": {
+                    "&& fieldset": {
+                      borderColor: "#D9A145",
+                    },
+                  },
+                  // "&:focus": {
+                  //   "&& fieldset": {
+                  //     border: "1px solid #D9A145",
+                  //   },
+                  // },
                 }}
                 id="professor-select"
                 // multiple
@@ -301,17 +337,21 @@ const SchedulePage = () => {
                 MenuProps={{
                   PaperProps: {
                     sx: {
-                      marginTop: "32px",
+                      marginTop: { xs: "16px", md: "32px" },
                       padding: "16px",
                       backgroundColor: "rgba(217, 161, 69, 0.1)",
-                      height: "198px",
+                      // height: "198px",
                       overflowY: "auto",
+                      fontSize: "40px",
+                      border: "1px solid #999999",
+                      boxShadow: "none",
 
                       "& .MuiMenuItem-root": {
-                        lineHeight: "24px",
                         paddingX: 0,
                         paddingY: "4px",
                         gap: "20px",
+                        fontSize: { xs: "16px", md: "18px" },
+                        lineHeight: { xs: "24px", md: "28px" },
                       },
                     },
                   },
@@ -326,113 +366,165 @@ const SchedulePage = () => {
             </DemoItem>
           )}
         </Box>
-        <LocalizationProvider
-          dateAdapter={AdapterDayjs}
-          localeText={ukLocaleText}
-        >
-          {/* <DemoContainer sx={{ padding: 0 }} components={["CustomDatePicker"]}> */}
-          <DemoItem label="Дата репетиції">
-            <DatePicker
-              value={selectedDate}
-              onChange={handleDateChange}
-              defaultValue={dayjs("2022-04-17")}
-              // showDaysOutsideCurrentMonth
-              shouldDisableDate={(date) =>
-                schedules
-                  ? !schedules.some((schedule) =>
-                      dayjs(schedule.date).isSame(date, "day")
-                    )
-                  : true
-              }
-              disablePast
-              // openTo="month"
-              // views={["year", "month", "day"]}
-              dayOfWeekFormatter={(date) => {
-                const dayOfWeek = dayjs(date).format("dd");
-                return dayOfWeek;
-              }}
-              // format="dd-MM-yy"
-              slotProps={{
-                field: { clearable: true },
-                layout: {
-                  sx: {
-                    color: "rgb(8, 7, 8)",
-                    borderRadius: "4px",
-                    borderWidth: "4px",
-                    border: "1px solid rgb(153, 153, 153)",
-                    backgroundColor: "rgba(217, 161, 69, 0.1)",
-                    width: "328px",
-                    height: "360px",
-                    marginTop: "32px",
-                    "& .MuiPickersArrowSwitcher-button": {
-                      borderRadius: "4px",
-                      // backgroundColor: "#007bff", // Цвет фона чисел
-                      // color: "#007bff", // Цвет текста чисел
-                      // "&:hover": {
-                      //   backgroundColor: "#e91e63", // Цвет фона чисел при наведении
-                      // },
-                    },
-                    "& .MuiDayCalendar-monthContainer": {
-                      marginTop: "12px",
-                    },
-                    "& .MuiDayCalendar-weekDayLabel": {
-                      borderRadius: "4px",
-                      color: "rgb(153, 153, 153)",
-                      fontSize: "18px",
-                      lineHeight: "28px",
-                      margin: 0,
-                      width: "40px",
-                      // backgroundColor: "rgba(217, 161, 69, 0.1)", // Цвет фона чисел
-                      // // Цвет текста чисел
-                      // "&:hover": {
-                      //   backgroundColor: "#e91e63", // Цвет фона чисел при наведении
-                      // },
-                    },
-                    "& .MuiPickersSlideTransition-root": {
-                      height: "290px",
-                    },
-                    "& .MuiDayCalendar-weekContainer": {
-                      marginTop: "6px",
-                      justifyContent: "space-between",
-                    },
-                    "& .MuiDayCalendar-header": {
-                      justifyContent: "space-between",
-                    },
-                    // "& .MuiDayCalendar-weekDayLabel": {
-                    //   fontSize: "18px",
-                    //   lineHeight: "28px",
-                    // },
-                    "& .MuiPickersDay-root": {
-                      height: "40px",
-                      width: "40px",
-                      borderRadius: "4px",
-                      fontSize: "18px",
-                      lineHeight: "28px",
-                      backgroundColor: "rgb(245, 245, 245)", // Цвет фона чисел
-                      color: "rgb(8, 7, 8)", // Цвет текста чисел
-                      "&:hover": {
-                        backgroundColor: "#F9B33F", // Цвет фона чисел при наведении
-                      },
-                    },
-                    "& .MuiButtonBase-root.MuiPickersDay-root.Mui-selected": {
-                      backgroundColor: "rgb(217, 161, 69)",
-                    },
-                  },
+        <Box sx={{ width: "100%" }}>
+          <LocalizationProvider
+            dateAdapter={AdapterDayjs}
+            localeText={ukLocaleText}
+          >
+            {/* <DemoContainer sx={{ padding: 0 }} components={["CustomDatePicker"]}> */}
+            <DemoItem
+              label="Дата репетиції"
+              sx={{
+                marginBottom: isDatePickerOpen ? "380px" : "0px",
+
+                "& p": {
+                  fontSize: { xs: "14px", md: "16px" },
+                  lineHeight: { xs: "22px", md: "24px" },
                 },
               }}
-              sx={{ width: "328px", padding: 0 }}
-            />
-          </DemoItem>
-          {/* </DemoContainer> */}
-        </LocalizationProvider>
-        <Button
-          sx={{ width: "328px" }}
-          variant="primary"
-          // color="primary"
-          onClick={handleShowSchedule}
-        >
-          Показати графік
-        </Button>
+            >
+              <DesktopDatePicker
+                value={selectedDate}
+                onChange={handleDateChange}
+                defaultValue={dayjs("2022-04-17")}
+                onOpen={handleDatePickerOpen}
+                onClose={handleDatePickerClose}
+                // showDaysOutsideCurrentMonth
+                shouldDisableDate={(date) =>
+                  schedules
+                    ? !schedules.some((schedule) =>
+                        dayjs(schedule.date).isSame(date, "day")
+                      )
+                    : true
+                }
+                disablePast
+                // openTo="month"
+                // views={["year", "month", "day"]}
+                dayOfWeekFormatter={(date) => {
+                  const dayOfWeek = dayjs(date).format("dd");
+                  return dayOfWeek;
+                }}
+                // format="dd-MM-yy"
+                sx={{
+                  width: "100%",
+                  // padding: 0,
+                  // "& .css-1ftars7-MuiPaper-root-MuiPickersPopper-paper": {
+                  //   boxShadow: " none",
+                  //   backgroundColor: "red",
+                  // },
+                }}
+                slotProps={{
+                  field: { clearable: true },
+                  layout: {
+                    sx: {
+                      color: "rgb(8, 7, 8)",
+                      borderRadius: "4px",
+                      borderWidth: "4px",
+                      border: "1px solid rgb(153, 153, 153)",
+                      backgroundColor: "rgba(217, 161, 69, 0.1)",
+                      width: { xs: "276px" },
+                      // height: "360px",
+                      marginTop: "32px",
+                      boxShadow: "none",
+                      "& .MuiDayCalendar-monthContainer": {
+                        marginTop: "12px",
+                        width: { xs: "270px" },
+                      },
+                      "& .MuiPaper-root .MuiPickersArrowSwitcher-button": {
+                        borderRadius: "4px",
+                        // backgroundColor: "#007bff", // Цвет фона чисел
+                        // color: "#007bff", // Цвет текста чисел
+                        // "&:hover": {
+                        //   backgroundColor: "#e91e63", // Цвет фона чисел при наведении
+                        // },
+                      },
+
+                      "& .MuiYearCalendar-root": {
+                        width: { xs: "270px" },
+                      },
+                      "& .MuiDateCalendar-root": {
+                        width: { xs: "270px" },
+                        margin: 0,
+                      },
+                      "& .MuiPickersCalendarHeader-root": {
+                        marginTop: "12px",
+                        width: { xs: "270px" },
+                      },
+                      "& .MuiDayCalendar-weekDayLabel": {
+                        borderRadius: "4px",
+                        color: "rgb(153, 153, 153)",
+                        fontSize: "18px",
+                        lineHeight: "28px",
+                        margin: 0,
+                        width: "40px",
+
+                        // backgroundColor: "rgba(217, 161, 69, 0.1)", // Цвет фона чисел
+                        // // Цвет текста чисел
+                        // "&:hover": {
+                        //   backgroundColor: "#e91e63", // Цвет фона чисел при наведении
+                        // },
+                      },
+                      "& .MuiPickersSlideTransition-root": {
+                        height: "290px",
+                        width: { xs: "270px" },
+                      },
+                      "& .MuiDayCalendar-weekContainer": {
+                        marginTop: "6px",
+                        justifyContent: "space-between",
+                      },
+                      "& .MuiDayCalendar-header": {
+                        justifyContent: "space-between",
+                        width: { xs: "270px" },
+                      },
+                      // "& .MuiDayCalendar-weekDayLabel": {
+                      //   fontSize: "18px",
+                      //   lineHeight: "28px",
+                      // },
+                      "& .MuiPickersDay-root": {
+                        height: { xs: "36px", md: "40px" },
+                        width: { xs: "36px", md: "40px" },
+                        borderRadius: "4px",
+                        fontSize: "18px",
+                        lineHeight: "28px",
+                        backgroundColor: "rgb(245, 245, 245)", // Цвет фона чисел
+                        color: "rgb(8, 7, 8)", // Цвет текста чисел
+                        "&:hover": {
+                          backgroundColor: "#F9B33F", // Цвет фона чисел при наведении
+                        },
+                      },
+                      "& .MuiButtonBase-root.MuiPickersDay-root.Mui-selected": {
+                        backgroundColor: "rgb(217, 161, 69)",
+                      },
+                    },
+                  },
+                }}
+              />
+            </DemoItem>
+            {/* </DemoContainer> */}
+          </LocalizationProvider>
+        </Box>
+        <Box sx={{ width: { xs: "100%", md: "180px", lg: "100%" } }}>
+          <Button
+            sx={{
+              // paddingLeft: { md: "16px" },
+              minWidth: "180px",
+              width: "100%",
+
+              "&.MuiButton-root": {
+                padding: { md: "14px 14px" },
+
+                // [theme.breakpoints.up("md")]: {
+                //   padding: "14px 32px",
+                // },
+              },
+            }}
+            variant="primary"
+            // color="primary"
+            onClick={handleShowSchedule}
+          >
+            Показати графік
+          </Button>
+        </Box>
       </Box>
       <Box
         sx={

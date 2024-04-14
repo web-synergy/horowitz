@@ -21,6 +21,8 @@ import {
   MuiInputBase,
   MuiOutlinedInput,
   MuiTextField,
+  MuiStack,
+  MuiPaper,
 } from "./themed-components/textField.modifier";
 import { MuiTypography } from "./themed-components/typography.modifier";
 
@@ -42,6 +44,8 @@ export const components: Components<Theme> = {
   MuiInputBase,
   MuiOutlinedInput,
   MuiTextField,
+  MuiStack,
+  MuiPaper,
   MuiList,
   MuiListItem,
   MuiListItemButton,
