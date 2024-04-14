@@ -9,9 +9,6 @@ const TextBlockSection: React.FC<TextBlockSectionProps> = ({ blocks }) => {
   return (
     <Box
       sx={{
-        // columnCount: { xs: 1, lg: 2 },
-        // columnGap: '24px',
-
         "& p:not(:last-child)": {
           marginBottom: 2,
         },

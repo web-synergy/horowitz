@@ -12,6 +12,7 @@ import {
   Grid,
   Collapse,
   Select,
+  useTheme,
 } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import {
@@ -34,6 +35,8 @@ import { components } from "./portableComponents";
 import TextBlockSection from "./parts/TextBlockSection.tsx";
 import { Buttons } from "@/types/translation.d";
 import { Routes } from "@/types/routes.d";
+import { useMediaQuery } from "@mui/material";
+
 dayjs.locale("uk");
 
 dayjs.extend(updateLocale);
@@ -96,6 +99,8 @@ const SchedulePage = () => {
   const [selectedLectures, setSelectedLectures] = useState([]);
   const [isProfessorSelectOpen, setIsProfessorSelectOpen] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const theme = useTheme();
+  const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 
   const { professors, schedules, isLoading, requestLang } =
@@ -286,7 +291,10 @@ const SchedulePage = () => {
           padding: { xs: "24px 8px", md: "16px 8px", lg: "16px 36px" },
           backgroundColor: "rgba(176, 115, 15, 0.1);",
           marginTop: { xs: 3, md: 5, lg: 6 },
-          marginBottom: "40px",
+          marginBottom:
+            (!isMobileScreen && isProfessorSelectOpen) || isDatePickerOpen
+              ? "380px"
+              : "0",
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           alignItems: { xs: "center", md: "flex-end" },
@@ -302,7 +310,8 @@ const SchedulePage = () => {
             <DemoItem
               label="Ім’я професора / диригента"
               sx={{
-                marginBottom: isProfessorSelectOpen ? "206px" : "0px",
+                marginBottom:
+                  isMobileScreen && isProfessorSelectOpen ? "206px" : "0px",
                 "& p": {
                   fontSize: { xs: "14px", md: "16px" },
                   lineHeight: { xs: "22px", md: "24px" },
@@ -375,7 +384,8 @@ const SchedulePage = () => {
             <DemoItem
               label="Дата репетиції"
               sx={{
-                marginBottom: isDatePickerOpen ? "380px" : "0px",
+                marginBottom:
+                  isMobileScreen && isDatePickerOpen ? "380px" : "0px",
 
                 "& p": {
                   fontSize: { xs: "14px", md: "16px" },
@@ -542,10 +552,28 @@ const SchedulePage = () => {
         )} */}
       </Box>
       {selectedLectures.length > 0 && (
-        <Typography>Результати пошуку</Typography>
+        <Typography
+          variant="h3"
+          sx={{
+            marginTop: { xs: "48px", md: "40px", lg: "48px" },
+            marginBottom: { xs: "20px", md: "40px", lg: "48px" },
+          }}
+        >
+          Результати пошуку
+        </Typography>
       )}
       {selectedLectures.length === 0 && isShowSearchResults && (
-        <Typography>Нажаль за вашим запитом нічого не знайдено</Typography>
+        <Box
+          sx={{
+            textAlign: "center",
+            paddingTop: { xs: "48px", md: "96px", lg: "136px" },
+            paddingBottom: { xs: "268px", md: "292px", lg: "362px" },
+          }}
+        >
+          <Typography variant="h3">
+            Нажаль за вашим запитом нічого не знайдено
+          </Typography>
+        </Box>
       )}
       <Collapse in={isShowSearchResults} timeout={1000}>
         <Box
@@ -595,7 +623,7 @@ const SchedulePage = () => {
                       // xs={2}
 
                       sx={{
-                        borderRight: "1px solid black",
+                        borderRight: { md: "1px solid black" },
                         borderTop: "1px solid black",
                         padding: {
                           xs: "8px 8px",
@@ -603,6 +631,10 @@ const SchedulePage = () => {
                           lg: "48px 28px",
                         },
                         textAlign: "start",
+                        backgroundColor: {
+                          xs: "rgba(217, 161, 69, 0.2)",
+                          md: "transparent",
+                        },
                         // paddingTop: "48px",
                         // paddingLeft: "28px",
                         // paddingRight: "28px",
@@ -617,7 +649,7 @@ const SchedulePage = () => {
                   {index > 0 && (
                     <Box
                       sx={{
-                        borderRight: "1px solid black",
+                        borderRight: { md: "1px solid black" },
                         padding: {
                           xs: "8px 8px",
                           md: "40px 8px",
@@ -632,7 +664,7 @@ const SchedulePage = () => {
                   )}
                   <Box
                     sx={{
-                      borderRight: "1px solid black",
+                      borderRight: { md: "1px solid black" },
                       borderTop: "1px solid black",
                       padding: {
                         xs: "8px 8px",
@@ -647,7 +679,7 @@ const SchedulePage = () => {
                   </Box>
                   <Box
                     sx={{
-                      borderRight: "1px solid black",
+                      borderRight: { md: "1px solid black" },
                       borderTop: "1px solid black",
                       padding: {
                         xs: "8px 8px",
@@ -731,7 +763,7 @@ const SchedulePage = () => {
                       // xs={2}
 
                       sx={{
-                        borderRight: "1px solid black",
+                        borderRight: { md: "1px solid black" },
                         borderTop: "1px solid black",
                         padding: {
                           xs: "8px 8px",
@@ -739,6 +771,10 @@ const SchedulePage = () => {
                           lg: "48px 28px",
                         },
                         textAlign: "start",
+                        backgroundColor: {
+                          xs: "rgba(217, 161, 69, 0.2)",
+                          md: "transparent",
+                        },
                         // paddingTop: "48px",
                         // paddingLeft: "28px",
                         // paddingRight: "28px",
@@ -753,7 +789,7 @@ const SchedulePage = () => {
                   {index > 0 && (
                     <Box
                       sx={{
-                        borderRight: "1px solid black",
+                        borderRight: { md: "1px solid black" },
                         padding: {
                           xs: "8px 8px",
                           md: "40px 8px",
@@ -768,7 +804,7 @@ const SchedulePage = () => {
                   )}
                   <Box
                     sx={{
-                      borderRight: "1px solid black",
+                      borderRight: { md: "1px solid black" },
                       borderTop: "1px solid black",
                       padding: {
                         xs: "8px 8px",
@@ -783,7 +819,7 @@ const SchedulePage = () => {
                   </Box>
                   <Box
                     sx={{
-                      borderRight: "1px solid black",
+                      borderRight: { md: "1px solid black" },
                       borderTop: "1px solid black",
                       padding: {
                         xs: "8px 8px",
@@ -807,8 +843,10 @@ const SchedulePage = () => {
                   </Box>
                   <Box
                     sx={{
+                      // borderRight: { md: "1px solid black" },
                       borderTop: "1px solid black",
                       padding: "48px",
+                      // textAlign: "start",
                       // borderRight: "1px solid black",
                       // borderBottom: "1px solid black",
                     }}
@@ -826,6 +864,7 @@ const SchedulePage = () => {
           width: "100%",
           textAlign: "center",
           marginTop: "48px",
+          marginBottom: { xs: "72px", md: "96px", lg: "120px" },
         }}
       >
         {selectedLectures.length > 2 && (
