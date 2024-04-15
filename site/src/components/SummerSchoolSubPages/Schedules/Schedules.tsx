@@ -31,13 +31,14 @@ import { PortableText } from "@portabletext/react";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 
 import "dayjs/locale/uk";
+import "dayjs/locale/en";
 import { components } from "./portableComponents";
 import TextBlockSection from "./parts/TextBlockSection.tsx";
 import { Buttons } from "@/types/translation.d";
 import { Routes } from "@/types/routes.d";
 import { useMediaQuery } from "@mui/material";
 
-dayjs.locale("uk");
+// dayjs.locale("uk");
 
 dayjs.extend(updateLocale);
 dayjs.extend(isSameOrAfter);
@@ -58,36 +59,11 @@ dayjs.updateLocale("uk", {
     "Грудень",
   ],
 });
+
+// dayjs.locale("uk");
 const ukLocaleText = {
   previousMonth: "Попередній місяць",
   nextMonth: "Наступний місяць",
-  openPreviousView: "Відкрити попередній місяць",
-  openNextView: "Відкрити наступний місяць",
-  calendarViewSwitchingButtonAriaLabel: (view) =>
-    view === "year" ? "Перегляд календаря, рік" : "Перегляд календаря, місяць",
-  calendarViewSwitchingHint: (view) =>
-    view === "year" ? "Перегляд календаря, рік" : "Перегляд календаря, місяць",
-  openViewSwitchingMenu: "Відкрити меню перегляду",
-  closeViewSwitchingMenu: "Закрити меню перегляду",
-  dayViewButton: "День",
-  monthViewButton: "Місяць",
-  yearViewButton: "Рік",
-  // Translate the days of the week and months
-  daysOfWeek: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"],
-  months: [
-    "Січень",
-    "Лютий",
-    "Березень",
-    "Квітень",
-    "Травень",
-    "Червень",
-    "Липень",
-    "Серпень",
-    "Вересень",
-    "Жовтень",
-    "Листопад",
-    "Грудень",
-  ],
 };
 
 const SchedulePage = () => {
@@ -101,8 +77,10 @@ const SchedulePage = () => {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const theme = useTheme();
   const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const { t } = useTranslation();
-
+  console.log(dayjs.locale());
+  const { t, i18n } = useTranslation();
+  // dayjs.locale(i18n.language);
+  console.log(i18n.language);
   const { professors, schedules, isLoading, requestLang } =
     useAnnualSummerSchoolStore((state) => ({
       professors: state.professors,
@@ -112,6 +90,7 @@ const SchedulePage = () => {
     }));
 
   useEffect(() => {
+    // dayjs.locale(i18n.language);
     if (professors) {
       setSelectedProfessorName(professors[0].name);
       // setSelectedProfessorData(professors[0].name);
@@ -256,7 +235,7 @@ const SchedulePage = () => {
   };
 
   const formatDate = (date) => {
-    return dayjs(date).format("DD.MM.YY"); // Форматируем дату в нужном формате
+    return dayjs(date).format("DD.MM.YY");
   };
 
   const handleProfessorSelectOpen = () => {
@@ -292,7 +271,7 @@ const SchedulePage = () => {
           backgroundColor: "rgba(176, 115, 15, 0.1);",
           marginTop: { xs: 3, md: 5, lg: 6 },
           marginBottom:
-            (!isMobileScreen && isProfessorSelectOpen) || isDatePickerOpen
+            !isMobileScreen && (isProfessorSelectOpen || isDatePickerOpen)
               ? "380px"
               : "0",
           display: "flex",
@@ -379,6 +358,7 @@ const SchedulePage = () => {
           <LocalizationProvider
             dateAdapter={AdapterDayjs}
             localeText={ukLocaleText}
+            adapterLocale={requestLang === "en" ? "en" : "uk"}
           >
             {/* <DemoContainer sx={{ padding: 0 }} components={["CustomDatePicker"]}> */}
             <DemoItem
@@ -396,7 +376,7 @@ const SchedulePage = () => {
               <DesktopDatePicker
                 value={selectedDate}
                 onChange={handleDateChange}
-                defaultValue={dayjs("2022-04-17")}
+                // defaultValue={dayjs("2022-04-17")}
                 onOpen={handleDatePickerOpen}
                 onClose={handleDatePickerClose}
                 // showDaysOutsideCurrentMonth
@@ -414,7 +394,7 @@ const SchedulePage = () => {
                   const dayOfWeek = dayjs(date).format("dd");
                   return dayOfWeek;
                 }}
-                // format="dd-MM-yy"
+                format="DD/MM/YYYY"
                 sx={{
                   width: "100%",
                   // padding: 0,
@@ -455,7 +435,7 @@ const SchedulePage = () => {
                       },
                       "& .MuiDateCalendar-root": {
                         maxHeight: "400px",
-                        // width: { xs: "260px" },
+                        width: { xs: "270px", md: "296px", lg: "314px" },
                         margin: 0,
                       },
                       "& .MuiPickersCalendarHeader-root": {
@@ -559,6 +539,14 @@ const SchedulePage = () => {
           <TextBlockSection blocks={selectedLectures[0].rehearsals[0].event} />
         )} */}
       </Box>
+      {!isShowSearchResults && (
+        <Box
+          sx={{
+            marginTop: { xs: "412px", md: "468px", lg: "526px" },
+          }}
+        />
+      )}
+
       {selectedLectures.length > 0 && (
         <Typography
           variant="h3"
@@ -594,7 +582,7 @@ const SchedulePage = () => {
               selectedLectures.length > 0
                 ? "1px solid black"
                 : "none",
-            // marginBottom: "20px",
+            marginBottom: selectedLectures.length < 2 ? "96px" : "",
             // gridRow: "1/2",
             // borderBottom: "1px solid black",
           }}
@@ -651,7 +639,9 @@ const SchedulePage = () => {
                       }}
                     >
                       {/* Выводим дату только один раз */}
-                      <Typography>{formatDate(lecture.date)}</Typography>
+                      <Typography variant="bodyRegular">
+                        {formatDate(lecture.date)}
+                      </Typography>
                     </Box>
                   )}
                   {index > 0 && (
@@ -683,7 +673,9 @@ const SchedulePage = () => {
                       // borderBottom: "1px solid black",
                     }}
                   >
-                    <Typography>{rehearsal.time} </Typography>
+                    <Typography variant="bodyRegular">
+                      {rehearsal.time}{" "}
+                    </Typography>
                   </Box>
                   <Box
                     sx={{
@@ -698,7 +690,7 @@ const SchedulePage = () => {
                       // borderBottom: "1px solid black",
                     }}
                   >
-                    <Typography>{`${
+                    <Typography variant="bodyMedium">{`${
                       selectedProfessorData?.role
                         ? selectedProfessorData.role.charAt(0).toUpperCase() +
                           selectedProfessorData.role.slice(1)
@@ -712,7 +704,11 @@ const SchedulePage = () => {
                   <Box
                     sx={{
                       borderTop: "1px solid black",
-                      padding: "48px",
+                      padding: {
+                        xs: "8px 8px",
+                        md: "40px 24px",
+                        lg: "48px 48px",
+                      },
                       // borderRight: "1px solid black",
                       // borderBottom: "1px solid black",
                     }}
@@ -838,7 +834,7 @@ const SchedulePage = () => {
                       // borderBottom: "1px solid black",
                     }}
                   >
-                    <Typography>{`${
+                    <Typography variant="bodyMedium">{`${
                       selectedProfessorData?.role
                         ? selectedProfessorData.role.charAt(0).toUpperCase() +
                           selectedProfessorData.role.slice(1)
@@ -867,29 +863,29 @@ const SchedulePage = () => {
           ))}
         </Box>
       </Collapse>
-      <Box
-        sx={{
-          width: "100%",
-          textAlign: "center",
-          marginTop: "48px",
-          marginBottom: { xs: "72px", md: "96px", lg: "120px" },
-        }}
-      >
-        {selectedLectures.length > 2 && (
+
+      {selectedLectures.length > 2 && (
+        <Box
+          sx={{
+            width: "100%",
+            textAlign: "center",
+            marginTop: "48px",
+            marginBottom: { xs: "72px", md: "96px", lg: "120px" },
+          }}
+        >
           <Button
             sx={{ width: "288px" }}
             variant="transparent"
             onClick={showAllLectures ? handleShowLess : handleShowMore}
           >
-            {/* {showAllLectures ? t("buttons.SHOW_LESS") : t("buttons.SHOW_MORE")} */}
             {t(
               `buttons.${
                 showAllLectures ? Buttons.SHOW_LESS : Buttons.SHOW_MORE
               }`
             )}
-          </Button>
-        )}
-      </Box>
+          </Button>{" "}
+        </Box>
+      )}
     </Container>
   );
 };
