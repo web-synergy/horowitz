@@ -432,13 +432,14 @@ const SchedulePage = () => {
                       borderWidth: "4px",
                       border: "1px solid rgb(153, 153, 153)",
                       backgroundColor: "rgba(217, 161, 69, 0.1)",
-                      width: { xs: "276px" },
-                      // height: "360px",
+                      width: { xs: "272px", md: "304px", lg: "328px" },
+                      height: { xs: "332px", md: "362px", lg: "376px" },
                       marginTop: "32px",
                       boxShadow: "none",
+                      paddingX: { xs: "4px", lg: "6px" },
                       "& .MuiDayCalendar-monthContainer": {
-                        marginTop: "12px",
-                        width: { xs: "270px" },
+                        marginTop: { md: "6px", lg: "8px" },
+                        // width: { xs: "270px" },
                       },
                       "& .MuiPaper-root .MuiPickersArrowSwitcher-button": {
                         borderRadius: "4px",
@@ -450,21 +451,22 @@ const SchedulePage = () => {
                       },
 
                       "& .MuiYearCalendar-root": {
-                        width: { xs: "270px" },
+                        width: { xs: "270px", md: "296px", lg: "314px" },
                       },
                       "& .MuiDateCalendar-root": {
-                        width: { xs: "270px" },
+                        maxHeight: "400px",
+                        // width: { xs: "260px" },
                         margin: 0,
                       },
                       "& .MuiPickersCalendarHeader-root": {
-                        marginTop: "12px",
-                        width: { xs: "270px" },
+                        // marginTop: "12px",
+                        width: { xs: "270px", md: "302px", lg: "326px" },
                       },
                       "& .MuiDayCalendar-weekDayLabel": {
                         borderRadius: "4px",
                         color: "rgb(153, 153, 153)",
-                        fontSize: "18px",
-                        lineHeight: "28px",
+                        fontSize: { xs: "16px", md: "18px" },
+                        lineHeight: { xs: "24px", md: "28px" },
                         margin: 0,
                         width: "40px",
 
@@ -475,35 +477,41 @@ const SchedulePage = () => {
                         // },
                       },
                       "& .MuiPickersSlideTransition-root": {
-                        height: "290px",
-                        width: { xs: "270px" },
+                        // height: "290px",
+                        width: { xs: "270px", md: "302px", lg: "326px" },
                       },
                       "& .MuiDayCalendar-weekContainer": {
-                        marginTop: "6px",
+                        width: { xs: "262px", md: "294px", lg: "314px" },
+                        marginTop: { xs: "4px", lg: "6px" },
                         justifyContent: "space-between",
                       },
                       "& .MuiDayCalendar-header": {
                         justifyContent: "space-between",
-                        width: { xs: "270px" },
+                        width: { xs: "260px", md: "292px", lg: "312px" },
                       },
                       // "& .MuiDayCalendar-weekDayLabel": {
                       //   fontSize: "18px",
                       //   lineHeight: "28px",
                       // },
                       "& .MuiPickersDay-root": {
-                        height: { xs: "36px", md: "40px" },
-                        width: { xs: "36px", md: "40px" },
+                        height: { xs: "34px", md: "38px" },
+                        width: { xs: "36px", md: "38px" },
                         borderRadius: "4px",
-                        fontSize: "18px",
-                        lineHeight: "28px",
+                        fontSize: { xs: "16px", md: "18px" },
+                        lineHeight: { xs: "24px", md: "28px" },
                         backgroundColor: "rgb(245, 245, 245)", // Цвет фона чисел
                         color: "rgb(8, 7, 8)", // Цвет текста чисел
                         "&:hover": {
                           backgroundColor: "#F9B33F", // Цвет фона чисел при наведении
                         },
                       },
-                      "& .MuiButtonBase-root.MuiPickersDay-root.Mui-selected": {
-                        backgroundColor: "rgb(217, 161, 69)",
+                      "& .MuiButtonBase-root .MuiPickersDay-root .MuiPickersDay-dayWithMargin":
+                        {
+                          backgroundColor: "rgb(217, 161, 69)",
+                        },
+                      "& .MuiPickersLayout-contentWrapper": {
+                        width: { xs: "262px", md: "294px", lg: "318px" },
+                        // backgroundColor: "transparent",
                       },
                     },
                   },
