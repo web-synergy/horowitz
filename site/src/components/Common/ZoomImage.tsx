@@ -37,7 +37,10 @@ const ZoomImage = ({ children }: { children: React.ReactElement }) => {
       onUpdate={onUpdate}
       onDoubleTap={onDoubleTap}
     >
-      <Box ref={imgRef} sx={{ cursor: isZoomIn ? 'zoom-in' : 'zoom-out' }}>
+      <Box
+        ref={imgRef}
+        sx={{ cursor: isZoomIn ? 'zoom-in' : 'zoom-out', width: '100%' }}
+      >
         {children}
       </Box>
     </QuickPinchZoom>
