@@ -1,4 +1,4 @@
-import { Components, Theme } from '@mui/material/styles'
+import { Components, Theme } from '@mui/material/styles';
 
 export const MuiFab: Components<Theme>['MuiFab'] = {
   styleOverrides: {
@@ -10,10 +10,10 @@ export const MuiFab: Components<Theme>['MuiFab'] = {
       borderColor: theme.palette.common.black,
       boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.25)',
 
-      [theme.breakpoints.up('lg')]: {
-        height: 75,
-        width: 75,
-      },
+      // [theme.breakpoints.up('lg')]: {
+      //   height: 75,
+      //   width: 75,
+      // },
       ':hover': {
         backgroundColor: theme.palette.background.default,
       },
@@ -30,4 +30,4 @@ export const MuiFab: Components<Theme>['MuiFab'] = {
       },
     }),
   },
-}
+};
