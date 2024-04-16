@@ -24,17 +24,19 @@ const GoBackBtn: FC<GoBackBtnProps> = ({ href }) => {
       <Box
         sx={{
           position: 'absolute',
-          bottom: { xs: 5, lg: 20 },
+          bottom: { xs: 15, lg: 20 },
           left: { xs: 10, lg: 20 },
-        }}>
+        }}
+      >
         <Button
-          variant='goBack'
-          role='link'
-          aria-label='go back'
+          variant="goBack"
+          role="link"
+          aria-label="go back"
           onClick={onClickButton}
           startIcon={
-            <SvgSpriteIcon icon='arrow' sx={{ transform: 'rotate(90deg)' }} />
-          }>
+            <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(90deg)' }} />
+          }
+        >
           {t(`buttons.${Buttons.GO_BACK}`)}
         </Button>
       </Box>

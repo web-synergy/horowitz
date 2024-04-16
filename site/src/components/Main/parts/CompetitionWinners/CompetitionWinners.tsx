@@ -40,7 +40,7 @@ const CompetitionWinners: FC = () => {
             gap: '50px',
           }}
         >
-          <MainTitle variant="h1">Переможці XIII Конкурсу</MainTitle>
+          <MainTitle variant="h1">Переможці Конкурсу Київ-Женева</MainTitle>
 
           <Box>
             <ShowMoreBtn

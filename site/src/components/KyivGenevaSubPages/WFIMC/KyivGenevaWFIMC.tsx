@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { Caption } from '@/components/KyivGeneva/parts/styled';
 
 import { Routes } from '@/types/routes.d';
-import { Box, Container, Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { FC } from 'react';
-import { Wrapper } from './styled';
+import { Wrapper, ImageWrapper } from './styled';
+import StaticImageComponent from '../Common/StaticImageComponent';
 
 import membersImg from '@/assets/images/kyiv-geneva/wfimc/wfimc.webp';
 import content from '@/assets/kyiv-geneva/main/geneva_mainPage.json';
@@ -33,37 +34,32 @@ const KyivGenevaWFIMCPage: FC = () => {
           >
             WFIMC
           </Typography>
-          <Box>
-            <Wrapper>
-              <Box sx={{ mb: { xs: 3, md: 0 } }}>
-                <Box
-                  component={'img'}
-                  alt={'WFIMC members'}
-                  src={membersImg}
-                  sx={{
-                    maxWidth: '100%',
-                    display: 'block',
-                  }}
-                />
-                <Caption component={'p'}>
-                  {content[language].wfimc.photoCaption}
-                </Caption>
-              </Box>
-              {content[language].wfimc.about.map((item, i) => (
-                <Typography
-                  key={i}
-                  component={'p'}
-                  variant="bodyRegular"
-                  sx={{
-                    marginTop: 2,
-                    textAlign: 'justify',
-                  }}
-                >
-                  {item}
-                </Typography>
-              ))}
-            </Wrapper>
-          </Box>
+
+          <Wrapper>
+            <ImageWrapper>
+              <StaticImageComponent
+                alt={'WFIMC members'}
+                imageUrl={membersImg}
+              />
+              <Caption component={'p'}>
+                {content[language].wfimc.photoCaption}
+              </Caption>
+            </ImageWrapper>
+
+            {content[language].wfimc.about.map((item, i) => (
+              <Typography
+                key={i}
+                component={'p'}
+                variant="bodyRegular"
+                sx={{
+                  marginTop: 2,
+                  textAlign: 'justify',
+                }}
+              >
+                {item}
+              </Typography>
+            ))}
+          </Wrapper>
         </Container>
       </PageTemplate>
     );

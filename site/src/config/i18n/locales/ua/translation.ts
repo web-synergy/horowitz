@@ -1,4 +1,4 @@
-import { Routes } from '@/types/routes.d'
+import { Routes } from '@/types/routes.d';
 import {
   Buttons,
   Contacts,
@@ -11,7 +11,7 @@ import {
   SummerSchool,
   Virtuosos,
   WarState,
-} from '@/types/translation.d'
+} from '@/types/translation.d';
 
 export default {
   navigation: {
@@ -55,7 +55,7 @@ export default {
     [Buttons.SHOW_LESS]: 'Показати менше',
     [Buttons.APPLY]: 'Заявка на участь',
     [Buttons.SUPPORT]: 'Підтримати проєкт',
-    [Buttons.VIEW_ALL]: 'Переглянути всі',
+    [Buttons.VIEW_ALL]: 'Переглянути всіx',
     [Buttons.WATCH_ONLINE]: 'Дивитись онлайн-трансляцію',
     [Buttons.WATCH_ONLINE_XS]: 'Дивитись трансляцію',
     [Buttons.GO_HOME]: 'На головну сторінку',
@@ -79,10 +79,12 @@ export default {
   },
   notFound: {
     [NotFound.TITLE]: 'Вибачте, сторінку не знайдено',
-    [NotFound.TEXT]: 'Сторінка, яку ви шукаєте, видалена або тимчасово недоступна',
+    [NotFound.TEXT]:
+      'Сторінка, яку ви шукаєте, видалена або тимчасово недоступна',
   },
   inDevelopment: {
-    [InDevelopment.MSG]: 'Вибачте, на даний момент ця сторінка знаходиться в розробці',
+    [InDevelopment.MSG]:
+      'Вибачте, на даний момент ця сторінка знаходиться в розробці',
   },
   mainPage: {
     [MainPage.NEWS]: 'Новини',
@@ -101,7 +103,8 @@ export default {
     [Sponsors.MAIN_INFO_PART]: 'Головні інформаційні партнери',
     [Sponsors.OFF_INFO_PART]: 'Офіційні інформаційні партнери',
   },
-  institutional_name: 'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
+  institutional_name:
+    'Міжнародний конкурс молодих піаністів памʼяті Володимира Горовиця',
   kyivGeneva: {
     [KyivGeneva.GOVERNMENT]: 'Державні установи',
   },
@@ -119,4 +122,4 @@ export default {
     [SummerSchool.CONCERT_PROGRAM]: 'Програма концерту',
     [SummerSchool.ACADEMY]: 'Музична академія',
   },
-}
+};

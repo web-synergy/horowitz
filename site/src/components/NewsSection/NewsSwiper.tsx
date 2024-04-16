@@ -12,6 +12,7 @@ import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { IImage } from '@/types/commonTypes';
 import NewsCart from './NewsCart';
 import { ShowMoreBtn } from './ShowMoreBtn';
+// import SwiperSection from '../Templates/SwiperSecrtion/SwiperSection';
 
 interface INews {
   title: string;
@@ -53,12 +54,12 @@ const NewsSwiper = ({
           />
         </Box>
       </Stack>
-
+      {/* <SwiperSection card={NewsCart} items={news} link={link} /> */}
       <Swiper
         spaceBetween={24}
         breakpoints={{
           300: {
-            slidesPerView: 1.7,
+            slidesPerView: 1.2,
           },
           768: {
             slidesPerView: 2.1,
@@ -68,15 +69,18 @@ const NewsSwiper = ({
           },
         }}
       >
-        {news.map(({ slug, img, title }) => (
-          <SwiperSlide key={slug} style={{ height: 'auto' }}>
-            <NewsCart
-              title={sliceNewsTitle(title, 49)}
-              img={img}
-              slug={`/${link}/${slug}`}
-            />
-          </SwiperSlide>
-        ))}
+        {news.map((item) => {
+          const { slug, img, title } = item;
+          return (
+            <SwiperSlide key={slug} style={{ height: 'auto' }}>
+              <NewsCart
+                title={sliceNewsTitle(title, 49)}
+                img={img}
+                slug={`/${link}/${slug}`}
+              />
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </Box>
   );

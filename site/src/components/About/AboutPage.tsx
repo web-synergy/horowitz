@@ -8,7 +8,7 @@ import PageTemplate from '../Common/PageTemplate';
 import { useAboutCompetitionStore } from '@/store/aboutCompetitionStore';
 
 import TextBlockSection from './parts/TextBlockSection.tsx';
-import ImageSection from './parts/ImageSection.tsx';
+import ImageComponent from '../Templates/ImageComponent/ImageComponent.tsx';
 import PortableComponent from '../Templates/PortableComponent/PortableComponent.tsx';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { aboutCompetitionQuery } from '@/api/query.ts';
@@ -73,11 +73,11 @@ const AboutPage = () => {
           </Box>
           <Stack direction="column" gap={{ xs: 3, md: 5, lg: 6 }}>
             <TextBlockSection blocks={upperTextBlock} />
-            {imgHistoryOne && <ImageSection image={imgHistoryOne} />}
+            {imgHistoryOne && <ImageComponent image={imgHistoryOne} />}
             {middleTextBlock && <TextBlockSection blocks={middleTextBlock} />}
-            {imgHistoryTwo && <ImageSection image={imgHistoryTwo} />}
+            {imgHistoryTwo && <ImageComponent image={imgHistoryTwo} />}
             {lowerTextBlock && <TextBlockSection blocks={lowerTextBlock} />}
-            {imgStatistics && <ImageSection image={imgStatistics} />}
+            {imgStatistics && <ImageComponent image={imgStatistics} />}
             <Box>
               {additionalText && <PortableComponent data={additionalText} />}
             </Box>

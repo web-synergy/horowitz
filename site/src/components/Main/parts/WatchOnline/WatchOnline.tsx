@@ -1,22 +1,22 @@
-import { useHomeStore } from '@/store/homeStore'
+import { useHomeStore } from '@/store/homeStore';
 
-import { MainPage } from '@/types/translation.d'
-import { FC } from 'react'
+import { MainPage } from '@/types/translation.d';
+import { FC } from 'react';
 
-import PlayerCard from './PlayerCard'
-import { StyledContainer, Wrapper } from './styled'
+import PlayerCard from './PlayerCard';
+import { StyledContainer, Wrapper } from './styled';
+import SwiperSection from '@/components/Templates/SwiperSecrtion/SwiperSection';
+// import { Swiper, SwiperSlide } from 'swiper/react'
+// import 'swiper/swiper-bundle.css'
 
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper-bundle.css'
-
-import { useTranslation } from 'react-i18next'
-import { MainTitle } from '../../styled'
+import { useTranslation } from 'react-i18next';
+import { MainTitle } from '../../styled';
 
 const WatchOnline: FC = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  const videos = useHomeStore(state => state.videos)
-  if (!videos.length) return null
+  const videos = useHomeStore((state) => state.videos);
+  if (!videos.length) return null;
 
   return (
     <Wrapper component={'section'}>
@@ -33,7 +33,8 @@ const WatchOnline: FC = () => {
         >
           {t(`mainPage.${MainPage.WATCH_ONLINE}`)}
         </MainTitle>
-        <Swiper
+        <SwiperSection card={PlayerCard} items={videos} />
+        {/* <Swiper
           spaceBetween={24}
           breakpoints={{
             300: {
@@ -47,15 +48,15 @@ const WatchOnline: FC = () => {
             },
           }}
         >
-          {videos.map(video => (
+          {videos.map((video) => (
             <SwiperSlide key={video._key} style={{ height: 'auto' }}>
               <PlayerCard {...video} />
             </SwiperSlide>
           ))}
-        </Swiper>
+        </Swiper> */}
       </StyledContainer>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default WatchOnline
+export default WatchOnline;
