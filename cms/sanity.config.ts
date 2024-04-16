@@ -6,7 +6,7 @@ import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 import {colorInput} from '@sanity/color-input'
 import {deskTool} from 'sanity/desk'
 import {languages} from './../languages'
-import {projectId} from './environment'
+import {projectId, adminTitle} from './environment'
 import structure from './structure'
 import {defaultDocumentNode} from './structure/defaultDocumentNode'
 import {structureTool} from 'sanity/structure'
@@ -15,7 +15,7 @@ const langByDefault = languages.find((lang) => lang.default)?.id || languages[0]
 
 export default defineConfig({
   name: 'default',
-  title: 'Horowitz dev',
+  title: adminTitle,
 
   projectId: projectId,
   dataset: 'production',
