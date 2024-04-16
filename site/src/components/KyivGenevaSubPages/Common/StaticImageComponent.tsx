@@ -38,22 +38,21 @@ const StaticImageComponent: FC<StaticImageComponentProps> = ({
           width={containerSize}
         />
       </Box>
-      <Dialog open={open} onClose={onCloseViewer} maxWidth={'lg'}>
-        <Box
-          sx={{
-            padding: { xs: 2, md: 4, lg: 5 },
-          }}
-        >
-          <ZoomImage>
-            <img
-              alt={alt}
-              height="auto"
-              src={imageUrl}
-              width="100%"
-              style={{ display: 'block' }}
-            />
-          </ZoomImage>
-        </Box>
+      <Dialog
+        open={open}
+        onClose={onCloseViewer}
+        sx={{ backdropFilter: 'blur(6px)' }}
+        maxWidth="md"
+      >
+        <ZoomImage>
+          <img
+            alt={alt}
+            height="100%"
+            src={imageUrl}
+            width="auto"
+            style={{ display: 'block', objectFit: 'fill' }}
+          />
+        </ZoomImage>
       </Dialog>
     </>
   );
