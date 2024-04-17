@@ -17,7 +17,7 @@ const ImageComponent: FC<ImageComponentProps> = ({ image }) => {
   const { containerRef, containerSize } = useWidthBlokSize();
 
   const imageUrl = urlFor(image)
-    .format('webp')
+    .auto('format')
     .width(containerSize * 1.2)
     .url()
     .toString();
