@@ -18,7 +18,7 @@ const ImageComponent: FC<ImageComponentProps> = ({ image }) => {
 
   const imageUrl = urlFor(image)
     .format('webp')
-    .width(containerSize)
+    .width(containerSize * 1.2)
     .url()
     .toString();
 
