@@ -22,6 +22,7 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
 
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
 
+  console.log(value);
   const { width, aspectRatio, asset, alt, position, isEmbed } = value;
   const { containerSize, containerRef } = useWidthBlokSize();
   useEffect(() => {

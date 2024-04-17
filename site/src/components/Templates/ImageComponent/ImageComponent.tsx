@@ -1,8 +1,10 @@
 import { FC, useState } from 'react';
+
 import { Box } from '@mui/material';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage } from '@/types/commonTypes';
+import { getImageData } from '@/utils/getImageData';
 
 import ImageViewer from './parts/ImageViewer';
 
@@ -15,10 +17,20 @@ interface ImageComponentProps {
 const ImageComponent: FC<ImageComponentProps> = ({ image }) => {
   const [open, setOpen] = useState(false);
   const { containerRef, containerSize } = useWidthBlokSize();
+  const {
+    dimensions: { width, height },
+  } = getImageData(image.asset._ref);
+
+  const aspectRatio = Number((width / height).toFixed(2));
+  const imageWidth = Math.floor(containerSize * 1.2);
+  const imageHeight = Math.floor(imageWidth / aspectRatio);
+
+  console.log(aspectRatio, imageWidth, imageHeight);
 
   const imageUrl = urlFor(image)
     .auto('format')
-    .width(containerSize * 1.2)
+    .width(imageWidth)
+    .height(imageHeight)
     .url()
     .toString();
 
@@ -35,9 +47,9 @@ const ImageComponent: FC<ImageComponentProps> = ({ image }) => {
       >
         <LazyLoadImage
           alt={image.alt}
-          height="auto"
           src={imageUrl}
           width={containerSize}
+          height={Math.floor(containerSize / aspectRatio)}
         />
       </Box>
       <ImageViewer open={open} onClose={onCloseViewer} image={image} />
