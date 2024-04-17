@@ -11,7 +11,7 @@ interface ImageViewerProps {
 }
 
 const ImageViewer: FC<ImageViewerProps> = ({ open, onClose, image }) => {
-  const imageUrl = urlFor(image).auto('format').url().toString();
+  const imageUrl = urlFor(image).format('webp').url().toString();
 
   return (
     <Dialog

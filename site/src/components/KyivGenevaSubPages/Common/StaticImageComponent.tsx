@@ -50,7 +50,7 @@ const StaticImageComponent: FC<StaticImageComponentProps> = ({
             height="100%"
             src={imageUrl}
             width="auto"
-            style={{ display: 'block', objectFit: 'fill' }}
+            style={{ display: 'block', objectFit: 'contain', aspectRatio: 1.6 }}
           />
         </ZoomImage>
       </Dialog>
