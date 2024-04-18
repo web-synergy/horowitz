@@ -1,18 +1,18 @@
-import { FC, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Routes } from "@/types/routes.d";
-import { Box, Button, Container, Typography } from "@mui/material";
-import Loader from "../Common/Loader";
-import PageTemplate from "../Common/PageTemplate";
+import { FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Routes } from '@/types/routes.d';
+import { Box, Button, Container, Typography } from '@mui/material';
+import Loader from '../Common/Loader';
+import PageTemplate from '../Common/PageTemplate';
 
-import { useHorowitzStore } from "@/store/horowitzStore";
-import LiteratureSection from "./parts/LiteratureSection";
-import QuoteSection from "./parts/QuoteSection";
-import TextBlockSection from "./parts/TextBlockSection.tsx";
-import { Buttons } from "@/types/translation.d";
-import { useLiveQuery } from "@sanity/preview-kit";
-import { horowitzQuery } from "@/api/query.ts";
-import MainBanner from "../Common/MainBanner.tsx";
+import { useHorowitzStore } from '@/store/horowitzStore';
+import LiteratureSection from './parts/LiteratureSection';
+import QuoteSection from './parts/QuoteSection';
+import TextBlockSection from './parts/TextBlockSection.tsx';
+import { Buttons } from '@/types/translation.d';
+import { useLiveQuery } from '@sanity/preview-kit';
+import { horowitzQuery } from '@/api/query.ts';
+import MainBanner from '../Common/MainBanner.tsx';
 
 const HorowitzPage: FC = () => {
   const {
@@ -86,9 +86,9 @@ const HorowitzPage: FC = () => {
           <Typography
             variant="h1"
             sx={{
-              textTransform: "uppercase",
+              textTransform: 'uppercase',
               marginBottom: { xs: 3, md: 5, lg: 6 },
-              textAlign: "center",
+              textAlign: 'center',
             }}
           >
             {t(`navigation.${Routes.HOROWITZ}`)}
@@ -108,7 +108,7 @@ const HorowitzPage: FC = () => {
             </Box>
           )}
 
-          <Typography variant="subhead" sx={{ textAlign: "left" }} gutterBottom>
+          <Typography variant="subhead" sx={{ textAlign: 'left' }} gutterBottom>
             {t(`horowitzPage.literature`)}:
           </Typography>
           {literature && (
@@ -120,13 +120,13 @@ const HorowitzPage: FC = () => {
 
           <Box
             sx={{
-              width: "100%",
-              textAlign: "center",
-              marginTop: "48px",
+              width: '100%',
+              textAlign: 'center',
+              marginTop: '48px',
             }}
           >
             <Button
-              sx={{ width: "288px" }}
+              sx={{ width: '288px' }}
               variant="transparent"
               onClick={handleShowMore}
               onTouchStart={handleLongPress}

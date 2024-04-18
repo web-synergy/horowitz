@@ -35,16 +35,12 @@ export default defineType({
       name: 'description',
       title: 'Загальний опис',
       type: 'internationalizedArrayArticle',
-      hidden: ({document}) => document.isWarState,
-      validation: (Rule) =>
-        Rule.custom<Value[]>((value) => {
-          return validateInternationalizedArray(value)
-        }),
+      hidden: ({document}) => !!document?.isWarState,
     }),
     defineField({
       name: 'junior',
       title: 'Дебют/Молодша група',
-      hidden: ({document}) => document.isWarState,
+      hidden: ({document}) => !!document?.isWarState,
       type: 'reference',
       to: [{type: 'junior'}],
       options: {
@@ -59,7 +55,7 @@ export default defineType({
     defineField({
       name: 'intermediate',
       type: 'reference',
-      hidden: ({document}) => document.isWarState,
+      hidden: ({document}) => !!document?.isWarState,
       to: [{type: 'group'}],
       title: 'Середня група (14-19 років)',
       validation: (rule) => rule.required(),
@@ -74,11 +70,11 @@ export default defineType({
     defineField({
       name: 'senior',
       title: 'Старша група (16-33 роки)',
-      hidden: ({document}) => document.isWarState,
+      hidden: ({document}) => !!document?.isWarState,
       type: 'reference',
       to: [{type: 'group'}],
       options: {disableNew: true},
-      validation: (rule) => rule.required("Обов'язкове поле"),
+      validation: (rule) => rule.required(),
       components: {
         input: GroupInput,
         field: GroupField,

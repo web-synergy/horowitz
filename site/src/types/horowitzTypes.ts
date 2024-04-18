@@ -1,36 +1,20 @@
-import { PortableTextBlock } from "@portabletext/types";
-import { IBanner } from "./bannerType";
+import { PortableTextBlock } from '@portabletext/types';
+import { IBanner } from './bannerType';
 
 export interface IHorowitzData {
-  banner: IBanner | null;
   bannerData: IBanner | null;
-  bannerCopyright: string;
-  quote: {
-    author: string[];
-    quote: string[];
-  };
+  quote: QuoteType;
   upperTextBlock: PortableTextBlock[];
   lowerTextBlock: PortableTextBlock[];
   literature: PortableTextBlock[];
 }
 
-export interface BannerComponentProps {
-  banner: IBanner;
-  copyright: string;
-}
-
-export interface LiteratureSectionProps {
+export interface LiteratureType {
   literature: PortableTextBlock[];
   isAllLiteratureVisible: boolean;
 }
 
-export interface QuoteSectionProps {
-  quote: {
-    author: string[];
-    quote: string[];
-  };
-}
-
-export interface TextBlockSectionProps {
-  blocks: PortableTextBlock[];
+export interface QuoteType {
+  author: string[];
+  quote: string[];
 }
