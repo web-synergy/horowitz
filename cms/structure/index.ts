@@ -3,7 +3,7 @@ import {StructureBuilder} from 'sanity/structure'
 
 import {IoSettingsSharp, IoShareSocialOutline} from 'react-icons/io5'
 import {LuContact} from 'react-icons/lu'
-import {MdOutlineSettingsBrightness} from 'react-icons/md'
+import {MdOutlineSettingsBrightness, MdWarningAmber} from 'react-icons/md'
 import {RiPagesLine} from 'react-icons/ri'
 import {SiGithubsponsors} from 'react-icons/si'
 import {BsMusicNoteList} from 'react-icons/bs'
@@ -14,24 +14,26 @@ import {preview} from './preview'
 import {newsStructure} from './newsStructure'
 import {virtuososStructure} from './virtuososStructure'
 import {summerSchoolStructure} from './summerSchoolStructure'
+import {competitionStructure} from './competitionStructure'
 
-const singleSchemaTittles = [
-  'Головна',
-  'Налаштування',
-  'Контактна інформація',
-  'Соцмережі',
-  'Конкурс дані',
-  'Володимир Горовиць',
-  'Новини',
-  'Партнери і спонсори',
-  'Адміністрація конкурсу',
-  'Статті',
-  'Віртуози планет',
-  'Конкурс Горовиця',
-  'Твори українських композиторів',
-  'Літня академія',
-  'Річна Літня академія',
-]
+// const singleSchemaTittles = [
+//   'Головна',
+//   'Налаштування',
+//   'Контактна інформація',
+//   'Соцмережі',
+//   'Конкурс дані',
+//   'Володимир Горовиць',
+//   'Новини',
+//   'Партнери і спонсори',
+//   'Адміністрація конкурсу',
+//   'Статті',
+//   'Віртуози планет',
+//   'Конкурс Горовиця',
+//   'Твори українських композиторів',
+//   'Літня академія',
+//   'Річна Літня академія',
+//   'Конкурси',
+// ]
 
 const structure = (S: StructureBuilder) =>
   S.list()
@@ -41,9 +43,8 @@ const structure = (S: StructureBuilder) =>
       S.divider(),
       ...newsStructure(S),
       S.divider(),
-      ...S.documentTypeListItems().filter(
-        (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
-      ),
+      ...competitionStructure(S),
+
       singleDocument(
         S,
         'ukrainianWorks',
@@ -90,6 +91,9 @@ const structure = (S: StructureBuilder) =>
               singleDocument(S, 'social', 'Соцмережі').icon(IoShareSocialOutline),
             ]),
         ),
+      // ...S.documentTypeListItems().filter(
+      //   (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
+      // ),
     ])
 
 export default structure
