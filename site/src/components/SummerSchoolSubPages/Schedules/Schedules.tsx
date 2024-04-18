@@ -54,6 +54,7 @@ const ukLocaleText = {
 };
 
 const SchedulePage = () => {
+  const [showLoader, setShowLoader] = useState(false);
   const [showAllLectures, setShowAllLectures] = useState(false);
   const [isShowSearchResults, setIsShowSearchResults] = useState(false);
   const [selectedProfessorName, setSelectedProfessorName] = useState("");
@@ -73,6 +74,14 @@ const SchedulePage = () => {
       isLoading: state.isLoading,
       requestLang: state.requestLang,
     }));
+
+  useEffect(() => {
+    setShowLoader(true); // Устанавливаем состояние для показа лоадера
+    const timeout = setTimeout(() => {
+      setShowLoader(false); // Скрываем лоадер через секунду
+    }, 1000);
+    return () => clearTimeout(timeout); // Очищаем таймаут при размонтировании компонента или изменении зависимостей
+  }, [selectedLectures]);
 
   // useEffect(() => {
   //   if (professors) {
@@ -415,8 +424,7 @@ const SchedulePage = () => {
           }}
         />
       )}
-
-      {selectedLectures.length > 0 && (
+      {selectedLectures.length > 0 && !showLoader && (
         <Typography
           variant="h3"
           sx={{
@@ -427,7 +435,7 @@ const SchedulePage = () => {
           Результати пошуку
         </Typography>
       )}
-      {selectedLectures.length === 0 && isShowSearchResults && (
+      {selectedLectures.length === 0 && isShowSearchResults && !showLoader && (
         <Box
           sx={{
             textAlign: "center",
@@ -440,29 +448,66 @@ const SchedulePage = () => {
           </Typography>
         </Box>
       )}
-      <Box
-        sx={{
-          borderLeft: "1px solid black",
-          borderRight: "1px solid black",
-          borderBottom: "1px solid black",
-          marginBottom: "100px",
-        }}
-      >
-        {selectedLectures.map((lecture) => (
-          <Box key={lecture._key}>
-            {lecture.rehearsals.map((rehearsal, index) => (
-              <Box
-                key={index}
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: {
-                    xs: " 1fr",
-                    md: "repeat(3, 140px) 1fr",
-                    lg: "repeat(3, 182px) 1fr",
-                  },
-                }}
-              >
-                {index === 0 && (
+      {showLoader ? (
+        <Loader />
+      ) : (
+        <Box
+          sx={{
+            borderLeft: "1px solid black",
+            borderRight: "1px solid black",
+            borderBottom: "1px solid black",
+            marginBottom: "100px",
+          }}
+        >
+          {selectedLectures.map((lecture) => (
+            <Box key={lecture._key}>
+              {lecture.rehearsals.map((rehearsal, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    display: "grid",
+                    gridTemplateColumns: {
+                      xs: " 1fr",
+                      md: "repeat(3, 140px) 1fr",
+                      lg: "repeat(3, 182px) 1fr",
+                    },
+                  }}
+                >
+                  {index === 0 && (
+                    <Box
+                      sx={{
+                        borderRight: { md: "1px solid black" },
+                        borderTop: "1px solid black",
+                        padding: {
+                          xs: "8px 8px",
+                          md: "40px 8px",
+                          lg: "48px 28px",
+                        },
+                        textAlign: "start",
+                        backgroundColor: {
+                          xs: "rgba(217, 161, 69, 0.2)",
+                          md: "transparent",
+                        },
+                      }}
+                    >
+                      <Typography variant="bodyRegular">
+                        {formatDate(lecture.date)}
+                      </Typography>
+                    </Box>
+                  )}
+                  {index > 0 && (
+                    <Box
+                      sx={{
+                        borderRight: { md: "1px solid black" },
+                        padding: {
+                          xs: "8px 8px",
+                          md: "40px 8px",
+                          lg: "48px 28px",
+                        },
+                        textAlign: "start",
+                      }}
+                    ></Box>
+                  )}
                   <Box
                     sx={{
                       borderRight: { md: "1px solid black" },
@@ -473,21 +518,16 @@ const SchedulePage = () => {
                         lg: "48px 28px",
                       },
                       textAlign: "start",
-                      backgroundColor: {
-                        xs: "rgba(217, 161, 69, 0.2)",
-                        md: "transparent",
-                      },
                     }}
                   >
                     <Typography variant="bodyRegular">
-                      {formatDate(lecture.date)}
+                      {rehearsal.time}
                     </Typography>
                   </Box>
-                )}
-                {index > 0 && (
                   <Box
                     sx={{
                       borderRight: { md: "1px solid black" },
+                      borderTop: "1px solid black",
                       padding: {
                         xs: "8px 8px",
                         md: "40px 8px",
@@ -495,57 +535,29 @@ const SchedulePage = () => {
                       },
                       textAlign: "start",
                     }}
-                  ></Box>
-                )}
-                <Box
-                  sx={{
-                    borderRight: { md: "1px solid black" },
-                    borderTop: "1px solid black",
-                    padding: {
-                      xs: "8px 8px",
-                      md: "40px 8px",
-                      lg: "48px 28px",
-                    },
-                    textAlign: "start",
-                  }}
-                >
-                  <Typography variant="bodyRegular">
-                    {rehearsal.time}
-                  </Typography>
+                  >
+                    <Typography variant="bodyMedium">
+                      {getProfessorInfo(lecture.lecture)}
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      borderTop: "1px solid black",
+                      padding: {
+                        xs: "8px 8px",
+                        md: "40px 24px",
+                        lg: "48px 48px",
+                      },
+                    }}
+                  >
+                    <TextBlockSection blocks={rehearsal.event} />
+                  </Box>
                 </Box>
-                <Box
-                  sx={{
-                    borderRight: { md: "1px solid black" },
-                    borderTop: "1px solid black",
-                    padding: {
-                      xs: "8px 8px",
-                      md: "40px 8px",
-                      lg: "48px 28px",
-                    },
-                    textAlign: "start",
-                  }}
-                >
-                  <Typography variant="bodyMedium">
-                    {getProfessorInfo(lecture.lecture)}
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    borderTop: "1px solid black",
-                    padding: {
-                      xs: "8px 8px",
-                      md: "40px 24px",
-                      lg: "48px 48px",
-                    },
-                  }}
-                >
-                  <TextBlockSection blocks={rehearsal.event} />
-                </Box>
-              </Box>
-            ))}
-          </Box>
-        ))}
-      </Box>
+              ))}
+            </Box>
+          ))}
+        </Box>
+      )}
       {/* <Collapse in={showAllLectures} timeout={1000}>
         <Box
           sx={{
