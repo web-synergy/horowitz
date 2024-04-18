@@ -53,7 +53,6 @@ export default {
     [Buttons.READ_MORE]: "Read more",
     [Buttons.SHOW_MORE]: "Show more",
     [Buttons.SHOW_LESS]: "Show less",
-    [Buttons.SHOW_TIMETABLE]: "Show the timetable",
     [Buttons.APPLY]: "Apply now",
     [Buttons.SUPPORT]: "Support us",
     [Buttons.VIEW_ALL]: "View all",

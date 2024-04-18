@@ -53,7 +53,6 @@ export default {
     [Buttons.READ_MORE]: "Читати більше",
     [Buttons.SHOW_MORE]: "Показати більше",
     [Buttons.SHOW_LESS]: "Показати менше",
-    [Buttons.SHOW_TIMETABLE]: "Показати графік",
     [Buttons.APPLY]: "Заявка на участь",
     [Buttons.SUPPORT]: "Підтримати проєкт",
     [Buttons.VIEW_ALL]: "Переглянути всі",

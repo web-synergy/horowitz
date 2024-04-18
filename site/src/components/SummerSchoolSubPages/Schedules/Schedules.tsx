@@ -57,8 +57,8 @@ const SchedulePage = () => {
   const [showAllLectures, setShowAllLectures] = useState(false);
   const [isShowSearchResults, setIsShowSearchResults] = useState(false);
   const [selectedProfessorName, setSelectedProfessorName] = useState("");
-  const [selectedProfessorData, setSelectedProfessorData] =
-    useState<IProfessor | null>(null);
+  // const [selectedProfessorData, setSelectedProfessorData] =
+  //   useState<IProfessor | null>(null);
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
   const [selectedLectures, setSelectedLectures] = useState<ISchedule[]>([]);
   const [isProfessorSelectOpen, setIsProfessorSelectOpen] = useState(false);
@@ -74,36 +74,49 @@ const SchedulePage = () => {
       requestLang: state.requestLang,
     }));
 
-  useEffect(() => {
-    if (professors) {
-      setSelectedProfessorName(professors[0].name);
-    }
-  }, [professors]);
-
+  // useEffect(() => {
+  //   if (professors) {
+  //     setSelectedProfessorName(professors[0].name);
+  //   }
+  // }, [professors]);
+  // console.log(selectedProfessorData);
   const updateSchedule = useCallback(
     (selectedProfessorName: string, selectedDate: dayjs.Dayjs | null) => {
       let updatedLectures: ISchedule[] = [];
 
-      let selectedProfessorObject: IProfessor | null = null;
+      if (selectedProfessorName === "Показати всіх") {
+        // Если выбран пункт "Показати всіх", отображаем все лекции
+        if (selectedDate) {
+          updatedLectures = schedules.filter((schedule) =>
+            dayjs(schedule.date).isSame(selectedDate, "day")
+          );
+        } else {
+          updatedLectures = schedules.filter((schedule) =>
+            dayjs(schedule.date).isSameOrAfter(dayjs(), "day")
+          );
+        }
+        setIsShowSearchResults(true);
+      } else {
+        if (schedules && professors) {
+          const selectedProfessorObject = professors.find(
+            (professor) => professor.name === selectedProfessorName
+          );
 
-      if (schedules && professors) {
-        selectedProfessorObject = professors.find(
-          (professor) => professor.name === selectedProfessorName
-        )!;
-
-        if (selectedProfessorObject) {
-          if (selectedDate) {
-            updatedLectures = schedules.filter(
-              (schedule) =>
-                schedule.lecture === selectedProfessorObject!._key &&
-                dayjs(schedule.date).isSame(selectedDate, "day")
-            );
-          } else {
-            updatedLectures = schedules.filter(
-              (schedule) =>
-                schedule.lecture === selectedProfessorObject!._key &&
-                dayjs(schedule.date).isSameOrAfter(dayjs(), "day")
-            );
+          if (selectedProfessorObject) {
+            if (selectedDate) {
+              updatedLectures = schedules.filter(
+                (schedule) =>
+                  schedule.lecture === selectedProfessorObject._key &&
+                  dayjs(schedule.date).isSame(selectedDate, "day")
+              );
+            } else {
+              updatedLectures = schedules.filter(
+                (schedule) =>
+                  schedule.lecture === selectedProfessorObject._key &&
+                  dayjs(schedule.date).isSameOrAfter(dayjs(), "day")
+              );
+            }
+            setIsShowSearchResults(true);
           }
         }
       }
@@ -112,13 +125,11 @@ const SchedulePage = () => {
         (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
       );
       console.log(updatedLectures);
-      setSelectedProfessorData(selectedProfessorObject);
+
       setSelectedLectures(updatedLectures);
-      setIsShowSearchResults(true);
     },
     [schedules, professors]
   );
-
   // useEffect(() => {
   //   // if (professors && selectedProfessorName === professors[0].name) {
   //   //   // Перевірка, чи selectedProfessorName не встановлено
@@ -138,27 +149,16 @@ const SchedulePage = () => {
   // ]);
 
   const handleProfessorChange = (event: SelectChangeEvent<string>) => {
-    const selectedProfessorName = event.target.value;
-    setSelectedProfessorName(selectedProfessorName);
+    const selectedProfessor = event.target.value;
+    // console.log(selectedProfessorName);
+    setSelectedProfessorName(selectedProfessor);
     setShowAllLectures(false);
-    updateSchedule(selectedProfessorName, selectedDate);
-  };
-
-  const handleShowSchedule = () => {
-    updateSchedule(selectedProfessorName, selectedDate);
+    updateSchedule(selectedProfessor, selectedDate);
   };
 
   const handleDateChange = (date: Dayjs | null) => {
     setSelectedDate(date);
     updateSchedule(selectedProfessorName, date);
-  };
-
-  const handleShowMore = () => {
-    setShowAllLectures(true);
-  };
-
-  const handleShowLess = () => {
-    setShowAllLectures(false);
   };
 
   const formatDate = (date: Dayjs | string) => {
@@ -179,6 +179,18 @@ const SchedulePage = () => {
 
   const handleDatePickerClose = () => {
     setIsDatePickerOpen(false);
+  };
+
+  const getProfessorInfo = (lectureKey: string): string => {
+    const professor = professors.find(
+      (professor) => professor._key === lectureKey
+    );
+    if (professor) {
+      return `${
+        professor.role?.charAt(0).toUpperCase() + professor.role?.slice(1)
+      } - ${professor.name}`;
+    }
+    return "";
   };
 
   if (isLoading) return <Loader />;
@@ -264,6 +276,9 @@ const SchedulePage = () => {
                   },
                 }}
               >
+                <MenuItem value="Показати всіх">
+                  <em>Показати всіх</em>
+                </MenuItem>
                 {professors.map((professor) => (
                   <MenuItem key={professor._key} value={professor.name}>
                     {professor.name}
@@ -309,6 +324,7 @@ const SchedulePage = () => {
                   return dayOfWeek;
                 }}
                 format="DD/MM/YYYY"
+                disabled={!selectedProfessorName}
                 sx={{
                   width: "100%",
                 }}
@@ -391,22 +407,6 @@ const SchedulePage = () => {
             </DemoItem>
           </LocalizationProvider>
         </Box>
-        <Box sx={{ width: { xs: "100%", md: "180px", lg: "100%" } }}>
-          <Button
-            sx={{
-              minWidth: "180px",
-              width: "100%",
-
-              "&.MuiButton-root": {
-                padding: { md: "14px 14px" },
-              },
-            }}
-            variant="primary"
-            onClick={handleShowSchedule}
-          >
-            {t(`buttons.${Buttons.SHOW_TIMETABLE}`)}
-          </Button>
-        </Box>
       </Box>
       {!isShowSearchResults && (
         <Box
@@ -440,69 +440,29 @@ const SchedulePage = () => {
           </Typography>
         </Box>
       )}
-      <Collapse in={isShowSearchResults} timeout={1000}>
-        <Box
-          sx={{
-            borderLeft: "1px solid black",
-            borderRight: "1px solid black",
-            borderBottom:
-              !showAllLectures &&
-              selectedLectures &&
-              selectedLectures.length > 0
-                ? "1px solid black"
-                : "none",
-            marginBottom: selectedLectures.length <= 2 ? "96px" : "",
-          }}
-        >
-          {selectedLectures.slice(0, 2).map((lecture) => (
-            <Box key={lecture._key}>
-              {lecture.rehearsals.map((rehearsal, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    display: "grid",
-                    gridTemplateColumns: {
-                      xs: " 1fr",
-                      md: "repeat(3, 140px) 1fr",
-                      lg: "repeat(3, 182px) 1fr",
-                    },
-                  }}
-                >
-                  {index === 0 && (
-                    <Box
-                      sx={{
-                        borderRight: { md: "1px solid black" },
-                        borderTop: "1px solid black",
-                        padding: {
-                          xs: "8px 8px",
-                          md: "40px 8px",
-                          lg: "48px 28px",
-                        },
-                        textAlign: "start",
-                        backgroundColor: {
-                          xs: "rgba(217, 161, 69, 0.2)",
-                          md: "transparent",
-                        },
-                      }}
-                    >
-                      <Typography variant="bodyRegular">
-                        {formatDate(lecture.date)}
-                      </Typography>
-                    </Box>
-                  )}
-                  {index > 0 && (
-                    <Box
-                      sx={{
-                        borderRight: { md: "1px solid black" },
-                        padding: {
-                          xs: "8px 8px",
-                          md: "40px 8px",
-                          lg: "48px 28px",
-                        },
-                        textAlign: "start",
-                      }}
-                    ></Box>
-                  )}
+      <Box
+        sx={{
+          borderLeft: "1px solid black",
+          borderRight: "1px solid black",
+          borderBottom: "1px solid black",
+          marginBottom: "100px",
+        }}
+      >
+        {selectedLectures.map((lecture) => (
+          <Box key={lecture._key}>
+            {lecture.rehearsals.map((rehearsal, index) => (
+              <Box
+                key={index}
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: {
+                    xs: " 1fr",
+                    md: "repeat(3, 140px) 1fr",
+                    lg: "repeat(3, 182px) 1fr",
+                  },
+                }}
+              >
+                {index === 0 && (
                   <Box
                     sx={{
                       borderRight: { md: "1px solid black" },
@@ -513,16 +473,21 @@ const SchedulePage = () => {
                         lg: "48px 28px",
                       },
                       textAlign: "start",
+                      backgroundColor: {
+                        xs: "rgba(217, 161, 69, 0.2)",
+                        md: "transparent",
+                      },
                     }}
                   >
                     <Typography variant="bodyRegular">
-                      {rehearsal.time}{" "}
+                      {formatDate(lecture.date)}
                     </Typography>
                   </Box>
+                )}
+                {index > 0 && (
                   <Box
                     sx={{
                       borderRight: { md: "1px solid black" },
-                      borderTop: "1px solid black",
                       padding: {
                         xs: "8px 8px",
                         md: "40px 8px",
@@ -530,33 +495,58 @@ const SchedulePage = () => {
                       },
                       textAlign: "start",
                     }}
-                  >
-                    <Typography variant="bodyMedium">{`${
-                      selectedProfessorData?.role
-                        ? selectedProfessorData.role.charAt(0).toUpperCase() +
-                          selectedProfessorData.role.slice(1)
-                        : ""
-                    } - ${selectedProfessorData?.name || ""}`}</Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      borderTop: "1px solid black",
-                      padding: {
-                        xs: "8px 8px",
-                        md: "40px 24px",
-                        lg: "48px 48px",
-                      },
-                    }}
-                  >
-                    <TextBlockSection blocks={rehearsal.event} />
-                  </Box>
+                  ></Box>
+                )}
+                <Box
+                  sx={{
+                    borderRight: { md: "1px solid black" },
+                    borderTop: "1px solid black",
+                    padding: {
+                      xs: "8px 8px",
+                      md: "40px 8px",
+                      lg: "48px 28px",
+                    },
+                    textAlign: "start",
+                  }}
+                >
+                  <Typography variant="bodyRegular">
+                    {rehearsal.time}
+                  </Typography>
                 </Box>
-              ))}
-            </Box>
-          ))}
-        </Box>
-      </Collapse>
-      <Collapse in={showAllLectures} timeout={1000}>
+                <Box
+                  sx={{
+                    borderRight: { md: "1px solid black" },
+                    borderTop: "1px solid black",
+                    padding: {
+                      xs: "8px 8px",
+                      md: "40px 8px",
+                      lg: "48px 28px",
+                    },
+                    textAlign: "start",
+                  }}
+                >
+                  <Typography variant="bodyMedium">
+                    {getProfessorInfo(lecture.lecture)}
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    borderTop: "1px solid black",
+                    padding: {
+                      xs: "8px 8px",
+                      md: "40px 24px",
+                      lg: "48px 48px",
+                    },
+                  }}
+                >
+                  <TextBlockSection blocks={rehearsal.event} />
+                </Box>
+              </Box>
+            ))}
+          </Box>
+        ))}
+      </Box>
+      {/* <Collapse in={showAllLectures} timeout={1000}>
         <Box
           sx={{
             borderLeft: "1px solid black",
@@ -567,8 +557,8 @@ const SchedulePage = () => {
                 : "none",
           }}
         >
-          {selectedLectures.slice(2).map((lecture) => (
-            <Box key={lecture._key} sx={{}}>
+          {selectedLectures.map((lecture) => (
+            <Box key={lecture._key}>
               {lecture.rehearsals.map((rehearsal, index) => (
                 <Box
                   key={index}
@@ -660,9 +650,9 @@ const SchedulePage = () => {
             </Box>
           ))}
         </Box>
-      </Collapse>
+      </Collapse> */}
 
-      {selectedLectures.length > 2 && (
+      {/* {selectedLectures.length > 2 && (
         <Box
           sx={{
             width: "100%",
@@ -683,7 +673,7 @@ const SchedulePage = () => {
             )}
           </Button>
         </Box>
-      )}
+      )} */}
     </Container>
   );
 };

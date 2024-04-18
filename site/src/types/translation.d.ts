@@ -12,7 +12,6 @@ export enum Buttons {
   READ_MORE = "readMore",
   SHOW_MORE = "showMore",
   SHOW_LESS = "showLess",
-  SHOW_TIMETABLE = "showTimetable",
   APPLY = "apply",
   SUPPORT = "support",
   VIEW_ALL = "viewAll",
