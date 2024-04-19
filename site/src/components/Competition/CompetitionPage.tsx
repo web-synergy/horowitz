@@ -1,38 +1,52 @@
+import { useEffect } from 'react';
+// import { useLiveQuery } from '@sanity/preview-kit';
 import { useLocation, Navigate } from 'react-router-dom';
 import { useSettingsStore } from '@/store/settingStore';
-import PageTemplate from '../Common/PageTemplate';
 
-import { Container } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+
 import WarStatePlaceholderPage from '../WarStatePlaceholderPage/WarStatePlaceholderPage';
-import { useState } from 'react';
+import { useCompetitionStore } from '@/store/competitionStore';
+import Loader from '../Common/Loader';
+import MainLayout from './parts/MainLayout';
 
 const CompetitionPage = () => {
-  const [isWarTime] = useState(true);
+  const {
+    i18n: { language },
+  } = useTranslation();
+
   const { pathname } = useLocation();
-
   const { competitions } = useSettingsStore();
+  const { fetchCommonData, isWarState, title, requestLang, isLoading } =
+    useCompetitionStore();
 
-  const langCompetitions = competitions;
-  const title = langCompetitions ? langCompetitions[0]?.title[0] : '';
+  const competitionSlug = pathname.split('/').slice(-1)[0];
 
-  const competitionName = pathname.split('/').slice(-1)[0];
+  useEffect(() => {
+    if (requestLang === language) return;
+    fetchCommonData(competitionSlug, language);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [competitionSlug, language]);
 
-  const isCompetitionExist = langCompetitions?.find(
-    (item) => item.slug === competitionName
+  const isCompetitionExist = competitions?.find(
+    (item) => item.slug === competitionSlug
   );
+
+  //ToDo: add preview request
+  // const [data] = useLiveQuery(virtuosos, virtuososQuery, {
+  //   language,
+  // });
+
+  if (isLoading) return <Loader />;
 
   if (!isCompetitionExist) {
     return <Navigate to={'404'} />;
   }
 
-  return isWarTime ? (
+  return isWarState ? (
     <WarStatePlaceholderPage title={title} />
   ) : (
-    <PageTemplate>
-      <Container>
-        <div>Competition Page</div>
-      </Container>
-    </PageTemplate>
+    <MainLayout />
   );
 };
 

@@ -25,8 +25,6 @@ const ImageComponent: FC<ImageComponentProps> = ({ image }) => {
   const imageWidth = Math.floor(containerSize * 1.2);
   const imageHeight = Math.floor(imageWidth / aspectRatio);
 
-  console.log(aspectRatio, imageWidth, imageHeight);
-
   const imageUrl = urlFor(image)
     .auto('format')
     .width(imageWidth)

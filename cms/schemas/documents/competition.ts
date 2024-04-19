@@ -1,46 +1,104 @@
 import {defineField, defineType} from 'sanity'
-import {GiMusicalKeyboard as icon} from 'react-icons/gi'
+import {BsFileEarmarkMusicFill as icon} from 'react-icons/bs'
+import {GroupInput} from '../../components/GroupInput'
+import {GroupField} from '../../components/GroupField'
+import {validateInternationalizedArray} from '../../utils/validateInternalizedArray'
+import {Value} from 'sanity-plugin-internationalized-array'
+
 export default defineType({
-  name: 'competitions',
+  name: 'competition',
   title: 'Конкурси',
   type: 'document',
   icon,
   fields: [
     defineField({
       name: 'title',
-      title: 'Заголовок',
+      title: 'Назва конкурсу',
       type: 'internationalizedArrayString',
+      validation: (Rule) =>
+        Rule.custom<Value[]>((value) => {
+          return validateInternationalizedArray(value)
+        }),
     }),
     defineField({
       name: 'slug',
       type: 'slug',
-      options: {source: 'competition[1].value'},
+      options: {source: 'title[1].value'},
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'isWarState',
+      title: 'Показувати заглушку про стан війни',
+      type: 'boolean',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Загальний опис',
+      type: 'internationalizedArrayArticle',
+      hidden: ({document}) => !!document?.isWarState,
+    }),
+    defineField({
+      name: 'juniorBtn',
+      type: 'image',
+      title: 'Картинка для кнопки Молодша група',
+    }),
+    defineField({
+      name: 'intermediateBtn',
+      type: 'image',
+      title: 'Картинка для кнопки Середня група',
+    }),
+    defineField({
+      name: 'seniorBtn',
+      type: 'image',
+      title: 'Картинка для кнопки Старша група',
+    }),
+    defineField({
+      name: 'mainBanner',
+      type: 'banner',
+      title: 'Головний банер',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'junior',
-      title: 'Горовиць Дебют/Молодша група',
+      title: 'Дебют/Молодша група',
+      hidden: ({document}) => !!document?.isWarState,
       type: 'reference',
-      to: [{type: 'competitionDocument'}],
+      to: [{type: 'junior'}],
       options: {
-        filter: 'role == $role',
+        disableNew: true,
+      },
+      validation: (rule) => rule.required(),
+      components: {
+        input: GroupInput,
+        field: GroupField,
       },
     }),
     defineField({
-      name: 'middle',
-      title: 'Середня група (14-19 років)',
+      name: 'intermediate',
       type: 'reference',
-      to: [{type: 'competitionDocument'}],
+      hidden: ({document}) => !!document?.isWarState,
+      to: [{type: 'group'}],
+      title: 'Середня група (14-19 років)',
+      validation: (rule) => rule.required(),
       options: {
-        filter: 'role == $role',
+        disableNew: true,
+      },
+      components: {
+        input: GroupInput,
+        field: GroupField,
       },
     }),
     defineField({
       name: 'senior',
       title: 'Старша група (16-33 роки)',
+      hidden: ({document}) => !!document?.isWarState,
       type: 'reference',
-      to: [{type: 'competitionDocument'}],
-      options: {
-        filter: 'role == $role',
+      to: [{type: 'group'}],
+      options: {disableNew: true},
+      validation: (rule) => rule.required(),
+      components: {
+        input: GroupInput,
+        field: GroupField,
       },
     }),
   ],

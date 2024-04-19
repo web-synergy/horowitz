@@ -8,12 +8,12 @@ export interface Partner {
   size: number;
 }
 
-export interface PartnersResp {
-  organizers: Partner[];
-  mainPartners: Partner[];
-  sponsors: Partner[];
-  generalInfoPartners: Partner[];
-  mainInfoPartners: Partner[];
-  officialInfoPartners: Partner[];
-  partners: Partner[];
+export interface PartnersType {
+  organizers: Partner[] | null;
+  mainPartners: Partner[] | null;
+  sponsors: Partner[] | null;
+  generalInfoPartners: Partner[] | null;
+  mainInfoPartners: Partner[] | null;
+  officialInfoPartners: Partner[] | null;
+  partners: Partner[] | null;
 }

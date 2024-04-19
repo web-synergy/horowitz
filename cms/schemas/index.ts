@@ -12,7 +12,8 @@ import content from './objects/content'
 import banner from './objects/banner'
 
 import competition from './documents/competition'
-import competitionDocument from './documents/competitionDocument'
+import junior from './documents/junior'
+import group from './documents/group'
 import {imageGalleryType} from './objects/imageGalleryType'
 import sponsor from './objects/sponsor'
 import membersAdministration from './objects/membersAdministration'
@@ -45,7 +46,7 @@ export const schemaTypes = [
   settings,
   contacts,
   social,
-  competitionDocument,
+
   magazinePdf,
   horowitz,
   partners,
@@ -56,6 +57,8 @@ export const schemaTypes = [
   ukrainianWorks,
   summerSchool,
   annualSummerSchool,
+  junior,
+  group,
 
   //objects
   winners,

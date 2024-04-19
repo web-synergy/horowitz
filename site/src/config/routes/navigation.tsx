@@ -76,7 +76,7 @@ export const overallNavigation = navigation.reduce(
     const mainElement = { title: title, parent: null };
     acc.push(mainElement);
     if (children) {
-      children.forEach(item => {
+      children.forEach((item) => {
         const element = { title: item.title, parent: title };
         acc.push(element);
       });

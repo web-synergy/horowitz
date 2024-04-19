@@ -37,8 +37,7 @@ export const settingsQuery = groq`*[_type == 'settings']{
 }`;
 
 export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
-  'banner': mainBanner,
-  'bannerCopyright': bannerData.bannerCopyright,
+  'bannerData': mainBanner,
   'upperTextBlock': upperTextBlock[_key ==$language][0].value,
   'quote':quote{
     'author': author[_key ==$language].value,
@@ -212,4 +211,23 @@ export const annualSchoolData = groq`*[_type== 'annualSummerSchool' && year==$ye
     }, 
   } 
   
+}`;
+
+export const competitionsQuery = groq`*[_type == 'competition' && slug.current == $slug][0]{
+  "title": title[_key ==$language][0].value, 
+   "description": description[_key ==$language][0].value, 
+  isWarState, 
+  juniorBtn, 
+  intermediateBtn, 
+  seniorBtn, 
+  mainBanner, 
+  "junior":junior->{
+    isActive, 
+  }, 
+  "intermediate": intermediate->{
+    isActive, 
+     },
+  "senior": senior->{
+    isActive, 
+     },
 }`;

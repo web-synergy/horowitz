@@ -1,8 +1,11 @@
 import React from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
 import { Section } from '@/components/Contacts/styled';
-import { QuoteSectionProps } from '@/types/horowitzTypes';
+import { QuoteType } from '@/types/horowitzTypes';
 
+export interface QuoteSectionProps {
+  quote: QuoteType;
+}
 const QuoteSection: React.FC<QuoteSectionProps> = ({ quote }) => {
   const theme = useTheme();
 
