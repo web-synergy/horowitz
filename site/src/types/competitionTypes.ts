@@ -1,13 +1,18 @@
 import { PortableTextBlock } from '@portabletext/types';
-import { JuniorGroupType } from './juniorGroupType';
-import { OtherGroupType } from './otherGroupType';
+import { OtherGroupType, JuniorGroupType } from './groupTypes';
+import { IImageReference } from './commonTypes';
+import { IBanner } from './bannerType';
 
 export interface CompetitionType {
   title: string;
   slug: string;
   description: PortableTextBlock[] | null;
   isWarState: boolean;
-  junior: JuniorGroupType | null;
-  intermediate: OtherGroupType | null;
-  senior: OtherGroupType | null;
+  juniorBtn: IImageReference | null;
+  intermediateBtn: IImageReference | null;
+  seniorBtn: IImageReference | null;
+  mainBanner: IBanner | null;
+  junior: Pick<JuniorGroupType, 'isActive'>;
+  intermediate: Pick<OtherGroupType, 'isActive'>;
+  senior: Pick<OtherGroupType, 'isActive'>;
 }

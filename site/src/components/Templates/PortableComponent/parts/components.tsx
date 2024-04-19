@@ -61,8 +61,11 @@ export const components: PortableTextComponents = {
       <Typography
         component={'p'}
         sx={{
-          my: '16px',
+          mb: 2,
           textAlign: 'justify',
+          '&:last-child': {
+            mb: 0,
+          },
         }}
         variant="bodyRegular"
       >

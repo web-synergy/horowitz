@@ -48,6 +48,9 @@ export default {
     [Routes.KYIV_GENEVA_REWARDS]: 'Нагороди',
     [Routes.KYIV_GENEVA_ORCHESTRA]: 'Оркестр і диригент',
     [Routes.KYIV_GENEVA_TIMETABLE]: 'Регламент проведення конкурсу',
+    [Routes.JUNIOR]: 'Горовиць-Дебют/Молодша група (9-15 років)',
+    [Routes.INTERMEDIATE]: 'Середня Група (14-19 років)',
+    [Routes.SENIOR]: 'Старша група (16-33 років)',
   },
   buttons: {
     [Buttons.READ_MORE]: 'Читати більше',

@@ -54,6 +54,9 @@ import LazyNotFoundPage from '@/components/NotFound/LazyNotFoundPage';
 import LazyCurrentConcert from '@/components/SummerSchoolSubPages/Concerts/CurrentConcert/LazyCurrentConcert';
 import LazyConcertsList from '@/components/SummerSchoolSubPages/Concerts/ConcertsList/LazyConcertsList';
 
+import LazyGroupPage from '@/components/Group/LazyGroupPage';
+import LazyJuniorPage from '@/components/Junior/LazyJuniorPage';
+
 const routes = createBrowserRouter([
   {
     path: '/',
@@ -83,6 +86,18 @@ const routes = createBrowserRouter([
       {
         path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}`,
         element: <LazyCompetitionPage />,
+      },
+      {
+        path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}/${Routes.JUNIOR}`,
+        element: <LazyJuniorPage />,
+      },
+      {
+        path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}/${Routes.INTERMEDIATE}`,
+        element: <LazyGroupPage title={Routes.INTERMEDIATE} />,
+      },
+      {
+        path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}/${Routes.SENIOR}`,
+        element: <LazyGroupPage title={Routes.SENIOR} />,
       },
       {
         path: `${Routes.ARCHIVE}`,

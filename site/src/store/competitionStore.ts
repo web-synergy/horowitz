@@ -9,15 +9,35 @@ export const useCompetitionStore = create<CompetitionStoreState>((set) => ({
   slug: '',
   description: null,
   isWarState: false,
-  junior: {},
-  intermediate: {},
-  senior: {},
+  junior: {
+    isActive: false,
+  },
+  intermediate: {
+    isActive: false,
+  },
+  senior: {
+    isActive: false,
+  },
+  intermediateBtn: null,
+  juniorBtn: null,
+  seniorBtn: null,
+  mainBanner: null,
 
   fetchCommonData: async (slug, language) => {
     set({ isLoading: true, requestLang: language });
     try {
-      const { title, description, isWarState, junior, intermediate, senior } =
-        await getCompetitionData(slug, language);
+      const {
+        title,
+        description,
+        isWarState,
+        junior,
+        intermediate,
+        senior,
+        intermediateBtn,
+        juniorBtn,
+        mainBanner,
+        seniorBtn,
+      } = await getCompetitionData(slug, language);
       //   const response = await getCompetitionData(slug, language);
       //   console.log(response);
       set({
@@ -28,6 +48,10 @@ export const useCompetitionStore = create<CompetitionStoreState>((set) => ({
         intermediate,
         senior,
         slug,
+        juniorBtn,
+        intermediateBtn,
+        seniorBtn,
+        mainBanner,
       });
 
       set({ isLoading: false });

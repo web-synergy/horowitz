@@ -38,6 +38,27 @@ export default defineType({
       hidden: ({document}) => !!document?.isWarState,
     }),
     defineField({
+      name: 'juniorBtn',
+      type: 'image',
+      title: 'Картинка для кнопки Молодша група',
+    }),
+    defineField({
+      name: 'intermediateBtn',
+      type: 'image',
+      title: 'Картинка для кнопки Середня група',
+    }),
+    defineField({
+      name: 'seniorBtn',
+      type: 'image',
+      title: 'Картинка для кнопки Старша група',
+    }),
+    defineField({
+      name: 'mainBanner',
+      type: 'banner',
+      title: 'Головний банер',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'junior',
       title: 'Дебют/Молодша група',
       hidden: ({document}) => !!document?.isWarState,

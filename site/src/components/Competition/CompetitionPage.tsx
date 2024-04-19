@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 // import { useLiveQuery } from '@sanity/preview-kit';
 import { useLocation, Navigate } from 'react-router-dom';
 import { useSettingsStore } from '@/store/settingStore';
-import PageTemplate from '../Common/PageTemplate';
+
 import { useTranslation } from 'react-i18next';
-import { Container, Typography } from '@mui/material';
-import PortableComponent from '../Templates/PortableComponent/PortableComponent';
+
 import WarStatePlaceholderPage from '../WarStatePlaceholderPage/WarStatePlaceholderPage';
 import { useCompetitionStore } from '@/store/competitionStore';
 import Loader from '../Common/Loader';
+import MainLayout from './parts/MainLayout';
 
 const CompetitionPage = () => {
   const {
@@ -17,14 +17,8 @@ const CompetitionPage = () => {
 
   const { pathname } = useLocation();
   const { competitions } = useSettingsStore();
-  const {
-    fetchCommonData,
-    isWarState,
-    title,
-    requestLang,
-    isLoading,
-    description,
-  } = useCompetitionStore();
+  const { fetchCommonData, isWarState, title, requestLang, isLoading } =
+    useCompetitionStore();
 
   const competitionSlug = pathname.split('/').slice(-1)[0];
 
@@ -52,18 +46,7 @@ const CompetitionPage = () => {
   return isWarState ? (
     <WarStatePlaceholderPage title={title} />
   ) : (
-    <PageTemplate>
-      <Container>
-        <Typography
-          variant="h1"
-          textAlign={'center'}
-          mb={{ xs: 3, md: 5, lg: 6 }}
-        >
-          {title}
-        </Typography>
-        {description && <PortableComponent data={description} />}
-      </Container>
-    </PageTemplate>
+    <MainLayout />
   );
 };
 

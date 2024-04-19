@@ -8,11 +8,11 @@ import PageTemplate from '../Common/PageTemplate';
 import { useHorowitzStore } from '@/store/horowitzStore';
 import LiteratureSection from './parts/LiteratureSection';
 import QuoteSection from './parts/QuoteSection';
-import TextBlockSection from './parts/TextBlockSection.tsx';
 import { Buttons } from '@/types/translation.d';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { horowitzQuery } from '@/api/query.ts';
 import MainBanner from '../Common/MainBanner.tsx';
+import TextBlockComponent from '../Templates/TextBlockComponent/TextBlockComponent.tsx';
 
 const HorowitzPage: FC = () => {
   const {
@@ -93,7 +93,7 @@ const HorowitzPage: FC = () => {
           >
             {t(`navigation.${Routes.HOROWITZ}`)}
           </Typography>
-          <TextBlockSection blocks={upperTextBlock} />
+          <TextBlockComponent textArray={upperTextBlock} />
         </Container>
         {quote && <QuoteSection quote={quote} />}
         <Container component="section">
@@ -104,7 +104,7 @@ const HorowitzPage: FC = () => {
                 paddingBottom: { xs: 3, md: 5, lg: 6 },
               }}
             >
-              <TextBlockSection blocks={lowerTextBlock} />
+              <TextBlockComponent textArray={lowerTextBlock} />
             </Box>
           )}
 

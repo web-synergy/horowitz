@@ -6,6 +6,10 @@ export default defineType({
   type: 'document',
   groups: [
     {
+      name: 'common',
+      title: 'Загальні',
+    },
+    {
       name: 'conditions',
       title: 'Умови конкурсу',
     },
@@ -58,20 +62,24 @@ export default defineType({
     defineField({
       name: 'competitionId',
       type: 'string',
+      hidden: true,
     }),
     defineField({
       name: 'groupType',
       type: 'string',
+      hidden: true,
     }),
     defineField({
       name: 'title',
       type: 'string',
+      hidden: true,
     }),
     defineField({
       name: 'isActive',
       type: 'boolean',
       title: 'Активувати групу',
       initialValue: false,
+      group: 'common',
     }),
   ],
 })

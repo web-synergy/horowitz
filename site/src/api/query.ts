@@ -217,7 +217,17 @@ export const competitionsQuery = groq`*[_type == 'competition' && slug.current =
   "title": title[_key ==$language][0].value, 
    "description": description[_key ==$language][0].value, 
   isWarState, 
-  "junior":junior->, 
-  "intermediate": intermediate->,
-  "senior": senior->,
+  juniorBtn, 
+  intermediateBtn, 
+  seniorBtn, 
+  mainBanner, 
+  "junior":junior->{
+    isActive, 
+  }, 
+  "intermediate": intermediate->{
+    isActive, 
+     },
+  "senior": senior->{
+    isActive, 
+     },
 }`;
