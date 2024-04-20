@@ -22,7 +22,6 @@ import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import "dayjs/locale/uk";
 import "dayjs/locale/en";
 import TextBlockSection from "./parts/TextBlockSection.tsx";
-import { Buttons } from "@/types/translation.d";
 import { Routes } from "@/types/routes.d";
 import { useMediaQuery } from "@mui/material";
 import Loader from "@/components/Common/Loader";
@@ -57,7 +56,7 @@ const SchedulePage = () => {
   const [showLoader, setShowLoader] = useState(false);
   const [showAllLectures, setShowAllLectures] = useState(false);
   const [isShowSearchResults, setIsShowSearchResults] = useState(false);
-  const [selectedProfessorName, setSelectedProfessorName] = useState("");
+  const [selectedProfessor, setSelectedProfessor] = useState("");
   // const [selectedProfessorData, setSelectedProfessorData] =
   //   useState<IProfessor | null>(null);
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
@@ -66,7 +65,10 @@ const SchedulePage = () => {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const theme = useTheme();
   const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const { t } = useTranslation();
+  const {
+    i18n: { language },
+    t,
+  } = useTranslation();
   const { professors, schedules, isLoading, requestLang } =
     useAnnualSummerSchoolStore((state) => ({
       professors: state.professors,
@@ -76,12 +78,21 @@ const SchedulePage = () => {
     }));
 
   useEffect(() => {
-    setShowLoader(true); // Устанавливаем состояние для показа лоадера
+    setShowLoader(true);
     const timeout = setTimeout(() => {
-      setShowLoader(false); // Скрываем лоадер через секунду
-    }, 1000);
-    return () => clearTimeout(timeout); // Очищаем таймаут при размонтировании компонента или изменении зависимостей
+      setShowLoader(false);
+    }, 500);
+    return () => clearTimeout(timeout);
   }, [selectedLectures]);
+
+  // useEffect(() => {
+  //   // Обновляем данные в инпуте селект
+  //   setSelectedProfessorName(selectedProfessorName); // Сбрасываем выбранного профессора
+  //   updateSchedule(selectedProfessorName, selectedDate); // Обновляем расписание с пустым выбранным профессором
+
+  //   // Обновляем таблицу
+  //   updateSchedule(selectedProfessorName, selectedDate);
+  // }, [requestLang, selectedDate, selectedProfessorName]);
 
   // useEffect(() => {
   //   if (professors) {
@@ -90,11 +101,11 @@ const SchedulePage = () => {
   // }, [professors]);
   // console.log(selectedProfessorData);
   const updateSchedule = useCallback(
-    (selectedProfessorName: string, selectedDate: dayjs.Dayjs | null) => {
+    (selectedProfessorKey: string, selectedDate: dayjs.Dayjs | null) => {
       let updatedLectures: ISchedule[] = [];
 
-      if (selectedProfessorName === "Показати всіх") {
-        // Если выбран пункт "Показати всіх", отображаем все лекции
+      if (selectedProfessorKey === "Показати всіх") {
+        // Если выбрано "Показать всех", отобразите все лекции
         if (selectedDate) {
           updatedLectures = schedules.filter((schedule) =>
             dayjs(schedule.date).isSame(selectedDate, "day")
@@ -108,20 +119,20 @@ const SchedulePage = () => {
       } else {
         if (schedules && professors) {
           const selectedProfessorObject = professors.find(
-            (professor) => professor.name === selectedProfessorName
+            (professor) => professor._key === selectedProfessorKey
           );
 
           if (selectedProfessorObject) {
             if (selectedDate) {
               updatedLectures = schedules.filter(
                 (schedule) =>
-                  schedule.lecture === selectedProfessorObject._key &&
+                  schedule.lecture === selectedProfessorKey &&
                   dayjs(schedule.date).isSame(selectedDate, "day")
               );
             } else {
               updatedLectures = schedules.filter(
                 (schedule) =>
-                  schedule.lecture === selectedProfessorObject._key &&
+                  schedule.lecture === selectedProfessorKey &&
                   dayjs(schedule.date).isSameOrAfter(dayjs(), "day")
               );
             }
@@ -133,12 +144,11 @@ const SchedulePage = () => {
       updatedLectures.sort(
         (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
       );
-      console.log(updatedLectures);
-
       setSelectedLectures(updatedLectures);
     },
     [schedules, professors]
   );
+
   // useEffect(() => {
   //   // if (professors && selectedProfessorName === professors[0].name) {
   //   //   // Перевірка, чи selectedProfessorName не встановлено
@@ -158,16 +168,15 @@ const SchedulePage = () => {
   // ]);
 
   const handleProfessorChange = (event: SelectChangeEvent<string>) => {
-    const selectedProfessor = event.target.value;
-    // console.log(selectedProfessorName);
-    setSelectedProfessorName(selectedProfessor);
+    const selectedProfessorKey = event.target.value;
+    setSelectedProfessor(selectedProfessorKey);
     setShowAllLectures(false);
-    updateSchedule(selectedProfessor, selectedDate);
+    updateSchedule(selectedProfessorKey, selectedDate);
   };
 
   const handleDateChange = (date: Dayjs | null) => {
     setSelectedDate(date);
-    updateSchedule(selectedProfessorName, date);
+    updateSchedule(selectedProfessor, date);
   };
 
   const formatDate = (date: Dayjs | string) => {
@@ -257,7 +266,7 @@ const SchedulePage = () => {
                   },
                 }}
                 id="professor-select"
-                value={selectedProfessorName}
+                value={selectedProfessor}
                 // defaultValue={professors[0].name}
                 onChange={handleProfessorChange}
                 onOpen={handleProfessorSelectOpen}
@@ -289,7 +298,7 @@ const SchedulePage = () => {
                   <em>Показати всіх</em>
                 </MenuItem>
                 {professors.map((professor) => (
-                  <MenuItem key={professor._key} value={professor.name}>
+                  <MenuItem key={professor._key} value={professor._key}>
                     {professor.name}
                   </MenuItem>
                 ))}
@@ -333,7 +342,7 @@ const SchedulePage = () => {
                   return dayOfWeek;
                 }}
                 format="DD/MM/YYYY"
-                disabled={!selectedProfessorName}
+                disabled={!selectedProfessor}
                 sx={{
                   width: "100%",
                 }}
@@ -455,8 +464,9 @@ const SchedulePage = () => {
           sx={{
             borderLeft: "1px solid black",
             borderRight: "1px solid black",
-            borderBottom: "1px solid black",
-            marginBottom: "100px",
+            borderBottom:
+              selectedLectures.length > 0 ? "1px solid black" : "none",
+            marginBottom: { xs: "72px", md: "96px", lg: "120px" },
           }}
         >
           {selectedLectures.map((lecture) => (
