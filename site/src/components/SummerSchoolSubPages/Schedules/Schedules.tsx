@@ -167,6 +167,11 @@ const SchedulePage = () => {
   //   professors,
   // ]);
 
+  useEffect(() => {
+    updateSchedule(selectedProfessor, selectedDate);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requestLang]);
+
   const handleProfessorChange = (event: SelectChangeEvent<string>) => {
     const selectedProfessorKey = event.target.value;
     setSelectedProfessor(selectedProfessorKey);
