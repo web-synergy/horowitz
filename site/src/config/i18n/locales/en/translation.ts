@@ -126,5 +126,7 @@ export default {
     inputNameLabel: "Name of Professor/ Conductor",
     inputDateLabel: "Date",
     notFoundText: "Sorry, nothing was found for your request",
+    searchResults: "Search result",
+    showAllSpeaker: "Show all",
   },
 };

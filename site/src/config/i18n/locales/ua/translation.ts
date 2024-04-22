@@ -127,5 +127,7 @@ export default {
     inputNameLabel: "Ім’я професора / диригента",
     inputDateLabel: "Дата репетиції",
     notFoundText: "Нажаль за вашим запитом нічого не знайдено",
+    searchResults: "Результати пошуку",
+    showAllSpeaker: "Показати всіх",
   },
 };

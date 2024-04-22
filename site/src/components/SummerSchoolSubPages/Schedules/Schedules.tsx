@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import {
-  Button,
   MenuItem,
   Container,
   Box,
   Typography,
-  Collapse,
   Select,
   useTheme,
   SelectChangeEvent,
@@ -18,18 +16,20 @@ import dayjs, { Dayjs } from "dayjs";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import updateLocale from "dayjs/plugin/updateLocale";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
-
 import "dayjs/locale/uk";
 import "dayjs/locale/en";
 import TextBlockSection from "./parts/TextBlockSection.tsx";
 import { Routes } from "@/types/routes.d";
 import { useMediaQuery } from "@mui/material";
 import Loader from "@/components/Common/Loader";
-import { IProfessor, ISchedule } from "@/types/annualSummerSchoolTypes.ts";
+import { ISchedule } from "@/types/annualSummerSchoolTypes.ts";
+// import { ukUA } from "@mui/x-date-pickers/locales";
+import { ukUA } from "@mui/x-date-pickers/locales";
+import { enUS } from "@mui/x-date-pickers/locales";
 
 dayjs.extend(updateLocale);
 dayjs.extend(isSameOrAfter);
-
+// dayjs.locale("uk");
 dayjs.updateLocale("uk", {
   months: [
     "Січень",
@@ -47,28 +47,22 @@ dayjs.updateLocale("uk", {
   ],
 });
 
-const ukLocaleText = {
-  previousMonth: "Попередній місяць",
-  nextMonth: "Наступний місяць",
-};
+// const ukLocaleText = {
+//   previousMonth: "Попередній місяць",
+//   nextMonth: "Наступний місяць",
+// };
 
 const SchedulePage = () => {
   const [showLoader, setShowLoader] = useState(false);
-  const [showAllLectures, setShowAllLectures] = useState(false);
   const [isShowSearchResults, setIsShowSearchResults] = useState(false);
   const [selectedProfessor, setSelectedProfessor] = useState("");
-  // const [selectedProfessorData, setSelectedProfessorData] =
-  //   useState<IProfessor | null>(null);
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
   const [selectedLectures, setSelectedLectures] = useState<ISchedule[]>([]);
   const [isProfessorSelectOpen, setIsProfessorSelectOpen] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const theme = useTheme();
   const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const {
-    i18n: { language },
-    t,
-  } = useTranslation();
+  const { t } = useTranslation();
   const { professors, schedules, isLoading, requestLang } =
     useAnnualSummerSchoolStore((state) => ({
       professors: state.professors,
@@ -85,59 +79,32 @@ const SchedulePage = () => {
     return () => clearTimeout(timeout);
   }, [selectedLectures]);
 
-  // useEffect(() => {
-  //   // Обновляем данные в инпуте селект
-  //   setSelectedProfessorName(selectedProfessorName); // Сбрасываем выбранного профессора
-  //   updateSchedule(selectedProfessorName, selectedDate); // Обновляем расписание с пустым выбранным профессором
-
-  //   // Обновляем таблицу
-  //   updateSchedule(selectedProfessorName, selectedDate);
-  // }, [requestLang, selectedDate, selectedProfessorName]);
-
-  // useEffect(() => {
-  //   if (professors) {
-  //     setSelectedProfessorName(professors[0].name);
-  //   }
-  // }, [professors]);
-  // console.log(selectedProfessorData);
   const updateSchedule = useCallback(
-    (selectedProfessorKey: string, selectedDate: dayjs.Dayjs | null) => {
+    (selectedProfessorKey: string | null, selectedDate: Dayjs | null) => {
       let updatedLectures: ISchedule[] = [];
+      console.log(selectedProfessorKey);
 
-      if (selectedProfessorKey === "Показати всіх") {
-        // Если выбрано "Показать всех", отобразите все лекции
-        if (selectedDate) {
-          updatedLectures = schedules.filter((schedule) =>
-            dayjs(schedule.date).isSame(selectedDate, "day")
-          );
-        } else {
-          updatedLectures = schedules.filter((schedule) =>
-            dayjs(schedule.date).isSameOrAfter(dayjs(), "day")
-          );
-        }
+      if (selectedProfessorKey === "All") {
+        updatedLectures = schedules!.filter((schedule) =>
+          selectedDate
+            ? dayjs(schedule.date).isSame(selectedDate, "day")
+            : dayjs(schedule.date).isSameOrAfter(dayjs(), "day")
+        );
         setIsShowSearchResults(true);
-      } else {
-        if (schedules && professors) {
-          const selectedProfessorObject = professors.find(
-            (professor) => professor._key === selectedProfessorKey
-          );
+      } else if (selectedProfessorKey) {
+        const selectedProfessorObject = professors!.find(
+          (professor) => professor._key === selectedProfessorKey
+        );
 
-          if (selectedProfessorObject) {
-            if (selectedDate) {
-              updatedLectures = schedules.filter(
-                (schedule) =>
-                  schedule.lecture === selectedProfessorKey &&
-                  dayjs(schedule.date).isSame(selectedDate, "day")
-              );
-            } else {
-              updatedLectures = schedules.filter(
-                (schedule) =>
-                  schedule.lecture === selectedProfessorKey &&
-                  dayjs(schedule.date).isSameOrAfter(dayjs(), "day")
-              );
-            }
-            setIsShowSearchResults(true);
-          }
+        if (selectedProfessorObject) {
+          updatedLectures = schedules!.filter(
+            (schedule) =>
+              schedule.lecture === selectedProfessorKey &&
+              (selectedDate
+                ? dayjs(schedule.date).isSame(selectedDate, "day")
+                : dayjs(schedule.date).isSameOrAfter(dayjs(), "day"))
+          );
+          setIsShowSearchResults(true);
         }
       }
 
@@ -149,24 +116,6 @@ const SchedulePage = () => {
     [schedules, professors]
   );
 
-  // useEffect(() => {
-  //   // if (professors && selectedProfessorName === professors[0].name) {
-  //   //   // Перевірка, чи selectedProfessorName не встановлено
-  //   //   setSelectedProfessorName(professors[0].name);
-  //   // }
-  //   if (selectedProfessorName || selectedDate) {
-  //     console.log(selectedProfessorName);
-  //     console.log(selectedDate);
-  //     updateSchedule(selectedProfessorName, selectedDate);
-  //   }
-  // }, [
-  //   requestLang,
-  //   selectedProfessorName,
-  //   selectedDate,
-  //   updateSchedule,
-  //   professors,
-  // ]);
-
   useEffect(() => {
     updateSchedule(selectedProfessor, selectedDate);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -175,7 +124,6 @@ const SchedulePage = () => {
   const handleProfessorChange = (event: SelectChangeEvent<string>) => {
     const selectedProfessorKey = event.target.value;
     setSelectedProfessor(selectedProfessorKey);
-    setShowAllLectures(false);
     updateSchedule(selectedProfessorKey, selectedDate);
   };
 
@@ -205,7 +153,7 @@ const SchedulePage = () => {
   };
 
   const getProfessorInfo = (lectureKey: string): string => {
-    const professor = professors.find(
+    const professor = professors!.find(
       (professor) => professor._key === lectureKey
     );
     if (professor) {
@@ -299,8 +247,8 @@ const SchedulePage = () => {
                   },
                 }}
               >
-                <MenuItem value="Показати всіх">
-                  <em>Показати всіх</em>
+                <MenuItem value="All">
+                  <em>{t(`summerSchoolSchedules.showAllSpeaker`)}</em>
                 </MenuItem>
                 {professors.map((professor) => (
                   <MenuItem key={professor._key} value={professor._key}>
@@ -314,7 +262,13 @@ const SchedulePage = () => {
         <Box sx={{ width: "100%" }}>
           <LocalizationProvider
             dateAdapter={AdapterDayjs}
-            localeText={ukLocaleText}
+            localeText={
+              requestLang === "en"
+                ? enUS.components.MuiLocalizationProvider.defaultProps
+                    .localeText
+                : ukUA.components.MuiLocalizationProvider.defaultProps
+                    .localeText
+            }
             adapterLocale={requestLang === "en" ? "en" : "uk"}
           >
             <DemoItem
@@ -446,7 +400,7 @@ const SchedulePage = () => {
             marginBottom: { xs: "20px", md: "40px", lg: "48px" },
           }}
         >
-          Результати пошуку
+          {t(`summerSchoolSchedules.searchResults`)}
         </Typography>
       )}
       {selectedLectures.length === 0 && isShowSearchResults && !showLoader && (
