@@ -125,8 +125,8 @@ export default {
   summerSchoolSchedules: {
     inputNameLabel: "Name of Professor/ Conductor",
     inputDateLabel: "Date",
-    notFoundText: "Sorry, nothing was found for your request",
-    searchResults: "Search result",
+    notFoundText: "Unfortunately we can't find any results",
+    searchResults: "Results",
     showAllSpeaker: "Show all",
   },
 };
