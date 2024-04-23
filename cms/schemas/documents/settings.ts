@@ -11,5 +11,11 @@ export default defineType({
       type: 'image',
       validation: (Rule) => Rule.error('Обовʼязкове поле').required(),
     }),
+    defineField({
+      name: 'seoImage',
+      title: 'Картинка для відображенні в пошуку',
+      type: 'image',
+      validation: (Rule) => Rule.error('Обовʼязкове поле').required(),
+    }),
   ],
 })

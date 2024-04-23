@@ -124,4 +124,9 @@ export default {
     [SummerSchool.CONCERT_PROGRAM]: 'Concert program',
     [SummerSchool.ACADEMY]: 'Music academy',
   },
+  seo: {
+    title: 'Horowitz competition',
+    description:
+      'International Competition for Young Pianists in Memory of Vladimir Horowitz is a member of the EMCY and the WFIMC',
+  },
 };

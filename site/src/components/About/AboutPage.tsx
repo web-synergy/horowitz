@@ -4,6 +4,7 @@ import { Routes } from '@/types/routes.d';
 import { Box, Container, Typography, Stack } from '@mui/material';
 import Loader from '../Common/Loader';
 import PageTemplate from '../Common/PageTemplate';
+import SeoComponent from '../Common/SEO.tsx';
 
 import { useAboutCompetitionStore } from '@/store/aboutCompetitionStore';
 
@@ -55,8 +56,11 @@ const AboutPage = () => {
     return <Loader />;
   }
 
+  const title = t(`navigation.${Routes.DETAILS}`);
+
   return (
     <>
+      <SeoComponent canonicalUrl={Routes.DETAILS} title={title} />
       {mainBanner && <MainBanner banner={mainBanner} />}
       <PageTemplate>
         <Container>
@@ -67,9 +71,7 @@ const AboutPage = () => {
               textTransform: 'uppercase',
             }}
           >
-            <Typography variant="h1">
-              {t(`navigation.${Routes.DETAILS}`)}
-            </Typography>
+            <Typography variant="h1">{title}</Typography>
           </Box>
           <Stack direction="column" gap={{ xs: 3, md: 5, lg: 6 }}>
             <TextBlockComponent textArray={upperTextBlock} />
