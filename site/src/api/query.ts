@@ -22,6 +22,7 @@ export const homeQuery = groq`*[_type == 'home'][0]{
 
 export const settingsQuery = groq`*[_type == 'settings']{
   'logo':logo.asset->url,
+  "seoImage": seoImage.asset->url, 
   'sociable':*[_type == 'social'][0],
   'contacts':*[_type == 'contacts'][0]{
     'about':about[_key ==$language].value,

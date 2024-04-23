@@ -10,6 +10,7 @@ import Loader from '../Common/Loader';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { administrationQuery } from '@/api/query';
 import MainBanner from '../Common/MainBanner';
+import SeoComponent from '../Common/SEO';
 
 const AdministrationPage = () => {
   const {
@@ -45,8 +46,10 @@ const AdministrationPage = () => {
     return <Loader />;
   }
 
+  const title = t(`navigation.${Routes.ADMINISTRATION}`);
   return (
     <>
+      <SeoComponent title={title} canonicalUrl={Routes.ADMINISTRATION} />
       {banner && <MainBanner banner={banner} />}
       <PageTemplate>
         <Container>
@@ -58,7 +61,7 @@ const AdministrationPage = () => {
             variant="h1"
             gutterBottom
           >
-            {t(`navigation.${Routes.ADMINISTRATION}`)}
+            {title}
           </Typography>
           <Box sx={{ width: '100%' }}>
             <Grid

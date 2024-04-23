@@ -15,6 +15,7 @@ export interface SettingsStoreState {
   requestLang: string;
   sociable: SociableType | null;
   logo: string | null;
+  seoImage: string;
   contacts: ContactsType | null;
   competitions: NavigationType[] | null;
   fetchSettings: (language: string) => Promise<void>;
