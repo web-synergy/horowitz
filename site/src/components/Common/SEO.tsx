@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useSettingsStore } from '@/store/settingStore';
 import { useTranslation } from 'react-i18next';
 
 interface SeoProps {
@@ -10,7 +9,6 @@ interface SeoProps {
 }
 
 const SeoComponent: FC<SeoProps> = ({ title, description, canonicalUrl }) => {
-  const { seoImage } = useSettingsStore();
   const {
     i18n: { language },
     t,
@@ -23,17 +21,9 @@ const SeoComponent: FC<SeoProps> = ({ title, description, canonicalUrl }) => {
     ? `${baseUrl}${canonicalUrl}`
     : baseUrl;
 
+  console.log(renderDescription);
   return (
-    <Helmet htmlAttributes={{ lang: language }}>
-      <title>{renderTitle}</title>
-      <meta name="description" content={renderDescription} />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={renderTitle} />
-      <meta property="og:description" content={renderDescription} />
-
-      <meta property="og:url" content="https://www.horowitzv.org/" />
-      <meta property="og:image" content={seoImage} />
-
+    <Helmet htmlAttributes={{ lang: language }} title={renderTitle}>
       <link rel="canonical" href={renderCanonicalUrl} />
     </Helmet>
   );
