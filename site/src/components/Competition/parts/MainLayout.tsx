@@ -5,6 +5,7 @@ import GridTemplate from '@/components/Templates/GridTemplate';
 import GroupButton from './GroupButton';
 import { useCompetitionStore } from '@/store/competitionStore';
 import { Routes } from '@/types/routes.d';
+import SeoComponent from '@/components/Common/SEO';
 
 const MainLayout = () => {
   const {
@@ -16,6 +17,7 @@ const MainLayout = () => {
     juniorBtn,
     intermediateBtn,
     seniorBtn,
+    slug,
   } = useCompetitionStore();
 
   const buttonList = [
@@ -29,22 +31,25 @@ const MainLayout = () => {
   ];
 
   return (
-    <PageTemplate>
-      <Container>
-        <Stack gap={{ xs: 3, md: 5, lg: 6 }}>
-          <Typography variant="h1" textAlign={'center'}>
-            {title}
-          </Typography>
-          <Box>{description && <PortableComponent data={description} />}</Box>
+    <>
+      <SeoComponent title={title} canonicalUrl={slug} />
+      <PageTemplate>
+        <Container>
+          <Stack gap={{ xs: 3, md: 5, lg: 6 }}>
+            <Typography variant="h1" textAlign={'center'}>
+              {title}
+            </Typography>
+            <Box>{description && <PortableComponent data={description} />}</Box>
 
-          <GridTemplate
-            justify="center"
-            gridItem={GroupButton}
-            list={buttonList}
-          />
-        </Stack>
-      </Container>
-    </PageTemplate>
+            <GridTemplate
+              justify="center"
+              gridItem={GroupButton}
+              list={buttonList}
+            />
+          </Stack>
+        </Container>
+      </PageTemplate>
+    </>
   );
 };
 

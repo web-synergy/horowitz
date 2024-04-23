@@ -1,6 +1,6 @@
 import { IImageReference } from '@/types/commonTypes';
 import { Link as RouterLink } from 'react-router-dom';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box, Stack, Typography, Link } from '@mui/material';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
@@ -25,6 +25,12 @@ const GroupButton: FC<GroupBtnProps> = ({ item }) => {
     ? urlFor(btn).auto('format').width(containerSize).url().toString()
     : defaultImg;
 
+  const imageHeight = useMemo(() => {
+    const ref = containerRef.current;
+    return ref?.offsetHeight;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [containerSize]);
+
   return (
     <Link
       component={RouterLink}
@@ -37,15 +43,17 @@ const GroupButton: FC<GroupBtnProps> = ({ item }) => {
         },
       }}
     >
-      <Stack ref={containerRef} gap={{ xs: 2, md: 3 }}>
+      <Stack gap={{ xs: 2, md: 3 }}>
         <Box
+          ref={containerRef}
           sx={{
             position: 'relative',
             width: '100%',
+            aspectRatio: { xs: 1.11, md: 1.27, lg: 1.37 },
           }}
         >
           <Box
-            sx={{
+            style={{
               position: 'absolute',
               width: '100%',
               height: '100%',
@@ -56,15 +64,17 @@ const GroupButton: FC<GroupBtnProps> = ({ item }) => {
                 : 'rgba(224, 224, 224, 0.5)',
             }}
           />
-          <Box
-            component={'img'}
-            sx={{
+          <img
+            style={{
               display: 'block',
               width: '100%',
-              aspectRatio: { xs: 1.11, md: 1.27, lg: 1.37 },
+              height: '100%',
               objectFit: 'fill',
             }}
             src={imageUrl}
+            width={containerSize}
+            height={imageHeight}
+            alt={`Button background for ${title} group`}
           />
         </Box>
 
