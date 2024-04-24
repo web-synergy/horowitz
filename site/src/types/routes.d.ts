@@ -45,6 +45,15 @@ export enum Routes {
   JUNIOR = 'junior',
   INTERMEDIATE = 'intermediate',
   SENIOR = 'senior',
+  // JUNIOR_CONDITIONS = 'conditions',
+  // JUNIOR_JURY = 'jury',
+  // KYIV_GENEVA_PARTICIPANTS = 'participants',
+  // KYIV_GENEVA_REQUIREMENTS = 'requirements',
+  // KYIV_GENEVA_SELECTION_JURY = 'preselection-jury',
+  // KYIV_GENEVA_WINNERS = 'winners',
+  // KYIV_GENEVA_REWARDS = 'rewards',
+  // KYIV_GENEVA_ORCHESTRA = 'orchestra',
+  // KYIV_GENEVA_TIMETABLE = 'timetable',
 }
 
 export type NavigationType = { title: string; slug: string };

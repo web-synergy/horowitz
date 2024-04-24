@@ -5,6 +5,7 @@ import { useHomeStore } from '@/store/homeStore';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { createColor, createGradientColors } from '@/utils/createColor';
+import { getImageData } from '@/utils/getImageData';
 
 const HolidayCard = () => {
   const [imageWidth, setImageWidth] = useState(1);
@@ -12,13 +13,19 @@ const HolidayCard = () => {
   const { banner } = useHomeStore();
   const { containerRef, containerSize } = useWidthBlokSize();
 
+  const imageData = banner
+    ? getImageData(banner.img.asset._ref)
+    : { dimensions: { height: 0, width: 0 } };
+
+  const {
+    dimensions: { height, width },
+  } = imageData;
+
   useEffect(() => {
     if (!banner) {
       return;
     }
-    const {
-      format: { height, width },
-    } = banner;
+
     const heightForRef = Math.floor((containerSize * height) / width);
     const imageWidth = Math.min(
       1280,
@@ -27,7 +34,7 @@ const HolidayCard = () => {
 
     setImageWidth(imageWidth);
     setReHeight(heightForRef);
-  }, [banner, containerSize]);
+  }, [banner, containerSize, height, width]);
 
   if (!banner) {
     return;

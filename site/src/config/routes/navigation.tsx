@@ -69,6 +69,12 @@ export const summerSchoolNavigation = [
   },
 ];
 
+export const juniorNavigation = [
+  {
+    // text-decoration-line:
+  },
+];
+
 type Navigate = { title: string; parent: string | null };
 
 export const overallNavigation = navigation.reduce(

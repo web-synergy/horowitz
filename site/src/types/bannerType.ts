@@ -19,10 +19,6 @@ interface NotFullSizeType {
   location: {
     position: 'center' | 'left' | 'right';
   };
-  format: {
-    width: number;
-    height: number;
-  };
 }
 
 interface ColorOverlay {
