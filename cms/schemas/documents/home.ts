@@ -38,12 +38,7 @@ export default defineType({
             hotspot: true,
           },
         }),
-        defineField({
-          name: 'format',
-          title: 'Формат картинки',
-          type: 'format',
-          hidden: ({parent}) => parent?.fullSize,
-        }),
+        
         defineField({
           name: 'background',
           title: 'Фон',

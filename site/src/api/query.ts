@@ -13,7 +13,7 @@ export const homeQuery = groq`*[_type == 'home'][0]{
     'banner': banner{
       background, 
       'img':  img[_key ==$language ][0].value, 
-      format
+     
       
     }
 
@@ -223,12 +223,15 @@ export const competitionsQuery = groq`*[_type == 'competition' && slug.current =
   seniorBtn, 
   mainBanner, 
   "junior":junior->{
+    _id, 
     isActive, 
   }, 
   "intermediate": intermediate->{
+    _id,
     isActive, 
      },
   "senior": senior->{
+    _id,
     isActive, 
      },
 }`;

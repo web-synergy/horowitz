@@ -22,8 +22,9 @@ const CompetitionPage = () => {
 
   const competitionSlug = pathname.split('/').slice(-1)[0];
 
+  console.log(title);
   useEffect(() => {
-    if (requestLang === language) return;
+    if (requestLang === language && title) return;
     fetchCommonData(competitionSlug, language);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [competitionSlug, language]);
