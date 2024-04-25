@@ -1,13 +1,14 @@
-import React from "react";
+import { FC } from "react";
+import { useTranslation } from "react-i18next";
+import { useTheme } from "@mui/material";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { ukUA, enUS } from "@mui/x-date-pickers/locales";
 import dayjs, { Dayjs } from "dayjs";
-import { useTranslation } from "react-i18next";
 import updateLocale from "dayjs/plugin/updateLocale";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
-import { DemoItem } from "@mui/x-date-pickers/internals/demo";
-import { ukUA } from "@mui/x-date-pickers/locales";
-import { enUS } from "@mui/x-date-pickers/locales";
+
 import { ISchedule } from "@/types/annualSummerSchoolTypes.ts";
 
 interface CustomDatePickerProps {
@@ -41,7 +42,7 @@ dayjs.updateLocale("uk", {
   ],
 });
 
-const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
+const CustomDatePicker: FC<CustomDatePickerProps> = ({
   selectedDate,
   handleDateChange,
   isMobileScreen,
@@ -52,6 +53,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
   selectedProfessor,
   requestLang,
 }) => {
+  const theme = useTheme();
   const { t } = useTranslation();
 
   return (
@@ -103,13 +105,15 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
                 color: "rgb(8, 7, 8)",
                 borderRadius: "4px",
                 borderWidth: "4px",
-                border: "1px solid rgb(153, 153, 153)",
+                border: "1px solid",
+                borderColor: theme.palette.neutral[40],
                 backgroundColor: "#EAE2D5",
                 width: { xs: "272px", md: "304px", lg: "328px" },
                 height: { xs: "332px", md: "362px", lg: "376px" },
                 marginTop: "32px",
                 boxShadow: "none",
                 paddingX: { xs: "4px", lg: "6px" },
+
                 "& .MuiDayCalendar-monthContainer": {
                   marginTop: { md: "6px", lg: "8px" },
                 },
@@ -130,7 +134,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
                 },
                 "& .MuiDayCalendar-weekDayLabel": {
                   borderRadius: "4px",
-                  color: "rgb(153, 153, 153)",
+                  color: theme.palette.neutral[40],
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
                   margin: 0,
@@ -155,16 +159,11 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
                   borderRadius: "4px",
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
-                  backgroundColor: "rgb(245, 245, 245)",
-                  color: "rgb(8, 7, 8)",
+                  backgroundColor: theme.palette.background.default,
                   "&:hover": {
-                    backgroundColor: "#F9B33F",
+                    backgroundColor: theme.palette.primary.light,
                   },
                 },
-                "& .MuiButtonBase-root .MuiPickersDay-root .MuiPickersDay-dayWithMargin":
-                  {
-                    backgroundColor: "rgb(217, 161, 69)",
-                  },
                 "& .MuiPickersLayout-contentWrapper": {
                   width: { xs: "262px", md: "294px", lg: "318px" },
                 },

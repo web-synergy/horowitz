@@ -1,18 +1,19 @@
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Container,
   Box,
   Typography,
   useTheme,
   SelectChangeEvent,
+  useMediaQuery,
 } from "@mui/material";
-import { useAnnualSummerSchoolStore } from "@/store/annualSummerSchoolStore";
-import { useTranslation } from "react-i18next";
 import dayjs, { Dayjs } from "dayjs";
 import "dayjs/locale/uk";
 import "dayjs/locale/en";
+
+import { useAnnualSummerSchoolStore } from "@/store/annualSummerSchoolStore";
 import { Routes } from "@/types/routes.d";
-import { useMediaQuery } from "@mui/material";
 import Loader from "@/components/Common/Loader";
 import { ISchedule } from "@/types/annualSummerSchoolTypes.ts";
 import CustomDatePicker from "./parts/CustomDatePicker.tsx";
@@ -27,9 +28,13 @@ const SchedulePage = () => {
   const [selectedLectures, setSelectedLectures] = useState<ISchedule[]>([]);
   const [isProfessorSelectOpen, setIsProfessorSelectOpen] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+
   const theme = useTheme();
+
   const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
+
   const { t } = useTranslation();
+
   const { professors, schedules, isLoading, requestLang } =
     useAnnualSummerSchoolStore((state) => ({
       professors: state.professors,
@@ -221,10 +226,10 @@ const SchedulePage = () => {
       ) : (
         <Box
           sx={{
-            borderLeft: "1px solid black",
-            borderRight: "1px solid black",
-            borderBottom:
-              selectedLectures.length > 0 ? "1px solid black" : "none",
+            borderLeft: "1px solid",
+            borderRight: "1px solid",
+            borderBottom: selectedLectures.length > 0 ? "1px solid" : "none",
+            borderColor: theme.palette.common.black,
             marginBottom: isShowSearchResults
               ? { xs: "72px", md: "96px", lg: "120px" }
               : undefined,

@@ -1,8 +1,8 @@
-import { Select, MenuItem } from "@mui/material";
+import { FC } from "react";
+import { Select, MenuItem, useTheme, SelectChangeEvent } from "@mui/material";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
-import { IProfessor } from "@/types/annualSummerSchoolTypes";
 
-import { SelectChangeEvent } from "@mui/material";
+import { IProfessor } from "@/types/annualSummerSchoolTypes";
 
 interface CustomSelectInputProps {
   professors: IProfessor[];
@@ -15,7 +15,7 @@ interface CustomSelectInputProps {
   t: (key: string) => string;
 }
 
-const CustomSelectInput: React.FC<CustomSelectInputProps> = ({
+const CustomSelectInput: FC<CustomSelectInputProps> = ({
   professors,
   selectedProfessor,
   handleProfessorChange,
@@ -25,6 +25,8 @@ const CustomSelectInput: React.FC<CustomSelectInputProps> = ({
   isProfessorSelectOpen,
   t,
 }) => {
+  const theme = useTheme();
+
   return (
     <DemoItem
       label={t(`summerSchoolSchedules.inputNameLabel`)}
@@ -42,7 +44,7 @@ const CustomSelectInput: React.FC<CustomSelectInputProps> = ({
           width: "100%",
           "&:hover": {
             "&& fieldset": {
-              borderColor: "#D9A145",
+              borderColor: theme.palette.primary.main,
             },
           },
         }}
@@ -60,7 +62,8 @@ const CustomSelectInput: React.FC<CustomSelectInputProps> = ({
               height: { xs: "186px", md: "204px" },
               overflowY: "auto",
               fontSize: "40px",
-              border: "1px solid #999999",
+              border: "1px solid",
+              borderColor: theme.palette.neutral[40],
               boxShadow: "none",
 
               "& .MuiMenuItem-root": {

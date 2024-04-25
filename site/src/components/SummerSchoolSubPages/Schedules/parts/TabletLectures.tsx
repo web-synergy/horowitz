@@ -1,8 +1,9 @@
-import { Box, Typography } from "@mui/material";
 import { FC } from "react";
+import { Box, Typography, useTheme } from "@mui/material";
+import { Dayjs } from "dayjs";
+
 import { TabletContentWrapper } from "../styles";
 import TextBlockSection from "./TextBlockSection.tsx";
-import { Dayjs } from "dayjs";
 import { IRehearsal } from "@/types/annualSummerSchoolTypes.ts";
 
 interface TabletLecturesProps {
@@ -23,6 +24,8 @@ const TabletLectures: FC<TabletLecturesProps> = ({
   formatDate,
   getProfessorInfo,
 }) => {
+  const theme = useTheme();
+
   return (
     <Box
       key={index}
@@ -38,8 +41,9 @@ const TabletLectures: FC<TabletLecturesProps> = ({
       {index === 0 && (
         <TabletContentWrapper
           sx={{
-            borderRight: { md: "1px solid black" },
-            borderTop: "1px solid black",
+            borderRight: { md: "1px solid" },
+            borderTop: "1px solid",
+            borderColor: theme.palette.common.black,
             backgroundColor: {
               xs: "rgba(217, 161, 69, 0.2)",
               md: "transparent",
@@ -54,22 +58,25 @@ const TabletLectures: FC<TabletLecturesProps> = ({
       {index > 0 && (
         <TabletContentWrapper
           sx={{
-            borderRight: { md: "1px solid black" },
+            borderRight: { md: "1px solid" },
+            borderColor: theme.palette.common.black,
           }}
         ></TabletContentWrapper>
       )}
       <TabletContentWrapper
         sx={{
-          borderRight: { md: "1px solid black" },
-          borderTop: "1px solid black",
+          borderRight: { md: "1px solid" },
+          borderTop: "1px solid",
+          borderColor: theme.palette.common.black,
         }}
       >
         <Typography variant="bodyRegular">{rehearsal.time}</Typography>
       </TabletContentWrapper>
       <TabletContentWrapper
         sx={{
-          borderRight: { md: "1px solid black" },
-          borderTop: "1px solid black",
+          borderRight: { md: "1px solid" },
+          borderTop: "1px solid",
+          borderColor: theme.palette.common.black,
         }}
       >
         <Typography variant="bodyMedium">
@@ -78,7 +85,8 @@ const TabletLectures: FC<TabletLecturesProps> = ({
       </TabletContentWrapper>
       <TabletContentWrapper
         sx={{
-          borderTop: "1px solid black",
+          borderTop: "1px solid",
+          borderColor: theme.palette.common.black,
           padding: {
             xs: "8px 8px",
             md: "40px 24px",
