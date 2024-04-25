@@ -100,6 +100,9 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({
           }}
           slotProps={{
             field: { clearable: true },
+            textField: {
+              placeholder: requestLang === "en" ? "DD/MM/YYYY" : "ДД/ММ/РРРР",
+            },
             layout: {
               sx: {
                 color: "rgb(8, 7, 8)",
