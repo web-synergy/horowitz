@@ -1,49 +1,23 @@
 import { useCallback, useEffect, useState } from "react";
 import {
-  MenuItem,
   Container,
   Box,
   Typography,
-  Select,
   useTheme,
   SelectChangeEvent,
 } from "@mui/material";
 import { useAnnualSummerSchoolStore } from "@/store/annualSummerSchoolStore";
 import { useTranslation } from "react-i18next";
 import dayjs, { Dayjs } from "dayjs";
-import { DemoItem } from "@mui/x-date-pickers/internals/demo";
-import updateLocale from "dayjs/plugin/updateLocale";
-import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import "dayjs/locale/uk";
 import "dayjs/locale/en";
-import TextBlockSection from "./parts/TextBlockSection.tsx";
 import { Routes } from "@/types/routes.d";
 import { useMediaQuery } from "@mui/material";
 import Loader from "@/components/Common/Loader";
 import { ISchedule } from "@/types/annualSummerSchoolTypes.ts";
-import picture from "../../../assets/images/schedules_screensaver.webp";
-import { TabletContentWrapper, WrapperImg } from "./styles.ts";
-import CustomDatePicker from "./CustomDatePicker.tsx";
-
-dayjs.extend(updateLocale);
-dayjs.extend(isSameOrAfter);
-
-dayjs.updateLocale("uk", {
-  months: [
-    "Січень",
-    "Лютий",
-    "Березень",
-    "Квітень",
-    "Травень",
-    "Червень",
-    "Липень",
-    "Серпень",
-    "Вересень",
-    "Жовтень",
-    "Листопад",
-    "Грудень",
-  ],
-});
+import CustomDatePicker from "./parts/CustomDatePicker.tsx";
+import CustomSelectInput from "./parts/CustomSelectInput.tsx";
+import TabletLectures from "./parts/TabletLectures.tsx";
 
 const SchedulePage = () => {
   const [showLoader, setShowLoader] = useState(false);
@@ -75,7 +49,6 @@ const SchedulePage = () => {
   const updateSchedule = useCallback(
     (selectedProfessorKey: string | null, selectedDate: Dayjs | null) => {
       let updatedLectures: ISchedule[] = [];
-      console.log(selectedProfessorKey);
 
       if (selectedProfessorKey === "All") {
         updatedLectures = schedules!.filter((schedule) =>
@@ -175,11 +148,7 @@ const SchedulePage = () => {
         sx={{
           padding: { xs: "24px 8px", md: "16px 8px", lg: "16px 36px" },
           backgroundColor: "#EAE2D5",
-          marginTop: { xs: 3, md: 5, lg: 6 },
-          marginBottom:
-            !isMobileScreen && (isProfessorSelectOpen || isDatePickerOpen)
-              ? "380px"
-              : "0",
+          marginTop: { xs: "48px", md: "40px", lg: "48px" },
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           alignItems: { xs: "center", md: "flex-end" },
@@ -190,65 +159,16 @@ const SchedulePage = () => {
       >
         <Box sx={{ width: "100%" }}>
           {professors && (
-            <DemoItem
-              label={t(`summerSchoolSchedules.inputNameLabel`)}
-              sx={{
-                marginBottom:
-                  isMobileScreen && isProfessorSelectOpen ? "206px" : "0px",
-                "& p": {
-                  fontSize: { xs: "14px", md: "16px" },
-                  lineHeight: { xs: "22px", md: "24px" },
-                },
-              }}
-            >
-              <Select
-                variant="outlined"
-                sx={{
-                  width: "100%",
-                  "&:hover": {
-                    "&& fieldset": {
-                      borderColor: "#D9A145",
-                    },
-                  },
-                }}
-                id="professor-select"
-                value={selectedProfessor}
-                onChange={handleProfessorChange}
-                onOpen={handleProfessorSelectOpen}
-                onClose={handleProfessorSelectClose}
-                MenuProps={{
-                  PaperProps: {
-                    sx: {
-                      marginTop: { xs: "16px", md: "32px" },
-                      padding: "16px",
-                      backgroundColor: "#EAE2D5",
-                      height: { xs: "186px", md: "204px" },
-                      overflowY: "auto",
-                      fontSize: "40px",
-                      border: "1px solid #999999",
-                      boxShadow: "none",
-
-                      "& .MuiMenuItem-root": {
-                        paddingX: 0,
-                        paddingY: "4px",
-                        gap: "20px",
-                        fontSize: { xs: "16px", md: "18px" },
-                        lineHeight: { xs: "24px", md: "28px" },
-                      },
-                    },
-                  },
-                }}
-              >
-                <MenuItem value="All">
-                  <em>{t(`summerSchoolSchedules.showAllSpeaker`)}</em>
-                </MenuItem>
-                {professors.map((professor) => (
-                  <MenuItem key={professor._key} value={professor._key}>
-                    {professor.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </DemoItem>
+            <CustomSelectInput
+              professors={professors}
+              selectedProfessor={selectedProfessor}
+              handleProfessorChange={handleProfessorChange}
+              handleProfessorSelectOpen={handleProfessorSelectOpen}
+              handleProfessorSelectClose={handleProfessorSelectClose}
+              isMobileScreen={isMobileScreen}
+              isProfessorSelectOpen={isProfessorSelectOpen}
+              t={t}
+            />
           )}
         </Box>
         <Box sx={{ width: "100%" }}>
@@ -265,18 +185,12 @@ const SchedulePage = () => {
           />
         </Box>
       </Box>
-      <Box></Box>
       {!isShowSearchResults && (
-        <WrapperImg>
-          <img
-            src={picture}
-            alt="Описание изображения"
-            style={{
-              width: "100%",
-              height: "auto",
-            }}
-          />
-        </WrapperImg>
+        <Box
+          sx={{
+            marginTop: { xs: "412px", md: "468px", lg: "526px" },
+          }}
+        />
       )}
       {selectedLectures.length > 0 && !showLoader && (
         <Typography
@@ -319,73 +233,14 @@ const SchedulePage = () => {
           {selectedLectures.map((lecture) => (
             <Box key={lecture._key}>
               {lecture.rehearsals.map((rehearsal, index) => (
-                <Box
+                <TabletLectures
                   key={index}
-                  sx={{
-                    display: "grid",
-                    gridTemplateColumns: {
-                      xs: " 1fr",
-                      md: "repeat(3, 140px) 1fr",
-                      lg: "repeat(3, 182px) 1fr",
-                    },
-                  }}
-                >
-                  {index === 0 && (
-                    <TabletContentWrapper
-                      sx={{
-                        borderRight: { md: "1px solid black" },
-                        borderTop: "1px solid black",
-                        backgroundColor: {
-                          xs: "rgba(217, 161, 69, 0.2)",
-                          md: "transparent",
-                        },
-                      }}
-                    >
-                      <Typography variant="bodyRegular">
-                        {formatDate(lecture.date)}
-                      </Typography>
-                    </TabletContentWrapper>
-                  )}
-                  {index > 0 && (
-                    <TabletContentWrapper
-                      sx={{
-                        borderRight: { md: "1px solid black" },
-                      }}
-                    ></TabletContentWrapper>
-                  )}
-                  <TabletContentWrapper
-                    sx={{
-                      borderRight: { md: "1px solid black" },
-                      borderTop: "1px solid black",
-                    }}
-                  >
-                    <Typography variant="bodyRegular">
-                      {rehearsal.time}
-                    </Typography>
-                  </TabletContentWrapper>
-                  <TabletContentWrapper
-                    sx={{
-                      borderRight: { md: "1px solid black" },
-                      borderTop: "1px solid black",
-                    }}
-                  >
-                    <Typography variant="bodyMedium">
-                      {getProfessorInfo(lecture.lecture)}
-                    </Typography>
-                  </TabletContentWrapper>
-                  <TabletContentWrapper
-                    sx={{
-                      borderTop: "1px solid black",
-                      padding: {
-                        xs: "8px 8px",
-                        md: "40px 24px",
-                        lg: "48px 48px",
-                      },
-                    }}
-                  >
-                    <TextBlockSection blocks={rehearsal.event} />
-                  </TabletContentWrapper>
-                </Box>
+                  index={index}
+                  lecture={lecture}
+                  rehearsal={rehearsal}
+                  formatDate={formatDate}
+                  getProfessorInfo={getProfessorInfo}
+                />
               ))}
             </Box>
           ))}
