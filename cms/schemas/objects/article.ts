@@ -10,7 +10,7 @@ const article = defineType({
   of: [
     {
       type: 'block',
-      styles: [],
+      styles: [{title: 'With top space', value: 'topSpace'}],
       marks: {
         decorators: [
           {title: 'Strong', value: 'strong'},

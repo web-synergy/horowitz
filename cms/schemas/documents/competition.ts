@@ -56,6 +56,7 @@ export default defineType({
       name: 'mainBanner',
       type: 'banner',
       title: 'Головний банер',
+
       validation: (Rule) => Rule.required(),
     }),
     defineField({

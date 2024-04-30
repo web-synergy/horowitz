@@ -11,12 +11,15 @@ export const useCompetitionStore = create<CompetitionStoreState>((set) => ({
   isWarState: false,
   junior: {
     isActive: false,
+    _id: '',
   },
   intermediate: {
     isActive: false,
+    _id: '',
   },
   senior: {
     isActive: false,
+    _id: '',
   },
   intermediateBtn: null,
   juniorBtn: null,

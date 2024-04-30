@@ -21,19 +21,14 @@ export default defineType({
       type: 'internationalizedArrayString',
     }),
     defineField({
-      name: 'birthday',
-      title: 'Дата народження',
-      type: 'date',
+      name: 'age',
+      title: 'Вік',
+      type: 'number',
     }),
 
     defineField({
       name: 'biography',
       title: 'Біографія',
-      type: 'internationalizedArrayArticle',
-    }),
-    defineField({
-      name: 'program',
-      title: 'Програма',
       type: 'internationalizedArrayArticle',
     }),
   ],

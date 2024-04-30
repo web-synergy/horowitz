@@ -52,7 +52,7 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
             float: isEmbed || position === 'center' ? position : ' none',
             justifyContent: { xs: 'center', md: position },
             width: `${width}%`,
-            minWidth: '260px',
+            // minWidth: '260px',
             ml: {
               xs: 0,
               md: position === 'left' || position === 'center' ? '0px' : '16px',

@@ -10,6 +10,8 @@ import { IVirtuosos } from './virtuososTypes';
 import { HomeData } from './homeTypes';
 import { AnnualSummerSchoolTypes, IConcerts } from './annualSummerSchoolTypes';
 import { CompetitionType } from './competitionTypes';
+import { JuniorGroupType, OtherGroupType } from './groupTypes';
+import { Routes } from './routes';
 
 export interface SettingsStoreState {
   requestLang: string;
@@ -93,4 +95,32 @@ export interface CompetitionStoreState extends CompetitionType {
   isLoading: boolean;
   requestLang: string;
   fetchCommonData: (language: string, slug: string) => Promise<void>;
+}
+
+export type FetchJuniorData = (id: string, language: string) => Promise<void>;
+
+export type GroupType = Routes.JUNIOR | Routes.INTERMEDIATE | Routes.SENIOR;
+export interface CommonGroupState {
+  isLoading: boolean;
+  requestLang: string;
+  isCommonDataFetched: boolean;
+}
+export interface JuniorGroupState extends CommonGroupState, JuniorGroupType {
+  fetchCommonData: FetchJuniorData;
+  fetchConditions: FetchJuniorData;
+  fetchRequirements: FetchJuniorData;
+  fetchTimetable: FetchJuniorData;
+  fetchVenues: FetchJuniorData;
+  fetchRewards: FetchJuniorData;
+  fetchArtists: FetchJuniorData;
+  fetchJury: FetchJuniorData;
+}
+
+export interface OtherGroupState extends CommonGroupState, OtherGroupType {
+  group: 'intermediate' | 'senior' | null;
+  fetchCommonData: (
+    id: string,
+    language: string,
+    group: string
+  ) => Promise<void>;
 }

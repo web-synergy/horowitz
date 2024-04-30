@@ -8,7 +8,7 @@ import { Container, Typography } from '@mui/material';
 import ImageComponent from '../Templates/ImageComponent/ImageComponent';
 import Loader from '../Common/Loader';
 import PageTemplate from '../Common/PageTemplate';
-import { CommonStackWrapper } from '../Common/styledComponents';
+import CommonStackWrapper from '../Common/CommonStackWrapper';
 import ButtonsArea from './parts/ButtonsArea';
 import ImagesArea from './parts/ImagesArea';
 import { RegularText } from './parts/RegularText';

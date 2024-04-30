@@ -9,6 +9,7 @@ export default defineType({
   name: 'picture',
   title: 'Картинка',
   type: 'object',
+  options: {collapsed: true, collapsible: true},
   fields: [
     defineField({
       name: 'image',

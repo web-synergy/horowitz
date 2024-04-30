@@ -36,6 +36,9 @@ import rehearsal from './objects/rehearsal'
 import schedule from './objects/schedule'
 import concert from './objects/concert'
 import gradient from './objects/gradient'
+import reward from './objects/reward'
+import artist from './objects/artist'
+import jury from './documents/jury'
 
 export const schemaTypes = [
   //documents
@@ -58,6 +61,7 @@ export const schemaTypes = [
   annualSummerSchool,
   junior,
   group,
+  jury,
 
   //objects
   winners,
@@ -78,4 +82,6 @@ export const schemaTypes = [
   schedule,
   concert,
   gradient,
+  reward,
+  artist,
 ]

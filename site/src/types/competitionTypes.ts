@@ -1,8 +1,11 @@
 import { PortableTextBlock } from '@portabletext/types';
-import { OtherGroupType, JuniorGroupType } from './groupTypes';
 import { IImageReference } from './commonTypes';
 import { IBanner } from './bannerType';
 
+interface PartialGroupType {
+  isActive: boolean;
+  _id: string;
+}
 export interface CompetitionType {
   title: string;
   slug: string;
@@ -12,7 +15,7 @@ export interface CompetitionType {
   intermediateBtn: IImageReference | null;
   seniorBtn: IImageReference | null;
   mainBanner: IBanner | null;
-  junior: Pick<JuniorGroupType, 'isActive'>;
-  intermediate: Pick<OtherGroupType, 'isActive'>;
-  senior: Pick<OtherGroupType, 'isActive'>;
+  junior: PartialGroupType;
+  intermediate: PartialGroupType;
+  senior: PartialGroupType;
 }
