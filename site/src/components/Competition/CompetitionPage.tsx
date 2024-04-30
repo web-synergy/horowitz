@@ -22,7 +22,6 @@ const CompetitionPage = () => {
 
   const competitionSlug = pathname.split('/').slice(-1)[0];
 
-  console.log(title);
   useEffect(() => {
     if (requestLang === language && title) return;
     fetchCommonData(competitionSlug, language);

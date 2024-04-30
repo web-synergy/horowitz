@@ -132,6 +132,7 @@ const banner = defineType({
   ],
   options: {
     collapsible: true,
+    collapsed: true,
   },
 })
 

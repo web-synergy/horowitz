@@ -6,7 +6,7 @@ import { urlFor } from '@/config/sanity/imageUrl';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 import { components } from '@/components/Templates/PortableComponent/parts/components';
 import { WithImage, WithoutImage } from './styled';
-import { IAvatar } from '@/types/annualSummerSchoolTypes';
+import { TextBlockImageType } from '@/types/commonTypes';
 
 const ASPECT_RATIO = [
   { title: '3/4', value: 0.75 },
@@ -15,7 +15,7 @@ const ASPECT_RATIO = [
 ];
 interface TextBlockProps {
   textArray: PortableTextBlock[];
-  img?: IAvatar | undefined;
+  img?: TextBlockImageType;
 }
 
 const TextBlockComponent: FC<TextBlockProps> = ({ textArray, img }) => {
@@ -24,7 +24,7 @@ const TextBlockComponent: FC<TextBlockProps> = ({ textArray, img }) => {
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
   const isTablet = useMediaQuery(theme.breakpoints.only('md'));
 
-  if (!img) {
+  if (!img || !img.image) {
     return (
       <WithoutImage>
         {textArray.map((text, index) => (

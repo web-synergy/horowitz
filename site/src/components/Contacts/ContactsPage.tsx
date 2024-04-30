@@ -1,40 +1,40 @@
-import { Routes } from '@/types/routes.d'
-import { FC } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Routes } from '@/types/routes.d';
+import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { Box, Container, Divider, Typography } from '@mui/material'
-import SocialMedia from '../Common/SocialMedia'
-import ContactsField from './parts/ContactsField'
+import { Box, Container, Divider, Typography } from '@mui/material';
+import SocialMedia from '../Common/SocialMedia';
+import ContactsField from './parts/ContactsField';
 
-import { ContentStack } from './styled'
+import { ContentStack } from './styled';
 
-import { useSettingsStore } from '@/store/settingStore'
-import { Contacts } from '@/types/translation.d'
+import { useSettingsStore } from '@/store/settingStore';
+import { Contacts } from '@/types/translation.d';
 
-import { PortableText, PortableTextComponents } from '@portabletext/react'
-import PageTemplate from '../Common/PageTemplate'
-import { CommonStackWrapper } from '../Common/styledComponents'
+import { PortableText, PortableTextComponents } from '@portabletext/react';
+import PageTemplate from '../Common/PageTemplate';
+import CommonStackWrapper from '../Common/CommonStackWrapper';
 
 const components: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
       <Typography
         variant="bodyRegular"
-        sx={{ color: theme => theme.palette.neutral[20] }}
+        sx={{ color: (theme) => theme.palette.neutral[20] }}
         component={'p'}
       >
         {children}
       </Typography>
     ),
   },
-}
+};
 const ContactsPage: FC = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  const contacts = useSettingsStore(state => state.contacts)
-  if (!contacts) return null
+  const contacts = useSettingsStore((state) => state.contacts);
+  if (!contacts) return null;
 
-  const { address: location, phone, email, pressCenter, about } = contacts
+  const { address: location, phone, email, pressCenter, about } = contacts;
 
   return (
     <PageTemplate mode="dark">
@@ -62,7 +62,10 @@ const ContactsPage: FC = () => {
 
           {/* location, phone, email */}
           <ContentStack sx={{ position: 'relative' }}>
-            <ContactsField title={t(`contacts.${Contacts.ADDRESS}`)} details={location} />
+            <ContactsField
+              title={t(`contacts.${Contacts.ADDRESS}`)}
+              details={location}
+            />
             <ContactsField
               variant="phone"
               title={t(`contacts.${Contacts.PHONE}`)}
@@ -84,7 +87,11 @@ const ContactsPage: FC = () => {
               title={t(`contacts.${Contacts.PRESS_CENTER}`)}
               details={pressCenter.phone}
             />
-            <ContactsField variant="email" title="E-mail" details={pressCenter.email} />
+            <ContactsField
+              variant="email"
+              title="E-mail"
+              details={pressCenter.email}
+            />
             <Divider
               variant="light"
               sx={{
@@ -96,7 +103,7 @@ const ContactsPage: FC = () => {
         </CommonStackWrapper>
       </Container>
     </PageTemplate>
-  )
-}
+  );
+};
 
-export default ContactsPage
+export default ContactsPage;

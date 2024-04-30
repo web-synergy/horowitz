@@ -1,51 +1,45 @@
-import { Button } from '@mui/material';
-import { FC } from 'react';
+import { Box, Button, Container } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Link as RouterLink } from 'react-router-dom';
-import { LinksListStack } from './styled';
-
-export type ListItem = {
-  title: string;
-  isActive: boolean;
-};
+import { useNavigate } from 'react-router-dom';
+import { FC } from 'react';
+import { BgImage, GridBox } from './styled';
+import { NavItemType } from '@/types/routes.d';
 
 type NavListProps = {
-  linksList: ListItem[];
-  path?: string;
+  linksList: NavItemType[];
 };
 
-const NavList: FC<NavListProps> = ({ linksList, path }) => {
+const NavList: FC<NavListProps> = ({ linksList }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const onButtonClick = (path: string) => {
+    navigate(path);
+  };
   return (
-    <LinksListStack>
-      {linksList.map((navigation, i) => (
-        <Button
-          key={i}
-          disabled={!navigation.isActive}
-          variant='primary'
-          component={navigation.isActive ? RouterLink : 'button'}
-          to={path ? `${path}/${navigation.title}` : navigation.title}
-          sx={{
-            width: {
-              xs: 288,
-              lg: 336,
-            },
-            height: {
-              xs: 48,
-              md: 60,
-            },
-            '&.MuiButton-root': {
-              padding: '16px 0',
-              fontSize: {
-                xs: '16px',
-                lg: '18px',
-              },
-            },
-          }}>
-          {t(`navigation.${navigation.title}`)}
-        </Button>
-      ))}
-    </LinksListStack>
+    <Box sx={{ position: 'relative' }}>
+      <BgImage />
+      <Container>
+        <GridBox>
+          {linksList.map((link) => (
+            <Button
+              key={link.title}
+              disabled={!link.isActive}
+              role="link"
+              onClick={() => onButtonClick(link.title)}
+              sx={{
+                '&.MuiButton-root': {
+                  paddingLeft: 1,
+                  paddingRight: 1,
+                },
+              }}
+            >
+              {t(`navigation.${link.title}`)}
+            </Button>
+          ))}
+        </GridBox>
+      </Container>
+    </Box>
   );
 };
 

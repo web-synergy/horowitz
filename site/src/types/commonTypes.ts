@@ -1,4 +1,5 @@
 import { SanityReference } from '@sanity/client';
+import { PortableTextBlock } from '@portabletext/types';
 
 export interface IImageReference {
   asset: SanityReference;
@@ -28,4 +29,15 @@ export interface IColorField {
     g: number;
     r: number;
   };
+}
+
+export interface TextBlockImageType {
+  image: IImageReference;
+  alt?: string;
+  aspectRatio: '16/9' | '1/1' | '3/4';
+}
+export interface TextBlockType {
+  title: string;
+  text: PortableTextBlock[];
+  image: TextBlockImageType;
 }

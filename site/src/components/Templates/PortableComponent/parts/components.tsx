@@ -73,6 +73,22 @@ export const components: PortableTextComponents = {
       </Typography>
     ),
     blockquote: ({ children }) => <Blockquote>{children}</Blockquote>,
+    topSpace: ({ children }) => (
+      <Typography
+        component={'p'}
+        sx={{
+          mt: { xs: 3, md: 5, lg: 6 },
+          mb: 2,
+          textAlign: 'justify',
+          '&:last-child': {
+            mb: 0,
+          },
+        }}
+        variant="bodyRegular"
+      >
+        {children}
+      </Typography>
+    ),
   },
 
   list: {

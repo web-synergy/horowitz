@@ -19,8 +19,12 @@ function GridTemplate<T>(props: GridTemplateProps<T>) {
         display: isCentered ? 'flex' : 'grid',
         columnGap: 3,
         rowGap: 7,
-        justifyContent: 'center',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(288px, 1fr))',
+        justifyContent: 'space-evenly',
+        gridTemplateColumns: {
+          xs: 'repeat(auto-fit, minmax(288px, 1fr))',
+          md: 'repeat(auto-fit,332px)',
+          lg: 'repeat(auto-fit, minmax(357px, 1fr))',
+        },
         flexDirection: 'row',
         flexWrap: 'wrap',
       }}

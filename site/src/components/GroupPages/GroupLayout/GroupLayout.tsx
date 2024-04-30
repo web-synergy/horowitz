@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import MainBanner from '@/components/Common/MainBanner';
 import { useCompetitionStore } from '@/store/competitionStore';
 import Loader from '@/components/Common/Loader';
+import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 
 const GroupLayout = () => {
   const { pathname } = useLocation();
@@ -12,6 +13,8 @@ const GroupLayout = () => {
   } = useTranslation();
   const { mainBanner, fetchCommonData, requestLang, isLoading } =
     useCompetitionStore();
+
+  const { isLoading: junLoading } = useJuniorGroupStore();
 
   const competitionSlug = pathname.split('/')[2];
 
@@ -23,7 +26,7 @@ const GroupLayout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [competitionSlug, language]);
 
-  if (isLoading) return <Loader />;
+  if (isLoading || junLoading) return <Loader />;
 
   if (requestLang && !mainBanner) {
     return <Navigate to={'404'} />;
