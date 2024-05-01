@@ -3,9 +3,13 @@ import { Box } from "@mui/material";
 
 import { PortableText } from "@portabletext/react";
 import { components } from "../portableComponents";
-import { TextBlockSectionProps } from "@/types/horowitzTypes";
+import { PortableTextBlock } from "@portabletext/types";
 
-const TextBlockSection: React.FC<TextBlockSectionProps> = ({ blocks }) => {
+export interface TextBlockProps {
+  blocks: PortableTextBlock[];
+}
+
+const TextBlockSection: React.FC<TextBlockProps> = ({ blocks }) => {
   return (
     <Box
       sx={{
