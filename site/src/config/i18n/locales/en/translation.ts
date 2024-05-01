@@ -124,9 +124,11 @@ export default {
 
   summerSchoolSchedules: {
     inputNameLabel: "Name of Professor/ Conductor",
+    inputNamePlaceholder: "Select a professor",
     inputDateLabel: "Date",
     notFoundText: "Unfortunately we can't find any results",
     searchResults: "Results",
     showAllSpeaker: "Show all",
+    emptyPageText: "Select the professor's name and date",
   },
 };

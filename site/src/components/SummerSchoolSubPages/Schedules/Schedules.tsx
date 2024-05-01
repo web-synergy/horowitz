@@ -193,9 +193,15 @@ const SchedulePage = () => {
       {!isShowSearchResults && (
         <Box
           sx={{
-            marginTop: { xs: "412px", md: "468px", lg: "526px" },
+            textAlign: "center",
+            paddingTop: { xs: "72px", md: "96px", lg: "180px" },
+            paddingBottom: { xs: "276px", md: "302px", lg: "390px" },
           }}
-        />
+        >
+          <Typography variant="h3">
+            {t(`summerSchoolSchedules.emptyPageText`)}
+          </Typography>
+        </Box>
       )}
       {selectedLectures.length > 0 && !showLoader && (
         <Typography

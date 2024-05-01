@@ -1,5 +1,11 @@
 import { FC } from "react";
-import { Select, MenuItem, useTheme, SelectChangeEvent } from "@mui/material";
+import {
+  Select,
+  MenuItem,
+  useTheme,
+  SelectChangeEvent,
+  Typography,
+} from "@mui/material";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 
 import { IProfessor } from "@/types/annualSummerSchoolTypes";
@@ -47,6 +53,10 @@ const CustomSelectInput: FC<CustomSelectInputProps> = ({
               borderColor: theme.palette.primary.main,
             },
           },
+          "& .MuiSelect-root": {
+            fontSize: { xs: "16px", md: "18px" },
+            color: "red",
+          },
         }}
         id="professor-select"
         value={selectedProfessor}
@@ -76,6 +86,19 @@ const CustomSelectInput: FC<CustomSelectInputProps> = ({
             },
           },
         }}
+        displayEmpty
+        renderValue={
+          selectedProfessor !== ""
+            ? undefined
+            : () => (
+                <Typography
+                  variant="bodyRegular"
+                  sx={{ color: theme.palette.neutral[30] }}
+                >
+                  {t(`summerSchoolSchedules.inputNamePlaceholder`)}
+                </Typography>
+              )
+        }
       >
         <MenuItem value="All">
           <em>{t(`summerSchoolSchedules.showAllSpeaker`)}</em>
