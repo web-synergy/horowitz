@@ -46,9 +46,12 @@ const Wrapper = styled(Box)(({ theme }) => ({
   '& img': {
     display: 'block',
     maxWidth: '100%',
-    maxHeight: '40vh',
+    aspectRatio: 1.07,
     margin: '0 auto',
     marginBottom: 24,
+    objectFit: 'cover',
+    objectPosition: 'center top',
+    maxHeight: '50vh',
   },
 
   [theme.breakpoints.up('md')]: {
@@ -57,9 +60,7 @@ const Wrapper = styled(Box)(({ theme }) => ({
       marginLeft: 24,
       marginBottom: 8,
       width: '50%',
-      maxHeight: '50vh',
-      objectFit: 'cover',
-      objectPosition: 'center top',
+      maxHeight: 'unset',
     },
   },
 

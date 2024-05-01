@@ -1,10 +1,10 @@
-import { Box, Fab, Fade, Stack } from '@mui/material'
-import { FC } from 'react'
-import SvgSpriteIcon from './SvgSpriteIcon'
+import { Box, Fab, Fade, Stack } from '@mui/material';
+import { FC } from 'react';
+import SvgSpriteIcon from './SvgSpriteIcon';
 
 type ScrollUpBtnProps = {
-  visibility: boolean
-}
+  visibility: boolean;
+};
 
 const ArrowUp: FC = () => {
   return (
@@ -18,22 +18,28 @@ const ArrowUp: FC = () => {
         <Box>
           <SvgSpriteIcon
             icon="scrollUp"
-            sx={{ width: { xs: '16px', lg: '28px' }, height: { xs: '14px', lg: '24px' } }}
+            sx={{
+              width: 16,
+              height: 14,
+            }}
           />
         </Box>
       </Stack>
     </Fab>
-  )
-}
+  );
+};
 
 const ScrollUpBtn: FC<ScrollUpBtnProps> = ({ visibility }) => {
   return (
-    <Fade in={visibility} onClick={() => scrollTo({ top: 0, behavior: 'smooth' })}>
+    <Fade
+      in={visibility}
+      onClick={() => scrollTo({ top: 0, behavior: 'smooth' })}
+    >
       <Box sx={{ position: 'sticky', bottom: 0, zIndex: 100 }}>
         <Box
           sx={{
             position: 'absolute',
-            bottom: { xs: 5, lg: 20 },
+            bottom: { xs: 15, lg: 20 },
             right: { xs: 10, lg: 20 },
           }}
         >
@@ -41,7 +47,7 @@ const ScrollUpBtn: FC<ScrollUpBtnProps> = ({ visibility }) => {
         </Box>
       </Box>
     </Fade>
-  )
-}
+  );
+};
 
-export default ScrollUpBtn
+export default ScrollUpBtn;

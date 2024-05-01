@@ -54,6 +54,24 @@ import LazyNotFoundPage from '@/components/NotFound/LazyNotFoundPage';
 import LazyCurrentConcert from '@/components/SummerSchoolSubPages/Concerts/CurrentConcert/LazyCurrentConcert';
 import LazyConcertsList from '@/components/SummerSchoolSubPages/Concerts/ConcertsList/LazyConcertsList';
 
+import LazyGroupLayout from '@/components/GroupPages/GroupLayout/LazyGroupLayout';
+import LazyGroupPage from '@/components/Group/LazyGroupPage';
+
+import LazyJuniorMainPage from '@/components/JuniorGroup/JuniorMain/LazyJuniorMainPage';
+import LazyJuniorConditionsPage from '@/components/JuniorGroup/JuniorConditions/LazyJuniorConditionsPage';
+import LazyJuniorJuryListPage from '@/components/JuniorGroup/JuniorJuryList/LazyJuniorJuryListPage';
+import LazyJuniorTimetablePage from '@/components/JuniorGroup/JuniorTimetable/LazyJuniorTimetablePage';
+import LazyJuniorRequirementsPage from '@/components/JuniorGroup/JuniorRequirements/LazyJuniorRequirementsPage';
+import LazyJuniorStudentsListPage from '@/components/JuniorGroup/JuniorStudentJunryList/LazyJuniorStudentsListPage';
+import LazyJuniorParticipantsPage from '@/components/JuniorGroup/JuniorParticipants/LazyJuniorParticipantsPage';
+import LazyJuniorRewardsPage from '@/components/JuniorGroup/JuniorRewards/LazyJuniorRewardsPage';
+import LazyJuniorArtistsPage from '@/components/JuniorGroup/JuniorArtists/LazyJuniorArtistsPage';
+import LazyJuniorWinnersPage from '@/components/JuniorGroup/JuniorWinners/LazyJuniorWinnersPage';
+import LazyJuniorVenuesPage from '@/components/JuniorGroup/JuniorVenues/LazyJuniorVenuesPage';
+import LazyJuniorGuestsPage from '@/components/JuniorGroup/JuniorGuests/LazyJuniorGuestsPage';
+import LazyJuniorBookletPage from '@/components/JuniorGroup/JuniorBooklet/LazyJuniorBookletPage';
+import LazyJuniorJuryProfilePage from '@/components/JuniorGroup/JuniorJuryProfile/LazyJuniorJuryProfile';
+
 const routes = createBrowserRouter([
   {
     path: '/',
@@ -83,6 +101,137 @@ const routes = createBrowserRouter([
       {
         path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}`,
         element: <LazyCompetitionPage />,
+      },
+      {
+        path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}/${Routes.JUNIOR}`,
+        element: <LazyGroupLayout />,
+        children: [
+          {
+            index: true,
+            element: <LazyJuniorMainPage />,
+          },
+          {
+            path: Routes.GROUP_CONDITIONS,
+            element: <LazyJuniorConditionsPage />,
+          },
+          {
+            path: Routes.GROUP_JURY,
+            element: <LazyJuniorJuryListPage />,
+          },
+          {
+            path: `${Routes.GROUP_JURY}/:slug`,
+            element: <LazyJuniorJuryProfilePage />,
+          },
+          {
+            path: Routes.GROUP_PARTICIPANTS,
+            element: <LazyJuniorParticipantsPage />,
+          },
+          {
+            path: Routes.GROUP_REQUIREMENTS,
+            element: <LazyJuniorRequirementsPage />,
+          },
+          {
+            path: Routes.GROUP_TIMETABLE,
+            element: <LazyJuniorTimetablePage />,
+          },
+          {
+            path: Routes.GROUP_STUDENT_JURY,
+            element: <LazyJuniorStudentsListPage />,
+          },
+
+          {
+            path: Routes.GROUP_REWARDS,
+            element: <LazyJuniorRewardsPage />,
+          },
+          {
+            path: Routes.GROUP_ORCHESTRA,
+            element: <LazyJuniorArtistsPage />,
+          },
+          {
+            path: Routes.GROUP_WINNERS,
+            element: <LazyJuniorWinnersPage />,
+          },
+          {
+            path: Routes.GROUP_VENUES,
+            element: <LazyJuniorVenuesPage />,
+          },
+          {
+            path: Routes.GROUP_GUESTS,
+            element: <LazyJuniorGuestsPage />,
+          },
+          {
+            path: Routes.GROUP_BOOKLET,
+            element: <LazyJuniorBookletPage />,
+          },
+        ],
+      },
+      {
+        path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}/${Routes.INTERMEDIATE}`,
+        element: <LazyGroupLayout />,
+        children: [
+          {
+            index: true,
+            element: <LazyJuniorMainPage />,
+          },
+          {
+            path: Routes.GROUP_CONDITIONS,
+            element: <LazyJuniorConditionsPage />,
+          },
+          {
+            path: Routes.GROUP_JURY,
+            element: <LazyJuniorJuryListPage />,
+          },
+          {
+            path: Routes.GROUP_PARTICIPANTS,
+            element: <LazyJuniorParticipantsPage />,
+          },
+          {
+            path: Routes.GROUP_REQUIREMENTS,
+            element: <LazyJuniorRequirementsPage />,
+          },
+          {
+            path: Routes.GROUP_TIMETABLE,
+            element: <LazyJuniorTimetablePage />,
+          },
+          {
+            path: Routes.GROUP_STUDENT_JURY,
+            element: <LazyJuniorStudentsListPage />,
+          },
+          {
+            path: Routes.GROUP_REWARDS,
+            element: <LazyJuniorRewardsPage />,
+          },
+          {
+            path: Routes.GROUP_ORCHESTRA,
+            element: <LazyJuniorArtistsPage />,
+          },
+          {
+            path: Routes.GROUP_WINNERS,
+            element: <LazyJuniorWinnersPage />,
+          },
+          {
+            path: Routes.GROUP_VENUES,
+            element: <LazyJuniorVenuesPage />,
+          },
+          {
+            path: Routes.GROUP_GUESTS,
+            element: <LazyJuniorGuestsPage />,
+          },
+          {
+            path: Routes.GROUP_BOOKLET,
+            element: <LazyJuniorBookletPage />,
+          },
+        ],
+      },
+      {
+        path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}/${Routes.SENIOR}`,
+        element: <LazyGroupLayout />,
+        children: [
+          {
+            index: true,
+            element: <LazyGroupPage title={Routes.SENIOR} />,
+          },
+        ],
       },
       {
         path: `${Routes.ARCHIVE}`,

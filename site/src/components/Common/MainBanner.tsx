@@ -5,6 +5,7 @@ import { IBanner } from "@/types/bannerType";
 import { urlFor } from "@/config/sanity/imageUrl";
 import { createColor, createGradientColors } from "@/utils/createColor";
 import { useWidthBlokSize } from "@/hook/useWidthBlockSize";
+import { getImageData } from "@/utils/getImageData";
 
 interface MainBannerProps {
   banner: IBanner;
@@ -20,15 +21,15 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
   const { backgroundType } = background;
   const { fullSize } = size;
 
+  const imageData = getImageData(img.asset._ref);
+  const {
+    dimensions: { height, width },
+  } = imageData;
+
   useEffect(() => {
     const imageWidth = fullSize
       ? containerSize
-      : Math.min(
-          1280,
-          Math.floor(
-            ((refHeight as number) * size.format.width) / size.format.height
-          )
-        );
+      : Math.min(1280, Math.floor(((refHeight as number) * width) / height));
 
     setImageWidth(imageWidth);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,8 +50,8 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
     return fullSize
       ? `${size.maxHeight}vh`
       : Math.min(
-          Math.floor((containerSize * size.format.height) / size.format.width),
-          Math.floor((1280 * size.format.height) / size.format.width),
+          Math.floor((containerSize * height) / width),
+          Math.floor((1280 * height) / width),
           530
         );
     // eslint-disable-next-line react-hooks/exhaustive-deps

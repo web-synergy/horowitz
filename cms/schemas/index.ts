@@ -12,7 +12,8 @@ import content from './objects/content'
 import banner from './objects/banner'
 
 import competition from './documents/competition'
-import competitionDocument from './documents/competitionDocument'
+import junior from './documents/junior'
+import group from './documents/group'
 import {imageGalleryType} from './objects/imageGalleryType'
 import sponsor from './objects/sponsor'
 import membersAdministration from './objects/membersAdministration'
@@ -35,7 +36,9 @@ import rehearsal from './objects/rehearsal'
 import schedule from './objects/schedule'
 import concert from './objects/concert'
 import gradient from './objects/gradient'
-import format from './objects/format'
+import reward from './objects/reward'
+import artist from './objects/artist'
+import jury from './documents/jury'
 
 export const schemaTypes = [
   //documents
@@ -45,7 +48,7 @@ export const schemaTypes = [
   settings,
   contacts,
   social,
-  competitionDocument,
+
   magazinePdf,
   horowitz,
   partners,
@@ -56,6 +59,9 @@ export const schemaTypes = [
   ukrainianWorks,
   summerSchool,
   annualSummerSchool,
+  junior,
+  group,
+  jury,
 
   //objects
   winners,
@@ -76,5 +82,6 @@ export const schemaTypes = [
   schedule,
   concert,
   gradient,
-  format,
+  reward,
+  artist,
 ]

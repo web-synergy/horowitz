@@ -1,11 +1,11 @@
 import { sanityFetch } from '../config/sanity/client';
 
-import { AboutCompetitionResp } from '@/types/aboutCompetitionTypes';
+import { AboutCompetitionType } from '@/types/aboutCompetitionTypes';
 import { IAdministration } from '@/types/administrationTypes';
 import { HomeData } from '@/types/homeTypes';
 import { IHorowitzData } from '@/types/horowitzTypes';
 import { INews } from '@/types/newsTypes';
-import { PartnersResp } from '@/types/partnersTypes';
+import { PartnersType } from '@/types/partnersTypes';
 import { ISummerSchool } from '@/types/summerSchoolTypes';
 import { IUkrWorks } from '@/types/ukranianWorks';
 import { IVirtuosos } from '@/types/virtuososTypes';
@@ -27,8 +27,19 @@ import {
   virtuososArticleQuery,
   virtuososQuery,
   annualSchoolData,
+  competitionsQuery,
+  juniorGroupCommonQuery,
+  juniorGroupConditionQuery,
+  juniorGroupRequirementsQuery,
+  juniorGroupTimetableQuery,
+  juniorGroupVenuesQuery,
+  juniorGroupRewardsQuery,
+  juniorGroupArtistsQuery,
+  juniorGroupJuryQuery,
 } from './query';
 import { AnnualSummerSchoolTypes } from '@/types/annualSummerSchoolTypes';
+import { CompetitionType } from '@/types/competitionTypes';
+import { JuniorGroupType } from '@/types/groupTypes';
 
 export const getHomeData = async (language: string): Promise<HomeData> => {
   return sanityFetch(homeQuery, { language });
@@ -60,13 +71,13 @@ export const getCurrentNews = async (
   return sanityFetch(currentNewsQuery, { language, slug });
 };
 
-export const getPartners = async (language: string): Promise<PartnersResp> => {
+export const getPartners = async (language: string): Promise<PartnersType> => {
   return sanityFetch(partners, { language });
 };
 
 export const getAboutCompetition = async (
   language: string
-): Promise<AboutCompetitionResp> => {
+): Promise<AboutCompetitionType> => {
   return sanityFetch(aboutCompetitionQuery, { language });
 };
 
@@ -116,4 +127,67 @@ export const getAnnualSchoolData = (
   year: string
 ): Promise<AnnualSummerSchoolTypes> => {
   return sanityFetch(annualSchoolData, { language, year });
+};
+
+export const getCompetitionData = (
+  slug: string,
+  language: string
+): Promise<CompetitionType> => {
+  return sanityFetch(competitionsQuery, { slug, language });
+};
+
+export const getJuniorGroupData = (
+  id: string,
+  language: string
+): Promise<JuniorGroupType> => {
+  return sanityFetch(juniorGroupCommonQuery, { id, language });
+};
+
+export const getJuniorConditionsData = (
+  id: string,
+  language: string
+): Promise<JuniorGroupType> => {
+  return sanityFetch(juniorGroupConditionQuery, { id, language });
+};
+
+export const getJuniorRequirementsData = (
+  id: string,
+  language: string
+): Promise<JuniorGroupType> => {
+  return sanityFetch(juniorGroupRequirementsQuery, { id, language });
+};
+
+export const getJuniorTimetableData = (
+  id: string,
+  language: string
+): Promise<JuniorGroupType> => {
+  return sanityFetch(juniorGroupTimetableQuery, { id, language });
+};
+
+export const getJuniorVenuesData = (
+  id: string,
+  language: string
+): Promise<JuniorGroupType> => {
+  return sanityFetch(juniorGroupVenuesQuery, { id, language });
+};
+
+export const getJuniorRewardsData = (
+  id: string,
+  language: string
+): Promise<JuniorGroupType> => {
+  return sanityFetch(juniorGroupRewardsQuery, { id, language });
+};
+
+export const getJuniorArtistsData = (
+  id: string,
+  language: string
+): Promise<JuniorGroupType> => {
+  return sanityFetch(juniorGroupArtistsQuery, { id, language });
+};
+
+export const getJuniorJuryData = (
+  id: string,
+  language: string
+): Promise<JuniorGroupType> => {
+  return sanityFetch(juniorGroupJuryQuery, { id, language });
 };

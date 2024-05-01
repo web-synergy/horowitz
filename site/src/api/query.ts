@@ -1,27 +1,24 @@
 import groq from "groq";
 export const homeQuery = groq`*[_type == 'home'][0]{
-    'news':*[_type == 'news'  && length(title[_key ==$language].value) != 0]| order( dateTime(date)  desc) [0 ...3]{
-      date,
-     img,
-    'title':  title[_key ==$language ][0].value,
-    'slug':slug.current,},
-    'videos':videos[]{
-      'title':title[_key==$language][0].value,
-      link,
-      _key
-    }, 
-    'banner': banner{
-      background, 
-      'img':  img[_key ==$language ][0].value, 
-      format
-      
-    }
-
- 
+  'news':*[_type == 'news'  && length(title[_key ==$language].value) != 0]| order( dateTime(date)  desc) [0 ...3]{
+    date,
+   img,
+  'title':  title[_key ==$language ][0].value,
+  'slug':slug.current,},
+  'videos':videos[]{
+    'title':title[_key==$language][0].value,
+    link,
+    _key
+  }, 
+  'banner': banner{
+    background, 
+    'img':  img[_key ==$language ][0].value, 
+   }
 }`;
 
 export const settingsQuery = groq`*[_type == 'settings']{
   'logo':logo.asset->url,
+  "seoImage": seoImage.asset->url, 
   'sociable':*[_type == 'social'][0],
   'contacts':*[_type == 'contacts'][0]{
     'about':about[_key ==$language].value,
@@ -37,8 +34,7 @@ export const settingsQuery = groq`*[_type == 'settings']{
 }`;
 
 export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
-  'banner': mainBanner,
-  'bannerCopyright': bannerData.bannerCopyright,
+  'bannerData': mainBanner,
   'upperTextBlock': upperTextBlock[_key ==$language][0].value,
   'quote':quote{
     'author': author[_key ==$language].value,
@@ -173,7 +169,7 @@ export const annualSchoolData = groq`*[_type== 'annualSummerSchool' && year==$ye
   applicationLink, 
   button, 
   isActive, 
-  isActiveConcert, 
+  isActiveConcerts, 
   isActiveConditions, 
   isActiveOrchestra, 
   isActiveParticipants, 
@@ -192,7 +188,7 @@ export const annualSchoolData = groq`*[_type== 'annualSummerSchool' && year==$ye
   "conditions": conditions[_key ==$language][0].value, 
   "orchestra": orchestra[_key ==$language][0].value, 
   "participants": participants[]{
-    _key, avatar,birthday,
+    _key, avatar,age,
     "about": about[_key ==$language][0].value, 
     "country": country[_key ==$language][0].value, 
     "name": name[_key ==$language][0].value
@@ -213,3 +209,95 @@ export const annualSchoolData = groq`*[_type== 'annualSummerSchool' && year==$ye
   } 
   
 }`;
+
+export const competitionsQuery = groq`*[_type == 'competition' && slug.current == $slug][0]{
+  "title": title[_key ==$language][0].value, 
+   "description": description[_key ==$language][0].value, 
+  isWarState, 
+  juniorBtn, 
+  intermediateBtn, 
+  seniorBtn, 
+  mainBanner, 
+  "junior":junior->{
+    _id, 
+    isActive, 
+  }, 
+  "intermediate": intermediate->{
+    _id,
+    isActive, 
+     },
+  "senior": senior->{
+    _id,
+    isActive, 
+     },
+}`;
+
+export const juniorGroupCommonQuery = groq`*[_type == 'junior' && _id == $id][0]{
+  isActiveBooklet,
+    isActiveConditions,
+    isActiveGuest,
+    isActiveJury,
+    isActiveOrchestra,
+    isActiveParticipants,
+    isActiveRequirements,
+    isActiveRewards,
+    isActiveStudentsJury,
+    isActiveTimetable,
+    isActiveVenues,
+    isActiveWinners,
+}`;
+
+export const juniorGroupConditionQuery = groq`*[_type == 'junior' && _id == $id][0]{
+  "conditions": conditions[] {
+    "title":  title[_key ==$language][0].value, 
+    'text': text[_key ==$language][0].value, 
+    image
+      }
+}`;
+
+export const juniorGroupRequirementsQuery = groq`*[_type == 'junior' && _id == $id][0]{
+  "requirements": requirements[_key ==$language][0].value
+}`;
+
+export const juniorGroupTimetableQuery = groq`*[_type == 'junior' && _id == $id][0]{
+  "timetable": timetable[_key ==$language][0].value
+}`;
+
+export const juniorGroupVenuesQuery = groq`*[_type == 'junior' && _id == $id][0]{
+  "venues": venues[] {
+    "title":  title[_key ==$language][0].value, 
+    'text': text[_key ==$language][0].value, 
+    image
+      }
+}`;
+
+export const juniorGroupRewardsQuery = groq`*[_type == 'junior' && _id == $id][0]{
+  "rewards": rewards[]{
+    image, 
+    'title': title[_key ==$language][0].value, 
+    'description': description[_key ==$language][0].value, 
+  }, 
+  'prizes':  prizes[_key ==$language][0].value, 
+}`;
+
+export const juniorGroupArtistsQuery = groq`*[_type == 'junior' && _id == $id][0]{
+  "artists": orchestra[]{
+    image, 
+    'title': title[_key ==$language][0].value, 
+    'description': description[_key ==$language][0].value, 
+    "copyRight": copyRight[_key ==$language][0].value,
+  }, 
+  
+}`;
+
+export const juniorGroupJuryQuery = groq`*[_type == 'junior' && _id == $id][0]{
+  'jury': jury[]-> {
+    "about": about[_key ==$language][0].value, 
+    "name": name[_key ==$language][0].value,
+    avatar, 
+    "slug": slug.current, 
+    "role":  role[_key ==$language][0].value, 
+  }
+}`;
+
+export const juryProfileQuery = groq`*[_type == 'jury' && slug == $slug][0]`;

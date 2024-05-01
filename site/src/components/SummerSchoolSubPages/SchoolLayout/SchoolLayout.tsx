@@ -38,12 +38,13 @@ const SchoolLayout = () => {
       </>
     );
   }
-  return (
-    <>
-      <MainBanner banner={banner} />
-      <Outlet />
-    </>
-  );
+  if (banner?.img)
+    return (
+      <>
+        <MainBanner banner={banner} />
+        <Outlet />
+      </>
+    );
 };
 
 export default SchoolLayout;

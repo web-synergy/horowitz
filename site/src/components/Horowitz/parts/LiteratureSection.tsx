@@ -1,9 +1,13 @@
 import React from 'react';
 import { Box, Collapse } from '@mui/material';
-
+import { PortableTextBlock } from '@portabletext/types';
 import { PortableText } from '@portabletext/react';
 import { collapsComponents, components } from '../portableComponents';
-import { LiteratureSectionProps } from '@/types/horowitzTypes';
+
+export interface LiteratureSectionProps {
+  literature: PortableTextBlock[];
+  isAllLiteratureVisible: boolean;
+}
 
 const LiteratureSection: React.FC<LiteratureSectionProps> = ({
   literature,

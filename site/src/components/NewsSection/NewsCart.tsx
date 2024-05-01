@@ -24,11 +24,12 @@ const NewsCart: FC<INewsCart> = ({ img, title, slug }) => {
         },
         height: '100%',
         '& img': {
-          height: {
-            xs: '185px',
-            md: '248px',
-          },
+          // height: {
+          //   xs: '185px',
+          //   md: '248px',
+          // },
           objectPosition: 'top',
+          aspectRatio: 1.5,
         },
       }}
     >

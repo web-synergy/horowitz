@@ -40,7 +40,7 @@ const CurrentConcert = () => {
             <Box
               sx={{
                 width: { xs: '100%', md: '50%' },
-                '*:first-child': {
+                '*:first-of-type': {
                   marginTop: '0px',
                 },
               }}>

@@ -1,4 +1,4 @@
-import { NavigationItemType, Routes } from '@/types/routes.d';
+import { NavigationItemType, Routes, NavItemType } from '@/types/routes.d';
 
 export const navigation: NavigationItemType[] = [
   {
@@ -35,39 +35,100 @@ export const navigation: NavigationItemType[] = [
   { title: Routes.CONTACTS, children: null },
 ];
 
-export const kyivGenevaNavigation = [
-  { title: Routes.KYIV_GENEVA_CONDITIONS },
-  { title: Routes.KYIV_GENEVA_REQUIREMENTS },
-  { title: Routes.KYIV_GENEVA_REWARDS },
-  { title: Routes.KYIV_GENEVA_JURY },
-  { title: Routes.KYIV_GENEVA_SELECTION_JURY },
-  { title: Routes.KYIV_GENEVA_ORCHESTRA },
-  { title: Routes.KYIV_GENEVA_PARTICIPANTS },
-  { title: Routes.KYIV_GENEVA_WINNERS },
-  { title: Routes.KYIV_GENEVA_TIMETABLE },
+export const kyivGenevaNavigation: NavItemType[] = [
+  { title: Routes.KYIV_GENEVA_CONDITIONS, isActive: true },
+  { title: Routes.KYIV_GENEVA_REQUIREMENTS, isActive: true },
+  { title: Routes.KYIV_GENEVA_REWARDS, isActive: true },
+  { title: Routes.KYIV_GENEVA_JURY, isActive: true },
+  { title: Routes.KYIV_GENEVA_SELECTION_JURY, isActive: true },
+  { title: Routes.KYIV_GENEVA_ORCHESTRA, isActive: true },
+  { title: Routes.KYIV_GENEVA_PARTICIPANTS, isActive: true },
+  { title: Routes.KYIV_GENEVA_WINNERS, isActive: true },
+  { title: Routes.KYIV_GENEVA_TIMETABLE, isActive: true },
 ];
 
-export const summerSchoolNavigation = [
+export const summerSchoolNavigation: NavItemType[] = [
   {
     title: Routes.SUMMER_SCHOOL_CONDITIONS,
+    isActive: false,
   },
   {
     title: Routes.SUMMER_SCHOOL_PROFESSORS,
+    isActive: false,
   },
 
   {
     title: Routes.SUMMER_SCHOOL_STUDENTS,
+    isActive: false,
   },
   {
     title: Routes.SUMMER_SCHOOL_SCHEDULES,
+    isActive: false,
   },
   {
     title: Routes.SUMMER_SCHOOL_CONCERTS,
+    isActive: false,
   },
   {
     title: Routes.SUMMER_SCHOOL_PLACES,
+    isActive: false,
   },
 ];
+
+export const getGroupNavigation = (isJunior: boolean): NavItemType[] => {
+  return [
+    {
+      title: Routes.GROUP_CONDITIONS,
+      isActive: false,
+    },
+    {
+      title: Routes.GROUP_JURY,
+      isActive: false,
+    },
+    {
+      title: Routes.GROUP_TIMETABLE,
+      isActive: false,
+    },
+    {
+      title: Routes.GROUP_REQUIREMENTS,
+      isActive: false,
+    },
+    {
+      title: isJunior
+        ? Routes.GROUP_STUDENT_JURY
+        : Routes.GROUP_PRESELECTION_JURY,
+      isActive: false,
+    },
+    {
+      title: Routes.GROUP_PARTICIPANTS,
+      isActive: false,
+    },
+    {
+      title: Routes.GROUP_REWARDS,
+      isActive: false,
+    },
+    {
+      title: Routes.GROUP_ORCHESTRA,
+      isActive: false,
+    },
+    {
+      title: Routes.GROUP_WINNERS,
+      isActive: false,
+    },
+    {
+      title: Routes.GROUP_VENUES,
+      isActive: false,
+    },
+    {
+      title: Routes.GROUP_GUESTS,
+      isActive: false,
+    },
+    {
+      title: Routes.GROUP_BOOKLET,
+      isActive: false,
+    },
+  ];
+};
 
 type Navigate = { title: string; parent: string | null };
 

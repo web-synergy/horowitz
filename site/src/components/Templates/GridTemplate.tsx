@@ -19,8 +19,12 @@ function GridTemplate<T>(props: GridTemplateProps<T>) {
         display: isCentered ? 'flex' : 'grid',
         columnGap: 3,
         rowGap: 7,
-        justifyContent: 'center',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(288px, 1fr))',
+        justifyContent: 'space-evenly',
+        gridTemplateColumns: {
+          xs: 'repeat(auto-fit, minmax(288px, 1fr))',
+          md: 'repeat(auto-fit,332px)',
+          lg: 'repeat(auto-fit, minmax(357px, 1fr))',
+        },
         flexDirection: 'row',
         flexWrap: 'wrap',
       }}
@@ -29,9 +33,9 @@ function GridTemplate<T>(props: GridTemplateProps<T>) {
         <GrowView key={index}>
           <Box
             sx={{
-              minWidth: 288,
+              minWidth: { xs: 288, md: 332, lg: 357 },
               width: isCentered ? { xs: '45%', md: '30%' } : '100%',
-              maxWidth: { xs: 320, md: 350, lg: 355 },
+              maxWidth: { xs: 320, md: 350, lg: 357 },
               margin: '0 auto',
             }}
           >

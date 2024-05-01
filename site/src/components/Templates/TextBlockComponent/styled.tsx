@@ -52,7 +52,7 @@ export const WithImage = styled(Box, {
     '&:before': {
       content: '""',
       display: 'block',
-      marginBottom: imageHeight < imageWidth ? '-63%' : '-97%',
+      marginBottom: imageHeight < imageWidth ? '-60%' : '-95%',
     },
 
     '& > *': {

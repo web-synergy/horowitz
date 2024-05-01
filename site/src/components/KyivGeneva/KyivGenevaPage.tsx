@@ -1,16 +1,15 @@
-import { useTranslation } from 'react-i18next';
-import { MainStack } from './styled';
 import { Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
-import AboutSection from './parts/AboutSection';
-import ButtonsSection from './parts/ButtonsSection';
-import SponsorsSection from './parts/SponsorsSection';
-import WFIMCSection from './parts/WFIMCSection';
-
-import pianoImg from '@/assets/images/kyiv-geneva/mainPage/geneva_bg_piano.webp';
 import WFIMC_members from '@/assets/images/kyiv-geneva/wfimc/wfimc.webp';
 import pageData from '@/assets/kyiv-geneva/main/geneva_mainPage.json';
+import { kyivGenevaNavigation } from '@/config/routes/navigation';
 import PageTemplate from '../Common/PageTemplate';
+import CommonStackWrapper from '../Common/CommonStackWrapper';
+import NavList from '../Templates/NavList/NavList';
+import AboutSection from './parts/AboutSection';
+import SponsorsSection from './parts/SponsorsSection';
+import WFIMCSection from './parts/WFIMCSection';
 
 const KyivGenevaPage = () => {
   const {
@@ -23,15 +22,15 @@ const KyivGenevaPage = () => {
 
   return (
     <PageTemplate>
-      <MainStack>
+      <CommonStackWrapper>
         <AboutSection content={pageData[language]} />
-        <ButtonsSection bgImage={pianoImg} />
+        <NavList linksList={kyivGenevaNavigation} />
         <WFIMCSection
           image={WFIMC_members}
           wfimc_content={pageData[language].wfimc}
         />
         <SponsorsSection />
-      </MainStack>
+      </CommonStackWrapper>
     </PageTemplate>
   );
 };

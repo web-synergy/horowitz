@@ -56,13 +56,6 @@ const banner = defineType({
             },
           ],
         }),
-
-        defineField({
-          name: 'format',
-          title: 'Формат картинки',
-          type: 'format',
-          hidden: ({parent}) => parent?.fullSize,
-        }),
       ],
     }),
 
@@ -139,6 +132,7 @@ const banner = defineType({
   ],
   options: {
     collapsible: true,
+    collapsed: true,
   },
 })
 

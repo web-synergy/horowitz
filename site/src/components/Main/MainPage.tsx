@@ -7,6 +7,7 @@ import HolidayCard from "./parts/HolidayCard/HolidayCard";
 import NewsSection from "./parts/NewsSection/NewsSection";
 import PartnersAndFriends from "./parts/PartnersAndFriends/PartnersAndFriends";
 import WatchOnline from "./parts/WatchOnline/WatchOnline";
+import SeoComponent from "../Common/SEO";
 
 import { useHomeStore } from "@/store/homeStore";
 import { useTranslation } from "react-i18next";
@@ -29,6 +30,7 @@ const MainPage: FC = () => {
 
   return (
     <>
+      <SeoComponent />
       <HeroSection />
       <NewsSection />
       <HolidayCard />

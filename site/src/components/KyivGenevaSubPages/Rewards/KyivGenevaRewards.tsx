@@ -20,18 +20,16 @@ const KyivGenevaRewards = () => {
         <Typography
           sx={{ mb: { xs: 3, md: 5, lg: 6 } }}
           component={'h1'}
-          variant="h1"
-        >
+          variant='h1'>
           {t(`navigation.${Routes.KYIV_GENEVA_REWARDS}`)}
         </Typography>
         {data.map((item, index) => (
-          <>
+          <div key={index}>
             {item.h3 && (
               <Typography
                 component={'h3'}
-                variant="h3"
-                mb={{ xs: 3, md: 5, lg: 6 }}
-              >
+                variant='h3'
+                mb={{ xs: 3, md: 5, lg: 6 }}>
                 {item.h3}
               </Typography>
             )}
@@ -43,22 +41,20 @@ const KyivGenevaRewards = () => {
                     mb: { xs: '24px', lg: '48px' },
                   }}
                   component={'p'}
-                  variant="bodyRegular"
-                >
+                  variant='bodyRegular'>
                   {item.p}
                 </Typography>
               )}
             </Box>
             <Stack gap={2} key={index}>
-              {item.listStrong?.map((obj) =>
+              {item.listStrong?.map(obj =>
                 Object.entries(obj).map(([key, value]) => (
                   <Stack key={value}>
                     <Typography
                       sx={{ textAlign: 'justify' }}
                       component={'p'}
-                      variant="bodyRegular"
-                    >
-                      <Typography variant="bodyMedium">{key}</Typography>
+                      variant='bodyRegular'>
+                      <Typography variant='bodyMedium'>{key}</Typography>
                       {value}
                     </Typography>
                   </Stack>
@@ -69,13 +65,12 @@ const KyivGenevaRewards = () => {
                   sx={{ textAlign: 'justify' }}
                   component={'p'}
                   key={index}
-                  variant="bodyRegular"
-                >
+                  variant='bodyRegular'>
                   {item}
                 </Typography>
               ))}
             </Stack>
-          </>
+          </div>
         ))}
       </Container>
     </PageTemplate>

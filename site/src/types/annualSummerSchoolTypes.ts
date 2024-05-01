@@ -2,17 +2,13 @@ import { PortableTextBlock } from '@portabletext/types';
 import { IImage } from './commonTypes';
 import { IBanner } from './bannerType';
 
-export interface IAvatar {
-  aspectRatio: string;
-  image: IImage;
-  alt?: string;
-}
+import { TextBlockImageType } from './commonTypes';
 
 export interface IParticipant {
   _key: string;
   about: PortableTextBlock[];
-  avatar: IAvatar;
-  birthday: string;
+  avatar: TextBlockImageType;
+  age: number;
   country: string;
   name: string;
 }
@@ -20,7 +16,7 @@ export interface IParticipant {
 export interface IProfessor {
   _key: string;
   about: PortableTextBlock[];
-  avatar: IAvatar;
+  avatar: TextBlockImageType;
   instrument: string;
   name: string;
   role: string;

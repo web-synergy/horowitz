@@ -1,0 +1,21 @@
+import { PortableTextBlock } from '@portabletext/types';
+import { IImageReference } from './commonTypes';
+import { IBanner } from './bannerType';
+
+interface PartialGroupType {
+  isActive: boolean;
+  _id: string;
+}
+export interface CompetitionType {
+  title: string;
+  slug: string;
+  description: PortableTextBlock[] | null;
+  isWarState: boolean;
+  juniorBtn: IImageReference | null;
+  intermediateBtn: IImageReference | null;
+  seniorBtn: IImageReference | null;
+  mainBanner: IBanner | null;
+  junior: PartialGroupType;
+  intermediate: PartialGroupType;
+  senior: PartialGroupType;
+}

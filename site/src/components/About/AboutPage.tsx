@@ -4,11 +4,12 @@ import { Routes } from '@/types/routes.d';
 import { Box, Container, Typography, Stack } from '@mui/material';
 import Loader from '../Common/Loader';
 import PageTemplate from '../Common/PageTemplate';
+import SeoComponent from '../Common/SEO.tsx';
 
 import { useAboutCompetitionStore } from '@/store/aboutCompetitionStore';
 
-import TextBlockSection from './parts/TextBlockSection.tsx';
-import ImageSection from './parts/ImageSection.tsx';
+import TextBlockComponent from '../Templates/TextBlockComponent/TextBlockComponent.tsx';
+import ImageComponent from '../Templates/ImageComponent/ImageComponent.tsx';
 import PortableComponent from '../Templates/PortableComponent/PortableComponent.tsx';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { aboutCompetitionQuery } from '@/api/query.ts';
@@ -55,8 +56,11 @@ const AboutPage = () => {
     return <Loader />;
   }
 
+  const title = t(`navigation.${Routes.DETAILS}`);
+
   return (
     <>
+      <SeoComponent canonicalUrl={Routes.DETAILS} title={title} />
       {mainBanner && <MainBanner banner={mainBanner} />}
       <PageTemplate>
         <Container>
@@ -67,17 +71,19 @@ const AboutPage = () => {
               textTransform: 'uppercase',
             }}
           >
-            <Typography variant="h1">
-              {t(`navigation.${Routes.DETAILS}`)}
-            </Typography>
+            <Typography variant="h1">{title}</Typography>
           </Box>
           <Stack direction="column" gap={{ xs: 3, md: 5, lg: 6 }}>
-            <TextBlockSection blocks={upperTextBlock} />
-            {imgHistoryOne && <ImageSection image={imgHistoryOne} />}
-            {middleTextBlock && <TextBlockSection blocks={middleTextBlock} />}
-            {imgHistoryTwo && <ImageSection image={imgHistoryTwo} />}
-            {lowerTextBlock && <TextBlockSection blocks={lowerTextBlock} />}
-            {imgStatistics && <ImageSection image={imgStatistics} />}
+            <TextBlockComponent textArray={upperTextBlock} />
+            {imgHistoryOne && <ImageComponent image={imgHistoryOne} />}
+            {middleTextBlock && (
+              <TextBlockComponent textArray={middleTextBlock} />
+            )}
+            {imgHistoryTwo && <ImageComponent image={imgHistoryTwo} />}
+            {lowerTextBlock && (
+              <TextBlockComponent textArray={lowerTextBlock} />
+            )}
+            {imgStatistics && <ImageComponent image={imgStatistics} />}
             <Box>
               {additionalText && <PortableComponent data={additionalText} />}
             </Box>
