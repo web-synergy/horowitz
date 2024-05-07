@@ -23,7 +23,7 @@ const JuniorMainPage = () => {
     requestLang,
     isActiveBooklet,
     isActiveConditions,
-    isActiveGuest,
+    isActiveGuests,
     isActiveJury,
     isActiveOrchestra,
     isActiveParticipants,
@@ -67,7 +67,7 @@ const JuniorMainPage = () => {
       case Routes.GROUP_VENUES:
         return { ...item, isActive: isActiveVenues };
       case Routes.GROUP_GUESTS:
-        return { ...item, isActive: isActiveGuest };
+        return { ...item, isActive: isActiveGuests };
       case Routes.GROUP_BOOKLET:
         return { ...item, isActive: isActiveBooklet };
       default:

@@ -14,7 +14,8 @@ const ListItem: FC<IParticipant> = ({ name, country, age, about, avatar }) => {
         sx={{
           display: { xs: 'flex', md: 'block' },
           flexDirection: 'column',
-        }}>
+        }}
+      >
         <Box
           sx={{ float: 'left', m: { md: ' 0px 24px 0px 0px' } }}
           component={'img'}
@@ -24,7 +25,7 @@ const ListItem: FC<IParticipant> = ({ name, country, age, about, avatar }) => {
             .toString()}
         />
         <Box>
-          <Typography variant='bodyRegular' component={'p'}>
+          <Typography variant="bodyRegular" component={'p'}>
             {name}
           </Typography>
           <Typography component={'p'}>{country}</Typography>
@@ -35,7 +36,8 @@ const ListItem: FC<IParticipant> = ({ name, country, age, about, avatar }) => {
               '*:last-child': {
                 marginBottom: '0px',
               },
-            }}>
+            }}
+          >
             <PortableComponent data={about} />
           </Box>
           <div style={{ clear: 'both' }}></div>

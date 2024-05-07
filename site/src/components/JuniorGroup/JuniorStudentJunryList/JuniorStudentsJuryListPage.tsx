@@ -1,40 +1,42 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 import { useCompetitionStore } from '@/store/competitionStore';
+import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 import Loader from '@/components/Common/Loader';
-import GroupGuests from '@/components/GroupPages/GroupGuests/GroupGuests';
+import GroupStudentJury from '@/components/GroupPages/GroupStudentJury/GroupStudentJury';
 import { Routes } from '@/types/routes.d';
 
-const JuniorGuestsPage = () => {
+const JuniorStudentsJuryListPage = () => {
   const {
     t,
     i18n: { language },
   } = useTranslation();
-  const { requestLang, guests, fetchGuests, isLoading } = useJuniorGroupStore();
+  const { requestLang, studentsJury, fetchStudentsJury, isLoading } =
+    useJuniorGroupStore();
   const {
     junior: { _id: id },
     slug,
   } = useCompetitionStore();
 
   useEffect(() => {
-    if (requestLang === language && guests) return;
+    if (requestLang === language && studentsJury) return;
     if (!id) return;
-    fetchGuests(id, language);
+
+    fetchStudentsJury(id, language);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [guests, id, language]);
+  }, [studentsJury, id, language]);
 
   if (isLoading) {
     <Loader />;
   }
 
   return (
-    <GroupGuests
+    <GroupStudentJury
+      title={t(`navigation.${Routes.GROUP_STUDENT_JURY}`)}
       goBackLink={`${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`}
-      title={t(`navigation.${Routes.GROUP_GUESTS}`)}
-      guests={guests}
+      data={studentsJury}
     />
   );
 };
 
-export default JuniorGuestsPage;
+export default JuniorStudentsJuryListPage;

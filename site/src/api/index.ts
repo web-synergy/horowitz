@@ -36,6 +36,9 @@ import {
   juniorGroupRewardsQuery,
   juniorGroupArtistsQuery,
   juniorGroupJuryQuery,
+  juniorGroupStudentJury,
+  juniorGroupGuests,
+  juniorGroupBooklet,
 } from './query';
 import { AnnualSummerSchoolTypes } from '@/types/annualSummerSchoolTypes';
 import { CompetitionType } from '@/types/competitionTypes';
@@ -190,4 +193,25 @@ export const getJuniorJuryData = (
   language: string
 ): Promise<JuniorGroupType> => {
   return sanityFetch(juniorGroupJuryQuery, { id, language });
+};
+
+export const getJuniorStudentsJuryData = (
+  id: string,
+  language: string
+): Promise<JuniorGroupType> => {
+  return sanityFetch(juniorGroupStudentJury, { id, language });
+};
+
+export const getJuniorGuestsData = (
+  id: string,
+  language: string
+): Promise<JuniorGroupType> => {
+  return sanityFetch(juniorGroupGuests, { id, language });
+};
+
+export const getJuniorBookletData = (
+  id: string,
+  language: string
+): Promise<JuniorGroupType> => {
+  return sanityFetch(juniorGroupBooklet, { id, language });
 };

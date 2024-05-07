@@ -235,7 +235,7 @@ export const competitionsQuery = groq`*[_type == 'competition' && slug.current =
 export const juniorGroupCommonQuery = groq`*[_type == 'junior' && _id == $id][0]{
   isActiveBooklet,
     isActiveConditions,
-    isActiveGuest,
+    isActiveGuests,
     isActiveJury,
     isActiveOrchestra,
     isActiveParticipants,
@@ -300,4 +300,29 @@ export const juniorGroupJuryQuery = groq`*[_type == 'junior' && _id == $id][0]{
   }
 }`;
 
-export const juryProfileQuery = groq`*[_type == 'jury' && slug == $slug][0]`;
+export const juniorGroupStudentJury = groq`*[_type == 'junior' && _id == $id][0]{
+  "studentsJury": studentsJury[]{
+    _key,
+    age, 
+    avatar, 
+    "country": country[_key ==$language][0].value, 
+    "name": name[_key ==$language][0].value, 
+    "about": phrase[_key ==$language][0].value, 
+  }
+}
+`;
+
+export const juniorGroupGuests = groq`*[_type == 'junior' && _id == $id][0]{
+  "guests": guests[]-> {
+    'id': _id, 
+    "about": about[_key ==$language][0].value, 
+    "name": name[_key ==$language][0].value,
+    avatar, 
+  }
+}
+`;
+
+export const juniorGroupBooklet = groq`*[_type == 'junior' && _id == $id][0]{
+ "booklet": booklet.file.asset->url
+ }
+`;

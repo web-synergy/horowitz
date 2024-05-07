@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
 const LazyJuniorStudentsListPage = lazy(
-  () => import('./JuniorStudentsListPage')
+  () => import('./JuniorStudentsJuryListPage')
 );
 
 export default LazyJuniorStudentsListPage;

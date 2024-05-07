@@ -2,28 +2,13 @@ import {defineField, defineType} from 'sanity'
 import {CgProfile} from 'react-icons/cg'
 
 export default defineType({
-  name: 'jury',
-  title: 'Члени жюрі',
+  name: 'guest',
+  title: 'Почесний гість',
   type: 'document',
   fields: [
     defineField({
       name: 'name',
       title: "Прізвище та ім'я",
-      type: 'internationalizedArrayString',
-    }),
-    defineField({
-      name: 'slug',
-      title: 'Посилання',
-      type: 'slug',
-      options: {
-        source: 'name[_key == "en"].value',
-        slugify: (input: string) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
-      },
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'role',
-      title: "Посада (не обов'язково)",
       type: 'internationalizedArrayString',
     }),
 

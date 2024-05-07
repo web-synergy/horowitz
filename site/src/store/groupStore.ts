@@ -27,6 +27,9 @@ export const useGroupStore = create<OtherGroupState>((set) => ({
   rewards: null,
   artists: null,
   jury: null,
+  booklet: null,
+  guests: null,
+  isActiveGuests: false,
 
   fetchCommonData: async (id, language, group) => {
     set({ isLoading: true, requestLang: language });

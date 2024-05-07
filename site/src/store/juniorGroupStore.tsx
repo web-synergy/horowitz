@@ -7,6 +7,9 @@ import {
   getJuniorRewardsData,
   getJuniorArtistsData,
   getJuniorJuryData,
+  getJuniorStudentsJuryData,
+  getJuniorGuestsData,
+  getJuniorBookletData,
 } from '@/api';
 import { JuniorGroupState } from '@/types/storeTypes';
 import { create } from 'zustand';
@@ -24,7 +27,7 @@ export const useJuniorGroupStore = create<JuniorGroupState>((set) => ({
   isActiveOrchestra: false,
   isActiveWinners: false,
   isActiveVenues: false,
-  isActiveGuest: false,
+  isActiveGuests: false,
   isActiveBooklet: false,
   isActiveStudentsJury: false,
   conditions: null,
@@ -35,6 +38,9 @@ export const useJuniorGroupStore = create<JuniorGroupState>((set) => ({
   prizes: null,
   artists: null,
   jury: null,
+  studentsJury: null,
+  guests: null,
+  booklet: null,
 
   fetchCommonData: async (id, language) => {
     set({ isLoading: true, requestLang: language });
@@ -120,6 +126,42 @@ export const useJuniorGroupStore = create<JuniorGroupState>((set) => ({
     try {
       const { jury } = await getJuniorJuryData(id, language);
       set({ jury });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+
+  fetchStudentsJury: async (id, language) => {
+    set({ isLoading: true, requestLang: language });
+    try {
+      const { studentsJury } = await getJuniorStudentsJuryData(id, language);
+      set({ studentsJury });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+
+  fetchGuests: async (id, language) => {
+    set({ isLoading: true, requestLang: language });
+    try {
+      const { guests } = await getJuniorGuestsData(id, language);
+      set({ guests });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+
+  fetchBooklet: async (id, language) => {
+    set({ isLoading: true, requestLang: language });
+    try {
+      const { booklet } = await getJuniorBookletData(id, language);
+      set({ booklet });
     } catch (error) {
       console.log(error);
     } finally {

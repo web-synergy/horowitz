@@ -1,16 +1,15 @@
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
-import { Button, Tooltip } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { Button } from '@mui/material';
 import React from 'react';
+import { Buttons } from '@/types/translation.d';
 
 interface DownloadPdfButtonProps {
   pdfUrl: string;
-  title: string;
 }
 
-const DownloadPdfButton: React.FC<DownloadPdfButtonProps> = ({
-  pdfUrl,
-  title,
-}) => {
+const DownloadPdfButton: React.FC<DownloadPdfButtonProps> = ({ pdfUrl }) => {
+  const { t } = useTranslation();
   const handleDownload = async () => {
     try {
       const response = await fetch(pdfUrl);
@@ -20,7 +19,7 @@ const DownloadPdfButton: React.FC<DownloadPdfButtonProps> = ({
 
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', title);
+      link.setAttribute('download', 'Booklet');
 
       document.body.appendChild(link);
       link.click();
@@ -31,19 +30,22 @@ const DownloadPdfButton: React.FC<DownloadPdfButtonProps> = ({
     }
   };
 
+  const btnTitle = t(`buttons.${Buttons.DOWNLOAD}`);
+
   return (
-    <Tooltip title='Скачати'>
-      <Button variant='tertiary' onClick={handleDownload}>
-        <SvgSpriteIcon
-          icon='scrollUp'
-          sx={{
-            transform: 'rotate(180deg)',
-            width: { xs: '16px', lg: '20px' },
-            height: { xs: '16px', lg: '18px' },
-          }}
-        />
-      </Button>
-    </Tooltip>
+    <Button
+      variant="primary"
+      onClick={handleDownload}
+      endIcon={<SvgSpriteIcon icon="download" />}
+      sx={{
+        mb: { xs: 3, md: 5, lg: 6 },
+        width: '100%',
+        minWidth: { md: 336 },
+        maxWidth: 336,
+      }}
+    >
+      {btnTitle}
+    </Button>
   );
 };
 
