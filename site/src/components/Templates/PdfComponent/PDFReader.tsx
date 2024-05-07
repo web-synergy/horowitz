@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { Box, useMediaQuery, useTheme, Stack, Typography } from '@mui/material';
 
-import { Document, pdfjs } from 'react-pdf';
+import { Document, pdfjs, Page } from 'react-pdf';
 
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
@@ -59,7 +59,7 @@ const PDFReader = ({ URL }: IFileResponse) => {
           />
         </Document>
       </Box>
-      {/* <Box sx={{ mt: 5 }}>
+      <Box sx={{ mt: 5 }}>
         <Typography>Default render pdf</Typography>
         <Document
           file={URL}
@@ -78,7 +78,7 @@ const PDFReader = ({ URL }: IFileResponse) => {
             ))}
           </Stack>
         </Document>
-      </Box> */}
+      </Box>
     </>
   );
 };

@@ -22,7 +22,6 @@ const JuniorBookletPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [booklet, id, language]);
 
-  console.log(booklet);
   if (isLoading) {
     <Loader />;
   }
