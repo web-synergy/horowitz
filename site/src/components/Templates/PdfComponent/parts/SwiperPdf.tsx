@@ -20,8 +20,7 @@ export default function SwiperPdf({
       zoom={true}
       pagination={{ clickable: true }}
       navigation={true}
-      slidesPerView={isOnePage ? 1 : 2}
-      slidesPerGroup={isOnePage ? 1 : 2}
+      slidesPerView={1}
     >
       {pageNumber.map((_, i) => {
         return (
