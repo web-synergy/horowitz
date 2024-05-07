@@ -143,5 +143,14 @@ export default {
     description:
       'International Competition for Young Pianists in Memory of Vladimir Horowitz is a member of the EMCY and the WFIMC',
   },
+  summerSchoolSchedules: {
+    inputNameLabel: 'Name of Professor/ Conductor',
+    inputNamePlaceholder: 'Select a professor',
+    inputDateLabel: 'Date',
+    notFoundText: "Unfortunately we can't find any results",
+    searchResults: 'Results',
+    showAllSpeaker: 'Show all',
+    emptyPageText: "Select the professor's name and date",
+  },
   age: { one: 'years old', two: 'years old', many: 'years old' },
 };

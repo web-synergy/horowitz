@@ -1,20 +1,20 @@
-import groq from 'groq';
+import groq from "groq";
 export const homeQuery = groq`*[_type == 'home'][0]{
-    'news':*[_type == 'news'  && length(title[_key ==$language].value) != 0]| order( dateTime(date)  desc) [0 ...3]{
-      date,
-     img,
-    'title':  title[_key ==$language ][0].value,
-    'slug':slug.current,},
-    'videos':videos[]{
-      'title':title[_key==$language][0].value,
-      link,
-      _key
-    }, 
-    'banner': banner{
-      background, 
-      'img':  img[_key ==$language ][0].value, 
-     }
- }`;
+  'news':*[_type == 'news'  && length(title[_key ==$language].value) != 0]| order( dateTime(date)  desc) [0 ...3]{
+    date,
+   img,
+  'title':  title[_key ==$language ][0].value,
+  'slug':slug.current,},
+  'videos':videos[]{
+    'title':title[_key==$language][0].value,
+    link,
+    _key
+  }, 
+  'banner': banner{
+    background, 
+    'img':  img[_key ==$language ][0].value, 
+   }
+}`;
 
 export const settingsQuery = groq`*[_type == 'settings']{
   'logo':logo.asset->url,
@@ -202,7 +202,7 @@ export const annualSchoolData = groq`*[_type== 'annualSummerSchool' && year==$ye
   },
   "schedules": schedules[]{
     _key, lecture, date, 
-    "rehearsal": rehearsal[]{
+    "rehearsals": rehearsals[]{
       _key, time, 
       "event": event[_key ==$language][0].value, 
     }, 

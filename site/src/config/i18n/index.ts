@@ -1,19 +1,19 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import enLocale from './locales/en/translation';
-import uaLocale from './locales/ua/translation';
-import { localeLocalStorageKey } from '../../libs/localStorageKeys';
-import { lang } from '../../libs/searchParamsKey';
-import { languages } from '#root/languages';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import enLocale from "./locales/en/translation";
+import uaLocale from "./locales/ua/translation";
+import { localeLocalStorageKey } from "../../libs/localStorageKeys";
+import { lang } from "../../libs/searchParamsKey";
+import { languages } from "#root/languages";
 
-const langByDefault = languages.find((lang) => lang.default)?.id || 'ua';
+const langByDefault = languages.find((lang) => lang.default)?.id || "ua";
 
 const customPath = {
-  name: 'fromPath',
+  name: "fromPath",
   lookup() {
     let found;
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       const langParam = params.get(lang);
       if (langParam) {
@@ -27,7 +27,7 @@ const customPath = {
 };
 
 const defaultLang = {
-  name: 'defaultLang',
+  name: "defaultLang",
   lookup() {
     return langByDefault;
   },
@@ -46,7 +46,7 @@ i18n
       escapeValue: false,
     },
     detection: {
-      order: ['fromPath', 'localStorage', 'defaultLang'],
+      order: ["fromPath", "localStorage", "defaultLang"],
       lookupLocalStorage: localeLocalStorageKey,
     },
     resources: {

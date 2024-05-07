@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import { Box } from '@mui/material';
-import { Outlet, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
-import MainBanner from '@/components/Common/MainBanner';
+import { useEffect } from "react";
+import { Box } from "@mui/material";
+import { Outlet, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useAnnualSummerSchoolStore } from "@/store/annualSummerSchoolStore";
+import MainBanner from "@/components/Common/MainBanner";
 
 const SchoolLayout = () => {
   const {
@@ -13,7 +13,7 @@ const SchoolLayout = () => {
   const { requestLang, fetchAnnualSummerSchool, year, banner } =
     useAnnualSummerSchoolStore();
 
-  const yearFromPath = pathname.split('/')[2].slice(-4);
+  const yearFromPath = pathname.split("/")[2].slice(-4);
 
   useEffect(() => {
     const isLangTheSame = requestLang === language;
@@ -29,9 +29,9 @@ const SchoolLayout = () => {
       <>
         <Box
           sx={{
-            width: '100%',
-            height: '40vh',
-            backgroundColor: theme => theme.palette.neutral[30],
+            width: "100%",
+            height: "40vh",
+            backgroundColor: (theme) => theme.palette.neutral[30],
           }}
         />
         <Outlet />

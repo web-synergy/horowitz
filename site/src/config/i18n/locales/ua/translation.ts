@@ -144,6 +144,15 @@ export default {
     description:
       ' Міжнародний конкурс є членом Європейської спілки молодіжних музичних конкурсів (EMCY) та входить до складу Всесвітньої федерації міжнародних музичних конкурсів (WFIMC)',
   },
+  summerSchoolSchedules: {
+    inputNameLabel: 'Ім’я професора / диригента',
+    inputNamePlaceholder: 'Оберіть ім’я професора',
+    inputDateLabel: 'Дата репетиції',
+    notFoundText: 'Нажаль за вашим запитом нічого не знайдено',
+    searchResults: 'Результати пошуку',
+    showAllSpeaker: 'Показати всіх',
+    emptyPageText: "Оберіть ім'я професора та дату",
+  },
   age: {
     one: 'рік',
     two: 'роки',

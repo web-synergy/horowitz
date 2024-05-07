@@ -11,6 +11,8 @@ import { MuiCssBaseline } from './themed-components/cssBaseline.modifier';
 import { MuiDivider } from './themed-components/divider.modifier';
 import { MuiIconButton } from './themed-components/iconButton.modifier';
 import { MuiLink } from './themed-components/link.modifier';
+import { MuiStack } from './themed-components/stack.modifier';
+import { MuiPaper } from './themed-components/paper.modifier';
 import {
   MuiList,
   MuiListItem,
@@ -43,6 +45,8 @@ export const components: Components<Theme> = {
   MuiInputBase,
   MuiOutlinedInput,
   MuiTextField,
+  MuiStack,
+  MuiPaper,
   MuiList,
   MuiListItem,
   MuiListItemButton,
