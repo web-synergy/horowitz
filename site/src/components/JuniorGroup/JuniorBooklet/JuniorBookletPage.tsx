@@ -4,6 +4,7 @@ import { useCompetitionStore } from '@/store/competitionStore';
 import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 import Loader from '@/components/Common/Loader';
 import GroupBooklet from '@/components/GroupPages/GroupBooklet/GroupBooklet';
+import { Routes } from '@/types/routes.d';
 
 const JuniorBookletPage = () => {
   const {
@@ -13,6 +14,7 @@ const JuniorBookletPage = () => {
     useJuniorGroupStore();
   const {
     junior: { _id: id },
+    slug,
   } = useCompetitionStore();
 
   useEffect(() => {
@@ -28,7 +30,12 @@ const JuniorBookletPage = () => {
 
   if (!booklet) return;
 
-  return <GroupBooklet bookletUrl={booklet} goBackLink="" />;
+  return (
+    <GroupBooklet
+      bookletUrl={booklet}
+      goBackLink={`${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`}
+    />
+  );
 };
 
 export default JuniorBookletPage;
