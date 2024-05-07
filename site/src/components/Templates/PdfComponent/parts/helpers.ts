@@ -1,4 +1,4 @@
-export const getPgfSize = (width: number, isOnePage: boolean) => {
+export const getPgfSize = (width: number) => {
   // const maxHeight = Math.floor(window.innerHeight * 0.7);
 
   // const calcWidth = isOnePage ? width : Math.floor(width / 2);

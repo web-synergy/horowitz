@@ -6,11 +6,8 @@ export interface PdfSize {
 export interface IPdfViewer {
   pdfSize: PdfSize;
   pageNumber: number[];
-  isOnePage: boolean;
 }
 
 export interface IFileResponse {
   URL: string;
 }
-
-export interface PDFProps {}

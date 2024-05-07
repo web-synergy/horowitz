@@ -8,11 +8,7 @@ import '@/components/Templates/PortableComponent/Swiper/sliderStyles.css';
 import { PagePdf } from './PagePdf';
 import { IPdfViewer } from '@/types/pdfTypes';
 
-export default function SwiperPdf({
-  pdfSize,
-  pageNumber,
-  isOnePage,
-}: IPdfViewer) {
+export default function SwiperPdf({ pdfSize, pageNumber }: IPdfViewer) {
   return (
     <Swiper
       modules={[Zoom, Navigation]}
