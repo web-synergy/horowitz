@@ -30,15 +30,18 @@ const WFIMCSection: FC<WFIMCSectionProps> = ({
       >
         WFIMC
       </Typography>
-      <Stack sx={{ flexDirection: { md: 'row' }, gap: '24px' }}>
+      <Stack sx={{ flexDirection: { md: 'row' }, gap: 3 }}>
         <Box flex={1}>
           <StaticImageComponent imageUrl={image} alt="WFIMC members" />
 
-          <Caption component={'p'} sx={{ marginTop: '8px' }}>
+          <Caption component={'p'} sx={{ marginTop: { xs: '2px', lg: 1 } }}>
             {photoCaption}
           </Caption>
         </Box>
-        <Stack sx={{ flex: 1, justifyContent: 'space-between' }}>
+        <Stack
+          sx={{ flex: 1, justifyContent: 'space-between' }}
+          gap={{ xs: 6, md: 3 }}
+        >
           <Typography
             variant="bodyRegular"
             component={'p'}
