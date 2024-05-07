@@ -28,7 +28,11 @@ const CompetitionPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [competitionSlug, language]);
 
-  const isCompetitionExist = competitions?.find(
+  if (!competitions) {
+    return;
+  }
+
+  const isCompetitionExist = competitions.find(
     (item) => item.slug === competitionSlug
   );
 

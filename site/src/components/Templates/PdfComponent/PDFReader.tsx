@@ -1,26 +1,28 @@
 import { useEffect, useState } from 'react';
-import { theme } from '@/theme';
-import { Box, useMediaQuery } from '@mui/material';
+
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 
 import { Document, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-import Loader from '../Common/Loader';
+import Loader from '../../Common/Loader';
 import DownloadPdfButton from './parts/DownloadPdfButton';
 import { getPgfSize } from './parts/helpers';
 import FlipBookPdf from './parts/FlipBookPdf';
 import SwiperPdf from './parts/SwiperPdf';
 
 import { IFileResponse } from '@/types/pdfTypes';
+import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 
-const PDFReader = ({ title, URL }: IFileResponse) => {
+const PDFReader = ({ URL }: IFileResponse) => {
   const [pageNumber, setPageNumber] = useState<number[]>([]);
-  const [isOnePage, setIsOnePage] = useState(true);
+  // const [isOnePage, setIsOnePage] = useState(true);
   const [loading, setLoading] = useState(false);
-
+  const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.down('lg'));
+  const { containerRef, containerSize } = useWidthBlokSize();
   const [pdfSize, setPdfSize] = useState<{
     width: number;
     height: number;
@@ -28,6 +30,13 @@ const PDFReader = ({ title, URL }: IFileResponse) => {
     width: 0,
     height: 0,
   });
+
+  const isOnePage = !isMd;
+  const pfdHeight = Math.floor(
+    isMd ? containerSize / 0.71 : containerSize * 0.71
+  );
+  console.log('containerRef', containerSize);
+  console.log('pfdHeight', pfdHeight);
 
   const minusHeader = isMd ? 64 : 102;
 
@@ -44,16 +53,19 @@ const PDFReader = ({ title, URL }: IFileResponse) => {
         setPageNumber(newArray);
 
         const { width, height } = page.getViewport({ scale: 1 });
+        console.log('page', page);
+        console.log('width', width);
+
         const { pdfHeight, pdfWidth, windowWidth } = getPgfSize(
           width,
           height,
           minusHeader
         );
-        if (pdfWidth * 2 > windowWidth || windowWidth < 768) {
-          setIsOnePage(true);
-        } else {
-          setIsOnePage(false);
-        }
+        // if (pdfWidth * 2 > windowWidth || windowWidth < 768) {
+        //   setIsOnePage(true);
+        // } else {
+        //   setIsOnePage(false);
+        // }
         setPdfSize({
           width: pdfWidth,
           height: pdfHeight,
@@ -66,22 +78,23 @@ const PDFReader = ({ title, URL }: IFileResponse) => {
     }
 
     fetchPdfDimensions();
-  }, [URL]);
+  }, [URL, minusHeader]);
 
   if (loading) return <Loader />;
+
   if (!pdfSize.width) return;
+
   return (
-    <Box
-      sx={{
-        mt: '16px',
-        mb: { xs: '56px', lg: '72px' },
-      }}>
-      <DownloadPdfButton pdfUrl={URL} title={title} />
+    <>
+      <DownloadPdfButton pdfUrl={URL} />
       <Box
+        ref={containerRef}
         sx={{
-          width: `${isOnePage ? pdfSize.width : pdfSize.width * 2}px`,
-          height: `${pdfSize.height}px`,
-        }}>
+          // width: `${isOnePage ? pdfSize.width : pdfSize.width * 2}px`,
+          // height: `${pdfSize.height}px`,
+          width: '100%',
+        }}
+      >
         <Document file={URL}>
           {isOnePage ? (
             <SwiperPdf
@@ -98,7 +111,7 @@ const PDFReader = ({ title, URL }: IFileResponse) => {
           )}
         </Document>
       </Box>
-    </Box>
+    </>
   );
 };
 

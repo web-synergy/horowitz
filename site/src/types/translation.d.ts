@@ -22,6 +22,7 @@ export enum Buttons {
   GO_NEWS = 'goNewsPage',
   GO_BACK = 'goBack',
   CONCERT_PROGRAM = 'concertProgram',
+  DOWNLOAD = 'download',
 }
 
 export enum NotFound {

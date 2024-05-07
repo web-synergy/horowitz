@@ -42,7 +42,7 @@ import LazyVirtuosasArticles from '@/components/Virtuoses/VirtuosesArticles/Lazy
 import LazyVirtuososCurrentArticle from '@/components/Virtuoses/VirtuososCurrentArticle/LazyVirtuososCurrentArticle';
 import LazyVirtuosesPage from '../../components/Virtuoses/Main/LazyVirtuosesPage';
 
-import LazyPdfPage from '@/components/PdfRender/LazyPdfPage';
+// import LazyPdfPage from '@/components/PdfRender/LazyPdfPage';
 import LazyNewsCurrentPage from '@/components/NewsCurrentPage/LazyNewsCurrentPage';
 import LazyNewsPageList from '@/components/NewsPageList/LazyNewsPageList';
 import LazySupportUsPage from '@/components/SupportUs/LazySupportUsPage';
@@ -237,10 +237,10 @@ const routes = createBrowserRouter([
         path: `${Routes.ARCHIVE}`,
         element: <LazyArchivePage />,
       },
-      {
-        path: `pdf/:name`,
-        element: <LazyPdfPage />,
-      },
+      // {
+      //   path: `pdf/:name`,
+      //   element: <LazyPdfPage />,
+      // },
 
       { path: Routes.MASTER_CLASS, element: <LazyMasterClassPage /> },
       { path: Routes.SUMMER_SCHOOL, element: <LazySummerSchoolPage /> },

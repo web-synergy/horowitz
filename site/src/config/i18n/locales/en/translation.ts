@@ -79,6 +79,7 @@ export default {
     [Buttons.GO_NEWS]: 'Back to News page',
     [Buttons.GO_BACK]: 'Go Back',
     [Buttons.CONCERT_PROGRAM]: 'Concert program',
+    [Buttons.DOWNLOAD]: 'Download',
   },
   [Header.SEARCH]: 'Search',
   contacts: {
@@ -142,4 +143,5 @@ export default {
     description:
       'International Competition for Young Pianists in Memory of Vladimir Horowitz is a member of the EMCY and the WFIMC',
   },
+  age: { one: 'years old', two: 'years old', many: 'years old' },
 };

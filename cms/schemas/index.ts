@@ -39,6 +39,8 @@ import gradient from './objects/gradient'
 import reward from './objects/reward'
 import artist from './objects/artist'
 import jury from './documents/jury'
+import studentsJury from './objects/studentsJury'
+import guests from './documents/guests'
 
 export const schemaTypes = [
   //documents
@@ -62,6 +64,7 @@ export const schemaTypes = [
   junior,
   group,
   jury,
+  guests,
 
   //objects
   winners,
@@ -84,4 +87,5 @@ export const schemaTypes = [
   gradient,
   reward,
   artist,
+  studentsJury,
 ]

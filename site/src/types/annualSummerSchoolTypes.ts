@@ -1,17 +1,18 @@
+import { StudentsJuryType } from './groupTypes';
 import { PortableTextBlock } from '@portabletext/types';
 import { IImage } from './commonTypes';
 import { IBanner } from './bannerType';
 
 import { TextBlockImageType } from './commonTypes';
 
-export interface IParticipant {
-  _key: string;
-  about: PortableTextBlock[];
-  avatar: TextBlockImageType;
-  age: number;
-  country: string;
-  name: string;
-}
+// export interface IParticipant {
+//   _key: string;
+//   about: PortableTextBlock[];
+//   avatar: TextBlockImageType;
+//   age: number;
+//   country: string;
+//   name: string;
+// }
 
 export interface IProfessor {
   _key: string;
@@ -66,7 +67,7 @@ export type AnnualSummerSchoolTypes = {
   isActiveOrchestra: boolean;
 
   conditions: PortableTextBlock[] | null;
-  participants: IParticipant[] | null;
+  participants: StudentsJuryType[] | null;
   professors: IProfessor[] | null;
   schedules: ISchedule[] | null;
   concerts: IConcerts[] | null;

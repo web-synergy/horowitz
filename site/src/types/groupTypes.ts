@@ -1,4 +1,6 @@
+// import { IFileResponse } from './pdfTypes';
 import { PortableTextBlock } from '@portabletext/types';
+
 import {
   IImageReference,
   TextBlockType,
@@ -14,7 +16,7 @@ interface CommonGroupType {
   isActiveOrchestra: boolean;
   isActiveWinners: boolean;
   isActiveVenues: boolean;
-  isActiveGuest: boolean;
+  isActiveGuests: boolean;
   isActiveBooklet: boolean;
   conditions: TextBlockType[] | null;
   requirements: PortableTextBlock[] | null;
@@ -24,6 +26,8 @@ interface CommonGroupType {
   rewards: RewardsType[] | null;
   artists: ArtistType[] | null;
   jury: JuryType[] | null;
+  guests: GuestType[] | null;
+  booklet: string | null;
 }
 
 export interface RewardsType {
@@ -46,12 +50,30 @@ export interface JuryType {
   avatar: TextBlockImageType;
   slug: string;
 }
+
+export interface StudentsJuryType {
+  name: string;
+  country: string;
+  age: number;
+  about: PortableTextBlock[];
+  avatar: TextBlockImageType;
+  _key: string;
+}
+
+export interface GuestType {
+  name: string;
+  about: PortableTextBlock[];
+  avatar: TextBlockImageType;
+  id: string;
+}
+
 export interface OtherGroupType extends CommonGroupType {
   isActivePreselectionJury: boolean;
 }
 
 export interface JuniorGroupType extends CommonGroupType {
   isActiveStudentsJury: boolean;
+  studentsJury: StudentsJuryType[] | null;
 }
 
 export interface GroupProps {

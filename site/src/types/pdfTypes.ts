@@ -10,6 +10,5 @@ export interface IPdfViewer {
 }
 
 export interface IFileResponse {
-  title: string;
   URL: string;
 }

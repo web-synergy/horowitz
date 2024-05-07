@@ -118,6 +118,13 @@ export default defineType({
       group: 'studentJury',
     }),
     defineField({
+      name: 'studentsJury',
+      type: 'array',
+      title: 'Студентське жюрі',
+      of: [{type: 'studentsJury'}],
+      group: 'studentJury',
+    }),
+    defineField({
       name: 'isActiveTimetable',
       type: 'boolean',
       title: 'Активувати сторінку Регламент конкурсу',
@@ -213,11 +220,26 @@ export default defineType({
       initialValue: false,
       group: 'guests',
     }),
+
+    defineField({
+      name: 'guests',
+      type: 'array',
+      title: 'Почесні гості',
+      of: [{type: 'reference', to: [{type: 'guest'}], title: 'Список гостей'}],
+      group: 'guests',
+    }),
+
     defineField({
       name: 'isActiveBooklet',
       type: 'boolean',
       title: 'Активувати Сторінку Буклет',
       initialValue: false,
+      group: 'booklet',
+    }),
+    defineField({
+      name: 'booklet',
+      type: 'magazinePdf',
+      title: 'Буклет',
       group: 'booklet',
     }),
   ],
