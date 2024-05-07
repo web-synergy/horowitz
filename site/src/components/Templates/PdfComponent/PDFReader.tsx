@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 
 import { Document, pdfjs } from 'react-pdf';
+
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -10,79 +11,30 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 import Loader from '../../Common/Loader';
 import DownloadPdfButton from './parts/DownloadPdfButton';
 import { getPgfSize } from './parts/helpers';
-import FlipBookPdf from './parts/FlipBookPdf';
+// import FlipBookPdf from './parts/FlipBookPdf';
 import SwiperPdf from './parts/SwiperPdf';
-
-import { IFileResponse } from '@/types/pdfTypes';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
+import { IFileResponse } from '@/types/pdfTypes';
 
 const PDFReader = ({ URL }: IFileResponse) => {
-  const [pageNumber, setPageNumber] = useState<number[]>([]);
-  // const [isOnePage, setIsOnePage] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.down('lg'));
+  const [numPages, setNumPages] = useState<number>(0);
   const { containerRef, containerSize } = useWidthBlokSize();
-  const [pdfSize, setPdfSize] = useState<{
-    width: number;
-    height: number;
-  }>({
-    width: 0,
-    height: 0,
-  });
 
-  const isOnePage = !isMd;
-  const pfdHeight = Math.floor(
-    isMd ? containerSize / 0.71 : containerSize * 0.71
+  const theme = useTheme();
+  const isNotMobile = useMediaQuery(theme.breakpoints.up('md'));
+
+  const isOnePage = !isNotMobile;
+
+  const pdfSize = getPgfSize(containerSize, isOnePage);
+
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }): void => {
+    setNumPages(numPages);
+  };
+
+  const pagesArray = Array.from(
+    { length: numPages || 0 },
+    (_, index) => ++index
   );
-  console.log('containerRef', containerSize);
-  console.log('pfdHeight', pfdHeight);
-
-  const minusHeader = isMd ? 64 : 102;
-
-  useEffect(() => {
-    async function fetchPdfDimensions() {
-      setLoading(true);
-      try {
-        const pdf = await pdfjs.getDocument(URL).promise;
-        const page = await pdf.getPage(1);
-        const newArray = Array.from(
-          { length: pdf?._pdfInfo.numPages || 0 },
-          (_, index) => ++index
-        );
-        setPageNumber(newArray);
-
-        const { width, height } = page.getViewport({ scale: 1 });
-        console.log('page', page);
-        console.log('width', width);
-
-        const { pdfHeight, pdfWidth, windowWidth } = getPgfSize(
-          width,
-          height,
-          minusHeader
-        );
-        // if (pdfWidth * 2 > windowWidth || windowWidth < 768) {
-        //   setIsOnePage(true);
-        // } else {
-        //   setIsOnePage(false);
-        // }
-        setPdfSize({
-          width: pdfWidth,
-          height: pdfHeight,
-        });
-      } catch (error) {
-        console.error('Error fetching PDF dimensions:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchPdfDimensions();
-  }, [URL, minusHeader]);
-
-  if (loading) return <Loader />;
-
-  if (!pdfSize.width) return;
 
   return (
     <>
@@ -90,27 +42,43 @@ const PDFReader = ({ URL }: IFileResponse) => {
       <Box
         ref={containerRef}
         sx={{
-          // width: `${isOnePage ? pdfSize.width : pdfSize.width * 2}px`,
-          // height: `${pdfSize.height}px`,
+          height: pdfSize.height,
           width: '100%',
         }}
       >
-        <Document file={URL}>
-          {isOnePage ? (
-            <SwiperPdf
-              pdfSize={pdfSize}
-              pageNumber={pageNumber}
-              isOnePage={isOnePage}
-            />
-          ) : (
-            <FlipBookPdf
-              pdfSize={pdfSize}
-              pageNumber={pageNumber}
-              isOnePage={isOnePage}
-            />
-          )}
+        <Document
+          file={URL}
+          onLoadSuccess={onDocumentLoadSuccess}
+          loading={Loader}
+          onLoadError={(e) => console.log(e.message)}
+        >
+          <SwiperPdf
+            isOnePage={isOnePage}
+            pageNumber={pagesArray}
+            pdfSize={pdfSize}
+          />
         </Document>
       </Box>
+      {/* <Box sx={{ mt: 5 }}>
+        <Typography>Default render pdf</Typography>
+        <Document
+          file={URL}
+          onLoadSuccess={onDocumentLoadSuccess}
+          loading={Loader}
+        >
+          <Stack gap={2}>
+            {pagesArray.map((page) => (
+              <Box sx={{ width: '100%' }} key={page}>
+                <Page
+                  pageNumber={page}
+                  loading={Loader}
+                  width={containerSize}
+                />
+              </Box>
+            ))}
+          </Stack>
+        </Document>
+      </Box> */}
     </>
   );
 };

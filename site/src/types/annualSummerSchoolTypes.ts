@@ -5,14 +5,14 @@ import { IBanner } from './bannerType';
 
 import { TextBlockImageType } from './commonTypes';
 
-// export interface IParticipant {
-//   _key: string;
-//   about: PortableTextBlock[];
-//   avatar: TextBlockImageType;
-//   age: number;
-//   country: string;
-//   name: string;
-// }
+export interface IParticipant {
+  _key: string;
+  about: PortableTextBlock[];
+  avatar: TextBlockImageType;
+  age: number;
+  country: string;
+  name: string;
+}
 
 export interface IProfessor {
   _key: string;

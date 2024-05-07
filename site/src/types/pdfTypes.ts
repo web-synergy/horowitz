@@ -12,3 +12,5 @@ export interface IPdfViewer {
 export interface IFileResponse {
   URL: string;
 }
+
+export interface PDFProps {}

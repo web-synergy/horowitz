@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { PagePdf } from './PagePdf';
-// import ZoomImage from '@/components/Common/ZoomImage';
+import ZoomImage from '@/components/Common/ZoomImage';
 import { Box, Stack } from '@mui/material';
 
 import { IPdfViewer } from '@/types/pdfTypes';
@@ -17,6 +17,8 @@ export default function FlipBookPdf({
   const flipBookRef = useRef(null);
 
   const [end, setEnd] = useState(4);
+
+  console.log(end);
 
   const nextButtonClick = () => {
     flipBookRef?.current?.pageFlip().flipNext();
@@ -70,33 +72,34 @@ export default function FlipBookPdf({
               aria-label="Next page"
               className="swiper-button-next"
               onClick={nextButtonClick}
+              role="button"
             ></div>
           </Box>
         </Stack>
       </Box>
-      {/* <ZoomImage> */}
-      <HTMLFlipBook
-        ref={flipBookRef}
-        onFlip={onPage}
-        drawShadow={true}
-        autoSize={false}
-        flippingTime={700}
-        maxShadowOpacity={0.1}
-        disableFlipByClick={true}
-        mobileScrollSupport={true}
-        height={pdfSize.height}
-        width={pdfSize.width}
-      >
-        {pageNumber.slice(0, end).map((page) => (
-          <PagePdf
-            isOnePage={isOnePage}
-            pdfSize={pdfSize}
-            key={page}
-            pageNumber={page}
-          />
-        ))}
-      </HTMLFlipBook>
-      {/* </ZoomImage> */}
+      <ZoomImage>
+        <HTMLFlipBook
+          ref={flipBookRef}
+          onFlip={onPage}
+          drawShadow={true}
+          autoSize={false}
+          flippingTime={700}
+          maxShadowOpacity={0.1}
+          disableFlipByClick={true}
+          mobileScrollSupport={true}
+          height={pdfSize.height}
+          width={pdfSize.width}
+        >
+          {pageNumber.slice(0, end).map((page) => (
+            <PagePdf
+              isOnePage={isOnePage}
+              pdfSize={pdfSize}
+              key={page}
+              pageNumber={page}
+            />
+          ))}
+        </HTMLFlipBook>
+      </ZoomImage>
     </Box>
   );
 }

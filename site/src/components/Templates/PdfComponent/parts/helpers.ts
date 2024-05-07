@@ -1,15 +1,14 @@
-export const getPgfSize = (
-  width: number,
-  height: number,
-  minusHeader: number
-) => {
-  const windowWidth = window.innerWidth;
-  const windowHeight = window.innerHeight - minusHeader;
-  const scaleX = windowWidth / width;
-  const scaleY = windowHeight / height;
+export const getPgfSize = (width: number, isOnePage: boolean) => {
+  // const maxHeight = Math.floor(window.innerHeight * 0.7);
 
-  const scale = Math.min(scaleX, scaleY) * 0.8;
-  const pdfWidth = Math.round(width * scale);
-  const pdfHeight = Math.round(height * scale);
-  return { pdfHeight, pdfWidth, windowWidth };
+  const calcWidth = isOnePage ? width : Math.floor(width / 2);
+
+  const tempHeight = Math.floor(calcWidth / 0.71);
+
+  // if (tempHeight > maxHeight) {
+  //   const tempWidth = Math.floor(maxHeight * 0.71);
+  //   return { width: tempWidth, height: maxHeight };
+  // }
+
+  return { width: calcWidth, height: tempHeight };
 };
