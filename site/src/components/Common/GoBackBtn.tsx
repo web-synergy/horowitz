@@ -19,8 +19,9 @@ const GoBackBtn: FC<GoBackBtnProps> = ({ href }) => {
     const goBackOptions = historyStack !== 0 ? {} : { replace: true };
     navigate(goBackHref, goBackOptions);
   };
+
   return (
-    <Box sx={{ position: 'sticky', bottom: 0 }}>
+    <Box sx={{ position: 'sticky', bottom: 0, zIndex: 1000 }}>
       <Box
         sx={{
           position: 'absolute',

@@ -80,6 +80,8 @@ export default {
     [Buttons.GO_BACK]: 'Повернутись назад',
     [Buttons.CONCERT_PROGRAM]: 'Програма концерту',
     [Buttons.DOWNLOAD]: 'Завантажити',
+    [Buttons.NEXT]: 'Наступна',
+    [Buttons.PREV]: 'Попередня',
   },
   [Header.SEARCH]: 'Пошук',
   contacts: {
