@@ -53,10 +53,6 @@ const CustomSelectInput: FC<CustomSelectInputProps> = ({
               borderColor: theme.palette.primary.main,
             },
           },
-          "& .MuiSelect-root": {
-            fontSize: { xs: "16px", md: "18px" },
-            color: "red",
-          },
         }}
         id="professor-select"
         value={selectedProfessor}
@@ -91,10 +87,7 @@ const CustomSelectInput: FC<CustomSelectInputProps> = ({
           selectedProfessor !== ""
             ? undefined
             : () => (
-                <Typography
-                  variant="bodyRegular"
-                  sx={{ color: theme.palette.neutral[30] }}
-                >
+                <Typography variant="bodyRegular">
                   {t(`summerSchoolSchedules.inputNamePlaceholder`)}
                 </Typography>
               )

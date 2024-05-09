@@ -82,7 +82,7 @@ export const collapsComponents: PortableTextComponents = {
     number: ({ children }) => (
       <Typography
         component={"ol"}
-        start={5}
+        start={6}
         sx={{
           display: "flex",
           flexDirection: "column",
