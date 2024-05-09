@@ -80,6 +80,8 @@ export default {
     [Buttons.GO_BACK]: 'Go Back',
     [Buttons.CONCERT_PROGRAM]: 'Concert program',
     [Buttons.DOWNLOAD]: 'Download',
+    [Buttons.NEXT]: 'Next',
+    [Buttons.PREV]: 'Previous',
   },
   [Header.SEARCH]: 'Search',
   contacts: {

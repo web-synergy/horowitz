@@ -23,6 +23,8 @@ export enum Buttons {
   GO_BACK = 'goBack',
   CONCERT_PROGRAM = 'concertProgram',
   DOWNLOAD = 'download',
+  PREV = 'prev',
+  NEXT = 'next',
 }
 
 export enum NotFound {
