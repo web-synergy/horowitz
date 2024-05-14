@@ -11,6 +11,8 @@ import {
   WarState,
   Virtuosos,
   SummerSchool,
+  Tabs,
+  Debut,
 } from '@/types/translation.d';
 
 export default {
@@ -64,6 +66,10 @@ export default {
     [Routes.GROUP_VENUES]: 'Venues',
     [Routes.GROUP_WINNERS]: 'Prizewinners',
     [Routes.GROUP_BOOKLET]: 'Booklet',
+    [Debut.GROUP_A]: 'A Group Horowitz-Debut',
+    [Debut.GROUP_B]: 'B Group Horowitz-Debut',
+    [Debut.GROUP_C]: 'C Group Horowitz-Debut',
+    [Debut.GROUP_D]: 'D Group Horowitz-Debut',
   },
   buttons: {
     [Buttons.READ_MORE]: 'Read more',
@@ -72,6 +78,7 @@ export default {
     [Buttons.APPLY]: 'Apply now',
     [Buttons.SUPPORT]: 'Support us',
     [Buttons.VIEW_ALL]: 'View all',
+    [Buttons.SHOW_ALL]: 'View all',
     [Buttons.WATCH_ONLINE]: 'Watch online',
     [Buttons.WATCH_ONLINE_XS]: 'Watch online',
     [Buttons.GO_HOME]: 'Back to Home Page',
@@ -82,6 +89,8 @@ export default {
     [Buttons.DOWNLOAD]: 'Download',
     [Buttons.NEXT]: 'Next',
     [Buttons.PREV]: 'Previous',
+    [Tabs.DEBUT]: 'Debut',
+    [Tabs.JUNIOR]: 'Junior',
   },
   [Header.SEARCH]: 'Search',
   contacts: {

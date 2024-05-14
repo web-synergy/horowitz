@@ -2,11 +2,11 @@ import { FC } from 'react';
 import { Box, useTheme, useMediaQuery } from '@mui/material';
 import { PortableText } from '@portabletext/react';
 import { PortableTextBlock } from '@portabletext/types';
-import { urlFor } from '@/config/sanity/imageUrl';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 import { components } from '@/components/Templates/PortableComponent/parts/components';
 import { WithImage, WithoutImage } from './styled';
 import { TextBlockImageType } from '@/types/commonTypes';
+import { urlFor } from '@/config/sanity/imageUrl';
 
 const ASPECT_RATIO = [
   { title: '3/4', value: 0.75 },
@@ -20,6 +20,7 @@ interface TextBlockProps {
 
 const TextBlockComponent: FC<TextBlockProps> = ({ textArray, img }) => {
   const { containerRef, containerSize } = useWidthBlokSize();
+
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
   const isTablet = useMediaQuery(theme.breakpoints.only('md'));

@@ -10,6 +10,7 @@ import {
   getJuniorStudentsJuryData,
   getJuniorGuestsData,
   getJuniorBookletData,
+  getJuniorParticipantsData,
 } from '@/api';
 import { JuniorGroupState } from '@/types/storeTypes';
 import { create } from 'zustand';
@@ -41,6 +42,8 @@ export const useJuniorGroupStore = create<JuniorGroupState>((set) => ({
   studentsJury: null,
   guests: null,
   booklet: null,
+  debut: null,
+  junior: null,
 
   fetchCommonData: async (id, language) => {
     set({ isLoading: true, requestLang: language });
@@ -162,6 +165,18 @@ export const useJuniorGroupStore = create<JuniorGroupState>((set) => ({
     try {
       const { booklet } = await getJuniorBookletData(id, language);
       set({ booklet });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+
+  fetchParticipants: async (id, language) => {
+    set({ isLoading: true, requestLang: language });
+    try {
+      const { debut, junior } = await getJuniorParticipantsData(id, language);
+      set({ debut, junior });
     } catch (error) {
       console.log(error);
     } finally {

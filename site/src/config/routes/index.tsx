@@ -70,7 +70,10 @@ import LazyJuniorWinnersPage from '@/components/JuniorGroup/JuniorWinners/LazyJu
 import LazyJuniorVenuesPage from '@/components/JuniorGroup/JuniorVenues/LazyJuniorVenuesPage';
 import LazyJuniorGuestsPage from '@/components/JuniorGroup/JuniorGuests/LazyJuniorGuestsPage';
 import LazyJuniorBookletPage from '@/components/JuniorGroup/JuniorBooklet/LazyJuniorBookletPage';
+import LazyJuniorParticipantLayout from '@/components/JuniorGroup/JuniorParticipantLayout/LazyJuniorParticipantLayout';
 import LazyJuniorJuryProfilePage from '@/components/JuniorGroup/JuniorJuryProfile/LazyJuniorJuryProfile';
+import LazyJuniorParticipantProfilePage from '@/components/JuniorGroup/JuniorParticipantProfile/LazyJuniorParticipantProfile';
+import { Tabs, Debut } from '@/types/translation.d';
 
 const routes = createBrowserRouter([
   {
@@ -124,7 +127,37 @@ const routes = createBrowserRouter([
           },
           {
             path: Routes.GROUP_PARTICIPANTS,
-            element: <LazyJuniorParticipantsPage />,
+            element: <LazyJuniorParticipantLayout />,
+            children: [
+              {
+                index: true,
+                element: <LazyJuniorParticipantsPage group={Tabs.DEBUT} />,
+              },
+              {
+                path: Tabs.JUNIOR,
+                element: <LazyJuniorParticipantsPage group={Tabs.JUNIOR} />,
+              },
+              {
+                path: Debut.GROUP_A,
+                element: <LazyJuniorParticipantsPage group={Debut.GROUP_A} />,
+              },
+              {
+                path: Debut.GROUP_B,
+                element: <LazyJuniorParticipantsPage group={Debut.GROUP_B} />,
+              },
+              {
+                path: Debut.GROUP_C,
+                element: <LazyJuniorParticipantsPage group={Debut.GROUP_C} />,
+              },
+              {
+                path: Debut.GROUP_D,
+                element: <LazyJuniorParticipantsPage group={Debut.GROUP_D} />,
+              },
+            ],
+          },
+          {
+            path: `${Routes.GROUP_PARTICIPANTS}/:slug`,
+            element: <LazyJuniorParticipantProfilePage />,
           },
           {
             path: Routes.GROUP_REQUIREMENTS,
@@ -168,60 +201,7 @@ const routes = createBrowserRouter([
       {
         path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}/${Routes.INTERMEDIATE}`,
         element: <LazyGroupLayout />,
-        children: [
-          {
-            index: true,
-            element: <LazyJuniorMainPage />,
-          },
-          {
-            path: Routes.GROUP_CONDITIONS,
-            element: <LazyJuniorConditionsPage />,
-          },
-          {
-            path: Routes.GROUP_JURY,
-            element: <LazyJuniorJuryListPage />,
-          },
-          {
-            path: Routes.GROUP_PARTICIPANTS,
-            element: <LazyJuniorParticipantsPage />,
-          },
-          {
-            path: Routes.GROUP_REQUIREMENTS,
-            element: <LazyJuniorRequirementsPage />,
-          },
-          {
-            path: Routes.GROUP_TIMETABLE,
-            element: <LazyJuniorTimetablePage />,
-          },
-          {
-            path: Routes.GROUP_STUDENT_JURY,
-            element: <LazyJuniorStudentsListPage />,
-          },
-          {
-            path: Routes.GROUP_REWARDS,
-            element: <LazyJuniorRewardsPage />,
-          },
-          {
-            path: Routes.GROUP_ORCHESTRA,
-            element: <LazyJuniorArtistsPage />,
-          },
-          {
-            path: Routes.GROUP_WINNERS,
-            element: <LazyJuniorWinnersPage />,
-          },
-          {
-            path: Routes.GROUP_VENUES,
-            element: <LazyJuniorVenuesPage />,
-          },
-          {
-            path: Routes.GROUP_GUESTS,
-            element: <LazyJuniorGuestsPage />,
-          },
-          {
-            path: Routes.GROUP_BOOKLET,
-            element: <LazyJuniorBookletPage />,
-          },
-        ],
+        children: [],
       },
       {
         path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}/${Routes.SENIOR}`,
@@ -237,10 +217,6 @@ const routes = createBrowserRouter([
         path: `${Routes.ARCHIVE}`,
         element: <LazyArchivePage />,
       },
-      // {
-      //   path: `pdf/:name`,
-      //   element: <LazyPdfPage />,
-      // },
 
       { path: Routes.MASTER_CLASS, element: <LazyMasterClassPage /> },
       { path: Routes.SUMMER_SCHOOL, element: <LazySummerSchoolPage /> },

@@ -158,6 +158,43 @@ export default defineType({
       initialValue: false,
       group: 'participants',
     }),
+
+    defineField({
+      name: 'groupA',
+      type: 'array',
+      title: 'Дебют: Група А',
+      of: [{type: 'participant'}],
+      group: 'participants',
+    }),
+    defineField({
+      name: 'groupB',
+      type: 'array',
+      title: 'Дебют: Група B',
+      of: [{type: 'participant'}],
+      group: 'participants',
+    }),
+    defineField({
+      name: 'groupC',
+      type: 'array',
+      title: 'Дебют: Група C',
+      of: [{type: 'participant'}],
+      group: 'participants',
+    }),
+    defineField({
+      name: 'groupD',
+      type: 'array',
+      title: 'Дебют: Група D',
+      of: [{type: 'participant'}],
+      group: 'participants',
+    }),
+    defineField({
+      name: 'junior',
+      type: 'array',
+      title: 'Молодша группа',
+      of: [{type: 'participant'}],
+      group: 'participants',
+    }),
+
     defineField({
       name: 'isActiveRewards',
       type: 'boolean',

@@ -15,6 +15,7 @@ export enum Buttons {
   APPLY = 'apply',
   SUPPORT = 'support',
   VIEW_ALL = 'viewAll',
+  SHOW_ALL = 'showAll',
   WATCH_ONLINE = 'watchOnline',
   WATCH_ONLINE_XS = 'watchOnlineXS',
   GO_HOME = 'goHome',
@@ -25,6 +26,18 @@ export enum Buttons {
   DOWNLOAD = 'download',
   PREV = 'prev',
   NEXT = 'next',
+}
+
+export enum Tabs {
+  DEBUT = 'debut',
+  JUNIOR = 'junior',
+}
+
+export enum Debut {
+  GROUP_A = 'group-a',
+  GROUP_B = 'group-b',
+  GROUP_C = 'group-c',
+  GROUP_D = 'group-d',
 }
 
 export enum NotFound {
