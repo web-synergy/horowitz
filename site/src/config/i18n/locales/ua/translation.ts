@@ -11,6 +11,8 @@ import {
   SummerSchool,
   Virtuosos,
   WarState,
+  Tabs,
+  Debut,
 } from '@/types/translation.d';
 
 export default {
@@ -64,6 +66,10 @@ export default {
     [Routes.GROUP_VENUES]: 'Локації',
     [Routes.GROUP_WINNERS]: 'Переможці',
     [Routes.GROUP_BOOKLET]: 'Буклет',
+    [Debut.GROUP_A]: 'Група А Горовиць-Дебют',
+    [Debut.GROUP_B]: 'Група B Горовиць-Дебют',
+    [Debut.GROUP_C]: 'Група C Горовиць-Дебют',
+    [Debut.GROUP_D]: 'Група D Горовиць-Дебют',
   },
   buttons: {
     [Buttons.READ_MORE]: 'Читати більше',
@@ -72,6 +78,7 @@ export default {
     [Buttons.APPLY]: 'Заявка на участь',
     [Buttons.SUPPORT]: 'Підтримати проєкт',
     [Buttons.VIEW_ALL]: 'Переглянути всіx',
+    [Buttons.SHOW_ALL]: 'Переглянути всі',
     [Buttons.WATCH_ONLINE]: 'Дивитись онлайн-трансляцію',
     [Buttons.WATCH_ONLINE_XS]: 'Дивитись трансляцію',
     [Buttons.GO_HOME]: 'На головну сторінку',
@@ -82,6 +89,8 @@ export default {
     [Buttons.DOWNLOAD]: 'Завантажити',
     [Buttons.NEXT]: 'Наступна',
     [Buttons.PREV]: 'Попередня',
+    [Tabs.DEBUT]: 'Говориць-Дебют',
+    [Tabs.JUNIOR]: 'Молодша Група',
   },
   [Header.SEARCH]: 'Пошук',
   contacts: {

@@ -1,4 +1,11 @@
 import {defineField, defineType} from 'sanity'
+import {type SlugSourceContext, SlugParent} from 'sanity'
+import {CgProfile} from 'react-icons/cg'
+import type {Value} from 'sanity-plugin-internationalized-array'
+
+interface IParticipant {
+  name: Value[]
+}
 
 export default defineType({
   name: 'participant',
@@ -16,10 +23,22 @@ export default defineType({
       type: 'internationalizedArrayString',
     }),
     defineField({
-      name: 'country',
-      title: 'Країна',
-      type: 'internationalizedArrayString',
+      name: 'slug',
+      title: "Посилання (обов'язково внесіть попередньо ім'я англійською)",
+      type: 'slug',
+      validation: (Rule) => Rule.required(),
+      options: {
+        disableArrayWarning: true,
+        source: (_, context: SlugSourceContext) => {
+          const {parent, parentPath} = context
+
+          const base = (parent.name as Value[]).find((item) => item._key === 'en')
+
+          return base ? `${parentPath[0]}-${base.value}` : ''
+        },
+      },
     }),
+
     defineField({
       name: 'age',
       title: 'Вік',
@@ -32,4 +51,22 @@ export default defineType({
       type: 'internationalizedArrayArticle',
     }),
   ],
+  preview: {
+    select: {
+      name: 'name',
+      avatar: 'avatar.image',
+    },
+    prepare(selection) {
+      const {name, avatar} = selection
+      const ukrName = name[0]?.value || ''
+      const engName = name[1]?.value || ''
+      const title = `${ukrName}/${engName}`
+
+      if (!avatar) {
+        return {title, media: CgProfile}
+      }
+
+      return {title, media: avatar}
+    },
+  },
 })

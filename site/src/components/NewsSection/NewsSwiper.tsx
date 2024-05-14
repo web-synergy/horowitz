@@ -48,13 +48,13 @@ const NewsSwiper = ({
         </Typography>
         <Box>
           <ShowMoreBtn
-            title={t(`buttons.${Buttons.VIEW_ALL}`)}
+            title={t(`buttons.${Buttons.SHOW_ALL}`)}
             link={`/${link}`}
             isTitleVisible={!isMobile}
           />
         </Box>
       </Stack>
-      {/* <SwiperSection card={NewsCart} items={news} link={link} /> */}
+
       <Swiper
         spaceBetween={24}
         breakpoints={{

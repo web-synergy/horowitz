@@ -15,7 +15,6 @@ import MainBanner from '@/components/Common/MainBanner';
 import Loader from '@/components/Common/Loader';
 import NewsSwiper from '../../NewsSection/NewsSwiper';
 import { Virtuosos } from '@/types/translation.d';
-// import { Link } from 'react-router-dom';
 
 const components: PortableTextComponents = {
   block: {
@@ -53,6 +52,7 @@ const VirtuosesPage = () => {
   useEffect(() => {
     if (requestLang === language) return;
     fetchVirtuosos(language);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language]);
 
   const [data] = useLiveQuery(virtuosos, virtuososQuery, {
@@ -73,24 +73,6 @@ const VirtuosesPage = () => {
               },
             }}
           >
-            {/* <Box
-              sx={{
-                my: 1,
-                display: 'flex',
-                gap: 1,
-                flexDirection: { xs: 'column', md: 'row' },
-              }}>
-              <Button component={Link} to={'/pdf/sql'}>
-                SQL
-              </Button>
-              <Button component={Link} to={'/pdf/Книжка'}>
-                Книжка
-              </Button>
-
-              <Button component={Link} to={'/pdf/Буклет'}>
-                Буклет
-              </Button>
-            </Box> */}
             <Box
               sx={{
                 display: 'flex',

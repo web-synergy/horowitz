@@ -18,7 +18,7 @@ const JuniorBookletPage = () => {
   } = useCompetitionStore();
 
   useEffect(() => {
-    if (requestLang === language && booklet) return;
+    if (requestLang && booklet) return;
     if (!id) return;
     fetchBooklet(id, language);
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -26,6 +26,7 @@ const content = defineType({
         decorators: [
           {title: 'Strong', value: 'strong'},
           {title: 'Emphasis', value: 'em'},
+          {title: 'Underline', value: 'underline'},
           {title: 'No wrap', value: 'nw', icon: TbTextWrapDisabled, component: NoWrap},
         ],
         annotations: [

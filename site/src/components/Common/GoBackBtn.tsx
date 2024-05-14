@@ -7,13 +7,18 @@ import SvgSpriteIcon from './SvgSpriteIcon';
 
 interface GoBackBtnProps {
   href: string;
+  importantHref?: boolean;
 }
 
-const GoBackBtn: FC<GoBackBtnProps> = ({ href }) => {
+const GoBackBtn: FC<GoBackBtnProps> = ({ href, importantHref = false }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const onClickButton = () => {
+    if (importantHref) {
+      navigate(href);
+      return;
+    }
     const historyStack = window.history.state.idx;
     const goBackHref = historyStack !== 0 ? (-1 as To) : `/${href}`;
     const goBackOptions = historyStack !== 0 ? {} : { replace: true };
