@@ -48,14 +48,20 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
   if (!images) return null;
   return (
     <Box ref={containerRef} sx={{ mb: '24px' }}>
-      <ImageList variant='quilted' cols={QTY_COLUMN} rowHeight={imgSize}>
+      <ImageList
+        variant="quilted"
+        cols={QTY_COLUMN}
+        rowHeight={imgSize}
+        sx={{ marginBlockEnd: 0, marginBlockStart: 0 }}
+      >
         {images.slice(0, quantity || images.length).map((item, index) => {
           if (item.asset)
             return (
               <GrowView key={item._key}>
                 <ImageListItem
                   cols={item.photoLayout.cols}
-                  rows={item.photoLayout.rows}>
+                  rows={item.photoLayout.rows}
+                >
                   <img
                     style={{
                       cursor: 'pointer',
@@ -67,7 +73,7 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
                       .auto('format')
                       .url()}
                     alt={item.title || ''}
-                    loading='lazy'
+                    loading="lazy"
                   />
                 </ImageListItem>
               </GrowView>
@@ -81,12 +87,16 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
             backgroundColor: 'inherit',
             boxShadow: 'none',
           },
+          '& .MuiBackdrop-root': {
+            backdropFilter: 'blur(6px)',
+          },
         }}
         fullWidth={true}
         maxWidth={'md'}
         onClose={handleClose}
-        aria-labelledby='customized-dialog-title'
-        open={open}>
+        aria-labelledby="customized-dialog-title"
+        open={open}
+      >
         <Swiper
           modules={[Zoom, Navigation, Keyboard]}
           zoom={{
@@ -101,14 +111,15 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
           spaceBetween={50}
           navigation={true}
           slidesPerView={1}
-          className='mySwiper'>
-          {images.map(item => {
+          className="mySwiper"
+        >
+          {images.map((item) => {
             if (item.asset)
               return (
                 <SwiperSlide key={item._key}>
-                  <div className='swiper-zoom-container'>
+                  <div className="swiper-zoom-container">
                     <img
-                      loading='lazy'
+                      loading="lazy"
                       style={{
                         width: '100%',
                         maxHeight: '90vh',
@@ -131,8 +142,9 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
       </Dialog>
 
       <Typography
-        sx={{ color: theme => theme.palette.neutral[50] }}
-        variant='smallText'>
+        sx={{ color: (theme) => theme.palette.neutral[50] }}
+        variant="smallText"
+      >
         {title}
       </Typography>
     </Box>

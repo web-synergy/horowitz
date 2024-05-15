@@ -19,17 +19,13 @@ const NewsCart: FC<INewsCart> = ({ img, title, slug }) => {
     <Stack
       sx={{
         gap: {
-          xs: '16px',
-          md: '24px',
+          xs: 2,
+          md: 3,
         },
         height: '100%',
         '& img': {
-          // height: {
-          //   xs: '185px',
-          //   md: '248px',
-          // },
           objectPosition: 'top',
-          aspectRatio: 1.5,
+          aspectRatio: { xs: 1.34, lg: 1.44 },
         },
       }}
     >
@@ -38,7 +34,7 @@ const NewsCart: FC<INewsCart> = ({ img, title, slug }) => {
         alt="news photo"
         style={{ objectFit: 'cover' }}
       />
-      <CardTitle>{title}</CardTitle>
+      <CardTitle variant="subhead">{title}</CardTitle>
       <Box>
         <ShowMoreBtn title={t(`buttons.${Buttons.READ_MORE}`)} link={slug} />
       </Box>
@@ -50,27 +46,17 @@ export default NewsCart;
 // ========== PARTS ==========
 
 const CardTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
-  fontWeight: 400,
-  fontStyle: 'normal',
   flexGrow: 1,
 
   // обмеження для тексту
   overflow: 'hidden',
   display: '-webkit-box',
-  WebkitLineClamp: 2,
-  lineClamp: 2,
+  WebkitLineClamp: 1,
+  lineClamp: 1,
   WebkitBoxOrient: 'vertical',
 
-  [theme.breakpoints.up('xs')]: {
-    fontSize: '1rem',
-    lineHeight: 1.5,
-  },
   [theme.breakpoints.up('md')]: {
-    fontSize: '1.375rem',
-    lineHeight: 1.36,
-  },
-  [theme.breakpoints.up('lg')]: {
-    fontSize: '1.5rem',
-    lineHeight: 1.333,
+    WebkitLineClamp: 2,
+    lineClamp: 2,
   },
 }));

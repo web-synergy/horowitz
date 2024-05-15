@@ -71,6 +71,7 @@ export interface VirtuososStoreState {
 }
 export interface UkrWorksStoreState {
   requestLang: string;
+  isLoading: boolean;
   works: IUkrWorks | null;
   fetchWorks: (language: string) => Promise<void>;
 }
