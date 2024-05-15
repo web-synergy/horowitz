@@ -28,9 +28,9 @@ export const components: PortableTextComponents = {
       <Typography
         component={'h2'}
         sx={{
-          my: { xs: '24px', md: '40px', lg: '48px' },
+          my: { xs: 3, md: 5, lg: 6 },
         }}
-        variant="h2"
+        variant="h2Block"
       >
         {children}
       </Typography>
@@ -39,7 +39,7 @@ export const components: PortableTextComponents = {
       <Typography
         component={'h3'}
         sx={{
-          my: { xs: '24px', md: '40px', lg: '48px' },
+          my: { xs: 3, md: 5, lg: 6 },
         }}
         variant="h3"
       >
@@ -50,7 +50,7 @@ export const components: PortableTextComponents = {
       <Typography
         component={'h4'}
         sx={{
-          my: { xs: '24px', md: '32px', lg: '40px' },
+          my: { xs: 3, md: 5, lg: 6 },
         }}
         variant="h3Block"
       >

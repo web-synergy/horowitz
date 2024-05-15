@@ -38,11 +38,11 @@ export const Ul = ({ children }: { children: ReactNode }) => {
       component={'ul'}
       sx={{
         display: 'flex',
-        gap: '8px',
+        // gap: '8px',
         flexDirection: 'column',
-        my: '16px',
-        pl: { xs: '24px', md: '32px' },
-        lineHeight: { sx: '24px', md: '28px' },
+        my: 2,
+        pl: { xs: 3, md: 4 },
+        // lineHeight: { xs: '24px', md: '28px' },
       }}
       variant="bodyRegular"
     >
@@ -57,11 +57,11 @@ export const Ol = ({ children }: { children: ReactNode }) => {
       component={'ol'}
       sx={{
         display: 'flex',
-        gap: '8px',
+        // gap: '8px',
         flexDirection: 'column',
-        my: '16px',
-        pl: { xs: '24px', md: '32px' },
-        lineHeight: { sx: '24px', md: '28px' },
+        my: 2,
+        pl: { xs: 3, md: 4 },
+        // lineHeight: { sx: '24px', md: '28px' },
       }}
       variant="bodyRegular"
     >
@@ -73,14 +73,14 @@ export const Ol = ({ children }: { children: ReactNode }) => {
 export const Blockquote = ({ children }: { children: ReactNode }) => {
   return (
     <Typography
+      variant="quote"
       component={'blockquote'}
       sx={{
         display: 'block',
-        pl: '16px',
-        borderLeft: 'solid 2px #141414',
-        my: '16px',
+        pl: 3,
+        borderLeft: 'solid 2px',
+        my: 2,
       }}
-      variant="blockquote"
     >
       {children}
     </Typography>

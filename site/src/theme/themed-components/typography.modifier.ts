@@ -1,24 +1,24 @@
-import { Components, Theme } from '@mui/material/styles'
+import { Components, Theme } from '@mui/material/styles';
 
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
-    title: true
-    h1: true
-    h2: true
-    h3: true
-    subhead: true
-    bodyMedium: true
-    bodyRegular: true
-    bodyLight: true
-    caption: true
-    smallText: true
-    navLink: true
-    blockquote: true
-    h2Block: true
-    h3Block: true
-    h4Block: true
-    quote: true
-    linkBlock: true
+    title: true;
+    h1: true;
+    h2: true;
+    h3: true;
+    subhead: true;
+    bodyMedium: true;
+    bodyRegular: true;
+    bodyLight: true;
+    caption: true;
+    smallText: true;
+    navLink: true;
+    blockquote: true;
+    h2Block: true;
+    h3Block: true;
+    h4Block: true;
+    quote: true;
+    linkBlock: true;
   }
 }
 export const MuiTypography: Components<Theme>['MuiTypography'] = {
@@ -198,21 +198,21 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
         },
       }),
     },
-    {
-      props: { variant: 'blockquote' },
-      style: ({ theme }) => ({
-        fontSize: '1.125rem',
-        fontStyle: 'italic',
-        fontWeight: 400,
-        lineHeight: 1.62,
-        fontVariantNumeric: 'lining-nums proportional-nums',
+    // {
+    //   props: { variant: 'blockquote' },
+    //   style: ({ theme }) => ({
+    //     fontSize: '1.125rem',
+    //     fontStyle: 'italic',
+    //     fontWeight: 400,
+    //     lineHeight: 1.62,
+    //     fontVariantNumeric: 'lining-nums proportional-nums',
 
-        [theme.breakpoints.up('md')]: {
-          fontSize: '1.25rem',
-          lineHeight: 2,
-        },
-      }),
-    },
+    //     [theme.breakpoints.up('md')]: {
+    //       fontSize: '1.25rem',
+    //       lineHeight: 2,
+    //     },
+    //   }),
+    // },
     {
       props: { variant: 'navLink' },
       style: ({ theme }) => ({
@@ -238,7 +238,7 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
         variant: 'h2Block',
       },
       style: ({ theme }) => ({
-        fonSize: '1.5rem',
+        fontSize: '1.5rem',
         fontStyle: 'normal',
         fontWeight: 400,
         lineHeight: 1.333,
@@ -249,7 +249,7 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
         },
 
         [theme.breakpoints.up('lg')]: {
-          fonSize: '2rem',
+          fontSize: '2rem',
           lineHeight: 1.25,
         },
       }),
@@ -259,7 +259,7 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
         variant: 'h3Block',
       },
       style: ({ theme }) => ({
-        fonSize: '1.25rem',
+        fontSize: '1.25rem',
         fontStyle: 'normal',
         fontWeight: 400,
         lineHeight: 1.4,
@@ -270,7 +270,7 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
         },
 
         [theme.breakpoints.up('lg')]: {
-          fonSize: '1.75rem',
+          fontSize: '1.75rem',
           lineHeight: 1.286,
         },
       }),
@@ -280,7 +280,7 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
         variant: 'h4Block',
       },
       style: ({ theme }) => ({
-        fonSize: '1.125rem',
+        fontSize: '1.125rem',
         fontStyle: 'normal',
         fontWeight: 400,
         lineHeight: 1.444,
@@ -291,7 +291,7 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
         },
 
         [theme.breakpoints.up('lg')]: {
-          fonSize: '1.5rem',
+          fontSize: '1.5rem',
           lineHeight: 1.333,
         },
       }),
@@ -301,7 +301,7 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
         variant: 'quote',
       },
       style: ({ theme }) => ({
-        fonSize: '1.125rem',
+        fontSize: '1.125rem',
         fontStyle: 'italic',
         fontWeight: 400,
         lineHeight: 1.444,
@@ -330,4 +330,4 @@ export const MuiTypography: Components<Theme>['MuiTypography'] = {
       }),
     },
   ],
-}
+};

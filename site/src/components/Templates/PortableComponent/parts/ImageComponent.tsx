@@ -32,6 +32,7 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
         height: Math.floor(imgWidth / aspectRatio),
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerSize, value]);
 
   return (
@@ -82,6 +83,8 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
     </GrowView>
   );
 };
+
+
 export const ImagesArray = ({ value }: { value: IPortableImgGallery }) => {
   if (value.option) {
     return (

@@ -1,18 +1,17 @@
 import { useTranslation } from 'react-i18next';
+import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import './sliderSettings.css';
 
 import { sliceNewsTitle } from '@/utils/helpers';
 
-import { Buttons } from '@/types/translation.d';
-
-import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
-
-import { IImage } from '@/types/commonTypes';
 import NewsCart from './NewsCart';
 import { ShowMoreBtn } from './ShowMoreBtn';
-// import SwiperSection from '../Templates/SwiperSecrtion/SwiperSection';
+import CommonStackWrapper from '../Common/CommonStackWrapper';
+
+import { Buttons } from '@/types/translation.d';
+import { IImage } from '@/types/commonTypes';
 
 interface INews {
   title: string;
@@ -35,53 +34,52 @@ const NewsSwiper = ({
 
   return (
     <Box>
-      <Stack
-        sx={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          mb: { xs: '32px', md: '48px' },
-        }}
-      >
-        <Typography component={'h2'} variant="h1">
-          {title}
-        </Typography>
-        <Box>
-          <ShowMoreBtn
-            title={t(`buttons.${Buttons.SHOW_ALL}`)}
-            link={`/${link}`}
-            isTitleVisible={!isMobile}
-          />
-        </Box>
-      </Stack>
+      <CommonStackWrapper>
+        <Stack
+          direction={'row'}
+          justifyContent={'space-between'}
+          alignItems={'center'}
+        >
+          <Typography component={'h2'} variant="h1">
+            {title}
+          </Typography>
+          <Box>
+            <ShowMoreBtn
+              title={t(`buttons.${Buttons.SHOW_ALL}`)}
+              link={`/${link}`}
+              isTitleVisible={!isMobile}
+            />
+          </Box>
+        </Stack>
 
-      <Swiper
-        spaceBetween={24}
-        breakpoints={{
-          300: {
-            slidesPerView: 1.2,
-          },
-          768: {
-            slidesPerView: 2.1,
-          },
-          1280: {
-            slidesPerView: 3,
-          },
-        }}
-      >
-        {news.map((item) => {
-          const { slug, img, title } = item;
-          return (
-            <SwiperSlide key={slug} style={{ height: 'auto' }}>
-              <NewsCart
-                title={sliceNewsTitle(title, 49)}
-                img={img}
-                slug={`/${link}/${slug}`}
-              />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+        <Swiper
+          spaceBetween={24}
+          breakpoints={{
+            300: {
+              slidesPerView: 1.2,
+            },
+            768: {
+              slidesPerView: 2.1,
+            },
+            1280: {
+              slidesPerView: 3,
+            },
+          }}
+        >
+          {news.map((item) => {
+            const { slug, img, title } = item;
+            return (
+              <SwiperSlide key={slug} style={{ height: 'auto' }}>
+                <NewsCart
+                  title={sliceNewsTitle(title, 49)}
+                  img={img}
+                  slug={`/${link}/${slug}`}
+                />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </CommonStackWrapper>
     </Box>
   );
 };

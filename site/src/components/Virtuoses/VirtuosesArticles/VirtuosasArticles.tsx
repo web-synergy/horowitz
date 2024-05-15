@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 
-import { Container, List, Typography, Stack } from '@mui/material';
+import { Container, List, Typography } from '@mui/material';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -14,6 +14,7 @@ import Loader from '@/components/Common/Loader';
 import PageTemplate from '@/components/Common/PageTemplate';
 import NewsListItem from '@/components/NewsPageList/parts/NewsListItem';
 import PaginationNews from '@/components/NewsPageList/parts/PaginationNews';
+
 import { useVirtuososStore } from '@/store/virtuososStor';
 
 import { Virtuosos } from '@/types/translation.d';
@@ -53,42 +54,36 @@ const VirtuosasArticles = () => {
   return (
     <PageTemplate goBackUrl={Routes.VIRTUOSES}>
       <Container>
-        <Stack>
-          <Typography
-            sx={{
-              pb: { xs: 3, md: 5, lg: 6 },
-            }}
-            variant="h2"
-          >
-            {t(`virtuosos.${Virtuosos.NEWS}`)}
-          </Typography>
-          <List
-            sx={{
-              display: 'grid',
-              flexDirection: 'column',
-              gap: { xs: 5, md: 6, lg: 7 },
-              justifyContent: { xs: 'center', md: 'flex-start' },
-            }}
-          >
-            {articleList &&
-              articleList.map((news: INews, index) => (
-                <NewsListItem
-                  key={index}
-                  title={news.title}
-                  date={news.date}
-                  img={news.img}
-                  slug={news.slug}
-                  shortDescription={news.shortDescription}
-                />
-              ))}
-          </List>
+        <Typography variant="h1" mb={{ xs: 3, md: 5, lg: 6 }}>
+          {t(`virtuosos.${Virtuosos.NEWS}`)}
+        </Typography>
+        <List
+          sx={{
+            display: 'grid',
+            flexDirection: 'column',
+            gap: 7,
+            justifyContent: { xs: 'center', md: 'flex-start' },
+            mb: { xs: 3, md: 6 },
+          }}
+        >
+          {articleList &&
+            articleList.map((news: INews, index) => (
+              <NewsListItem
+                key={index}
+                title={news.title}
+                date={news.date}
+                img={news.img}
+                slug={news.slug}
+                shortDescription={news.shortDescription}
+              />
+            ))}
+        </List>
 
-          <PaginationNews
-            pageQty={pageQty}
-            setSearchParams={setSearchParams}
-            urlPage={urlPage}
-          />
-        </Stack>
+        <PaginationNews
+          pageQty={pageQty}
+          setSearchParams={setSearchParams}
+          urlPage={urlPage}
+        />
       </Container>
     </PageTemplate>
   );
