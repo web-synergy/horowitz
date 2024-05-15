@@ -61,7 +61,7 @@ const VirtuosasArticles = () => {
           sx={{
             display: 'grid',
             flexDirection: 'column',
-            gap: { xs: 7, md: 5, lg: 6 },
+            gap: 7,
             justifyContent: { xs: 'center', md: 'flex-start' },
             mb: { xs: 3, md: 6 },
           }}

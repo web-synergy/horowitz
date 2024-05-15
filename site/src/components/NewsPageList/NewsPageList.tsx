@@ -57,8 +57,9 @@ const NewsPageList = () => {
             sx={{
               display: 'grid',
               flexDirection: 'column',
-              gap: { xs: 5, md: 6, lg: 7 },
+              gap: 7,
               justifyContent: { xs: 'center', md: 'flex-start' },
+              mb: { xs: 3, md: 6 },
             }}
           >
             {newsList &&
