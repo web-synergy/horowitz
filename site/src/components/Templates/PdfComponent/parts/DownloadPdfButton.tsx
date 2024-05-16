@@ -1,15 +1,15 @@
-import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
-import { useTranslation } from 'react-i18next';
+import { FC } from 'react';
 import { useTheme, useMediaQuery } from '@mui/material';
-import React from 'react';
-import { Buttons } from '@/types/translation.d';
+import { useTranslation } from 'react-i18next';
+import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import { StyledButton } from './styled';
+import { Buttons } from '@/types/translation.d';
 
 interface DownloadPdfButtonProps {
   pdfUrl: string;
 }
 
-const DownloadPdfButton: React.FC<DownloadPdfButtonProps> = ({ pdfUrl }) => {
+const DownloadPdfButton: FC<DownloadPdfButtonProps> = ({ pdfUrl }) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const isNotMobile = useMediaQuery(theme.breakpoints.up('md'));
@@ -34,17 +34,18 @@ const DownloadPdfButton: React.FC<DownloadPdfButtonProps> = ({ pdfUrl }) => {
     }
   };
 
-  const btnTitle = t(`buttons.${Buttons.DOWNLOAD}`);
-
   return (
     <StyledButton
-      aria-label="download-pdf"
-      variant="primary"
+      aria-label={t(`buttons.${Buttons.DOWNLOAD}`)}
       onClick={handleDownload}
       endIcon={<SvgSpriteIcon icon="download" />}
     >
-      {isNotMobile && btnTitle}
+      {isNotMobile && t(`buttons.${Buttons.DOWNLOAD}`)}
     </StyledButton>
+
+    // <StyledIconButton aria-label="download-pdf" onClick={handleDownload}>
+    //   Download <SvgSpriteIcon icon="download" />
+    // </StyledIconButton>
   );
 };
 

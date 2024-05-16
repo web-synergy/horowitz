@@ -21,7 +21,6 @@
     "@sanity/preview-kit": "^5.0.7",
     "@types/react-lazy-load-image-component": "^1.6.3",
     "dayjs": "^1.11.11",
-    "debounce": "^2.0.0",
     "groq": "^3.23.4",
     "i18next": "^23.7.15",
     "i18next-browser-languagedetector": "^7.2.0",

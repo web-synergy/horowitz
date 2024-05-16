@@ -87,6 +87,7 @@ export default {
     [Buttons.GO_BACK]: 'Повернутись назад',
     [Buttons.CONCERT_PROGRAM]: 'Програма концерту',
     [Buttons.DOWNLOAD]: 'Завантажити',
+    [Buttons.FROM]: 'з',
     [Buttons.NEXT]: 'Наступна',
     [Buttons.PREV]: 'Попередня',
     [Tabs.DEBUT]: 'Говориць-Дебют',

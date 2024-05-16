@@ -26,6 +26,7 @@ export enum Buttons {
   DOWNLOAD = 'download',
   PREV = 'prev',
   NEXT = 'next',
+  FROM = 'from',
 }
 
 export enum Tabs {
