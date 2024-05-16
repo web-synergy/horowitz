@@ -87,6 +87,7 @@ export default {
     [Buttons.GO_BACK]: 'Go Back',
     [Buttons.CONCERT_PROGRAM]: 'Concert program',
     [Buttons.DOWNLOAD]: 'Download',
+    [Buttons.FROM]: 'from',
     [Buttons.NEXT]: 'Next',
     [Buttons.PREV]: 'Previous',
     [Tabs.DEBUT]: 'Debut',

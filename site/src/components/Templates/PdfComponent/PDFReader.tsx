@@ -24,7 +24,12 @@ const PDFReader = ({ URL }: IFileResponse) => {
   const onClickNext = () => controlledSwiper && controlledSwiper.slideNext();
 
   const onSlideChange = () => {
-    setCurrentPage(controlledSwiper?.activeIndex || 1);
+    if (!controlledSwiper) {
+      return;
+    }
+    console.log('onSlideChange');
+    console.log('activeIndex', controlledSwiper.activeIndex);
+    setCurrentPage(controlledSwiper.activeIndex + 1 || 1);
   };
 
   const pdfSize = getPgfSize(containerSize);
@@ -36,7 +41,7 @@ const PDFReader = ({ URL }: IFileResponse) => {
   const onChangeCurrentPage = (value: number) => {
     if (value !== currentPage) {
       setCurrentPage(value);
-      controlledSwiper?.slideTo(value);
+      controlledSwiper?.slideTo(value - 1);
     }
   };
 

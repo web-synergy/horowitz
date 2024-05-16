@@ -21,11 +21,6 @@ export const MuiIconButton: Components<Theme>['MuiIconButton'] = {
       '&:active': {
         color: theme.palette.action.active,
       },
-
-      '&:disabled': {
-        backgroundColor: theme.palette.neutral[30],
-        color: theme.palette.neutral[50],
-      },
     }),
   },
 };
