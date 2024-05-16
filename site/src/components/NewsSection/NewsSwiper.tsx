@@ -8,7 +8,6 @@ import { sliceNewsTitle } from '@/utils/helpers';
 
 import NewsCart from './NewsCart';
 import { ShowMoreBtn } from './ShowMoreBtn';
-import CommonStackWrapper from '../Common/CommonStackWrapper';
 
 import { Buttons } from '@/types/translation.d';
 import { IImage } from '@/types/commonTypes';
@@ -34,52 +33,51 @@ const NewsSwiper = ({
 
   return (
     <Box>
-      <CommonStackWrapper>
-        <Stack
-          direction={'row'}
-          justifyContent={'space-between'}
-          alignItems={'center'}
-        >
-          <Typography component={'h2'} variant="h1">
-            {title}
-          </Typography>
-          <Box>
-            <ShowMoreBtn
-              title={t(`buttons.${Buttons.SHOW_ALL}`)}
-              link={`/${link}`}
-              isTitleVisible={!isMobile}
-            />
-          </Box>
-        </Stack>
+      <Stack
+        direction={'row'}
+        justifyContent={'space-between'}
+        alignItems={'center'}
+        mb={{ xs: 3, md: 5, lg: 6 }}
+      >
+        <Typography component={'h2'} variant="h1">
+          {title}
+        </Typography>
+        <Box>
+          <ShowMoreBtn
+            title={t(`buttons.${Buttons.SHOW_ALL}`)}
+            link={`/${link}`}
+            isTitleVisible={!isMobile}
+          />
+        </Box>
+      </Stack>
 
-        <Swiper
-          spaceBetween={24}
-          breakpoints={{
-            300: {
-              slidesPerView: 1.2,
-            },
-            768: {
-              slidesPerView: 2.1,
-            },
-            1280: {
-              slidesPerView: 3,
-            },
-          }}
-        >
-          {news.map((item) => {
-            const { slug, img, title } = item;
-            return (
-              <SwiperSlide key={slug} style={{ height: 'auto' }}>
-                <NewsCart
-                  title={sliceNewsTitle(title, 49)}
-                  img={img}
-                  slug={`/${link}/${slug}`}
-                />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </CommonStackWrapper>
+      <Swiper
+        spaceBetween={24}
+        breakpoints={{
+          300: {
+            slidesPerView: 1.2,
+          },
+          768: {
+            slidesPerView: 2.1,
+          },
+          1280: {
+            slidesPerView: 3,
+          },
+        }}
+      >
+        {news.map((item) => {
+          const { slug, img, title } = item;
+          return (
+            <SwiperSlide key={slug} style={{ height: 'auto' }}>
+              <NewsCart
+                title={sliceNewsTitle(title, 49)}
+                img={img}
+                slug={`/${link}/${slug}`}
+              />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </Box>
   );
 };
