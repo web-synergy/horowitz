@@ -1,70 +1,108 @@
-import { FC, MutableRefObject } from 'react';
-import { Stack, Box, useTheme, useMediaQuery } from '@mui/material';
+import { FC, ChangeEvent, useState, useEffect } from 'react';
+import { useDebounce } from 'use-debounce';
+import { Typography } from '@mui/material';
+
 import { useTranslation } from 'react-i18next';
 import DownloadPdfButton from './DownloadPdfButton';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
-import { StyledButton } from './styled';
+import {
+  StyledIconButton,
+  ButtonWrapper,
+  StickyBox,
+  StyledTextField,
+} from './styled';
 import { Buttons } from '@/types/translation.d';
 
 interface NavigationBtnProps {
-  prevRef: MutableRefObject<HTMLButtonElement | null>;
-  nextRef: MutableRefObject<HTMLButtonElement | null>;
   pdfUrl: string;
+  currentPage: number;
+  totalPages: number;
+  onChangePage: (value: number) => void;
+  onClickPrev: () => void;
+  onClickNext: () => void;
 }
 
 const NavigationBtn: FC<NavigationBtnProps> = ({
-  prevRef,
-  nextRef,
   pdfUrl,
+  currentPage,
+  totalPages,
+  onChangePage,
+  onClickNext,
+  onClickPrev,
 }) => {
-  const theme = useTheme();
-  const isNotMobile = useMediaQuery(theme.breakpoints.up('md'));
   const { t } = useTranslation();
+  const [pageInput, setPageInput] = useState<number | ''>(() => currentPage);
+  const [value] = useDebounce(pageInput, 1000);
+
+  useEffect(() => {
+    if (currentPage !== pageInput) {
+      setPageInput(currentPage);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (value !== currentPage && value !== '') {
+      onChangePage(value);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+
+  const onClickPreviousPage = () => {
+    if (currentPage === 1) {
+      return;
+    }
+    onClickPrev();
+  };
+
+  const onClickNextPage = () => {
+    if (currentPage === totalPages) {
+      return;
+    }
+    onClickNext();
+  };
+
+  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.currentTarget.value);
+
+    if (e.currentTarget.value === '') {
+      setPageInput('');
+      return;
+    }
+    if (isNaN(value)) {
+      setPageInput((prev) => prev);
+    } else if (value > totalPages) {
+      setPageInput(totalPages);
+    } else if (value < 1) {
+      setPageInput(1);
+    } else {
+      setPageInput(value);
+    }
+  };
 
   return (
-    <Box
-      sx={{
-        position: 'sticky',
-        top: { xs: 70, lg: 110 },
-        zIndex: 1000,
-        height: { xs: 72, md: 100, lg: 108 },
-      }}
-    >
-      <Stack justifyContent={'space-between'} direction={'row'} gap={1}>
-        <Box>
-          <DownloadPdfButton pdfUrl={pdfUrl} />
-        </Box>
+    <StickyBox>
+      <ButtonWrapper>
+        <DownloadPdfButton pdfUrl={pdfUrl} />
 
-        <Stack direction="row" gap={3}>
-          <Box>
-            <StyledButton
-              ref={prevRef}
-              startIcon={
-                <SvgSpriteIcon
-                  icon="arrow"
-                  sx={{ transform: 'rotate(90deg)' }}
-                />
-              }
-            >
-              {isNotMobile && t(`buttons.${Buttons.PREV}`)}
-            </StyledButton>
-          </Box>
-          <Box>
-            <StyledButton
-              ref={nextRef}
-              endIcon={
-                <SvgSpriteIcon
-                  icon="arrow"
-                  sx={{ transform: 'rotate(-90deg)' }}
-                />
-              }
-            >
-              {isNotMobile && t(`buttons.${Buttons.NEXT}`)}
-            </StyledButton>
-          </Box>
-        </Stack>
-      </Stack>
-    </Box>
+        <StyledIconButton
+          aria-label={t(`buttons.${Buttons.PREV}`)}
+          onClick={onClickPreviousPage}
+          disabled={currentPage === 1}
+        >
+          <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(90deg)' }} />
+        </StyledIconButton>
+        <StyledTextField value={pageInput} onChange={onChangeInput} />
+        <Typography whiteSpace={'noWrap'}>from {totalPages}</Typography>
+        <StyledIconButton
+          aria-label={t(`buttons.${Buttons.NEXT}`)}
+          onClick={onClickNextPage}
+          disabled={currentPage === totalPages}
+        >
+          <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(-90deg)' }} />
+        </StyledIconButton>
+      </ButtonWrapper>
+    </StickyBox>
   );
 };
 

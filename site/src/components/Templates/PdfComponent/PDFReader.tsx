@@ -1,6 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
-
+import { SwiperClass } from 'swiper/react';
 import { Document, pdfjs } from 'react-pdf';
 
 import 'react-pdf/dist/Page/TextLayer.css';
@@ -15,31 +15,53 @@ import SwiperPdf from './parts/SwiperPdf';
 import NavigationBtn from './parts/NavigationBtn';
 
 const PDFReader = ({ URL }: IFileResponse) => {
-  const [numPages, setNumPages] = useState<number>(0);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const { containerRef, containerSize } = useWidthBlokSize();
-  const nextRef = useRef<HTMLButtonElement | null>(null);
-  const prevRef = useRef<HTMLButtonElement | null>(null);
+  const [controlledSwiper, setControlledSwiper] = useState<SwiperClass>();
+
+  const onClickPrev = () => controlledSwiper && controlledSwiper.slidePrev();
+  const onClickNext = () => controlledSwiper && controlledSwiper.slideNext();
+
+  const onSlideChange = () => {
+    setCurrentPage(controlledSwiper?.activeIndex || 1);
+  };
 
   const pdfSize = getPgfSize(containerSize);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }): void => {
-    setNumPages(numPages);
+    setTotalPages(numPages);
+  };
+
+  const onChangeCurrentPage = (value: number) => {
+    if (value !== currentPage) {
+      setCurrentPage(value);
+      controlledSwiper?.slideTo(value);
+    }
   };
 
   const pagesArray = Array.from(
-    { length: numPages || 0 },
+    { length: totalPages || 0 },
     (_, index) => ++index
   );
 
+  useEffect(() => {});
   return (
     <Box>
-      <NavigationBtn pdfUrl={URL} nextRef={nextRef} prevRef={prevRef} />
+      <NavigationBtn
+        pdfUrl={URL}
+        currentPage={currentPage}
+        onChangePage={onChangeCurrentPage}
+        totalPages={totalPages}
+        onClickNext={onClickNext}
+        onClickPrev={onClickPrev}
+      />
       <Box
         ref={containerRef}
         sx={{
           height: pdfSize.height,
           width: '100%',
-          // mt: { xs: 9, md: '100px', lg: '108px' },
+          mt: 3,
         }}
       >
         <Document
@@ -49,10 +71,11 @@ const PDFReader = ({ URL }: IFileResponse) => {
           onLoadError={(e) => console.log(e.message)}
         >
           <SwiperPdf
-            pageNumber={pagesArray}
             pdfSize={pdfSize}
-            nextRef={nextRef}
-            prevRef={prevRef}
+            pageNumber={pagesArray}
+            controlledSwiper={controlledSwiper}
+            onSlideChange={onSlideChange}
+            setControlledSwiper={setControlledSwiper}
           />
         </Document>
       </Box>

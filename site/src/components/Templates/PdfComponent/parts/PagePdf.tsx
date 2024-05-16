@@ -11,6 +11,7 @@ interface PagePdfProps {
 
 export const PagePdf = forwardRef(
   ({ pageNumber, pdfSize }: PagePdfProps, ref) => {
+
     return (
       <Box
         sx={{
