@@ -35,7 +35,6 @@
     "react-quick-pinch-zoom": "^5.1.0",
     "react-router-dom": "^6.21.1",
     "swiper": "^11.0.5",
-    "use-debounce": "^10.0.0",
     "zustand": "^4.4.7"
   },
   "devDependencies": {
