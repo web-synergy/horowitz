@@ -31,7 +31,7 @@ const PdfPage: FC<PDfPageProps> = ({
         })`,
         transformOrigin: '0 0',
         transition: 'transform 0.3s',
-        touchAction: 'none',
+        touchAction: isZoomed ? 'none' : 'auto',
       }}
     >
       <Slide
