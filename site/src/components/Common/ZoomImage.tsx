@@ -25,7 +25,7 @@ const ZoomImage = ({ children }: { children: React.ReactElement }) => {
 
   return (
     <QuickPinchZoom
-      // maxZoom={2}
+      maxZoom={2}
       // setOffsetsOnce={false}
       // inertiaFriction={0.96}
       // tapZoomFactor={1}
