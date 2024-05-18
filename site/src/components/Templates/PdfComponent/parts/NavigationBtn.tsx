@@ -1,4 +1,4 @@
-import { FC, ChangeEvent, useState, useEffect, FormEvent } from 'react';
+import { FC, ChangeEvent, useState, useEffect, FormEvent, useRef } from 'react';
 
 import { Typography, Stack, useTheme, useMediaQuery, Box } from '@mui/material';
 
@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import DownloadPdfButton from './DownloadPdfButton';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import {
-  // StyledIconButton,
   StyledButton,
   ButtonWrapper,
   StickyBox,
@@ -33,7 +32,7 @@ const NavigationBtn: FC<NavigationBtnProps> = ({
 }) => {
   const { t } = useTranslation();
   const [pageInput, setPageInput] = useState<number | ''>(() => currentPage);
-
+  const pageRef = useRef<HTMLInputElement | null>(null);
   const theme = useTheme();
   const isNotMobile = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -55,18 +54,14 @@ const NavigationBtn: FC<NavigationBtnProps> = ({
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSaveNewPage(pageInput);
+    if (pageRef) {
+      pageRef.current?.blur();
+    }
   };
 
   const onTouchEnd = () => {
     onSaveNewPage(pageInput);
   };
-
-  // useEffect(() => {
-  //   if (value !== currentPage && value !== '') {
-  //     onChangePage(value);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [value]);
 
   const onClickPreviousPage = () => {
     if (currentPage === 0) {
@@ -111,20 +106,14 @@ const NavigationBtn: FC<NavigationBtnProps> = ({
           >
             {isNotMobile && t(`buttons.${Buttons.PREV}`)}
           </StyledButton>
-          {/* <StyledIconButton
-            aria-label={t(`buttons.${Buttons.PREV}`)}
-            onClick={onClickPreviousPage}
-            disabled={currentPage === 1}
-          >
-            <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(90deg)' }} />
-            
-          </StyledIconButton> */}
+
           <Box component={'form'} onSubmit={onSubmit}>
             <StyledTextField
               value={pageInput}
               onChange={onChangeInput}
               autoComplete={'off'}
               onBlur={onTouchEnd}
+              ref={pageRef}
             />
           </Box>
 
@@ -144,14 +133,6 @@ const NavigationBtn: FC<NavigationBtnProps> = ({
           >
             {isNotMobile && t(`buttons.${Buttons.NEXT}`)}
           </StyledButton>
-          {/* <StyledIconButton
-            aria-label={t(`buttons.${Buttons.NEXT}`)}
-            onClick={onClickNextPage}
-            disabled={currentPage === totalPages}
-          >
-            {t(`buttons.${Buttons.NEXT}`)}
-            <SvgSpriteIcon icon="arrow" sx={{ transform: 'rotate(-90deg)' }} />
-          </StyledIconButton> */}
         </Stack>
       </ButtonWrapper>
     </StickyBox>
