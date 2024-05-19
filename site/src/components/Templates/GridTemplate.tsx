@@ -2,13 +2,14 @@ import { FC } from 'react';
 import { Box } from '@mui/material';
 import GrowView from '../Common/GrowView';
 
-interface GridTemplateProps<T> {
+interface GridTemplateProps<T, P> {
   list: T[];
   gridItem: FC<{ item: T }>;
   justify?: 'center' | 'left';
+  other?: P;
 }
 
-function GridTemplate<T>(props: GridTemplateProps<T>) {
+function GridTemplate<T, P>(props: GridTemplateProps<T, P>) {
   const { gridItem: GridItem, list, justify = 'left' } = props;
 
   const isCentered = justify !== 'left';

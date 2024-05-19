@@ -49,23 +49,27 @@ const VirtuososCurrentArticle = () => {
             <Box sx={{ maxWidth: '930px', mx: 'auto' }}>
               <Typography
                 sx={{
-                  mt: { xs: '24px', md: '48px' },
-                  mb: '24px',
+                  mt: { xs: 3, md: 6 },
+                  mb: 3,
                   display: 'block',
-                  color: theme => theme.palette.neutral[50],
+                  color: (theme) => theme.palette.neutral[50],
                 }}
-                variant='bodyLight'>
+                variant="bodyLight"
+              >
                 {parseAndFormatDate(data.date)}
               </Typography>
 
-              <Typography variant='h2'>{data.title}</Typography>
+              <Typography variant="h3" component="h1">
+                {data.title}
+              </Typography>
               <Box
                 sx={{
                   mt: { xs: '24px', md: '32px' },
                   '*:last-child': {
                     marginBottom: '0px',
                   },
-                }}>
+                }}
+              >
                 {data.description && (
                   <PortableComponent data={data.description} />
                 )}

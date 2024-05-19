@@ -17,6 +17,7 @@ import {
 } from '@mui/material';
 import { t } from 'i18next';
 import { Link as RouterLink } from 'react-router-dom';
+import Image from '@/components/Common/Image';
 
 interface INewsListItem {
   img: IImage;
@@ -35,70 +36,75 @@ const NewsListItem = ({
 }: INewsListItem) => {
   const theme = useTheme();
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+
+  const imageWidth = isMob ? 548 : isDesktop ? 357 : 332;
+  const aspectRatio = 1.44;
+
+  const imageHeight = Math.floor(imageWidth / aspectRatio);
+
+  const imageUrl = urlFor(img)
+    .auto('format')
+    .width(imageWidth)
+    .height(imageHeight)
+    .fit('fill')
+    .url()
+    .toString();
 
   return (
     <ListItem>
       <GrowView>
-        <Stack flex={1} direction={{ xs: 'column', md: 'row' }} spacing={3}>
-          <Box
-            component={'img'}
-            sx={{
-              objectFit: 'cover',
-              width: { md: '332px', lg: '357px' },
-              height: { xs: 'auto', lg: '248px' },
-            }}
-            src={urlFor(img)
-              .auto('format')
-              .width(isMob ? 288 : 357)
-              .height(248)
-              .fit('fill')
-              .url()
-              .toString()}
+        <Stack
+          flex={1}
+          direction={{ xs: 'column', md: 'row' }}
+          gap={{ xs: 2, md: 3 }}
+        >
+          <Image
+            src={imageUrl}
             alt={img.alt}
+            height={248}
+            width={imageWidth}
+            isLazyLoading={false}
+            styles={{
+              aspectRatio: aspectRatio,
+              objectFit: 'cover',
+            }}
           />
 
-          <Box sx={{ maxWidth: '548px' }}>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px',
-              }}
+          <Stack gap={2} sx={{ maxWidth: '548px' }}>
+            <Typography
+              sx={{ color: (theme) => theme.palette.neutral[50] }}
+              variant="bodyLight"
             >
-              <Typography
-                sx={{ color: (theme) => theme.palette.neutral[50] }}
-                variant="bodyLight"
+              {parseAndFormatDate(date)}
+            </Typography>
+            <Link component={RouterLink} to={slug}>
+              <Typography variant="subhead">{title}</Typography>
+            </Link>
+            <Typography
+              sx={{
+                color: (theme) => theme.palette.neutral[40],
+              }}
+              variant="bodyRegular"
+            >
+              {shortDescription}
+            </Typography>
+            <Box>
+              <Button
+                component={RouterLink}
+                to={slug}
+                endIcon={
+                  <SvgSpriteIcon
+                    icon="arrow"
+                    sx={{ transform: 'rotate(270deg)' }}
+                  />
+                }
+                variant="tertiary"
               >
-                {parseAndFormatDate(date)}
-              </Typography>
-              <Link component={RouterLink} to={slug}>
-                <Typography variant="subhead">{title}</Typography>
-              </Link>
-              <Typography
-                sx={{
-                  color: (theme) => theme.palette.neutral[40],
-                }}
-                variant="bodyRegular"
-              >
-                {shortDescription}
-              </Typography>
-              <Box>
-                <Button
-                  component={RouterLink}
-                  to={slug}
-                  endIcon={
-                    <SvgSpriteIcon
-                      icon="arrow"
-                      sx={{ transform: 'rotate(270deg)' }}
-                    />
-                  }
-                  variant="tertiary"
-                >
-                  {t(`buttons.${Buttons.READ_MORE}`)}
-                </Button>
-              </Box>
+                {t(`buttons.${Buttons.READ_MORE}`)}
+              </Button>
             </Box>
-          </Box>
+          </Stack>
         </Stack>
       </GrowView>
     </ListItem>

@@ -26,7 +26,6 @@ const Image: FC<ImageProps> = ({
       loading={isLazyLoading ? 'lazy' : 'eager'}
       style={{
         display: 'block',
-        width: '100%',
         height: 'auto',
         lineHeight: 1,
         ...styles,

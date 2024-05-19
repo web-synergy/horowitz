@@ -63,7 +63,7 @@ const SharedLayout = () => {
   }, [langParam, language, searchParams, setSearchParams]);
 
   return (
-    <Stack minHeight="100vh">
+    <Stack minHeight="100vh" minWidth={320}>
       <Header />
       <Stack component="main" minHeight="100%" flex="1 1 auto">
         <Suspense fallback={<Loader />}>

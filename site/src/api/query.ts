@@ -1,4 +1,4 @@
-import groq from "groq";
+import groq from 'groq';
 export const homeQuery = groq`*[_type == 'home'][0]{
   'news':*[_type == 'news'  && length(title[_key ==$language].value) != 0]| order( dateTime(date)  desc) [0 ...3]{
     date,
@@ -325,4 +325,56 @@ export const juniorGroupGuests = groq`*[_type == 'junior' && _id == $id][0]{
 export const juniorGroupBooklet = groq`*[_type == 'junior' && _id == $id][0]{
  "booklet": booklet.file.asset->url
  }
+`;
+
+export const juniorGroupParticipants = groq`*[_type == 'junior' && _id == $id][0]{
+  "debut": {
+    "groupA": groupA[]{
+      "id": _key, 
+      age, 
+      avatar, 
+       "name": name[_key ==$language][0].value,
+      "biography": biography[_key ==$language][0].value, 
+      "group": "groupA",
+      "slug": slug.current,
+    }, 
+    'groupB': groupB[]{
+       "id": _key, 
+      age, 
+      avatar, 
+       "name": name[_key ==$language][0].value,
+      "biography": biography[_key ==$language][0].value, 
+      "group": "groupB",
+      "slug": slug.current,
+    }, 
+    'groupC': groupC[]{
+       "id": _key, 
+      age, 
+      avatar, 
+       "name": name[_key ==$language][0].value,
+      "biography": biography[_key ==$language][0].value, 
+      "group": "groupC",
+      "slug": slug.current,
+    }, 
+    "groupD": groupD[]{
+       "id": _key, 
+      age, 
+      avatar, 
+       "name": name[_key ==$language][0].value,
+      "biography": biography[_key ==$language][0].value, 
+      "group": "groupD",
+      "slug": slug.current,
+    }
+  },   
+
+  "junior": junior[]{
+     "id": _key, 
+      age, 
+      avatar, 
+       "name": name[_key ==$language][0].value,
+      "biography": biography[_key ==$language][0].value, 
+      "group": "junior",
+      "slug": slug.current,
+  }
+}
 `;

@@ -1,18 +1,16 @@
 import { useTranslation } from 'react-i18next';
+import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import './sliderSettings.css';
 
 import { sliceNewsTitle } from '@/utils/helpers';
 
-import { Buttons } from '@/types/translation.d';
-
-import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
-
-import { IImage } from '@/types/commonTypes';
 import NewsCart from './NewsCart';
 import { ShowMoreBtn } from './ShowMoreBtn';
-// import SwiperSection from '../Templates/SwiperSecrtion/SwiperSection';
+
+import { Buttons } from '@/types/translation.d';
+import { IImage } from '@/types/commonTypes';
 
 interface INews {
   title: string;
@@ -36,25 +34,23 @@ const NewsSwiper = ({
   return (
     <Box>
       <Stack
-        sx={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          mb: { xs: '32px', md: '48px' },
-        }}
+        direction={'row'}
+        justifyContent={'space-between'}
+        alignItems={'center'}
+        mb={{ xs: 3, md: 5, lg: 6 }}
       >
         <Typography component={'h2'} variant="h1">
           {title}
         </Typography>
         <Box>
           <ShowMoreBtn
-            title={t(`buttons.${Buttons.VIEW_ALL}`)}
+            title={t(`buttons.${Buttons.SHOW_ALL}`)}
             link={`/${link}`}
             isTitleVisible={!isMobile}
           />
         </Box>
       </Stack>
-      {/* <SwiperSection card={NewsCart} items={news} link={link} /> */}
+
       <Swiper
         spaceBetween={24}
         breakpoints={{

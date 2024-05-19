@@ -74,12 +74,8 @@ export const MuiButton: Components<Theme>["MuiButton"] = {
         },
 
         "&:disabled": {
-          // backgroundColor: theme.palette.action.disabled,
+          backgroundColor: theme.palette.action.disabled,
 
-          backgroundColor: "#dcc092",
-          // backgroundColor: theme.palette.neutral[20],
-          // borderColor: theme.palette.neutral[40],
-          // borderColor: '#dcc092',
           color: theme.palette.neutral[50],
         },
       }),
@@ -171,7 +167,7 @@ export const MuiButton: Components<Theme>["MuiButton"] = {
         },
 
         "&:hover": {
-          backgroundColor: theme.palette.action.hover,
+          backgroundColor: theme.palette.primary.main,
           color: theme.palette.common.black,
           borderColor: "transparent",
         },

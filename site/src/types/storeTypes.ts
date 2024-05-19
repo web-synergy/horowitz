@@ -71,6 +71,7 @@ export interface VirtuososStoreState {
 }
 export interface UkrWorksStoreState {
   requestLang: string;
+  isLoading: boolean;
   works: IUkrWorks | null;
   fetchWorks: (language: string) => Promise<void>;
 }
@@ -117,6 +118,7 @@ export interface JuniorGroupState extends CommonGroupState, JuniorGroupType {
   fetchStudentsJury: FetchJuniorData;
   fetchGuests: FetchJuniorData;
   fetchBooklet: FetchJuniorData;
+  fetchParticipants: FetchJuniorData;
 }
 
 export interface OtherGroupState extends CommonGroupState, OtherGroupType {

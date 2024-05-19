@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Box, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 import { MainTitle } from '../../styled';
 import { ShowMoreBtn } from './styled';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -14,6 +14,7 @@ import { Routes } from '@/types/routes.d';
 import { Buttons, MainPage } from '@/types/translation.d';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
+import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
 
 const PartnersAndFriends: FC = () => {
   const { t } = useTranslation();
@@ -38,13 +39,12 @@ const PartnersAndFriends: FC = () => {
   if (!commonList.length) return null; // fix slider error (Loop Warning)
 
   return (
-    <Stack
-      spacing={6}
+    <CommonStackWrapper
       sx={{
-        marginBottom: {
-          xs: '72px',
-          md: '96px',
-          lg: '120px',
+        mb: {
+          xs: 8,
+          md: 12,
+          lg: 15,
         },
       }}
     >
@@ -52,51 +52,53 @@ const PartnersAndFriends: FC = () => {
         {t(`mainPage.${MainPage.FRIENDS}`)}
       </MainTitle>
 
-      <Swiper
-        breakpoints={{
-          320: {
-            spaceBetween: 40,
-            slidesPerView: 2,
-            centeredSlides: true,
-          },
-          768: {
-            slidesPerView: 3,
-            centeredSlides: true,
-            spaceBetween: 40,
-          },
-          1280: {
-            slidesPerView: 4,
-            centeredSlides: true,
-          },
-          1500: {
-            slidesPerView: 5,
-          },
-        }}
-        loop={true}
-        speed={2000}
-        autoplay={{
-          delay: 600,
-          disableOnInteraction: false,
-        }}
-        modules={[Autoplay]}
-      >
-        {commonList.length &&
-          commonList.map(({ _key, img, size, title }) => (
-            <SwiperSlide key={_key}>
-              <LazyLoadImage
-                src={img.asset && urlFor(img).url().toString()}
-                alt={title}
-                height={size}
-                width="auto"
-                style={{
-                  objectFit: 'contain',
-                }}
-              />
-            </SwiperSlide>
-          ))}
-      </Swiper>
+      <Box>
+        <Swiper
+          breakpoints={{
+            320: {
+              spaceBetween: 40,
+              slidesPerView: 2,
+              centeredSlides: true,
+            },
+            768: {
+              slidesPerView: 3,
+              centeredSlides: true,
+              spaceBetween: 40,
+            },
+            1280: {
+              slidesPerView: 4,
+              centeredSlides: true,
+            },
+            1500: {
+              slidesPerView: 5,
+            },
+          }}
+          loop={true}
+          speed={2000}
+          autoplay={{
+            delay: 600,
+            disableOnInteraction: false,
+          }}
+          modules={[Autoplay]}
+        >
+          {commonList.length &&
+            commonList.map(({ _key, img, size, title }) => (
+              <SwiperSlide key={_key}>
+                <LazyLoadImage
+                  src={img.asset && urlFor(img).url().toString()}
+                  alt={title}
+                  height={size}
+                  width="auto"
+                  style={{
+                    objectFit: 'contain',
+                  }}
+                />
+              </SwiperSlide>
+            ))}
+        </Swiper>
+      </Box>
 
-      <Box sx={{ alignSelf: 'center' }}>
+      <Box sx={{ textAlign: 'center' }}>
         <ShowMoreBtn
           variant="transparent"
           component={RouterLink}
@@ -105,7 +107,7 @@ const PartnersAndFriends: FC = () => {
           {t(`buttons.${Buttons.VIEW_ALL}`)}
         </ShowMoreBtn>
       </Box>
-    </Stack>
+    </CommonStackWrapper>
   );
 };
 

@@ -67,6 +67,16 @@ export interface GuestType {
   id: string;
 }
 
+export interface ParticipantType {
+  id: string;
+  name: string;
+  age: number;
+  avatar: TextBlockImageType;
+  biography: PortableTextBlock[];
+  group: string;
+  slug: string;
+}
+
 export interface OtherGroupType extends CommonGroupType {
   isActivePreselectionJury: boolean;
 }
@@ -74,6 +84,13 @@ export interface OtherGroupType extends CommonGroupType {
 export interface JuniorGroupType extends CommonGroupType {
   isActiveStudentsJury: boolean;
   studentsJury: StudentsJuryType[] | null;
+  debut: {
+    groupA: ParticipantType[];
+    groupB: ParticipantType[];
+    groupC: ParticipantType[];
+    groupD: ParticipantType[];
+  } | null;
+  junior: ParticipantType[] | null;
 }
 
 export interface GroupProps {

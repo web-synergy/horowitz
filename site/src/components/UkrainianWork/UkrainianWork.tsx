@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { Container, Typography, Box, ListItem } from '@mui/material';
 import { useTranslation } from 'react-i18next';
@@ -11,21 +11,19 @@ import { components } from './components';
 import MainBanner from '../Common/MainBanner';
 import { ukrWorksQuery } from '@/api/query';
 import { useLiveQuery } from '@sanity/preview-kit';
+import Loader from '../Common/Loader';
 
 const UkrainianComposition = () => {
   const {
     t,
     i18n: { language },
   } = useTranslation();
-  const { works, fetchWorks, requestLang } = useUkrWorksStore();
-  const [loading, setLoading] = useState(false);
+  const { works, fetchWorks, requestLang, isLoading } = useUkrWorksStore();
 
   useEffect(() => {
     if (language === requestLang) return;
-    setLoading(true);
 
     fetchWorks(language);
-    setLoading(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language]);
@@ -34,8 +32,8 @@ const UkrainianComposition = () => {
     language,
   });
 
-  if (loading) {
-    return <div>Loading</div>;
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (

@@ -32,6 +32,9 @@ const NavList: FC<NavListProps> = ({ linksList }) => {
                   paddingLeft: 1,
                   paddingRight: 1,
                 },
+                '&.MuiButton-root:disabled': {
+                  backgroundColor: '#dcc092',
+                },
               }}
             >
               {t(`navigation.${link.title}`)}
