@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Routes } from "@/types/routes.d";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import Loader from "../Common/Loader";
 import PageTemplate from "../Common/PageTemplate";
 
@@ -13,6 +13,7 @@ import { useLiveQuery } from "@sanity/preview-kit";
 import { horowitzQuery } from "@/api/query.ts";
 import MainBanner from "../Common/MainBanner.tsx";
 import TextBlockComponent from "../Templates/TextBlockComponent/TextBlockComponent.tsx";
+import { StyledButton } from "./styled.ts";
 
 const HorowitzPage: FC = () => {
   const {
@@ -125,11 +126,7 @@ const HorowitzPage: FC = () => {
               marginTop: "48px",
             }}
           >
-            <Button
-              sx={{
-                width: "288px",
-              }}
-              variant="transparent"
+            <StyledButton
               onClick={handleShowMore}
               onTouchStart={handleLongPress}
               onTouchEnd={handleCancelLongPress}
@@ -140,7 +137,7 @@ const HorowitzPage: FC = () => {
                   isAllLiteratureVisible ? Buttons.SHOW_LESS : Buttons.SHOW_MORE
                 }`
               )}
-            </Button>
+            </StyledButton>
           </Box>
         </Container>
       </PageTemplate>

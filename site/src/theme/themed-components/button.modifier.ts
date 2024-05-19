@@ -170,11 +170,11 @@ export const MuiButton: Components<Theme>["MuiButton"] = {
           },
         },
 
-        // "&:hover": {
-        //   backgroundColor: theme.palette.action.hover,
-        //   color: theme.palette.common.black,
-        //   borderColor: "transparent",
-        // },
+        "&:hover": {
+          backgroundColor: theme.palette.action.hover,
+          color: theme.palette.common.black,
+          borderColor: "transparent",
+        },
 
         "&:focus-visible": {
           borderColor: theme.palette.primary.dark,
@@ -192,21 +192,6 @@ export const MuiButton: Components<Theme>["MuiButton"] = {
           borderColor: theme.palette.neutral[50],
           backgroundColor: theme.palette.action.disabled,
           color: theme.palette.neutral[50],
-        },
-
-        "@media (hover: hover)": {
-          "&:hover": {
-            backgroundColor: theme.palette.action.hover,
-            color: theme.palette.common.black,
-            borderColor: "transparent",
-          },
-        },
-        "@media (hover: none)": {
-          "&:active": {
-            backgroundColor: theme.palette.action.hover,
-            color: theme.palette.common.black,
-            borderColor: "transparent",
-          },
         },
       }),
     },
