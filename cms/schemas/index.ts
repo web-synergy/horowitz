@@ -41,6 +41,7 @@ import artist from './objects/artist'
 import jury from './documents/jury'
 import studentsJury from './objects/studentsJury'
 import guests from './documents/guests'
+import masterClass from './documents/masterClass'
 
 export const schemaTypes = [
   //documents
@@ -55,6 +56,7 @@ export const schemaTypes = [
   horowitz,
   partners,
   administration,
+  masterClass,
   virtuosos,
   virtuososArticle,
   aboutHorowitzCompetition,
