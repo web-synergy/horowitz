@@ -11,7 +11,7 @@ export default defineType({
       title: 'Рекламний банер',
     },
     {
-      name: 'winner',
+      name: 'winners',
       title: 'Переможці',
     },
     {
@@ -38,7 +38,7 @@ export default defineType({
             hotspot: true,
           },
         }),
-        
+
         defineField({
           name: 'background',
           title: 'Фон',
@@ -77,11 +77,11 @@ export default defineType({
     }),
 
     defineField({
-      group: ['winner'],
-      name: 'winner',
+      group: ['winners'],
+      name: 'winners',
       title: 'Переможці',
       type: 'array',
-      of: [{type: 'winners'}],
+      of: [{type: 'winner'}],
     }),
 
     defineField({

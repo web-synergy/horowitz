@@ -1,5 +1,6 @@
 // import { IFileResponse } from './pdfTypes';
 import { PortableTextBlock } from '@portabletext/types';
+import { IPortableImgGallery } from './newsTypes';
 
 import {
   IImageReference,
@@ -77,6 +78,13 @@ export interface ParticipantType {
   slug: string;
 }
 
+export type WinnerType = {
+  key: string;
+  champion: string;
+  img: IImageReference;
+  name: string;
+};
+
 export interface OtherGroupType extends CommonGroupType {
   isActivePreselectionJury: boolean;
 }
@@ -91,6 +99,14 @@ export interface JuniorGroupType extends CommonGroupType {
     groupD: ParticipantType[];
   } | null;
   junior: ParticipantType[] | null;
+  winners: {
+    groupA: WinnerType[];
+    groupB: WinnerType[];
+    groupC: WinnerType[];
+    groupD: WinnerType[];
+    junior: WinnerType[];
+  } | null;
+  winnersGallery: IPortableImgGallery | null;
 }
 
 export interface GroupProps {

@@ -11,8 +11,8 @@ import {
   SummerSchool,
   Virtuosos,
   WarState,
-  Tabs,
-  Debut,
+  ETabs,
+  EDebut,
 } from '@/types/translation.d';
 
 export default {
@@ -66,10 +66,10 @@ export default {
     [Routes.GROUP_VENUES]: 'Локації',
     [Routes.GROUP_WINNERS]: 'Переможці',
     [Routes.GROUP_BOOKLET]: 'Буклет',
-    [Debut.GROUP_A]: 'Група А Горовиць-Дебют',
-    [Debut.GROUP_B]: 'Група B Горовиць-Дебют',
-    [Debut.GROUP_C]: 'Група C Горовиць-Дебют',
-    [Debut.GROUP_D]: 'Група D Горовиць-Дебют',
+    [EDebut.GROUP_A]: 'Група А Горовиць-Дебют',
+    [EDebut.GROUP_B]: 'Група B Горовиць-Дебют',
+    [EDebut.GROUP_C]: 'Група C Горовиць-Дебют',
+    [EDebut.GROUP_D]: 'Група D Горовиць-Дебют',
   },
   buttons: {
     [Buttons.READ_MORE]: 'Читати більше',
@@ -90,8 +90,12 @@ export default {
     [Buttons.FROM]: 'з',
     [Buttons.NEXT]: 'Наступна',
     [Buttons.PREV]: 'Попередня',
-    [Tabs.DEBUT]: 'Говориць-Дебют',
-    [Tabs.JUNIOR]: 'Молодша Група',
+    [ETabs.DEBUT]: 'Говориць-Дебют',
+    [ETabs.JUNIOR]: 'Молодша Група',
+    [EDebut.GROUP_A]: 'Група А',
+    [EDebut.GROUP_B]: 'Група B',
+    [EDebut.GROUP_C]: 'Група C',
+    [EDebut.GROUP_D]: 'Група D',
   },
   [Header.SEARCH]: 'Пошук',
   contacts: {
