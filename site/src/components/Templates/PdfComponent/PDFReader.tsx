@@ -43,23 +43,37 @@ const PDFReader = ({ URL }: IFileResponse) => {
   };
 
   const onClickPrev = (value?: number) => {
+    if (currentPage === 1) {
+      return;
+    }
     setAnimation(false);
     setDirection('left');
 
     setTimeout(() => {
       setDirection('right');
-      setCurrentPage((prev) => (value ? value : prev - 1));
+      setCurrentPage((prev) => {
+        if (prev === 1) return prev;
+        return value ? value : prev - 1;
+      });
       setAnimation(true);
     }, 500);
   };
   const onClickNext = (value?: number) => {
+    if (currentPage === totalPages) {
+      return;
+    }
     setDirection('right');
     setAnimation(false);
 
     setTimeout(() => {
       setDirection('left');
       setAnimation(true);
-      setCurrentPage((prev) => (value ? value : prev + 1));
+      setCurrentPage((prev) => {
+        if (prev === totalPages) {
+          return prev;
+        }
+        return value ? value : prev + 1;
+      });
     }, 500);
   };
 
