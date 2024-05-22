@@ -40,6 +40,7 @@ import {
   juniorGroupGuests,
   juniorGroupBooklet,
   juniorGroupParticipants,
+  juniorWinners,
 } from './query';
 import { AnnualSummerSchoolTypes } from '@/types/annualSummerSchoolTypes';
 import { CompetitionType } from '@/types/competitionTypes';
@@ -222,4 +223,11 @@ export const getJuniorParticipantsData = (
   language: string
 ): Promise<JuniorGroupType> => {
   return sanityFetch(juniorGroupParticipants, { id, language });
+};
+
+export const getJuniorWinnersData = (
+  id: string,
+  language: string
+): Promise<JuniorGroupType> => {
+  return sanityFetch(juniorWinners, { id, language });
 };

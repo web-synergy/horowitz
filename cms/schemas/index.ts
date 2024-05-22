@@ -14,7 +14,7 @@ import banner from './objects/banner'
 import competition from './documents/competition'
 import junior from './documents/junior'
 import group from './documents/group'
-import {imageGalleryType} from './objects/imageGalleryType'
+import {gallery} from './objects/gallery'
 import sponsor from './objects/sponsor'
 import membersAdministration from './objects/membersAdministration'
 import video from './objects/video'
@@ -73,7 +73,7 @@ export const schemaTypes = [
   membersAdministration,
   content,
   youtube,
-  imageGalleryType,
+  gallery,
   article,
   banner,
   picture,

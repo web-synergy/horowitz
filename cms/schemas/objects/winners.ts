@@ -1,7 +1,7 @@
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: 'winners',
+  name: 'winner',
   type: 'object',
   fields: [
     defineField({
@@ -26,10 +26,11 @@ export default defineType({
   preview: {
     select: {
       title: 'name[0].value',
+      prize: 'champion[0].value',
       img: 'img',
     },
-    prepare: ({title, img}) => ({
-      title: title,
+    prepare: ({title, prize, img}) => ({
+      title: `${title} - ${prize}`,
       media: img,
     }),
   },

@@ -378,3 +378,49 @@ export const juniorGroupParticipants = groq`*[_type == 'junior' && _id == $id][0
   }
 }
 `;
+
+export const juniorWinners = groq`*[_type == 'junior' && _id == $id][0]{
+
+  'galleries': {
+    'groupA': groupAPhoto, 
+    'groupB': groupBPhoto, 
+    'groupC': groupCPhoto, 
+    'groupD': groupDPhoto, 
+    'junior': juniorGroupPhoto,
+  }, 
+  "winners": {
+    'groupA': groupAWinners[]{
+         _key,
+        'champion': champion[_key ==$language][0].value,
+        img,
+        'name': name[_key ==$language][0].value
+    }, 
+    'groupB': groupBWinners[]{
+         _key,
+        'champion': champion[_key ==$language][0].value,
+        img,
+        'name': name[_key ==$language][0].value
+    }, 
+    'groupC': groupDWinners[]{
+         _key,
+        'champion': champion[_key ==$language][0].value,
+        img,
+        'name': name[_key ==$language][0].value
+    },
+    'groupD': groupCWinners[]{
+        _key,
+        'champion': champion[_key ==$language][0].value,
+        img,
+        'name': name[_key ==$language][0].value
+    }, 
+    'junior': juniorWinners[]{
+        _key,
+        'champion': champion[_key ==$language][0].value,
+        img,
+        'name': name[_key ==$language][0].value
+    }, 
+
+      
+  } 
+}
+`;

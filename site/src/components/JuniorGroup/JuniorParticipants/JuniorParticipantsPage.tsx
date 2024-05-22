@@ -1,45 +1,36 @@
-import { FC } from 'react';
-import { Tabs, Debut } from '@/types/translation.d';
-import DebutMain from './parts/DebutMain';
+import { useEffect } from 'react';
+
+import { useTranslation } from 'react-i18next';
+import { useJuniorGroupStore } from '@/store/juniorGroupStore';
+import { useCompetitionStore } from '@/store/competitionStore';
+import MainLayout from '../GroupNaigatrion/MainLayout';
+import { Routes } from '@/types/routes.d';
 import JuniorGroup from './parts/JuniorGroup';
 import DebutGroup from './parts/DebutGroup';
 
-import { useJuniorGroupStore } from '@/store/juniorGroupStore';
+const JuniorParticipantsPage = () => {
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
+  const { requestLang, junior, fetchParticipants } = useJuniorGroupStore();
+  const {
+    junior: { _id: id },
+  } = useCompetitionStore();
 
-interface JuniorParticipantsPageProps {
-  group: Tabs | Debut;
-}
+  useEffect(() => {
+    if (requestLang === language && junior) return;
+    if (!id) return;
 
-const JuniorParticipantsPage: FC<JuniorParticipantsPageProps> = ({ group }) => {
-  const { junior, debut } = useJuniorGroupStore();
+    fetchParticipants(id, language);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [junior, id, language]);
 
-  if (!junior || !debut) {
-    return;
-  }
+  const title = t(`navigation.${Routes.GROUP_PARTICIPANTS}`);
 
-  switch (group) {
-    case Tabs.JUNIOR:
-      return <JuniorGroup />;
-
-    case Debut.GROUP_A: {
-      return <DebutGroup participants={debut.groupA} title={Debut.GROUP_A} />;
-    }
-
-    case Debut.GROUP_B: {
-      return <DebutGroup participants={debut.groupB} title={Debut.GROUP_B} />;
-    }
-
-    case Debut.GROUP_C: {
-      return <DebutGroup participants={debut.groupC} title={Debut.GROUP_C} />;
-    }
-
-    case Debut.GROUP_D: {
-      return <DebutGroup participants={debut.groupD} title={Debut.GROUP_D} />;
-    }
-
-    default:
-      return <DebutMain />;
-  }
+  return (
+    <MainLayout title={title} juniorGroup={JuniorGroup} subGroup={DebutGroup} />
+  );
 };
 
 export default JuniorParticipantsPage;

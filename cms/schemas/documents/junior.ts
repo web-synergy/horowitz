@@ -237,6 +237,86 @@ export default defineType({
       group: 'winners',
     }),
     defineField({
+      name: 'groupAWinners',
+      type: 'array',
+      title: 'Переможці Дебют Група A',
+      of: [{type: 'winner'}],
+      group: 'winners',
+    }),
+    defineField({
+      name: 'groupBWinners',
+      type: 'array',
+      title: 'Переможці Дебют Група B',
+      of: [{type: 'winner'}],
+      group: 'winners',
+    }),
+    defineField({
+      name: 'groupCWinners',
+      type: 'array',
+      title: 'Переможці Дебют Група C',
+      of: [{type: 'winner'}],
+      group: 'winners',
+    }),
+    defineField({
+      name: 'groupDWinners',
+      type: 'array',
+      title: 'Переможці Дебют Група D',
+      of: [{type: 'winner'}],
+      group: 'winners',
+    }),
+    defineField({
+      name: 'juniorWinners',
+      type: 'array',
+      title: 'Переможці Молодшої групи',
+      of: [{type: 'winner'}],
+      group: 'winners',
+    }),
+    defineField({
+      name: 'groupAPhoto',
+      type: 'gallery',
+      title: 'Галерея з фото для групи А',
+      options: {
+        hotspot: true,
+      },
+      group: 'winners',
+    }),
+    defineField({
+      name: 'groupBPhoto',
+      type: 'gallery',
+      title: 'Галерея з фото для групи B',
+      options: {
+        hotspot: true,
+      },
+      group: 'winners',
+    }),
+    defineField({
+      name: 'groupCPhoto',
+      type: 'gallery',
+      title: 'Галерея з фото для групи C',
+      options: {
+        hotspot: true,
+      },
+      group: 'winners',
+    }),
+    defineField({
+      name: 'groupDPhoto',
+      type: 'gallery',
+      title: 'Галерея з фото для групи D',
+      options: {
+        hotspot: true,
+      },
+      group: 'winners',
+    }),
+    defineField({
+      name: 'juniorGroupPhoto',
+      type: 'gallery',
+      title: 'Галерея з фото для Молодшої групи',
+      options: {
+        hotspot: true,
+      },
+      group: 'winners',
+    }),
+    defineField({
       name: 'isActiveVenues',
       type: 'boolean',
       title: 'Активувати сторінку Локації',

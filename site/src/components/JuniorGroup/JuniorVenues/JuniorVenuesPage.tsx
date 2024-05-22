@@ -18,7 +18,6 @@ const JuniorVenuesPage = () => {
     slug,
   } = useCompetitionStore();
 
-  console.log(venues);
   useEffect(() => {
     if (requestLang === language && venues) return;
     if (!id) return;
