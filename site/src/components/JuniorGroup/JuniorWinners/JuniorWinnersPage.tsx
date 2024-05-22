@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 import { useCompetitionStore } from '@/store/competitionStore';
-import MainLayout from './parts/MainLayout';
+import MainLayout from '../GroupNaigatrion/MainLayout';
+import Group from './parts/Group';
+import { Routes } from '@/types/routes.d';
 
 const JuniorWinnersPage = () => {
   const {
@@ -21,7 +23,9 @@ const JuniorWinnersPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [winners, id, language]);
 
-  return <MainLayout />;
+  const title = t(`navigation.${Routes.GROUP_WINNERS}`);
+
+  return <MainLayout juniorGroup={Group} subGroup={Group} title={title} />;
 };
 
 export default JuniorWinnersPage;

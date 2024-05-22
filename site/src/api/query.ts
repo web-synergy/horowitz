@@ -383,34 +383,34 @@ export const juniorWinners = groq`*[_type == 'junior' && _id == $id][0]{
   'winnersGallery': commonWinnersPhoto,
   "winners": {
     'groupA': groupAWinners[]{
-        'key': _key,
+         _key,
         'champion': champion[_key ==$language][0].value,
         img,
-        'name': champion
+        'name': name[_key ==$language][0].value
     }, 
     'groupB': groupAWinners[]{
-        'key': _key,
+         _key,
         'champion': champion[_key ==$language][0].value,
         img,
-        'name': champion
+        'name': name[_key ==$language][0].value
     }, 
     'groupC': groupAWinners[]{
-        'key': _key,
+         _key,
         'champion': champion[_key ==$language][0].value,
         img,
-        'name': champion
+        'name': name[_key ==$language][0].value
     },
     'groupD': groupAWinners[]{
-        'key': _key,
+        _key,
         'champion': champion[_key ==$language][0].value,
         img,
-        'name': champion
+        'name': name[_key ==$language][0].value
     }, 
     'junior': groupAWinners[]{
-        'key': _key,
+        _key,
         'champion': champion[_key ==$language][0].value,
         img,
-        'name': champion
+        'name': name[_key ==$language][0].value
     }, 
 
       

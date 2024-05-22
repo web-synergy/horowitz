@@ -134,7 +134,11 @@ const MainLayout: FC<MainLayoutProps> = ({
               value={ETabs.JUNIOR}
               name={groupTab}
             >
-              <JuniorGroup />
+              <Fade in={groupTab === ETabs.JUNIOR} timeout={1000}>
+                <Box>
+                  <JuniorGroup title={ETabs.JUNIOR} />
+                </Box>
+              </Fade>
             </TabPannel>
           </CommonStackWrapper>
         </Container>

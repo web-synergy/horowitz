@@ -174,4 +174,11 @@ export default {
     two: 'роки',
     many: 'років',
   },
+  winners: {
+    [ETabs.JUNIOR]: 'Лауреати Молодшої групи',
+    [EDebut.GROUP_A]: 'Номінація «А» Elementary',
+    [EDebut.GROUP_B]: 'Номінація «В» Elementary',
+    [EDebut.GROUP_C]: 'Номінація «С» Advanced',
+    [EDebut.GROUP_D]: 'Номінація «D» Advanced',
+  },
 };

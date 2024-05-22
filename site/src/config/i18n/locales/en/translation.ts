@@ -169,4 +169,11 @@ export default {
     emptyPageText: 'Select the Name of the Professor and Date',
   },
   age: { one: 'years old', two: 'years old', many: 'years old' },
+  winners: {
+    [ETabs.JUNIOR]: 'Prize Winners Junior Group',
+    [EDebut.GROUP_A]: 'The nomination «A» Elementary',
+    [EDebut.GROUP_B]: 'The nomination «B» Elementary',
+    [EDebut.GROUP_C]: 'The nomination «C» Advanced',
+    [EDebut.GROUP_D]: 'The nomination «D» Advanced',
+  },
 };

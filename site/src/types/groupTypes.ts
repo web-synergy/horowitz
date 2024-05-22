@@ -79,7 +79,7 @@ export interface ParticipantType {
 }
 
 export type WinnerType = {
-  key: string;
+  _key: string;
   champion: string;
   img: IImageReference;
   name: string;

@@ -29,7 +29,9 @@ const DebutGroup: FC<DebutGroupProps> = ({ title }) => {
   const translatedTitle = t(`navigation.${title}`);
   return (
     <CommonStackWrapper>
-      <Typography variant="h1">{translatedTitle}</Typography>
+      <Typography variant="h1" component="h2">
+        {translatedTitle}
+      </Typography>
       <GridTemplate gridItem={ParticipantCard} list={participants} />
     </CommonStackWrapper>
   );
