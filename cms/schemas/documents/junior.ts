@@ -272,9 +272,45 @@ export default defineType({
       group: 'winners',
     }),
     defineField({
-      name: 'commonWinnersPhoto',
+      name: 'groupAPhoto',
       type: 'gallery',
-      title: 'Галерея з фото',
+      title: 'Галерея з фото для групи А',
+      options: {
+        hotspot: true,
+      },
+      group: 'winners',
+    }),
+    defineField({
+      name: 'groupBPhoto',
+      type: 'gallery',
+      title: 'Галерея з фото для групи B',
+      options: {
+        hotspot: true,
+      },
+      group: 'winners',
+    }),
+    defineField({
+      name: 'groupCPhoto',
+      type: 'gallery',
+      title: 'Галерея з фото для групи C',
+      options: {
+        hotspot: true,
+      },
+      group: 'winners',
+    }),
+    defineField({
+      name: 'groupDPhoto',
+      type: 'gallery',
+      title: 'Галерея з фото для групи D',
+      options: {
+        hotspot: true,
+      },
+      group: 'winners',
+    }),
+    defineField({
+      name: 'juniorGroupPhoto',
+      type: 'gallery',
+      title: 'Галерея з фото для Молодшої групи',
       options: {
         hotspot: true,
       },

@@ -106,7 +106,13 @@ export interface JuniorGroupType extends CommonGroupType {
     groupD: WinnerType[];
     junior: WinnerType[];
   } | null;
-  winnersGallery: IPortableImgGallery | null;
+  galleries: {
+    groupA: IPortableImgGallery;
+    groupB: IPortableImgGallery;
+    groupC: IPortableImgGallery;
+    groupD: IPortableImgGallery;
+    junior: IPortableImgGallery;
+  } | null;
 }
 
 export interface GroupProps {

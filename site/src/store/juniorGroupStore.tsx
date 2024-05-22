@@ -47,6 +47,7 @@ export const useJuniorGroupStore = create<JuniorGroupState>((set) => ({
   junior: null,
   winnersGallery: null,
   winners: null,
+  galleries: null,
 
   fetchCommonData: async (id, language) => {
     set({ isLoading: true, requestLang: language });
@@ -190,11 +191,8 @@ export const useJuniorGroupStore = create<JuniorGroupState>((set) => ({
   fetchWinnersData: async (id, language) => {
     set({ isLoading: true, requestLang: language });
     try {
-      const { winnersGallery, winners } = await getJuniorWinnersData(
-        id,
-        language
-      );
-      set({ winnersGallery, winners });
+      const { galleries, winners } = await getJuniorWinnersData(id, language);
+      set({ galleries, winners });
     } catch (error) {
       console.log(error);
     } finally {
