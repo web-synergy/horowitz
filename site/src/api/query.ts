@@ -382,10 +382,9 @@ export const juniorGroupParticipants = groq`*[_type == 'junior' && _id == $id][0
 export const masterClassQuery = groq`*[_type == 'masterClass' && length(title[_key ==$language].value) != 0] | order(dateTime(date) desc
 ) [$firstEl ...$lastEl]{
   _createdAt,
-   date,
    img,
    'title':  title[_key ==$language].value,
    'slug':slug.current,
-   'shortDescription':shortDescription[_key ==$language].value,
+   'description':description[_key ==$language][0].value,
    'count':count(*[_type == "masterClass" && length(title[_key ==$language].value) != 0])
 }`;

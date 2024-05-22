@@ -50,6 +50,7 @@ import LazyCompetitionPage from "@/components/Competition/LazyCompetitionPage";
 import LazyContactsPage from "@/components/Contacts/LazyContactsPage";
 import LazyMainPage from "@/components/Main/LazyMainPage";
 import LazyMasterClassPage from "@/components/MasterClass/LazyMasterClassPage";
+import LazyMasterClassCurrentPage from "@/components/MasterClassCurrentPage/LazyMasterClassCurrentPage";
 import LazyNotFoundPage from "@/components/NotFound/LazyNotFoundPage";
 import LazyCurrentConcert from "@/components/SummerSchoolSubPages/Concerts/CurrentConcert/LazyCurrentConcert";
 import LazyConcertsList from "@/components/SummerSchoolSubPages/Concerts/ConcertsList/LazyConcertsList";
@@ -219,6 +220,10 @@ const routes = createBrowserRouter([
       },
 
       { path: Routes.MASTER_CLASS, element: <LazyMasterClassPage /> },
+      {
+        path: Routes.CURRENT_MASTER_CLASS,
+        element: <LazyMasterClassCurrentPage />,
+      },
       { path: Routes.SUMMER_SCHOOL, element: <LazySummerSchoolPage /> },
       {
         path: `${Routes.SUMMER_SCHOOL}/:${Routes.SUMMER_SCHOOL_MAIN}`,

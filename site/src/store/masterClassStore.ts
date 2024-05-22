@@ -10,7 +10,7 @@ export const useMasterClassStore = create()((set) => ({
   pageQty: 1,
   currentPage: 0,
   requestLang: "",
-  fetchNews: async (language, page) => {
+  fetchMasterClasses: async (language, page) => {
     const PAGE_SIZE = 10;
     const start = (page - 1) * PAGE_SIZE;
     const end = start + PAGE_SIZE;
@@ -18,6 +18,7 @@ export const useMasterClassStore = create()((set) => ({
     set({ loading: true, currentPage: page, requestLang: language });
     try {
       const masterClasses = await getMasterClasses(language, start, end);
+      console.log(masterClasses);
 
       set({
         masterClassesList: masterClasses,

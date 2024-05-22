@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import PageTemplate from "../Common/PageTemplate";
 import { Container, List, Typography, Stack } from "@mui/material";
@@ -13,6 +12,7 @@ import { Routes } from "@/types/routes.d";
 import { useSearchParams } from "react-router-dom";
 import Loader from "../Common/Loader";
 import PaginationNews from "./parts/PaginationNews";
+import { PortableTextBlock } from "@portabletext/types";
 
 const MasterClassPage = () => {
   const {
@@ -21,13 +21,14 @@ const MasterClassPage = () => {
   } = useTranslation();
 
   const {
-    fetchNews,
+    fetchMasterClasses,
     masterClassesList,
     pageQty,
     loading,
     currentPage,
     requestLang,
   } = useMasterClassStore();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const urlPage = +(searchParams.get("page") || 1);
@@ -41,7 +42,7 @@ const MasterClassPage = () => {
       return navigate("/404");
     }
     if (currentPage !== urlPage || requestLang !== language) {
-      fetchNews(language, urlPage);
+      fetchMasterClasses(language, urlPage);
     }
   }, [language, urlPage]);
 
@@ -76,7 +77,7 @@ const MasterClassPage = () => {
                   title={news.title}
                   img={news.img}
                   slug={news.slug}
-                  shortDescription={news.shortDescription}
+                  description={news.description}
                 />
               ))}
           </List>
