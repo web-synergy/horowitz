@@ -6,7 +6,7 @@ import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
 import GridTemplate from '@/components/Templates/GridTemplate';
 import WinnerItem from '@/components/GroupPages/GroupWinners/parts/WinnerItem';
-import GridGallery from '@/components/Templates/PortableComponent/parts/GridGallery';
+import { ImagesArray } from '@/components/Templates/PortableComponent/parts/ImageComponent';
 
 interface GroupWinnersProps {
   title: ETabs | EDebut;
@@ -25,7 +25,7 @@ const GroupWinners: FC<GroupWinnersProps> = ({ title }) => {
     .join('');
 
   const renderWinners = winners[key as keyof typeof winners];
-  const renderGallery = galleries && galleries[key as keyof typeof galleries];
+  const gallery = galleries && galleries[key as keyof typeof galleries];
 
   const renderTitle = t(`winners.${title}`);
   return (
@@ -34,7 +34,7 @@ const GroupWinners: FC<GroupWinnersProps> = ({ title }) => {
         {renderTitle}
       </Typography>
       <GridTemplate gridItem={WinnerItem} list={renderWinners} />
-      {renderGallery && <GridGallery value={renderGallery} />}
+      {gallery && <ImagesArray value={gallery} />}
     </CommonStackWrapper>
   );
 };
