@@ -27,13 +27,17 @@ const GroupWinners: FC<GroupWinnersProps> = ({ title }) => {
   const renderWinners = winners[key as keyof typeof winners];
   const gallery = galleries && galleries[key as keyof typeof galleries];
 
-  const renderTitle = t(`winners.${title}`);
+  const renderTitle = t(`navigation.${title}`);
   return (
     <CommonStackWrapper>
       <Typography variant="h1" component="h2">
         {renderTitle}
       </Typography>
-      <GridTemplate gridItem={WinnerItem} list={renderWinners} />
+      <GridTemplate
+        gridItem={WinnerItem}
+        list={renderWinners}
+        justify="center"
+      />
       {gallery && <ImagesArray value={gallery} />}
     </CommonStackWrapper>
   );

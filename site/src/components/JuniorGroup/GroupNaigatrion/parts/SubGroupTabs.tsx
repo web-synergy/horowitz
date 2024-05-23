@@ -61,6 +61,23 @@ const SubGroupTabs: FC<SubGroupTabsProps> = ({
             disableTouchRipple
             disableFocusRipple
             data-value={tab}
+            sx={{
+              position: 'relative',
+              overflow: 'unset',
+              '&:not(:last-child):after': {
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                transform: 'translateX(8px)',
+                width: '1px',
+                height: '100%',
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+              },
+              '&.Mui-selected:after': {
+                opacity: 0.6,
+              },
+            }}
           />
         ))}
       </Tabs>
