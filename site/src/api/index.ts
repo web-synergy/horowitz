@@ -45,6 +45,7 @@ import {
 import { AnnualSummerSchoolTypes } from "@/types/annualSummerSchoolTypes";
 import { CompetitionType } from "@/types/competitionTypes";
 import { JuniorGroupType } from "@/types/groupTypes";
+import { IMasterClass } from "@/types/masterClassTypes";
 
 export const getHomeData = async (language: string): Promise<HomeData> => {
   return sanityFetch(homeQuery, { language });
@@ -230,6 +231,6 @@ export const getMasterClasses = async (
   language: string,
   firstEl: number,
   lastEl: number
-): Promise<INews[]> => {
+): Promise<IMasterClass[]> => {
   return sanityFetch(masterClassQuery, { language, firstEl, lastEl });
 };

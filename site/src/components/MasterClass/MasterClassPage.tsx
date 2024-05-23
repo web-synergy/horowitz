@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import PageTemplate from "../Common/PageTemplate";
-import { Container, List, Typography, Stack, Box } from "@mui/material";
+import { Container, List, Typography, Stack } from "@mui/material";
 
 import { useMasterClassStore } from "@/store/masterClassStore";
 import { useNavigate } from "react-router-dom";
 import NewsListItem from "./parts/NewsListItem";
-import { INews } from "@/types/newsTypes";
 import { useTranslation } from "react-i18next";
 import { Routes } from "@/types/routes.d";
 
@@ -13,10 +12,7 @@ import { useSearchParams } from "react-router-dom";
 import Loader from "../Common/Loader";
 import PaginationNews from "./parts/PaginationNews";
 import { truncateDescription } from "@/utils/truncateDescription";
-import PlayerCard from "./parts/PlayerCard";
-import DisplayVideoCard from "../Templates/DisplayVideoCard/DisplayVideoCard";
-
-import { Iframe } from "./styled";
+import { IMasterClass } from "@/types/masterClassTypes";
 
 const MasterClassPage = () => {
   const {
@@ -66,18 +62,6 @@ const MasterClassPage = () => {
           >
             {t(`navigation.${Routes.MASTER_CLASS}`)}
           </Typography>
-          <Box sx={{ aspectRatio: { xs: 1.8, md: 1.5 } }}>
-            <Iframe
-              src={
-                "https://www.youtube.com/embed/vyktI8gCXkY?si=7lnMClGd1lDYvMqm"
-              }
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              sandbox="allow-scripts allow-presentation allow-same-origin allow-popups"
-              sx={{ aspectRatio: "16/9", marginTop: "40px" }}
-            />
-          </Box>
           <List
             sx={{
               display: "grid",
@@ -88,17 +72,20 @@ const MasterClassPage = () => {
             }}
           >
             {masterClassesList &&
-              masterClassesList.map((news: INews, index) => (
+              masterClassesList.map((masterClass: IMasterClass, index) => (
                 <NewsListItem
                   key={index}
-                  title={news.title}
-                  img={news.img}
-                  slug={news.slug}
-                  description={truncateDescription(news.description, 100)}
+                  title={masterClass.title}
+                  img={masterClass.img}
+                  video={masterClass.video}
+                  slug={masterClass.slug}
+                  description={truncateDescription(
+                    masterClass.description,
+                    100
+                  )}
                 />
               ))}
           </List>
-
           <PaginationNews
             pageQty={pageQty}
             setSearchParams={setSearchParams}

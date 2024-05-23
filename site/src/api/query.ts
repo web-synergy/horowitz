@@ -383,6 +383,7 @@ export const masterClassQuery = groq`*[_type == 'masterClass' && length(title[_k
 ) [$firstEl ...$lastEl]{
   _createdAt,
    img,
+  'video': video,
    'title':  title[_key ==$language].value,
    'slug':slug.current,
    'description':description[_key ==$language][0].value,

@@ -12,6 +12,7 @@ import { AnnualSummerSchoolTypes, IConcerts } from "./annualSummerSchoolTypes";
 import { CompetitionType } from "./competitionTypes";
 import { JuniorGroupType, OtherGroupType } from "./groupTypes";
 import { Routes } from "./routes";
+import { IMasterClass } from "./masterClassTypes";
 
 export interface SettingsStoreState {
   requestLang: string;
@@ -131,7 +132,7 @@ export interface OtherGroupState extends CommonGroupState, OtherGroupType {
 }
 
 export interface MasterClassStoreState {
-  masterClassesList: INews[];
+  masterClassesList: IMasterClass[];
   currentPage: number;
   loading: boolean;
   requestLang: string;

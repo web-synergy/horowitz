@@ -5,6 +5,7 @@ interface Icontent {
   _key: string
   value: string
 }
+
 function chooseObject(arr: Icontent[]) {
   if (arr.length === 2) {
     return arr[1].value
@@ -42,7 +43,7 @@ export default defineType({
       name: 'slug',
       type: 'slug',
       options: {
-        source: (context) => chooseObject(context.title as Icontent[]),
+        source: (context: {title: Icontent[]}) => chooseObject(context.title),
       },
       validation: (Rule) => Rule.required().error('Обовʼязкове поле'),
     }),
@@ -60,28 +61,34 @@ export default defineType({
           title: 'Alt',
         }),
       ],
-
-      validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const video = context.document?.video
+          if (!value && !video) {
+            return 'Необхідно ввести або посилання на відео, або додати зображення'
+          }
+          if (value && video) {
+            return 'Можна ввести тільки одне: або посилання на відео, або додати зображення'
+          }
+          return true
+        }),
     }),
-
-    // defineField({
-    //   name: 'shortDescription',
-    //   title: 'Короткий опис новини',
-    //   type: 'internationalizedArrayText',
-    //   validation: (Rule) =>
-    //     Rule.custom((content) => {
-    //       let errorMassage = ''
-    //       for (const value of content as Icontent[]) {
-    //         if (value.value?.length > 200) {
-    //           errorMassage = `В поле ${value._key?.toUpperCase()} введено ${value.value.length} символів, доступно 200`
-    //         }
-    //         if (!value.value?.length) {
-    //           errorMassage = `Поле ${value._key?.toUpperCase()} обовʼязкове`
-    //         }
-    //       }
-    //       return errorMassage || true
-    //     }),
-    // }),
+    defineField({
+      name: 'video',
+      title: 'Посилання на відео',
+      type: 'url',
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const img = context.document?.img
+          if (!value && !img) {
+            return 'Необхідно ввести або посилання на відео, або додати зображення'
+          }
+          if (value && img) {
+            return 'Можна ввести тільки одне: або посилання на відео, або додати зображення'
+          }
+          return true
+        }),
+    }),
     defineField({
       name: 'description',
       title: 'Опис майстеркласу',
