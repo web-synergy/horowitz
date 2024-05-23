@@ -1,9 +1,9 @@
 import { getMasterClasses } from "@/api";
 
-import { NewsStoreState } from "@/types/storeTypes";
+import { MasterClassStoreState } from "@/types/storeTypes";
 import { create } from "zustand";
 
-export const useMasterClassStore = create()((set) => ({
+export const useMasterClassStore = create<MasterClassStoreState>()((set) => ({
   masterClassesList: [],
   loading: false,
   error: "",
@@ -18,7 +18,6 @@ export const useMasterClassStore = create()((set) => ({
     set({ loading: true, currentPage: page, requestLang: language });
     try {
       const masterClasses = await getMasterClasses(language, start, end);
-      console.log(masterClasses);
 
       set({
         masterClassesList: masterClasses,

@@ -12,7 +12,7 @@ import { Routes } from "@/types/routes.d";
 import { useSearchParams } from "react-router-dom";
 import Loader from "../Common/Loader";
 import PaginationNews from "./parts/PaginationNews";
-import { PortableTextBlock } from "@portabletext/types";
+import { truncateDescription } from "@/utils/truncateDescription";
 
 const MasterClassPage = () => {
   const {
@@ -58,7 +58,7 @@ const MasterClassPage = () => {
             }}
             variant="h2"
           >
-            {t(`navigation.${Routes.NEWS}`)}
+            {t(`navigation.${Routes.MASTER_CLASS}`)}
           </Typography>
           <List
             sx={{
@@ -73,11 +73,10 @@ const MasterClassPage = () => {
               masterClassesList.map((news: INews, index) => (
                 <NewsListItem
                   key={index}
-                  date={news.date}
                   title={news.title}
                   img={news.img}
                   slug={news.slug}
-                  description={news.description}
+                  description={truncateDescription(news.description, 100)}
                 />
               ))}
           </List>

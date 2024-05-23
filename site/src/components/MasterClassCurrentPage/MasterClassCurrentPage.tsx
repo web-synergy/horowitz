@@ -4,7 +4,7 @@ import { Box, Container, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import { useLiveQuery } from "@sanity/preview-kit";
-import { currentNewsQuery } from "@/api/query";
+import { currentMasterClassQuery } from "@/api/query";
 import { INews } from "@/types/newsTypes";
 
 import Loader from "../Common/Loader";
@@ -24,12 +24,15 @@ const MasterClassCurrentPage = () => {
     i18n: { language },
   } = useTranslation();
 
-  const { responseData, loading, error } = useFetch<INews>(currentNewsQuery, {
-    slug,
-    language,
-  });
+  const { responseData, loading, error } = useFetch<INews>(
+    currentMasterClassQuery,
+    {
+      slug,
+      language,
+    }
+  );
 
-  const [data] = useLiveQuery(responseData, currentNewsQuery, {
+  const [data] = useLiveQuery(responseData, currentMasterClassQuery, {
     slug,
     language,
   });

@@ -1,17 +1,17 @@
-import { INews } from './newsTypes';
-import { AboutCompetitionType } from './aboutCompetitionTypes';
-import { IAdministration } from './administrationTypes';
-import { PartnersType } from './partnersTypes';
-import { IHorowitzData } from './horowitzTypes';
-import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
-import { NavigationType } from './routes';
-import { IUkrWorks } from './ukranianWorks';
-import { IVirtuosos } from './virtuososTypes';
-import { HomeData } from './homeTypes';
-import { AnnualSummerSchoolTypes, IConcerts } from './annualSummerSchoolTypes';
-import { CompetitionType } from './competitionTypes';
-import { JuniorGroupType, OtherGroupType } from './groupTypes';
-import { Routes } from './routes';
+import { INews } from "./newsTypes";
+import { AboutCompetitionType } from "./aboutCompetitionTypes";
+import { IAdministration } from "./administrationTypes";
+import { PartnersType } from "./partnersTypes";
+import { IHorowitzData } from "./horowitzTypes";
+import { ContactsType, SettingsResp, SociableType } from "./contactsTypes";
+import { NavigationType } from "./routes";
+import { IUkrWorks } from "./ukranianWorks";
+import { IVirtuosos } from "./virtuososTypes";
+import { HomeData } from "./homeTypes";
+import { AnnualSummerSchoolTypes, IConcerts } from "./annualSummerSchoolTypes";
+import { CompetitionType } from "./competitionTypes";
+import { JuniorGroupType, OtherGroupType } from "./groupTypes";
+import { Routes } from "./routes";
 
 export interface SettingsStoreState {
   requestLang: string;
@@ -122,10 +122,20 @@ export interface JuniorGroupState extends CommonGroupState, JuniorGroupType {
 }
 
 export interface OtherGroupState extends CommonGroupState, OtherGroupType {
-  group: 'intermediate' | 'senior' | null;
+  group: "intermediate" | "senior" | null;
   fetchCommonData: (
     id: string,
     language: string,
     group: string
   ) => Promise<void>;
+}
+
+export interface MasterClassStoreState {
+  masterClassesList: INews[];
+  currentPage: number;
+  loading: boolean;
+  requestLang: string;
+  error: string | unknown;
+  pageQty: number;
+  fetchMasterClasses: (language: string, page: number) => Promise<void>;
 }

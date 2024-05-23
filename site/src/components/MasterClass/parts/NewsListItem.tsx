@@ -2,13 +2,11 @@ import GrowView from "@/components/Common/GrowView";
 import SvgSpriteIcon from "@/components/Common/SvgSpriteIcon";
 import { urlFor } from "@/config/sanity/imageUrl";
 import { IImage } from "@/types/commonTypes";
-import { parseAndFormatDate } from "@/utils/helpers";
 import { Buttons } from "@/types/translation.d";
 
 import {
   Box,
   Button,
-  Link,
   ListItem,
   Stack,
   Typography,
@@ -24,18 +22,11 @@ import { PortableTextBlock } from "@portabletext/types";
 interface INewsListItem {
   img: IImage;
   title: string;
-  description: string;
+  description: PortableTextBlock[];
   slug: string;
-  date: string;
 }
 
-const NewsListItem = ({
-  date,
-  img,
-  title,
-  description,
-  slug,
-}: INewsListItem) => {
+const NewsListItem = ({ img, title, description, slug }: INewsListItem) => {
   const theme = useTheme();
   const isMob = useMediaQuery(theme.breakpoints.down("md"));
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
@@ -76,7 +67,7 @@ const NewsListItem = ({
           <Stack gap={2} sx={{ maxWidth: "548px" }}>
             <Typography variant="subhead">{title}</Typography>
 
-            {description && <PortableComponent data={description[0]} />}
+            {description && <PortableComponent data={description} />}
             <Box>
               <Button
                 component={RouterLink}
