@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import GridTemplate from '@/components/Templates/GridTemplate';
 import ParticipantCard from './ParticipantCard';
 import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
-import { Routes } from '@/types/routes.d';
+import { ETabs } from '@/types/translation.d';
 import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 
 const JuniorGroup = () => {
@@ -13,7 +13,7 @@ const JuniorGroup = () => {
     return;
   }
 
-  const translatedTitle = t(`buttons.${Routes.JUNIOR}`);
+  const translatedTitle = t(`navigation.${ETabs.JUNIOR}`);
   return (
     <>
       <CommonStackWrapper>
