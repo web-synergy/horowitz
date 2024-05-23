@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import PageTemplate from "../Common/PageTemplate";
-import { Container, List, Typography, Stack } from "@mui/material";
+import { Container, List, Typography, Stack, Box } from "@mui/material";
 
 import { useMasterClassStore } from "@/store/masterClassStore";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,10 @@ import { useSearchParams } from "react-router-dom";
 import Loader from "../Common/Loader";
 import PaginationNews from "./parts/PaginationNews";
 import { truncateDescription } from "@/utils/truncateDescription";
+import PlayerCard from "./parts/PlayerCard";
+import DisplayVideoCard from "../Templates/DisplayVideoCard/DisplayVideoCard";
+
+import { Iframe } from "./styled";
 
 const MasterClassPage = () => {
   const {
@@ -28,6 +32,8 @@ const MasterClassPage = () => {
     currentPage,
     requestLang,
   } = useMasterClassStore();
+
+  console.log(masterClassesList);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -60,6 +66,18 @@ const MasterClassPage = () => {
           >
             {t(`navigation.${Routes.MASTER_CLASS}`)}
           </Typography>
+          <Box sx={{ aspectRatio: { xs: 1.8, md: 1.5 } }}>
+            <Iframe
+              src={
+                "https://www.youtube.com/embed/vyktI8gCXkY?si=7lnMClGd1lDYvMqm"
+              }
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              sandbox="allow-scripts allow-presentation allow-same-origin allow-popups"
+              sx={{ aspectRatio: "16/9", marginTop: "40px" }}
+            />
+          </Box>
           <List
             sx={{
               display: "grid",
