@@ -19,6 +19,7 @@ import Image from "@/components/Common/Image";
 import PortableComponent from "@/components/Templates/PortableComponent/PortableComponent";
 import { PortableTextBlock } from "@portabletext/types";
 import ReactPlayer from "react-player";
+import { WrapperContent } from "../styled";
 
 interface INewsListItem {
   img?: IImage;
@@ -62,30 +63,20 @@ const NewsListItem = ({
           direction={{ xs: "column", md: "row" }}
           gap={{ xs: 2, md: 3 }}
         >
-          <Box
-            sx={{
-              // width: imageWidth,
-              // height: imageHeight,
-              aspectRatio: aspectRatio,
-              backgroundColor: "black",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {img ? (
-              <Image
-                src={imageUrl}
+          {img ? (
+            <WrapperContent>
+              <img
+                src={urlFor(img)
+                  .auto("format")
+                  // .height(262)
+                  // .width(262)
+                  .url()
+                  .toString()}
                 alt={img.alt}
-                height={imageHeight}
-                width={imageWidth}
-                isLazyLoading={false}
-                styles={{
-                  aspectRatio: aspectRatio,
-                  objectFit: "cover",
-                }}
               />
-            ) : (
+            </WrapperContent>
+          ) : (
+            <WrapperContent>
               <ReactPlayer
                 url={video}
                 width="100%"
@@ -93,8 +84,8 @@ const NewsListItem = ({
                 playing={false}
                 controls={true}
               />
-            )}
-          </Box>
+            </WrapperContent>
+          )}
 
           <Stack gap={2} sx={{ maxWidth: "548px" }}>
             <Typography variant="subhead">{title}</Typography>

@@ -393,8 +393,8 @@ export const masterClassQuery = groq`*[_type == 'masterClass' && length(title[_k
 export const currentMasterClassQuery = groq`*[_type == 'masterClass'&& slug.current == $slug][0]{
   _id,
   _createdAt,
-   date,
   img,
+  'video': video,
   'title': coalesce( title[_key ==$language][0].value, title[][0].value), 
   'slug':slug.current,
   'description': coalesce(description[_key ==$language][0].value, description[][0].value)

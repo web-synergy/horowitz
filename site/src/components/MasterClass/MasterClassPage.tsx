@@ -29,7 +29,7 @@ const MasterClassPage = () => {
     requestLang,
   } = useMasterClassStore();
 
-  console.log(masterClassesList);
+  // console.log(masterClassesList);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();

@@ -1,17 +1,12 @@
 import { useParams } from "react-router-dom";
-
 import { Box, Container, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-
 import { useLiveQuery } from "@sanity/preview-kit";
 import { currentMasterClassQuery } from "@/api/query";
 import { INews } from "@/types/newsTypes";
-
 import Loader from "../Common/Loader";
-
 import { parseAndFormatDate } from "@/utils/helpers";
 import PageTemplate from "../Common/PageTemplate";
-
 import { useFetch } from "@/hook/useFetch";
 import { Routes } from "@/types/routes.d";
 import NewsBanner from "../Common/NewsBanner";
@@ -36,7 +31,7 @@ const MasterClassCurrentPage = () => {
     slug,
     language,
   });
-
+  console.log(data);
   if (loading) return <Loader />;
   if (error) {
     console.error(error);
@@ -45,35 +40,33 @@ const MasterClassCurrentPage = () => {
     return (
       <PageTemplate goBackUrl={Routes.NEWS}>
         <Container>
-          <NewsBanner img={data?.img} />
-          <Box sx={{ maxWidth: "930px", mx: "auto" }}>
-            <Typography
-              sx={{
-                mt: { xs: "24px", md: "48px" },
-                mb: "24px",
-                display: "block",
-                color: (theme) => theme.palette.neutral[50],
-              }}
-              variant="bodyLight"
-            >
-              {parseAndFormatDate(data.date)}
-            </Typography>
-            <Typography variant="h2">{data.title}</Typography>
+          <Typography variant="h2">{data.title}</Typography>
+          <Box sx={{ width: "100%", mb: 4 }}>
             <Box
               sx={{
-                "*:last-child": {
-                  marginBottom: "0px",
-                },
-                mt: { xs: "24px", md: "32px" },
+                float: { md: "left" },
+                width: { xs: "100%", md: "50%" },
+                mr: { md: 2 },
+                mb: { xs: 2, md: 0 },
               }}
             >
-              {data.description && (
-                <PortableComponent data={data.description} />
-              )}
+              <NewsBanner img={data?.img} />
+            </Box>
+            <Box sx={{ float: "none" }}>
+              <Box
+                sx={{
+                  mt: { xs: "24px", md: "32px" },
+                }}
+              >
+                {data.description && (
+                  <PortableComponent data={data.description} />
+                )}
+              </Box>
             </Box>
           </Box>
         </Container>
       </PageTemplate>
     );
 };
+
 export default MasterClassCurrentPage;
