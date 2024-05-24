@@ -1,33 +1,17 @@
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 import { useCompetitionStore } from '@/store/competitionStore';
-import Loader from '@/components/Common/Loader';
+import { useJuniorGroupData } from '@/hook/useJuniorGroupData';
+
 import GroupJuryList from '@/components/GroupPages/GroupJuryList/GroupJuryList';
 import { Routes } from '@/types/routes.d';
 
 const JuniorJuryListPage = () => {
-  const {
-    t,
-    i18n: { language },
-  } = useTranslation();
-  const { requestLang, jury, fetchJury, isLoading } = useJuniorGroupStore();
-  const {
-    junior: { _id: id },
-    slug,
-  } = useCompetitionStore();
+  const { t } = useTranslation();
+  const { jury, fetchJury } = useJuniorGroupStore();
+  const { slug } = useCompetitionStore();
 
-  useEffect(() => {
-    if (requestLang === language && jury) return;
-    if (!id) return;
-
-    fetchJury(id, language);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [jury, id, language]);
-
-  if (isLoading) {
-    <Loader />;
-  }
+  useJuniorGroupData(jury, fetchJury);
 
   return (
     <GroupJuryList

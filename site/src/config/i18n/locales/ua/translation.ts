@@ -91,7 +91,7 @@ export default {
     [Buttons.FROM]: 'з',
     [Buttons.NEXT]: 'Наступна',
     [Buttons.PREV]: 'Попередня',
-    [ETabs.DEBUT]: 'Говориць-Дебют',
+    [ETabs.DEBUT]: 'Горовиць-Дебют',
     [ETabs.JUNIOR]: 'Молодша Група',
     [EDebut.GROUP_A]: 'А',
     [EDebut.GROUP_B]: 'B',

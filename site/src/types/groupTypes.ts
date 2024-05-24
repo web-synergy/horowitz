@@ -54,8 +54,8 @@ export interface JuryType {
 
 export interface StudentsJuryType {
   name: string;
-  country: string;
   age: number;
+  country?: string;
   about: PortableTextBlock[];
   avatar: TextBlockImageType;
   _key: string;
