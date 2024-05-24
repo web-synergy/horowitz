@@ -15,7 +15,6 @@ import {
 } from "@mui/material";
 import { t } from "i18next";
 import { Link as RouterLink } from "react-router-dom";
-import Image from "@/components/Common/Image";
 import PortableComponent from "@/components/Templates/PortableComponent/PortableComponent";
 import { PortableTextBlock } from "@portabletext/types";
 import ReactPlayer from "react-player";
@@ -40,20 +39,10 @@ const NewsListItem = ({
   const isMob = useMediaQuery(theme.breakpoints.down("md"));
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
-  const imageWidth = isMob ? 548 : isDesktop ? 357 : 332;
-  const aspectRatio = 1.44;
+  const imageWidth = isMob ? 288 : isDesktop ? 357 : 332;
+  const aspectRatio = 1;
 
   const imageHeight = Math.floor(imageWidth / aspectRatio);
-
-  const imageUrl = img
-    ? urlFor(img)
-        .auto("format")
-        .width(imageWidth)
-        .height(imageHeight)
-        .fit("fill")
-        .url()
-        .toString()
-    : "";
 
   return (
     <ListItem>
@@ -68,8 +57,9 @@ const NewsListItem = ({
               <img
                 src={urlFor(img)
                   .auto("format")
-                  // .height(262)
-                  // .width(262)
+                  .width(imageWidth)
+                  .height(imageHeight)
+                  .fit("fill")
                   .url()
                   .toString()}
                 alt={img.alt}
@@ -87,7 +77,7 @@ const NewsListItem = ({
             </WrapperContent>
           )}
 
-          <Stack gap={2} sx={{ maxWidth: "548px" }}>
+          <Stack gap={2} sx={{ maxWidth: { xs: "360px", md: "548px" } }}>
             <Typography variant="subhead">{title}</Typography>
 
             {description && <PortableComponent data={description} />}

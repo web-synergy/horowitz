@@ -5,7 +5,7 @@ import { useLiveQuery } from "@sanity/preview-kit";
 import { currentMasterClassQuery } from "@/api/query";
 import { INews } from "@/types/newsTypes";
 import Loader from "../Common/Loader";
-import { parseAndFormatDate } from "@/utils/helpers";
+// import { parseAndFormatDate } from "@/utils/helpers";
 import PageTemplate from "../Common/PageTemplate";
 import { useFetch } from "@/hook/useFetch";
 import { Routes } from "@/types/routes.d";
