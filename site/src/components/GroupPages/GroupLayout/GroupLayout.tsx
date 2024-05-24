@@ -11,8 +11,12 @@ const GroupLayout = () => {
   const {
     i18n: { language },
   } = useTranslation();
-  const { mainBanner, fetchCommonData, requestLang, isLoading } =
-    useCompetitionStore();
+  const {
+    mainBanner,
+    fetchCommonData,
+    requestLang,
+    isLoading: groupLoading,
+  } = useCompetitionStore();
 
   const { isLoading: junLoading } = useJuniorGroupStore();
 
@@ -26,7 +30,7 @@ const GroupLayout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [competitionSlug, language]);
 
-  if (isLoading || junLoading) return <Loader />;
+  if (groupLoading || junLoading) return <Loader />;
 
   if (requestLang && !mainBanner) {
     return <Navigate to={'404'} />;

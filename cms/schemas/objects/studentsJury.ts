@@ -9,11 +9,7 @@ export default defineType({
       title: 'Імʼя',
       type: 'internationalizedArrayString',
     }),
-    defineField({
-      name: 'country',
-      title: 'Країна',
-      type: 'internationalizedArrayString',
-    }),
+
     defineField({
       name: 'age',
       title: 'Вік',

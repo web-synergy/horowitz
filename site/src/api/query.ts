@@ -305,7 +305,6 @@ export const juniorGroupStudentJury = groq`*[_type == 'junior' && _id == $id][0]
     _key,
     age, 
     avatar, 
-    "country": country[_key ==$language][0].value, 
     "name": name[_key ==$language][0].value, 
     "about": phrase[_key ==$language][0].value, 
   }

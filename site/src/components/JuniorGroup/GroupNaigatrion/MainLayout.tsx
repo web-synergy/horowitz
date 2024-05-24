@@ -11,6 +11,7 @@ import TabPannel from './parts/TabPannel';
 import SubGroupTabs from './parts/SubGroupTabs';
 import { ETabs, EDebut } from '@/types/translation.d';
 import { Routes } from '@/types/routes.d';
+import SubGroup from './parts/SubGroup';
 
 const debutArray = Object.values(EDebut);
 
@@ -28,7 +29,7 @@ interface MainLayoutProps {
 const MainLayout: FC<MainLayoutProps> = ({
   title,
   juniorGroup: JuniorGroup,
-  subGroup: SubGroup,
+  subGroup,
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -94,35 +95,14 @@ const MainLayout: FC<MainLayoutProps> = ({
                         onChangeSubGroup={onChangeTab}
                         tabName={title.toLowerCase()}
                       />
-
-                      <TabPannel
-                        activeValue={tabValue}
-                        value={EDebut.GROUP_A}
-                        name={EDebut.GROUP_A}
-                      >
-                        <SubGroup title={EDebut.GROUP_A} />
-                      </TabPannel>
-                      <TabPannel
-                        activeValue={tabValue}
-                        value={EDebut.GROUP_B}
-                        name={EDebut.GROUP_B}
-                      >
-                        <SubGroup title={EDebut.GROUP_B} />
-                      </TabPannel>
-                      <TabPannel
-                        activeValue={tabValue}
-                        value={EDebut.GROUP_C}
-                        name={EDebut.GROUP_C}
-                      >
-                        <SubGroup title={EDebut.GROUP_C} />
-                      </TabPannel>
-                      <TabPannel
-                        activeValue={tabValue}
-                        value={EDebut.GROUP_D}
-                        name={EDebut.GROUP_D}
-                      >
-                        <SubGroup title={EDebut.GROUP_D} />
-                      </TabPannel>
+                      {debutArray.map((currentValue) => (
+                        <SubGroup
+                          currentValue={currentValue}
+                          subGroup={subGroup}
+                          tabValue={tabValue}
+                          key={currentValue}
+                        />
+                      ))}
                     </CommonStackWrapper>
                   </Box>
                 </Fade>
