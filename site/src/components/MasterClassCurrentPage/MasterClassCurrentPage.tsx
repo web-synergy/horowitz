@@ -11,6 +11,9 @@ import { useFetch } from "@/hook/useFetch";
 import { Routes } from "@/types/routes.d";
 import NewsBanner from "../Common/NewsBanner";
 import PortableComponent from "../Templates/PortableComponent/PortableComponent";
+import { WrapperContent } from "../MasterClass/styled";
+import { urlFor } from "@/config/sanity/imageUrl";
+import ReactPlayer from "react-player";
 
 const MasterClassCurrentPage = () => {
   const { slug } = useParams();
@@ -50,7 +53,30 @@ const MasterClassCurrentPage = () => {
                 mb: { xs: 2, md: 0 },
               }}
             >
-              <NewsBanner img={data?.img} />
+              {data?.img ? (
+                <WrapperContent>
+                  <img
+                    src={urlFor(data?.img)
+                      .auto("format")
+                      // .width(imageWidth)
+                      // .height(imageHeight)
+                      .fit("fill")
+                      .url()
+                      .toString()}
+                    // alt={img.alt}
+                  />
+                </WrapperContent>
+              ) : (
+                <WrapperContent>
+                  <ReactPlayer
+                    url={data?.video}
+                    width="100%"
+                    height="100%"
+                    playing={false}
+                    controls={true}
+                  />
+                </WrapperContent>
+              )}
             </Box>
             <Box sx={{ float: "none" }}>
               <Box

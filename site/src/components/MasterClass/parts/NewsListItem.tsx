@@ -77,10 +77,30 @@ const NewsListItem = ({
             </WrapperContent>
           )}
 
-          <Stack gap={2} sx={{ maxWidth: { xs: "360px", md: "548px" } }}>
-            <Typography variant="subhead">{title}</Typography>
+          <Stack
+            gap={2}
+            sx={{
+              maxWidth: { xs: "360px", md: "548px" },
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "20px",
+              }}
+            >
+              <Typography variant="subhead">{title}</Typography>
 
-            {description && <PortableComponent data={description} />}
+              {description && (
+                <Box sx={{ color: "gray" }}>
+                  <PortableComponent data={description} />
+                </Box>
+              )}
+            </Box>
             <Box>
               <Button
                 component={RouterLink}
