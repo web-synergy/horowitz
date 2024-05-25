@@ -3,17 +3,16 @@ import { Box, Container, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useLiveQuery } from "@sanity/preview-kit";
 import { currentMasterClassQuery } from "@/api/query";
-import { INews } from "@/types/newsTypes";
 import Loader from "../Common/Loader";
 // import { parseAndFormatDate } from "@/utils/helpers";
 import PageTemplate from "../Common/PageTemplate";
 import { useFetch } from "@/hook/useFetch";
 import { Routes } from "@/types/routes.d";
-import NewsBanner from "../Common/NewsBanner";
 import PortableComponent from "../Templates/PortableComponent/PortableComponent";
 import { urlFor } from "@/config/sanity/imageUrl";
 import ReactPlayer from "react-player";
 import { WrapperContent } from "./styled";
+import { IMasterClass } from "@/types/masterClassTypes";
 
 const MasterClassCurrentPage = () => {
   const { slug } = useParams();
@@ -22,7 +21,7 @@ const MasterClassCurrentPage = () => {
     i18n: { language },
   } = useTranslation();
 
-  const { responseData, loading, error } = useFetch<INews>(
+  const { responseData, loading, error } = useFetch<IMasterClass>(
     currentMasterClassQuery,
     {
       slug,
@@ -49,7 +48,7 @@ const MasterClassCurrentPage = () => {
               sx={{
                 float: { md: "left" },
                 width: { xs: "100%", md: "332px", lg: "50%" },
-                height: { xs: "384px", md: "224px", lg: "384px" },
+                height: { md: "224px", lg: "384px" },
                 minHeight: "185px",
                 mr: { md: "24px" },
                 mb: { xs: 2, md: 0 },
@@ -60,9 +59,9 @@ const MasterClassCurrentPage = () => {
                   <img
                     src={urlFor(data?.img)
                       .auto("format")
-                      // .width(imageWidth)
-                      // .height(imageHeight)
-                      .fit("fill")
+                      // .width(100)
+                      // .height(100)
+                      // .fit("fill")
                       .url()
                       .toString()}
                     // alt={img.alt}
