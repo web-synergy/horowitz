@@ -11,9 +11,9 @@ import { useFetch } from "@/hook/useFetch";
 import { Routes } from "@/types/routes.d";
 import NewsBanner from "../Common/NewsBanner";
 import PortableComponent from "../Templates/PortableComponent/PortableComponent";
-import { WrapperContent } from "../MasterClass/styled";
 import { urlFor } from "@/config/sanity/imageUrl";
 import ReactPlayer from "react-player";
+import { WrapperContent } from "./styled";
 
 const MasterClassCurrentPage = () => {
   const { slug } = useParams();
@@ -48,8 +48,10 @@ const MasterClassCurrentPage = () => {
             <Box
               sx={{
                 float: { md: "left" },
-                width: { xs: "100%", md: "50%" },
-                mr: { md: 2 },
+                width: { xs: "100%", md: "332px", lg: "50%" },
+                height: { xs: "384px", md: "224px", lg: "384px" },
+                minHeight: "185px",
+                mr: { md: "24px" },
                 mb: { xs: 2, md: 0 },
               }}
             >
@@ -82,6 +84,7 @@ const MasterClassCurrentPage = () => {
               <Box
                 sx={{
                   mt: { xs: "24px", md: "32px" },
+                  // maxWidth: "360px",
                 }}
               >
                 {data.description && (
