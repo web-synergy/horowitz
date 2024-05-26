@@ -54,9 +54,9 @@ const MasterClassPage = () => {
         <Stack>
           <Typography
             sx={{
-              mb: { xs: "24px", md: "48px" },
+              mb: { xs: "24px", md: "40px", lg: "48px" },
             }}
-            variant="h2"
+            variant="h1"
           >
             {t(`navigation.${Routes.MASTER_CLASS}`)}
           </Typography>
@@ -64,9 +64,9 @@ const MasterClassPage = () => {
             sx={{
               display: "grid",
               flexDirection: "column",
-              gap: 7,
+              gap: { xs: "62px", md: "56px" },
               justifyContent: { xs: "center", md: "flex-start" },
-              mb: { xs: 3, md: 6 },
+              mb: { xs: "54px", md: "48px" },
             }}
           >
             {masterClassesList &&

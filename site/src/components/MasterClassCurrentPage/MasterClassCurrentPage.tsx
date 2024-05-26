@@ -33,7 +33,7 @@ const MasterClassCurrentPage = () => {
     slug,
     language,
   });
-  console.log(data);
+
   if (loading) return <Loader />;
   if (error) {
     console.error(error);
@@ -42,8 +42,15 @@ const MasterClassCurrentPage = () => {
     return (
       <PageTemplate goBackUrl={Routes.NEWS}>
         <Container>
-          <Typography variant="h2">{data.title}</Typography>
-          <Box sx={{ width: "100%", mb: 4 }}>
+          <Typography
+            variant="h2"
+            sx={{
+              mb: { xs: "24px", md: "40px", lg: "48px" },
+            }}
+          >
+            {data.title}
+          </Typography>
+          <Box sx={{ width: "100%" }}>
             <Box
               sx={{
                 float: { md: "left" },
@@ -51,7 +58,7 @@ const MasterClassCurrentPage = () => {
                 height: { md: "224px", lg: "384px" },
                 minHeight: "185px",
                 mr: { md: "24px" },
-                mb: { xs: 2, md: 0 },
+                mb: { xs: "24px", md: "16px" },
               }}
             >
               {data?.img ? (
