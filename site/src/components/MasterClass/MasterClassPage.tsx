@@ -1,20 +1,21 @@
-import { useEffect } from "react";
-import PageTemplate from "../Common/PageTemplate";
-import { Container, List, Typography, Stack } from "@mui/material";
-
-import { useMasterClassStore } from "@/store/masterClassStore";
-import { useNavigate } from "react-router-dom";
-import NewsListItem from "./parts/NewsListItem";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Routes } from "@/types/routes.d";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { Container, List, Stack, Typography } from "@mui/material";
 
-import { useSearchParams } from "react-router-dom";
-import Loader from "../Common/Loader";
-import PaginationNews from "./parts/PaginationNews";
-import { truncateDescription } from "@/utils/truncateDescription";
+import PageTemplate from "../Common/PageTemplate";
+import { useMasterClassStore } from "@/store/masterClassStore";
+import { Routes } from "@/types/routes.d";
 import { IMasterClass } from "@/types/masterClassTypes";
+import MasterClassListItem from "./parts/MasterClassListItem";
+import PaginationMasterClass from "./parts/PaginationMasterClass";
+import { truncateDescription } from "@/utils/truncateDescription";
+import Loader from "../Common/Loader";
 
 const MasterClassPage = () => {
+  const [sortedMasterClasses, setSortedMasterClasses] = useState<
+    IMasterClass[]
+  >([]);
   const {
     t,
     i18n: { language },
@@ -28,7 +29,6 @@ const MasterClassPage = () => {
     currentPage,
     requestLang,
   } = useMasterClassStore();
-
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const urlPage = +(searchParams.get("page") || 1);
@@ -45,6 +45,16 @@ const MasterClassPage = () => {
       fetchMasterClasses(language, urlPage);
     }
   }, [language, urlPage]);
+
+  useEffect(() => {
+    if (masterClassesList) {
+      const sortedList = [...masterClassesList].sort(
+        (a, b) =>
+          new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime()
+      );
+      setSortedMasterClasses(sortedList);
+    }
+  }, [masterClassesList]);
 
   if (loading) return <Loader />;
 
@@ -69,22 +79,18 @@ const MasterClassPage = () => {
               mb: { xs: "54px", md: "48px" },
             }}
           >
-            {masterClassesList &&
-              masterClassesList.map((masterClass: IMasterClass, index) => (
-                <NewsListItem
-                  key={index}
-                  title={masterClass.title}
-                  img={masterClass.img}
-                  video={masterClass.video}
-                  slug={masterClass.slug}
-                  description={truncateDescription(
-                    masterClass.description,
-                    100
-                  )}
-                />
-              ))}
+            {sortedMasterClasses.map((masterClass: IMasterClass, index) => (
+              <MasterClassListItem
+                key={index}
+                title={masterClass.title}
+                img={masterClass.img}
+                video={masterClass.video}
+                slug={masterClass.slug}
+                description={truncateDescription(masterClass.description, 100)}
+              />
+            ))}
           </List>
-          <PaginationNews
+          <PaginationMasterClass
             pageQty={pageQty}
             setSearchParams={setSearchParams}
             urlPage={urlPage}

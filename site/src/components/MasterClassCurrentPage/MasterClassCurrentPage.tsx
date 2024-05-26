@@ -1,18 +1,19 @@
-import { useParams } from "react-router-dom";
-import { Box, Container, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import { useLiveQuery } from "@sanity/preview-kit";
 import { currentMasterClassQuery } from "@/api/query";
-import Loader from "../Common/Loader";
-// import { parseAndFormatDate } from "@/utils/helpers";
-import PageTemplate from "../Common/PageTemplate";
-import { useFetch } from "@/hook/useFetch";
-import { Routes } from "@/types/routes.d";
-import PortableComponent from "../Templates/PortableComponent/PortableComponent";
-import { urlFor } from "@/config/sanity/imageUrl";
+import { Box, Container, Typography } from "@mui/material";
+import { useLiveQuery } from "@sanity/preview-kit";
+import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
-import { WrapperContent } from "./styled";
+import { urlFor } from "@/config/sanity/imageUrl";
+
+import Loader from "../Common/Loader";
+import { useFetch } from "@/hook/useFetch";
 import { IMasterClass } from "@/types/masterClassTypes";
+import { Routes } from "@/types/routes.d";
+
+import PageTemplate from "../Common/PageTemplate";
+import PortableComponent from "../Templates/PortableComponent/PortableComponent";
+import { WrapperContent } from "./styled";
 
 const MasterClassCurrentPage = () => {
   const { slug } = useParams();
@@ -64,14 +65,8 @@ const MasterClassCurrentPage = () => {
               {data?.img ? (
                 <WrapperContent>
                   <img
-                    src={urlFor(data?.img)
-                      .auto("format")
-                      // .width(100)
-                      // .height(100)
-                      // .fit("fill")
-                      .url()
-                      .toString()}
-                    // alt={img.alt}
+                    src={urlFor(data?.img).auto("format").url().toString()}
+                    alt={data?.img.alt}
                   />
                 </WrapperContent>
               ) : (
@@ -90,7 +85,6 @@ const MasterClassCurrentPage = () => {
               <Box
                 sx={{
                   mt: { xs: "24px", md: "32px" },
-                  // maxWidth: "360px",
                 }}
               >
                 {data.description && (

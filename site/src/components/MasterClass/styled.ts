@@ -4,6 +4,7 @@ export const WrapperContent = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "248px",
   maxWidth: "360px",
+
   [theme.breakpoints.up("md")]: {
     width: "332px",
     height: "236px",
@@ -20,5 +21,11 @@ export const WrapperContent = styled(Box)(({ theme }) => ({
     width: "100%",
     height: "100%",
     objectFit: "cover",
+  },
+
+  "& iframe": {
+    display: "block",
+    width: "100%",
+    height: "100%",
   },
 }));

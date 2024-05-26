@@ -1,13 +1,14 @@
-import { Pagination, PaginationItem } from '@mui/material';
-import { FC } from 'react';
-import { SetURLSearchParams } from 'react-router-dom';
+import { FC } from "react";
+import { SetURLSearchParams } from "react-router-dom";
+import { Pagination, PaginationItem } from "@mui/material";
+
 interface IPagination {
   pageQty: number;
   urlPage: number;
   setSearchParams: SetURLSearchParams;
 }
 
-const PaginationNews: FC<IPagination> = ({
+const PaginationMasterClass: FC<IPagination> = ({
   pageQty,
   urlPage,
   setSearchParams,
@@ -20,17 +21,17 @@ const PaginationNews: FC<IPagination> = ({
       page={urlPage}
       onChange={(_, num) =>
         setSearchParams((prev) => {
-          prev.set('page', num.toString());
+          prev.set("page", num.toString());
           return prev;
         })
       }
       sx={{
-        '& .MuiPagination-ul': {
-          justifyContent: 'center',
+        "& .MuiPagination-ul": {
+          justifyContent: "center",
         },
       }}
       renderItem={(item) => <PaginationItem {...item} />}
     />
   );
 };
-export default PaginationNews;
+export default PaginationMasterClass;

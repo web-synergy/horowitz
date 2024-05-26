@@ -11,17 +11,3 @@ export interface IMasterClass {
   description: PortableTextBlock[];
   count: number;
 }
-
-// interface IIGallery extends IImage {
-//   photoLayout: {
-//     cols: number;
-//     rows: number;
-//   };
-//   title: string;
-// }
-// export interface IPortableImgGallery {
-//   images: IIGallery[];
-//   quantity: number;
-//   title: string;
-//   option: boolean;
-// }

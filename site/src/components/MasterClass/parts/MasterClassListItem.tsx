@@ -1,6 +1,8 @@
+import { urlFor } from "@/config/sanity/imageUrl";
+
 import GrowView from "@/components/Common/GrowView";
 import SvgSpriteIcon from "@/components/Common/SvgSpriteIcon";
-import { urlFor } from "@/config/sanity/imageUrl";
+
 import { IImage } from "@/types/commonTypes";
 import { Buttons } from "@/types/translation.d";
 
@@ -10,7 +12,6 @@ import {
   ListItem,
   Stack,
   Typography,
-  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import { t } from "i18next";
@@ -20,7 +21,7 @@ import { PortableTextBlock } from "@portabletext/types";
 import ReactPlayer from "react-player";
 import { WrapperContent } from "../styled";
 
-interface INewsListItem {
+interface IMasterClassListItem {
   img?: IImage;
   video?: string;
   title: string;
@@ -28,21 +29,14 @@ interface INewsListItem {
   slug: string;
 }
 
-const NewsListItem = ({
+const MasterClassListItem = ({
   img,
   video,
   title,
   description,
   slug,
-}: INewsListItem) => {
+}: IMasterClassListItem) => {
   const theme = useTheme();
-  const isMob = useMediaQuery(theme.breakpoints.down("md"));
-  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
-
-  const imageWidth = isMob ? 288 : isDesktop ? 357 : 332;
-  const aspectRatio = 1;
-
-  const imageHeight = Math.floor(imageWidth / aspectRatio);
 
   return (
     <ListItem>
@@ -55,13 +49,7 @@ const NewsListItem = ({
           {img ? (
             <WrapperContent>
               <img
-                src={urlFor(img)
-                  .auto("format")
-                  .width(imageWidth)
-                  .height(imageHeight)
-                  .fit("fill")
-                  .url()
-                  .toString()}
+                src={urlFor(img).auto("format").fit("fill").url().toString()}
                 alt={img.alt}
               />
             </WrapperContent>
@@ -96,7 +84,7 @@ const NewsListItem = ({
               <Typography variant="subhead">{title}</Typography>
 
               {description && (
-                <Box sx={{ color: "gray" }}>
+                <Box sx={{ color: theme.palette.neutral[40] }}>
                   <PortableComponent data={description} />
                 </Box>
               )}
@@ -122,4 +110,4 @@ const NewsListItem = ({
     </ListItem>
   );
 };
-export default NewsListItem;
+export default MasterClassListItem;
