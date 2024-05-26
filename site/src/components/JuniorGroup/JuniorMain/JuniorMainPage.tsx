@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 import { useCompetitionStore } from '@/store/competitionStore';
+import { useJuniorGroupData } from '@/hook/useJuniorGroupData';
 import { getGroupNavigation } from '@/config/routes/navigation';
 import { Routes } from '@/types/routes.d';
 import Loader from '@/components/Common/Loader';
@@ -9,18 +9,14 @@ import SeoComponent from '@/components/Common/SEO';
 import GroupMainPage from '@/components/GroupPages/GroupMain/GroupMain';
 
 const JuniorMainPage = () => {
-  const {
-    t,
-    i18n: { language },
-  } = useTranslation();
+  const { t } = useTranslation();
   const {
     slug,
-    junior: { _id: id },
+
     isLoading: compLoading,
   } = useCompetitionStore();
   const {
     fetchCommonData,
-    requestLang,
     isActiveBooklet,
     isActiveConditions,
     isActiveGuests,
@@ -37,12 +33,7 @@ const JuniorMainPage = () => {
     isCommonDataFetched,
   } = useJuniorGroupStore();
 
-  useEffect(() => {
-    if (requestLang === language && isCommonDataFetched) return;
-    if (!id) return;
-    fetchCommonData(id, language);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language, id]);
+  useJuniorGroupData(isCommonDataFetched, fetchCommonData);
 
   const navigation = getGroupNavigation(true).map((item) => {
     switch (item.title) {

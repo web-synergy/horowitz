@@ -1,6 +1,6 @@
 import {defineField, defineType} from 'sanity'
 
-export const imageGalleryType = defineType({
+export const gallery = defineType({
   name: 'gallery',
   type: 'object',
   title: 'Gallery',

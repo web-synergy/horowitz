@@ -31,7 +31,7 @@ const StudentJuryCard: FC<StudentsJuryType> = ({
     <GrowView>
       <Box
         sx={{
-          maxWidth: { xs: 400, md: '100%' },
+          maxWidth: { xs: 400, md: '100%', lg: 834 },
           mx: { xs: 'auto', md: 'unset' },
         }}
       >
@@ -40,6 +40,7 @@ const StudentJuryCard: FC<StudentsJuryType> = ({
           sx={{
             float: { xs: 'unset', md: 'left' },
             width: { xs: '100%', md: 243, lg: 262 },
+
             height: { xs: 'unset', md: 243, lg: 262 },
             mr: { xs: 0, md: 2 },
             mb: { xs: 2, md: 0 },
@@ -57,9 +58,12 @@ const StudentJuryCard: FC<StudentsJuryType> = ({
           <Typography variant="subhead" component={'p'}>
             {name}
           </Typography>
-          <Typography variant="subhead" component={'p'}>
-            {country}
-          </Typography>
+          {country && (
+            <Typography variant="subhead" component={'p'}>
+              {country}
+            </Typography>
+          )}
+
           <Typography variant="subhead" component={'p'} mb={{ xs: 2, lg: 3 }}>
             {age} {t(`age.${yearsText}`)}
           </Typography>

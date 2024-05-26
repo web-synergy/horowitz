@@ -29,12 +29,12 @@ export enum Buttons {
   FROM = 'from',
 }
 
-export enum Tabs {
+export enum ETabs {
   DEBUT = 'debut',
   JUNIOR = 'junior',
 }
 
-export enum Debut {
+export enum EDebut {
   GROUP_A = 'group-a',
   GROUP_B = 'group-b',
   GROUP_C = 'group-c',

@@ -120,6 +120,7 @@ export interface JuniorGroupState extends CommonGroupState, JuniorGroupType {
   fetchGuests: FetchJuniorData;
   fetchBooklet: FetchJuniorData;
   fetchParticipants: FetchJuniorData;
+  fetchWinnersData: FetchJuniorData;
 }
 
 export interface OtherGroupState extends CommonGroupState, OtherGroupType {

@@ -1,33 +1,17 @@
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCompetitionStore } from '@/store/competitionStore';
 import { useJuniorGroupStore } from '@/store/juniorGroupStore';
-import Loader from '@/components/Common/Loader';
+import { useJuniorGroupData } from '@/hook/useJuniorGroupData';
+
 import GroupTextPage from '@/components/GroupPages/GroupTextPage/GroupTextPage';
 import { Routes } from '@/types/routes.d';
 
 const JuniorTimetablePage = () => {
-  const {
-    t,
-    i18n: { language },
-  } = useTranslation();
-  const { requestLang, timetable, fetchTimetable, isLoading } =
-    useJuniorGroupStore();
-  const {
-    junior: { _id: id },
-    slug,
-  } = useCompetitionStore();
+  const { t } = useTranslation();
+  const { slug } = useCompetitionStore();
+  const { timetable, fetchTimetable } = useJuniorGroupStore();
 
-  useEffect(() => {
-    if (requestLang === language && timetable) return;
-    if (!id) return;
-    fetchTimetable(id, language);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, language, timetable]);
-
-  if (isLoading) {
-    <Loader />;
-  }
+  useJuniorGroupData(timetable, fetchTimetable);
 
   return (
     <GroupTextPage
