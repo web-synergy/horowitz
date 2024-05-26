@@ -1,4 +1,4 @@
-import groq from 'groq';
+import groq from "groq";
 export const homeQuery = groq`*[_type == 'home'][0]{
   'news':*[_type == 'news'  && length(title[_key ==$language].value) != 0]| order( dateTime(date)  desc) [0 ...3]{
     date,
@@ -377,6 +377,27 @@ export const juniorGroupParticipants = groq`*[_type == 'junior' && _id == $id][0
   }
 }
 `;
+
+export const masterClassQuery = groq`*[_type == 'masterClass' && length(title[_key ==$language].value) != 0] | order(dateTime(date) desc
+) [$firstEl ...$lastEl]{
+  _createdAt,
+   img,
+  'video': video,
+   'title':  title[_key ==$language].value,
+   'slug':slug.current,
+   'description':description[_key ==$language][0].value,
+   'count':count(*[_type == "masterClass" && length(title[_key ==$language].value) != 0])
+}`;
+
+export const currentMasterClassQuery = groq`*[_type == 'masterClass'&& slug.current == $slug][0]{
+  _id,
+  _createdAt,
+  img,
+  'video': video,
+  'title': coalesce( title[_key ==$language][0].value, title[][0].value), 
+  'slug':slug.current,
+  'description': coalesce(description[_key ==$language][0].value, description[][0].value)
+}`;
 
 export const juniorWinners = groq`*[_type == 'junior' && _id == $id][0]{
 

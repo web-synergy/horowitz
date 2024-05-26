@@ -1,15 +1,15 @@
-import { sanityFetch } from '../config/sanity/client';
+import { sanityFetch } from "../config/sanity/client";
 
-import { AboutCompetitionType } from '@/types/aboutCompetitionTypes';
-import { IAdministration } from '@/types/administrationTypes';
-import { HomeData } from '@/types/homeTypes';
-import { IHorowitzData } from '@/types/horowitzTypes';
-import { INews } from '@/types/newsTypes';
-import { PartnersType } from '@/types/partnersTypes';
-import { ISummerSchool } from '@/types/summerSchoolTypes';
-import { IUkrWorks } from '@/types/ukranianWorks';
-import { IVirtuosos } from '@/types/virtuososTypes';
-import { SettingsResp } from '../types/contactsTypes';
+import { AboutCompetitionType } from "@/types/aboutCompetitionTypes";
+import { IAdministration } from "@/types/administrationTypes";
+import { HomeData } from "@/types/homeTypes";
+import { IHorowitzData } from "@/types/horowitzTypes";
+import { INews } from "@/types/newsTypes";
+import { PartnersType } from "@/types/partnersTypes";
+import { ISummerSchool } from "@/types/summerSchoolTypes";
+import { IUkrWorks } from "@/types/ukranianWorks";
+import { IVirtuosos } from "@/types/virtuososTypes";
+import { SettingsResp } from "../types/contactsTypes";
 
 import {
   aboutCompetitionQuery,
@@ -41,10 +41,12 @@ import {
   juniorGroupBooklet,
   juniorGroupParticipants,
   juniorWinners,
-} from './query';
-import { AnnualSummerSchoolTypes } from '@/types/annualSummerSchoolTypes';
-import { CompetitionType } from '@/types/competitionTypes';
-import { JuniorGroupType } from '@/types/groupTypes';
+  masterClassQuery,
+} from "./query";
+import { AnnualSummerSchoolTypes } from "@/types/annualSummerSchoolTypes";
+import { CompetitionType } from "@/types/competitionTypes";
+import { JuniorGroupType } from "@/types/groupTypes";
+import { IMasterClass } from "@/types/masterClassTypes";
 
 export const getHomeData = async (language: string): Promise<HomeData> => {
   return sanityFetch(homeQuery, { language });
@@ -69,6 +71,7 @@ export const getNews = async (
 ): Promise<INews[]> => {
   return sanityFetch(newsQuery, { language, firstEl, lastEl });
 };
+
 export const getCurrentNews = async (
   language: string,
   slug: string
@@ -230,4 +233,12 @@ export const getJuniorWinnersData = (
   language: string
 ): Promise<JuniorGroupType> => {
   return sanityFetch(juniorWinners, { id, language });
+};
+
+export const getMasterClasses = async (
+  language: string,
+  firstEl: number,
+  lastEl: number
+): Promise<IMasterClass[]> => {
+  return sanityFetch(masterClassQuery, { language, firstEl, lastEl });
 };

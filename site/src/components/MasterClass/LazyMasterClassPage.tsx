@@ -1,5 +1,5 @@
-import { lazy } from 'react';
+import { lazy } from "react";
 
-const LazyMasterClassPage = lazy(() => import('./MasterClassPage'));
+const LazyMasterClassPage = lazy(() => import("./MasterClassPage"));
 
 export default LazyMasterClassPage;
