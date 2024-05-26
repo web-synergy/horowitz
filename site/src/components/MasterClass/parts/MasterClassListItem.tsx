@@ -1,11 +1,7 @@
+import { t } from "i18next";
+import ReactPlayer from "react-player";
+import { Link as RouterLink } from "react-router-dom";
 import { urlFor } from "@/config/sanity/imageUrl";
-
-import GrowView from "@/components/Common/GrowView";
-import SvgSpriteIcon from "@/components/Common/SvgSpriteIcon";
-
-import { IImage } from "@/types/commonTypes";
-import { Buttons } from "@/types/translation.d";
-
 import {
   Box,
   Button,
@@ -14,11 +10,16 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { t } from "i18next";
-import { Link as RouterLink } from "react-router-dom";
+
+import GrowView from "@/components/Common/GrowView";
+import SvgSpriteIcon from "@/components/Common/SvgSpriteIcon";
 import PortableComponent from "@/components/Templates/PortableComponent/PortableComponent";
+
+import { IImage } from "@/types/commonTypes";
+import { Buttons } from "@/types/translation.d";
+
 import { PortableTextBlock } from "@portabletext/types";
-import ReactPlayer from "react-player";
+
 import { WrapperContent } from "../styled";
 
 interface IMasterClassListItem {
@@ -44,7 +45,7 @@ const MasterClassListItem = ({
         <Stack
           flex={1}
           direction={{ xs: "column", md: "row" }}
-          gap={{ xs: 2, md: 3 }}
+          gap={{ xs: "16px", md: "24px" }}
         >
           {img ? (
             <WrapperContent>
@@ -66,19 +67,19 @@ const MasterClassListItem = ({
           )}
 
           <Stack
-            gap={2}
             sx={{
               maxWidth: { xs: "360px", md: "548px" },
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
+              gap: "16px",
             }}
           >
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                gap: 2,
+                gap: "16px",
               }}
             >
               <Typography variant="subhead">{title}</Typography>
