@@ -146,3 +146,24 @@ export const ukrWorksQuery = groq`*[_type == 'ukrainianWorks'][0]{
     'list': list[_key ==$language][0].value,
     'banner': mainBanner
 }`;
+
+export const masterClassQuery = groq`*[_type == 'masterClass' && length(title[_key ==$language].value) != 0] | order(dateTime(date) desc
+) [$firstEl ...$lastEl]{
+  _createdAt,
+   img,
+  'video': video,
+   'title':  title[_key ==$language].value,
+   'slug':slug.current,
+   'description':description[_key ==$language][0].value,
+   'count':count(*[_type == "masterClass" && length(title[_key ==$language].value) != 0])
+}`;
+
+export const currentMasterClassQuery = groq`*[_type == 'masterClass'&& slug.current == $slug][0]{
+  _id,
+  _createdAt,
+  img,
+  'video': video,
+  'title': coalesce( title[_key ==$language][0].value, title[][0].value), 
+  'slug':slug.current,
+  'description': coalesce(description[_key ==$language][0].value, description[][0].value)
+}`;

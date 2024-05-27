@@ -15,7 +15,7 @@ import {newsStructure} from './newsStructure'
 import {virtuososStructure} from './virtuososStructure'
 import {summerSchoolStructure} from './summerSchoolStructure'
 import {competitionStructure} from './competitionStructure'
-
+import {masterClassStructure} from './masterClassStructure'
 // const singleSchemaTittles = [
 //   'Головна',
 //   'Налаштування',
@@ -57,6 +57,7 @@ const structure = (S: StructureBuilder) =>
         FaRegSun,
       ),
       ...summerSchoolStructure(S),
+      ...masterClassStructure(S),
 
       S.divider(),
       singleDocument(S, 'aboutHorowitzCompetition', 'Конкурс Горовиця', preview(S, 'details')).icon(

@@ -95,3 +95,11 @@ export const getUkrainianWorks = async (
 ): Promise<IUkrWorks> => {
   return sanityFetch(ukrWorksQuery, { language });
 };
+
+export const getMasterClasses = async (
+  language: string,
+  firstEl: number,
+  lastEl: number
+): Promise<IMasterClass[]> => {
+  return sanityFetch(masterClassQuery, { language, firstEl, lastEl });
+};
