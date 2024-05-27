@@ -1,3 +1,4 @@
+import { IMasterClass } from '@/types/masterClassTypes';
 import { sanityFetch } from '@/config/sanity/client';
 
 import { AboutCompetitionType } from '@/types/aboutCompetitionTypes';
@@ -23,6 +24,7 @@ import {
   ukrWorksQuery,
   virtuososArticleQuery,
   virtuososQuery,
+  masterClassQuery,
 } from '../query';
 
 export const getHomeData = async (language: string): Promise<HomeData> => {
