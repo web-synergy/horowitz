@@ -98,35 +98,43 @@ export interface CompetitionStoreState extends CompetitionType {
   fetchCommonData: (language: string, slug: string) => Promise<void>;
 }
 
-export type FetchJuniorData = (id: string, language: string) => Promise<void>;
+export type FetchGroupData = (id: string, language: string) => Promise<void>;
+
+// export type FetchOtherGroupData = (
+//   id: string,
+//   language: string,
+//   group: string
+// ) => Promise<void>;
 
 export type GroupType = Routes.JUNIOR | Routes.INTERMEDIATE | Routes.SENIOR;
 export interface CommonGroupState {
   isLoading: boolean;
   requestLang: string;
   isCommonDataFetched: boolean;
+  resetData: () => void;
+  fetchData: (
+    id: string,
+    language: string,
+    fetchFc: (id: string, language: string) => Promise<OtherGroupType>,
+    otherState?: { [key: string]: boolean }
+  ) => void;
 }
 export interface JuniorGroupState extends CommonGroupState, JuniorGroupType {
-  fetchCommonData: FetchJuniorData;
-  fetchConditions: FetchJuniorData;
-  fetchRequirements: FetchJuniorData;
-  fetchTimetable: FetchJuniorData;
-  fetchVenues: FetchJuniorData;
-  fetchRewards: FetchJuniorData;
-  fetchArtists: FetchJuniorData;
-  fetchJury: FetchJuniorData;
-  fetchStudentsJury: FetchJuniorData;
-  fetchGuests: FetchJuniorData;
-  fetchBooklet: FetchJuniorData;
-  fetchParticipants: FetchJuniorData;
-  fetchWinnersData: FetchJuniorData;
+  fetchCommonData: FetchGroupData;
+  fetchConditions: FetchGroupData;
+  fetchRequirements: FetchGroupData;
+  fetchTimetable: FetchGroupData;
+  fetchVenues: FetchGroupData;
+  fetchRewards: FetchGroupData;
+  fetchArtists: FetchGroupData;
+  fetchJury: FetchGroupData;
+  fetchStudentsJury: FetchGroupData;
+  fetchGuests: FetchGroupData;
+  fetchBooklet: FetchGroupData;
+  fetchParticipants: FetchGroupData;
+  fetchWinnersData: FetchGroupData;
 }
 
 export interface OtherGroupState extends CommonGroupState, OtherGroupType {
-  group: 'intermediate' | 'senior' | null;
-  fetchCommonData: (
-    id: string,
-    language: string,
-    group: string
-  ) => Promise<void>;
+  fetchCommonData: FetchGroupData;
 }
