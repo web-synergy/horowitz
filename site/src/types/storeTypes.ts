@@ -1,18 +1,18 @@
-import { INews } from "./newsTypes";
-import { AboutCompetitionType } from "./aboutCompetitionTypes";
-import { IAdministration } from "./administrationTypes";
-import { PartnersType } from "./partnersTypes";
-import { IHorowitzData } from "./horowitzTypes";
-import { ContactsType, SettingsResp, SociableType } from "./contactsTypes";
-import { NavigationType } from "./routes";
-import { IUkrWorks } from "./ukranianWorks";
-import { IVirtuosos } from "./virtuososTypes";
-import { HomeData } from "./homeTypes";
-import { AnnualSummerSchoolTypes, IConcerts } from "./annualSummerSchoolTypes";
-import { CompetitionType } from "./competitionTypes";
-import { JuniorGroupType, OtherGroupType } from "./groupTypes";
-import { Routes } from "./routes";
-import { IMasterClass } from "./masterClassTypes";
+import { INews } from './newsTypes';
+import { AboutCompetitionType } from './aboutCompetitionTypes';
+import { IAdministration } from './administrationTypes';
+import { PartnersType } from './partnersTypes';
+import { IHorowitzData } from './horowitzTypes';
+import { ContactsType, SettingsResp, SociableType } from './contactsTypes';
+import { NavigationType } from './routes';
+import { IUkrWorks } from './ukranianWorks';
+import { IVirtuosos } from './virtuososTypes';
+import { HomeData } from './homeTypes';
+import { AnnualSummerSchoolTypes, IConcerts } from './annualSummerSchoolTypes';
+import { CompetitionType } from './competitionTypes';
+import { JuniorGroupType, OtherGroupType } from './groupTypes';
+import { Routes } from './routes';
+import { IMasterClass } from './masterClassTypes';
 
 export interface SettingsStoreState {
   requestLang: string;
@@ -99,37 +99,51 @@ export interface CompetitionStoreState extends CompetitionType {
   fetchCommonData: (language: string, slug: string) => Promise<void>;
 }
 
-export type FetchJuniorData = (id: string, language: string) => Promise<void>;
+export type FetchGroupData = (id: string, language: string) => Promise<void>;
+
+// export type FetchOtherGroupData = (
+//   id: string,
+//   language: string,
+//   group: string
+// ) => Promise<void>;
 
 export type GroupType = Routes.JUNIOR | Routes.INTERMEDIATE | Routes.SENIOR;
 export interface CommonGroupState {
   isLoading: boolean;
   requestLang: string;
   isCommonDataFetched: boolean;
+  resetData: () => void;
 }
 export interface JuniorGroupState extends CommonGroupState, JuniorGroupType {
-  fetchCommonData: FetchJuniorData;
-  fetchConditions: FetchJuniorData;
-  fetchRequirements: FetchJuniorData;
-  fetchTimetable: FetchJuniorData;
-  fetchVenues: FetchJuniorData;
-  fetchRewards: FetchJuniorData;
-  fetchArtists: FetchJuniorData;
-  fetchJury: FetchJuniorData;
-  fetchStudentsJury: FetchJuniorData;
-  fetchGuests: FetchJuniorData;
-  fetchBooklet: FetchJuniorData;
-  fetchParticipants: FetchJuniorData;
-  fetchWinnersData: FetchJuniorData;
+  fetchData: (
+    id: string,
+    language: string,
+    fetchFc: (id: string, language: string) => Promise<JuniorGroupType>,
+    otherState?: { [key: string]: boolean }
+  ) => void;
+  fetchCommonData: FetchGroupData;
+  fetchConditions: FetchGroupData;
+  fetchRequirements: FetchGroupData;
+  fetchTimetable: FetchGroupData;
+  fetchVenues: FetchGroupData;
+  fetchRewards: FetchGroupData;
+  fetchArtists: FetchGroupData;
+  fetchJury: FetchGroupData;
+  fetchStudentsJury: FetchGroupData;
+  fetchGuests: FetchGroupData;
+  fetchBooklet: FetchGroupData;
+  fetchParticipants: FetchGroupData;
+  fetchWinnersData: FetchGroupData;
 }
 
 export interface OtherGroupState extends CommonGroupState, OtherGroupType {
-  group: "intermediate" | "senior" | null;
-  fetchCommonData: (
+  fetchData: (
     id: string,
     language: string,
-    group: string
-  ) => Promise<void>;
+    fetchFc: (id: string, language: string) => Promise<OtherGroupType>,
+    otherState?: { [key: string]: boolean }
+  ) => void;
+  fetchCommonData: FetchGroupData;
 }
 
 export interface MasterClassStoreState {

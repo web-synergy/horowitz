@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next';
 
 import { useEffect } from 'react';
-import { FetchJuniorData } from '@/types/storeTypes';
+import { FetchGroupData } from '@/types/storeTypes';
 
 import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 import { useCompetitionStore } from '@/store/competitionStore';
 
 export function useJuniorGroupData<T>(
   data: T | null,
-  fetchFn: FetchJuniorData,
+  fetchFn: FetchGroupData,
   dependencies: never[] = []
 ) {
   const {

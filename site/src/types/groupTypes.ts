@@ -7,6 +7,10 @@ import {
   TextBlockType,
   TextBlockImageType,
 } from './commonTypes';
+
+export interface OtherGroupPageProps {
+  group: 'intermediate' | 'senior';
+}
 interface CommonGroupType {
   isActiveConditions: boolean;
   isActiveJury: boolean;
@@ -87,6 +91,8 @@ export type WinnerType = {
 
 export interface OtherGroupType extends CommonGroupType {
   isActivePreselectionJury: boolean;
+  winners: WinnerType[] | null;
+  winnersGallery: IPortableImgGallery | null;
 }
 
 export interface JuniorGroupType extends CommonGroupType {
