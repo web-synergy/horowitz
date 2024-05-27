@@ -1,24 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, FC } from 'react';
 import { Outlet, useLocation, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import MainBanner from '@/components/Common/MainBanner';
 import { useCompetitionStore } from '@/store/competitionStore';
 import Loader from '@/components/Common/Loader';
-import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 
-const GroupLayout = () => {
+interface GroupLayoutProps {
+  groupLoading: boolean;
+}
+
+const GroupLayout: FC<GroupLayoutProps> = ({ groupLoading }) => {
   const { pathname } = useLocation();
   const {
     i18n: { language },
   } = useTranslation();
-  const {
-    mainBanner,
-    fetchCommonData,
-    requestLang,
-    isLoading: groupLoading,
-  } = useCompetitionStore();
-
-  const { isLoading: junLoading } = useJuniorGroupStore();
+  const { mainBanner, fetchCommonData, requestLang, isLoading } =
+    useCompetitionStore();
 
   const competitionSlug = pathname.split('/')[2];
 
@@ -30,7 +27,7 @@ const GroupLayout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [competitionSlug, language]);
 
-  if (groupLoading || junLoading) return <Loader />;
+  if (groupLoading || isLoading) return <Loader />;
 
   if (requestLang && !mainBanner) {
     return <Navigate to={'404'} />;

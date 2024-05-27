@@ -7,6 +7,10 @@ import {
   TextBlockType,
   TextBlockImageType,
 } from './commonTypes';
+
+export interface OtherGroupPageProps {
+  group: 'intermediate' | 'senior';
+}
 interface CommonGroupType {
   isActiveConditions: boolean;
   isActiveJury: boolean;

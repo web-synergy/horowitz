@@ -113,14 +113,14 @@ export interface CommonGroupState {
   requestLang: string;
   isCommonDataFetched: boolean;
   resetData: () => void;
+}
+export interface JuniorGroupState extends CommonGroupState, JuniorGroupType {
   fetchData: (
     id: string,
     language: string,
-    fetchFc: (id: string, language: string) => Promise<OtherGroupType>,
+    fetchFc: (id: string, language: string) => Promise<JuniorGroupType>,
     otherState?: { [key: string]: boolean }
   ) => void;
-}
-export interface JuniorGroupState extends CommonGroupState, JuniorGroupType {
   fetchCommonData: FetchGroupData;
   fetchConditions: FetchGroupData;
   fetchRequirements: FetchGroupData;
@@ -137,6 +137,12 @@ export interface JuniorGroupState extends CommonGroupState, JuniorGroupType {
 }
 
 export interface OtherGroupState extends CommonGroupState, OtherGroupType {
+  fetchData: (
+    id: string,
+    language: string,
+    fetchFc: (id: string, language: string) => Promise<OtherGroupType>,
+    otherState?: { [key: string]: boolean }
+  ) => void;
   fetchCommonData: FetchGroupData;
 }
 
