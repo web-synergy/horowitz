@@ -58,7 +58,6 @@ const MasterClassPage = () => {
 
   if (loading) return <Loader />;
 
-  console.log(sortedMasterClasses);
   return (
     <PageTemplate>
       <Container>

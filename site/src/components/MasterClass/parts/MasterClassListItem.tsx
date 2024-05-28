@@ -1,5 +1,4 @@
 import { t } from "i18next";
-import ReactPlayer from "react-player";
 import { Link as RouterLink } from "react-router-dom";
 import { urlFor } from "@/config/sanity/imageUrl";
 import {
@@ -21,6 +20,7 @@ import { Buttons } from "@/types/translation.d";
 import { PortableTextBlock } from "@portabletext/types";
 
 import { WrapperContent } from "../styled";
+import { getMasterClassPosterLink } from "@/utils/helpers";
 
 interface IMasterClassListItem {
   img?: IImage;
@@ -39,6 +39,9 @@ const MasterClassListItem = ({
 }: IMasterClassListItem) => {
   const theme = useTheme();
 
+  const posterLink = video ? getMasterClassPosterLink(video) : "";
+  console.log(posterLink);
+
   return (
     <ListItem>
       <GrowView>
@@ -56,13 +59,7 @@ const MasterClassListItem = ({
             </WrapperContent>
           ) : (
             <WrapperContent>
-              <ReactPlayer
-                url={video}
-                width="100%"
-                height="100%"
-                playing={false}
-                controls={true}
-              />
+              <img src={posterLink} alt="video poster" />
             </WrapperContent>
           )}
 
