@@ -31,9 +31,7 @@ export const getHomeData = async (language: string): Promise<HomeData> => {
   return sanityFetch(homeQuery, { language });
 };
 
-export const getSettings = async (
-  language: string
-): Promise<SettingsResp[]> => {
+export const getSettings = async (language: string): Promise<SettingsResp> => {
   return sanityFetch(settingsQuery, { language });
 };
 

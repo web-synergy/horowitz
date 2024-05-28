@@ -17,22 +17,43 @@ export const homeQuery = groq`*[_type == 'home'][0]{
    }
 }`;
 
-export const settingsQuery = groq`*[_type == 'settings']{
+export const settingsQuery = groq`*[_type == 'settings'][0]{
   'logo':logo.asset->url,
-  "seoImage": seoImage.asset->url, 
-  'sociable':*[_type == 'social'][0],
-  'contacts':*[_type == 'contacts'][0]{
+  "sociable": {
+    facebook, 
+    instagram, 
+    youtube
+  }, 
+  'contacts': {
     'about':about[_key ==$language].value,
-    phone,
-    email,
+    phone, 
+    email, 
     'address':address[_key ==$language].value,
-     pressCenter
+    "pressCenter": {
+      "email":pressCenterEmail, 
+      "phone": pressCenterPhone
+    },
   },
   "competitions": *[_type == 'competitions']{
-  'slug':slug.current,
-  'title':title[_key ==$language].value,
-  }
-}`;
+'slug':slug.current,
+'title':title[_key ==$language].value,}, 
+}
+// {
+//   'logo':logo.asset->url,
+//   'sociable':*[_type == 'social'][0],
+//   'contacts':*[_type == 'contacts'][0]{
+//     'about':about[_key ==$language].value,
+//     phone,
+//     email,
+//     'address':address[_key ==$language].value,
+//      pressCenter
+//   },
+//   "competitions": *[_type == 'competitions']{
+//   'slug':slug.current,
+//   'title':title[_key ==$language].value,
+//   }
+// }
+`;
 
 export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
   'bannerData': mainBanner,

@@ -16,24 +16,6 @@ import {virtuososStructure} from './virtuososStructure'
 import {summerSchoolStructure} from './summerSchoolStructure'
 import {competitionStructure} from './competitionStructure'
 import {masterClassStructure} from './masterClassStructure'
-// const singleSchemaTittles = [
-//   'Головна',
-//   'Налаштування',
-//   'Контактна інформація',
-//   'Соцмережі',
-//   'Конкурс дані',
-//   'Володимир Горовиць',
-//   'Новини',
-//   'Партнери і спонсори',
-//   'Адміністрація конкурсу',
-//   'Статті',
-//   'Віртуози планет',
-//   'Конкурс Горовиця',
-//   'Твори українських композиторів',
-//   'Літня академія',
-//   'Річна Літня академія',
-//   'Конкурси',
-// ]
 
 const structure = (S: StructureBuilder) =>
   S.list()
@@ -76,22 +58,32 @@ const structure = (S: StructureBuilder) =>
       singleDocument(S, 'partners', 'Партнери і спонсори', preview(S, 'sponsors')).icon(
         SiGithubsponsors,
       ),
-      S.listItem()
-        .title('Налаштування')
-        .icon(IoSettingsSharp)
-        .child(
-          S.list()
-            .title('Налаштування')
-            .items([
-              singleDocument(S, 'contacts', 'Контактна інформація', preview(S, 'contacts')).icon(
-                LuContact,
-              ),
-              singleDocument(S, 'settings', 'Загальні налаштування', preview(S)).icon(
-                MdOutlineSettingsBrightness,
-              ),
-              singleDocument(S, 'social', 'Соцмережі').icon(IoShareSocialOutline),
-            ]),
-        ),
+      // S.listItem()
+      //   .title('Налаштування')
+      //   .schemaType('settings')
+      //   .child(
+      //     S.documentList()
+      //       .title('Налаштування')
+      //       .filter('_type == "settings"')
+      //       .apiVersion('v2023-08-30'),
+      //   ),
+      singleDocument(S, 'settings', 'Налаштування', preview(S, 'contacts')).icon(IoSettingsSharp),
+      // S.listItem()
+      //   .title('Налаштування')
+      //   .icon(IoSettingsSharp)
+      //   .child(
+      //     S.list()
+      //       .title('Налаштування')
+      //       .items([
+      //         singleDocument(S, 'contacts', 'Контактна інформація', preview(S, 'contacts')).icon(
+      //           LuContact,
+      //         ),
+      //         singleDocument(S, 'settings', 'Загальні налаштування', preview(S)).icon(
+      //           MdOutlineSettingsBrightness,
+      //         ),
+      //         singleDocument(S, 'social', 'Соцмережі').icon(IoShareSocialOutline),
+      //       ]),
+      //   ),
       // ...S.documentTypeListItems().filter(
       //   (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
       // ),

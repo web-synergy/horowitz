@@ -1,4 +1,3 @@
-import contacts from './documents/contacts'
 import home from './documents/home'
 
 import horowitz from './documents/horowitz'
@@ -7,7 +6,6 @@ import partners from './documents/partners'
 import aboutHorowitzCompetition from './documents/aboutCompetition'
 import administration from './documents/administration'
 import settings from './documents/settings'
-import social from './documents/social'
 import content from './objects/content'
 import banner from './objects/banner'
 
@@ -49,8 +47,6 @@ export const schemaTypes = [
   news,
   competition,
   settings,
-  contacts,
-  social,
 
   magazinePdf,
   horowitz,
