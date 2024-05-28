@@ -18,11 +18,10 @@ export interface SettingsStoreState {
   requestLang: string;
   sociable: SociableType | null;
   logo: string | null;
-  seoImage: string;
   contacts: ContactsType | null;
   competitions: NavigationType[] | null;
   fetchSettings: (language: string) => Promise<void>;
-  getPreviewSettings: (settings: SettingsResp[], language: string) => void;
+  getPreviewSettings: (settings: SettingsResp, language: string) => void;
 }
 
 export interface AboutCompetitionState extends AboutCompetitionType {

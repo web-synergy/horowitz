@@ -3,7 +3,6 @@ import { NavigationType } from './routes';
 export interface SettingsResp {
   contacts: ContactsType;
   logo: string;
-  seoImage: string;
   sociable: SociableType;
   competitions: NavigationType[];
 }
