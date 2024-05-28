@@ -1,4 +1,4 @@
-import groq from 'groq';
+import groq from "groq";
 
 export const homeQuery = groq`*[_type == 'home'][0]{
   'news':*[_type == 'news'  && length(title[_key ==$language].value) != 0]| order( dateTime(date)  desc) [0 ...3]{
@@ -150,8 +150,9 @@ export const ukrWorksQuery = groq`*[_type == 'ukrainianWorks'][0]{
 export const masterClassQuery = groq`*[_type == 'masterClass' && length(title[_key ==$language].value) != 0] | order(dateTime(date) desc
 ) [$firstEl ...$lastEl]{
   _createdAt,
+   date,
    img,
-  'video': video,
+   'video': video,
    'title':  title[_key ==$language].value,
    'slug':slug.current,
    'description':description[_key ==$language][0].value,
