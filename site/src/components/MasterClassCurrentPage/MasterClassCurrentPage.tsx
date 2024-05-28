@@ -77,6 +77,8 @@ const MasterClassCurrentPage = () => {
                     height="100%"
                     playing={false}
                     controls={true}
+                    light={true}
+                    playIcon={<div className="custom-play-button"></div>}
                   />
                 </WrapperContent>
               )}
