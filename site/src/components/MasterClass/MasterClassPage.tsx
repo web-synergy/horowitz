@@ -45,6 +45,7 @@ const MasterClassPage = () => {
     if (currentPage !== urlPage || requestLang !== language) {
       fetchMasterClasses(language, urlPage);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language, urlPage]);
 
   useEffect(() => {

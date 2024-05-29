@@ -40,7 +40,6 @@ const MasterClassListItem = ({
   const theme = useTheme();
 
   const posterLink = video ? getMasterClassPosterLink(video) : "";
-  console.log(posterLink);
 
   return (
     <ListItem>
@@ -53,7 +52,13 @@ const MasterClassListItem = ({
           {img ? (
             <WrapperContent>
               <img
-                src={urlFor(img).auto("format").fit("fill").url().toString()}
+                src={urlFor(img)
+                  .auto("format")
+                  .width(357)
+                  .height(214)
+                  .fit("fill")
+                  .url()
+                  .toString()}
                 alt={img.alt}
               />
             </WrapperContent>
