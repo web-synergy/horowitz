@@ -1,9 +1,9 @@
 import { PortableTextBlock } from '@portabletext/types';
 import { IImage } from './commonTypes';
-import { IBanner } from './bannerType';
+import { BannerType } from './bannerType';
 
 export interface AboutCompetitionType {
-  mainBanner: IBanner | null;
+  mainBanner: BannerType | null;
   upperTextBlock: PortableTextBlock[];
   middleTextBlock: PortableTextBlock[];
   lowerTextBlock: PortableTextBlock[];

@@ -59,27 +59,27 @@ export default defineType({
     },
   ],
   fields: [
-    defineField({
+    {
       name: 'competitionId',
       type: 'string',
       hidden: true,
-    }),
-    defineField({
+    },
+    {
       name: 'groupType',
       type: 'string',
       hidden: true,
-    }),
-    defineField({
+    },
+    {
       name: 'title',
       type: 'string',
       hidden: true,
-    }),
-    defineField({
+    },
+    {
       name: 'isActive',
       type: 'boolean',
       title: 'Активувати групу',
       initialValue: false,
       group: 'common',
-    }),
+    },
   ],
 })

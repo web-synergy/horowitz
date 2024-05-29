@@ -1,11 +1,7 @@
 import {defineField, defineType} from 'sanity'
-import {type SlugSourceContext, SlugParent} from 'sanity'
+import {type SlugSourceContext} from 'sanity'
 import {CgProfile} from 'react-icons/cg'
 import type {Value} from 'sanity-plugin-internationalized-array'
-
-interface IParticipant {
-  name: Value[]
-}
 
 export default defineType({
   name: 'participant',

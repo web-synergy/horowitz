@@ -1,4 +1,4 @@
-import { IBanner } from './bannerType';
+import { BannerType } from './bannerType';
 import { IImage } from './commonTypes';
 
 export interface Member {
@@ -8,6 +8,6 @@ export interface Member {
 }
 
 export interface IAdministration {
-  banner: IBanner;
+  banner: BannerType;
   members: Member[];
 }

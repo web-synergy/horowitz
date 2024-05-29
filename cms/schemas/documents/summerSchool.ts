@@ -8,7 +8,7 @@ export default defineType({
     defineField({
       name: 'topText',
       title: 'Верхній блок тексту',
-      type: 'internationalizedArrayArticle',
+      type: 'internationalizedArrayText',
     }),
     defineField({
       name: 'infographic',
@@ -18,7 +18,7 @@ export default defineType({
     defineField({
       name: 'bottomText',
       title: 'Нижній блок тексту',
-      type: 'internationalizedArrayArticle',
+      type: 'internationalizedArrayText',
     }),
     defineField({
       name: 'gallery',

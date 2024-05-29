@@ -37,23 +37,7 @@ export const settingsQuery = groq`*[_type == 'settings'][0]{
   "competitions": *[_type == 'competitions']{
 'slug':slug.current,
 'title':title[_key ==$language].value,}, 
-}
-// {
-//   'logo':logo.asset->url,
-//   'sociable':*[_type == 'social'][0],
-//   'contacts':*[_type == 'contacts'][0]{
-//     'about':about[_key ==$language].value,
-//     phone,
-//     email,
-//     'address':address[_key ==$language].value,
-//      pressCenter
-//   },
-//   "competitions": *[_type == 'competitions']{
-//   'slug':slug.current,
-//   'title':title[_key ==$language].value,
-//   }
-// }
-`;
+}`;
 
 export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
   'bannerData': mainBanner,
@@ -135,7 +119,7 @@ export const administrationQuery = groq`*[_type == 'administration'][0] {
 export const virtuososQuery = groq`*[_type == 'virtuosos'][0]{
  banner,
   gallery,
-  'description':description[_key ==$language].value,
+  'description': description[_key ==$language][0].value,
     'article':*[_type == 'virtuososArticle'  && length(title[_key ==$language].value) != 0]| order(dateTime(date)desc) [0 ...3]{
    _id,
    img,
@@ -162,6 +146,7 @@ export const currentArticleQuery = groq`*[_type == 'virtuososArticle'&& slug.cur
    'slug':slug.current,
    'description': coalesce(description[_key ==$language][0].value, description[][0].value)
 }`;
+
 export const ukrWorksQuery = groq`*[_type == 'ukrainianWorks'][0]{
  'text': text[_key ==$language][0].value,
     'list': list[_key ==$language][0].value,

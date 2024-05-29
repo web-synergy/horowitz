@@ -15,7 +15,7 @@ export default defineType({
     defineField({
       name: 'about',
       title: 'Короткий опис',
-      type: 'internationalizedArrayArticle',
+      type: 'internationalizedArrayText',
     }),
     defineField({
       name: 'avatar',

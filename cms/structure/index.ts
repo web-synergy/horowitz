@@ -58,35 +58,15 @@ const structure = (S: StructureBuilder) =>
       singleDocument(S, 'partners', 'Партнери і спонсори', preview(S, 'sponsors')).icon(
         SiGithubsponsors,
       ),
-      // S.listItem()
-      //   .title('Налаштування')
-      //   .schemaType('settings')
-      //   .child(
-      //     S.documentList()
-      //       .title('Налаштування')
-      //       .filter('_type == "settings"')
-      //       .apiVersion('v2023-08-30'),
-      //   ),
+
       singleDocument(S, 'settings', 'Налаштування', preview(S, 'contacts')).icon(IoSettingsSharp),
-      // S.listItem()
-      //   .title('Налаштування')
-      //   .icon(IoSettingsSharp)
-      //   .child(
-      //     S.list()
-      //       .title('Налаштування')
-      //       .items([
-      //         singleDocument(S, 'contacts', 'Контактна інформація', preview(S, 'contacts')).icon(
-      //           LuContact,
-      //         ),
-      //         singleDocument(S, 'settings', 'Загальні налаштування', preview(S)).icon(
-      //           MdOutlineSettingsBrightness,
-      //         ),
-      //         singleDocument(S, 'social', 'Соцмережі').icon(IoShareSocialOutline),
-      //       ]),
-      //   ),
-      // ...S.documentTypeListItems().filter(
-      //   (items) => !singleSchemaTittles.includes(items.getTitle() || ''),
-      // ),
+
+      S.listItem()
+        .title('інші групи')
+        .schemaType('group')
+        .child(
+          S.documentList().title('інші групи').filter('_type == "group"').apiVersion('v2023-08-30'),
+        ),
     ])
 
 export default structure

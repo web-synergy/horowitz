@@ -25,20 +25,17 @@ export default defineType({
   ],
 
   fields: [
- 
-
-    defineField({
+    {
       name: 'mainBanner',
       title: 'Головний банер',
       type: 'banner',
-    }),
-   
+    },
 
-    defineField({
+    {
       group: ['upperTextBlock'],
       name: 'upperTextBlock',
       title: 'Верхній блок тексту',
-      type: 'internationalizedArrayContent',
+      type: 'internationalizedArrayDescription',
       validation: (Rule) =>
         Rule.custom((content: {_key?: string; value?: string}[]) => {
           for (const value of content) {
@@ -48,9 +45,9 @@ export default defineType({
           }
           return true // All checks passed
         }),
-    }),
+    },
 
-    defineField({
+    {
       group: ['quote'],
       name: 'quote',
       title: 'Змінити цитату',
@@ -59,27 +56,25 @@ export default defineType({
         collapsible: true,
       },
       fields: [
-        defineField({
+        {
           name: 'quote',
           title: 'Цитата',
           type: 'internationalizedArrayText',
-        }),
-        defineField({
+        },
+        {
           name: 'author',
           title: 'Автор',
           type: 'internationalizedArrayString',
-        }),
+        },
       ],
-    }),
-
-    defineField({
+    },
+    {
       group: ['lowerTextBlock'],
       name: 'lowerTextBlock',
       title: 'Нижній блок тексту',
-      type: 'internationalizedArrayContent',
-    }),
-
-    defineField({
+      type: 'internationalizedArrayArticle',
+    },
+    {
       group: ['literature'],
       name: 'literature',
       title: 'Література',
@@ -87,12 +82,14 @@ export default defineType({
       of: [
         {
           type: 'block',
-          lists: [
-            {title: 'Number', value: 'number'},
-            {title: 'Bullet', value: 'bullet'},
-          ],
+          styles: [],
+          marks: {
+            annotations: [],
+            decorators: [],
+          },
+          lists: [{title: 'Number', value: 'number'}],
         },
       ],
-    }),
+    },
   ],
 })

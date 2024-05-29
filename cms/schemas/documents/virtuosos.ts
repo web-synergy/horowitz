@@ -12,7 +12,7 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Опис новини',
-      type: 'internationalizedArrayContent',
+      type: 'internationalizedArrayText',
     }),
     defineField({
       name: 'gallery',

@@ -14,6 +14,7 @@ export const useHorowitzStore = create<HorowitzStoreState>((set) => ({
   literature: [],
   isLoading: false,
   requestLang: '',
+
   fetchHorowitzData: async (language) => {
     set({ isLoading: true });
 

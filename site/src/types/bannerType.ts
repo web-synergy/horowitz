@@ -1,13 +1,19 @@
 import { IImage } from './commonTypes';
 import { IColorField } from './commonTypes';
 
-export interface IBanner {
+export type BannerType = CommonBannerProps &
+  BannerSizeType &
+  OverlayType &
+  BackgroundType;
+
+type CommonBannerProps = {
   img: IImage;
-  copyright?: string;
-  size: NotFullSizeType | FullSizeType;
-  overlay: ColorOverlay | GradientOverlay | NoEffectOverlay;
-  background: GradientBackground | ColorBackground | NoBackground;
-}
+  authorRight?: string;
+};
+
+type BannerSizeType = NotFullSizeType | FullSizeType;
+type OverlayType = ColorOverlay | GradientOverlay | NoEffectOverlay;
+type BackgroundType = GradientBackground | ColorBackground | NoBackground;
 
 interface FullSizeType {
   fullSize: true;
@@ -16,9 +22,7 @@ interface FullSizeType {
 
 interface NotFullSizeType {
   fullSize: false;
-  location: {
-    position: 'center' | 'left' | 'right';
-  };
+  position: 'center' | 'left' | 'right';
 }
 
 interface ColorOverlay {
@@ -28,7 +32,7 @@ interface ColorOverlay {
 
 interface GradientOverlay {
   overlayType: 'gradient';
-  linearGradient: {
+  overlayGradient: {
     degree: number;
     colors: { value: IColorField; position: number }[];
   };

@@ -7,6 +7,7 @@ export const createColor = (color: IColorField | undefined) => {
   const {
     rgb: { a, b, g, r },
   } = color;
+
   return `rgba(${r}, ${g}, ${b}, ${a})`;
 };
 
@@ -16,6 +17,7 @@ export const createGradientColors = (
   if (!colors) {
     return 'transparent';
   }
+
   return colors
     .map(({ value, position }) => `${createColor(value)} ${position}%`)
     .join(', ');

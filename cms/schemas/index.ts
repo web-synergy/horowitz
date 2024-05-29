@@ -10,7 +10,6 @@ import content from './objects/content'
 import banner from './objects/banner'
 
 import competition from './documents/competition'
-import junior from './documents/junior'
 import group from './documents/group'
 import {gallery} from './objects/gallery'
 import sponsor from './objects/sponsor'
@@ -22,7 +21,7 @@ import virtuosos from './documents/virtuosos'
 import virtuososArticle from './documents/virtuososArticle'
 import ukrainianWorks from './documents/ukrainianWorks'
 import article from './objects/article'
-import magazinePdf from './documents/magazinePdf'
+import filePdf from './objects/filePdf'
 import summerSchool from './documents/summerSchool'
 import annualSummerSchool from './documents/annualSummerSchool'
 import picture from './objects/picture'
@@ -35,11 +34,11 @@ import schedule from './objects/schedule'
 import concert from './objects/concert'
 import gradient from './objects/gradient'
 import reward from './objects/reward'
-import artist from './objects/artist'
 import jury from './documents/jury'
 import studentsJury from './objects/studentsJury'
 import guests from './documents/guests'
 import masterClass from './documents/masterClass'
+import description from './objects/description'
 
 export const schemaTypes = [
   //documents
@@ -47,8 +46,7 @@ export const schemaTypes = [
   news,
   competition,
   settings,
-
-  magazinePdf,
+  filePdf,
   horowitz,
   partners,
   administration,
@@ -59,7 +57,6 @@ export const schemaTypes = [
   ukrainianWorks,
   summerSchool,
   annualSummerSchool,
-  junior,
   group,
   jury,
   guests,
@@ -84,6 +81,6 @@ export const schemaTypes = [
   concert,
   gradient,
   reward,
-  artist,
   studentsJury,
+  description,
 ]

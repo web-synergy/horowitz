@@ -1,9 +1,9 @@
 import {defineField, defineType} from 'sanity'
 import {PiFilePdf} from 'react-icons/pi'
 export default defineType({
-  name: 'magazinePdf',
+  name: 'filePdf',
   title: 'Буклети PDF',
-  type: 'document',
+  type: 'object',
   icon: PiFilePdf,
   fields: [
     defineField({

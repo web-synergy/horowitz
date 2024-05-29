@@ -7,21 +7,26 @@ export default defineType({
   type: 'object',
   icon: CiText,
   fields: [
-    defineField({
+    {
       name: 'title',
       title: 'Заголовок',
       type: 'internationalizedArrayString',
-    }),
-    defineField({
+    },
+    {
       name: 'text',
       title: 'Основний текст',
       type: 'internationalizedArrayArticle',
-    }),
-    defineField({
+    },
+    {
       name: 'image',
       title: 'Картинка',
       type: 'picture',
-    }),
+    },
+    {
+      name: 'authorRight',
+      title: 'Підпис до фото',
+      type: 'internationalizedArrayString',
+    },
   ],
   preview: {
     select: {

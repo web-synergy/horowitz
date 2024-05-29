@@ -1,7 +1,7 @@
 import { StudentsJuryType } from './groupTypes';
 import { PortableTextBlock } from '@portabletext/types';
 import { IImage } from './commonTypes';
-import { IBanner } from './bannerType';
+import { BannerType } from './bannerType';
 
 import { TextBlockImageType } from './commonTypes';
 
@@ -55,7 +55,7 @@ export type AnnualSummerSchoolTypes = {
   button: string;
   isActive: boolean;
   applicationLink: string | null;
-  banner: IBanner | null;
+  banner: BannerType | null;
 
   description: PortableTextBlock[];
 
