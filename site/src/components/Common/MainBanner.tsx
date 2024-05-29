@@ -1,25 +1,21 @@
-import { FC, useEffect, useState, useMemo } from "react";
-import { Box, Container, Typography } from "@mui/material";
-import { IBanner } from "@/types/bannerType";
+import { FC, useEffect, useState, useMemo } from 'react';
+import { Box, Container, Typography } from '@mui/material';
+import { BannerType } from '@/types/bannerType';
 
-import { urlFor } from "@/config/sanity/imageUrl";
-import { createColor, createGradientColors } from "@/utils/createColor";
-import { useWidthBlokSize } from "@/hook/useWidthBlockSize";
-import { getImageData } from "@/utils/getImageData";
+import { urlFor } from '@/config/sanity/imageUrl';
+import { createColor, createGradientColors } from '@/utils/createColor';
+import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
+import { getImageData } from '@/utils/getImageData';
 
 interface MainBannerProps {
-  banner: IBanner;
+  banner: BannerType;
 }
 
 const MainBanner: FC<MainBannerProps> = ({ banner }) => {
   const [imageWidth, setImageWidth] = useState(0);
 
   const { containerSize, containerRef } = useWidthBlokSize();
-  const { background, size, img, overlay, copyright } = banner;
-
-  const { overlayType } = overlay;
-  const { backgroundType } = background;
-  const { fullSize } = size;
+  const { backgroundType, fullSize, img, overlayType, authorRight } = banner;
 
   const imageData = getImageData(img.asset._ref);
   const {
@@ -36,19 +32,19 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
   }, [containerSize]);
 
   const overlayEffect =
-    overlayType === "none"
+    overlayType === 'none'
       ? {}
-      : overlayType === "monochrome"
-      ? { backgroundColor: createColor(overlay.overlayColor) }
+      : overlayType === 'monochrome'
+      ? { backgroundColor: createColor(banner.overlayColor) }
       : {
           background: `linear-gradient(${
-            overlay.linearGradient.degree
-          }deg, ${createGradientColors(overlay.linearGradient.colors)})`,
+            banner.overlayGradient.degree
+          }deg, ${createGradientColors(banner.overlayGradient.colors)})`,
         };
 
   const refHeight = useMemo(() => {
     return fullSize
-      ? `${size.maxHeight}vh`
+      ? `${banner.maxHeight}vh`
       : Math.min(
           Math.floor((containerSize * height) / width),
           Math.floor((1280 * height) / width),
@@ -58,22 +54,22 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
   }, [containerSize, fullSize]);
 
   const backgroundEffect =
-    backgroundType === "none"
+    backgroundType === 'none'
       ? {}
-      : backgroundType === "monochrome"
+      : backgroundType === 'monochrome'
       ? {
-          backgroundColor: createColor(background.backgroundColor),
+          backgroundColor: createColor(banner.backgroundColor),
         }
       : {
           background: `linear-gradient(${
-            background.backgroundGradient.degree
-          }deg, ${createGradientColors(background.backgroundGradient.colors)})`,
+            banner.backgroundGradient.degree
+          }deg, ${createGradientColors(banner.backgroundGradient.colors)})`,
         };
 
   const image = fullSize
-    ? urlFor(img).auto("format").width(imageWidth).url()
+    ? urlFor(img).auto('format').width(imageWidth).url()
     : urlFor(img)
-        .auto("format")
+        .auto('format')
         .width(imageWidth)
         .height(refHeight as number)
         .url();
@@ -83,36 +79,36 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
       ref={containerRef}
       sx={{
         height: refHeight,
-        maxHeight: "50vh",
-        position: "relative",
+        maxHeight: '50vh',
+        position: 'relative',
         ...backgroundEffect,
       }}
     >
       <Box
         sx={{
-          width: "100%",
-          maxWidth: fullSize ? "unset" : 1280,
-          mx: "auto",
-          height: "100%",
+          width: '100%',
+          maxWidth: fullSize ? 'unset' : 1280,
+          mx: 'auto',
+          height: '100%',
         }}
       >
         <img
           src={image}
           alt=""
           style={{
-            width: fullSize ? "100%" : "auto",
-            height: "100%",
+            width: fullSize ? '100%' : 'auto',
+            height: '100%',
             maxHeight: refHeight,
-            objectFit: fullSize ? "cover" : "contain",
+            objectFit: fullSize ? 'cover' : 'contain',
             marginLeft: fullSize
-              ? "unset"
-              : size.location.position !== "left"
-              ? "auto"
+              ? 'unset'
+              : banner.position !== 'left'
+              ? 'auto'
               : 0,
             marginRight: fullSize
-              ? "unset"
-              : size.location.position !== "right"
-              ? "auto"
+              ? 'unset'
+              : banner.position !== 'right'
+              ? 'auto'
               : 0,
           }}
           width={imageWidth}
@@ -121,18 +117,18 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
       </Box>
       <Box
         sx={{
-          position: "absolute",
+          position: 'absolute',
           top: 0,
           left: 0,
-          width: "100%",
-          height: "100%",
+          width: '100%',
+          height: '100%',
           ...overlayEffect,
         }}
       ></Box>
-      {copyright && (
+      {authorRight && (
         <Box
           sx={{
-            position: "absolute",
+            position: 'absolute',
             bottom: 16,
             left: 0,
             right: 0,
@@ -141,15 +137,15 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
           <Container>
             <Typography
               variant="smallText"
-              fontSize={{ xs: "0.75rem" }}
+              fontSize={{ xs: '0.75rem' }}
               lineHeight={1}
               color={(theme) => theme.palette.neutral[60]}
               sx={{
-                backdropFilter: "blur(6px)",
-                display: "inline-block",
+                backdropFilter: 'blur(6px)',
+                display: 'inline-block',
               }}
             >
-              {copyright}
+              {authorRight}
             </Typography>
           </Container>
         </Box>

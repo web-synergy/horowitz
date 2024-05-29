@@ -1,6 +1,6 @@
 import { PortableTextBlock } from '@portabletext/types';
 import { IImageReference } from './commonTypes';
-import { IBanner } from './bannerType';
+import { BannerType } from './bannerType';
 
 interface PartialGroupType {
   isActive: boolean;
@@ -14,7 +14,7 @@ export interface CompetitionType {
   juniorBtn: IImageReference | null;
   intermediateBtn: IImageReference | null;
   seniorBtn: IImageReference | null;
-  mainBanner: IBanner | null;
+  mainBanner: BannerType | null;
   junior: PartialGroupType;
   intermediate: PartialGroupType;
   senior: PartialGroupType;

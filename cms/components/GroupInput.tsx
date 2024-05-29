@@ -10,19 +10,15 @@ export const GroupInput = (props: StringInputProps) => {
 
   useEffect(() => {
     const createGroup = async () => {
-      let isExist: boolean
-      if (id === 'junior') {
-        isExist = await client.fetch(`*[_type == '${id}' && competitionId == '${docId}'][0]`)
-      } else {
-        isExist = await client.fetch(
-          `*[_type == 'group' && competitionId == '${docId}' && groupType == '${id}'][0]`,
-        )
-      }
+      let isExist = await client.fetch(
+        `*[_type == 'group' && competitionId == '${docId}' && groupType == '${id}'][0]`,
+      )
+
       if (isExist) return
       const title =
         id === 'junior' ? 'Молодша група' : id === 'intermediate' ? 'Середня група' : 'Старша група'
       const doc = {
-        _type: id === 'junior' ? 'junior' : 'group',
+        _type: 'group',
         competitionId: docId,
         groupType: id,
         title,

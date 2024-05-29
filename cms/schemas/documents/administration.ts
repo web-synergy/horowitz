@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineType} from 'sanity'
 
 export default defineType({
   name: 'administration',
@@ -6,16 +6,16 @@ export default defineType({
   type: 'document',
 
   fields: [
-    defineField({
+    {
       name: 'mainBanner',
       title: 'Головний банер',
       type: 'banner',
-    }),
-    defineField({
+    },
+    {
       name: 'members',
       title: 'Учасники',
       type: 'array',
       of: [{type: 'membersAdministration'}],
-    }),
+    },
   ],
 })

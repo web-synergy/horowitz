@@ -11,12 +11,12 @@ import PageTemplate from '../../Common/PageTemplate';
 import MainBanner from '@/components/Common/MainBanner';
 import Loader from '@/components/Common/Loader';
 import NewsSwiper from '../../NewsSection/NewsSwiper';
-import TextBlockComponent from '@/components/Templates/TextBlockComponent/TextBlockComponent';
 import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
 import { ImagesArray } from '../../Templates/PortableComponent/parts/ImageComponent';
-
+import { RegularText } from '@/components/Common/RegularText';
 import { Routes } from '@/types/routes.d';
 import { Virtuosos } from '@/types/translation.d';
+import { transformText } from '@/utils/transfromText';
 
 const VirtuosesPage = () => {
   const {
@@ -63,7 +63,7 @@ const VirtuosesPage = () => {
             <Typography variant="h1" textAlign={'center'}>
               {t(`navigation.${Routes.VIRTUOSES}`)}
             </Typography>
-            <TextBlockComponent textArray={data.description} />
+            <RegularText blocks={transformText(data.description)} />
             <NewsSwiper
               title={t(`virtuosos.${Virtuosos.NEWS}`)}
               link={Routes.VIRTUOSES_ARTICLE}

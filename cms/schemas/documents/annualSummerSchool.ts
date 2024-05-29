@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineType} from 'sanity'
 import image1 from '../../assets/images/variant1.jpg'
 import image2 from '../../assets/images/variant2.jpg'
 import image3 from '../../assets/images/variant3.jpg'
@@ -26,13 +26,13 @@ export default defineType({
     {name: 'orchestra', title: 'Оркестр та локації'},
   ],
   fields: [
-    defineField({
+    {
       name: 'year',
       title: 'Рік',
       type: 'string',
       group: 'common',
-    }),
-    defineField({
+    },
+    {
       name: 'button',
       title: 'Заставка на кнопку',
       type: 'string',
@@ -43,8 +43,8 @@ export default defineType({
         layout: 'radio',
       },
       components: {input: Buttons},
-    }),
-    defineField({
+    },
+    {
       name: 'slug',
       title: 'Посилання',
       type: 'slug',
@@ -53,113 +53,111 @@ export default defineType({
         slugify: (input) => `summer-academy-${input}`,
       },
       group: 'common',
-    }),
+    },
 
-    defineField({
+    {
       name: 'isActive',
       title: 'Активувати подачу заявок',
       type: 'boolean',
       group: 'common',
-    }),
-    defineField({
+    },
+    {
       name: 'applicationLink',
       title: 'Посилання для подачі заявки',
       type: 'url',
-
       group: 'common',
-    }),
-    defineField({
+    },
+    {
       name: 'banner',
       title: 'Головний банер',
       type: 'banner',
       group: 'common',
-    }),
-
-    defineField({
+    },
+    {
       name: 'description',
       title: 'Опис конкурсу',
       type: 'internationalizedArrayArticle',
       group: 'common',
-    }),
-    defineField({
+    },
+    {
       name: 'isActiveConditions',
       title: 'Додати умови участі',
       type: 'boolean',
       group: 'conditions',
-    }),
-    defineField({
+    },
+    {
       name: 'conditions',
       title: 'Умови участі',
       type: 'internationalizedArrayArticle',
       group: 'conditions',
-    }),
-    defineField({
+    },
+    {
       name: 'isActiveProfessors',
       title: 'Додати професорів',
       type: 'boolean',
       group: 'professors',
-    }),
-    defineField({
+    },
+    {
       name: 'professors',
       title: 'Професори',
       type: 'array',
       of: [{type: 'professor'}],
       group: 'professors',
-    }),
-    defineField({
+    },
+    {
       name: 'isActiveParticipants',
       title: 'Додати умови учасників',
       type: 'boolean',
       group: 'participants',
-    }),
+    },
 
-    defineField({
+    {
       name: 'participants',
       title: 'Учасники',
       group: 'participants',
 
       type: 'array',
       of: [{type: 'participantShort'}],
-    }),
-    defineField({
+    },
+    {
       name: 'isActiveSchedule',
       title: 'Додати розклад',
       type: 'boolean',
       group: 'schedules',
-    }),
-    defineField({
+    },
+    {
       name: 'schedules',
       title: 'Розклад',
       type: 'array',
       of: [{type: 'schedule'}],
       group: 'schedules',
-    }),
-    defineField({
+    },
+    {
       name: 'isActiveConcerts',
       title: 'Додати концерти',
       type: 'boolean',
       group: 'concerts',
-    }),
-    defineField({
+    },
+    {
       title: 'Концерти',
       name: 'concerts',
       type: 'array',
       of: [{type: 'concert'}],
 
       group: 'concerts',
-    }),
-    defineField({
+    },
+    {
       name: 'isActiveOrchestra',
       title: 'Додати оркестр та локації',
       type: 'boolean',
       group: 'orchestra',
-    }),
-    defineField({
+    },
+    {
       name: 'orchestra',
       title: 'Оркестр та локації',
       type: 'internationalizedArrayContent',
       group: 'orchestra',
-    }),
+    },
   ],
 
   preview: {

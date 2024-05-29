@@ -4,15 +4,15 @@ import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Container, Typography } from '@mui/material';
-// import ImageSection from '../About/parts/ImageSection'
 import ImageComponent from '../Templates/ImageComponent/ImageComponent';
 import Loader from '../Common/Loader';
 import PageTemplate from '../Common/PageTemplate';
 import CommonStackWrapper from '../Common/CommonStackWrapper';
 import ButtonsArea from './parts/ButtonsArea';
-import ImagesArea from './parts/ImagesArea';
-import { RegularText } from './parts/RegularText';
+import { RegularText } from '../Common/RegularText';
 import { StyledBox } from './parts/styled';
+import { transformText } from '@/utils/transfromText';
+import { ImagesArray } from '../Templates/PortableComponent/parts/ImageComponent';
 
 const SummerSchoolPage: FC = () => {
   const {
@@ -34,7 +34,7 @@ const SummerSchoolPage: FC = () => {
     fetchData: state.fetchSchoolData,
     infographicImg: state.infographic,
     bottomText: state.bottomText,
-    gallery: state.gallery.images,
+    gallery: state.gallery,
     requestLang: state.requestLang,
     isLoading: state.isLoading,
     annualSummerSchool: state.annualSummerSchool,
@@ -56,15 +56,15 @@ const SummerSchoolPage: FC = () => {
           <Typography component={'h1'} variant="h1" textAlign={'center'}>
             {t(`summerSchool.${SummerSchool.TITLE}`)}
           </Typography>
-          <RegularText blocks={topText} />
+          <RegularText blocks={transformText(topText)} />
           {infographicImg && <ImageComponent image={infographicImg} />}
-          <RegularText blocks={bottomText} />
+          <RegularText blocks={transformText(bottomText)} />
 
           <StyledBox>
             <ButtonsArea btnsList={annualSummerSchool} />
           </StyledBox>
 
-          <ImagesArea gallery={gallery} />
+          {gallery && <ImagesArray value={gallery} />}
         </CommonStackWrapper>
       </Container>
     </PageTemplate>

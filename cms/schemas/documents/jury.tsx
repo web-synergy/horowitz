@@ -6,12 +6,12 @@ export default defineType({
   title: 'Члени жюрі',
   type: 'document',
   fields: [
-    defineField({
+    {
       name: 'name',
       title: "Прізвище та ім'я",
       type: 'internationalizedArrayString',
-    }),
-    defineField({
+    },
+    {
       name: 'slug',
       title: 'Посилання',
       type: 'slug',
@@ -20,26 +20,26 @@ export default defineType({
         slugify: (input: string) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
       },
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
+    },
+    {
       name: 'role',
       title: "Посада (не обов'язково)",
       type: 'internationalizedArrayString',
-    }),
+    },
 
-    defineField({
+    {
       name: 'about',
       title: 'Короткий опис',
       type: 'internationalizedArrayArticle',
-    }),
-    defineField({
+    },
+    {
       name: 'avatar',
       title: 'Фото',
       type: 'picture',
       options: {
         collapsed: false,
       },
-    }),
+    },
   ],
   preview: {
     select: {

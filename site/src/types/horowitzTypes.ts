@@ -1,8 +1,8 @@
 import { PortableTextBlock } from '@portabletext/types';
-import { IBanner } from './bannerType';
+import { BannerType } from './bannerType';
 
 export interface IHorowitzData {
-  bannerData: IBanner | null;
+  bannerData: BannerType | null;
   quote: QuoteType;
   upperTextBlock: PortableTextBlock[];
   lowerTextBlock: PortableTextBlock[];

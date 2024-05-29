@@ -21,7 +21,7 @@ export default defineType({
   ],
 
   fields: [
-    defineField({
+    {
       name: 'banner',
       title: 'Баннер',
       type: 'object',
@@ -30,21 +30,21 @@ export default defineType({
         collapsible: true,
       },
       fields: [
-        defineField({
+        {
           name: 'img',
           title: 'Фото',
           type: 'internationalizedArrayImage',
           options: {
             hotspot: true,
           },
-        }),
+        },
 
-        defineField({
+        {
           name: 'background',
           title: 'Фон',
           type: 'object',
           fields: [
-            defineField({
+            {
               name: 'backgroundType',
               title: 'Фон',
               type: 'string',
@@ -57,39 +57,39 @@ export default defineType({
                 layout: 'radio',
                 direction: 'horizontal',
               },
-            }),
+            },
 
-            defineField({
+            {
               name: 'backgroundColor',
               title: 'Колір фону',
               type: 'color',
               hidden: ({parent}) => parent?.backgroundType !== 'monochrome',
-            }),
-            defineField({
+            },
+            {
               name: 'backgroundGradient',
               title: 'Градієнт для фону',
               type: 'gradient',
               hidden: ({parent}) => parent?.backgroundType !== 'gradient',
-            }),
+            },
           ],
-        }),
+        },
       ],
-    }),
+    },
 
-    defineField({
+    {
       group: ['winners'],
       name: 'winners',
       title: 'Переможці',
       type: 'array',
       of: [{type: 'winner'}],
-    }),
+    },
 
-    defineField({
+    {
       group: ['videos'],
       name: 'videos',
       title: 'Відео',
       type: 'array',
       of: [{type: 'video'}],
-    }),
+    },
   ],
 })

@@ -20,7 +20,7 @@ export default defineType({
   __experimental_formPreviewTitle: false,
   icon,
   fields: [
-    defineField({
+    {
       name: 'title',
       title: 'Заголовок',
       type: 'internationalizedArrayString',
@@ -37,22 +37,22 @@ export default defineType({
           }
           return errorMassage || true
         }),
-    }),
-    defineField({
+    },
+    {
       name: 'slug',
       type: 'slug',
       options: {
         source: (context) => chooseObject(context.title as Icontent[]),
       },
       validation: (Rule) => Rule.required().error('Обовʼязкове поле'),
-    }),
-    defineField({
+    },
+    {
       name: 'date',
       type: 'datetime',
       title: 'Дата новини',
       validation: (Rule) => Rule.required().error('Обовʼязкове поле'),
-    }),
-    defineField({
+    },
+    {
       name: 'img',
       title: 'Додати зображення',
       type: 'image',
@@ -68,9 +68,9 @@ export default defineType({
       ],
 
       validation: (Rule) => Rule.required().error('Обовʼязкове поле для заповнення'),
-    }),
+    },
 
-    defineField({
+    {
       name: 'shortDescription',
       title: 'Короткий опис новини',
       type: 'internationalizedArrayText',
@@ -87,8 +87,8 @@ export default defineType({
           }
           return errorMassage || true
         }),
-    }),
-    defineField({
+    },
+    {
       name: 'description',
       title: 'Опис новини',
       type: 'internationalizedArrayContent',
@@ -102,7 +102,7 @@ export default defineType({
           }
           return errorMassage || true
         }),
-    }),
+    },
   ],
   preview: {
     select: {
