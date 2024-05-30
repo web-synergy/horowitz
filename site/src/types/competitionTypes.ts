@@ -1,4 +1,3 @@
-import { PortableTextBlock } from '@portabletext/types';
 import { IImageReference } from './commonTypes';
 import { BannerType } from './bannerType';
 
@@ -9,7 +8,7 @@ interface PartialGroupType {
 export interface CompetitionType {
   title: string;
   slug: string;
-  description: PortableTextBlock[] | null;
+  description: string | null;
   isWarState: boolean;
   juniorBtn: IImageReference | null;
   intermediateBtn: IImageReference | null;

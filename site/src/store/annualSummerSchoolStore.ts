@@ -12,7 +12,7 @@ export const useAnnualSummerSchoolStore = create<AnnualSummerSchoolStoreState>(
     concerts: null,
     currentConcert: null,
     conditions: null,
-    description: [],
+    description: null,
     isActiveConcerts: false,
     isActiveConditions: false,
     isActiveOrchestra: false,

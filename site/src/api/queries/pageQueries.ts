@@ -34,7 +34,7 @@ export const settingsQuery = groq`*[_type == 'settings'][0]{
       "phone": pressCenterPhone
     },
   },
-  "competitions": *[_type == 'competitions']{
+  "competitions": *[_type == 'competition']{
 'slug':slug.current,
 'title':title[_key ==$language].value,}, 
 }`;

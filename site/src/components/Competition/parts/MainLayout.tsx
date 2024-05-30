@@ -1,11 +1,12 @@
 import PageTemplate from '@/components/Common/PageTemplate';
 import { Container, Typography, Stack, Box } from '@mui/material';
-import PortableComponent from '@/components/Templates/PortableComponent/PortableComponent';
+import { RegularText } from '@/components/Common/RegularText';
 import GridTemplate from '@/components/Templates/GridTemplate';
 import GroupButton from './GroupButton';
 import { useCompetitionStore } from '@/store/competitionStore';
 import { Routes } from '@/types/routes.d';
 import SeoComponent from '@/components/Common/SEO';
+import { transformText } from '@/utils/transfromText';
 
 const MainLayout = () => {
   const {
@@ -30,6 +31,7 @@ const MainLayout = () => {
     { title: Routes.SENIOR, isActive: senior.isActive, btn: seniorBtn },
   ];
 
+  const renderDescription = description && transformText(description);
   return (
     <>
       <SeoComponent title={title} canonicalUrl={slug} />
@@ -39,7 +41,11 @@ const MainLayout = () => {
             <Typography variant="h1" textAlign={'center'}>
               {title}
             </Typography>
-            <Box>{description && <PortableComponent data={description} />}</Box>
+            <Box>
+              {renderDescription && (
+                <RegularText blocks={renderDescription} columnCount={1} />
+              )}
+            </Box>
 
             <GridTemplate
               justify="center"

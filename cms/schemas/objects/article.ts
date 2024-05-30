@@ -1,8 +1,8 @@
 import {defineType} from 'sanity'
 import {TbTextWrapDisabled} from 'react-icons/tb'
-import {IoIosColorPalette} from 'react-icons/io'
+// import {IoIosColorPalette} from 'react-icons/io'
 import NoWrap from '../../components/NoWrap'
-import ColorText from '../../components/ColorText'
+// import ColorText from '../../components/ColorText'
 
 const article = defineType({
   name: 'article',
@@ -19,21 +19,21 @@ const article = defineType({
           {title: 'No wrap', value: 'nw', icon: TbTextWrapDisabled, component: NoWrap},
         ],
         annotations: [
-          {
-            title: 'Color',
-            type: 'object',
-            name: 'color',
-            icon: IoIosColorPalette,
-            fields: [
-              {
-                name: 'color',
-                type: 'color',
-              },
-            ],
-            components: {
-              annotation: ColorText,
-            },
-          },
+          // {
+          //   title: 'Color',
+          //   type: 'object',
+          //   name: 'color',
+          //   icon: IoIosColorPalette,
+          //   fields: [
+          //     {
+          //       name: 'color',
+          //       type: 'color',
+          //     },
+          //   ],
+          //   components: {
+          //     annotation: ColorText,
+          //   },
+          // },
           {
             name: 'link',
             type: 'object',

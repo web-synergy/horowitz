@@ -76,7 +76,7 @@ export default defineType({
     {
       name: 'description',
       title: 'Опис конкурсу',
-      type: 'internationalizedArrayArticle',
+      type: 'internationalizedArrayText',
       group: 'common',
     },
     {

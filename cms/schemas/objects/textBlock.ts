@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineType} from 'sanity'
 import {CiText} from 'react-icons/ci'
 
 export default defineType({

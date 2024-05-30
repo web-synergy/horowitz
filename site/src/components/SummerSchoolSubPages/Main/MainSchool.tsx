@@ -4,13 +4,15 @@ import { Box, Container, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 import GoBackBtn from '@/components/Common/GoBackBtn';
-import PortableComponent from '@/components/Templates/PortableComponent/PortableComponent';
 import { summerSchoolNavigation } from '@/config/routes/navigation';
 import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
 import { Routes } from '@/types/routes.d';
 
 import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
 import NavList from '@/components/Templates/NavList/NavList';
+import { RegularText } from '@/components/Common/RegularText';
+import { transformText } from '@/utils/transfromText';
+
 const MainSchool = () => {
   const { t } = useTranslation();
   const {
@@ -55,7 +57,10 @@ const MainSchool = () => {
 
           {description && (
             <Box mb={{ xs: 3, md: 5, lg: 6 }}>
-              <PortableComponent data={description} />
+              <RegularText
+                blocks={transformText(description)}
+                columnCount={1}
+              />
             </Box>
           )}
         </Container>
