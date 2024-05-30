@@ -24,6 +24,7 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
 
   const { width, aspectRatio, asset, alt, position, isEmbed } = value;
   const { containerSize, containerRef } = useWidthBlokSize();
+
   useEffect(() => {
     if (containerSize) {
       const imgWidth = Math.floor(containerSize / 100) * (isMob ? 100 : width);
@@ -32,7 +33,7 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
         height: Math.floor(imgWidth / aspectRatio),
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerSize, value]);
 
   return (
@@ -83,7 +84,6 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
     </GrowView>
   );
 };
-
 
 export const ImagesArray = ({ value }: { value: IPortableImgGallery }) => {
   if (value.option) {

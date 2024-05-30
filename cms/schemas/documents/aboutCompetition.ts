@@ -38,7 +38,7 @@ export default defineType({
       group: ['upperTextBlock'],
       name: 'upperTextBlock',
       title: 'Верхній блок тексту',
-      type: 'internationalizedArrayArticle',
+      type: 'internationalizedArrayContent',
       validation: (Rule) =>
         Rule.custom((content: {_key?: string; value?: string}[]) => {
           for (const value of content) {
