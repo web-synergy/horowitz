@@ -13,9 +13,11 @@ import { Routes } from "@/types/routes.d";
 
 import PageTemplate from "../Common/PageTemplate";
 import PortableComponent from "../Templates/PortableComponent/PortableComponent";
-import { WrapperContent } from "./styled";
+import { WrapperContentImage, WrapperContentVideo } from "./styled";
+import { useState } from "react";
 
 const MasterClassCurrentPage = () => {
+  const [isPreviewPoster, setIsPreviewPoster] = useState(false);
   const { slug } = useParams();
 
   const {
@@ -29,7 +31,6 @@ const MasterClassCurrentPage = () => {
       language,
     }
   );
-
   const [data] = useLiveQuery(responseData, currentMasterClassQuery, {
     slug,
     language,
@@ -63,22 +64,31 @@ const MasterClassCurrentPage = () => {
               }}
             >
               {data?.img ? (
-                <WrapperContent>
+                <WrapperContentImage>
                   <img
-                    src={urlFor(data?.img).auto("format").url().toString()}
+                    src={urlFor(data?.img)
+                      .auto("format")
+                      .width(548)
+                      .height(384)
+                      .fit("fill")
+                      .url()
+                      .toString()}
                     alt={data?.img.alt}
                   />
-                </WrapperContent>
+                </WrapperContentImage>
               ) : (
-                <WrapperContent>
+                <WrapperContentVideo isPreviewPoster={isPreviewPoster}>
                   <ReactPlayer
                     url={data?.video}
                     width="100%"
                     height="100%"
                     playing={false}
                     controls={true}
+                    light={true}
+                    onClickPreview={() => setIsPreviewPoster(true)}
+                    playIcon={<div className="custom-play-button"></div>}
                   />
-                </WrapperContent>
+                </WrapperContentVideo>
               )}
             </Box>
             <Box sx={{ float: "none" }}>

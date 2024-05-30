@@ -22,10 +22,4 @@ export const WrapperContent = styled(Box)(({ theme }) => ({
     height: "100%",
     objectFit: "cover",
   },
-
-  "& iframe": {
-    display: "block",
-    width: "100%",
-    height: "100%",
-  },
 }));
