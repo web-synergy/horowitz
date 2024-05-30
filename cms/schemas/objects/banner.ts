@@ -1,4 +1,6 @@
 import {defineType} from 'sanity'
+import {validateAlphaChannel} from '../../utils/validateAlphaChannel'
+import {validateHexColor} from '../../utils/validationHexColor'
 
 const banner = defineType({
   name: 'banner',
@@ -69,8 +71,16 @@ const banner = defineType({
     {
       name: 'overlayColor',
       title: 'Колір для затемнення зображення',
-      type: 'color',
+      type: 'string',
       hidden: ({parent}) => parent?.overlayType !== 'monochrome',
+      validation: (Rule) => Rule.optional().custom(validateHexColor),
+    },
+    {
+      name: 'overlayOpacity',
+      title: 'Колір прозорість для кольору (від 0 до 1)',
+      type: 'string',
+      hidden: ({parent}) => parent?.overlayType !== 'monochrome',
+      validation: (Rule) => Rule.optional().custom(validateAlphaChannel),
     },
     {
       name: 'backgroundType',
@@ -91,8 +101,9 @@ const banner = defineType({
     {
       name: 'backgroundColor',
       title: 'Колір фону',
-      type: 'color',
+      type: 'string',
       hidden: ({parent}) => parent?.backgroundType !== 'monochrome',
+      validation: (Rule) => Rule.optional().custom(validateHexColor),
     },
     {
       name: 'backgroundGradient',

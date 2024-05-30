@@ -14,13 +14,7 @@ export default defineType({
     defineField({
       name: 'text',
       title: 'Текст',
-      type: 'internationalizedArrayDescription',
-    }),
-
-    defineField({
-      name: 'list',
-      title: 'Список',
-      type: 'internationalizedArrayText',
+      type: 'internationalizedArrayArticle',
     }),
   ],
 })

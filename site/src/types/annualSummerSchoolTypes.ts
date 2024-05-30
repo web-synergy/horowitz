@@ -57,7 +57,7 @@ export type AnnualSummerSchoolTypes = {
   applicationLink: string | null;
   banner: BannerType | null;
 
-  description: PortableTextBlock[];
+  description: string | null;
 
   isActiveConditions: boolean;
   isActiveParticipants: boolean;

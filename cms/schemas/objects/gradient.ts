@@ -1,5 +1,7 @@
 import ColorPreview from '../../components/ColorPreview'
 import {defineType} from 'sanity'
+import {validateHexColor} from '../../utils/validationHexColor'
+import {validateAlphaChannel} from '../../utils/validateAlphaChannel'
 
 export default defineType({
   name: 'gradient',
@@ -22,9 +24,16 @@ export default defineType({
           type: 'object',
           fields: [
             {
-              name: 'value',
-              title: 'Колір градієнту',
-              type: 'color',
+              name: 'color',
+              type: 'string',
+              title: 'Введіть колір в форматі hex',
+              validation: (Rule) => Rule.optional().custom(validateHexColor),
+            },
+            {
+              name: 'alphaChannel',
+              type: 'string',
+              title: 'Введіть показник прозорість кольору (від 0 до 1)',
+              validation: (Rule) => Rule.optional().custom(validateAlphaChannel),
             },
             {
               name: 'position',
@@ -34,13 +43,15 @@ export default defineType({
           ],
           preview: {
             select: {
-              color: 'value',
+              color: 'color',
+              alpha: 'alphaChannel',
               position: 'position',
             },
-            prepare: ({position, color}) => {
+            prepare: ({position, color, alpha}) => {
               return {
                 title: `Початок кольору з ${position}%`,
                 color: color,
+                alpha: alpha,
               }
             },
           },

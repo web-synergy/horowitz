@@ -28,13 +28,19 @@ export default defineType({
     },
     {
       name: 'isWarState',
-      title: 'Показувати заглушку про стан війни',
+      title: 'Показувати заглушку',
       type: 'boolean',
+    },
+    {
+      name: 'stubText',
+      title: 'Текст для заглушки',
+      type: 'internationalizedArrayString',
+      hidden: ({document}) => !document?.isWarState,
     },
     {
       name: 'description',
       title: 'Загальний опис',
-      type: 'internationalizedArrayArticle',
+      type: 'internationalizedArrayText',
       hidden: ({document}) => !!document?.isWarState,
     },
     {

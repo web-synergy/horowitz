@@ -22,6 +22,7 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
     dimensions: { height, width },
   } = imageData;
 
+  console.log(banner);
   useEffect(() => {
     const imageWidth = fullSize
       ? containerSize
@@ -35,7 +36,12 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
     overlayType === 'none'
       ? {}
       : overlayType === 'monochrome'
-      ? { backgroundColor: createColor(banner.overlayColor) }
+      ? {
+          backgroundColor: createColor(
+            banner.overlayColor,
+            banner.overlayOpacity
+          ),
+        }
       : {
           background: `linear-gradient(${
             banner.overlayGradient.degree

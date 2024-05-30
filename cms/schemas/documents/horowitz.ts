@@ -35,7 +35,7 @@ export default defineType({
       group: ['upperTextBlock'],
       name: 'upperTextBlock',
       title: 'Верхній блок тексту',
-      type: 'internationalizedArrayDescription',
+      type: 'internationalizedArrayArticle',
       validation: (Rule) =>
         Rule.custom((content: {_key?: string; value?: string}[]) => {
           for (const value of content) {
@@ -78,18 +78,7 @@ export default defineType({
       group: ['literature'],
       name: 'literature',
       title: 'Література',
-      type: 'array',
-      of: [
-        {
-          type: 'block',
-          styles: [],
-          marks: {
-            annotations: [],
-            decorators: [],
-          },
-          lists: [{title: 'Number', value: 'number'}],
-        },
-      ],
+      type: 'article',
     },
   ],
 })

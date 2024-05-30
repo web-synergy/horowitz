@@ -17,7 +17,7 @@ export default defineType({
     }),
     defineField({
       name: 'country',
-      title: 'Країна',
+      title: 'Країна (за необхідністю)',
       type: 'internationalizedArrayString',
     }),
     defineField({

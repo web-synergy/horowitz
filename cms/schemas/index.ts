@@ -14,7 +14,6 @@ import group from './documents/group'
 import {gallery} from './objects/gallery'
 import sponsor from './objects/sponsor'
 import membersAdministration from './objects/membersAdministration'
-import video from './objects/video'
 import winners from './objects/winners'
 import {youtube} from './objects/youtube'
 import virtuosos from './documents/virtuosos'
@@ -33,12 +32,11 @@ import rehearsal from './objects/rehearsal'
 import schedule from './objects/schedule'
 import concert from './objects/concert'
 import gradient from './objects/gradient'
-import reward from './objects/reward'
 import jury from './documents/jury'
 import studentsJury from './objects/studentsJury'
 import guests from './documents/guests'
 import masterClass from './documents/masterClass'
-import description from './objects/description'
+import video from './objects/video'
 
 export const schemaTypes = [
   //documents
@@ -63,7 +61,6 @@ export const schemaTypes = [
 
   //objects
   winners,
-  video,
   sponsor,
   membersAdministration,
   content,
@@ -80,7 +77,6 @@ export const schemaTypes = [
   schedule,
   concert,
   gradient,
-  reward,
   studentsJury,
-  description,
+  video,
 ]

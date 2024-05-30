@@ -1,5 +1,4 @@
 import { IImage } from './commonTypes';
-import { IColorField } from './commonTypes';
 
 export type BannerType = CommonBannerProps &
   BannerSizeType &
@@ -27,14 +26,20 @@ interface NotFullSizeType {
 
 interface ColorOverlay {
   overlayType: 'monochrome';
-  overlayColor: IColorField;
+  overlayColor: string;
+  overlayOpacity: string;
 }
 
+export interface GradientColorType {
+  color: string;
+  alphaChannel: string;
+  position: number;
+}
 interface GradientOverlay {
   overlayType: 'gradient';
   overlayGradient: {
     degree: number;
-    colors: { value: IColorField; position: number }[];
+    colors: GradientColorType[];
   };
 }
 
@@ -46,13 +51,13 @@ export interface GradientBackground {
   backgroundType: 'gradient';
   backgroundGradient: {
     degree: number;
-    colors: { value: IColorField; position: number }[];
+    colors: GradientColorType[];
   };
 }
 
 export interface ColorBackground {
   backgroundType: 'monochrome';
-  backgroundColor: IColorField;
+  backgroundColor: string;
 }
 
 interface NoBackground {
