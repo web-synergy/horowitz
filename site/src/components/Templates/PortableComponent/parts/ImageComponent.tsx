@@ -1,7 +1,7 @@
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage } from '@/types/commonTypes';
 import { IPortableImgGallery } from '@/types/newsTypes';
-import { Box, useMediaQuery } from '@mui/material';
+import { Box,  useMediaQuery } from '@mui/material';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { PortableSwiper } from '../Swiper/Swiper';
 

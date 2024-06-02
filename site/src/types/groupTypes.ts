@@ -33,17 +33,11 @@ export interface CommonGroupType {
   timetable: PortableTextBlock[] | null;
   venues: TextBlockType[] | null;
   prizes: PortableTextBlock[] | null;
-  rewards: RewardsType[] | null;
+  rewards: PortableTextBlock[] | null;
   artists: ArtistType[] | null;
   juries: JuryType[] | null;
   guests: GuestType[] | null;
   booklet: string | null;
-}
-
-export interface RewardsType {
-  image: IImageReference;
-  title: string;
-  description: string;
 }
 
 export interface ArtistType {
@@ -77,16 +71,6 @@ export interface GuestType {
   avatar: TextBlockImageType;
   id: string;
 }
-
-// export interface ParticipantType {
-//   id: string;
-//   name: string;
-//   age: number;
-//   avatar: TextBlockImageType;
-//   biography: PortableTextBlock[];
-//   group: string;
-//   slug: string;
-// }
 
 export type WinnerType = {
   _key: string;

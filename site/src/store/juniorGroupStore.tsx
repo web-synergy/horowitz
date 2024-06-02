@@ -5,7 +5,7 @@ import {
   getGroupRequirementsData,
   getGroupTimetableData,
   // getJuniorVenuesData,
-  // getJuniorRewardsData,
+  getGroupRewardsData,
   // getJuniorArtistsData,
   // getJuniorJuryData,
   getJuniorStudentsJuryData,
@@ -102,10 +102,10 @@ export const useJuniorGroupStore = create<JuniorGroupState>((set, get) => ({
   //   // fetchData(id, language, getJuniorVenuesData);
   // },
 
-  // fetchRewards: async (id, language) => {
-  //   const { fetchData } = get();
-  //   // fetchData(id, language, getJuniorRewardsData);
-  // },
+  fetchRewards: async (id, language) => {
+    const { fetchData } = get();
+    fetchData(id, language, getGroupRewardsData);
+  },
 
   // fetchArtists: async (id, language) => {
   //   const { fetchData } = get();

@@ -16,7 +16,7 @@ import {
   groupJuryQuery,
   juniorGroupParticipants,
   groupRequirementsQuery,
-  juniorGroupRewardsQuery,
+  groupRewardsQuery,
   juniorGroupStudentJury,
   groupTimetableQuery,
   juniorGroupVenuesQuery,
@@ -73,11 +73,11 @@ export const getJuniorVenuesData = (
   return sanityFetch(juniorGroupVenuesQuery, { id, language });
 };
 
-export const getJuniorRewardsData = (
+export const getGroupRewardsData = (
   id: string,
   language: string
-): Promise<GroupType> => {
-  return sanityFetch(juniorGroupRewardsQuery, { id, language });
+): Promise<Pick<CommonGroupType, 'rewards'>> => {
+  return sanityFetch(groupRewardsQuery, { id, language });
 };
 
 export const getJuniorArtistsData = (

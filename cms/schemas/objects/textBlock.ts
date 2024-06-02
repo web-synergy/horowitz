@@ -22,11 +22,6 @@ export default defineType({
       title: 'Картинка',
       type: 'picture',
     },
-    {
-      name: 'authorRight',
-      title: 'Підпис до фото',
-      type: 'internationalizedArrayString',
-    },
   ],
   preview: {
     select: {

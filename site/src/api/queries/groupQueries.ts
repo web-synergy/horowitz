@@ -65,13 +65,8 @@ export const juniorGroupVenuesQuery = groq`*[_type == 'junior' && _id == $id][0]
       }
 }`;
 
-export const juniorGroupRewardsQuery = groq`*[_type == 'junior' && _id == $id][0]{
-  "rewards": rewards[]{
-    image, 
-    'title': title[_key ==$language][0].value, 
-    'description': description[_key ==$language][0].value, 
-  }, 
-  'prizes':  prizes[_key ==$language][0].value, 
+export const groupRewardsQuery = groq`*[_type == 'group' && _id == $id][0]{
+  "rewards": rewards[_key ==$language][0].value, 
 }`;
 
 export const juniorGroupArtistsQuery = groq`*[_type == 'junior' && _id == $id][0]{

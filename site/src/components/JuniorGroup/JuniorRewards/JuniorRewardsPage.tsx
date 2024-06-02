@@ -8,18 +8,16 @@ import GroupRewards from '@/components/GroupPages/GroupRewards/GroupRewards';
 
 const JuniorRewardsPage = () => {
   const { t } = useTranslation();
-  const { rewards, fetchRewards, prizes } = useJuniorGroupStore();
+  const { rewards, fetchRewards } = useJuniorGroupStore();
   const { slug } = useCompetitionStore();
 
   useJuniorGroupData(rewards, fetchRewards);
 
+  const title = t(`navigation.${Routes.GROUP_REWARDS}`);
+  const goBackLink = `${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`;
+
   return (
-    <GroupRewards
-      goBackLink={`${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`}
-      prizes={prizes}
-      rewards={rewards}
-      title={t(`navigation.${Routes.GROUP_REWARDS}`)}
-    />
+    <GroupRewards goBackLink={goBackLink} rewards={rewards} title={title} />
   );
 };
 

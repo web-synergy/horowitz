@@ -1,4 +1,3 @@
-import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 import {defineType} from 'sanity'
 
 export default defineType({
@@ -39,7 +38,7 @@ export default defineType({
       title: 'Учасники',
     },
     {
-      name: 'Rewards',
+      name: 'rewards',
       title: 'Премії',
     },
     {
@@ -219,6 +218,20 @@ export default defineType({
       ],
       group: 'preselectionJury',
       hidden: ({document}) => document?.groupType === 'junior',
+    },
+    {
+      name: 'isActiveRewards',
+      type: 'boolean',
+      title: 'Активувати сторінку Премії',
+      initialValue: false,
+      group: 'rewards',
+    },
+    {
+      name: 'rewards',
+      type: 'internationalizedArrayContent',
+      title: 'Премії, призи, ангажменти',
+
+      group: 'rewards',
     },
   ],
 })

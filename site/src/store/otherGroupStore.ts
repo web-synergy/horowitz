@@ -8,6 +8,7 @@ import {
   getGroupTimetableData,
   getGroupRequirementsData,
   getOtherGroupPreselectionJuryData,
+  getGroupRewardsData,
 } from '@/api';
 
 const initialState = {
@@ -97,17 +98,10 @@ export const useOtherGroupStore = create<OtherGroupState>((set, get) => ({
   //       set({ isLoading: false });
   //     }
   //   },
-  //   fetchRewards: async (id, language) => {
-  //     set({ isLoading: true, requestLang: language });
-  //     try {
-  //       const { rewards, prizes } = await getJuniorRewardsData(id, language);
-  //       set({ rewards, prizes });
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       set({ isLoading: false });
-  //     }
-  //   },
+  fetchRewards: async (id, language, group) => {
+    const { fetchData } = get();
+    fetchData(id, language, group, getGroupRewardsData);
+  },
 
   //   fetchArtists: async (id, language) => {
   //     set({ isLoading: true, requestLang: language });

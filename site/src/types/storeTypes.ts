@@ -137,7 +137,7 @@ export interface JuniorGroupState extends CommonGroupState, JuniorGroupType {
   fetchRequirements: FetchGroupData;
   fetchTimetable: FetchGroupData;
   // fetchVenues: FetchGroupData;
-  // fetchRewards: FetchGroupData;
+  fetchRewards: FetchGroupData;
   // fetchArtists: FetchGroupData;
   fetchJury: FetchGroupData;
   fetchStudentsJury: FetchGroupData;
@@ -165,6 +165,7 @@ export interface OtherGroupState extends CommonGroupState, OtherGroupType {
   fetchTimetable: FetchOtherGroupData;
   fetchRequirements: FetchOtherGroupData;
   fetchPreselectionJury: FetchOtherGroupData;
+  fetchRewards: FetchOtherGroupData;
 }
 
 export interface MasterClassStoreState {
