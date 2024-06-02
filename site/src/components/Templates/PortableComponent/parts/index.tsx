@@ -32,6 +32,14 @@ export const NowRap: FC<PortableTextMarkComponentProps> = ({ children }) => {
   return <span style={{ textWrap: 'nowrap' }}>{children}</span>;
 };
 
+export const Bold: FC<PortableTextMarkComponentProps> = ({ children }) => {
+  return (
+    <Typography variant="bodyMedium" component={'span'}>
+      {children}
+    </Typography>
+  );
+};
+
 export const Ul = ({ children }: { children: ReactNode }) => {
   return (
     <Typography

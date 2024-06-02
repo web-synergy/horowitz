@@ -8,7 +8,8 @@ import { Routes } from '@/types/routes.d';
 
 const JuniorStudentsJuryListPage = () => {
   const { t } = useTranslation();
-  const { studentsJury, fetchStudentsJury } = useJuniorGroupStore();
+  const { studentsJury, studentJuryDesc, fetchStudentsJury } =
+    useJuniorGroupStore();
   const { slug } = useCompetitionStore();
 
   useJuniorGroupData(studentsJury, fetchStudentsJury);
@@ -18,6 +19,7 @@ const JuniorStudentsJuryListPage = () => {
       title={t(`navigation.${Routes.GROUP_STUDENT_JURY}`)}
       goBackLink={`${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`}
       data={studentsJury}
+      desc={studentJuryDesc}
     />
   );
 };

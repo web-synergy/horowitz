@@ -75,6 +75,6 @@ export const TextBlock = styled(Typography)(() => ({
   display: 'block',
 
   '&:not(:last-of-type)': {
-    marginBottom: 16,
+    marginBottom: 4,
   },
 }));

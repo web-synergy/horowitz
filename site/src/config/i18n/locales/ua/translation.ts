@@ -10,7 +10,6 @@ import {
   Sponsors,
   SummerSchool,
   Virtuosos,
-  WarState,
   ETabs,
   EDebut,
 } from '@/types/translation.d';
@@ -107,9 +106,6 @@ export default {
 
   horowitzPage: {
     literature: 'Література',
-  },
-  warState: {
-    [WarState.TEXT]: 'Призупинено через війну в Україні',
   },
   notFound: {
     [NotFound.TITLE]: 'Вибачте, сторінку не знайдено',

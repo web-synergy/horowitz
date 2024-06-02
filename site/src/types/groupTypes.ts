@@ -1,6 +1,7 @@
 // import { IFileResponse } from './pdfTypes';
 import { PortableTextBlock } from '@portabletext/types';
 import { IPortableImgGallery } from './newsTypes';
+import { Routes } from './routes.d';
 
 import {
   IImageReference,
@@ -8,10 +9,14 @@ import {
   TextBlockImageType,
 } from './commonTypes';
 
-export interface OtherGroupPageProps {
-  group: 'intermediate' | 'senior';
+export type OtherGroupClassType = Routes.INTERMEDIATE | Routes.SENIOR;
+export interface GroupPageProps {
+  group: OtherGroupClassType;
 }
-interface CommonGroupType {
+
+export type GroupType = JuniorGroupType | OtherGroupType;
+
+export interface CommonGroupType {
   isActiveConditions: boolean;
   isActiveJury: boolean;
   isActiveTimetable: boolean;
@@ -30,7 +35,7 @@ interface CommonGroupType {
   prizes: PortableTextBlock[] | null;
   rewards: RewardsType[] | null;
   artists: ArtistType[] | null;
-  jury: JuryType[] | null;
+  juries: JuryType[] | null;
   guests: GuestType[] | null;
   booklet: string | null;
 }
@@ -51,18 +56,19 @@ export interface ArtistType {
 export interface JuryType {
   name: string;
   role?: string;
-  about: PortableTextBlock[];
+  about: string;
   avatar: TextBlockImageType;
   slug: string;
 }
 
-export interface StudentsJuryType {
+export interface ParticipantType {
   name: string;
   age: number;
   country?: string;
-  about: PortableTextBlock[];
-  avatar: TextBlockImageType;
+  biography: string;
+  avatar: IImageReference;
   _key: string;
+  slug: string;
 }
 
 export interface GuestType {
@@ -72,15 +78,15 @@ export interface GuestType {
   id: string;
 }
 
-export interface ParticipantType {
-  id: string;
-  name: string;
-  age: number;
-  avatar: TextBlockImageType;
-  biography: PortableTextBlock[];
-  group: string;
-  slug: string;
-}
+// export interface ParticipantType {
+//   id: string;
+//   name: string;
+//   age: number;
+//   avatar: TextBlockImageType;
+//   biography: PortableTextBlock[];
+//   group: string;
+//   slug: string;
+// }
 
 export type WinnerType = {
   _key: string;
@@ -90,14 +96,18 @@ export type WinnerType = {
 };
 
 export interface OtherGroupType extends CommonGroupType {
+  group: 'intermediate' | 'senior' | null;
   isActivePreselectionJury: boolean;
   winners: WinnerType[] | null;
   winnersGallery: IPortableImgGallery | null;
+  preselectionJury: JuryType[] | null;
 }
 
 export interface JuniorGroupType extends CommonGroupType {
+  group: 'junior';
   isActiveStudentsJury: boolean;
-  studentsJury: StudentsJuryType[] | null;
+  studentsJury: ParticipantType[] | null;
+  studentJuryDesc: string;
   debut: {
     groupA: ParticipantType[];
     groupB: ParticipantType[];

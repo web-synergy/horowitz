@@ -10,6 +10,7 @@ import {
   Ol,
   TextLink,
   Ul,
+  Bold,
 } from '@/components/Templates/PortableComponent/parts';
 
 export const components: PortableTextComponents = {
@@ -22,6 +23,7 @@ export const components: PortableTextComponents = {
     nw: NowRap,
     color: ColorText,
     link: TextLink,
+    strong: Bold,
   },
   block: {
     h2: ({ children }) => (

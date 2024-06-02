@@ -25,7 +25,6 @@ import summerSchool from './documents/summerSchool'
 import annualSummerSchool from './documents/annualSummerSchool'
 import picture from './objects/picture'
 import participant from './objects/participant'
-import participantShort from './objects/participantShort'
 import textBlock from './objects/textBlock'
 import professor from './objects/professor'
 import rehearsal from './objects/rehearsal'
@@ -33,7 +32,6 @@ import schedule from './objects/schedule'
 import concert from './objects/concert'
 import gradient from './objects/gradient'
 import jury from './documents/jury'
-import studentsJury from './objects/studentsJury'
 import guests from './documents/guests'
 import masterClass from './documents/masterClass'
 import video from './objects/video'
@@ -70,13 +68,11 @@ export const schemaTypes = [
   banner,
   picture,
   participant,
-  participantShort,
   textBlock,
   professor,
   rehearsal,
   schedule,
   concert,
   gradient,
-  studentsJury,
   video,
 ]

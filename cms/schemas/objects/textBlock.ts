@@ -15,7 +15,7 @@ export default defineType({
     {
       name: 'text',
       title: 'Основний текст',
-      type: 'internationalizedArrayArticle',
+      type: 'internationalizedArrayText',
     },
     {
       name: 'image',

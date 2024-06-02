@@ -8,7 +8,6 @@ import {
   KyivGeneva,
   Contacts,
   Buttons,
-  WarState,
   Virtuosos,
   SummerSchool,
   ETabs,
@@ -108,9 +107,7 @@ export default {
   horowitzPage: {
     literature: 'Literature',
   },
-  warState: {
-    [WarState.TEXT]: 'Paused due to the war in Ukraine',
-  },
+
   notFound: {
     [NotFound.TITLE]: 'Sorry, the page is not found.',
     [NotFound.TEXT]:

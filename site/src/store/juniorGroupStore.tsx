@@ -1,17 +1,18 @@
 import {
   getJuniorGroupData,
-  getJuniorConditionsData,
-  getJuniorRequirementsData,
-  getJuniorTimetableData,
-  getJuniorVenuesData,
-  getJuniorRewardsData,
-  getJuniorArtistsData,
-  getJuniorJuryData,
+  getGroupConditionsData,
+  getGroupJuryData,
+  getGroupRequirementsData,
+  getGroupTimetableData,
+  // getJuniorVenuesData,
+  // getJuniorRewardsData,
+  // getJuniorArtistsData,
+  // getJuniorJuryData,
   getJuniorStudentsJuryData,
-  getJuniorGuestsData,
-  getJuniorBookletData,
-  getJuniorParticipantsData,
-  getJuniorWinnersData,
+  // getJuniorGuestsData,
+  // getJuniorBookletData,
+  // getJuniorParticipantsData,
+  // getJuniorWinnersData,
 } from '@/api';
 import { JuniorGroupState } from '@/types/storeTypes';
 import { create } from 'zustand';
@@ -37,7 +38,7 @@ const initialState = {
   rewards: null,
   prizes: null,
   artists: null,
-  jury: null,
+  juries: null,
   studentsJury: null,
   guests: null,
   booklet: null,
@@ -46,11 +47,13 @@ const initialState = {
   winnersGallery: null,
   winners: null,
   galleries: null,
+  studentJuryDesc: '',
 };
 
 export const useJuniorGroupStore = create<JuniorGroupState>((set, get) => ({
   isLoading: false,
   requestLang: '',
+  group: 'junior',
   ...initialState,
 
   resetData: () => {
@@ -81,37 +84,37 @@ export const useJuniorGroupStore = create<JuniorGroupState>((set, get) => ({
 
   fetchConditions: async (id, language) => {
     const { fetchData } = get();
-    fetchData(id, language, getJuniorConditionsData);
+    fetchData(id, language, getGroupConditionsData);
   },
 
   fetchRequirements: async (id, language) => {
     const { fetchData } = get();
-    fetchData(id, language, getJuniorRequirementsData);
+    fetchData(id, language, getGroupRequirementsData);
   },
 
   fetchTimetable: async (id, language) => {
     const { fetchData } = get();
-    fetchData(id, language, getJuniorTimetableData);
+    fetchData(id, language, getGroupTimetableData);
   },
 
-  fetchVenues: async (id, language) => {
-    const { fetchData } = get();
-    fetchData(id, language, getJuniorVenuesData);
-  },
+  // fetchVenues: async (id, language) => {
+  //   const { fetchData } = get();
+  //   // fetchData(id, language, getJuniorVenuesData);
+  // },
 
-  fetchRewards: async (id, language) => {
-    const { fetchData } = get();
-    fetchData(id, language, getJuniorRewardsData);
-  },
+  // fetchRewards: async (id, language) => {
+  //   const { fetchData } = get();
+  //   // fetchData(id, language, getJuniorRewardsData);
+  // },
 
-  fetchArtists: async (id, language) => {
-    const { fetchData } = get();
-    fetchData(id, language, getJuniorArtistsData);
-  },
+  // fetchArtists: async (id, language) => {
+  //   const { fetchData } = get();
+  //   // fetchData(id, language, getJuniorArtistsData);
+  // },
 
   fetchJury: async (id, language) => {
     const { fetchData } = get();
-    fetchData(id, language, getJuniorJuryData);
+    fetchData(id, language, getGroupJuryData);
   },
 
   fetchStudentsJury: async (id, language) => {
@@ -119,23 +122,23 @@ export const useJuniorGroupStore = create<JuniorGroupState>((set, get) => ({
     fetchData(id, language, getJuniorStudentsJuryData);
   },
 
-  fetchGuests: async (id, language) => {
-    const { fetchData } = get();
-    fetchData(id, language, getJuniorGuestsData);
-  },
+  // fetchGuests: async (id, language) => {
+  //   const { fetchData } = get();
+  //   // fetchData(id, language, getJuniorGuestsData);
+  // },
 
-  fetchBooklet: async (id, language) => {
-    const { fetchData } = get();
-    fetchData(id, language, getJuniorBookletData);
-  },
+  // fetchBooklet: async (id, language) => {
+  //   const { fetchData } = get();
+  //   // fetchData(id, language, getJuniorBookletData);
+  // },
 
-  fetchParticipants: async (id, language) => {
-    const { fetchData } = get();
-    fetchData(id, language, getJuniorParticipantsData);
-  },
+  // fetchParticipants: async (id, language) => {
+  //   const { fetchData } = get();
+  //   // fetchData(id, language, getJuniorParticipantsData);
+  // },
 
-  fetchWinnersData: async (id, language) => {
-    const { fetchData } = get();
-    fetchData(id, language, getJuniorWinnersData);
-  },
+  // fetchWinnersData: async (id, language) => {
+  //   const { fetchData } = get();
+  //   // fetchData(id, language, getJuniorWinnersData);
+  // },
 }));

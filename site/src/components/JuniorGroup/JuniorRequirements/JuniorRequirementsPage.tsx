@@ -12,12 +12,11 @@ const JuniorRequirementsPage = () => {
 
   useJuniorGroupData(requirements, fetchRequirements);
 
+  const title = t(`navigation.${Routes.GROUP_REQUIREMENTS}`);
+  const goBackLink = `${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`;
+
   return (
-    <GroupTextPage
-      goBackLink={`${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`}
-      data={requirements}
-      title={t(`navigation.${Routes.GROUP_REQUIREMENTS}`)}
-    />
+    <GroupTextPage goBackLink={goBackLink} data={requirements} title={title} />
   );
 };
 

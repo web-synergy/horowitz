@@ -19,7 +19,7 @@ const GroupJuryCard: FC<GroupJuryCardProps> = ({ jury, goBackLink }) => {
         <Container>
           <CommonStackWrapper>
             <Typography variant="h1">{name}</Typography>
-            <TextBlockComponent textArray={about} img={avatar} />
+            <TextBlockComponent text={about} img={avatar} />
           </CommonStackWrapper>
         </Container>
       </PageTemplate>

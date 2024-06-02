@@ -9,13 +9,13 @@ export default defineType({
   type: 'object',
   fields: [
     defineField({
-      name: 'avatar',
-      title: 'Фото',
-      type: 'picture',
-    }),
-    defineField({
       name: 'name',
       title: "Прізвище та ім'я",
+      type: 'internationalizedArrayString',
+    }),
+    defineField({
+      name: 'country',
+      title: 'Країна (за необхідністю)',
       type: 'internationalizedArrayString',
     }),
     defineField({
@@ -43,14 +43,22 @@ export default defineType({
 
     defineField({
       name: 'biography',
-      title: 'Біографія',
-      type: 'internationalizedArrayArticle',
+      title: 'Короткий текст',
+      type: 'internationalizedArrayText',
+    }),
+    defineField({
+      name: 'avatar',
+      title: 'Фото',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     }),
   ],
   preview: {
     select: {
       name: 'name',
-      avatar: 'avatar.image',
+      avatar: 'avatar',
     },
     prepare(selection) {
       const {name, avatar} = selection

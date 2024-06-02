@@ -46,10 +46,6 @@ export enum NotFound {
   TEXT = 'text',
 }
 
-export enum WarState {
-  TEXT = 'text',
-}
-
 export enum InDevelopment {
   MSG = 'message',
 }

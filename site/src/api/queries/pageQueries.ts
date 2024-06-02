@@ -22,7 +22,7 @@ export const settingsQuery = groq`*[_type == 'settings'][0]{
   "sociable": {
     facebook, 
     instagram, 
-    youtube
+    youTube
   }, 
   'contacts': {
     'about':about[_key ==$language].value,

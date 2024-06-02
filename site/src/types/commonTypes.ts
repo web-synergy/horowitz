@@ -1,5 +1,4 @@
 import { SanityReference } from '@sanity/client';
-import { PortableTextBlock } from '@portabletext/types';
 
 export interface IImageReference {
   asset: SanityReference;
@@ -34,10 +33,11 @@ export interface IColorField {
 export interface TextBlockImageType {
   image: IImageReference;
   alt?: string;
+  //ToDo: remove aspect ration from image
   aspectRatio: '16/9' | '1/1' | '3/4';
 }
 export interface TextBlockType {
   title: string;
-  text: PortableTextBlock[];
+  text: string;
   image: TextBlockImageType;
 }

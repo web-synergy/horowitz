@@ -1,25 +1,26 @@
 import { FC } from 'react';
 import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { StudentsJuryType } from '@/types/groupTypes';
+import { ParticipantType } from '@/types/groupTypes';
 import Image from '@/components/Common/Image';
-import PortableComponent from '@/components/Templates/PortableComponent/PortableComponent';
+
 import { urlFor } from '@/config/sanity/imageUrl';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 import GrowView from '@/components/Common/GrowView';
 import { defineYearsText } from '@/utils/defineYearText';
+import { RegularText } from '@/components/Common/RegularText';
 
-const StudentJuryCard: FC<StudentsJuryType> = ({
+const StudentJuryCard: FC<ParticipantType> = ({
   age,
   avatar,
   country,
   name,
-  about,
+  biography,
 }) => {
   const { containerRef, containerSize } = useWidthBlokSize();
   const { t } = useTranslation();
 
-  const imageUrl = urlFor(avatar.image)
+  const imageUrl = urlFor(avatar)
     .auto('format')
     .width(containerSize)
     .height(containerSize)
@@ -27,6 +28,7 @@ const StudentJuryCard: FC<StudentsJuryType> = ({
     .toString();
 
   const yearsText = defineYearsText(age);
+
   return (
     <GrowView>
       <Box
@@ -67,7 +69,7 @@ const StudentJuryCard: FC<StudentsJuryType> = ({
           <Typography variant="subhead" component={'p'} mb={{ xs: 2, lg: 3 }}>
             {age} {t(`age.${yearsText}`)}
           </Typography>
-          <PortableComponent data={about} />
+          <RegularText text={biography} columnCount={1} />
         </Box>
       </Box>
     </GrowView>

@@ -1,22 +1,18 @@
-import {ColorValue} from '@sanity/color-input'
 import type {PreviewProps} from 'sanity'
 import './color.css'
 
 interface PreviewColorText extends PreviewProps {
-  value: {
-    color: ColorValue
-  }
+  value: string
 }
 
 export default function ColorText(props: PreviewColorText) {
-  const color = props.value?.color?.hex
-  const styles = {
-    color,
-  }
+  const color = props.value
+  console.log(color)
 
   return (
-    <span className="colorText" style={styles}>
-      {props.renderDefault(props)}
+    <span className="colorText">
+      Color
+      {/* {props.renderDefault(props)} */}
     </span>
   )
 }

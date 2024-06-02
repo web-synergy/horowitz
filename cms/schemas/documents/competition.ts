@@ -27,7 +27,7 @@ export default defineType({
       validation: (rule) => rule.required(),
     },
     {
-      name: 'isWarState',
+      name: 'isStubActive',
       title: 'Показувати заглушку',
       type: 'boolean',
     },
@@ -35,7 +35,7 @@ export default defineType({
       name: 'stubText',
       title: 'Текст для заглушки',
       type: 'internationalizedArrayString',
-      hidden: ({document}) => !document?.isWarState,
+      hidden: ({document}) => !document?.isStubActive,
     },
     {
       name: 'description',

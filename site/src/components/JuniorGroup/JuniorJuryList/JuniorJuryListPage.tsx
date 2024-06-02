@@ -8,17 +8,16 @@ import { Routes } from '@/types/routes.d';
 
 const JuniorJuryListPage = () => {
   const { t } = useTranslation();
-  const { jury, fetchJury } = useJuniorGroupStore();
+  const { juries, fetchJury } = useJuniorGroupStore();
   const { slug } = useCompetitionStore();
 
-  useJuniorGroupData(jury, fetchJury);
+  useJuniorGroupData(juries, fetchJury);
+
+  const title = t(`navigation.${Routes.GROUP_JURY}`);
+  const goBackLink = `${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`;
 
   return (
-    <GroupJuryList
-      title={t(`navigation.${Routes.GROUP_JURY}`)}
-      goBackLink={`${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`}
-      juryList={jury}
-    />
+    <GroupJuryList title={title} goBackLink={goBackLink} juryList={juries} />
   );
 };
 

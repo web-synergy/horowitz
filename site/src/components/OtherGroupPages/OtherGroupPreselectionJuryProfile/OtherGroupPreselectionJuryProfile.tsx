@@ -9,19 +9,20 @@ import Loader from '@/components/Common/Loader';
 import GroupJuryCard from '@/components/GroupPages/GroupJuryCard/GroupJuryCard';
 import { Routes } from '@/types/routes.d';
 
-const OtherGroupJuryProfilePage: FC<GroupPageProps> = ({ group }) => {
+const OtherGroupPreselectionJuryProfile: FC<GroupPageProps> = ({ group }) => {
   const { pathname } = useLocation();
 
-  const { juries, fetchJury } = useOtherGroupStore();
+  const { preselectionJury, fetchPreselectionJury } = useOtherGroupStore();
   const { slug } = useCompetitionStore();
 
-  useOtherGroupData(juries, fetchJury, group);
+  useOtherGroupData(preselectionJury, fetchPreselectionJury, group);
 
   const jurySlug = pathname.split('/').slice(-1)[0];
   const juryDataInStore =
-    juries && juries.find((profile) => profile.slug === jurySlug);
+    preselectionJury &&
+    preselectionJury.find((profile) => profile.slug === jurySlug);
 
-  if (!juryDataInStore && juries) {
+  if (!juryDataInStore && preselectionJury) {
     return <Navigate to={'/404'} />;
   }
 
@@ -32,9 +33,9 @@ const OtherGroupJuryProfilePage: FC<GroupPageProps> = ({ group }) => {
   return (
     <GroupJuryCard
       jury={juryDataInStore}
-      goBackLink={`${Routes.COMPETITIONS}/${slug}/${group}/${Routes.GROUP_JURY}`}
+      goBackLink={`${Routes.COMPETITIONS}/${slug}/${group}/${Routes.GROUP_PRESELECTION_JURY}`}
     />
   );
 };
 
-export default OtherGroupJuryProfilePage;
+export default OtherGroupPreselectionJuryProfile;
