@@ -1,4 +1,4 @@
-import groq from "groq";
+import groq from 'groq';
 
 export const homeQuery = groq`*[_type == 'home'][0]{
   'news':*[_type == 'news'  && length(title[_key ==$language].value) != 0]| order( dateTime(date)  desc) [0 ...3]{
@@ -35,8 +35,9 @@ export const settingsQuery = groq`*[_type == 'settings'][0]{
     },
   },
   "competitions": *[_type == 'competition']{
-'slug':slug.current,
-'title':title[_key ==$language].value,}, 
+      'slug':slug.current,
+      'title':title[_key ==$language].value,
+  }, 
 }`;
 
 export const horowitzQuery = groq`*[_type == 'horowitz'][0] {

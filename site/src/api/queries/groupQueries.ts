@@ -5,7 +5,7 @@ export const juniorGroupCommonQuery = groq`*[_type == 'group' && _id == $id][0]{
     isActiveConditions,
     isActiveGuests,
     isActiveJury,
-    isActiveOrchestra,
+    isActiveArtists,
     isActiveParticipants,
     isActiveRequirements,
     isActiveRewards,
@@ -20,7 +20,7 @@ export const otherGroupCommonQuery = groq`*[_type == 'group' && _id == $id][0]{
     isActiveConditions,
     isActiveGuests,
     isActiveJury,
-    isActiveOrchestra,
+    isActiveArtists,
     isActiveParticipants,
     isActiveRequirements,
     isActiveRewards,
@@ -57,7 +57,7 @@ export const groupTimetableQuery = groq`*[_type == 'group' && _id == $id][0]{
   "timetable": timetable[_key ==$language][0].value
 }`;
 
-export const juniorGroupVenuesQuery = groq`*[_type == 'junior' && _id == $id][0]{
+export const groupVenuesQuery = groq`*[_type == 'group' && _id == $id][0]{
   "venues": venues[] {
     "title":  title[_key ==$language][0].value, 
     'text': text[_key ==$language][0].value, 
@@ -69,12 +69,12 @@ export const groupRewardsQuery = groq`*[_type == 'group' && _id == $id][0]{
   "rewards": rewards[_key ==$language][0].value, 
 }`;
 
-export const juniorGroupArtistsQuery = groq`*[_type == 'junior' && _id == $id][0]{
-  "artists": orchestra[]{
+export const groupArtistsQuery = groq`*[_type == 'group' && _id == $id][0]{
+  "artists": artists[]{
     image, 
     'title': title[_key ==$language][0].value, 
-    'description': description[_key ==$language][0].value, 
-    "copyRight": copyRight[_key ==$language][0].value,
+    'text': text[_key ==$language][0].value, 
+
   }, 
   
 }`;
@@ -102,7 +102,7 @@ export const otherGroupPreselectionJury = groq`*[_type == 'group' && _id == $id]
 }
 `;
 
-export const juniorGroupGuests = groq`*[_type == 'junior' && _id == $id][0]{
+export const groupGuests = groq`*[_type == 'group' && _id == $id][0]{
   "guests": guests[]-> {
     'id': _id, 
     "about": about[_key ==$language][0].value, 
@@ -112,60 +112,21 @@ export const juniorGroupGuests = groq`*[_type == 'junior' && _id == $id][0]{
 }
 `;
 
-export const juniorGroupBooklet = groq`*[_type == 'junior' && _id == $id][0]{
- "booklet": booklet.file.asset->url
+export const groupBooklet = groq`*[_type == 'group' && _id == $id][0]{
+ "booklet": booklet.asset->url
  }
 `;
 
-export const juniorGroupParticipants = groq`*[_type == 'junior' && _id == $id][0]{
-  "debut": {
-    "groupA": groupA[]{
+export const juniorGroupParticipants = groq`*[_type == 'group' && _id == $id][0]{
+  "participants": participants[] {
       "id": _key, 
       age, 
       avatar, 
-       "name": name[_key ==$language][0].value,
+      "name": name[_key ==$language][0].value,
       "biography": biography[_key ==$language][0].value, 
-      "group": "groupA",
+      "group": subgroup,
       "slug": slug.current,
     }, 
-    'groupB': groupB[]{
-       "id": _key, 
-      age, 
-      avatar, 
-       "name": name[_key ==$language][0].value,
-      "biography": biography[_key ==$language][0].value, 
-      "group": "groupB",
-      "slug": slug.current,
-    }, 
-    'groupC': groupC[]{
-       "id": _key, 
-      age, 
-      avatar, 
-       "name": name[_key ==$language][0].value,
-      "biography": biography[_key ==$language][0].value, 
-      "group": "groupC",
-      "slug": slug.current,
-    }, 
-    "groupD": groupD[]{
-       "id": _key, 
-      age, 
-      avatar, 
-       "name": name[_key ==$language][0].value,
-      "biography": biography[_key ==$language][0].value, 
-      "group": "groupD",
-      "slug": slug.current,
-    }
-  },   
-
-  "junior": junior[]{
-     "id": _key, 
-      age, 
-      avatar, 
-       "name": name[_key ==$language][0].value,
-      "biography": biography[_key ==$language][0].value, 
-      "group": "junior",
-      "slug": slug.current,
-  }
 }
 `;
 

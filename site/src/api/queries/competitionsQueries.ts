@@ -8,6 +8,7 @@ export const competitionsQuery = groq`*[_type == 'competition' && slug.current =
   intermediateBtn, 
   seniorBtn, 
   mainBanner, 
+  "slug": slug.current, 
   "junior":junior->{
     _id, 
     isActive, 

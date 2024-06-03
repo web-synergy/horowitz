@@ -1,4 +1,5 @@
 import {defineType} from 'sanity'
+import {PiFilePdf} from 'react-icons/pi'
 
 export default defineType({
   name: 'group',
@@ -42,7 +43,7 @@ export default defineType({
       title: 'Премії',
     },
     {
-      name: 'orchestra',
+      name: 'artists',
       title: 'Оркестр і диригент',
     },
     {
@@ -58,7 +59,7 @@ export default defineType({
       title: 'Почесні гості',
     },
     {
-      name: 'book',
+      name: 'booklet',
       title: 'Буклет',
     },
   ],
@@ -232,6 +233,83 @@ export default defineType({
       title: 'Премії, призи, ангажменти',
 
       group: 'rewards',
+    },
+
+    {
+      name: 'isActiveArtists',
+      type: 'boolean',
+      title: 'Активувати сторінку Оркестр та диригент',
+      initialValue: false,
+      group: 'artists',
+    },
+    {
+      name: 'artists',
+      type: 'array',
+      title: 'Оркестр та диригент',
+      of: [{type: 'textBlock'}],
+      group: 'artists',
+    },
+    {
+      name: 'isActiveVenues',
+      type: 'boolean',
+      title: 'Активувати сторінку Локації',
+      initialValue: false,
+      group: 'venues',
+    },
+    {
+      name: 'venues',
+      type: 'array',
+      title: 'Локації',
+      of: [{type: 'textBlock'}],
+      group: 'venues',
+    },
+    {
+      name: 'isActiveGuests',
+      type: 'boolean',
+      title: 'Активувати сторінку Почесні гості',
+      initialValue: false,
+      group: 'guests',
+    },
+
+    {
+      name: 'guests',
+      type: 'array',
+      title: 'Почесні гості',
+      of: [{type: 'reference', to: [{type: 'guest'}], title: 'Список гостей'}],
+      group: 'guests',
+    },
+
+    {
+      name: 'isActiveBooklet',
+      type: 'boolean',
+      title: 'Активувати Сторінку Буклет',
+      initialValue: false,
+      group: 'booklet',
+    },
+    {
+      name: 'booklet',
+      type: 'file',
+      title: 'Буклет',
+      icon: PiFilePdf,
+      group: 'booklet',
+      options: {
+        accept: 'application/pdf',
+      },
+    },
+    {
+      name: 'isActiveParticipants',
+      type: 'boolean',
+      title: 'Активувати сторінку Учасники',
+      initialValue: false,
+      group: 'participants',
+    },
+
+    {
+      name: 'participants',
+      type: 'array',
+      title: 'Учасники',
+      of: [{type: 'participant'}],
+      group: 'participants',
     },
   ],
 })

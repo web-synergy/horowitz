@@ -16,7 +16,7 @@ const JuniorMainPage = () => {
     isActiveConditions,
     isActiveGuests,
     isActiveJury,
-    isActiveOrchestra,
+    isActiveArtists,
     isActiveParticipants,
     isActiveRequirements,
     isActiveRewards,
@@ -46,7 +46,7 @@ const JuniorMainPage = () => {
       case Routes.GROUP_REWARDS:
         return { ...item, isActive: isActiveRewards };
       case Routes.GROUP_ORCHESTRA:
-        return { ...item, isActive: isActiveOrchestra };
+        return { ...item, isActive: isActiveArtists };
       case Routes.GROUP_WINNERS:
         return { ...item, isActive: isActiveWinners };
       case Routes.GROUP_VENUES:

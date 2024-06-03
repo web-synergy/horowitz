@@ -13,18 +13,20 @@ interface DebutGroupProps {
 
 const DebutGroup: FC<DebutGroupProps> = ({ title }) => {
   const { t } = useTranslation();
-  const { debut } = useJuniorGroupStore();
+  const { participants } = useJuniorGroupStore();
 
-  const key = title
-    .split('-')
-    .map((item) => (item.length > 1 ? item : item.toUpperCase()))
-    .join('');
+  // const key = title
+  //   .split('-')
+  //   .map((item) => (item.length > 1 ? item : item.toUpperCase()))
+  //   .join('');
 
-  if (!debut) {
+  const groupParticipants = participants?.filter(
+    (item) => item.group === title
+  );
+
+  if (!groupParticipants) {
     return;
   }
-
-  const participants = debut[key as keyof typeof debut];
 
   const translatedTitle = t(`navigation.${title}`);
   return (
@@ -32,7 +34,7 @@ const DebutGroup: FC<DebutGroupProps> = ({ title }) => {
       <Typography variant="h1" component="h2">
         {translatedTitle}
       </Typography>
-      <GridTemplate gridItem={ParticipantCard} list={participants} />
+      <GridTemplate gridItem={ParticipantCard} list={groupParticipants} />
     </CommonStackWrapper>
   );
 };

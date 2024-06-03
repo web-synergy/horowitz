@@ -8,6 +8,7 @@ import {
   TextBlockType,
   TextBlockImageType,
 } from './commonTypes';
+import { EDebut, ETabs } from './translation';
 
 export type OtherGroupClassType = Routes.INTERMEDIATE | Routes.SENIOR;
 export interface GroupPageProps {
@@ -23,7 +24,7 @@ export interface CommonGroupType {
   isActiveRequirements: boolean;
   isActiveParticipants: boolean;
   isActiveRewards: boolean;
-  isActiveOrchestra: boolean;
+  isActiveArtists: boolean;
   isActiveWinners: boolean;
   isActiveVenues: boolean;
   isActiveGuests: boolean;
@@ -34,17 +35,10 @@ export interface CommonGroupType {
   venues: TextBlockType[] | null;
   prizes: PortableTextBlock[] | null;
   rewards: PortableTextBlock[] | null;
-  artists: ArtistType[] | null;
+  artists: TextBlockType[] | null;
   juries: JuryType[] | null;
   guests: GuestType[] | null;
   booklet: string | null;
-}
-
-export interface ArtistType {
-  image: IImageReference;
-  copyRight?: string;
-  title: string;
-  description: PortableTextBlock[];
 }
 
 export interface JuryType {
@@ -65,9 +59,13 @@ export interface ParticipantType {
   slug: string;
 }
 
+export interface JuniorParticipantType extends ParticipantType {
+  group: EDebut | ETabs;
+}
+
 export interface GuestType {
   name: string;
-  about: PortableTextBlock[];
+  about: string;
   avatar: TextBlockImageType;
   id: string;
 }
@@ -85,6 +83,7 @@ export interface OtherGroupType extends CommonGroupType {
   winners: WinnerType[] | null;
   winnersGallery: IPortableImgGallery | null;
   preselectionJury: JuryType[] | null;
+  participants: ParticipantType[] | null;
 }
 
 export interface JuniorGroupType extends CommonGroupType {
@@ -92,13 +91,8 @@ export interface JuniorGroupType extends CommonGroupType {
   isActiveStudentsJury: boolean;
   studentsJury: ParticipantType[] | null;
   studentJuryDesc: string;
-  debut: {
-    groupA: ParticipantType[];
-    groupB: ParticipantType[];
-    groupC: ParticipantType[];
-    groupD: ParticipantType[];
-  } | null;
-  junior: ParticipantType[] | null;
+  participants: JuniorParticipantType[] | null;
+
   winners: {
     groupA: WinnerType[];
     groupB: WinnerType[];

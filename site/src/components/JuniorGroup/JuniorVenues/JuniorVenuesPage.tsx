@@ -12,13 +12,11 @@ const JuniorVenuesPage = () => {
   const { slug } = useCompetitionStore();
 
   useJuniorGroupData(venues, fetchVenues);
+  const title = t(`navigation.${Routes.GROUP_VENUES}`);
+  const goBackLink = `${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`;
 
   return (
-    <GroupTextArrayPage
-      title={t(`navigation.${Routes.GROUP_VENUES}`)}
-      data={venues}
-      goBackLink={`${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`}
-    />
+    <GroupTextArrayPage title={title} data={venues} goBackLink={goBackLink} />
   );
 };
 

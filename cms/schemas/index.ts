@@ -32,7 +32,7 @@ import schedule from './objects/schedule'
 import concert from './objects/concert'
 import gradient from './objects/gradient'
 import jury from './documents/jury'
-import guests from './documents/guests'
+import guest from './documents/guest'
 import masterClass from './documents/masterClass'
 import video from './objects/video'
 
@@ -55,7 +55,7 @@ export const schemaTypes = [
   annualSummerSchool,
   group,
   jury,
-  guests,
+  guest,
 
   //objects
   winners,

@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineType} from 'sanity'
 import {CgProfile} from 'react-icons/cg'
 
 export default defineType({

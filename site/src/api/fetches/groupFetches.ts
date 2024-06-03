@@ -1,6 +1,5 @@
 import {
   CommonGroupType,
-  GroupType,
   JuniorGroupType,
   OtherGroupType,
 } from '@/types/groupTypes';
@@ -10,16 +9,16 @@ import {
   juniorGroupCommonQuery,
   otherGroupCommonQuery,
   groupConditionQuery,
-  juniorGroupArtistsQuery,
-  juniorGroupBooklet,
-  juniorGroupGuests,
+  groupArtistsQuery,
+  groupBooklet,
+  groupGuests,
   groupJuryQuery,
   juniorGroupParticipants,
   groupRequirementsQuery,
   groupRewardsQuery,
   juniorGroupStudentJury,
   groupTimetableQuery,
-  juniorGroupVenuesQuery,
+  groupVenuesQuery,
   juniorWinners,
   otherGroupPreselectionJury,
 } from '../query';
@@ -66,11 +65,11 @@ export const getGroupTimetableData = (
   return sanityFetch(groupTimetableQuery, { id, language });
 };
 
-export const getJuniorVenuesData = (
+export const getGroupVenuesData = (
   id: string,
   language: string
-): Promise<GroupType> => {
-  return sanityFetch(juniorGroupVenuesQuery, { id, language });
+): Promise<Pick<CommonGroupType, 'venues'>> => {
+  return sanityFetch(groupVenuesQuery, { id, language });
 };
 
 export const getGroupRewardsData = (
@@ -80,11 +79,11 @@ export const getGroupRewardsData = (
   return sanityFetch(groupRewardsQuery, { id, language });
 };
 
-export const getJuniorArtistsData = (
+export const getGroupArtistsData = (
   id: string,
   language: string
-): Promise<GroupType> => {
-  return sanityFetch(juniorGroupArtistsQuery, { id, language });
+): Promise<Pick<CommonGroupType, 'artists'>> => {
+  return sanityFetch(groupArtistsQuery, { id, language });
 };
 
 export const getJuniorStudentsJuryData = (
@@ -101,30 +100,37 @@ export const getOtherGroupPreselectionJuryData = (
   return sanityFetch(otherGroupPreselectionJury, { id, language });
 };
 
-export const getJuniorGuestsData = (
+export const getGroupGuestsData = (
   id: string,
   language: string
-): Promise<GroupType> => {
-  return sanityFetch(juniorGroupGuests, { id, language });
+): Promise<Pick<OtherGroupType, 'guests'>> => {
+  return sanityFetch(groupGuests, { id, language });
 };
 
-export const getJuniorBookletData = (
+export const getGroupBookletData = (
   id: string,
   language: string
-): Promise<GroupType> => {
-  return sanityFetch(juniorGroupBooklet, { id, language });
+): Promise<Pick<CommonGroupType, 'artists'>> => {
+  return sanityFetch(groupBooklet, { id, language });
 };
 
 export const getJuniorParticipantsData = (
   id: string,
   language: string
-): Promise<GroupType> => {
+): Promise<Pick<JuniorGroupType, 'participants'>> => {
+  return sanityFetch(juniorGroupParticipants, { id, language });
+};
+
+export const getOtherGroupParticipantsData = (
+  id: string,
+  language: string
+): Promise<Pick<OtherGroupType, 'participants'>> => {
   return sanityFetch(juniorGroupParticipants, { id, language });
 };
 
 export const getJuniorWinnersData = (
   id: string,
   language: string
-): Promise<GroupType> => {
+): Promise<Pick<JuniorGroupType, 'winners'>> => {
   return sanityFetch(juniorWinners, { id, language });
 };

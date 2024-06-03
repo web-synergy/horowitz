@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Container, Typography } from '@mui/material';
-import { ArtistType } from '@/types/groupTypes';
+import { TextBlockType } from '@/types/commonTypes';
 import PageTemplate from '@/components/Common/PageTemplate';
 import GoBackBtn from '@/components/Common/GoBackBtn';
 import ArtistCard from './parts/ArtistCard';
@@ -8,11 +8,13 @@ import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
 
 interface GroupArtistsProps {
   title: string;
-  data: ArtistType[] | null;
+  data: TextBlockType[] | null;
   goBackLink: string;
 }
 
 const GroupArtists: FC<GroupArtistsProps> = ({ data, goBackLink, title }) => {
+  if (!data) return;
+
   return (
     <>
       <PageTemplate>

@@ -35,10 +35,10 @@ export enum ETabs {
 }
 
 export enum EDebut {
-  GROUP_A = 'group-a',
-  GROUP_B = 'group-b',
-  GROUP_C = 'group-c',
-  GROUP_D = 'group-d',
+  GROUP_A = 'groupA',
+  GROUP_B = 'groupB',
+  GROUP_C = 'groupC',
+  GROUP_D = 'groupD',
 }
 
 export enum NotFound {

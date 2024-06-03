@@ -9,9 +9,9 @@ import DebutGroup from './parts/DebutGroup';
 
 const JuniorParticipantsPage = () => {
   const { t } = useTranslation();
-  const { junior, fetchParticipants } = useJuniorGroupStore();
+  const { participants, fetchParticipants } = useJuniorGroupStore();
 
-  useJuniorGroupData(junior, fetchParticipants);
+  useJuniorGroupData(participants, fetchParticipants);
 
   const title = t(`navigation.${Routes.GROUP_PARTICIPANTS}`);
 

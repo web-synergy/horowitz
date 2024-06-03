@@ -9,6 +9,10 @@ import {
   getGroupRequirementsData,
   getOtherGroupPreselectionJuryData,
   getGroupRewardsData,
+  getGroupArtistsData,
+  getGroupVenuesData,
+  getGroupGuestsData,
+  getGroupBookletData,
 } from '@/api';
 
 const initialState = {
@@ -20,7 +24,7 @@ const initialState = {
   isActiveRequirements: false,
   isActiveParticipants: false,
   isActiveRewards: false,
-  isActiveOrchestra: false,
+  isActiveArtists: false,
   isActiveWinners: false,
   isActiveVenues: false,
   isActiveGuests: false,
@@ -38,6 +42,7 @@ const initialState = {
   booklet: null,
   winnersGallery: null,
   winners: null,
+  participants: null,
 };
 
 export const useOtherGroupStore = create<OtherGroupState>((set, get) => ({
@@ -87,33 +92,19 @@ export const useOtherGroupStore = create<OtherGroupState>((set, get) => ({
     const { fetchData } = get();
     fetchData(id, language, group, getGroupTimetableData);
   },
-  //   fetchVenues: async (id, language) => {
-  //     set({ isLoading: true, requestLang: language });
-  //     try {
-  //       const { venues } = await getJuniorVenuesData(id, language);
-  //       set({ venues });
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       set({ isLoading: false });
-  //     }
-  //   },
+  fetchVenues: async (id, language, group) => {
+    const { fetchData } = get();
+    fetchData(id, language, group, getGroupVenuesData);
+  },
   fetchRewards: async (id, language, group) => {
     const { fetchData } = get();
     fetchData(id, language, group, getGroupRewardsData);
   },
 
-  //   fetchArtists: async (id, language) => {
-  //     set({ isLoading: true, requestLang: language });
-  //     try {
-  //       const { artists } = await getJuniorArtistsData(id, language);
-  //       set({ artists });
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       set({ isLoading: false });
-  //     }
-  //   },
+  fetchArtists: async (id, language, group) => {
+    const { fetchData } = get();
+    fetchData(id, language, group, getGroupArtistsData);
+  },
 
   fetchJury: async (id, language, group) => {
     const { fetchData } = get();
@@ -125,29 +116,15 @@ export const useOtherGroupStore = create<OtherGroupState>((set, get) => ({
     fetchData(id, language, group, getOtherGroupPreselectionJuryData);
   },
 
-  //   fetchGuests: async (id, language) => {
-  //     set({ isLoading: true, requestLang: language });
-  //     try {
-  //       const { guests } = await getJuniorGuestsData(id, language);
-  //       set({ guests });
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       set({ isLoading: false });
-  //     }
-  //   },
+  fetchGuests: async (id, language, group) => {
+    const { fetchData } = get();
+    fetchData(id, language, group, getGroupGuestsData);
+  },
 
-  //   fetchBooklet: async (id, language) => {
-  //     set({ isLoading: true, requestLang: language });
-  //     try {
-  //       const { booklet } = await getJuniorBookletData(id, language);
-  //       set({ booklet });
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       set({ isLoading: false });
-  //     }
-  //   },
+  fetchBooklet: async (id, language, group) => {
+    const { fetchData } = get();
+    fetchData(id, language, group, getGroupBookletData);
+  },
 
   //   fetchParticipants: async (id, language) => {
   //     set({ isLoading: true, requestLang: language });

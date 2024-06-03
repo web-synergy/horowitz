@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { ParticipantType } from '@/types/groupTypes';
+import { JuniorParticipantType } from '@/types/groupTypes';
 import { useLocation } from 'react-router-dom';
 import ParticipantItem from '@/components/GroupPages/GroupParticipantList/parts/ParticipantItem';
 
 interface ParticipantCardProps {
-  item: ParticipantType;
+  item: JuniorParticipantType;
 }
 
 const ParticipantCard: FC<ParticipantCardProps> = ({ item }) => {
@@ -18,7 +18,7 @@ const ParticipantCard: FC<ParticipantCardProps> = ({ item }) => {
   return (
     <ParticipantItem
       age={age}
-      img={avatar.image}
+      img={avatar}
       name={name}
       readMoreLink={readMoreLink}
     />
