@@ -5,12 +5,7 @@ import { AboutCompetitionState } from '@/types/storeTypes';
 export const useAboutCompetitionStore = create<AboutCompetitionState>(
   (set) => ({
     mainBanner: null,
-    upperTextBlock: [],
-    middleTextBlock: [],
-    lowerTextBlock: [],
-    imgHistoryOne: null,
-    imgHistoryTwo: null,
-    imgStatistics: null,
+    blocks: [],
     isLoading: false,
     additionalText: [],
     requestLang: '',

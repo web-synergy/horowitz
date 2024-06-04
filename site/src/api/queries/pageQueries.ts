@@ -48,7 +48,7 @@ export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
     'quote': quote[_key ==$language].value,
   },
   'lowerTextBlock': lowerTextBlock[_key ==$language][0].value,
-  'literature': literature[],
+  'literature': literature,
 }`;
 
 export const newsQuery = groq`*[_type == 'news' && length(title[_key ==$language].value) != 0] | order(dateTime(date) desc
@@ -98,12 +98,10 @@ export const partners = groq`*[_type == 'partners'][0]{
 
 export const aboutCompetitionQuery = groq`*[_type == 'aboutHorowitzCompetition'][0] {
   'mainBanner': mainBanner,
-  'upperTextBlock': upperTextBlock[_key ==$language][0].value,
-  'middleTextBlock': middleTextBlock[_key ==$language][0].value,
-  'lowerTextBlock': lowerTextBlock[_key ==$language][0].value,
-  'imgHistoryOne': imgHistoryOne[_key ==$language][0].value,
-  'imgHistoryTwo': imgHistoryTwo[_key ==$language][0].value,
-  'imgStatistics': imgStatistics[_key ==$language][0].value,
+  'blocks': blocks[]{
+    "textBlock": textBlock[_key ==$language][0].value,
+    "imageBlock": imageBlock[_key ==$language][0].value,
+  },  
   'additionalText': additionalText[_key ==$language][0].value,
 
 }`;

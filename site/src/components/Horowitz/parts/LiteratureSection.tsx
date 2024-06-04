@@ -1,11 +1,10 @@
-import React from "react";
-import { Box, Collapse } from "@mui/material";
-import { PortableTextBlock } from "@portabletext/types";
-import { PortableText } from "@portabletext/react";
-import { collapsComponents, components } from "../portableComponents";
+import React from 'react';
+import { Box, Collapse } from '@mui/material';
+import { RegularText } from '@/components/Common/RegularText';
+import { transformText } from '@/utils/transfromText';
 
 export interface LiteratureSectionProps {
-  literature: PortableTextBlock[];
+  literature: string;
   isAllLiteratureVisible: boolean;
 }
 
@@ -13,18 +12,18 @@ const LiteratureSection: React.FC<LiteratureSectionProps> = ({
   literature,
   isAllLiteratureVisible,
 }) => {
+  const literatureArray = transformText(literature);
+  const staticLiterature = literatureArray.slice(0, 5).join('\n');
+  const collapseLiterature = literatureArray.slice(5).join('\n');
   return (
     <Box
       sx={{
         paddingTop: 3,
       }}
     >
-      <PortableText value={literature.slice(0, 5)} components={components} />
+      <RegularText text={staticLiterature} columnCount={1} />
       <Collapse in={isAllLiteratureVisible} timeout={1000}>
-        <PortableText
-          value={literature.slice(5)}
-          components={collapsComponents}
-        />
+        <RegularText text={collapseLiterature} columnCount={1} />
       </Collapse>
     </Box>
   );

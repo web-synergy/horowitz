@@ -9,7 +9,7 @@ import StudentJuryCard from './parts/StudentJuryCard';
 interface GroupStudentJuryProps {
   title: string;
   data: ParticipantType[] | null;
-  desc: string;
+  desc?: string;
   goBackLink: string;
 }
 
@@ -26,11 +26,11 @@ const GroupStudentJury: FC<GroupStudentJuryProps> = ({
         <Container>
           <CommonStackWrapper>
             <Typography variant="h1">{title}</Typography>
-            <Typography component="p">{desc}</Typography>
+            {desc && <Typography component="p">{desc}</Typography>}
             {data && (
               <Stack gap={8}>
                 {data.map((item) => (
-                  <StudentJuryCard key={item._key} {...item} />
+                  <StudentJuryCard key={item.id} {...item} />
                 ))}
               </Stack>
             )}
