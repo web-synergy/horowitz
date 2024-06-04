@@ -11,7 +11,7 @@ import CommonStackWrapper from '../Common/CommonStackWrapper';
 import ButtonsArea from './parts/ButtonsArea';
 import { RegularText } from '../Common/RegularText';
 import { StyledBox } from './parts/styled';
-import { transformText } from '@/utils/transfromText';
+
 import { ImagesArray } from '../Templates/PortableComponent/parts/ImageComponent';
 
 const SummerSchoolPage: FC = () => {
@@ -56,9 +56,9 @@ const SummerSchoolPage: FC = () => {
           <Typography component={'h1'} variant="h1" textAlign={'center'}>
             {t(`summerSchool.${SummerSchool.TITLE}`)}
           </Typography>
-          <RegularText blocks={transformText(topText)} />
+          <RegularText text={topText} />
           {infographicImg && <ImageComponent image={infographicImg} />}
-          <RegularText blocks={transformText(bottomText)} />
+          <RegularText text={bottomText} />
 
           <StyledBox>
             <ButtonsArea btnsList={annualSummerSchool} />

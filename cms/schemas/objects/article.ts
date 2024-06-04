@@ -19,21 +19,6 @@ const article = defineType({
           {title: 'No wrap', value: 'nw', icon: TbTextWrapDisabled, component: NoWrap},
         ],
         annotations: [
-          // {
-          //   title: 'Color',
-          //   type: 'object',
-          //   name: 'color',
-          //   icon: IoIosColorPalette,
-          //   fields: [
-          //     {
-          //       name: 'color',
-          //       type: 'color',
-          //     },
-          //   ],
-          //   components: {
-          //     annotation: ColorText,
-          //   },
-          // },
           {
             name: 'link',
             type: 'object',

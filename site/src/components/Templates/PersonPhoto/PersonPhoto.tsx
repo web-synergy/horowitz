@@ -6,7 +6,7 @@ import { urlFor } from '@/config/sanity/imageUrl';
 import Image from '@/components/Common/Image';
 
 interface PersonPhotoProps {
-  image: IImageReference;
+  image: IImageReference | undefined;
   alt: string;
 }
 
@@ -28,6 +28,19 @@ const PersonPhoto: FC<PersonPhotoProps> = ({ image, alt }) => {
     : MOBILE_ASPECT;
 
   const imageHeight = Math.floor(containerSize / aspectRatio);
+
+  if (!image) {
+    return (
+      <Box
+        sx={{
+          width: '100%',
+          height: imageHeight,
+          backgroundColor: (theme) => theme.palette.neutral[30],
+        }}
+        ref={containerRef}
+      ></Box>
+    );
+  }
 
   const imageSrc = urlFor(image)
     .auto('format')

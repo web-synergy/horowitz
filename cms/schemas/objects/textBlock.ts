@@ -15,17 +15,12 @@ export default defineType({
     {
       name: 'text',
       title: 'Основний текст',
-      type: 'internationalizedArrayArticle',
+      type: 'internationalizedArrayText',
     },
     {
       name: 'image',
       title: 'Картинка',
       type: 'picture',
-    },
-    {
-      name: 'authorRight',
-      title: 'Підпис до фото',
-      type: 'internationalizedArrayString',
     },
   ],
   preview: {

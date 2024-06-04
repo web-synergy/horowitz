@@ -7,25 +7,32 @@ import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
 import GridTemplate from '@/components/Templates/GridTemplate';
 import WinnerItem from '@/components/GroupPages/GroupWinners/parts/WinnerItem';
 import { ImagesArray } from '@/components/Templates/PortableComponent/parts/ImageComponent';
+import { ParticipantType } from '@/types/groupTypes';
 
 interface GroupWinnersProps {
   title: ETabs | EDebut;
 }
 
 const GroupWinners: FC<GroupWinnersProps> = ({ title }) => {
-  const { winners, galleries } = useJuniorGroupStore();
+  const { winners, participants, juniorGallery } = useJuniorGroupStore();
   const { t } = useTranslation();
-  if (!winners) {
+  if (!winners || !participants) {
     return;
   }
 
-  const key = title
-    .split('-')
-    .map((item) => (item.length > 1 ? item : item.toUpperCase()))
-    .join('');
+  const renderWinners = winners
+    ?.filter((item) => item.group === title)
+    .map((winner) => {
+      const participantData = participants.find(
+        (participant) => participant.id === winner.participantKey
+      );
+      return {
+        ...winner,
+        participantData: participantData || ({} as ParticipantType),
+      };
+    });
 
-  const renderWinners = winners[key as keyof typeof winners];
-  const gallery = galleries && galleries[key as keyof typeof galleries];
+  const groupGallery = juniorGallery?.find((item) => item.subgroup === title);
 
   const renderTitle = t(`navigation.${title}`);
   return (
@@ -38,7 +45,7 @@ const GroupWinners: FC<GroupWinnersProps> = ({ title }) => {
         list={renderWinners}
         justify="center"
       />
-      {gallery && <ImagesArray value={gallery} />}
+      {groupGallery && <ImagesArray value={groupGallery.gallery} />}
     </CommonStackWrapper>
   );
 };

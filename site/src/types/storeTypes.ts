@@ -10,7 +10,11 @@ import { IVirtuosos } from './virtuososTypes';
 import { HomeData } from './homeTypes';
 import { AnnualSummerSchoolTypes, IConcerts } from './annualSummerSchoolTypes';
 import { CompetitionType } from './competitionTypes';
-import { JuniorGroupType, OtherGroupType } from './groupTypes';
+import {
+  JuniorGroupType,
+  OtherGroupType,
+  OtherGroupClassType,
+} from './groupTypes';
 import { Routes } from './routes';
 import { IMasterClass } from './masterClassTypes';
 
@@ -100,26 +104,34 @@ export interface CompetitionStoreState extends CompetitionType {
 
 export type FetchGroupData = (id: string, language: string) => Promise<void>;
 
-// export type FetchOtherGroupData = (
-//   id: string,
-//   language: string,
-//   group: string
-// ) => Promise<void>;
+export type FetchOtherGroupData = (
+  id: string,
+  language: string,
+  group: OtherGroupClassType
+) => Promise<void>;
 
-export type GroupType = Routes.JUNIOR | Routes.INTERMEDIATE | Routes.SENIOR;
+export type GroupClassType =
+  | Routes.JUNIOR
+  | Routes.INTERMEDIATE
+  | Routes.SENIOR;
 export interface CommonGroupState {
   isLoading: boolean;
   requestLang: string;
   isCommonDataFetched: boolean;
   resetData: () => void;
 }
+
 export interface JuniorGroupState extends CommonGroupState, JuniorGroupType {
   fetchData: (
     id: string,
     language: string,
-    fetchFc: (id: string, language: string) => Promise<JuniorGroupType>,
+    fetchFc: (
+      id: string,
+      language: string
+    ) => Promise<Partial<JuniorGroupType>>,
     otherState?: { [key: string]: boolean }
   ) => void;
+
   fetchCommonData: FetchGroupData;
   fetchConditions: FetchGroupData;
   fetchRequirements: FetchGroupData;
@@ -139,10 +151,25 @@ export interface OtherGroupState extends CommonGroupState, OtherGroupType {
   fetchData: (
     id: string,
     language: string,
-    fetchFc: (id: string, language: string) => Promise<OtherGroupType>,
+    group: GroupClassType,
+    fetchFc: (
+      id: string,
+      language: string,
+      group: GroupClassType
+    ) => Promise<Partial<OtherGroupType>>,
     otherState?: { [key: string]: boolean }
   ) => void;
-  fetchCommonData: FetchGroupData;
+  fetchCommonData: FetchOtherGroupData;
+  fetchConditions: FetchOtherGroupData;
+  fetchJury: FetchOtherGroupData;
+  fetchTimetable: FetchOtherGroupData;
+  fetchRequirements: FetchOtherGroupData;
+  fetchPreselectionJury: FetchOtherGroupData;
+  fetchRewards: FetchOtherGroupData;
+  fetchArtists: FetchOtherGroupData;
+  fetchVenues: FetchOtherGroupData;
+  fetchGuests: FetchOtherGroupData;
+  fetchBooklet: FetchOtherGroupData;
 }
 
 export interface MasterClassStoreState {

@@ -13,12 +13,9 @@ const JuniorArtistsPage = () => {
 
   useJuniorGroupData(artists, fetchArtists);
 
-  return (
-    <GroupArtists
-      goBackLink={`${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`}
-      data={artists}
-      title={t(`navigation.${Routes.GROUP_ORCHESTRA}`)}
-    />
-  );
+  const goBackLink = `${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`;
+  const title = t(`navigation.${Routes.GROUP_ORCHESTRA}`);
+
+  return <GroupArtists goBackLink={goBackLink} data={artists} title={title} />;
 };
 export default JuniorArtistsPage;

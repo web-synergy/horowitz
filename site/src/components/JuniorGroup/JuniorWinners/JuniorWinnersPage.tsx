@@ -8,8 +8,10 @@ import { useJuniorGroupData } from '@/hook/useJuniorGroupData';
 const JuniorWinnersPage = () => {
   const { t } = useTranslation();
 
-  const { winners, fetchWinnersData } = useJuniorGroupStore();
+  const { winners, fetchWinnersData, participants, fetchParticipants } =
+    useJuniorGroupStore();
 
+  useJuniorGroupData(participants, fetchParticipants);
   useJuniorGroupData(winners, fetchWinnersData);
 
   const title = t(`navigation.${Routes.GROUP_WINNERS}`);

@@ -2,10 +2,11 @@ import { FC } from 'react';
 import { Stack, Box, IconButton, Typography } from '@mui/material';
 import { GuestType } from '@/types/groupTypes';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
-import PortableComponent from '@/components/Templates/PortableComponent/PortableComponent';
+
 import Image from '@/components/Common/Image';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
+import { RegularText } from '@/components/Common/RegularText';
 
 interface GuestModalProps {
   guest: GuestType;
@@ -61,7 +62,8 @@ const GuestModal: FC<GuestModalProps> = ({ guest, onCloseModal }) => {
             minHeight: 280,
           }}
         />
-        <PortableComponent data={about} />
+        <RegularText text={about} columnCount={1} />
+        {/* <PortableComponent data={about} /> */}
       </Stack>
     </Box>
   );

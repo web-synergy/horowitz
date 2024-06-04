@@ -13,13 +13,10 @@ const JuniorGuestsPage = () => {
 
   useJuniorGroupData(guests, fetchGuests);
 
-  return (
-    <GroupGuests
-      goBackLink={`${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`}
-      title={t(`navigation.${Routes.GROUP_GUESTS}`)}
-      guests={guests}
-    />
-  );
+  const title = t(`navigation.${Routes.GROUP_GUESTS}`);
+  const goBackLink = `${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`;
+
+  return <GroupGuests goBackLink={goBackLink} title={title} guests={guests} />;
 };
 
 export default JuniorGuestsPage;

@@ -4,24 +4,19 @@ import { useCompetitionStore } from '@/store/competitionStore';
 import { useJuniorGroupData } from '@/hook/useJuniorGroupData';
 import { getGroupNavigation } from '@/config/routes/navigation';
 import { Routes } from '@/types/routes.d';
-import Loader from '@/components/Common/Loader';
 import SeoComponent from '@/components/Common/SEO';
 import GroupMainPage from '@/components/GroupPages/GroupMain/GroupMain';
 
 const JuniorMainPage = () => {
   const { t } = useTranslation();
-  const {
-    slug,
-
-    isLoading: compLoading,
-  } = useCompetitionStore();
+  const { slug } = useCompetitionStore();
   const {
     fetchCommonData,
     isActiveBooklet,
     isActiveConditions,
     isActiveGuests,
     isActiveJury,
-    isActiveOrchestra,
+    isActiveArtists,
     isActiveParticipants,
     isActiveRequirements,
     isActiveRewards,
@@ -29,7 +24,6 @@ const JuniorMainPage = () => {
     isActiveTimetable,
     isActiveVenues,
     isActiveWinners,
-    isLoading: juniorLoading,
     isCommonDataFetched,
   } = useJuniorGroupStore();
 
@@ -52,7 +46,7 @@ const JuniorMainPage = () => {
       case Routes.GROUP_REWARDS:
         return { ...item, isActive: isActiveRewards };
       case Routes.GROUP_ORCHESTRA:
-        return { ...item, isActive: isActiveOrchestra };
+        return { ...item, isActive: isActiveArtists };
       case Routes.GROUP_WINNERS:
         return { ...item, isActive: isActiveWinners };
       case Routes.GROUP_VENUES:
@@ -68,9 +62,6 @@ const JuniorMainPage = () => {
 
   const title = t(`navigation.${Routes.JUNIOR}`);
 
-  if (compLoading || juniorLoading) {
-    <Loader />;
-  }
   return (
     <>
       <SeoComponent canonicalUrl={`${slug}/junior`} title={title} />

@@ -9,7 +9,8 @@ export interface CompetitionType {
   title: string;
   slug: string;
   description: string | null;
-  isWarState: boolean;
+  isStubActive: boolean;
+  stubText: string;
   juniorBtn: IImageReference | null;
   intermediateBtn: IImageReference | null;
   seniorBtn: IImageReference | null;

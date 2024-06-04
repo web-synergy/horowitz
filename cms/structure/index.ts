@@ -67,6 +67,16 @@ const structure = (S: StructureBuilder) =>
         .child(
           S.documentList().title('інші групи').filter('_type == "group"').apiVersion('v2023-08-30'),
         ),
+      S.listItem()
+        .title('Жюрі')
+        .schemaType('jury')
+        .child(S.documentList().title('Жюрі').filter('_type == "jury"').apiVersion('v2023-08-30')),
+      S.listItem()
+        .title('Guests')
+        .schemaType('guest')
+        .child(
+          S.documentList().title('Guests').filter('_type == "guest"').apiVersion('v2023-08-30'),
+        ),
     ])
 
 export default structure

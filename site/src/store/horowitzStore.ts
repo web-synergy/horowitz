@@ -9,9 +9,9 @@ export const useHorowitzStore = create<HorowitzStoreState>((set) => ({
     author: [],
     quote: [],
   },
-  upperTextBlock: [],
-  lowerTextBlock: [],
-  literature: [],
+  lowerTextBlock: '',
+  upperTextBlock: '',
+  literature: '',
   isLoading: false,
   requestLang: '',
 
@@ -26,9 +26,9 @@ export const useHorowitzStore = create<HorowitzStoreState>((set) => ({
       set({
         bannerData: horowitzData.bannerData,
         quote: horowitzData.quote,
-        upperTextBlock: horowitzData.upperTextBlock || [],
-        lowerTextBlock: horowitzData.lowerTextBlock || [],
-        literature: horowitzData.literature || [],
+        upperTextBlock: horowitzData.upperTextBlock || '',
+        lowerTextBlock: horowitzData.lowerTextBlock || '',
+        literature: horowitzData.literature || '',
         requestLang: language,
       });
     } catch (error) {

@@ -5,35 +5,19 @@ import { useJuniorGroupData } from '@/hook/useJuniorGroupData';
 
 import GroupParticipant from '@/components/GroupPages/GroupParticipant/GroupParticipant';
 import { Routes } from '@/types/routes.d';
-import { ParticipantType } from '@/types/groupTypes';
 
 const JuniorParticipantProfile = () => {
   const { slug } = useParams();
 
-  const { junior, debut, fetchParticipants } = useJuniorGroupStore();
+  const { participants, fetchParticipants } = useJuniorGroupStore();
 
-  useJuniorGroupData(junior, fetchParticipants);
+  useJuniorGroupData(participants, fetchParticipants);
 
-  if (!junior || !debut) {
+  if (!participants) {
     return;
   }
 
-  const groupName = slug?.split('-')[0];
-
-  const participantData =
-    groupName === 'junior'
-      ? junior.find((participant) => participant.slug === slug)
-      : Object.entries(debut).reduce<null | ParticipantType>((acc, item) => {
-          const [group, participants] = item;
-          if (group.toLowerCase() === groupName) {
-            const profile = participants.find(
-              (participant) => participant.slug === slug
-            );
-            return profile ? profile : null;
-          }
-
-          return acc;
-        }, null);
+  const participantData = participants.find((item) => item.slug === slug);
 
   if (!participantData) {
     return <Navigate to="404" />;

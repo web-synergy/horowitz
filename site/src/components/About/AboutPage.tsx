@@ -2,18 +2,19 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Routes } from '@/types/routes.d';
 import { Box, Container, Typography, Stack } from '@mui/material';
+import { PortableText } from '@portabletext/react';
+
+import { useAboutCompetitionStore } from '@/store/aboutCompetitionStore';
+import { useLiveQuery } from '@sanity/preview-kit';
+import { aboutCompetitionQuery } from '@/api/query.ts';
+import { components } from '@/components/Templates/PortableComponent/parts/components.tsx';
+
+import MainBanner from '../Common/MainBanner.tsx';
+import ImageComponent from '../Templates/ImageComponent/ImageComponent.tsx';
+import PortableComponent from '../Templates/PortableComponent/PortableComponent.tsx';
 import Loader from '../Common/Loader';
 import PageTemplate from '../Common/PageTemplate';
 import SeoComponent from '../Common/SEO.tsx';
-
-import { useAboutCompetitionStore } from '@/store/aboutCompetitionStore';
-
-import TextBlockComponent from '../Templates/TextBlockComponent/TextBlockComponent.tsx';
-import ImageComponent from '../Templates/ImageComponent/ImageComponent.tsx';
-import PortableComponent from '../Templates/PortableComponent/PortableComponent.tsx';
-import { useLiveQuery } from '@sanity/preview-kit';
-import { aboutCompetitionQuery } from '@/api/query.ts';
-import MainBanner from '../Common/MainBanner.tsx';
 
 const AboutPage = () => {
   const {
@@ -36,21 +37,13 @@ const AboutPage = () => {
 
   const aboutCompetitionData = useAboutCompetitionStore();
 
-  const [
+  const [{ mainBanner, blocks, additionalText, isLoading }] = useLiveQuery(
+    aboutCompetitionData,
+    aboutCompetitionQuery,
     {
-      mainBanner,
-      upperTextBlock,
-      middleTextBlock,
-      lowerTextBlock,
-      imgHistoryOne,
-      imgHistoryTwo,
-      imgStatistics,
-      additionalText,
-      isLoading,
-    },
-  ] = useLiveQuery(aboutCompetitionData, aboutCompetitionQuery, {
-    language,
-  });
+      language,
+    }
+  );
 
   if (isLoading) {
     return <Loader />;
@@ -74,16 +67,18 @@ const AboutPage = () => {
             <Typography variant="h1">{title}</Typography>
           </Box>
           <Stack direction="column" gap={{ xs: 3, md: 5, lg: 6 }}>
-            <TextBlockComponent textArray={upperTextBlock} />
-            {imgHistoryOne && <ImageComponent image={imgHistoryOne} />}
-            {middleTextBlock && (
-              <TextBlockComponent textArray={middleTextBlock} />
-            )}
-            {imgHistoryTwo && <ImageComponent image={imgHistoryTwo} />}
-            {lowerTextBlock && (
-              <TextBlockComponent textArray={lowerTextBlock} />
-            )}
-            {imgStatistics && <ImageComponent image={imgStatistics} />}
+            {blocks.map((item) => (
+              <>
+                <Box sx={{ columnCount: { xs: 1, lg: 2 } }}>
+                  <PortableText
+                    value={item.textBlock}
+                    components={components}
+                  />
+                </Box>
+
+                <ImageComponent image={item.imageBlock} />
+              </>
+            ))}
             <Box>
               {additionalText && <PortableComponent data={additionalText} />}
             </Box>

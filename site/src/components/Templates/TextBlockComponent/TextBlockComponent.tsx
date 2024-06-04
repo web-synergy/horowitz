@@ -1,12 +1,10 @@
 import { FC } from 'react';
 import { Box, useTheme, useMediaQuery } from '@mui/material';
-import { PortableText } from '@portabletext/react';
-import { PortableTextBlock } from '@portabletext/types';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
-import { components } from '@/components/Templates/PortableComponent/parts/components';
-import { WithImage, WithoutImage } from './styled';
+import { WithImage, TextBlock, WithoutImage } from './styled';
 import { TextBlockImageType } from '@/types/commonTypes';
 import { urlFor } from '@/config/sanity/imageUrl';
+import { transformText } from '@/utils/transfromText';
 
 const ASPECT_RATIO = [
   { title: '3/4', value: 0.75 },
@@ -14,22 +12,23 @@ const ASPECT_RATIO = [
   { title: '16/9', value: 1.777 },
 ];
 interface TextBlockProps {
-  textArray: PortableTextBlock[];
+  text: string;
   img?: TextBlockImageType;
 }
 
-const TextBlockComponent: FC<TextBlockProps> = ({ textArray, img }) => {
+const TextBlockComponent: FC<TextBlockProps> = ({ text, img }) => {
   const { containerRef, containerSize } = useWidthBlokSize();
 
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
   const isTablet = useMediaQuery(theme.breakpoints.only('md'));
 
+  const textArray = transformText(text);
   if (!img || !img.image) {
     return (
       <WithoutImage>
-        {textArray.map((text, index) => (
-          <PortableText key={index} value={text} components={components} />
+        {textArray.map((item, indx) => (
+          <TextBlock key={indx}>{item}</TextBlock>
         ))}
       </WithoutImage>
     );
@@ -55,8 +54,8 @@ const TextBlockComponent: FC<TextBlockProps> = ({ textArray, img }) => {
     >
       <img src={imageUrl} alt={`photo of ${name}`} />
       <Box>
-        {textArray.map((text, index) => (
-          <PortableText key={index} value={text} components={components} />
+        {textArray.map((item, indx) => (
+          <TextBlock key={indx} >{item}</TextBlock>
         ))}
       </Box>
     </WithImage>

@@ -1,19 +1,15 @@
 import { FC } from 'react';
 import { Box, Typography } from '@mui/material';
-import { ArtistType } from '@/types/groupTypes';
+import { TextBlockType } from '@/types/commonTypes';
 import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
 import TextBlockComponent from '@/components/Templates/TextBlockComponent/TextBlockComponent';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { getImageData } from '@/utils/getImageData';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 
-const ArtistCard: FC<ArtistType> = ({
-  description,
-  image,
-  title,
-  copyRight,
-}) => {
+const ArtistCard: FC<TextBlockType> = ({ text, image: blockImage, title }) => {
   const { containerRef, containerSize } = useWidthBlokSize();
+  const { image, alt } = blockImage;
 
   const {
     dimensions: { height, width },
@@ -31,7 +27,7 @@ const ArtistCard: FC<ArtistType> = ({
   return (
     <CommonStackWrapper>
       <Typography variant="h3">{title}</Typography>
-      <TextBlockComponent textArray={description} />
+      <TextBlockComponent text={text} />
       <Box sx={{ width: '100%' }} ref={containerRef}>
         <img
           src={imageUrl}
@@ -39,7 +35,7 @@ const ArtistCard: FC<ArtistType> = ({
           height={imageHeight}
           style={{ display: 'block' }}
         />
-        {copyRight && (
+        {alt && (
           <Typography
             component={'p'}
             mt={'2px'}
@@ -47,7 +43,7 @@ const ArtistCard: FC<ArtistType> = ({
             lineHeight={{ xs: 2, md: 1.333 }}
             color={(theme) => theme.palette.neutral[60]}
           >
-            {copyRight}
+            {alt}
           </Typography>
         )}
       </Box>

@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineType} from 'sanity'
 import {CgProfile} from 'react-icons/cg'
 
 export default defineType({
@@ -21,16 +21,11 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
     },
-    {
-      name: 'role',
-      title: "Посада (не обов'язково)",
-      type: 'internationalizedArrayString',
-    },
 
     {
       name: 'about',
-      title: 'Короткий опис',
-      type: 'internationalizedArrayArticle',
+      title: 'Біографія',
+      type: 'internationalizedArrayText',
     },
     {
       name: 'avatar',

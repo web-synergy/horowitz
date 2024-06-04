@@ -7,13 +7,16 @@ import { ETabs } from '@/types/translation.d';
 import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 
 const JuniorGroup = () => {
-  const { junior } = useJuniorGroupStore();
+  const { participants } = useJuniorGroupStore();
   const { t } = useTranslation();
+  const junior = participants?.filter((item) => item.group === ETabs.JUNIOR);
+
   if (!junior) {
     return;
   }
 
   const translatedTitle = t(`navigation.${ETabs.JUNIOR}`);
+  
   return (
     <>
       <CommonStackWrapper>

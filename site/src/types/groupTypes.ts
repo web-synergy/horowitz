@@ -1,24 +1,30 @@
 // import { IFileResponse } from './pdfTypes';
 import { PortableTextBlock } from '@portabletext/types';
 import { IPortableImgGallery } from './newsTypes';
+import { Routes } from './routes.d';
 
 import {
   IImageReference,
   TextBlockType,
   TextBlockImageType,
 } from './commonTypes';
+import { EDebut, ETabs } from './translation';
 
-export interface OtherGroupPageProps {
-  group: 'intermediate' | 'senior';
+export type OtherGroupClassType = Routes.INTERMEDIATE | Routes.SENIOR;
+export interface GroupPageProps {
+  group: OtherGroupClassType;
 }
-interface CommonGroupType {
+
+export type GroupType = JuniorGroupType | OtherGroupType;
+
+export interface CommonGroupType {
   isActiveConditions: boolean;
   isActiveJury: boolean;
   isActiveTimetable: boolean;
   isActiveRequirements: boolean;
   isActiveParticipants: boolean;
   isActiveRewards: boolean;
-  isActiveOrchestra: boolean;
+  isActiveArtists: boolean;
   isActiveWinners: boolean;
   isActiveVenues: boolean;
   isActiveGuests: boolean;
@@ -28,97 +34,75 @@ interface CommonGroupType {
   timetable: PortableTextBlock[] | null;
   venues: TextBlockType[] | null;
   prizes: PortableTextBlock[] | null;
-  rewards: RewardsType[] | null;
-  artists: ArtistType[] | null;
-  jury: JuryType[] | null;
+  rewards: PortableTextBlock[] | null;
+  artists: TextBlockType[] | null;
+  juries: JuryType[] | null;
   guests: GuestType[] | null;
   booklet: string | null;
-}
-
-export interface RewardsType {
-  image: IImageReference;
-  title: string;
-  description: string;
-}
-
-export interface ArtistType {
-  image: IImageReference;
-  copyRight?: string;
-  title: string;
-  description: PortableTextBlock[];
 }
 
 export interface JuryType {
   name: string;
   role?: string;
-  about: PortableTextBlock[];
+  about: string;
   avatar: TextBlockImageType;
   slug: string;
 }
 
-export interface StudentsJuryType {
+export interface ParticipantType {
   name: string;
   age: number;
   country?: string;
-  about: PortableTextBlock[];
-  avatar: TextBlockImageType;
-  _key: string;
+  biography: string;
+  avatar: IImageReference;
+  id: string;
+  slug: string;
+}
+
+export interface JuniorParticipantType extends ParticipantType {
+  group: EDebut | ETabs;
 }
 
 export interface GuestType {
   name: string;
-  about: PortableTextBlock[];
+  about: string;
   avatar: TextBlockImageType;
   id: string;
 }
 
-export interface ParticipantType {
-  id: string;
-  name: string;
-  age: number;
-  avatar: TextBlockImageType;
-  biography: PortableTextBlock[];
+export type JuniorWinnerType = WinnerType & {
   group: string;
-  slug: string;
-}
+};
 
 export type WinnerType = {
   _key: string;
   champion: string;
-  img: IImageReference;
-  name: string;
+  participantKey: string;
 };
 
 export interface OtherGroupType extends CommonGroupType {
+  group: 'intermediate' | 'senior' | null;
   isActivePreselectionJury: boolean;
   winners: WinnerType[] | null;
   winnersGallery: IPortableImgGallery | null;
+  preselectionJury: JuryType[] | null;
+  participants: ParticipantType[] | null;
 }
 
 export interface JuniorGroupType extends CommonGroupType {
+  group: 'junior';
   isActiveStudentsJury: boolean;
-  studentsJury: StudentsJuryType[] | null;
-  debut: {
-    groupA: ParticipantType[];
-    groupB: ParticipantType[];
-    groupC: ParticipantType[];
-    groupD: ParticipantType[];
-  } | null;
-  junior: ParticipantType[] | null;
-  winners: {
-    groupA: WinnerType[];
-    groupB: WinnerType[];
-    groupC: WinnerType[];
-    groupD: WinnerType[];
-    junior: WinnerType[];
-  } | null;
-  galleries: {
-    groupA: IPortableImgGallery;
-    groupB: IPortableImgGallery;
-    groupC: IPortableImgGallery;
-    groupD: IPortableImgGallery;
-    junior: IPortableImgGallery;
-  } | null;
+  studentsJury: ParticipantType[] | null;
+  studentJuryDesc: string;
+  participants: JuniorParticipantType[] | null;
+
+  winners: JuniorWinnerType[] | null;
+  juniorGallery:
+    | {
+        subgroup: string;
+        gallery: IPortableImgGallery;
+      }[]
+    | null;
 }
 
 export interface GroupProps {

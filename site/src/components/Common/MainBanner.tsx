@@ -22,7 +22,6 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
     dimensions: { height, width },
   } = imageData;
 
-  console.log(banner);
   useEffect(() => {
     const imageWidth = fullSize
       ? containerSize
