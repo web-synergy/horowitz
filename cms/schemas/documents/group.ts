@@ -1,5 +1,7 @@
 import {defineType} from 'sanity'
 import {PiFilePdf} from 'react-icons/pi'
+import {groupList} from '../../assets/constants/groupList'
+import ParticipantPreview from '../../components/ParticipantPreview'
 
 export default defineType({
   name: 'group',
@@ -310,6 +312,70 @@ export default defineType({
       title: 'Учасники',
       of: [{type: 'participant'}],
       group: 'participants',
+    },
+
+    {
+      name: 'isActiveWinners',
+      type: 'boolean',
+      title: 'Активувати сторінку Переможці',
+      initialValue: false,
+      group: 'winners',
+    },
+
+    {
+      name: 'winners',
+      type: 'array',
+      title: 'Переможці',
+      of: [{type: 'winner', title: 'Виберіть переможця зі списку учасників'}],
+      group: 'winners',
+    },
+    {
+      name: 'winnersGallery',
+      type: 'gallery',
+      title: 'Галерея для переможців',
+      group: 'winners',
+      hidden: ({document}) => document?.groupType === 'junior',
+    },
+    {
+      name: 'juniorGallery',
+      type: 'array',
+      title: 'Галерея для переможців',
+      group: 'winners',
+      of: [
+        {
+          type: 'object',
+          name: 'groupGallery',
+          title: 'Галерея для групи',
+          fields: [
+            {
+              name: 'subgroup',
+              type: 'string',
+              title: 'Група',
+              options: {
+                list: groupList,
+              },
+            },
+            {
+              name: 'gallery',
+              type: 'gallery',
+              title: 'Галерея',
+            },
+          ],
+          preview: {
+            select: {
+              group: 'subgroup',
+            },
+            prepare: ({group}) => ({
+              title: `Галерея до групи`,
+              group,
+            }),
+          },
+          components: {
+            preview: ParticipantPreview,
+          },
+        },
+      ],
+      hidden: ({document}) => document?.groupType !== 'junior',
     },
   ],
 })

@@ -55,7 +55,7 @@ export interface ParticipantType {
   country?: string;
   biography: string;
   avatar: IImageReference;
-  _key: string;
+  id: string;
   slug: string;
 }
 
@@ -70,11 +70,14 @@ export interface GuestType {
   id: string;
 }
 
+export type JuniorWinnerType = WinnerType & {
+  group: string;
+};
+
 export type WinnerType = {
   _key: string;
   champion: string;
-  img: IImageReference;
-  name: string;
+  participantKey: string;
 };
 
 export interface OtherGroupType extends CommonGroupType {
@@ -93,20 +96,13 @@ export interface JuniorGroupType extends CommonGroupType {
   studentJuryDesc: string;
   participants: JuniorParticipantType[] | null;
 
-  winners: {
-    groupA: WinnerType[];
-    groupB: WinnerType[];
-    groupC: WinnerType[];
-    groupD: WinnerType[];
-    junior: WinnerType[];
-  } | null;
-  galleries: {
-    groupA: IPortableImgGallery;
-    groupB: IPortableImgGallery;
-    groupC: IPortableImgGallery;
-    groupD: IPortableImgGallery;
-    junior: IPortableImgGallery;
-  } | null;
+  winners: JuniorWinnerType[] | null;
+  juniorGallery:
+    | {
+        subgroup: string;
+        gallery: IPortableImgGallery;
+      }[]
+    | null;
 }
 
 export interface GroupProps {

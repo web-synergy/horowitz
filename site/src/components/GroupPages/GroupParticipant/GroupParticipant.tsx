@@ -66,7 +66,7 @@ const GroupParticipant: FC<GroupParticipantProps> = ({
               {age} {ageText}
             </Typography>
             {textArray.map((item) => {
-              if (item.trim() === 'Program:' || item.trim() === 'Програма:') {
+              if (item.trim() === '*Divider*') {
                 return <Divider flexItem sx={{ mt: 2, mb: 2 }} />;
               }
               return (

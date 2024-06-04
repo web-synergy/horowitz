@@ -131,6 +131,6 @@ export const getOtherGroupParticipantsData = (
 export const getJuniorWinnersData = (
   id: string,
   language: string
-): Promise<Pick<JuniorGroupType, 'winners'>> => {
+): Promise<Pick<JuniorGroupType, 'winners' | 'juniorGallery'>> => {
   return sanityFetch(juniorWinners, { id, language });
 };

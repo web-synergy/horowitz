@@ -1,9 +1,19 @@
-import {defineType} from 'sanity'
+import {defineType, ImageSchemaType} from 'sanity'
 import {CgProfile} from 'react-icons/cg'
 import {createParticipantSlug} from '../../utils/createParticipantSlug'
 import ParticipantPreview from '../../components/ParticipantPreview'
 
 import {groupList} from '../../assets/constants/groupList'
+import {Value} from 'sanity-plugin-internationalized-array'
+
+export interface ParticipantSchema {
+  _key: string
+  name: Value[]
+  subgroup: string | undefined
+  age: number
+  avatar: ImageSchemaType
+  biography: Value[]
+}
 
 export default defineType({
   name: 'participant',

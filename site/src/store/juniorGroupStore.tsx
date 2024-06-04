@@ -11,7 +11,7 @@ import {
   getGroupGuestsData,
   getGroupBookletData,
   getJuniorParticipantsData,
-  // getJuniorWinnersData,
+  getJuniorWinnersData,
 } from '@/api';
 import { JuniorGroupState } from '@/types/storeTypes';
 import { create } from 'zustand';
@@ -41,7 +41,7 @@ const initialState = {
   studentsJury: null,
   guests: null,
   booklet: null,
-  winnersGallery: null,
+  juniorGallery: null,
   winners: null,
   galleries: null,
   studentJuryDesc: '',
@@ -135,8 +135,8 @@ export const useJuniorGroupStore = create<JuniorGroupState>((set, get) => ({
     fetchData(id, language, getJuniorParticipantsData);
   },
 
-  // fetchWinnersData: async (id, language) => {
-  //   const { fetchData } = get();
-  //   // fetchData(id, language, getJuniorWinnersData);
-  // },
+  fetchWinnersData: async (id, language) => {
+    const { fetchData } = get();
+    fetchData(id, language, getJuniorWinnersData);
+  },
 }));

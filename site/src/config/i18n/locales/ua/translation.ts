@@ -171,4 +171,7 @@ export default {
     two: 'роки',
     many: 'років',
   },
+  winners: {
+    reject: 'Не присуджений',
+  },
 };

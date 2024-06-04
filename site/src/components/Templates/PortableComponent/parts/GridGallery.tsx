@@ -56,7 +56,6 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
         sx={{ marginBlockEnd: 0, marginBlockStart: 0 }}
       >
         {images.slice(0, quantity || images.length).map((item, index) => {
-          console.log(item);
           if (item.asset)
             return (
               <GrowView key={item._key}>
