@@ -42,7 +42,7 @@ export const groupJuryQuery = groq`*[_type == 'group' && _id == $id][0]{
   'juries': juries[]{
     "about": jury -> about[_key ==$language][0].value, 
     "name": jury -> name[_key ==$language][0].value,
-    'avatar': jury -> avatar, 
+    'photo': jury -> photo, 
     "slug": jury -> slug.current, 
      "role":  role[_key ==$language][0].value, 
   },
@@ -66,7 +66,13 @@ export const groupVenuesQuery = groq`*[_type == 'group' && _id == $id][0]{
 }`;
 
 export const groupRewardsQuery = groq`*[_type == 'group' && _id == $id][0]{
-  "rewards": rewards[_key ==$language][0].value, 
+  "rewards":rewards[]{
+    'id': _key, 
+    'title': title[_key ==$language][0].value, 
+    img, 
+    'description': description[_key ==$language][0].value, 
+  }, 
+  "prizes": prizes[_key ==$language][0].value, 
 }`;
 
 export const groupArtistsQuery = groq`*[_type == 'group' && _id == $id][0]{
@@ -93,11 +99,13 @@ export const juniorGroupStudentJury = groq`*[_type == 'group' && _id == $id][0]{
 
 export const otherGroupPreselectionJury = groq`*[_type == 'group' && _id == $id][0]{
  
-  "preselectionJury": preselectionJury[] -> {
-    "about":  about[_key ==$language][0].value, 
+  "preselectionJury": preselectionJury[]{
+    "id": _key, 
     "name": name[_key ==$language][0].value,
-    'avatar': avatar, 
+    "about":  about[_key ==$language][0].value, 
+    'photo': photo, 
     "slug": slug.current, 
+    'role': role[_key ==$language][0].value
   }
 }
 `;
@@ -107,7 +115,7 @@ export const groupGuests = groq`*[_type == 'group' && _id == $id][0]{
     'id': _id, 
     "about": about[_key ==$language][0].value, 
     "name": name[_key ==$language][0].value,
-    avatar, 
+    photo, 
   }
 }
 `;
@@ -130,6 +138,18 @@ export const juniorGroupParticipants = groq`*[_type == 'group' && _id == $id][0]
 }
 `;
 
+export const otherGroupParticipants = groq`*[_type == 'group' && _id == $id][0]{
+  "participants": participants[] {
+      "id": _key, 
+      age, 
+      avatar, 
+      "name": name[_key ==$language][0].value,
+      "biography": biography[_key ==$language][0].value, 
+      "slug": slug.current,
+    }, 
+}
+`;
+
 export const juniorWinners = groq`*[_type == 'group' && _id == $id][0]{
    "winners": winners[]{
       _key,
@@ -138,5 +158,15 @@ export const juniorWinners = groq`*[_type == 'group' && _id == $id][0]{
       'participantKey': participantKey
     }, 
     juniorGallery, 
+}
+`;
+
+export const otherGroupWinners = groq`*[_type == 'group' && _id == $id][0]{
+   "winners": winners[]{
+      _key,
+      'champion': champion[_key ==$language][0].value,
+     'participantKey': participantKey
+    }, 
+    winnersGallery, 
 }
 `;

@@ -2,7 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 
 import { useJuniorGroupData } from '@/hook/useJuniorGroupData';
-import MainLayout from '../GroupNaigatrion/MainLayout';
+
+import MainLayout from '../GroupNavigation/MainLayout';
 import { Routes } from '@/types/routes.d';
 import JuniorGroup from './parts/JuniorGroup';
 import DebutGroup from './parts/DebutGroup';

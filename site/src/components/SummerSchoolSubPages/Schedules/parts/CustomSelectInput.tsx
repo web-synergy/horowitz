@@ -1,17 +1,17 @@
-import { FC } from "react";
+import { FC } from 'react';
 import {
   Select,
   MenuItem,
   useTheme,
   SelectChangeEvent,
   Typography,
-} from "@mui/material";
-import { DemoItem } from "@mui/x-date-pickers/internals/demo";
+} from '@mui/material';
+import { DemoItem } from '@mui/x-date-pickers/internals/demo';
 
-import { IProfessor } from "@/types/annualSummerSchoolTypes";
+import { ProfessorType } from '@/types/annualSummerSchoolTypes';
 
 interface CustomSelectInputProps {
-  professors: IProfessor[];
+  professors: ProfessorType[];
   selectedProfessor: string;
   handleProfessorChange: (event: SelectChangeEvent<string>) => void;
   handleProfessorSelectOpen: () => void;
@@ -37,19 +37,19 @@ const CustomSelectInput: FC<CustomSelectInputProps> = ({
     <DemoItem
       label={t(`summerSchoolSchedules.inputNameLabel`)}
       sx={{
-        marginBottom: isMobileScreen && isProfessorSelectOpen ? "206px" : "0px",
-        "& p": {
-          fontSize: { xs: "14px", md: "16px" },
-          lineHeight: { xs: "22px", md: "24px" },
+        marginBottom: isMobileScreen && isProfessorSelectOpen ? '206px' : '0px',
+        '& p': {
+          fontSize: { xs: '14px', md: '16px' },
+          lineHeight: { xs: '22px', md: '24px' },
         },
       }}
     >
       <Select
         variant="outlined"
         sx={{
-          width: "100%",
-          "&:hover": {
-            "&& fieldset": {
+          width: '100%',
+          '&:hover': {
+            '&& fieldset': {
               borderColor: theme.palette.primary.main,
             },
           },
@@ -62,29 +62,29 @@ const CustomSelectInput: FC<CustomSelectInputProps> = ({
         MenuProps={{
           PaperProps: {
             sx: {
-              marginTop: { xs: "16px", md: "32px" },
-              padding: "16px",
-              backgroundColor: "#EAE2D5",
-              height: { xs: "186px", md: "204px" },
-              overflowY: "auto",
-              fontSize: "40px",
-              border: "1px solid",
+              marginTop: { xs: '16px', md: '32px' },
+              padding: '16px',
+              backgroundColor: '#EAE2D5',
+              height: { xs: '186px', md: '204px' },
+              overflowY: 'auto',
+              fontSize: '40px',
+              border: '1px solid',
               borderColor: theme.palette.neutral[40],
-              boxShadow: "none",
+              boxShadow: 'none',
 
-              "& .MuiMenuItem-root": {
+              '& .MuiMenuItem-root': {
                 paddingX: 0,
-                paddingY: "4px",
-                gap: "20px",
-                fontSize: { xs: "16px", md: "18px" },
-                lineHeight: { xs: "24px", md: "28px" },
+                paddingY: '4px',
+                gap: '20px',
+                fontSize: { xs: '16px', md: '18px' },
+                lineHeight: { xs: '24px', md: '28px' },
               },
             },
           },
         }}
         displayEmpty
         renderValue={
-          selectedProfessor !== ""
+          selectedProfessor !== ''
             ? undefined
             : () => (
                 <Typography variant="bodyRegular">

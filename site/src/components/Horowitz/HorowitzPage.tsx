@@ -12,7 +12,7 @@ import { Buttons } from '@/types/translation.d';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { horowitzQuery } from '@/api/query.ts';
 import MainBanner from '../Common/MainBanner.tsx';
-import { RegularText } from '../Common/RegularText.tsx';
+import TextBlockComponent from '../Templates/TextBlockComponent/TextBlockComponent.tsx';
 import { StyledButton } from './styled.ts';
 
 const HorowitzPage: FC = () => {
@@ -95,7 +95,7 @@ const HorowitzPage: FC = () => {
           >
             {t(`navigation.${Routes.HOROWITZ}`)}
           </Typography>
-          <RegularText text={upperTextBlock} />
+          <TextBlockComponent text={upperTextBlock} />
         </Container>
         {quote && <QuoteSection quote={quote} />}
         <Container component="section">
@@ -106,7 +106,7 @@ const HorowitzPage: FC = () => {
                 paddingBottom: { xs: 3, md: 5, lg: 6 },
               }}
             >
-              <RegularText text={lowerTextBlock} />
+              <TextBlockComponent text={lowerTextBlock} />
             </Box>
           )}
 

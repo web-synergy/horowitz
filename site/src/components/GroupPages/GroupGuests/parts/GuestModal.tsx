@@ -6,7 +6,8 @@ import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
 import Image from '@/components/Common/Image';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
-import { RegularText } from '@/components/Common/RegularText';
+import TextBlockComponent from '@/components/Templates/TextBlockComponent/TextBlockComponent';
+import { getImageData } from '@/utils/getImageData';
 
 interface GuestModalProps {
   guest: GuestType;
@@ -14,21 +15,22 @@ interface GuestModalProps {
 }
 
 const GuestModal: FC<GuestModalProps> = ({ guest, onCloseModal }) => {
-  const {
-    about,
-    avatar: { aspectRatio, image, alt },
-    name,
-  } = guest;
+  const { about, photo, name } = guest;
   const { containerRef, containerSize } = useWidthBlokSize();
+  const {
+    dimensions: { height, width },
+  } = getImageData(photo.asset._ref);
+  const aspectRatio = width / height;
   const imageHeight =
-    aspectRatio !== '16/9'
-      ? Math.max(Math.floor(window.innerHeight * 0.3), 280)
-      : Math.floor(containerSize * 0.6051);
+    aspectRatio < 1
+      ? Math.max(Math.floor(window.innerHeight * 0.4), 280)
+      : Math.floor(containerSize / aspectRatio);
   const imageWidth =
-    aspectRatio !== '16/9' ? Math.floor(containerSize * 0.5) : containerSize;
+    aspectRatio < 1
+      ? Math.max(Math.floor(imageHeight * aspectRatio), 300)
+      : containerSize;
 
-  // const imageWidth = containerSize;
-  const imageUrl = urlFor(image)
+  const imageUrl = urlFor(photo)
     .auto('format')
     .width(imageWidth)
     .height(imageHeight)
@@ -52,7 +54,7 @@ const GuestModal: FC<GuestModalProps> = ({ guest, onCloseModal }) => {
         <Typography variant="h3">{name}</Typography>
         <Image
           src={imageUrl}
-          alt={alt || name}
+          alt={name}
           width={imageWidth}
           height={imageHeight}
           isLazyLoading={false}
@@ -62,8 +64,7 @@ const GuestModal: FC<GuestModalProps> = ({ guest, onCloseModal }) => {
             minHeight: 280,
           }}
         />
-        <RegularText text={about} columnCount={1} />
-        {/* <PortableComponent data={about} /> */}
+        <TextBlockComponent text={about} column={1} />
       </Stack>
     </Box>
   );

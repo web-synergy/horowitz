@@ -13,6 +13,8 @@ import {
   getGroupVenuesData,
   getGroupGuestsData,
   getGroupBookletData,
+  getOtherGroupParticipantsData,
+  getOtherGroupWinnersData,
 } from '@/api';
 
 const initialState = {
@@ -57,10 +59,13 @@ export const useOtherGroupStore = create<OtherGroupState>((set, get) => ({
 
   fetchData: async (id, language, group, fetchFn, other) => {
     const { requestLang, resetData, group: storeGroup } = get();
+
     if (language !== requestLang || group !== storeGroup) {
-      resetData();
+      await resetData();
     }
-    set({ isLoading: true, requestLang: language });
+
+    set({ isLoading: true, requestLang: language, group: group });
+
     try {
       const response = await fetchFn(id, language, group);
       set({ ...response, ...other });
@@ -126,27 +131,13 @@ export const useOtherGroupStore = create<OtherGroupState>((set, get) => ({
     fetchData(id, language, group, getGroupBookletData);
   },
 
-  //   fetchParticipants: async (id, language) => {
-  //     set({ isLoading: true, requestLang: language });
-  //     try {
-  //       const { debut, junior } = await getJuniorParticipantsData(id, language);
-  //       set({ debut, junior });
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       set({ isLoading: false });
-  //     }
-  //   },
+  fetchParticipants: async (id, language, group) => {
+    const { fetchData } = get();
+    fetchData(id, language, group, getOtherGroupParticipantsData);
+  },
 
-  //   fetchWinnersData: async (id, language) => {
-  //     set({ isLoading: true, requestLang: language });
-  //     try {
-  //       const { galleries, winners } = await getJuniorWinnersData(id, language);
-  //       set({ galleries, winners });
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       set({ isLoading: false });
-  //     }
-  //   },
+  fetchWinnersData: async (id, language, group) => {
+    const { fetchData } = get();
+    fetchData(id, language, group, getOtherGroupWinnersData);
+  },
 }));

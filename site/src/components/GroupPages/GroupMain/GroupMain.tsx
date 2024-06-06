@@ -26,7 +26,7 @@ const GroupMainPage: FC<GroupMainPageProps> = ({
         </Container>
         <NavList linksList={navList} />
       </PageTemplate>
-      <GoBackBtn href={goBackLink} />
+      <GoBackBtn href={goBackLink} importantHref={true} />
     </>
   );
 };

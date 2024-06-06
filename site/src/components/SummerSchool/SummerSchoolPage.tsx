@@ -9,7 +9,7 @@ import Loader from '../Common/Loader';
 import PageTemplate from '../Common/PageTemplate';
 import CommonStackWrapper from '../Common/CommonStackWrapper';
 import ButtonsArea from './parts/ButtonsArea';
-import { RegularText } from '../Common/RegularText';
+import TextBlockComponent from '../Templates/TextBlockComponent/TextBlockComponent';
 import { StyledBox } from './parts/styled';
 
 import { ImagesArray } from '../Templates/PortableComponent/parts/ImageComponent';
@@ -56,9 +56,9 @@ const SummerSchoolPage: FC = () => {
           <Typography component={'h1'} variant="h1" textAlign={'center'}>
             {t(`summerSchool.${SummerSchool.TITLE}`)}
           </Typography>
-          <RegularText text={topText} />
+          <TextBlockComponent text={topText} />
           {infographicImg && <ImageComponent image={infographicImg} />}
-          <RegularText text={bottomText} />
+          <TextBlockComponent text={bottomText} />
 
           <StyledBox>
             <ButtonsArea btnsList={annualSummerSchool} />

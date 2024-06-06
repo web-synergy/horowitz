@@ -4,7 +4,8 @@ import { Typography } from '@mui/material';
 import { useJuniorGroupStore } from '@/store/juniorGroupStore';
 import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
 import GridTemplate from '@/components/Templates/GridTemplate';
-import ParticipantCard from './ParticipantCard';
+import ParticipantItem from '@/components/GroupPages/GroupParticipantList/parts/ParticipantItem';
+
 import { EDebut } from '@/types/translation.d';
 
 interface DebutGroupProps {
@@ -14,11 +15,6 @@ interface DebutGroupProps {
 const DebutGroup: FC<DebutGroupProps> = ({ title }) => {
   const { t } = useTranslation();
   const { participants } = useJuniorGroupStore();
-
-  // const key = title
-  //   .split('-')
-  //   .map((item) => (item.length > 1 ? item : item.toUpperCase()))
-  //   .join('');
 
   const groupParticipants = participants?.filter(
     (item) => item.group === title
@@ -34,7 +30,7 @@ const DebutGroup: FC<DebutGroupProps> = ({ title }) => {
       <Typography variant="h1" component="h2">
         {translatedTitle}
       </Typography>
-      <GridTemplate gridItem={ParticipantCard} list={groupParticipants} />
+      <GridTemplate gridItem={ParticipantItem} list={groupParticipants} />
     </CommonStackWrapper>
   );
 };

@@ -63,7 +63,7 @@ export const components: PortableTextComponents = {
       <Typography
         component={'p'}
         sx={{
-          mb: 2,
+          mb: 1,
           textAlign: 'justify',
           '&:last-child': {
             mb: 0,
@@ -80,7 +80,7 @@ export const components: PortableTextComponents = {
         component={'p'}
         sx={{
           mt: { xs: 3, md: 5, lg: 6 },
-          mb: 2,
+          mb: 1,
           textAlign: 'justify',
           '&:last-child': {
             mb: 0,

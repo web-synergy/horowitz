@@ -10,44 +10,22 @@ import {
 import { useTranslation } from 'react-i18next';
 import GuestModal from './GuestModal';
 import { GuestType } from '@/types/groupTypes';
-import Image from '@/components/Common/Image';
 import SvgSpriteIcon from '@/components/Common/SvgSpriteIcon';
-import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
-import { urlFor } from '@/config/sanity/imageUrl';
 import { Buttons } from '@/types/translation.d';
+import PersonPhoto from '@/components/Templates/PersonPhoto/PersonPhoto';
 
 interface GuestsGridItemProps {
   item: GuestType;
 }
 
-const MOBILE_ASPECT = 0.97;
-const TABLET_ASPECT = 1;
-const DESKTOP_ASPECT = 0.7;
-
 const GuestsGridItem: FC<GuestsGridItemProps> = ({ item }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const { t } = useTranslation();
-  const { containerRef, containerSize } = useWidthBlokSize();
-  const { avatar, name } = item;
+
+  const { photo, name } = item;
   const theme = useTheme();
 
   const isTablet = useMediaQuery(theme.breakpoints.up('md'));
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
-
-  const aspectRatio = isDesktop
-    ? DESKTOP_ASPECT
-    : isTablet
-    ? TABLET_ASPECT
-    : MOBILE_ASPECT;
-
-  const imageHeight = Math.floor(containerSize / aspectRatio);
-
-  const imageSrc = urlFor(avatar.image)
-    .auto('format')
-    .width(containerSize)
-    .height(imageHeight)
-    .url()
-    .toString();
 
   const onOpenDialog = () => setOpenDialog(true);
   const onCloseDialog = () => setOpenDialog(false);
@@ -55,14 +33,8 @@ const GuestsGridItem: FC<GuestsGridItemProps> = ({ item }) => {
   const dialogFullWidth = !isTablet;
   return (
     <>
-      <Box ref={containerRef} sx={{ width: '100%' }}>
-        <Image
-          src={imageSrc}
-          isLazyLoading={true}
-          alt={name}
-          height={imageHeight}
-          width={containerSize}
-        />
+      <Box sx={{ width: '100%' }}>
+        <PersonPhoto image={photo} alt={name} />
 
         <Typography
           variant="subhead"

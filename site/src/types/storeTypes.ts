@@ -151,11 +151,11 @@ export interface OtherGroupState extends CommonGroupState, OtherGroupType {
   fetchData: (
     id: string,
     language: string,
-    group: GroupClassType,
+    group: OtherGroupClassType,
     fetchFc: (
       id: string,
       language: string,
-      group: GroupClassType
+      group: OtherGroupClassType
     ) => Promise<Partial<OtherGroupType>>,
     otherState?: { [key: string]: boolean }
   ) => void;
@@ -170,6 +170,8 @@ export interface OtherGroupState extends CommonGroupState, OtherGroupType {
   fetchVenues: FetchOtherGroupData;
   fetchGuests: FetchOtherGroupData;
   fetchBooklet: FetchOtherGroupData;
+  fetchParticipants: FetchOtherGroupData;
+  fetchWinnersData: FetchOtherGroupData;
 }
 
 export interface MasterClassStoreState {

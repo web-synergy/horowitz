@@ -65,9 +65,9 @@ const MainLayout: FC<MainLayoutProps> = ({
     setTabValue(newValue);
   };
 
-  const store = useCompetitionStore();
-  console.log(store);
-  const goBackLink = `/${Routes.COMPETITIONS}/${store.slug}/${Routes.JUNIOR}`;
+  const { slug } = useCompetitionStore();
+
+  const goBackLink = `/${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`;
 
   const groupTab = tabValue === ETabs.JUNIOR ? ETabs.JUNIOR : ETabs.DEBUT;
 
