@@ -56,8 +56,6 @@ const TextBlockComponent: FC<TextBlockProps> = ({
 
   const imageUrl = urlFor(img).url().toString();
 
-  console.log('width: ', imageWidth, ' ,height: ', imageHeight);
-
   return (
     <WithImage
       ref={containerRef}
