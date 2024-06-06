@@ -98,7 +98,7 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Опис майстеркласу',
-      type: 'internationalizedArrayArticle',
+      type: 'internationalizedArrayText',
       validation: (Rule) =>
         Rule.custom((content) => {
           let errorMassage = ''
