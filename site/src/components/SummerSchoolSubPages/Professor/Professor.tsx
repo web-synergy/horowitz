@@ -28,22 +28,26 @@ const Professor = () => {
     );
   }
 
+  const { name, about, photo, instrument } = professor;
+
   return (
     <>
       <PageTemplate>
         <Container>
           <Typography variant="h1" mb={1} sx={{ textTransform: 'capitalize' }}>
-            {professor.name}
+            {name}
           </Typography>
-          <Typography
-            variant="subhead"
-            component={'p'}
-            color={(theme) => theme.palette.neutral[60]}
-            mb={{ xs: 3, md: 5, lg: 6 }}
-          >
-            {professor.instrument.toLowerCase()}
-          </Typography>
-          <TextBlockComponent text={professor.about} img={professor.avatar} />
+          {instrument && (
+            <Typography
+              variant="subhead"
+              component={'p'}
+              color={(theme) => theme.palette.neutral[60]}
+              mb={{ xs: 3, md: 5, lg: 6 }}
+            >
+              {instrument.toLowerCase()}
+            </Typography>
+          )}
+          <TextBlockComponent text={about} img={photo} />
         </Container>
       </PageTemplate>
       <GoBackBtn
