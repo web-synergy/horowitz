@@ -21,14 +21,6 @@ export type IVideo = {
   _type: string;
 };
 
-export interface IColorField {
-  rgb: {
-    a: number;
-    b: number;
-    g: number;
-    r: number;
-  };
-}
 
 export interface TextBlockImageType {
   image: IImageReference;
@@ -39,5 +31,5 @@ export interface TextBlockImageType {
 export interface TextBlockType {
   title: string;
   text: string;
-  image: TextBlockImageType;
+  image: IImageReference;
 }

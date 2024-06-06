@@ -17,14 +17,16 @@ export function useOtherGroupData<T>(
     i18n: { language },
   } = useTranslation();
 
-  const { requestLang } = useOtherGroupStore();
+  const { requestLang, group: storeGroup } = useOtherGroupStore();
 
   const {
     [group]: { _id: id },
   } = useCompetitionStore();
 
   useEffect(() => {
-    if (requestLang === language && data) return;
+    const isLangNotChange = requestLang === language;
+    const isGroupNotChange = storeGroup === group;
+    if (isLangNotChange && isGroupNotChange && data) return;
     if (!id) return;
     fetchFn(id, language, group);
     // eslint-disable-next-line react-hooks/exhaustive-deps

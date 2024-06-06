@@ -1,15 +1,14 @@
 import { FC } from 'react';
-import { Typography, Container, Box, Divider } from '@mui/material';
+import { Typography, Container, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { ParticipantType } from '@/types/groupTypes';
 import PageTemplate from '@/components/Common/PageTemplate';
 import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
-
+import TextBlockComponent from '@/components/Templates/TextBlockComponent/TextBlockComponent';
 import Image from '@/components/Common/Image';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 import { defineYearsText } from '@/utils/defineYearText';
-import { transformText } from '@/utils/transfromText';
 
 interface GroupParticipantProps {
   participant: ParticipantType;
@@ -26,9 +25,6 @@ const GroupParticipant: FC<GroupParticipantProps> = ({
 
   const imageHeight = Math.floor(containerSize / 0.9);
 
-  const textArray = transformText(biography);
-  console.log(textArray);
-
   const imageUrl = urlFor(avatar)
     .auto('format')
     .width(containerSize)
@@ -36,6 +32,7 @@ const GroupParticipant: FC<GroupParticipantProps> = ({
     .toString();
 
   const ageText = t(`age.${defineYearsText(age)}`);
+
   return (
     <PageTemplate goBackUrl={goBackLink}>
       <Container>
@@ -65,16 +62,7 @@ const GroupParticipant: FC<GroupParticipantProps> = ({
             <Typography component={'p'} mb={3}>
               {age} {ageText}
             </Typography>
-            {textArray.map((item) => {
-              if (item.trim() === '*Divider*') {
-                return <Divider flexItem sx={{ mt: 2, mb: 2 }} />;
-              }
-              return (
-                <Typography component={'p'} mb={1}>
-                  {item}
-                </Typography>
-              );
-            })}
+            <TextBlockComponent text={biography} column={1} inline />
           </Box>
         </CommonStackWrapper>
       </Container>

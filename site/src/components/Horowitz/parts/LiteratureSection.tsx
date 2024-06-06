@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Collapse } from '@mui/material';
-import { RegularText } from '@/components/Common/RegularText';
+import TextBlockComponent from '@/components/Templates/TextBlockComponent/TextBlockComponent';
 import { transformText } from '@/utils/transfromText';
 
 export interface LiteratureSectionProps {
@@ -21,9 +21,9 @@ const LiteratureSection: React.FC<LiteratureSectionProps> = ({
         paddingTop: 3,
       }}
     >
-      <RegularText text={staticLiterature} columnCount={1} />
+      <TextBlockComponent text={staticLiterature} column={1} gap={16} />
       <Collapse in={isAllLiteratureVisible} timeout={1000}>
-        <RegularText text={collapseLiterature} columnCount={1} />
+        <TextBlockComponent text={collapseLiterature} column={1} gap={16} />
       </Collapse>
     </Box>
   );

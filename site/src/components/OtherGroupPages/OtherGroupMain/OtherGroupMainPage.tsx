@@ -65,11 +65,16 @@ const OtherGroupMainPage: FC<GroupPageProps> = ({ group }) => {
   });
 
   const title = t(`navigation.${group}`);
+  const goBackLink = `/${Routes.COMPETITIONS}/${slug}`;
 
   return (
     <>
       <SeoComponent canonicalUrl={`${slug}/${group}`} title={title} />
-      <GroupMainPage goBackLink={slug} navList={navigation} title={title} />
+      <GroupMainPage
+        goBackLink={goBackLink}
+        navList={navigation}
+        title={title}
+      />
     </>
   );
 };

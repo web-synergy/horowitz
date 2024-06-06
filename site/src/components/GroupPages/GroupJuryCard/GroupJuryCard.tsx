@@ -12,14 +12,14 @@ interface GroupJuryCardProps {
 }
 
 const GroupJuryCard: FC<GroupJuryCardProps> = ({ jury, goBackLink }) => {
-  const { about, avatar, name } = jury;
+  const { about, photo, name } = jury;
   return (
     <>
       <PageTemplate>
         <Container>
           <CommonStackWrapper>
             <Typography variant="h1">{name}</Typography>
-            <TextBlockComponent text={about} img={avatar} />
+            <TextBlockComponent text={about} img={photo} />
           </CommonStackWrapper>
         </Container>
       </PageTemplate>

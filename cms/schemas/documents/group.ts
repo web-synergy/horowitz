@@ -213,10 +213,7 @@ export default defineType({
       title: 'Вибіркове жюрі',
       of: [
         {
-          name: 'jury',
-          type: 'reference',
-          to: [{type: 'jury'}],
-          title: 'Виберіть жюрі зі списку, або додайте нову картку',
+          type: 'professor',
         },
       ],
       group: 'preselectionJury',
@@ -231,12 +228,17 @@ export default defineType({
     },
     {
       name: 'rewards',
-      type: 'internationalizedArrayContent',
-      title: 'Премії, призи, ангажменти',
-
+      type: 'array',
+      title: 'Премії',
+      of: [{type: 'reward'}],
       group: 'rewards',
     },
-
+    {
+      name: 'prizes',
+      type: 'internationalizedArrayContent',
+      title: 'Призи, ангажменти',
+      group: 'rewards',
+    },
     {
       name: 'isActiveArtists',
       type: 'boolean',

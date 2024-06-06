@@ -1,6 +1,6 @@
 import { ParticipantType } from './groupTypes';
 import { PortableTextBlock } from '@portabletext/types';
-import { IImage } from './commonTypes';
+import { IImage, IImageReference } from './commonTypes';
 import { BannerType } from './bannerType';
 
 import { TextBlockImageType } from './commonTypes';
@@ -14,12 +14,13 @@ export interface IParticipant {
   name: string;
 }
 
-export interface IProfessor {
+export interface ProfessorType {
   _key: string;
-  about: string;
-  avatar: TextBlockImageType;
-  instrument: string;
   name: string;
+  about: string;
+  photo: IImageReference;
+  instrument?: string;
+  slug: string;
   role: string;
 }
 
@@ -68,7 +69,7 @@ export type AnnualSummerSchoolTypes = {
 
   conditions: PortableTextBlock[] | null;
   participants: ParticipantType[] | null;
-  professors: IProfessor[] | null;
+  professors: ProfessorType[] | null;
   schedules: ISchedule[] | null;
   concerts: IConcerts[] | null;
   orchestra: PortableTextBlock[] | null;

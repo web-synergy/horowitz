@@ -1,7 +1,8 @@
 import {PictureType} from './picture'
-import {defineField, defineType} from 'sanity'
+import {defineType} from 'sanity'
 import {CgProfile} from 'react-icons/cg'
 import {Value} from 'sanity-plugin-internationalized-array'
+import {createParticipantSlug} from '../../utils/createParticipantSlug'
 
 export interface ProfessorSchema {
   _key: string
@@ -16,36 +17,48 @@ export default defineType({
   title: 'Професор',
   type: 'object',
   fields: [
-    defineField({
-      name: 'avatar',
-      type: 'picture',
-    }),
-    defineField({
+    {
       name: 'name',
       title: "Прізвище та ім'я",
       type: 'internationalizedArrayString',
-    }),
-    defineField({
+    },
+    {
+      name: 'slug',
+      title: 'Посилання',
+      type: 'slug',
+      validation: (Rule) => Rule.required(),
+      options: {
+        disableArrayWarning: true,
+        source: createParticipantSlug,
+      },
+    },
+
+    {
       name: 'instrument',
       title: 'Музичний інструмент',
       type: 'internationalizedArrayString',
-    }),
-    defineField({
+      hidden: ({document}) => document?._type !== 'annualSummerSchool',
+    },
+    {
       name: 'role',
-      title: 'Роль (диригент/професор)',
+      title: 'Роль',
       type: 'internationalizedArrayString',
-    }),
+    },
 
-    defineField({
+    {
       name: 'about',
-      title: 'Короткий опис',
-      type: 'internationalizedArrayArticle',
-    }),
+      title: 'Коротка біографія',
+      type: 'internationalizedArrayText',
+    },
+    {
+      name: 'photo',
+      type: 'image',
+    },
   ],
   preview: {
     select: {
       name: 'name',
-      avatar: 'avatar.image',
+      avatar: 'photo',
     },
     prepare(selection) {
       const {name, avatar} = selection
