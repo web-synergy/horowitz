@@ -8,7 +8,7 @@ const InfoBlock: FC<TextBlockType> = ({ title, text, image }) => {
   return (
     <CommonStackWrapper>
       <Typography variant={'h3'}>{title}</Typography>
-      <TextBlockComponent textArray={text} img={image} />
+      <TextBlockComponent text={text} img={image} />
     </CommonStackWrapper>
   );
 };

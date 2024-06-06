@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineType} from 'sanity'
 import {ProfessorInput} from '../../components/ProfessorInput'
 import RehearsalPreview from '../../components/RehearsalPreview'
 
@@ -7,25 +7,25 @@ export default defineType({
   title: 'Розклад',
   type: 'object',
   fields: [
-    defineField({
+    {
       name: 'lecture',
       title: 'Лектор',
       type: 'string',
       components: {
         input: ProfessorInput,
       },
-    }),
-    defineField({
+    },
+    {
       name: 'date',
       title: 'Дата',
       type: 'date',
-    }),
-    defineField({
+    },
+    {
       name: 'rehearsals',
       title: 'Репетиції',
       type: 'array',
       of: [{type: 'rehearsal'}],
-    }),
+    },
   ],
   preview: {
     select: {

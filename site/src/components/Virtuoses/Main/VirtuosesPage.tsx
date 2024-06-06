@@ -16,7 +16,6 @@ import { ImagesArray } from '../../Templates/PortableComponent/parts/ImageCompon
 import { RegularText } from '@/components/Common/RegularText';
 import { Routes } from '@/types/routes.d';
 import { Virtuosos } from '@/types/translation.d';
-import { transformText } from '@/utils/transfromText';
 
 const VirtuosesPage = () => {
   const {
@@ -63,7 +62,7 @@ const VirtuosesPage = () => {
             <Typography variant="h1" textAlign={'center'}>
               {t(`navigation.${Routes.VIRTUOSES}`)}
             </Typography>
-            <RegularText blocks={transformText(data.description)} />
+            <RegularText text={data.description} />
             <NewsSwiper
               title={t(`virtuosos.${Virtuosos.NEWS}`)}
               link={Routes.VIRTUOSES_ARTICLE}

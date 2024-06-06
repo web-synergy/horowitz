@@ -1,25 +1,20 @@
 import { FC } from 'react';
-import { Typography, Container, Box } from '@mui/material';
+import { Typography, Container, Box, Divider } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { ParticipantType } from '@/types/groupTypes';
 import PageTemplate from '@/components/Common/PageTemplate';
 import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
-import PortableComponent from '@/components/Templates/PortableComponent/PortableComponent';
+
 import Image from '@/components/Common/Image';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 import { defineYearsText } from '@/utils/defineYearText';
+import { transformText } from '@/utils/transfromText';
 
 interface GroupParticipantProps {
   participant: ParticipantType;
   goBackLink: string;
 }
-
-const ASPECT_RATIO = [
-  { title: '3/4', value: 0.75 },
-  { title: '1/1', value: 1 },
-  { title: '16/9', value: 1.777 },
-];
 
 const GroupParticipant: FC<GroupParticipantProps> = ({
   goBackLink,
@@ -27,19 +22,14 @@ const GroupParticipant: FC<GroupParticipantProps> = ({
 }) => {
   const { containerRef, containerSize } = useWidthBlokSize();
   const { t } = useTranslation();
-  const {
-    name,
-    age,
-    biography,
-    avatar: { aspectRatio, image },
-  } = participant;
+  const { name, age, biography, avatar } = participant;
 
-  const aspectValue =
-    ASPECT_RATIO.find((item) => item.title === aspectRatio)?.value || 1;
+  const imageHeight = Math.floor(containerSize / 0.9);
 
-  const imageHeight = Math.floor(containerSize / aspectValue);
+  const textArray = transformText(biography);
+  console.log(textArray);
 
-  const imageUrl = urlFor(image)
+  const imageUrl = urlFor(avatar)
     .auto('format')
     .width(containerSize)
     .height(imageHeight)
@@ -56,7 +46,7 @@ const GroupParticipant: FC<GroupParticipantProps> = ({
               ref={containerRef}
               sx={{
                 width: { xs: 350, md: 243, lg: 262 },
-
+                height: imageHeight,
                 float: { xs: 'unset', md: 'left' },
                 ml: { xs: 'auto', md: 0 },
                 mr: { xs: 'auto', md: 3 },
@@ -72,10 +62,19 @@ const GroupParticipant: FC<GroupParticipantProps> = ({
               />
             </Box>
 
-            <Typography component={'p'} mb={2}>
+            <Typography component={'p'} mb={3}>
               {age} {ageText}
             </Typography>
-            <PortableComponent data={biography} />
+            {textArray.map((item) => {
+              if (item.trim() === '*Divider*') {
+                return <Divider flexItem sx={{ mt: 2, mb: 2 }} />;
+              }
+              return (
+                <Typography component={'p'} mb={1}>
+                  {item}
+                </Typography>
+              );
+            })}
           </Box>
         </CommonStackWrapper>
       </Container>

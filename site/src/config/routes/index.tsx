@@ -88,6 +88,7 @@ import LazyOtherGroupGuestsPage from '@/components/OtherGroupPages/OtherGroupGue
 import LazyOtherGroupBookletPage from '@/components/OtherGroupPages/OtherGroupBooklet/LazyOtherGroupBookletPage';
 import LazyOtherGroupJuryProfilePage from '@/components/OtherGroupPages/OtherGroupJuryProfile/LazyOtherGroupJuryProfilePage';
 import LazyOtherGroupParticipantProfilePage from '@/components/OtherGroupPages/OtherGroupParticipantProfile/LazyOtherGroupParticipantProfilePage';
+import OtherGroupPreselectionJuryProfile from '@/components/OtherGroupPages/OtherGroupPreselectionJuryProfile/OtherGroupPreselectionJuryProfile';
 
 const routes = createBrowserRouter([
   {
@@ -188,7 +189,7 @@ const routes = createBrowserRouter([
       },
       {
         path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}/${Routes.INTERMEDIATE}`,
-        element: <LazyOtherGroupLayout group={Routes.INTERMEDIATE} />,
+        element: <LazyOtherGroupLayout />,
         children: [
           {
             index: true,
@@ -242,6 +243,12 @@ const routes = createBrowserRouter([
               <LazyOtherGroupPreselectionJuryPage group={Routes.INTERMEDIATE} />
             ),
           },
+          {
+            path: `${Routes.GROUP_PRESELECTION_JURY}/:slug`,
+            element: (
+              <OtherGroupPreselectionJuryProfile group={Routes.INTERMEDIATE} />
+            ),
+          },
 
           {
             path: Routes.GROUP_REWARDS,
@@ -271,7 +278,7 @@ const routes = createBrowserRouter([
       },
       {
         path: `${Routes.COMPETITIONS}/:${Routes.COMPETITION}/${Routes.SENIOR}`,
-        element: <LazyOtherGroupLayout group={Routes.SENIOR} />,
+        element: <LazyOtherGroupLayout />,
         children: [
           {
             index: true,
@@ -313,7 +320,12 @@ const routes = createBrowserRouter([
               <LazyOtherGroupPreselectionJuryPage group={Routes.SENIOR} />
             ),
           },
-
+          {
+            path: `${Routes.GROUP_PRESELECTION_JURY}/:slug`,
+            element: (
+              <OtherGroupPreselectionJuryProfile group={Routes.SENIOR} />
+            ),
+          },
           {
             path: Routes.GROUP_REWARDS,
             element: <LazyOtherGroupRewardsPage group={Routes.SENIOR} />,

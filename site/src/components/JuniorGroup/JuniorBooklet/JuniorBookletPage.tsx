@@ -13,12 +13,9 @@ const JuniorBookletPage = () => {
 
   if (!booklet) return;
 
-  return (
-    <GroupBooklet
-      bookletUrl={booklet}
-      goBackLink={`${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`}
-    />
-  );
+  const goBackLink = `${Routes.COMPETITIONS}/${slug}/${Routes.JUNIOR}`;
+
+  return <GroupBooklet bookletUrl={booklet} goBackLink={goBackLink} />;
 };
 
 export default JuniorBookletPage;

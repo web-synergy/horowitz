@@ -10,16 +10,16 @@ import { Routes } from '@/types/routes.d';
 const JuniorJuryProfile = () => {
   const { pathname } = useLocation();
 
-  const { jury, fetchJury } = useJuniorGroupStore();
+  const { juries, fetchJury } = useJuniorGroupStore();
   const { slug } = useCompetitionStore();
 
-  useJuniorGroupData(jury, fetchJury);
+  useJuniorGroupData(juries, fetchJury);
 
   const jurySlug = pathname.split('/').slice(-1)[0];
   const juryDataInStore =
-    jury && jury.find((profile) => profile.slug === jurySlug);
+    juries && juries.find((profile) => profile.slug === jurySlug);
 
-  if (!juryDataInStore && jury) {
+  if (!juryDataInStore && juries) {
     return <Navigate to={'/404'} />;
   }
 

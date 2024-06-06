@@ -106,7 +106,7 @@ export default defineType({
     },
     {
       name: 'isActiveParticipants',
-      title: 'Додати умови учасників',
+      title: 'Додати учасників',
       type: 'boolean',
       group: 'participants',
     },
@@ -117,7 +117,7 @@ export default defineType({
       group: 'participants',
 
       type: 'array',
-      of: [{type: 'participantShort'}],
+      of: [{type: 'participant'}],
     },
     {
       name: 'isActiveSchedule',

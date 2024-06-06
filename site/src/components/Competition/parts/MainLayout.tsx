@@ -6,7 +6,6 @@ import GroupButton from './GroupButton';
 import { useCompetitionStore } from '@/store/competitionStore';
 import { Routes } from '@/types/routes.d';
 import SeoComponent from '@/components/Common/SEO';
-import { transformText } from '@/utils/transfromText';
 
 const MainLayout = () => {
   const {
@@ -31,7 +30,6 @@ const MainLayout = () => {
     { title: Routes.SENIOR, isActive: senior.isActive, btn: seniorBtn },
   ];
 
-  const renderDescription = description && transformText(description);
   return (
     <>
       <SeoComponent title={title} canonicalUrl={slug} />
@@ -42,8 +40,8 @@ const MainLayout = () => {
               {title}
             </Typography>
             <Box>
-              {renderDescription && (
-                <RegularText blocks={renderDescription} columnCount={1} />
+              {description && (
+                <RegularText text={description} columnCount={1} />
               )}
             </Box>
 

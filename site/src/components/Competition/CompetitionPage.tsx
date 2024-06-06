@@ -5,7 +5,7 @@ import { useSettingsStore } from '@/store/settingStore';
 
 import { useTranslation } from 'react-i18next';
 
-import WarStatePlaceholderPage from '../WarStatePlaceholderPage/WarStatePlaceholderPage';
+import StubPage from '../Stub/Stub';
 import { useCompetitionStore } from '@/store/competitionStore';
 import Loader from '../Common/Loader';
 import MainLayout from './parts/MainLayout';
@@ -17,8 +17,14 @@ const CompetitionPage = () => {
 
   const { pathname } = useLocation();
   const { competitions } = useSettingsStore();
-  const { fetchCommonData, isWarState, title, requestLang, isLoading } =
-    useCompetitionStore();
+  const {
+    fetchCommonData,
+    isStubActive,
+    title,
+    stubText,
+    requestLang,
+    isLoading,
+  } = useCompetitionStore();
 
   const competitionSlug = pathname.split('/').slice(-1)[0];
 
@@ -47,8 +53,8 @@ const CompetitionPage = () => {
     return <Navigate to={'404'} />;
   }
 
-  return isWarState ? (
-    <WarStatePlaceholderPage title={title} />
+  return isStubActive ? (
+    <StubPage title={title} text={stubText} />
   ) : (
     <MainLayout />
   );

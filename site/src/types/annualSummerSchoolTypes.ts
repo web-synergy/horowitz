@@ -1,4 +1,4 @@
-import { StudentsJuryType } from './groupTypes';
+import { ParticipantType } from './groupTypes';
 import { PortableTextBlock } from '@portabletext/types';
 import { IImage } from './commonTypes';
 import { BannerType } from './bannerType';
@@ -16,7 +16,7 @@ export interface IParticipant {
 
 export interface IProfessor {
   _key: string;
-  about: PortableTextBlock[];
+  about: string;
   avatar: TextBlockImageType;
   instrument: string;
   name: string;
@@ -67,7 +67,7 @@ export type AnnualSummerSchoolTypes = {
   isActiveOrchestra: boolean;
 
   conditions: PortableTextBlock[] | null;
-  participants: StudentsJuryType[] | null;
+  participants: ParticipantType[] | null;
   professors: IProfessor[] | null;
   schedules: ISchedule[] | null;
   concerts: IConcerts[] | null;

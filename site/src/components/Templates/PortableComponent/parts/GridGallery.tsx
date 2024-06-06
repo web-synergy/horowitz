@@ -4,6 +4,7 @@ import {
   ImageList,
   ImageListItem,
   Typography,
+  ImageListItemBar,
 } from '@mui/material';
 import { useLayoutEffect, useState } from 'react';
 import GrowView from '@/components/Common/GrowView';
@@ -72,9 +73,12 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
                       .height(imgSize * item.photoLayout.rows)
                       .auto('format')
                       .url()}
-                    alt={item.title || ''}
+                    alt={item.alt || ''}
                     loading="lazy"
                   />
+                  {item.alt && (
+                    <ImageListItemBar subtitle={item.alt} position="bottom" />
+                  )}
                 </ImageListItem>
               </GrowView>
             );

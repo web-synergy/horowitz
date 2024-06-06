@@ -11,15 +11,14 @@ import {
   StyledBox,
   TitleTypography,
 } from './styled';
-import { WarState, Buttons } from '@/types/translation.d';
+import { Buttons } from '@/types/translation.d';
 
-interface WarStatePlaceholderPageProps {
+interface StubPageProps {
   title: string;
+  text: string;
 }
 
-const WarStatePlaceholderPage: FC<WarStatePlaceholderPageProps> = ({
-  title,
-}) => {
+const StubPage: FC<StubPageProps> = ({ title, text }) => {
   const { t } = useTranslation();
 
   return (
@@ -30,7 +29,7 @@ const WarStatePlaceholderPage: FC<WarStatePlaceholderPageProps> = ({
             {title}
           </TitleTypography>
           <MessageTypography variant="h3" component={'p'}>
-            {t(`warState.${WarState.TEXT}`)}
+            {text}
           </MessageTypography>
           <Button component={RouterLink} to={'/'} sx={{ width: '288px' }}>
             {t(`buttons.${Buttons.GO_HOME}`)}
@@ -41,4 +40,4 @@ const WarStatePlaceholderPage: FC<WarStatePlaceholderPageProps> = ({
   );
 };
 
-export default WarStatePlaceholderPage;
+export default StubPage;

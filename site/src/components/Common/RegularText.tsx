@@ -1,14 +1,17 @@
 import { FC } from 'react';
 import { Box, Typography } from '@mui/material';
+import { transformText } from '@/utils/transfromText';
 
 type RegularTextProps = {
-  blocks: string[];
+  text: string;
   columnCount?: 1 | 2;
 };
 export const RegularText: FC<RegularTextProps> = ({
-  blocks,
+  text,
   columnCount = 2,
 }) => {
+  const textArray = transformText(text);
+
   return (
     <Box
       sx={{
@@ -18,7 +21,7 @@ export const RegularText: FC<RegularTextProps> = ({
         },
       }}
     >
-      {blocks.map((text, idx) => (
+      {textArray.map((text, idx) => (
         <Typography
           variant="bodyRegular"
           component={'p'}

@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { OtherGroupPageProps } from '@/types/groupTypes';
+import { GroupPageProps } from '@/types/groupTypes';
 
-const OtherGroupParticipantProfilePage: FC<OtherGroupPageProps> = () => {
+const OtherGroupParticipantProfilePage: FC<GroupPageProps> = () => {
   return <div>OtherGroupParticipantProfilePage</div>;
 };
 

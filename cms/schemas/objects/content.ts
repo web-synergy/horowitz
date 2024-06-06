@@ -3,6 +3,7 @@ import NoWrap from '../../components/NoWrap'
 import {TbTextWrapDisabled} from 'react-icons/tb'
 import {IoIosColorPalette} from 'react-icons/io'
 import ColorText from '../../components/ColorText'
+import {validateHexColor} from '../../utils/validationHexColor'
 
 const content = defineType({
   name: 'content',
@@ -12,11 +13,9 @@ const content = defineType({
     {
       type: 'block',
       styles: [
-        {title: 'With top space', value: 'topSpace'},
-        {title: 'H2', value: 'h2'},
-        {title: 'H3', value: 'h3'},
-        {title: 'H4', value: 'h4'},
-        {title: 'Quote', value: 'blockquote'},
+        {title: 'Додати відступ зверху', value: 'topSpace'},
+        {title: 'Заголовок', value: 'h3'},
+        {title: 'Цитата', value: 'blockquote'},
       ],
       lists: [
         {title: 'Number', value: 'number'},
@@ -30,21 +29,23 @@ const content = defineType({
           {title: 'No wrap', value: 'nw', icon: TbTextWrapDisabled, component: NoWrap},
         ],
         annotations: [
-          {
-            title: 'Color',
-            type: 'object',
-            name: 'color',
-            icon: IoIosColorPalette,
-            fields: [
-              {
-                name: 'color',
-                type: 'color',
-              },
-            ],
-            components: {
-              annotation: ColorText,
-            },
-          },
+          // {
+          //   title: 'Color',
+          //   type: 'object',
+          //   name: 'color',
+          //   fields: [
+          //     {
+          //       type: 'string',
+          //       name: 'hex',
+          //     },
+          //   ],
+          //   icon: IoIosColorPalette,
+          //   validation: (Rule) => Rule.optional().custom(validateHexColor),
+
+          //   components: {
+          //     annotation: ColorText,
+          //   },
+          // },
           {
             name: 'link',
             type: 'object',

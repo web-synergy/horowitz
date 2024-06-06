@@ -1,4 +1,4 @@
-import groq from "groq";
+import groq from 'groq';
 
 export const homeQuery = groq`*[_type == 'home'][0]{
   'news':*[_type == 'news'  && length(title[_key ==$language].value) != 0]| order( dateTime(date)  desc) [0 ...3]{
@@ -22,7 +22,7 @@ export const settingsQuery = groq`*[_type == 'settings'][0]{
   "sociable": {
     facebook, 
     instagram, 
-    youtube
+    youTube
   }, 
   'contacts': {
     'about':about[_key ==$language].value,
@@ -35,8 +35,9 @@ export const settingsQuery = groq`*[_type == 'settings'][0]{
     },
   },
   "competitions": *[_type == 'competition']{
-'slug':slug.current,
-'title':title[_key ==$language].value,}, 
+      'slug':slug.current,
+      'title':title[_key ==$language].value,
+  }, 
 }`;
 
 export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
@@ -47,7 +48,7 @@ export const horowitzQuery = groq`*[_type == 'horowitz'][0] {
     'quote': quote[_key ==$language].value,
   },
   'lowerTextBlock': lowerTextBlock[_key ==$language][0].value,
-  'literature': literature[],
+  'literature': literature,
 }`;
 
 export const newsQuery = groq`*[_type == 'news' && length(title[_key ==$language].value) != 0] | order(dateTime(date) desc
@@ -97,12 +98,10 @@ export const partners = groq`*[_type == 'partners'][0]{
 
 export const aboutCompetitionQuery = groq`*[_type == 'aboutHorowitzCompetition'][0] {
   'mainBanner': mainBanner,
-  'upperTextBlock': upperTextBlock[_key ==$language][0].value,
-  'middleTextBlock': middleTextBlock[_key ==$language][0].value,
-  'lowerTextBlock': lowerTextBlock[_key ==$language][0].value,
-  'imgHistoryOne': imgHistoryOne[_key ==$language][0].value,
-  'imgHistoryTwo': imgHistoryTwo[_key ==$language][0].value,
-  'imgStatistics': imgStatistics[_key ==$language][0].value,
+  'blocks': blocks[]{
+    "textBlock": textBlock[_key ==$language][0].value,
+    "imageBlock": imageBlock[_key ==$language][0].value,
+  },  
   'additionalText': additionalText[_key ==$language][0].value,
 
 }`;

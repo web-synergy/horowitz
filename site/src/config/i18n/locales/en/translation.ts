@@ -8,7 +8,6 @@ import {
   KyivGeneva,
   Contacts,
   Buttons,
-  WarState,
   Virtuosos,
   SummerSchool,
   ETabs,
@@ -108,9 +107,7 @@ export default {
   horowitzPage: {
     literature: 'Literature',
   },
-  warState: {
-    [WarState.TEXT]: 'Paused due to the war in Ukraine',
-  },
+
   notFound: {
     [NotFound.TITLE]: 'Sorry, the page is not found.',
     [NotFound.TEXT]:
@@ -171,10 +168,6 @@ export default {
   },
   age: { one: 'years old', two: 'years old', many: 'years old' },
   winners: {
-    [ETabs.JUNIOR]: 'Prize Winners Junior Group',
-    [EDebut.GROUP_A]: 'The nomination «A» Elementary',
-    [EDebut.GROUP_B]: 'The nomination «B» Elementary',
-    [EDebut.GROUP_C]: 'The nomination «C» Advanced',
-    [EDebut.GROUP_D]: 'The nomination «D» Advanced',
+    reject: 'Not awarded',
   },
 };
