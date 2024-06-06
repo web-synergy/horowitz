@@ -20,13 +20,13 @@ export default defineType({
     {
       name: 'image',
       title: 'Картинка',
-      type: 'picture',
+      type: 'image',
     },
   ],
   preview: {
     select: {
       title: 'title[0].value',
-      media: 'image.image',
+      media: 'image',
     },
   },
 })

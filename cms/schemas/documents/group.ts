@@ -135,7 +135,7 @@ export default defineType({
             select: {
               name: 'jury.name',
               role: 'role',
-              media: 'jury.avatar.image',
+              media: 'jury.photo',
             },
             prepare: ({name, media, role}) => {
               const title = role ? `${name[0].value}(${role[0].value})` : `${name[0].value}`
