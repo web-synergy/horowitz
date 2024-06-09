@@ -1,10 +1,16 @@
-import { styled, Box, Typography } from '@mui/material';
+import { styled, Box } from '@mui/material';
 
-export const WithoutImage = styled(Box)(({ theme }) => ({
-  width: '100%',
+interface ColumnProp {
+  column: 1 | 2;
+  inline?: boolean;
+}
 
+export const WithoutImage = styled(Box, {
+  shouldForwardProp: (props) => props !== 'column' && props !== 'inline',
+})<ColumnProp>(({ theme, column, inline = false }) => ({
+  display: inline ? 'inline ' : 'block',
   [theme.breakpoints.up('lg')]: {
-    columnCount: 2,
+    columnCount: column,
     columnGap: 24,
   },
 }));
@@ -16,65 +22,57 @@ interface WithImageProps {
 
 export const WithImage = styled(Box, {
   shouldForwardProp: (props) =>
-    props !== 'imageHeight' && props !== 'imageWidth',
-})<WithImageProps>(({ theme, imageHeight, imageWidth }) => ({
-  width: '100%',
-  position: 'relative',
+    props !== 'imageHeight' && props !== 'imageWidth' && props !== 'column',
+})<WithImageProps & ColumnProp>(
+  ({ theme, imageHeight, imageWidth, column }) => ({
+    width: '100%',
+    position: 'relative',
 
-  '& img': {
-    width: 'auto',
-    height: imageHeight,
-    maxHeight: 296,
-    display: 'block',
-    margin: '0 auto',
-    marginBottom: 24,
-  },
-
-  [theme.breakpoints.up('md')]: {
     '& img': {
-      float: 'right',
-      marginLeft: 24,
-      marginBottom: 8,
-      maxWidth: 'unset',
-      maxHeight: 'unset',
-      width: imageWidth,
-      objectFit: 'cover',
-      objectPosition: 'center top',
-    },
-  },
-
-  [theme.breakpoints.up('lg')]: {
-    columnCount: 2,
-    columnGap: 24,
-
-    paddingTop: imageHeight < imageWidth ? '29%' : '46%',
-
-    '&:before': {
-      content: '""',
+      width: 'auto',
+      height: imageHeight,
+      maxHeight: 296,
       display: 'block',
-      marginBottom: imageHeight < imageWidth ? '-60%' : '-95%',
+      margin: '0 auto',
+      marginBottom: 24,
     },
 
-    '& > *': {
-      backfaceVisibility: 'hidden',
+    [theme.breakpoints.up('md')]: {
+      '& img': {
+        float: 'right',
+        marginLeft: 24,
+        marginBottom: 8,
+        maxWidth: 'unset',
+        width: imageWidth,
+        objectFit: 'cover',
+        maxHeight: 580,
+        objectPosition: 'center top',
+      },
     },
 
-    '& img': {
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      maxHeight: 500,
+    [theme.breakpoints.up('lg')]: {
+      columnCount: column,
+      columnGap: 24,
 
-      margin: 0,
+      paddingTop: Math.min(imageHeight + 24, 600),
+
+      '&:before': {
+        content: '""',
+        display: 'block',
+        marginBottom: Math.max(-imageHeight - 24, -600),
+      },
+
+      '& > *': {
+        backfaceVisibility: 'hidden',
+      },
+
+      '& img': {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        maxHeight: 600,
+        margin: 0,
+      },
     },
-  },
-}));
-
-export const TextBlock = styled(Typography)(() => ({
-  textAlign: 'justify',
-  display: 'block',
-
-  '&:not(:last-of-type)': {
-    marginBottom: 4,
-  },
-}));
+  })
+);

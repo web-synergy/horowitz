@@ -10,7 +10,7 @@ import GroupRewards from '@/components/GroupPages/GroupRewards/GroupRewards';
 
 const OtherGroupRewardsPage: FC<GroupPageProps> = ({ group }) => {
   const { t } = useTranslation();
-  const { rewards, fetchRewards } = useOtherGroupStore();
+  const { rewards, fetchRewards, prizes } = useOtherGroupStore();
   const { slug } = useCompetitionStore();
 
   useOtherGroupData(rewards, fetchRewards, group);
@@ -19,7 +19,12 @@ const OtherGroupRewardsPage: FC<GroupPageProps> = ({ group }) => {
   const goBackLink = `${Routes.COMPETITIONS}/${slug}/${group}`;
 
   return (
-    <GroupRewards goBackLink={goBackLink} rewards={rewards} title={title} />
+    <GroupRewards
+      goBackLink={goBackLink}
+      rewards={rewards}
+      title={title}
+      prizes={prizes}
+    />
   );
 };
 

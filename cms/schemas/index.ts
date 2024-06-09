@@ -20,7 +20,6 @@ import virtuosos from './documents/virtuosos'
 import virtuososArticle from './documents/virtuososArticle'
 import ukrainianWorks from './documents/ukrainianWorks'
 import article from './objects/article'
-import filePdf from './objects/filePdf'
 import summerSchool from './documents/summerSchool'
 import annualSummerSchool from './documents/annualSummerSchool'
 import picture from './objects/picture'
@@ -35,6 +34,7 @@ import jury from './documents/jury'
 import guest from './documents/guest'
 import masterClass from './documents/masterClass'
 import video from './objects/video'
+import reward from './objects/reward'
 
 export const schemaTypes = [
   //documents
@@ -42,7 +42,6 @@ export const schemaTypes = [
   news,
   competition,
   settings,
-  filePdf,
   horowitz,
   partners,
   administration,
@@ -75,4 +74,5 @@ export const schemaTypes = [
   concert,
   gradient,
   video,
+  reward,
 ]

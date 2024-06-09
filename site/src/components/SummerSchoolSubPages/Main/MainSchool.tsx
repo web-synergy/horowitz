@@ -10,7 +10,7 @@ import { Routes } from '@/types/routes.d';
 
 import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
 import NavList from '@/components/Templates/NavList/NavList';
-import { RegularText } from '@/components/Common/RegularText';
+import TextBlockComponent from '@/components/Templates/TextBlockComponent/TextBlockComponent';
 
 const MainSchool = () => {
   const { t } = useTranslation();
@@ -56,7 +56,7 @@ const MainSchool = () => {
 
           {description && (
             <Box mb={{ xs: 3, md: 5, lg: 6 }}>
-              <RegularText text={description} columnCount={1} />
+              <TextBlockComponent text={description} column={1} />
             </Box>
           )}
         </Container>

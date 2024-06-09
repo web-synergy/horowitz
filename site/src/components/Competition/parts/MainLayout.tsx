@@ -1,6 +1,6 @@
 import PageTemplate from '@/components/Common/PageTemplate';
 import { Container, Typography, Stack, Box } from '@mui/material';
-import { RegularText } from '@/components/Common/RegularText';
+import TextBlockComponent from '@/components/Templates/TextBlockComponent/TextBlockComponent';
 import GridTemplate from '@/components/Templates/GridTemplate';
 import GroupButton from './GroupButton';
 import { useCompetitionStore } from '@/store/competitionStore';
@@ -41,7 +41,7 @@ const MainLayout = () => {
             </Typography>
             <Box>
               {description && (
-                <RegularText text={description} columnCount={1} />
+                <TextBlockComponent text={description} column={1} />
               )}
             </Box>
 

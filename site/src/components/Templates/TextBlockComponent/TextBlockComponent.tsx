@@ -1,22 +1,29 @@
 import { FC } from 'react';
 import { Box, useTheme, useMediaQuery } from '@mui/material';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
-import { WithImage, TextBlock, WithoutImage } from './styled';
-import { TextBlockImageType } from '@/types/commonTypes';
+import { WithImage, WithoutImage } from './styled';
+import TextBlock from './parts/TextBlock';
+import { IImageReference } from '@/types/commonTypes';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { transformText } from '@/utils/transfromText';
+import { getImageData } from '@/utils/getImageData';
+import Image from '@/components/Common/Image';
 
-const ASPECT_RATIO = [
-  { title: '3/4', value: 0.75 },
-  { title: '1/1', value: 1 },
-  { title: '16/9', value: 1.777 },
-];
 interface TextBlockProps {
   text: string;
-  img?: TextBlockImageType;
+  img?: IImageReference;
+  column?: 1 | 2;
+  gap?: 8 | 16;
+  inline?: boolean;
 }
 
-const TextBlockComponent: FC<TextBlockProps> = ({ text, img }) => {
+const TextBlockComponent: FC<TextBlockProps> = ({
+  text,
+  img,
+  column = 2,
+  gap,
+  inline,
+}) => {
   const { containerRef, containerSize } = useWidthBlokSize();
 
   const theme = useTheme();
@@ -24,38 +31,48 @@ const TextBlockComponent: FC<TextBlockProps> = ({ text, img }) => {
   const isTablet = useMediaQuery(theme.breakpoints.only('md'));
 
   const textArray = transformText(text);
-  if (!img || !img.image) {
+  if (!img) {
     return (
-      <WithoutImage>
+      <WithoutImage column={column} inline={inline}>
         {textArray.map((item, indx) => (
-          <TextBlock key={indx}>{item}</TextBlock>
+          <TextBlock key={indx} text={item} gap={gap} />
         ))}
       </WithoutImage>
     );
   }
 
-  const { aspectRatio, image } = img;
+  const {
+    dimensions: { height, width },
+  } = getImageData(img.asset._ref);
+
+  const aspectRatio = width / height;
   const imageWidth = isDesktop
     ? 548
     : isTablet
     ? containerSize * 0.5
     : containerSize;
 
-  const aspectValue =
-    ASPECT_RATIO.find((item) => item.title === aspectRatio)?.value || 1;
-  const imageHeight = Math.floor(imageWidth / aspectValue);
-  const imageUrl = urlFor(image).url().toString();
+  const imageHeight = Math.floor(imageWidth / aspectRatio);
+
+  const imageUrl = urlFor(img).url().toString();
 
   return (
     <WithImage
       ref={containerRef}
       imageHeight={imageHeight}
       imageWidth={imageWidth}
+      column={column}
     >
-      <img src={imageUrl} alt={`photo of ${name}`} />
+      <Image
+        src={imageUrl}
+        alt={`photo of ${name}`}
+        height={imageHeight}
+        width={imageWidth}
+        isLazyLoading={false}
+      />
       <Box>
         {textArray.map((item, indx) => (
-          <TextBlock key={indx} >{item}</TextBlock>
+          <TextBlock key={indx} text={item} gap={gap} />
         ))}
       </Box>
     </WithImage>

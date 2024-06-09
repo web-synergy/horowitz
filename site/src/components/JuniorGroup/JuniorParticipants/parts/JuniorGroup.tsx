@@ -1,7 +1,8 @@
 import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import GridTemplate from '@/components/Templates/GridTemplate';
-import ParticipantCard from './ParticipantCard';
+import ParticipantItem from '@/components/GroupPages/GroupParticipantList/parts/ParticipantItem';
+
 import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
 import { ETabs } from '@/types/translation.d';
 import { useJuniorGroupStore } from '@/store/juniorGroupStore';
@@ -16,14 +17,14 @@ const JuniorGroup = () => {
   }
 
   const translatedTitle = t(`navigation.${ETabs.JUNIOR}`);
-  
+
   return (
     <>
       <CommonStackWrapper>
         <Typography variant="h1" component="h2">
           {translatedTitle}
         </Typography>
-        <GridTemplate list={junior} gridItem={ParticipantCard} />
+        <GridTemplate list={junior} gridItem={ParticipantItem} />
       </CommonStackWrapper>
     </>
   );

@@ -9,12 +9,12 @@ interface GroupJuryItemProps {
 }
 
 const GroupJuryItem: FC<GroupJuryItemProps> = ({ item }) => {
-  const { avatar, name, slug, role } = item;
+  const { photo, name, slug, role } = item;
 
   return (
     <Stack direction="column" justifyContent={'space-between'} height={'100%'}>
       <Box>
-        <PersonPhoto alt={name} image={avatar.image} />
+        <PersonPhoto alt={name} image={photo} />
         <Typography
           variant="subhead"
           component={'p'}

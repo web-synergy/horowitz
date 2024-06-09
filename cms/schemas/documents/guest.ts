@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineType} from 'sanity'
 import {CgProfile} from 'react-icons/cg'
 
 export default defineType({
@@ -6,30 +6,27 @@ export default defineType({
   title: 'Почесний гість',
   type: 'document',
   fields: [
-    defineField({
+    {
       name: 'name',
       title: "Прізвище та ім'я",
       type: 'internationalizedArrayString',
-    }),
+    },
 
-    defineField({
+    {
       name: 'about',
       title: 'Короткий опис',
       type: 'internationalizedArrayText',
-    }),
-    defineField({
-      name: 'avatar',
+    },
+    {
+      name: 'photo',
       title: 'Фото',
-      type: 'picture',
-      options: {
-        collapsed: false,
-      },
-    }),
+      type: 'image',
+    },
   ],
   preview: {
     select: {
       name: 'name',
-      avatar: 'avatar.image',
+      avatar: 'photo',
     },
     prepare(selection) {
       const {name, avatar} = selection

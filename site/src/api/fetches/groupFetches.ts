@@ -21,6 +21,8 @@ import {
   groupVenuesQuery,
   juniorWinners,
   otherGroupPreselectionJury,
+  otherGroupParticipants,
+  otherGroupWinners,
 } from '../query';
 
 export const getJuniorGroupData = (
@@ -75,7 +77,7 @@ export const getGroupVenuesData = (
 export const getGroupRewardsData = (
   id: string,
   language: string
-): Promise<Pick<CommonGroupType, 'rewards'>> => {
+): Promise<Pick<CommonGroupType, 'rewards' | 'prizes'>> => {
   return sanityFetch(groupRewardsQuery, { id, language });
 };
 
@@ -125,7 +127,7 @@ export const getOtherGroupParticipantsData = (
   id: string,
   language: string
 ): Promise<Pick<OtherGroupType, 'participants'>> => {
-  return sanityFetch(juniorGroupParticipants, { id, language });
+  return sanityFetch(otherGroupParticipants, { id, language });
 };
 
 export const getJuniorWinnersData = (
@@ -133,4 +135,11 @@ export const getJuniorWinnersData = (
   language: string
 ): Promise<Pick<JuniorGroupType, 'winners' | 'juniorGallery'>> => {
   return sanityFetch(juniorWinners, { id, language });
+};
+
+export const getOtherGroupWinnersData = (
+  id: string,
+  language: string
+): Promise<Pick<OtherGroupType, 'winners' | 'winnersGallery'>> => {
+  return sanityFetch(otherGroupWinners, { id, language });
 };

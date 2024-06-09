@@ -61,11 +61,16 @@ const JuniorMainPage = () => {
   });
 
   const title = t(`navigation.${Routes.JUNIOR}`);
+  const goBackLink = `/${Routes.COMPETITIONS}/${slug}`;
 
   return (
     <>
       <SeoComponent canonicalUrl={`${slug}/junior`} title={title} />
-      <GroupMainPage goBackLink={slug} navList={navigation} title={title} />
+      <GroupMainPage
+        goBackLink={goBackLink}
+        navList={navigation}
+        title={title}
+      />
     </>
   );
 };

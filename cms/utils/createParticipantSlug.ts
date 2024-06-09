@@ -17,7 +17,7 @@ export function createParticipantSlug(document: SanityDocument, context: CustomS
   if (!name) {
     return
   }
-  const base = name.find((item) => item._key === 'en')
+  const base = name.find((item) => item._key === 'en')?.value
   const docType = document._type
   const groupType = document.groupType
   if (docType === 'group' && groupType === 'junior') {
@@ -25,7 +25,7 @@ export function createParticipantSlug(document: SanityDocument, context: CustomS
     if (!group) {
       return
     }
-    return base ? `${group}-${base.value}` : ''
+    return base ? `${group}-${base}` : ''
   } else {
     return base ?? ''
   }

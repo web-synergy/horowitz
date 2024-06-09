@@ -28,18 +28,15 @@ export default defineType({
       type: 'internationalizedArrayText',
     },
     {
-      name: 'avatar',
+      name: 'photo',
       title: 'Фото',
-      type: 'picture',
-      options: {
-        collapsed: false,
-      },
+      type: 'image',
     },
   ],
   preview: {
     select: {
       name: 'name',
-      avatar: 'avatar.image',
+      avatar: 'photo',
     },
     prepare(selection) {
       const {name, avatar} = selection

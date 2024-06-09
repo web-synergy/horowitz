@@ -9,15 +9,14 @@ import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 
 const ArtistCard: FC<TextBlockType> = ({ text, image: blockImage, title }) => {
   const { containerRef, containerSize } = useWidthBlokSize();
-  const { image, alt } = blockImage;
 
   const {
     dimensions: { height, width },
-  } = getImageData(image.asset._ref);
+  } = getImageData(blockImage.asset._ref);
 
   const imageHeight = Math.floor((containerSize * height) / width);
 
-  const imageUrl = urlFor(image)
+  const imageUrl = urlFor(blockImage)
     .auto('format')
     .width(containerSize)
     .height(imageHeight)
@@ -35,7 +34,7 @@ const ArtistCard: FC<TextBlockType> = ({ text, image: blockImage, title }) => {
           height={imageHeight}
           style={{ display: 'block' }}
         />
-        {alt && (
+        {/* {alt && (
           <Typography
             component={'p'}
             mt={'2px'}
@@ -45,7 +44,7 @@ const ArtistCard: FC<TextBlockType> = ({ text, image: blockImage, title }) => {
           >
             {alt}
           </Typography>
-        )}
+        )} */}
       </Box>
     </CommonStackWrapper>
   );

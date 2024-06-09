@@ -8,7 +8,7 @@ import { urlFor } from '@/config/sanity/imageUrl';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 import GrowView from '@/components/Common/GrowView';
 import { defineYearsText } from '@/utils/defineYearText';
-import { RegularText } from '@/components/Common/RegularText';
+import TextBlockComponent from '@/components/Templates/TextBlockComponent/TextBlockComponent';
 
 const StudentJuryCard: FC<ParticipantType> = ({
   age,
@@ -69,7 +69,7 @@ const StudentJuryCard: FC<ParticipantType> = ({
           <Typography variant="subhead" component={'p'} mb={{ xs: 2, lg: 3 }}>
             {age} {t(`age.${yearsText}`)}
           </Typography>
-          <RegularText text={biography} columnCount={1} />
+          <TextBlockComponent text={biography} column={1} inline />
         </Box>
       </Box>
     </GrowView>

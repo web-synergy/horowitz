@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useTheme, useMediaQuery, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import { IImageReference } from '@/types/commonTypes';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 import { urlFor } from '@/config/sanity/imageUrl';
@@ -10,23 +10,10 @@ interface PersonPhotoProps {
   alt: string;
 }
 
-const MOBILE_ASPECT = 0.97;
-const TABLET_ASPECT = 1;
-const DESKTOP_ASPECT = 0.7;
-
 const PersonPhoto: FC<PersonPhotoProps> = ({ image, alt }) => {
-  const theme = useTheme();
   const { containerRef, containerSize } = useWidthBlokSize();
 
-  const isTablet = useMediaQuery(theme.breakpoints.up('md'));
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
-
-  const aspectRatio = isDesktop
-    ? DESKTOP_ASPECT
-    : isTablet
-    ? TABLET_ASPECT
-    : MOBILE_ASPECT;
-
+  const aspectRatio = 3 / 4;
   const imageHeight = Math.floor(containerSize / aspectRatio);
 
   if (!image) {

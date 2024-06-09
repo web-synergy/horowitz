@@ -2,12 +2,8 @@
 import { PortableTextBlock } from '@portabletext/types';
 import { IPortableImgGallery } from './newsTypes';
 import { Routes } from './routes.d';
-
-import {
-  IImageReference,
-  TextBlockType,
-  TextBlockImageType,
-} from './commonTypes';
+import { ProfessorType } from './annualSummerSchoolTypes';
+import { IImageReference, TextBlockType } from './commonTypes';
 import { EDebut, ETabs } from './translation';
 
 export type OtherGroupClassType = Routes.INTERMEDIATE | Routes.SENIOR;
@@ -34,18 +30,25 @@ export interface CommonGroupType {
   timetable: PortableTextBlock[] | null;
   venues: TextBlockType[] | null;
   prizes: PortableTextBlock[] | null;
-  rewards: PortableTextBlock[] | null;
+  rewards: RewardType[] | null;
   artists: TextBlockType[] | null;
   juries: JuryType[] | null;
   guests: GuestType[] | null;
   booklet: string | null;
 }
 
+export interface RewardType {
+  id: string;
+  title: string;
+  description: string;
+  img?: IImageReference;
+}
+
 export interface JuryType {
   name: string;
   role?: string;
   about: string;
-  avatar: TextBlockImageType;
+  photo: IImageReference;
   slug: string;
 }
 
@@ -66,7 +69,7 @@ export interface JuniorParticipantType extends ParticipantType {
 export interface GuestType {
   name: string;
   about: string;
-  avatar: TextBlockImageType;
+  photo: IImageReference;
   id: string;
 }
 
@@ -81,11 +84,11 @@ export type WinnerType = {
 };
 
 export interface OtherGroupType extends CommonGroupType {
-  group: 'intermediate' | 'senior' | null;
+  group: OtherGroupClassType | null;
   isActivePreselectionJury: boolean;
   winners: WinnerType[] | null;
   winnersGallery: IPortableImgGallery | null;
-  preselectionJury: JuryType[] | null;
+  preselectionJury: ProfessorType[] | null;
   participants: ParticipantType[] | null;
 }
 
