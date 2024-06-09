@@ -30,8 +30,6 @@ const MasterClassPage = () => {
     requestLang,
   } = useMasterClassStore();
 
-  console.log(masterClassesList);
-
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const urlPage = +(searchParams.get("page") || 1);
@@ -89,7 +87,8 @@ const MasterClassPage = () => {
                 img={masterClass.img}
                 video={masterClass.video}
                 slug={masterClass.slug}
-                description={truncateDescription(masterClass.description, 100)}
+                // description={truncateDescription(masterClass.description, 100)}
+                description={masterClass.description}
               />
             ))}
           </List>

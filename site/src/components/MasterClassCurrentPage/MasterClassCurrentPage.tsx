@@ -15,6 +15,7 @@ import PageTemplate from "../Common/PageTemplate";
 import PortableComponent from "../Templates/PortableComponent/PortableComponent";
 import { WrapperContentImage, WrapperContentVideo } from "./styled";
 import { useState } from "react";
+import TextBlockComponent from "../Templates/TextBlockComponent/TextBlockComponent";
 
 const MasterClassCurrentPage = () => {
   const [isPreviewPoster, setIsPreviewPoster] = useState(false);
@@ -35,6 +36,7 @@ const MasterClassCurrentPage = () => {
     slug,
     language,
   });
+  console.log(data);
 
   if (loading) return <Loader />;
   if (error) {
@@ -97,8 +99,15 @@ const MasterClassCurrentPage = () => {
                   mt: { xs: "24px", md: "32px" },
                 }}
               >
-                {data.description && (
+                {/* {data.description && (
                   <PortableComponent data={data.description} />
+                )} */}
+                {data.description && (
+                  <TextBlockComponent
+                    text={data.description}
+                    column={1}
+                    // gap={16}
+                  />
                 )}
               </Box>
             </Box>

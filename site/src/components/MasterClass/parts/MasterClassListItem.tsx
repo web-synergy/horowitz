@@ -21,6 +21,7 @@ import { PortableTextBlock } from "@portabletext/types";
 
 import { WrapperContent } from "../styled";
 import { getMasterClassPosterLink } from "@/utils/helpers";
+import TextBlockComponent from "@/components/Templates/TextBlockComponent/TextBlockComponent";
 
 interface IMasterClassListItem {
   img?: IImage;
@@ -38,6 +39,7 @@ const MasterClassListItem = ({
   slug,
 }: IMasterClassListItem) => {
   const theme = useTheme();
+  console.log(description);
 
   const posterLink = video ? getMasterClassPosterLink(video) : "";
 
@@ -86,9 +88,14 @@ const MasterClassListItem = ({
             >
               <Typography variant="subhead">{title}</Typography>
 
-              {description && (
+              {/* {description && (
                 <Box sx={{ color: theme.palette.neutral[40] }}>
                   <PortableComponent data={description} />
+                </Box>
+              )} */}
+              {description && (
+                <Box sx={{ color: theme.palette.neutral[40] }}>
+                  <TextBlockComponent text={description} inline />
                 </Box>
               )}
             </Box>
