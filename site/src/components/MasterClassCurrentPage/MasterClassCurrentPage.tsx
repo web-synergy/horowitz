@@ -35,7 +35,6 @@ const MasterClassCurrentPage = () => {
     slug,
     language,
   });
-  console.log(data?.description);
 
   if (loading) return <Loader />;
   if (error) {

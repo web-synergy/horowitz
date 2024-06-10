@@ -52,6 +52,7 @@ export default defineType({
     },
     {
       name: 'photo',
+      title: 'Зображення',
       type: 'image',
     },
   ],

@@ -35,7 +35,6 @@ const MasterClassListItem = ({
   slug,
 }: IMasterClassListItem) => {
   const theme = useTheme();
-  console.log(description);
 
   const posterLink = video ? getMasterClassPosterLink(video) : "";
 
