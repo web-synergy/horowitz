@@ -87,8 +87,7 @@ const MasterClassPage = () => {
                 img={masterClass.img}
                 video={masterClass.video}
                 slug={masterClass.slug}
-                // description={truncateDescription(masterClass.description, 100)}
-                description={masterClass.description}
+                description={truncateDescription(masterClass.description, 100)}
               />
             ))}
           </List>

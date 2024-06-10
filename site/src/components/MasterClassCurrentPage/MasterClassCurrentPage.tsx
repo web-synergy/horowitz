@@ -12,7 +12,6 @@ import { IMasterClass } from "@/types/masterClassTypes";
 import { Routes } from "@/types/routes.d";
 
 import PageTemplate from "../Common/PageTemplate";
-import PortableComponent from "../Templates/PortableComponent/PortableComponent";
 import { WrapperContentImage, WrapperContentVideo } from "./styled";
 import { useState } from "react";
 import TextBlockComponent from "../Templates/TextBlockComponent/TextBlockComponent";
@@ -36,7 +35,7 @@ const MasterClassCurrentPage = () => {
     slug,
     language,
   });
-  console.log(data);
+  console.log(data?.description);
 
   if (loading) return <Loader />;
   if (error) {
@@ -99,15 +98,8 @@ const MasterClassCurrentPage = () => {
                   mt: { xs: "24px", md: "32px" },
                 }}
               >
-                {/* {data.description && (
-                  <PortableComponent data={data.description} />
-                )} */}
                 {data.description && (
-                  <TextBlockComponent
-                    text={data.description}
-                    column={1}
-                    // gap={16}
-                  />
+                  <TextBlockComponent text={data.description} column={1} />
                 )}
               </Box>
             </Box>

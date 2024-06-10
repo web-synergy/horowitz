@@ -1,4 +1,3 @@
-import { PortableTextBlock } from "@portabletext/types";
 import { IImage } from "./commonTypes";
 
 export interface IMasterClass {
@@ -9,6 +8,6 @@ export interface IMasterClass {
   img?: IImage;
   video?: string;
   slug: string;
-  description: PortableTextBlock[];
+  description: string;
   count: number;
 }
