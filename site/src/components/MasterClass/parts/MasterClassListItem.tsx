@@ -86,7 +86,6 @@ const MasterClassListItem = ({
 
               {description && (
                 <Box sx={{ color: theme.palette.neutral[40] }}>
-                  {/* <TextBlockComponent text={description} column={1} /> */}
                   <Typography variant="bodyRegular">{description}</Typography>
                 </Box>
               )}

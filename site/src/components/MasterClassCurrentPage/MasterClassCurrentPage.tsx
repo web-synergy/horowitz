@@ -57,11 +57,10 @@ const MasterClassCurrentPage = () => {
             <Box
               sx={{
                 float: { md: "left" },
-                width: { xs: "100%", md: "332px", lg: "50%" },
+                width: { xs: "100%", md: "332px", lg: "548px" },
                 height: { md: "224px", lg: "384px" },
                 minHeight: "185px",
                 mr: { md: "24px" },
-                mb: { xs: "24px", md: "16px" },
               }}
             >
               {data?.img ? (
@@ -99,7 +98,7 @@ const MasterClassCurrentPage = () => {
                 }}
               >
                 {data.description && (
-                  <TextBlockComponent text={data.description} column={1} />
+                  <TextBlockComponent text={data.description} inline />
                 )}
               </Box>
             </Box>

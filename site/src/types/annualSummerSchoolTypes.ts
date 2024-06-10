@@ -1,9 +1,9 @@
-import { ParticipantType } from './groupTypes';
-import { PortableTextBlock } from '@portabletext/types';
-import { IImage, IImageReference } from './commonTypes';
-import { BannerType } from './bannerType';
+import { ParticipantType } from "./groupTypes";
+import { PortableTextBlock } from "@portabletext/types";
+import { IImage, IImageReference } from "./commonTypes";
+import { BannerType } from "./bannerType";
 
-import { TextBlockImageType } from './commonTypes';
+import { TextBlockImageType } from "./commonTypes";
 
 export interface IParticipant {
   _key: string;
@@ -26,7 +26,7 @@ export interface ProfessorType {
 
 export interface IRehearsal {
   time: string;
-  event: PortableTextBlock[];
+  event: string;
   _key: string;
 }
 
@@ -39,7 +39,7 @@ export interface ISchedule {
 
 export type MainAnnualSummerSchoolTypes = Pick<
   AnnualSummerSchoolTypes,
-  'button' | 'year' | 'slug' | 'isActive' | 'applicationLink'
+  "button" | "year" | "slug" | "isActive" | "applicationLink"
 >;
 
 export interface IConcerts {

@@ -30,9 +30,7 @@ const SchedulePage = () => {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
   const theme = useTheme();
-
   const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
-
   const { t } = useTranslation();
 
   const { professors, schedules, isLoading, requestLang } =
@@ -51,51 +49,45 @@ const SchedulePage = () => {
     return () => clearTimeout(timeout);
   }, [selectedLectures]);
 
-  const updateSchedule = useCallback(
-    (selectedProfessorKey: string | null, selectedDate: Dayjs | null) => {
-      let updatedLectures: ISchedule[] = [];
+  const filterLectures = (professorKey: string | null, date: Dayjs | null) => {
+    if (!schedules) return [];
+    let filteredLectures: ISchedule[] = [];
 
-      if (selectedProfessorKey === "All") {
-        updatedLectures = schedules!.filter((schedule) =>
-          selectedDate
-            ? dayjs(schedule.date).isSame(selectedDate, "day")
-            : dayjs(schedule.date).isSameOrAfter(dayjs(), "day")
-        );
-        setIsShowSearchResults(true);
-      } else if (selectedProfessorKey) {
-        const selectedProfessorObject = professors!.find(
-          (professor) => professor._key === selectedProfessorKey
-        );
-
-        if (selectedProfessorObject) {
-          updatedLectures = schedules!.filter(
-            (schedule) =>
-              schedule.lecture === selectedProfessorKey &&
-              (selectedDate
-                ? dayjs(schedule.date).isSame(selectedDate, "day")
-                : dayjs(schedule.date).isSameOrAfter(dayjs(), "day"))
-          );
-          setIsShowSearchResults(true);
-        }
-      }
-
-      updatedLectures.sort(
-        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    if (professorKey === "All") {
+      filteredLectures = schedules.filter((schedule) =>
+        date ? dayjs(schedule.date).isSame(date, "day") : true
       );
+    } else if (professorKey) {
+      filteredLectures = schedules.filter(
+        (schedule) =>
+          schedule.lecture === professorKey &&
+          (date ? dayjs(schedule.date).isSame(date, "day") : true)
+      );
+    }
+
+    return filteredLectures.sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    );
+  };
+
+  const updateSchedule = useCallback(
+    (professorKey: string | null, date: Dayjs | null) => {
+      const updatedLectures = filterLectures(professorKey, date);
       setSelectedLectures(updatedLectures);
+      setIsShowSearchResults(true);
     },
-    [schedules, professors]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [schedules]
   );
 
   useEffect(() => {
     updateSchedule(selectedProfessor, selectedDate);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [requestLang]);
+  }, [requestLang, updateSchedule, selectedProfessor, selectedDate]);
 
   const handleProfessorChange = (event: SelectChangeEvent<string>) => {
-    const selectedProfessorKey = event.target.value;
-    setSelectedProfessor(selectedProfessorKey);
-    updateSchedule(selectedProfessorKey, selectedDate);
+    const professorKey = event.target.value;
+    setSelectedProfessor(professorKey);
+    updateSchedule(professorKey, selectedDate);
   };
 
   const handleDateChange = (date: Dayjs | null) => {
@@ -124,7 +116,7 @@ const SchedulePage = () => {
   };
 
   const getProfessorInfo = (lectureKey: string): string => {
-    const professor = professors!.find(
+    const professor = professors?.find(
       (professor) => professor._key === lectureKey
     );
     if (professor) {
