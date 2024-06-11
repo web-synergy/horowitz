@@ -1,4 +1,4 @@
-import groq from 'groq';
+import groq from "groq";
 
 export const schoolData = groq`*
 [_type == 'summerSchool'][0]{
@@ -43,7 +43,8 @@ export const annualSchoolData = groq`*[_type== 'annualSummerSchool' && year==$ye
     "name": name[_key ==$language][0].value
     }, 
   "professors": professors[]{
-    _key, avatar, 
+    _key, 
+    photo, 
     "about": about[_key ==$language][0].value, 
     "instrument": instrument[_key ==$language][0].value, 
     "name": name[_key ==$language][0].value, 

@@ -15,7 +15,7 @@ export default defineType({
     defineField({
       name: 'event',
       title: 'Опис репетиції',
-      type: 'internationalizedArrayArticle',
+      type: 'internationalizedArrayText',
     }),
   ],
   preview: {

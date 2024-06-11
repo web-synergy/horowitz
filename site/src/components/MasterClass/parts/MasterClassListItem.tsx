@@ -12,21 +12,18 @@ import {
 
 import GrowView from "@/components/Common/GrowView";
 import SvgSpriteIcon from "@/components/Common/SvgSpriteIcon";
-import PortableComponent from "@/components/Templates/PortableComponent/PortableComponent";
 
 import { IImage } from "@/types/commonTypes";
 import { Buttons } from "@/types/translation.d";
 
-import { PortableTextBlock } from "@portabletext/types";
-
-import { WrapperContent } from "../styled";
 import { getMasterClassPosterLink } from "@/utils/helpers";
+import { WrapperContent } from "../styled";
 
 interface IMasterClassListItem {
   img?: IImage;
   video?: string;
   title: string;
-  description: PortableTextBlock[];
+  description: string;
   slug: string;
 }
 
@@ -88,7 +85,7 @@ const MasterClassListItem = ({
 
               {description && (
                 <Box sx={{ color: theme.palette.neutral[40] }}>
-                  <PortableComponent data={description} />
+                  <Typography variant="bodyRegular">{description}</Typography>
                 </Box>
               )}
             </Box>

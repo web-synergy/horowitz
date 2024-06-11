@@ -3,8 +3,8 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { Dayjs } from "dayjs";
 
 import { TabletContentWrapper } from "../styles";
-import TextBlockSection from "./TextBlockSection.tsx";
 import { IRehearsal } from "@/types/annualSummerSchoolTypes.ts";
+import TextBlockComponent from "@/components/Templates/TextBlockComponent/TextBlockComponent.tsx";
 
 interface TabletLecturesProps {
   index: number;
@@ -94,7 +94,7 @@ const TabletLectures: FC<TabletLecturesProps> = ({
           },
         }}
       >
-        <TextBlockSection blocks={rehearsal.event} />
+        <TextBlockComponent text={rehearsal.event} inline />
       </TabletContentWrapper>
     </Box>
   );

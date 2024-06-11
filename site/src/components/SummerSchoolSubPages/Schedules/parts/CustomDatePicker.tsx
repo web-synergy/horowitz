@@ -88,7 +88,6 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({
                 )
               : true
           }
-          disablePast
           dayOfWeekFormatter={(date) => {
             const dayOfWeek = dayjs(date).format("dd");
             return dayOfWeek;

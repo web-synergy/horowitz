@@ -57,9 +57,6 @@ export default defineType({
       name: 'img',
       title: 'Додати зображення',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
       fields: [
         defineField({
           name: 'alt',
@@ -98,7 +95,7 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Опис майстеркласу',
-      type: 'internationalizedArrayArticle',
+      type: 'internationalizedArrayText',
       validation: (Rule) =>
         Rule.custom((content) => {
           let errorMassage = ''

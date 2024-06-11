@@ -12,9 +12,9 @@ import { IMasterClass } from "@/types/masterClassTypes";
 import { Routes } from "@/types/routes.d";
 
 import PageTemplate from "../Common/PageTemplate";
-import PortableComponent from "../Templates/PortableComponent/PortableComponent";
 import { WrapperContentImage, WrapperContentVideo } from "./styled";
 import { useState } from "react";
+import TextBlockComponent from "../Templates/TextBlockComponent/TextBlockComponent";
 
 const MasterClassCurrentPage = () => {
   const [isPreviewPoster, setIsPreviewPoster] = useState(false);
@@ -56,11 +56,10 @@ const MasterClassCurrentPage = () => {
             <Box
               sx={{
                 float: { md: "left" },
-                width: { xs: "100%", md: "332px", lg: "50%" },
+                width: { xs: "100%", md: "332px", lg: "548px" },
                 height: { md: "224px", lg: "384px" },
                 minHeight: "185px",
                 mr: { md: "24px" },
-                mb: { xs: "24px", md: "16px" },
               }}
             >
               {data?.img ? (
@@ -98,7 +97,7 @@ const MasterClassCurrentPage = () => {
                 }}
               >
                 {data.description && (
-                  <PortableComponent data={data.description} />
+                  <TextBlockComponent text={data.description} inline />
                 )}
               </Box>
             </Box>

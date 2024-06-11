@@ -15,6 +15,12 @@ export default function RehearsalPreview(props: PreviewProps) {
   const professorName =
     professors.find((prof) => prof._key === title)?.name[0].value || 'no name found'
 
-  const date = format(subtitle as string, 'dd.MM.yyyy')
+  let date
+  try {
+    date = format(new Date(subtitle as string), 'dd.MM.yyyy')
+  } catch (error) {
+    console.error('Invalid date:', subtitle)
+    date = 'Неверная дата'
+  }
   return <Box>{`Розклад для ${professorName} за ${date}`}</Box>
 }

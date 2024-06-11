@@ -1,39 +1,10 @@
-import { PortableTextBlock } from "@portabletext/types";
-
 export const truncateDescription = (
-  description: PortableTextBlock[],
+  description: string,
   length: number
-): PortableTextBlock[] => {
-  let remainingLength = length;
-  const truncatedDescription: PortableTextBlock[] = [];
-
-  for (const block of description) {
-    if (remainingLength <= 0) {
-      break;
-    }
-
-    if (block._type === "block" && block.children) {
-      const newChildren = block.children.map((child) => {
-        if (remainingLength <= 0) {
-          return { ...child, text: "" };
-        }
-
-        let text = child.text;
-        if (text.length > remainingLength) {
-          text = text.slice(0, remainingLength) + "...";
-          remainingLength = 0;
-        } else {
-          remainingLength -= text.length;
-        }
-
-        return { ...child, text };
-      });
-
-      truncatedDescription.push({ ...block, children: newChildren });
-    } else {
-      truncatedDescription.push(block);
-    }
+): string => {
+  if (description.length <= length) {
+    return description;
   }
 
-  return truncatedDescription;
+  return description.slice(0, length);
 };
