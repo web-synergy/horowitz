@@ -1,5 +1,6 @@
 import { FC } from 'react';
-import { Typography, Divider } from '@mui/material';
+import { Divider, Typography, Link } from '@mui/material';
+import { formatText } from '@/utils/fomatText';
 
 interface TextBlockProps {
   text: string;
@@ -7,9 +8,12 @@ interface TextBlockProps {
 }
 
 const TextBlock: FC<TextBlockProps> = ({ text, gap = 8 }) => {
+  //Додавання горизонтальної лінії
   if (text.trim() === '*Divider*') {
     return <Divider flexItem sx={{ mt: 2, mb: 2 }} />;
   }
+
+  const formattedText = formatText(text);
 
   return (
     <Typography
@@ -23,7 +27,33 @@ const TextBlock: FC<TextBlockProps> = ({ text, gap = 8 }) => {
         },
       }}
     >
-      {text}
+      {formattedText.map((item) => {
+        if (item.type === 'nowrap') {
+          return (
+            <Typography component={'span'} style={{ textWrap: 'nowrap' }}>
+              {item.value}
+            </Typography>
+          );
+        }
+
+        if (item.type === 'link') {
+          return (
+            <Link href={item.url} target="_blank" variant="linkBlock">
+              {item.value}
+            </Link>
+          );
+        }
+
+        if (item.type === 'bold') {
+          return (
+            <Typography component={'span'} variant="bodyMedium">
+              {item.value}
+            </Typography>
+          );
+        }
+
+        return item.value;
+      })}
     </Typography>
   );
 };

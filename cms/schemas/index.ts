@@ -35,6 +35,7 @@ import guest from './documents/guest'
 import masterClass from './documents/masterClass'
 import video from './objects/video'
 import reward from './objects/reward'
+import documentation from './documents/documentation'
 
 export const schemaTypes = [
   //documents
@@ -55,6 +56,7 @@ export const schemaTypes = [
   group,
   jury,
   guest,
+  documentation,
 
   //objects
   winners,

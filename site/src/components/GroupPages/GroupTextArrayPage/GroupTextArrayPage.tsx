@@ -17,7 +17,6 @@ const GroupTextArrayPage: FC<GroupTextArrayPageProps> = ({
   data,
   goBackLink,
 }) => {
-  console.log(data);
   return (
     <>
       <PageTemplate>
