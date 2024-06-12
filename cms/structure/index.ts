@@ -1,13 +1,13 @@
 import {singleDocument} from './singleDocument'
 import {StructureBuilder} from 'sanity/structure'
 
-import {IoSettingsSharp, IoShareSocialOutline} from 'react-icons/io5'
-import {LuContact} from 'react-icons/lu'
-import {MdOutlineSettingsBrightness, MdWarningAmber} from 'react-icons/md'
+import {IoSettingsSharp} from 'react-icons/io5'
+import {MdOutlineSettingsBrightness} from 'react-icons/md'
+import {SiInstructure, SiGithubsponsors} from 'react-icons/si'
 import {RiPagesLine} from 'react-icons/ri'
-import {SiGithubsponsors} from 'react-icons/si'
+import {GiTribunalJury} from 'react-icons/gi'
 import {BsMusicNoteList} from 'react-icons/bs'
-import {FaPeopleGroup} from 'react-icons/fa6'
+import {FaPeopleGroup, FaPeopleLine} from 'react-icons/fa6'
 import {FaRegSun} from 'react-icons/fa'
 import {preview} from './preview'
 
@@ -60,7 +60,7 @@ const structure = (S: StructureBuilder) =>
       ),
 
       singleDocument(S, 'settings', 'Налаштування', preview(S, 'contacts')).icon(IoSettingsSharp),
-
+      S.divider(),
       S.listItem()
         .title('інші групи')
         .schemaType('group')
@@ -69,14 +69,20 @@ const structure = (S: StructureBuilder) =>
         ),
       S.listItem()
         .title('Жюрі')
+        .icon(FaPeopleLine)
         .schemaType('jury')
         .child(S.documentList().title('Жюрі').filter('_type == "jury"').apiVersion('v2023-08-30')),
       S.listItem()
-        .title('Guests')
+        .title('Почесні гості')
         .schemaType('guest')
+        .icon(GiTribunalJury)
         .child(
           S.documentList().title('Guests').filter('_type == "guest"').apiVersion('v2023-08-30'),
         ),
+      S.divider(),
+      singleDocument(S, 'documentation', 'Інструкція по роботі з текстовим полем').icon(
+        SiInstructure,
+      ),
     ])
 
 export default structure
