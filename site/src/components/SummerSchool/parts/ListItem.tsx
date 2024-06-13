@@ -1,79 +1,63 @@
-import { MainAnnualSummerSchoolTypes } from '@/types/annualSummerSchoolTypes'
-import { Buttons, SummerSchool } from '@/types/translation.d'
-import { Box, Button, Stack } from '@mui/material'
-import { FC } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Link as RouterLink } from 'react-router-dom'
+import { MainAnnualSummerSchoolTypes } from '@/types/annualSummerSchoolTypes';
+import { Buttons, SummerSchool } from '@/types/translation.d';
+import { Box, Button, Link } from '@mui/material';
+import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link as RouterLink } from 'react-router-dom';
+import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
 
 interface ListItemProps extends MainAnnualSummerSchoolTypes {
-  bgImage: string
+  bgImage: string;
 }
-const ListItem: FC<ListItemProps> = ({ bgImage, isActive, slug, applicationLink, year }) => {
-  const { t } = useTranslation()
+const ListItem: FC<ListItemProps> = ({
+  bgImage,
+  isActive,
+  slug,
+  applicationLink,
+  year,
+}) => {
+  const { t } = useTranslation();
 
-  const musicAcademyTitle = t(`summerSchool.${SummerSchool.ACADEMY}`) + ' - ' + year
+  const musicAcademyTitle =
+    t(`summerSchool.${SummerSchool.ACADEMY}`) + ' - ' + year;
 
   return (
     <Box
       sx={{
         position: 'relative',
-        maxWidth: {
-          xs: '288px',
-          md: '332px',
-          lg: '357px',
+        width: {
+          xs: 288,
+          md: 332,
+          lg: 340,
         },
-        padding: {
-          xs: '40px 16px',
-          md: '40px 30px',
-          lg: '46px 24px',
-        },
-        img: {
-          display: 'block',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-        },
+
+        backgroundImage: `url(${bgImage})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
       }}
     >
-      <img src={bgImage} alt="background image" />
-      <Stack spacing={{ xs: 3, md: 5, lg: 6 }}>
-        <Button
-          variant="transparent"
-          component={RouterLink}
-          to={slug.current}
-          sx={{
-            borderColor: theme => theme.palette.neutral[70],
-            '&:hover': {
-              color: 'inherit',
-              bgcolor: 'transparent',
-              borderColor: theme => theme.palette.neutral[70],
-            },
-          }}
-        >
+      <CommonStackWrapper
+        sx={{
+          py: { xs: 5, lg: 6 },
+          px: { xs: 2, md: '30px', lg: 3 },
+        }}
+      >
+        <Button variant="navigation" component={RouterLink} to={slug}>
           {musicAcademyTitle}
         </Button>
         <Button
-          variant="transparent"
-          component={RouterLink}
+          variant="application"
+          component={Link}
           disabled={!isActive}
-          to={applicationLink ? applicationLink : ''}
-          sx={{
-            borderColor: theme => theme.palette.neutral[70],
-            backgroundColor: theme => theme.palette.common.white,
-            '&.Mui-disabled': {
-              color: theme => theme.palette.neutral[50],
-              bgcolor: theme => theme.palette.neutral[20],
-            },
-          }}
+          href={applicationLink ? applicationLink : ''}
+          target={'_blank'}
         >
           {t(`buttons.${Buttons.APPLY}`)}
         </Button>
-      </Stack>
+      </CommonStackWrapper>
     </Box>
-  )
-}
+  );
+};
 
-export default ListItem
+export default ListItem;

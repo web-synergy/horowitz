@@ -63,11 +63,11 @@ export const useJuniorGroupStore = create<JuniorGroupState>((set, get) => ({
     if (language !== requestLang) {
       resetData();
     }
-    set({ isLoading: true, requestLang: language });
+    set({ isLoading: true });
     try {
       const response = await fetchFn(id, language);
 
-      set({ ...response, ...other });
+      set({ ...response, ...other, requestLang: language });
     } catch (error) {
       console.log(error);
     } finally {

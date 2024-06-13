@@ -88,12 +88,36 @@ export interface HomeStoreState extends HomeData {
   fetchHome: (language: string) => Promise<void>;
 }
 
+export type FetchAnnualSchoolType = (
+  language: string,
+  year: string
+) => Promise<void>;
+
+export type FetchAnnualSchoolDataType = (
+  language: string,
+  year: string
+) => Promise<AnnualSummerSchoolTypes>;
+
 export interface AnnualSummerSchoolStoreState extends AnnualSummerSchoolTypes {
   requestLang: string;
   isLoading: boolean;
   currentConcert: IConcerts | null;
+
+  resetData: () => void;
+  fetchData: (
+    language: string,
+    year: string,
+    fetchFc: FetchAnnualSchoolDataType,
+    otherState?: { [key: string]: boolean }
+  ) => Promise<void>;
+  fetchCommonData: FetchAnnualSchoolType;
+  fetchConditions: FetchAnnualSchoolType;
+  fetchConcerts: FetchAnnualSchoolType;
+  fetchTimetable: FetchAnnualSchoolType;
+  fetchParticipants: FetchAnnualSchoolType;
+  fetchProfessors: FetchAnnualSchoolType;
+  fetchArtists: FetchAnnualSchoolType;
   getCurrentConcert: (key: string) => void;
-  fetchAnnualSummerSchool: (language: string, year: string) => Promise<void>;
 }
 
 export interface CompetitionStoreState extends CompetitionType {

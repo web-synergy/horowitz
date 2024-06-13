@@ -1,5 +1,5 @@
 import { sanityFetch } from '@/config/sanity/client';
-import { schoolData, annualSchoolData } from '../query';
+import { schoolData, annualCommonSchoolData } from '../query';
 import { ISummerSchool } from '@/types/summerSchoolTypes';
 import { AnnualSummerSchoolTypes } from '@/types/annualSummerSchoolTypes';
 
@@ -13,5 +13,5 @@ export const getAnnualSchoolData = (
   language: string,
   year: string
 ): Promise<AnnualSummerSchoolTypes> => {
-  return sanityFetch(annualSchoolData, { language, year });
+  return sanityFetch(annualCommonSchoolData, { language, year });
 };

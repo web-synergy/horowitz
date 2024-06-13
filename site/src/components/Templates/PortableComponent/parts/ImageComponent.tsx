@@ -8,6 +8,7 @@ import { PortableSwiper } from '../Swiper/Swiper';
 import GrowView from '@/components/Common/GrowView';
 import { theme } from '@/theme';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
+
 const GridGallery = lazy(() => import('./GridGallery'));
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

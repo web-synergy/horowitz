@@ -53,7 +53,11 @@ const SummerSchoolPage: FC = () => {
     <PageTemplate>
       <Container>
         <CommonStackWrapper>
-          <Typography component={'h1'} variant="h1" textAlign={'center'}>
+          <Typography
+            component={'h1'}
+            variant="h1"
+            textAlign={{ xs: 'left', md: 'center' }}
+          >
             {t(`summerSchool.${SummerSchool.TITLE}`)}
           </Typography>
           <TextBlockComponent text={topText} />
