@@ -113,9 +113,8 @@ export interface AnnualSummerSchoolStoreState extends AnnualSummerSchoolTypes {
   fetchCommonData: FetchAnnualSchoolType;
   fetchConditions: FetchAnnualSchoolType;
   fetchConcerts: FetchAnnualSchoolType;
-  fetchTimetable: FetchAnnualSchoolType;
   fetchParticipants: FetchAnnualSchoolType;
-  fetchProfessors: FetchAnnualSchoolType;
+  fetchProfessorsAndSchedules: FetchAnnualSchoolType;
   fetchArtists: FetchAnnualSchoolType;
   getCurrentConcert: (key: string) => void;
 }

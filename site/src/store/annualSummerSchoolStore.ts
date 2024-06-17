@@ -1,6 +1,10 @@
 import { create } from 'zustand';
 import { AnnualSummerSchoolStoreState } from '@/types/storeTypes';
-import { getAnnualSchoolData } from '@/api';
+import {
+  getAnnualSchoolData,
+  getAnnualSchoolConditionsData,
+  getAnnualSchoolProfessorsAndSchedulesData,
+} from '@/api';
 
 const initialState = {
   applicationLink: null,
@@ -67,15 +71,10 @@ export const useAnnualSummerSchoolStore = create<AnnualSummerSchoolStoreState>(
 
     fetchConditions: async (language: string, year: string) => {
       const { fetchData } = get();
-      fetchData(language, year, getAnnualSchoolData);
+      fetchData(language, year, getAnnualSchoolConditionsData);
     },
 
     fetchConcerts: async (language: string, year: string) => {
-      const { fetchData } = get();
-      fetchData(language, year, getAnnualSchoolData);
-    },
-
-    fetchTimetable: async (language: string, year: string) => {
       const { fetchData } = get();
       fetchData(language, year, getAnnualSchoolData);
     },
@@ -85,9 +84,9 @@ export const useAnnualSummerSchoolStore = create<AnnualSummerSchoolStoreState>(
       fetchData(language, year, getAnnualSchoolData);
     },
 
-    fetchProfessors: async (language: string, year: string) => {
+    fetchProfessorsAndSchedules: async (language: string, year: string) => {
       const { fetchData } = get();
-      fetchData(language, year, getAnnualSchoolData);
+      fetchData(language, year, getAnnualSchoolProfessorsAndSchedulesData);
     },
 
     fetchArtists: async (language: string, year: string) => {

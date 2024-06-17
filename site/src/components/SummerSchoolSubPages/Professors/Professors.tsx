@@ -1,40 +1,33 @@
-import { Container, Box, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import { Container, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
-import GridTemplate from "@/components/Templates/GridTemplate";
-import Loader from "@/components/Common/Loader";
-import { Routes } from "@/types/routes.d";
-import { useAnnualSummerSchoolStore } from "@/store/annualSummerSchoolStore";
-import ProfessorCard from "./parts/ProfessorCard";
+import GridTemplate from '@/components/Templates/GridTemplate';
+import PageTemplate from '@/components/Common/PageTemplate';
+
+import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
+import { useAnnualSchoolData } from '@/hook/useAnnualSchoolData';
+import ProfessorCard from './parts/ProfessorCard';
+import { Routes } from '@/types/routes.d';
 
 const Professors = () => {
   const { t } = useTranslation();
 
-  const { professors, isLoading, requestLang } = useAnnualSummerSchoolStore(
-    (state) => ({
-      professors: state.professors,
-      isLoading: state.isLoading,
-      requestLang: state.requestLang,
-    })
-  );
+  const { professors, fetchProfessorsAndSchedules, slug } =
+    useAnnualSummerSchoolStore();
 
-  if (isLoading) return <Loader />;
-  if (!requestLang.length) return null;
+  useAnnualSchoolData(professors, fetchProfessorsAndSchedules);
 
+  const goBackLink = `/${Routes.SUMMER_SCHOOL}/${slug}`;
+  console.log(professors);
   return (
-    <Container>
-      <Box
-        sx={{
-          paddingTop: { xs: "24px", md: "40px", lg: "48px" },
-          paddingBottom: { xs: "74px", md: "98px", lg: "120px" },
-        }}
-      >
+    <PageTemplate goBackUrl={goBackLink}>
+      <Container>
         <Typography
-          component={"h1"}
+          component={'h1'}
           variant="h1"
           sx={{
-            marginBottom: { xs: "24px", md: "40px", lg: "48px" },
-            textAlign: "start",
+            marginBottom: { xs: '24px', md: '40px', lg: '48px' },
+            textAlign: 'start',
           }}
         >
           {t(`navigation.${Routes.SUMMER_SCHOOL_PROFESSORS}`)}
@@ -45,8 +38,8 @@ const Professors = () => {
             gridItem={({ item }) => <ProfessorCard professor={item} />}
           />
         )}
-      </Box>
-    </Container>
+      </Container>
+    </PageTemplate>
   );
 };
 

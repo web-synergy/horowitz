@@ -46,11 +46,11 @@ export const Ul = ({ children }: { children: ReactNode }) => {
       component={'ul'}
       sx={{
         display: 'flex',
-        // gap: '8px',
+
         flexDirection: 'column',
         my: 2,
         pl: { xs: 3, md: 4 },
-        // lineHeight: { xs: '24px', md: '28px' },
+        textAlign: 'justify',
       }}
       variant="bodyRegular"
     >
@@ -65,11 +65,11 @@ export const Ol = ({ children }: { children: ReactNode }) => {
       component={'ol'}
       sx={{
         display: 'flex',
-        // gap: '8px',
+
         flexDirection: 'column',
+        textAlign: 'justify',
         my: 2,
         pl: { xs: 3, md: 4 },
-        // lineHeight: { sx: '24px', md: '28px' },
       }}
       variant="bodyRegular"
     >
