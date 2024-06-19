@@ -10,7 +10,7 @@ import { useLiveQuery } from '@sanity/preview-kit';
 import PageTemplate from '../Common/PageTemplate';
 import Loader from '../Common/Loader';
 import SeoComponent from '../Common/SEO';
-import MainBanner from '../Common/MainBanner';
+import MainBanner from '../Templates/MainBanner/MainBanner';
 import PortableComponent from '../Templates/PortableComponent/PortableComponent';
 
 const UkrainianComposition = () => {
@@ -42,7 +42,7 @@ const UkrainianComposition = () => {
         canonicalUrl={`/${Routes.UKRAINIAN_WORKS}`}
         title={t(`navigation.${Routes.UKRAINIAN_WORKS}`)}
       />
-      {data && <MainBanner banner={data?.banner} />}
+      <MainBanner banner={data?.banner} />
 
       <PageTemplate>
         {data && (

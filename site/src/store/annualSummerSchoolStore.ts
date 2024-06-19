@@ -4,6 +4,9 @@ import {
   getAnnualSchoolData,
   getAnnualSchoolConditionsData,
   getAnnualSchoolProfessorsAndSchedulesData,
+  getAnnualSchoolParticipantsData,
+  getAnnualSchoolConcertsData,
+  getAnnualSchoolArtistsData,
 } from '@/api';
 
 const initialState = {
@@ -43,7 +46,10 @@ export const useAnnualSummerSchoolStore = create<AnnualSummerSchoolStoreState>(
 
     fetchData: async (language, year, fetchFm, other) => {
       const { requestLang, year: storeYear, resetData } = get();
+      console.log('year from request', year);
+      console.log('year in store', storeYear);
       if (language !== requestLang || year !== storeYear) {
+        console.log('resetData');
         resetData();
       }
       set({ isLoading: true });
@@ -76,12 +82,12 @@ export const useAnnualSummerSchoolStore = create<AnnualSummerSchoolStoreState>(
 
     fetchConcerts: async (language: string, year: string) => {
       const { fetchData } = get();
-      fetchData(language, year, getAnnualSchoolData);
+      fetchData(language, year, getAnnualSchoolConcertsData);
     },
 
     fetchParticipants: async (language: string, year: string) => {
       const { fetchData } = get();
-      fetchData(language, year, getAnnualSchoolData);
+      fetchData(language, year, getAnnualSchoolParticipantsData);
     },
 
     fetchProfessorsAndSchedules: async (language: string, year: string) => {
@@ -91,7 +97,7 @@ export const useAnnualSummerSchoolStore = create<AnnualSummerSchoolStoreState>(
 
     fetchArtists: async (language: string, year: string) => {
       const { fetchData } = get();
-      fetchData(language, year, getAnnualSchoolData);
+      fetchData(language, year, getAnnualSchoolArtistsData);
     },
 
     getCurrentConcert: (key) => {

@@ -53,20 +53,24 @@ export const annualSchoolProfessorAndScheduleData = groq`*[_type== 'annualSummer
   }
 }`;
 
-// 'concerts':concerts[]{
-//   _key,
-//   'img':coalesce( img[_key ==$language ][0].value, img[][0].value),
-//   'title': coalesce( title[_key ==$language][0].value, title[][0].value),
-//   'concertPrograms':coalesce(concertPrograms[_key ==$language][0].value,concertPrograms[][0].value),
-// },
-//
+export const annualSchoolParticipantsData = groq`* [_type == 'annualSummerSchool' && year == $year][0]{
+  "participants": participants[]{
+      _key, avatar,age,
+      "biography": biography[_key ==$language][0].value,
+      "country": country[_key ==$language][0].value,
+      "name": name[_key ==$language][0].value
+    },
+}`;
 
-// "orchestra": orchestra[_key ==$language][0].value,
-// "participants": participants[]{
-//   _key, avatar,age,
-//   "about": about[_key ==$language][0].value,
-//   "country": country[_key ==$language][0].value,
-//   "name": name[_key ==$language][0].value
-//   },
+export const annualSchoolConcertsData = groq`* [_type == 'annualSummerSchool' && year == $year][0]{
+  'concerts':concerts[]{
+      _key,
+      'img':coalesce( img[_key ==$language ][0].value, img[][0].value),
+      'title': coalesce( title[_key ==$language][0].value, title[][0].value),
+      'concertPrograms':coalesce(concertPrograms[_key ==$language][0].value,concertPrograms[][0].value),
+    },
+}`;
 
-// }
+export const annualSchoolArtistsData = groq`* [_type == 'annualSummerSchool' && year == $year][0]{
+ "orchestra": coalesce(orchestra[_key ==$language][0].value),
+}`;

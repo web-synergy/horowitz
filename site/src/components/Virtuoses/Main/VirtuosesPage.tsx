@@ -8,7 +8,7 @@ import { virtuososQuery } from '@/api/query';
 import { useVirtuososStore } from '@/store/virtuososStor';
 
 import PageTemplate from '../../Common/PageTemplate';
-import MainBanner from '@/components/Common/MainBanner';
+import MainBanner from '@/components/Templates/MainBanner/MainBanner';
 import Loader from '@/components/Common/Loader';
 import NewsSwiper from '../../NewsSection/NewsSwiper';
 import CommonStackWrapper from '@/components/Common/CommonStackWrapper';

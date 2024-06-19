@@ -7,11 +7,12 @@ import { createColor, createGradientColors } from '@/utils/createColor';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 import { getImageData } from '@/utils/getImageData';
 
-interface MainBannerProps {
+interface BannerProps {
   banner: BannerType;
 }
 
-const MainBanner: FC<MainBannerProps> = ({ banner }) => {
+const Banner: FC<BannerProps> = ({ banner }) => {
+  console.log(banner);
   const [imageWidth, setImageWidth] = useState(0);
 
   const { containerSize, containerRef } = useWidthBlokSize();
@@ -159,4 +160,4 @@ const MainBanner: FC<MainBannerProps> = ({ banner }) => {
   );
 };
 
-export default MainBanner;
+export default Banner;

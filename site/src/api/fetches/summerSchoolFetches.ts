@@ -4,6 +4,9 @@ import {
   annualCommonSchoolData,
   annualSchoolConditionsData,
   annualSchoolProfessorAndScheduleData,
+  annualSchoolParticipantsData,
+  annualSchoolConcertsData,
+  annualSchoolArtistsData,
 } from '../query';
 import { ISummerSchool } from '@/types/summerSchoolTypes';
 import { AnnualSummerSchoolTypes } from '@/types/annualSummerSchoolTypes';
@@ -33,4 +36,24 @@ export const getAnnualSchoolProfessorsAndSchedulesData = (
   year: string
 ): Promise<AnnualSummerSchoolTypes> => {
   return sanityFetch(annualSchoolProfessorAndScheduleData, { language, year });
+};
+
+export const getAnnualSchoolParticipantsData = (
+  language: string,
+  year: string
+): Promise<AnnualSummerSchoolTypes> => {
+  return sanityFetch(annualSchoolParticipantsData, { language, year });
+};
+export const getAnnualSchoolConcertsData = (
+  language: string,
+  year: string
+): Promise<AnnualSummerSchoolTypes> => {
+  return sanityFetch(annualSchoolConcertsData, { language, year });
+};
+
+export const getAnnualSchoolArtistsData = (
+  language: string,
+  year: string
+): Promise<AnnualSummerSchoolTypes> => {
+  return sanityFetch(annualSchoolArtistsData, { language, year });
 };

@@ -20,6 +20,7 @@ const GroupStudentJury: FC<GroupStudentJuryProps> = ({
   desc,
 }) => {
   console.log(data);
+
   return (
     <>
       <PageTemplate goBackUrl={goBackLink}>
@@ -28,7 +29,7 @@ const GroupStudentJury: FC<GroupStudentJuryProps> = ({
             <Typography variant="h1">{title}</Typography>
             {desc && <Typography component="p">{desc}</Typography>}
             {data && (
-              <Stack gap={8}>
+              <Stack gap={7}>
                 {data.map((item) => (
                   <StudentJuryCard key={item.id} {...item} />
                 ))}

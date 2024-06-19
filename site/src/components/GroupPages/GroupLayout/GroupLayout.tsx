@@ -1,7 +1,7 @@
 import { useEffect, FC } from 'react';
 import { Outlet, useLocation, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import MainBanner from '@/components/Common/MainBanner';
+import MainBanner from '@/components/Templates/MainBanner/MainBanner';
 import { useCompetitionStore } from '@/store/competitionStore';
 import Loader from '@/components/Common/Loader';
 
@@ -35,7 +35,7 @@ const GroupLayout: FC<GroupLayoutProps> = ({ groupLoading }) => {
 
   return (
     <>
-      {mainBanner && <MainBanner banner={mainBanner} />}
+      <MainBanner banner={mainBanner} />
       <Outlet />
     </>
   );

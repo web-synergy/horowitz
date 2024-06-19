@@ -39,7 +39,6 @@ const NewsCurrentPage = () => {
     console.error(error);
   }
 
-  console.log(responseData);
   if (data)
     return (
       <PageTemplate goBackUrl={Routes.NEWS}>

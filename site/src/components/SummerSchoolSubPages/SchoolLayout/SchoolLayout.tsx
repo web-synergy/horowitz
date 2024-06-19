@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
 import { useAnnualSchoolData } from '@/hook/useAnnualSchoolData';
-import MainBanner from '@/components/Common/MainBanner';
+import MainBanner from '@/components/Templates/MainBanner/MainBanner';
 import Loader from '@/components/Common/Loader';
 
 const SchoolLayout = () => {

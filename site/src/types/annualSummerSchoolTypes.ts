@@ -46,7 +46,7 @@ export interface IConcerts {
   _key: string;
   title: string;
   img: IImage;
-  concertPrograms: PortableTextBlock[];
+  concertPrograms: string;
 }
 export type AnnualSummerSchoolTypes = {
   year: string;

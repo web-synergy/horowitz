@@ -31,7 +31,6 @@ const ButtonsArea: FC<ButtonsAreaProps> = ({ btnsList }) => {
 
   if (!btnsList.length) return null;
 
-  console.log(btnsList);
   return (
     <Swiper
       slidesPerView="auto"

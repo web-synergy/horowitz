@@ -320,6 +320,10 @@ export const MuiButton: Components<Theme>['MuiButton'] = {
         borderColor: theme.palette.neutral[70],
         borderWidth: 1,
 
+        '&.MuiButton-root': {
+          padding: '16px 8px',
+        },
+
         '&:hover': {
           backgroundColor: theme.palette.primary.dark,
           borderColor: theme.palette.common.black,

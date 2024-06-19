@@ -20,10 +20,11 @@ const StudentJuryCard: FC<ParticipantType> = ({
   const { containerRef, containerSize } = useWidthBlokSize();
   const { t } = useTranslation();
 
+  const imageHeight = Math.floor(containerSize / 0.75);
   const imageUrl = urlFor(avatar)
     .auto('format')
     .width(containerSize)
-    .height(containerSize)
+    .height(imageHeight)
     .url()
     .toString();
 
@@ -43,16 +44,15 @@ const StudentJuryCard: FC<ParticipantType> = ({
             float: { xs: 'unset', md: 'left' },
             width: { xs: '100%', md: 243, lg: 262 },
 
-            height: { xs: 'unset', md: 243, lg: 262 },
-            mr: { xs: 0, md: 2 },
-            mb: { xs: 2, md: 0 },
+            mr: { xs: 0, md: 3 },
+            mb: { xs: 1, md: 0 },
           }}
         >
           <Image
             src={imageUrl}
             alt={name}
             isLazyLoading={true}
-            height={containerSize}
+            height={imageHeight}
             width={containerSize}
           />
         </Box>
@@ -66,7 +66,11 @@ const StudentJuryCard: FC<ParticipantType> = ({
             </Typography>
           )}
 
-          <Typography variant="subhead" component={'p'} mb={{ xs: 2, lg: 3 }}>
+          <Typography
+            variant="subhead"
+            component={'p'}
+            mb={{ xs: 1, md: 2, lg: 3 }}
+          >
             {age} {t(`age.${yearsText}`)}
           </Typography>
           <TextBlockComponent text={biography} column={1} inline />
