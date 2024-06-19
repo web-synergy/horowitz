@@ -1,11 +1,18 @@
 import { Backdrop, CircularProgress, Stack } from '@mui/material';
 
-export default function Loader() {
+interface LoaderProps {
+  mode?: 'dark' | 'light';
+}
+
+export default function Loader({ mode = 'dark' }: LoaderProps) {
   return (
     <Stack
       minHeight="100vh"
       sx={{
-        backgroundColor: (theme) => theme.palette.common.black,
+        backgroundColor: (theme) =>
+          mode === 'dark'
+            ? theme.palette.common.black
+            : theme.palette.common.white,
       }}
     >
       <Backdrop open={true} sx={{ zIndex: 1000 }}>

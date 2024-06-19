@@ -1,4 +1,4 @@
-import {defineField, defineType, SlugSourceContext} from 'sanity'
+import {defineField, defineType} from 'sanity'
 import {IoNewspaperOutline as icon} from 'react-icons/io5'
 
 interface Icontent {

@@ -5,10 +5,14 @@ import PageTemplate from '@/components/Common/PageTemplate';
 import GoBackBtn from '@/components/Common/GoBackBtn';
 import PortableComponent from '@/components/Templates/PortableComponent/PortableComponent';
 import { Routes } from '@/types/routes.d';
+import { useAnnualSchoolData } from '@/hook/useAnnualSchoolData';
 
 const Environments = () => {
-  const { conditions, slug } = useAnnualSummerSchoolStore();
+  const { conditions, slug, fetchConditions } = useAnnualSummerSchoolStore();
+
   const { t } = useTranslation();
+
+  useAnnualSchoolData(conditions, fetchConditions);
 
   return (
     <>

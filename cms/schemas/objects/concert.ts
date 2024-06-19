@@ -17,7 +17,7 @@ const concert = defineType({
     defineField({
       name: 'concertPrograms',
       title: 'Програма концерту',
-      type: 'internationalizedArrayArticle',
+      type: 'internationalizedArrayText',
     }),
   ],
   preview: {

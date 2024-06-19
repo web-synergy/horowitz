@@ -36,7 +36,9 @@ export const PortableSwiper = ({ value }: { value: IPortableImgGallery }) => {
         480
       ),
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerSize, value]);
+
   if (!images) return null;
 
   const imagesLength = images.length;
@@ -47,7 +49,8 @@ export const PortableSwiper = ({ value }: { value: IPortableImgGallery }) => {
     <GrowView>
       <Box
         ref={containerRef}
-        sx={{ my: { xs: '24px', md: '40px', lg: '48px' } }}>
+        sx={{ my: { xs: '24px', md: '40px', lg: '48px' } }}
+      >
         <Swiper
           modules={[Navigation, Thumbs, Keyboard]}
           loop={true}
@@ -58,13 +61,14 @@ export const PortableSwiper = ({ value }: { value: IPortableImgGallery }) => {
           keyboard={{
             enabled: true,
           }}
-          className='mySwiper'>
-          {images.map(item => {
+          className="mySwiper"
+        >
+          {images.map((item) => {
             if (item.asset)
               return (
                 <SwiperSlide key={item._key}>
                   <img
-                    loading='lazy'
+                    loading="lazy"
                     style={{ width: imgSize.width, height: imgSize.height }}
                     src={
                       item &&
@@ -91,9 +95,10 @@ export const PortableSwiper = ({ value }: { value: IPortableImgGallery }) => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             onSwiper={setThumbsSwiper}
-            className='my_thumbs'>
+            className="my_thumbs"
+          >
             {images &&
-              images.map(item => {
+              images.map((item) => {
                 if (item.asset)
                   return (
                     <SwiperSlide key={item._key}>
@@ -114,9 +119,10 @@ export const PortableSwiper = ({ value }: { value: IPortableImgGallery }) => {
           sx={{
             display: 'block',
             mt: { xs: '16px', md: '24px' },
-            color: theme => theme.palette.neutral[50],
+            color: (theme) => theme.palette.neutral[50],
           }}
-          variant='caption'>
+          variant="caption"
+        >
           {title}
         </Typography>
       </Box>

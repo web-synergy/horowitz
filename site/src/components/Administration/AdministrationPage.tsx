@@ -9,7 +9,7 @@ import MemberCardItem from './parts/MemberCardItem';
 import Loader from '../Common/Loader';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { administrationQuery } from '@/api/query';
-import MainBanner from '../Common/MainBanner';
+import MainBanner from '../Templates/MainBanner/MainBanner';
 import SeoComponent from '../Common/SEO';
 
 const AdministrationPage = () => {
@@ -50,7 +50,7 @@ const AdministrationPage = () => {
   return (
     <>
       <SeoComponent title={title} canonicalUrl={Routes.ADMINISTRATION} />
-      {banner && <MainBanner banner={banner} />}
+      <MainBanner banner={banner} />
       <PageTemplate>
         <Container>
           <Typography

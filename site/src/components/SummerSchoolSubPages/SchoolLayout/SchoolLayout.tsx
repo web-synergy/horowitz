@@ -1,36 +1,28 @@
-import { useEffect } from "react";
-import { Box } from "@mui/material";
-import { Outlet, useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { useAnnualSummerSchoolStore } from "@/store/annualSummerSchoolStore";
-import MainBanner from "@/components/Common/MainBanner";
+import { Box } from '@mui/material';
+import { Outlet } from 'react-router-dom';
+
+import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
+import { useAnnualSchoolData } from '@/hook/useAnnualSchoolData';
+import MainBanner from '@/components/Templates/MainBanner/MainBanner';
+import Loader from '@/components/Common/Loader';
 
 const SchoolLayout = () => {
-  const {
-    i18n: { language },
-  } = useTranslation();
-  const { pathname } = useLocation();
-  const { requestLang, fetchAnnualSummerSchool, year, banner } =
+  const { fetchCommonData, isCommonDataFetched, banner, isLoading } =
     useAnnualSummerSchoolStore();
 
-  const yearFromPath = pathname.split("/")[2].slice(-4);
+  useAnnualSchoolData(isCommonDataFetched, fetchCommonData);
 
-  useEffect(() => {
-    const isLangTheSame = requestLang === language;
-    const isYearTheSame = year && year === yearFromPath;
-    if (isLangTheSame && isYearTheSame) return;
-
-    fetchAnnualSummerSchool(language, yearFromPath);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language, yearFromPath]);
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (!banner) {
     return (
       <>
         <Box
           sx={{
-            width: "100%",
-            height: "40vh",
+            width: '100%',
+            height: '40vh',
             backgroundColor: (theme) => theme.palette.neutral[30],
           }}
         />
@@ -38,13 +30,13 @@ const SchoolLayout = () => {
       </>
     );
   }
-  if (banner?.img)
-    return (
-      <>
-        <MainBanner banner={banner} />
-        <Outlet />
-      </>
-    );
+
+  return (
+    <>
+      <MainBanner banner={banner} />
+      <Outlet />
+    </>
+  );
 };
 
 export default SchoolLayout;

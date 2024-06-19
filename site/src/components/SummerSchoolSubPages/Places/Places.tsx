@@ -3,12 +3,15 @@ import { useTranslation } from 'react-i18next';
 import PageTemplate from '@/components/Common/PageTemplate';
 import GoBackBtn from '@/components/Common/GoBackBtn';
 import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
+import { useAnnualSchoolData } from '@/hook/useAnnualSchoolData';
 import PortableComponent from '@/components/Templates/PortableComponent/PortableComponent';
 import { Routes } from '@/types/routes.d';
 
 const Places = () => {
-  const { orchestra, slug } = useAnnualSummerSchoolStore();
+  const { orchestra, slug, fetchArtists } = useAnnualSummerSchoolStore();
   const { t } = useTranslation();
+
+  useAnnualSchoolData(orchestra, fetchArtists);
 
   return (
     <>

@@ -148,11 +148,10 @@ const PDFReader = ({ URL }: IFileResponse) => {
         <Document
           file={URL}
           onLoadSuccess={onDocumentLoadSuccess}
-          loading={Loader}
+          loading={<Loader />}
           onLoadError={(e) => console.log(e.message)}
         >
           <Box
-            // ref={ref}
             ref={slideRef}
             sx={{
               width: pdfSize.width,

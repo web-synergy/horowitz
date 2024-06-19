@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Container,
   Box,
@@ -7,39 +7,43 @@ import {
   useTheme,
   SelectChangeEvent,
   useMediaQuery,
-} from "@mui/material";
-import dayjs, { Dayjs } from "dayjs";
-import "dayjs/locale/uk";
-import "dayjs/locale/en";
+} from '@mui/material';
+import dayjs, { Dayjs } from 'dayjs';
+import 'dayjs/locale/uk';
+import 'dayjs/locale/en';
 
-import { useAnnualSummerSchoolStore } from "@/store/annualSummerSchoolStore";
-import { Routes } from "@/types/routes.d";
-import Loader from "@/components/Common/Loader";
-import { ISchedule } from "@/types/annualSummerSchoolTypes.ts";
-import CustomDatePicker from "./parts/CustomDatePicker.tsx";
-import CustomSelectInput from "./parts/CustomSelectInput.tsx";
-import TabletLectures from "./parts/TabletLectures.tsx";
+import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
+import { useAnnualSchoolData } from '@/hook/useAnnualSchoolData.ts';
+import { Routes } from '@/types/routes.d';
+import Loader from '@/components/Common/Loader';
+import { ISchedule } from '@/types/annualSummerSchoolTypes.ts';
+import CustomDatePicker from './parts/CustomDatePicker.tsx';
+import CustomSelectInput from './parts/CustomSelectInput.tsx';
+import TabletLectures from './parts/TabletLectures.tsx';
 
 const SchedulePage = () => {
   const [showLoader, setShowLoader] = useState(false);
   const [isShowSearchResults, setIsShowSearchResults] = useState(false);
-  const [selectedProfessor, setSelectedProfessor] = useState("");
+  const [selectedProfessor, setSelectedProfessor] = useState('');
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
   const [selectedLectures, setSelectedLectures] = useState<ISchedule[]>([]);
   const [isProfessorSelectOpen, setIsProfessorSelectOpen] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
   const theme = useTheme();
-  const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobileScreen = useMediaQuery(theme.breakpoints.down('md'));
   const { t } = useTranslation();
 
-  const { professors, schedules, isLoading, requestLang } =
+  const { professors, schedules, isLoading, requestLang, fetchData } =
     useAnnualSummerSchoolStore((state) => ({
       professors: state.professors,
       schedules: state.schedules,
       isLoading: state.isLoading,
       requestLang: state.requestLang,
+      fetchData: state.fetchProfessorsAndSchedules,
     }));
+
+  useAnnualSchoolData(professors, fetchData);
 
   useEffect(() => {
     setShowLoader(true);
@@ -53,15 +57,15 @@ const SchedulePage = () => {
     if (!schedules) return [];
     let filteredLectures: ISchedule[] = [];
 
-    if (professorKey === "All") {
+    if (professorKey === 'All') {
       filteredLectures = schedules.filter((schedule) =>
-        date ? dayjs(schedule.date).isSame(date, "day") : true
+        date ? dayjs(schedule.date).isSame(date, 'day') : true
       );
     } else if (professorKey) {
       filteredLectures = schedules.filter(
         (schedule) =>
           schedule.lecture === professorKey &&
-          (date ? dayjs(schedule.date).isSame(date, "day") : true)
+          (date ? dayjs(schedule.date).isSame(date, 'day') : true)
       );
     }
 
@@ -96,7 +100,7 @@ const SchedulePage = () => {
   };
 
   const formatDate = (date: Dayjs | string) => {
-    return dayjs(date).format("DD.MM.YY");
+    return dayjs(date).format('DD.MM.YY');
   };
 
   const handleProfessorSelectOpen = () => {
@@ -124,7 +128,7 @@ const SchedulePage = () => {
         professor.role?.charAt(0).toUpperCase() + professor.role?.slice(1)
       } - ${professor.name}`;
     }
-    return "";
+    return '';
   };
 
   if (isLoading) return <Loader />;
@@ -136,25 +140,25 @@ const SchedulePage = () => {
         variant="h1"
         sx={{
           marginTop: { xs: 3, md: 5, lg: 6 },
-          textAlign: "start",
+          textAlign: 'start',
         }}
       >
         {t(`navigation.${Routes.SUMMER_SCHOOL_SCHEDULES}`)}
       </Typography>
       <Box
         sx={{
-          padding: { xs: "24px 8px", md: "16px 8px", lg: "16px 36px" },
-          backgroundColor: "#EAE2D5",
-          marginTop: { xs: "48px", md: "40px", lg: "48px" },
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          alignItems: { xs: "center", md: "flex-end" },
-          gap: { xs: "24px", md: "12px", lg: "32px" },
-          justifyContent: "space-between",
-          borderRadius: "4px",
+          padding: { xs: '24px 8px', md: '16px 8px', lg: '16px 36px' },
+          backgroundColor: '#EAE2D5',
+          marginTop: { xs: '48px', md: '40px', lg: '48px' },
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: { xs: 'center', md: 'flex-end' },
+          gap: { xs: '24px', md: '12px', lg: '32px' },
+          justifyContent: 'space-between',
+          borderRadius: '4px',
         }}
       >
-        <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: '100%' }}>
           {professors && (
             <CustomSelectInput
               professors={professors}
@@ -168,7 +172,7 @@ const SchedulePage = () => {
             />
           )}
         </Box>
-        <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: '100%' }}>
           <CustomDatePicker
             selectedDate={selectedDate}
             handleDateChange={handleDateChange}
@@ -185,9 +189,9 @@ const SchedulePage = () => {
       {!isShowSearchResults && (
         <Box
           sx={{
-            textAlign: "center",
-            paddingTop: { xs: "72px", md: "96px", lg: "180px" },
-            paddingBottom: { xs: "276px", md: "302px", lg: "390px" },
+            textAlign: 'center',
+            paddingTop: { xs: '72px', md: '96px', lg: '180px' },
+            paddingBottom: { xs: '276px', md: '302px', lg: '390px' },
           }}
         >
           <Typography variant="h3">
@@ -199,8 +203,8 @@ const SchedulePage = () => {
         <Typography
           variant="h3"
           sx={{
-            marginTop: { xs: "48px", md: "40px", lg: "48px" },
-            marginBottom: { xs: "20px", md: "40px", lg: "48px" },
+            marginTop: { xs: '48px', md: '40px', lg: '48px' },
+            marginBottom: { xs: '20px', md: '40px', lg: '48px' },
           }}
         >
           {t(`summerSchoolSchedules.searchResults`)}
@@ -209,9 +213,9 @@ const SchedulePage = () => {
       {selectedLectures.length === 0 && isShowSearchResults && !showLoader && (
         <Box
           sx={{
-            textAlign: "center",
-            paddingTop: { xs: "48px", md: "96px", lg: "136px" },
-            paddingBottom: { xs: "268px", md: "292px", lg: "362px" },
+            textAlign: 'center',
+            paddingTop: { xs: '48px', md: '96px', lg: '136px' },
+            paddingBottom: { xs: '268px', md: '292px', lg: '362px' },
           }}
         >
           <Typography variant="h3">
@@ -220,16 +224,16 @@ const SchedulePage = () => {
         </Box>
       )}
       {showLoader ? (
-        <Loader />
+        <Loader mode="light" />
       ) : (
         <Box
           sx={{
-            borderLeft: "1px solid",
-            borderRight: "1px solid",
-            borderBottom: selectedLectures.length > 0 ? "1px solid" : "none",
+            borderLeft: '1px solid',
+            borderRight: '1px solid',
+            borderBottom: selectedLectures.length > 0 ? '1px solid' : 'none',
             borderColor: theme.palette.common.black,
             marginBottom: isShowSearchResults
-              ? { xs: "72px", md: "96px", lg: "120px" }
+              ? { xs: '72px', md: '96px', lg: '120px' }
               : undefined,
           }}
         >

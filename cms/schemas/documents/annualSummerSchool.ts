@@ -31,6 +31,7 @@ export default defineType({
       title: 'Рік',
       type: 'string',
       group: 'common',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'button',
@@ -53,6 +54,7 @@ export default defineType({
         slugify: (input) => `summer-academy-${input}`,
       },
       group: 'common',
+      validation: (Rule) => Rule.required(),
     },
 
     {

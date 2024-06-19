@@ -20,6 +20,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 
+const QTY_COLUMN = 6;
+
 const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
   const { images, title, quantity } = value;
   const [open, setOpen] = useState(false);
@@ -27,8 +29,6 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
   const [sliderIndex, setSliderIndex] = useState(0);
   const [imgSize, setSize] = useState(0);
   const { containerSize, containerRef } = useWidthBlokSize();
-
-  const QTY_COLUMN = 6;
 
   useLayoutEffect(() => {
     if (containerSize) {
@@ -47,6 +47,7 @@ const GridGallery = ({ value }: { value: IPortableImgGallery }) => {
   };
 
   if (!images) return null;
+
   return (
     <Box ref={containerRef} sx={{ mb: '24px' }}>
       <ImageList

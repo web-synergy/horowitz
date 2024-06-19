@@ -1,10 +1,10 @@
-import { Box, styled } from '@mui/material'
+import { Box, styled } from '@mui/material';
 
 export const StyledBox = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('lg')]: {
-    marginRight: '-40px',
+    marginRight: -40,
   },
   [theme.breakpoints.down('md')]: {
-    marginRight: '-16px',
+    marginRight: -16,
   },
-}))
+}));

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Divider, Typography, Link } from '@mui/material';
+import { Divider, Typography, Link, Box } from '@mui/material';
 import { formatText } from '@/utils/fomatText';
 
 interface TextBlockProps {
@@ -11,6 +11,10 @@ const TextBlock: FC<TextBlockProps> = ({ text, gap = 8 }) => {
   //Додавання горизонтальної лінії
   if (text.trim() === '*Divider*') {
     return <Divider flexItem sx={{ mt: 2, mb: 2 }} />;
+  }
+
+  if (text.trim() === '*space*') {
+    return <Box sx={{ mt: { xs: 3, md: 4 } }} />;
   }
 
   const formattedText = formatText(text);

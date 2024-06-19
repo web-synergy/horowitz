@@ -9,7 +9,7 @@ import { useLiveQuery } from '@sanity/preview-kit';
 import { aboutCompetitionQuery } from '@/api/query.ts';
 import { components } from '@/components/Templates/PortableComponent/parts/components.tsx';
 
-import MainBanner from '../Common/MainBanner.tsx';
+import MainBanner from '../Templates/MainBanner/MainBanner.tsx';
 import ImageComponent from '../Templates/ImageComponent/ImageComponent.tsx';
 import PortableComponent from '../Templates/PortableComponent/PortableComponent.tsx';
 import Loader from '../Common/Loader';
@@ -54,7 +54,7 @@ const AboutPage = () => {
   return (
     <>
       <SeoComponent canonicalUrl={Routes.DETAILS} title={title} />
-      {mainBanner && <MainBanner banner={mainBanner} />}
+      <MainBanner banner={mainBanner} />
       <PageTemplate>
         <Container>
           <Box
