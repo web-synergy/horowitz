@@ -46,13 +46,11 @@ export const useAnnualSummerSchoolStore = create<AnnualSummerSchoolStoreState>(
 
     fetchData: async (language, year, fetchFm, other) => {
       const { requestLang, year: storeYear, resetData } = get();
-      console.log('year from request', year);
-      console.log('year in store', storeYear);
+      set({ isLoading: true });
       if (language !== requestLang || year !== storeYear) {
-        console.log('resetData');
         resetData();
       }
-      set({ isLoading: true });
+
       try {
         const resp = await fetchFm(language, year);
 
