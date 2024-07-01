@@ -47,11 +47,12 @@ const VirtuosasArticles = () => {
       return navigate('/404');
     }
     if (currentPage !== urlPage || requestLang !== language) {
+      window.scrollTo(0, 0);
       fetchVirtuososArticles(language, urlPage);
     }
   }, [language, urlPage]);
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader mode="light" />;
   return (
     <PageTemplate goBackUrl={Routes.VIRTUOSES}>
       <Container>

@@ -11,6 +11,7 @@ import { Routes } from '@/types/routes.d';
 import CommonStackWrapper from '@/components/Common/CommonStackWrapper';
 import NavList from '@/components/Templates/NavList/NavList';
 import TextBlockComponent from '@/components/Templates/TextBlockComponent/TextBlockComponent';
+import Loader from '@/components/Common/Loader';
 
 const MainSchool = () => {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ const MainSchool = () => {
     isActiveParticipants,
     isActiveProfessors,
     isActiveSchedule,
+    isLoading,
   } = useAnnualSummerSchoolStore();
 
   // const { pathname } = useLocation();
@@ -45,6 +47,10 @@ const MainSchool = () => {
         return { ...item, isActive: true };
     }
   });
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>

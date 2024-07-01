@@ -11,6 +11,7 @@ import QuoteSection from './parts/QuoteSection';
 import { Buttons } from '@/types/translation.d';
 import { useLiveQuery } from '@sanity/preview-kit';
 import { horowitzQuery } from '@/api/query.ts';
+import SeoComponent from '../Common/SEO.tsx';
 import MainBanner from '../Templates/MainBanner/MainBanner.tsx';
 import TextBlockComponent from '../Templates/TextBlockComponent/TextBlockComponent.tsx';
 import { StyledButton } from './styled.ts';
@@ -72,6 +73,7 @@ const HorowitzPage: FC = () => {
       setIsAllLiteratureVisible(!isAllLiteratureVisible);
     }
   };
+  const title = t(`navigation.${Routes.HOROWITZ}`);
 
   if (isLoading) {
     return <Loader />;
@@ -79,6 +81,7 @@ const HorowitzPage: FC = () => {
 
   return (
     <>
+      <SeoComponent canonicalUrl={Routes.HOROWITZ} title={title} />
       <MainBanner banner={bannerData} />
       <PageTemplate>
         <Container
@@ -93,7 +96,7 @@ const HorowitzPage: FC = () => {
               textAlign: 'center',
             }}
           >
-            {t(`navigation.${Routes.HOROWITZ}`)}
+            {title}
           </Typography>
           <TextBlockComponent text={upperTextBlock} />
         </Container>

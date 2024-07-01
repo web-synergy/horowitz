@@ -10,6 +10,8 @@ import NavList from '../Templates/NavList/NavList';
 import AboutSection from './parts/AboutSection';
 import SponsorsSection from './parts/SponsorsSection';
 import WFIMCSection from './parts/WFIMCSection';
+import SeoComponent from '../Common/SEO';
+import { Routes } from '@/types/routes.d';
 
 const KyivGenevaPage = () => {
   const {
@@ -20,18 +22,23 @@ const KyivGenevaPage = () => {
     return <Box />;
   }
 
+  const title = pageData[language].title;
+
   return (
-    <PageTemplate>
-      <CommonStackWrapper>
-        <AboutSection content={pageData[language]} />
-        <NavList linksList={kyivGenevaNavigation} />
-        <WFIMCSection
-          image={WFIMC_members}
-          wfimc_content={pageData[language].wfimc}
-        />
-        <SponsorsSection />
-      </CommonStackWrapper>
-    </PageTemplate>
+    <>
+      <SeoComponent canonicalUrl={Routes.KYIV_GENEVA} title={title} />
+      <PageTemplate>
+        <CommonStackWrapper>
+          <AboutSection content={pageData[language]} />
+          <NavList linksList={kyivGenevaNavigation} />
+          <WFIMCSection
+            image={WFIMC_members}
+            wfimc_content={pageData[language].wfimc}
+          />
+          <SponsorsSection />
+        </CommonStackWrapper>
+      </PageTemplate>
+    </>
   );
 };
 

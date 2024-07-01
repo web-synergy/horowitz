@@ -19,10 +19,13 @@ const PaginationNews: FC<IPagination> = ({
       size="large"
       page={urlPage}
       onChange={(_, num) =>
-        setSearchParams((prev) => {
-          prev.set('page', num.toString());
-          return prev;
-        })
+        setSearchParams(
+          (prev) => {
+            prev.set('page', num.toString());
+            return prev;
+          },
+          { replace: true }
+        )
       }
       sx={{
         '& .MuiPagination-ul': {

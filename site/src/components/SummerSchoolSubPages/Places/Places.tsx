@@ -6,13 +6,18 @@ import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
 import { useAnnualSchoolData } from '@/hook/useAnnualSchoolData';
 import PortableComponent from '@/components/Templates/PortableComponent/PortableComponent';
 import { Routes } from '@/types/routes.d';
+import Loader from '@/components/Common/Loader';
 
 const Places = () => {
-  const { orchestra, slug, fetchArtists } = useAnnualSummerSchoolStore();
+  const { orchestra, slug, fetchArtists, isLoading } =
+    useAnnualSummerSchoolStore();
   const { t } = useTranslation();
 
   useAnnualSchoolData(orchestra, fetchArtists);
 
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <PageTemplate>

@@ -22,7 +22,7 @@ export const newsStructure = (S: StructureBuilder) => [
                   .id(language.id)
                   .title(`${language.title} Новини`)
                   .schemaType('news')
-                  .filter('_type == "news" && length(title[_key !=$language].value) !=1')
+                  .filter('_type == "news" && defined(title[_key ==$language][0].value)')
                   .params({language: language.id})
                   //@ts-ignore
                   .menuItems([...S.documentTypeList('news').getMenuItems()]),

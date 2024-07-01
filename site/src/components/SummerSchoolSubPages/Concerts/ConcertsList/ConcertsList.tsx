@@ -7,11 +7,16 @@ import PageTemplate from '@/components/Common/PageTemplate';
 import { Routes } from '@/types/routes.d';
 import { t } from 'i18next';
 import { SummerSchool } from '@/types/translation.d';
+import Loader from '@/components/Common/Loader';
 
 const ConcertsList = () => {
-  const { concerts, fetchConcerts } = useAnnualSummerSchoolStore();
+  const { concerts, fetchConcerts, isLoading } = useAnnualSummerSchoolStore();
 
   useAnnualSchoolData(concerts, fetchConcerts);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <PageTemplate goBackUrl={Routes.SUMMER_SCHOOL_MAIN}>
