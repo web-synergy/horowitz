@@ -3,7 +3,7 @@ import { getNews } from '@/api';
 import { NewsStoreState } from '@/types/storeTypes';
 import { create } from 'zustand';
 
-export const useNewsStore = create<NewsStoreState>()(set => ({
+export const useNewsStore = create<NewsStoreState>()((set) => ({
   newsList: [],
   loading: false,
   error: '',
