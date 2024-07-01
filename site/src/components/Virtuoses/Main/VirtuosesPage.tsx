@@ -16,6 +16,7 @@ import { ImagesArray } from '../../Templates/PortableComponent/parts/ImageCompon
 import TextBlockComponent from '@/components/Templates/TextBlockComponent/TextBlockComponent';
 import { Routes } from '@/types/routes.d';
 import { Virtuosos } from '@/types/translation.d';
+import SeoComponent from '@/components/Common/SEO';
 
 const VirtuosesPage = () => {
   const {
@@ -42,6 +43,8 @@ const VirtuosesPage = () => {
     language,
   });
 
+  const title = t(`navigation.${Routes.VIRTUOSES}`);
+
   if (loading) return <Loader />;
   if (!data) {
     return;
@@ -49,6 +52,7 @@ const VirtuosesPage = () => {
 
   return (
     <>
+      <SeoComponent canonicalUrl={Routes.VIRTUOSES} title={title} />
       <MainBanner banner={data.banner} />
       <PageTemplate>
         <Container
@@ -60,7 +64,7 @@ const VirtuosesPage = () => {
         >
           <CommonStackWrapper>
             <Typography variant="h1" textAlign={'center'}>
-              {t(`navigation.${Routes.VIRTUOSES}`)}
+              {title}
             </Typography>
             <TextBlockComponent text={data.description} />
             <NewsSwiper

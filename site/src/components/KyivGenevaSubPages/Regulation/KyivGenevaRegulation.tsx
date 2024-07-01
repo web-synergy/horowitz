@@ -34,7 +34,11 @@ const KyivGenevaRegulation = () => {
           spacing={{ xs: 3, md: 5, lg: 6 }}
         >
           {data.map((item) => (
-            <Stack direction={'column'} spacing={{ xs: 3, md: 5, lg: 6 }}>
+            <Stack
+              direction={'column'}
+              spacing={{ xs: 3, md: 5, lg: 6 }}
+              key={item.title}
+            >
               <Title variant="h3">{item.title}</Title>
               <Stack direction={'column'} spacing={2}>
                 {item.rules.map((item) => (

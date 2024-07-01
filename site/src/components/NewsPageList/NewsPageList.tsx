@@ -13,6 +13,7 @@ import { Routes } from '@/types/routes.d';
 import { useSearchParams } from 'react-router-dom';
 import Loader from '../Common/Loader';
 import PaginationNews from './parts/PaginationNews';
+import SeoComponent from '../Common/SEO';
 
 const NewsPageList = () => {
   const {
@@ -41,48 +42,52 @@ const NewsPageList = () => {
 
   if (loading) return <Loader />;
 
+  const title = t(`navigation.${Routes.NEWS}`);
   return (
-    <PageTemplate>
-      <Container>
-        <Stack>
-          <Typography
-            sx={{
-              mb: { xs: '24px', md: '48px' },
-            }}
-            variant="h2"
-          >
-            {t(`navigation.${Routes.NEWS}`)}
-          </Typography>
-          <List
-            sx={{
-              display: 'grid',
-              flexDirection: 'column',
-              gap: 7,
-              justifyContent: { xs: 'center', md: 'flex-start' },
-              mb: { xs: 3, md: 6 },
-            }}
-          >
-            {newsList &&
-              newsList.map((news: INews, index) => (
-                <NewsListItem
-                  key={index}
-                  date={news.date}
-                  title={news.title}
-                  img={news.img}
-                  slug={news.slug}
-                  shortDescription={news.shortDescription}
-                />
-              ))}
-          </List>
+    <>
+      <SeoComponent canonicalUrl={Routes.NEWS} title={title} />
+      <PageTemplate>
+        <Container>
+          <Stack>
+            <Typography
+              sx={{
+                mb: { xs: '24px', md: '48px' },
+              }}
+              variant="h2"
+            >
+              {title}
+            </Typography>
+            <List
+              sx={{
+                display: 'grid',
+                flexDirection: 'column',
+                gap: 7,
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                mb: { xs: 3, md: 6 },
+              }}
+            >
+              {newsList &&
+                newsList.map((news: INews, index) => (
+                  <NewsListItem
+                    key={index}
+                    date={news.date}
+                    title={news.title}
+                    img={news.img}
+                    slug={news.slug}
+                    shortDescription={news.shortDescription}
+                  />
+                ))}
+            </List>
 
-          <PaginationNews
-            pageQty={pageQty}
-            setSearchParams={setSearchParams}
-            urlPage={urlPage}
-          />
-        </Stack>
-      </Container>
-    </PageTemplate>
+            <PaginationNews
+              pageQty={pageQty}
+              setSearchParams={setSearchParams}
+              urlPage={urlPage}
+            />
+          </Stack>
+        </Container>
+      </PageTemplate>
+    </>
   );
 };
 
