@@ -2,7 +2,7 @@ import { getVirtuosos, getVirtuososArticle } from '@/api';
 import { VirtuososStoreState } from '@/types/storeTypes';
 import { create } from 'zustand';
 
-export const useVirtuososStore = create<VirtuososStoreState>()(set => ({
+export const useVirtuososStore = create<VirtuososStoreState>()((set) => ({
   loading: false,
   articleList: [],
   pageQty: 1,
@@ -10,7 +10,7 @@ export const useVirtuososStore = create<VirtuososStoreState>()(set => ({
   requestLang: '',
   currentPage: 0,
 
-  fetchVirtuosos: async language => {
+  fetchVirtuosos: async (language) => {
     set({ loading: true });
 
     try {
@@ -26,7 +26,7 @@ export const useVirtuososStore = create<VirtuososStoreState>()(set => ({
     }
   },
   fetchVirtuososArticles: async (language, page) => {
-    const PAGE_SIZE = 10;
+    const PAGE_SIZE = 4;
     const start = (page - 1) * PAGE_SIZE;
     const end = start + PAGE_SIZE;
 

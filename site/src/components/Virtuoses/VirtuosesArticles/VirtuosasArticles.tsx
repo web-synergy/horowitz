@@ -33,6 +33,7 @@ const VirtuosasArticles = () => {
     requestLang,
     currentPage,
   } = useVirtuososStore();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const urlPage = +(searchParams.get('page') || 1);

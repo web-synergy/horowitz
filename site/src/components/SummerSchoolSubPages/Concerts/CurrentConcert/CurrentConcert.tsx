@@ -52,8 +52,6 @@ const CurrentConcert = () => {
 
   const imageHeight = Math.floor(imageWidth / aspectRatio);
 
-  console.log(imageWidth, imageHeight);
-
   return (
     <PageTemplate goBackUrl={Routes.SUMMER_SCHOOL_CONCERTS}>
       <Container>
