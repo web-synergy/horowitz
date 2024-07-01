@@ -173,3 +173,4 @@ export const currentMasterClassQuery = groq`*[_type == 'masterClass'&& slug.curr
   'slug':slug.current,
   'description': coalesce(description[_key ==$language][0].value, description[][0].value)
 }`;
+
