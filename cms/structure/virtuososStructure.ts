@@ -19,7 +19,7 @@ export const virtuososStructure = (S: StructureBuilder) => [
             .schemaType('virtuososArticle')
             .child(
               S.documentList()
-                .defaultOrdering([{field: 'priority', direction: 'desc'}])
+                .defaultOrdering([{field: 'date', direction: 'desc'}])
                 .id(`virtuososArticle`)
                 .apiVersion('v2023-08-01')
                 .title(`Всі новини`)
