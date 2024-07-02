@@ -24,6 +24,7 @@ export const newsStructure = (S: StructureBuilder) => [
                   .schemaType('news')
                   .filter('_type == "news" && defined(title[_key ==$language][0].value)')
                   .params({language: language.id})
+                  .defaultOrdering([{field: 'date', direction: 'desc'}])
                   //@ts-ignore
                   .menuItems([...S.documentTypeList('news').getMenuItems()]),
               ),
@@ -39,6 +40,7 @@ export const newsStructure = (S: StructureBuilder) => [
                 .title(`Всі новини`)
                 .schemaType('news')
                 .filter('_type == "news"')
+                .defaultOrdering([{field: 'date', direction: 'desc'}])
                 .menuItems([...S.documentTypeList('news').getMenuItems()]),
             ),
         ]),
