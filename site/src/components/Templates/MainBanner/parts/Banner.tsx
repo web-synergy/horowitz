@@ -12,7 +12,6 @@ interface BannerProps {
 }
 
 const Banner: FC<BannerProps> = ({ banner }) => {
-  console.log(banner);
   const [imageWidth, setImageWidth] = useState(0);
 
   const { containerSize, containerRef } = useWidthBlokSize();

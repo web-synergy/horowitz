@@ -20,8 +20,13 @@ const SharedLayout = () => {
 
   const langParam = searchParams.get(lang);
   const draftMod = searchParams.get(draft);
-  const { contacts, fetchSettings, getPreviewSettings, requestLang } =
-    useSettingsStore();
+  const {
+    contacts,
+    fetchSettings,
+    getPreviewSettings,
+    requestLang,
+    isLoading,
+  } = useSettingsStore();
 
   const [data] = useLiveQuery(null, settingsQuery, {
     language,
@@ -64,14 +69,20 @@ const SharedLayout = () => {
 
   return (
     <Stack minHeight="100vh" minWidth={320}>
-      <Header />
-      <Stack component="main" minHeight="100%" flex="1 1 auto">
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
-      </Stack>
-      <ScrollUpBtn visibility={scrollTrigger} />
-      <Footer />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Header />
+          <Stack component="main" minHeight="100%" flex="1 1 auto">
+            <Suspense fallback={<Loader />}>
+              <Outlet />
+            </Suspense>
+          </Stack>
+          <ScrollUpBtn visibility={scrollTrigger} />
+          <Footer />
+        </>
+      )}
     </Stack>
   );
 };

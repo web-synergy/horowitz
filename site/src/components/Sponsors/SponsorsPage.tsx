@@ -11,6 +11,7 @@ import { MainTitle, TwoGalleryStack } from './styled';
 
 import { partners as partnersQuery } from '@/api/query';
 import { useLiveQuery } from '@sanity/preview-kit';
+import SeoComponent from '../Common/SEO';
 
 const SponsorsPage: FC = () => {
   const fetchData = usePartnersStore((state) => state.fetchPartners);
@@ -21,6 +22,7 @@ const SponsorsPage: FC = () => {
     i18n: { language },
   } = useTranslation();
 
+  const title = t(`sponsorsPage.${Sponsors.MAIN_TITLE}`);
   const [
     {
       organizers,
@@ -42,64 +44,67 @@ const SponsorsPage: FC = () => {
   }, [language]);
 
   return (
-    <PageTemplate goBackUrl={Routes.HOME}>
-      <Container>
-        <MainTitle component={'h1'}>
-          {t(`sponsorsPage.${Sponsors.MAIN_TITLE}`)}
-        </MainTitle>
-        <Stack spacing={6}>
-          {organizers && (
-            <LogotypesGallery
-              title={t(`sponsorsPage.${Sponsors.COMP_ORG}`)}
-              gallery={organizers}
-            />
-          )}
-          <TwoGalleryStack>
-            {mainPartners && (
+    <>
+      <SeoComponent canonicalUrl={Routes.SPONSORS} title={title} />
+      <PageTemplate goBackUrl={Routes.HOME}>
+        <Container>
+          <MainTitle component={'h1'}>
+            {t(`sponsorsPage.${Sponsors.MAIN_TITLE}`)}
+          </MainTitle>
+          <Stack spacing={6}>
+            {organizers && (
               <LogotypesGallery
-                title={t(`sponsorsPage.${Sponsors.MAIN_PART}`)}
-                gallery={mainPartners}
+                title={t(`sponsorsPage.${Sponsors.COMP_ORG}`)}
+                gallery={organizers}
               />
             )}
-            {sponsors && (
+            <TwoGalleryStack>
+              {mainPartners && (
+                <LogotypesGallery
+                  title={t(`sponsorsPage.${Sponsors.MAIN_PART}`)}
+                  gallery={mainPartners}
+                />
+              )}
+              {sponsors && (
+                <LogotypesGallery
+                  title={t(`sponsorsPage.${Sponsors.SPONSORS}`)}
+                  gallery={sponsors}
+                />
+              )}
+            </TwoGalleryStack>
+            {generalInfoPartners && (
               <LogotypesGallery
-                title={t(`sponsorsPage.${Sponsors.SPONSORS}`)}
-                gallery={sponsors}
-              />
-            )}
-          </TwoGalleryStack>
-          {generalInfoPartners && (
-            <LogotypesGallery
-              title={t(`sponsorsPage.${Sponsors.GEN_INFO_PART}`)}
-              gallery={generalInfoPartners}
-              optRowGap={5}
-            />
-          )}
-          <TwoGalleryStack>
-            {partners && (
-              <LogotypesGallery
-                title={t(`sponsorsPage.${Sponsors.PARTNERS}`)}
-                gallery={partners}
+                title={t(`sponsorsPage.${Sponsors.GEN_INFO_PART}`)}
+                gallery={generalInfoPartners}
                 optRowGap={5}
               />
             )}
-            {mainInfoPartners && (
+            <TwoGalleryStack>
+              {partners && (
+                <LogotypesGallery
+                  title={t(`sponsorsPage.${Sponsors.PARTNERS}`)}
+                  gallery={partners}
+                  optRowGap={5}
+                />
+              )}
+              {mainInfoPartners && (
+                <LogotypesGallery
+                  title={t(`sponsorsPage.${Sponsors.MAIN_INFO_PART}`)}
+                  gallery={mainInfoPartners}
+                  optRowGap={5}
+                />
+              )}
+            </TwoGalleryStack>
+            {officialInfoPartners && (
               <LogotypesGallery
-                title={t(`sponsorsPage.${Sponsors.MAIN_INFO_PART}`)}
-                gallery={mainInfoPartners}
-                optRowGap={5}
+                title={t(`sponsorsPage.${Sponsors.OFF_INFO_PART}`)}
+                gallery={officialInfoPartners}
               />
             )}
-          </TwoGalleryStack>
-          {officialInfoPartners && (
-            <LogotypesGallery
-              title={t(`sponsorsPage.${Sponsors.OFF_INFO_PART}`)}
-              gallery={officialInfoPartners}
-            />
-          )}
-        </Stack>
-      </Container>
-    </PageTemplate>
+          </Stack>
+        </Container>
+      </PageTemplate>
+    </>
   );
 };
 export default SponsorsPage;

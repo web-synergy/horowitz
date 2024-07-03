@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Routes } from '@/types/routes.d';
 import { Box, Container, Typography, Stack } from '@mui/material';
@@ -67,8 +67,8 @@ const AboutPage = () => {
             <Typography variant="h1">{title}</Typography>
           </Box>
           <Stack direction="column" gap={{ xs: 3, md: 5, lg: 6 }}>
-            {blocks.map((item) => (
-              <>
+            {blocks.map((item, index) => (
+              <Fragment key={index}>
                 <Box sx={{ columnCount: { xs: 1, lg: 2 } }}>
                   <PortableText
                     value={item.textBlock}
@@ -77,7 +77,7 @@ const AboutPage = () => {
                 </Box>
 
                 <ImageComponent image={item.imageBlock} />
-              </>
+              </Fragment>
             ))}
             <Box>
               {additionalText && <PortableComponent data={additionalText} />}

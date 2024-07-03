@@ -1,9 +1,6 @@
 import {defineType} from 'sanity'
 import NoWrap from '../../components/NoWrap'
 import {TbTextWrapDisabled} from 'react-icons/tb'
-import {IoIosColorPalette} from 'react-icons/io'
-import ColorText from '../../components/ColorText'
-import {validateHexColor} from '../../utils/validationHexColor'
 
 const content = defineType({
   name: 'content',
@@ -29,23 +26,6 @@ const content = defineType({
           {title: 'No wrap', value: 'nw', icon: TbTextWrapDisabled, component: NoWrap},
         ],
         annotations: [
-          // {
-          //   title: 'Color',
-          //   type: 'object',
-          //   name: 'color',
-          //   fields: [
-          //     {
-          //       type: 'string',
-          //       name: 'hex',
-          //     },
-          //   ],
-          //   icon: IoIosColorPalette,
-          //   validation: (Rule) => Rule.optional().custom(validateHexColor),
-
-          //   components: {
-          //     annotation: ColorText,
-          //   },
-          // },
           {
             name: 'link',
             type: 'object',

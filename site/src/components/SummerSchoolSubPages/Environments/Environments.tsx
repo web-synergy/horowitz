@@ -6,13 +6,19 @@ import GoBackBtn from '@/components/Common/GoBackBtn';
 import PortableComponent from '@/components/Templates/PortableComponent/PortableComponent';
 import { Routes } from '@/types/routes.d';
 import { useAnnualSchoolData } from '@/hook/useAnnualSchoolData';
+import Loader from '@/components/Common/Loader';
 
 const Environments = () => {
-  const { conditions, slug, fetchConditions } = useAnnualSummerSchoolStore();
+  const { conditions, slug, fetchConditions, isLoading } =
+    useAnnualSummerSchoolStore();
 
   const { t } = useTranslation();
 
   useAnnualSchoolData(conditions, fetchConditions);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>

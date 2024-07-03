@@ -10,7 +10,10 @@ export const useSettingsStore = create<SettingsStoreState>()((set) => ({
   seoImage: seoImage,
   competitions: null,
   requestLang: '',
+  isLoading: false,
+
   fetchSettings: async (language) => {
+    set({ isLoading: true });
     try {
       const settings = await getSettings(language);
       if (!settings)
@@ -26,8 +29,11 @@ export const useSettingsStore = create<SettingsStoreState>()((set) => ({
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      set({ isLoading: false });
     }
   },
+
   getPreviewSettings: (settings) => {
     const { contacts, logo, sociable, competitions } = settings;
     set({

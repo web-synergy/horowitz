@@ -6,13 +6,18 @@ import { useAnnualSchoolData } from '@/hook/useAnnualSchoolData';
 import TextBlockComponent from '@/components/Templates/TextBlockComponent/TextBlockComponent';
 import GoBackBtn from '@/components/Common/GoBackBtn';
 import { Routes } from '@/types/routes.d';
+import Loader from '@/components/Common/Loader';
 
 const Professor = () => {
   const { pathname } = useLocation();
-  const { professors, slug, fetchProfessorsAndSchedules } =
+  const { professors, slug, fetchProfessorsAndSchedules, isLoading } =
     useAnnualSummerSchoolStore();
 
   useAnnualSchoolData(professors, fetchProfessorsAndSchedules);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (!professors) {
     return null;

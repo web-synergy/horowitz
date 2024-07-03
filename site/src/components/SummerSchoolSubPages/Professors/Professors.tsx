@@ -7,18 +7,21 @@ import PageTemplate from '@/components/Common/PageTemplate';
 import { useAnnualSummerSchoolStore } from '@/store/annualSummerSchoolStore';
 import { useAnnualSchoolData } from '@/hook/useAnnualSchoolData';
 import ProfessorCard from './parts/ProfessorCard';
+import Loader from '@/components/Common/Loader';
 import { Routes } from '@/types/routes.d';
 
 const Professors = () => {
   const { t } = useTranslation();
 
-  const { professors, fetchProfessorsAndSchedules, slug } =
+  const { professors, fetchProfessorsAndSchedules, slug, isLoading } =
     useAnnualSummerSchoolStore();
 
   useAnnualSchoolData(professors, fetchProfessorsAndSchedules);
 
   const goBackLink = `/${Routes.SUMMER_SCHOOL}/${slug}`;
-  console.log(professors);
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <PageTemplate goBackUrl={goBackLink}>
       <Container>

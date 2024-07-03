@@ -22,10 +22,16 @@ import { getImageData } from '@/utils/getImageData';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { Routes } from '@/types/routes.d';
 import { SummerSchool } from '@/types/translation.d';
+import Loader from '@/components/Common/Loader';
 
 const CurrentConcert = () => {
-  const { currentConcert, getCurrentConcert, concerts, fetchConcerts } =
-    useAnnualSummerSchoolStore();
+  const {
+    currentConcert,
+    getCurrentConcert,
+    concerts,
+    fetchConcerts,
+    isLoading,
+  } = useAnnualSummerSchoolStore();
   const { key } = useParams();
   const theme = useTheme();
   const { containerRef, containerSize } = useWidthBlokSize();
@@ -52,7 +58,9 @@ const CurrentConcert = () => {
 
   const imageHeight = Math.floor(imageWidth / aspectRatio);
 
-  console.log(imageWidth, imageHeight);
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <PageTemplate goBackUrl={Routes.SUMMER_SCHOOL_CONCERTS}>

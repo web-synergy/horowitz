@@ -10,6 +10,7 @@ import PageTemplate from '../Common/PageTemplate';
 import CommonStackWrapper from '../Common/CommonStackWrapper';
 import ButtonsArea from './parts/ButtonsArea';
 import TextBlockComponent from '../Templates/TextBlockComponent/TextBlockComponent';
+import SeoComponent from '../Common/SEO';
 import { StyledBox } from './parts/styled';
 
 import { ImagesArray } from '../Templates/PortableComponent/parts/ImageComponent';
@@ -49,29 +50,34 @@ const SummerSchoolPage: FC = () => {
   if (isLoading) return <Loader />;
   if (!requestLang.length) return null;
 
+  const title = t(`summerSchool.${SummerSchool.TITLE}`);
+
   return (
-    <PageTemplate>
-      <Container>
-        <CommonStackWrapper>
-          <Typography
-            component={'h1'}
-            variant="h1"
-            textAlign={{ xs: 'left', md: 'center' }}
-          >
-            {t(`summerSchool.${SummerSchool.TITLE}`)}
-          </Typography>
-          <TextBlockComponent text={topText} />
-          {infographicImg && <ImageComponent image={infographicImg} />}
-          <TextBlockComponent text={bottomText} />
+    <>
+      <SeoComponent canonicalUrl={SummerSchool.TITLE} title={title} />
+      <PageTemplate>
+        <Container>
+          <CommonStackWrapper>
+            <Typography
+              component={'h1'}
+              variant="h1"
+              textAlign={{ xs: 'left', md: 'center' }}
+            >
+              {title}
+            </Typography>
+            <TextBlockComponent text={topText} />
+            {infographicImg && <ImageComponent image={infographicImg} />}
+            <TextBlockComponent text={bottomText} />
 
-          <StyledBox>
-            <ButtonsArea btnsList={annualSummerSchool} />
-          </StyledBox>
+            <StyledBox>
+              <ButtonsArea btnsList={annualSummerSchool} />
+            </StyledBox>
 
-          {gallery && <ImagesArray value={gallery} />}
-        </CommonStackWrapper>
-      </Container>
-    </PageTemplate>
+            {gallery && <ImagesArray value={gallery} />}
+          </CommonStackWrapper>
+        </Container>
+      </PageTemplate>
+    </>
   );
 };
 

@@ -19,6 +19,7 @@ import { Routes } from './routes';
 import { IMasterClass } from './masterClassTypes';
 
 export interface SettingsStoreState {
+  isLoading: boolean;
   requestLang: string;
   sociable: SociableType | null;
   logo: string | null;
