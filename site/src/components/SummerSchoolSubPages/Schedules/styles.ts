@@ -6,9 +6,10 @@ export const TabletContentWrapper = styled(Box)(({ theme }) => ({
 
   [theme.breakpoints.up("md")]: {
     padding: "40px 8px",
+    textAlign: "center",
   },
 
   [theme.breakpoints.up("lg")]: {
-    padding: "48px 28px",
+    padding: "48px 16px",
   },
 }));

@@ -92,6 +92,7 @@ const TabletLectures: FC<TabletLecturesProps> = ({
             md: "40px 24px",
             lg: "48px 48px",
           },
+          textAlign: "start",
         }}
       >
         <TextBlockComponent text={rehearsal.event} inline />
