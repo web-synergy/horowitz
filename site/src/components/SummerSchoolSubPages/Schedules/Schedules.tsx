@@ -137,7 +137,7 @@ const SchedulePage = () => {
 
   return (
     <Container>
-      <PageTemplate>
+      <PageTemplate goBackUrl={Routes.SUMMER_SCHOOL_MAIN}>
         <Typography
           variant="h1"
           sx={{
@@ -217,8 +217,8 @@ const SchedulePage = () => {
             <Box
               sx={{
                 textAlign: "center",
-                paddingTop: { xs: "48px", md: "96px", lg: "136px" },
-                paddingBottom: { xs: "268px", md: "292px", lg: "362px" },
+                paddingTop: { xs: "24px", md: "40px", lg: "48px" },
+                paddingBottom: { xs: "72px", md: "96px", lg: "120px" },
               }}
             >
               <Typography variant="h3">
