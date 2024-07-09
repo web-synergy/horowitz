@@ -62,7 +62,21 @@ export const searchQuery = groq`*[_type == 'administration'][0]{
             'about': select(about[_key == $language][0].value match $text => about[_key == $language][0].value), 
             'name': select(about[_key == $language][0].value match $text|| name[_key == $language][0].value match $text => name[_key == $language][0].value), 
         }), 
-
-
     }, 
+    'competitions': *[_type == 'competition' && ([description[_key == $language][0].value] match $text || junior -> juries[].jury ->name[_key == $language][0].value match $text)]{
+        'slug': slug.current,
+        'title': title[_key == $language][0].value,
+        'description':  select(description[_key == $language][0].value match $text => description[_key == $language][0].value), 
+        'junior': junior -> {
+            'conditions': select(conditions[].text[_key == $language][0].value match $text => conditions[]{
+                "text": select(text[_key == $language][0].value match $text => text[_key == $language][0].value)
+            }), 
+            'juries': select(juries[].jury -> name[_key == $language][0].value match $text => juries[]{
+                "name": select(jury-> name[_key == $language][0].value match $text => jury-> name[_key == $language][0].value)
+            }),  
+            "artists": null, 
+            'guests': null, 
+            'participants': null,
+        },
+    }
 }`;

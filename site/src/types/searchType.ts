@@ -18,6 +18,7 @@ export type SearchResponse = {
   virtuosos: MasterClassSearchResponse;
   summerSchoolMain: { text: TextResponse } | null;
   summerSchools: AnnualSummerSchoolSearchType[];
+  competitions: CompetitionSearchType[];
 };
 
 export type AdministrationSearchType = {
@@ -73,4 +74,10 @@ export type ProfessorSearchType = {
   slug: string;
   about: string | null;
   name: string | null;
+};
+
+export type CompetitionSearchType = {
+  slug: string;
+  title: string;
+  description: string | null;
 };
