@@ -18,6 +18,12 @@ import {
 import { Routes } from './routes';
 import { IMasterClass } from './masterClassTypes';
 
+export interface SearchStoreState {
+  search: string;
+  onChangeSearch: (value: string) => void;
+  onFetchSearching: (value: string) => void;
+}
+
 export interface SettingsStoreState {
   isLoading: boolean;
   requestLang: string;

@@ -2,7 +2,7 @@ import { FC, forwardRef } from 'react';
 import { Slide, IconButton, Dialog, Stack } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import SvgSpriteIcon from '../../Common/SvgSpriteIcon';
-import Search from './Search';
+import SearchInput from './SearchInput';
 import LangPanel from './LangPanel';
 import Navigation from './Navigation';
 
@@ -50,7 +50,7 @@ const MobileMenu: FC<MobileMenuProps> = ({ open, onClose }) => {
           <SvgSpriteIcon icon="close" />
         </IconButton>
       </Stack>
-      <Search />
+      <SearchInput onCloseMenu={onClose} type="burger" />
       <Navigation onCloseMobileMenu={onClose} />
     </Dialog>
   );
