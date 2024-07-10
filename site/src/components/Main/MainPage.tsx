@@ -12,7 +12,7 @@ import SeoComponent from '../Common/SEO';
 import { useHomeStore } from '@/store/homeStore';
 import { useTranslation } from 'react-i18next';
 
-import { getSearchData } from '@/api';
+// import { getSearchData } from '@/api';
 
 const MainPage: FC = () => {
   const {
