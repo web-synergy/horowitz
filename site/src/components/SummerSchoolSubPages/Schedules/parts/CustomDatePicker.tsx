@@ -10,6 +10,7 @@ import updateLocale from "dayjs/plugin/updateLocale";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 
 import { ISchedule } from "@/types/annualSummerSchoolTypes.ts";
+import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 
 interface CustomDatePickerProps {
   selectedDate: Dayjs | null;
@@ -96,6 +97,11 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({
           disabled={!selectedProfessor}
           sx={{
             width: "100%",
+            [`&&:hover .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: !selectedProfessor
+                ? theme.palette.action.disabled
+                : theme.palette.primary.main,
+            },
           }}
           slotProps={{
             field: { clearable: true },
