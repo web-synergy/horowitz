@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import {
   Container,
   AppBar,
@@ -11,10 +12,12 @@ import { useLocation } from 'react-router-dom';
 import MobileMenu from './parts/MobileMenu';
 import Content from './parts/Content';
 import { Offset } from '../Common/Offset';
+import { Routes } from '@/types/routes.d';
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const location = useLocation();
+  const [openSearchBar, setOpenSearchBar] = useState(false);
+  const { pathname } = useLocation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
 
@@ -23,15 +26,34 @@ const Header = () => {
     threshold: 100,
   });
 
+  const isHomePage = pathname === '/';
+  const isSearchPage = pathname === `/${Routes.SEARCH}`;
+
   useEffect(() => {
     if (isDesktop && openMenu) {
       setOpenMenu(false);
     }
+
+    if (!isDesktop && openSearchBar && !isSearchPage) {
+      setOpenSearchBar(false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDesktop]);
 
-  const isHomePage = location.pathname === '/';
-  const isHeaderTransparent = isHomePage && !scrollTrigger;
+  useEffect(() => {
+    if (!isSearchPage && openSearchBar) {
+      setOpenSearchBar(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+
+  useEffect(() => {
+    if (isSearchPage && !openSearchBar) {
+      setOpenSearchBar(true);
+    }
+  }, [pathname, openSearchBar, isSearchPage, isDesktop]);
+
+  const isHeaderTransparent = isHomePage && !scrollTrigger && !openSearchBar;
   const headerStyle = isHeaderTransparent
     ? {
         backgroundColor: 'rgba(8, 7, 8, 0.40)',
@@ -49,14 +71,21 @@ const Header = () => {
     setOpenMenu(true);
   };
 
+  const onToggleSearchBar = () => {
+    setOpenSearchBar((prev) => !prev);
+  };
+
+  const onCloseSearchBar = () => {
+    setOpenSearchBar(false);
+  };
+
   return (
     <>
       <AppBar
         position="fixed"
         sx={{
           ...headerStyle,
-          // boxShadow:
-          //   '0 1px 1px rgba(0,0,0,0.15), 0 2px 2px rgba(0,0,0,0.15), 0 4px 4px rgba(0,0,0,0.15), 0 8px 8px rgba(0,0,0,0.15)',
+
           transition: theme.transitions.create('background-color', {
             duration: '500ms',
             delay: '200ms',
@@ -65,7 +94,12 @@ const Header = () => {
       >
         <Toolbar disableGutters>
           <Container>
-            <Content onClickMenu={onOpenMenu} />
+            <Content
+              onClickMenu={onOpenMenu}
+              openSearchBar={openSearchBar}
+              onToggleSearchBar={onToggleSearchBar}
+              onCloseSearchBar={onCloseSearchBar}
+            />
           </Container>
         </Toolbar>
       </AppBar>

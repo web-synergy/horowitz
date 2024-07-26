@@ -90,6 +90,8 @@ import LazyOtherGroupJuryProfilePage from '@/components/OtherGroupPages/OtherGro
 import LazyOtherGroupParticipantProfilePage from '@/components/OtherGroupPages/OtherGroupParticipantProfile/LazyOtherGroupParticipantProfilePage';
 import OtherGroupPreselectionJuryProfile from '@/components/OtherGroupPages/OtherGroupPreselectionJuryProfile/OtherGroupPreselectionJuryProfile';
 
+import LazySearchPage from '@/components/Search/LazySearchPage';
+
 const routes = createBrowserRouter([
   {
     path: '/',
@@ -505,11 +507,16 @@ const routes = createBrowserRouter([
         path: '404',
         element: <LazyNotFoundPage />,
       },
+      {
+        path: Routes.SEARCH,
+        element: <LazySearchPage />,
+      },
     ],
   },
+
   {
     path: '*',
-    element: <Navigate to={'404'} />,
+    element: <Navigate to={'/'} />,
   },
 ]);
 

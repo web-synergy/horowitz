@@ -29,6 +29,7 @@ export const getSearchData = async (searchText: string, language: string) => {
     virtuosos,
     summerSchoolMain,
     summerSchools,
+    competitions,
   } = searchResponse;
 
   const administrationSearch = administration.members.map((admin) => ({
@@ -228,6 +229,8 @@ export const getSearchData = async (searchText: string, language: string) => {
       ...professorsSearch,
     ];
   }, [] as SearchType[]);
+
+  console.log(competitions);
 
   return [
     ...administrationSearch,

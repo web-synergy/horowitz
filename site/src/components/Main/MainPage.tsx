@@ -12,7 +12,7 @@ import SeoComponent from '../Common/SEO';
 import { useHomeStore } from '@/store/homeStore';
 import { useTranslation } from 'react-i18next';
 
-import { getSearchData } from '@/api';
+// import { getSearchData } from '@/api';
 
 const MainPage: FC = () => {
   const {
@@ -30,17 +30,14 @@ const MainPage: FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    searchData();
-  }, []);
+  // useEffect(() => {
+  //   searchData();
+  // }, []);
 
-  const searchData = async () => {
-    const result = await getSearchData(
-      'незалежно від національності',
-      language
-    );
-    console.log(result);
-  };
+  // const searchData = async () => {
+  //   const result = await getSearchData('Мартінс', language);
+  //   console.log(result);
+  // };
   return (
     <>
       <SeoComponent />
