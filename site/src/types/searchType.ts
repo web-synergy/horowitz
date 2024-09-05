@@ -1,10 +1,9 @@
-import { Routes } from './routes.d';
-
 export type SearchType = {
-  page: Routes;
+  page: string;
   path: string;
   title: string;
   text: string;
+  date: string;
 };
 
 export type SearchResponse = {
@@ -41,10 +40,14 @@ export type AboutPageSearchType = {
   blockTexts: TextResponse[];
 };
 
-export type MasterClassSearchType = {
-  description: TextResponse;
+export type ObjectResponseType = {
+  description: string;
   title: string;
   slug: string;
+};
+
+export type MasterClassSearchType = ObjectResponseType & {
+  date: string;
 };
 
 export type MasterClassSearchResponse = MasterClassSearchType[];
@@ -56,28 +59,30 @@ export type SummerSchoolMain = {
 
 export type AnnualSummerSchoolSearchType = {
   slug: string;
-  concerts: MasterClassSearchType[] | null;
+  date: string;
+  year: string;
+  concerts: ObjectResponseType[] | null;
   artists: TextResponse;
   conditions: TextResponse;
   description: TextResponse;
-  participants: ParticipantSearchType[] | null;
-  professors: ProfessorSearchType[] | null;
-};
-
-export type ParticipantSearchType = {
-  slug: string;
-  biography: string | null;
-  name: string | null;
-};
-
-export type ProfessorSearchType = {
-  slug: string;
-  about: string | null;
-  name: string | null;
+  participants: ObjectResponseType[] | null;
+  professors: ObjectResponseType[] | null;
 };
 
 export type CompetitionSearchType = {
   slug: string;
+  date: string;
   title: string;
   description: string | null;
+  junior: {
+    juniorDate: string;
+    juniorConditions: TextResponse[];
+    juniorTimetable: TextResponse;
+    juniorRequirements: TextResponse;
+    juniorJuries: ObjectResponseType[] | null;
+    juniorArtists: ObjectResponseType[] | null;
+    juniorGuests: ObjectResponseType[] | null;
+    juniorParticipants: ObjectResponseType[] | null;
+    juniorPreJury: ObjectResponseType[] | null;
+  };
 };

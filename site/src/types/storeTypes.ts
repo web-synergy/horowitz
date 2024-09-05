@@ -17,11 +17,16 @@ import {
 } from './groupTypes';
 import { Routes } from './routes';
 import { IMasterClass } from './masterClassTypes';
+import { SearchResponse } from './searchType';
 
 export interface SearchStoreState {
   search: string;
+  submitSearch: string;
+  response: SearchResponse | null;
+  isLoading: boolean;
+  reqLang: string | null;
   onChangeSearch: (value: string) => void;
-  onFetchSearching: (value: string) => void;
+  onFetchSearching: (lang: string) => void;
 }
 
 export interface SettingsStoreState {

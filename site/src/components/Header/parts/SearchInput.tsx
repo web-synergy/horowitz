@@ -1,6 +1,7 @@
 import { FC, ChangeEvent, FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   FormControl,
   TextField,
@@ -19,9 +20,13 @@ interface SearchInputProps {
 
 const SearchInput: FC<SearchInputProps> = ({ onCloseMenu, type }) => {
   const theme = useTheme();
-  const { t } = useTranslation();
-  const { search, onChangeSearch } = useSearchStore();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
+  const { search, onChangeSearch, onFetchSearching } = useSearchStore();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const onChangeInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -32,9 +37,11 @@ const SearchInput: FC<SearchInputProps> = ({ onCloseMenu, type }) => {
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (search === '') return;
     onCloseMenu && onCloseMenu();
 
-    navigate(Routes.SEARCH);
+    pathname !== `/${Routes.SEARCH}` && navigate(Routes.SEARCH);
+    onFetchSearching(language);
   };
 
   const borderRadius = type === 'bar' ? '24px' : '8px';
@@ -46,7 +53,7 @@ const SearchInput: FC<SearchInputProps> = ({ onCloseMenu, type }) => {
         <TextField
           value={search}
           onChange={onChangeInput}
-          placeholder={t(`${Header.SEARCH}`)}
+          placeholder={t(`${Header.SEARCH}.placeholder`)}
           autoComplete="off"
           sx={{
             '& .MuiInputBase-root': {
