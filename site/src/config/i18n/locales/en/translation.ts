@@ -97,7 +97,11 @@ export default {
     [EDebut.GROUP_C]: 'C',
     [EDebut.GROUP_D]: 'D',
   },
-  [Header.SEARCH]: 'Search',
+  [Header.SEARCH]: {
+    placeholder: 'Search',
+    title: 'For searching {{search}} found {{count}} {{result}}:',
+    page: 'Go to the page "{{page}}"',
+  },
   contacts: {
     [Contacts.ADDRESS]: 'Address',
     [Contacts.PHONE]: 'Phone',

@@ -5,8 +5,10 @@ import { useSettingsStore } from '@/store/settingStore';
 
 import { useTranslation } from 'react-i18next';
 
-import StubPage from '../Stub/Stub';
 import { useCompetitionStore } from '@/store/competitionStore';
+
+import StubPage from '../Stub/Stub';
+import SeoComponent from '../Common/SEO';
 import Loader from '../Common/Loader';
 import MainLayout from './parts/MainLayout';
 
@@ -24,6 +26,7 @@ const CompetitionPage = () => {
     stubText,
     requestLang,
     isLoading,
+    slug,
   } = useCompetitionStore();
 
   const competitionSlug = pathname.split('/').slice(-1)[0];
@@ -42,21 +45,21 @@ const CompetitionPage = () => {
     (item) => item.slug === competitionSlug
   );
 
-  //ToDo: add preview request
-  // const [data] = useLiveQuery(virtuosos, virtuososQuery, {
-  //   language,
-  // });
-
   if (isLoading) return <Loader />;
 
   if (!isCompetitionExist) {
     return <Navigate to={'404'} />;
   }
 
-  return isStubActive ? (
-    <StubPage title={title} text={stubText} />
-  ) : (
-    <MainLayout />
+  return (
+    <>
+      <SeoComponent canonicalUrl={`/${slug}`} title={title} />
+      {isStubActive ? (
+        <StubPage title={title} text={stubText} />
+      ) : (
+        <MainLayout />
+      )}
+    </>
   );
 };
 

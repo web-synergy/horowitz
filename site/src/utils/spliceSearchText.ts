@@ -1,33 +1,43 @@
-import { Routes } from '@/types/routes.d';
 import {
   SearchType,
   TextResponse,
-  MasterClassSearchType,
+  ObjectResponseType,
 } from '@/types/searchType';
+import * as dayjs from 'dayjs';
 
 export const generateSearchResponseItem = (
-  value: TextResponse[],
+  value: TextResponse | ObjectResponseType,
   searchText: string,
-  routes: Routes,
-  path?: string,
+  page: string,
+  path: string,
+  date?: string,
   title?: string
 ) => {
-  return value.reduce((acc, item) => {
-    if (item) {
-      const splicesText = spliceSearchText(item, searchText);
+  if (!value) return [] as SearchType[];
 
-      if (splicesText) {
-        const answer = {
-          page: routes,
-          title: title ? title : routes,
-          text: splicesText,
-          path: path ? path : routes,
-        };
-        return [...acc, answer];
-      }
-    }
-    return acc;
-  }, [] as SearchType[]);
+  if (typeof value === 'string') {
+    const splicesText = spliceSearchText(value, searchText);
+
+    const answer: SearchType = {
+      page: page,
+      title: title ? title : page,
+      text: splicesText,
+      path: path,
+      date: date ?? dayjs().format(),
+    };
+    return [answer];
+  }
+
+  const descriptionText = spliceSearchText(value.description, searchText);
+
+  const answer: SearchType = {
+    page: page,
+    title: title ? title : page,
+    text: descriptionText,
+    path: path,
+    date: date ?? dayjs().format(),
+  };
+  return [answer];
 };
 
 export const spliceSearchText = (text: string, searchText: string) => {
@@ -37,13 +47,9 @@ export const spliceSearchText = (text: string, searchText: string) => {
     const index = matchText.index as number;
 
     return index > 10
-      ? `...${text.slice(index - 10, index + 140)}...`
+      ? `...${text.slice(index - 10, index + 190)}...`
       : `${text.slice(0, 150)}...`;
   }
-  return null;
-};
 
-export const defineDocumentArray = (value: MasterClassSearchType) => {
-  const { description, title } = value;
-  return description && title ? [description] : [description, title];
+  return `${text.slice(0, 200)}...`;
 };

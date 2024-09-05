@@ -97,7 +97,11 @@ export default {
     [EDebut.GROUP_C]: 'C',
     [EDebut.GROUP_D]: 'D',
   },
-  [Header.SEARCH]: 'Пошук',
+  [Header.SEARCH]: {
+    placeholder: 'Пошук',
+    title: 'За запитом "{{search}}" знайдено {{count}} {{result}}:',
+    page: 'Перейти на сторінку "{{page}}"',
+  },
   contacts: {
     [Contacts.ADDRESS]: 'Адреса',
     [Contacts.PHONE]: 'Телефон',
