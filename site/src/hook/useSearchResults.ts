@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useSearchStore } from '@/store/searchStore';
 import { Routes } from '@/types/routes.d';
 import { SearchType } from '@/types/searchType';
-import * as dayjs from 'dayjs';
+import { DateTime } from 'luxon';
 
 import { generateSearchResponseItem } from '@/utils/spliceSearchText';
 
@@ -34,7 +34,7 @@ const useSearchResults = () => {
     title: t(`navigation.${Routes.ADMINISTRATION}`),
     text: `...${admin.name} (${admin.role})...`,
     path: `/${Routes.ADMINISTRATION}`,
-    date: dayjs().format(),
+    date: DateTime.now().toISO(),
   }));
 
   const horowitzSearch = generateSearchResponseItem(
@@ -361,8 +361,8 @@ const useSearchResults = () => {
     ...summerSchoolsSearch,
     ...competitionsSearch,
   ].sort((a, b) => {
-    if (dayjs(a.date).isBefore(b.date)) return 1;
-    if (dayjs(a.date).isSame(b.date)) return 0;
+    if (DateTime.fromISO(a.date) < DateTime.fromISO(b.date)) return 1;
+    if (DateTime.fromISO(a.date) == DateTime.fromISO(b.date)) return 0;
     return -1;
   });
 
