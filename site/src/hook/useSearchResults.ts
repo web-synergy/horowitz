@@ -47,8 +47,8 @@ const useSearchResults = () => {
   const aboutSearch = generateSearchResponseItem(
     Object.values(about).flat(1)[0],
     normalizedText,
-    t(`navigation.${Routes.ABOUT}`),
-    `/${Routes.ABOUT}`
+    t(`navigation.${Routes.DETAILS}`),
+    `/${Routes.DETAILS}`
   );
 
   const ukrWorksSearch = generateSearchResponseItem(
