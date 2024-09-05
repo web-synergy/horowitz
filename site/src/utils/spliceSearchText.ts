@@ -3,7 +3,7 @@ import {
   TextResponse,
   ObjectResponseType,
 } from '@/types/searchType';
-import * as dayjs from 'dayjs';
+import { DateTime } from 'luxon';
 
 export const generateSearchResponseItem = (
   value: TextResponse | ObjectResponseType,
@@ -23,7 +23,7 @@ export const generateSearchResponseItem = (
       title: title ? title : page,
       text: splicesText,
       path: path,
-      date: date ?? dayjs().format(),
+      date: date ?? DateTime.now().toISO(),
     };
     return [answer];
   }
@@ -35,7 +35,7 @@ export const generateSearchResponseItem = (
     title: title ? title : page,
     text: descriptionText,
     path: path,
-    date: date ?? dayjs().format(),
+    date: date ?? DateTime.now().toISO(),
   };
   return [answer];
 };

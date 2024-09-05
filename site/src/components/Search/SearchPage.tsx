@@ -35,6 +35,7 @@ const SearchPage = () => {
         })
       : '';
 
+  console.log(result);
   return (
     <>
       <SeoComponent title={t(`${Header.SEARCH}.placeholder`)} />
