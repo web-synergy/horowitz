@@ -2,6 +2,7 @@ import { Stack, useScrollTrigger } from '@mui/material';
 import { useEffect, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
+import ReactGA from 'react-ga';
 import { draft, lang } from '../../libs/searchParamsKey';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -10,6 +11,8 @@ import { settingsQuery } from '@/api/query';
 import { useSettingsStore } from '@/store/settingStore';
 import { useLiveQuery } from '@sanity/preview-kit';
 import ScrollUpBtn from './ScrollUpBtn';
+
+const GA_ID = import.meta.env.VITE_GA_ID;
 
 const SharedLayout = () => {
   const {
@@ -20,6 +23,9 @@ const SharedLayout = () => {
 
   const langParam = searchParams.get(lang);
   const draftMod = searchParams.get(draft);
+
+  ReactGA.initialize(GA_ID);
+
   const {
     contacts,
     fetchSettings,
@@ -39,6 +45,8 @@ const SharedLayout = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    ReactGA.pageview(location.pathname + location.search);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   useEffect(() => {
