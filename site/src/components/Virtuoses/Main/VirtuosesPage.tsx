@@ -67,11 +67,13 @@ const VirtuosesPage = () => {
               {title}
             </Typography>
             <TextBlockComponent text={data.description} />
-            <NewsSwiper
-              title={t(`virtuosos.${Virtuosos.NEWS}`)}
-              link={Routes.VIRTUOSES_ARTICLE}
-              news={data.article}
-            />
+            {data.article.length > 0 && (
+              <NewsSwiper
+                title={t(`virtuosos.${Virtuosos.NEWS}`)}
+                link={Routes.VIRTUOSES_ARTICLE}
+                news={data.article}
+              />
+            )}
             <ImagesArray value={data.gallery} />
           </CommonStackWrapper>
         </Container>

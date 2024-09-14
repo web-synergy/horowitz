@@ -1,6 +1,6 @@
 import { GradientColorType } from './../types/bannerType';
 
-export const createColor = (color: string | undefined, alpha: string = '1') => {
+export const createColor = (color: string | undefined, alphaChannel = '1') => {
   if (!color) {
     return 'transparent';
   }
@@ -8,21 +8,23 @@ export const createColor = (color: string | undefined, alpha: string = '1') => {
   let r: number;
   let g: number;
   let b: number;
-  if (color.length === 4) {
+  let alpha = alphaChannel;
+  if (color.length <= 4) {
     r = parseInt(color.slice(1, 2), 16);
     g = parseInt(color.slice(2, 3), 16);
     b = parseInt(color.slice(3), 16);
+  } else if (color.length > 4 && color.length <= 7) {
+    r = parseInt(color.slice(1, 3), 16);
+    g = parseInt(color.slice(3, 5), 16);
+    b = parseInt(color.slice(5, 6), 16);
   } else {
     r = parseInt(color.slice(1, 3), 16);
     g = parseInt(color.slice(3, 5), 16);
-    b = parseInt(color.slice(5), 16);
+    b = parseInt(color.slice(5, 6), 16);
+    alpha = parseInt(color.slice(6), 16).toString();
   }
 
-  // const r = parseInt(color.slice(1, 3), 16);
-  // const g = parseInt(color.slice(3, 5), 16);
-  // const b = parseInt(color.slice(5), 16);
-
-  return `rgb(${r}, ${g}, ${b}, ${alpha})`;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
 export const createGradientColors = (
