@@ -7,6 +7,7 @@ import { CssBaseline } from '@mui/material';
 import { HelmetProvider } from 'react-helmet-async';
 import routes from './config/routes';
 import { theme } from './theme';
+// import loadAnalytics from './utils/loadAnalytics';
 
 import './config/i18n';
 import './index.css';
@@ -20,3 +21,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </ThemeProvider>
   </HelmetProvider>
 );
+
+// loadAnalytics();
