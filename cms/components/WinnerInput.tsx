@@ -15,6 +15,7 @@ export const WinnerInput = (props: StringInputProps) => {
   const winnerSubgroup = currentWinner?.subgroup
 
   if (group !== 'junior') {
+    
     return (
       <Select {...elementProps}>
         <option value=""></option>

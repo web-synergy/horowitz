@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineType} from 'sanity'
 
 export default defineType({
   name: 'home',
@@ -62,7 +62,7 @@ export default defineType({
             {
               name: 'backgroundColor',
               title: 'Колір фону',
-              type: 'color',
+              type: 'string',
               hidden: ({parent}) => parent?.backgroundType !== 'monochrome',
             },
             {

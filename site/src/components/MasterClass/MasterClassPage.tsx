@@ -98,11 +98,13 @@ const MasterClassPage = () => {
                 />
               ))}
             </List>
-            <PaginationMasterClass
-              pageQty={pageQty}
-              setSearchParams={setSearchParams}
-              urlPage={urlPage}
-            />
+            {masterClassesList.length > 0 && (
+              <PaginationMasterClass
+                pageQty={pageQty}
+                setSearchParams={setSearchParams}
+                urlPage={urlPage}
+              />
+            )}
           </Stack>
         </Container>
       </PageTemplate>
