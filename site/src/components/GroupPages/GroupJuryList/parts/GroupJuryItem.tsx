@@ -1,8 +1,10 @@
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Stack, Box, Typography } from '@mui/material';
 import { JuryType } from '@/types/groupTypes';
 import PersonPhoto from '@/components/Templates/PersonPhoto/PersonPhoto';
-import ReadMoreBtn from '@/components/Common/LinkBtn';
+import LinkBtn from '@/components/Common/LinkBtn';
+import { Buttons } from '@/types/translation.d';
 
 interface GroupJuryItemProps {
   item: JuryType;
@@ -10,6 +12,7 @@ interface GroupJuryItemProps {
 
 const GroupJuryItem: FC<GroupJuryItemProps> = ({ item }) => {
   const { photo, name, slug, role } = item;
+  const { t } = useTranslation();
 
   return (
     <Stack direction="column" justifyContent={'space-between'} height={'100%'}>
@@ -25,7 +28,7 @@ const GroupJuryItem: FC<GroupJuryItemProps> = ({ item }) => {
         </Typography>
       </Box>
 
-      <ReadMoreBtn href={slug} />
+      <LinkBtn link={slug} title={t(`Buttons.${Buttons.READ_MORE}`)} />
     </Stack>
   );
 };
