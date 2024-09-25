@@ -24,7 +24,15 @@ export const homeQuery = groq`*[_type == 'home'][0]{
        "photo": photo.asset->url
       }, 
       "link": winnersLink
+   }, 
+   "events": {
+    "title": eventsTitle[_key ==$language][0].value, 
+    "text": eventsText[_key ==$language][0].value, 
+    "button": eventsButtonText[_key ==$language][0].value, 
+    "link": eventsLink
+
    }
+
 }`;
 
 export const settingsQuery = groq`*[_type == 'settings'][0]{

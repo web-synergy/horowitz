@@ -24,9 +24,12 @@ const WinnerCard: FC<WinnerCardProps> = ({ item, isVisible, delay }) => {
             xs: '357px',
             md: '100%',
           },
+          width: '100%',
           lineHeight: 0,
           m: { xs: '0 auto' },
           textAlign: { xs: 'center', md: 'left' },
+          display: 'grid',
+          gridTemplateRows: '1fr auto auto',
         }}
       >
         <Typography

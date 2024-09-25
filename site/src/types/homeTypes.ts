@@ -20,6 +20,12 @@ export interface HomeData {
   winners: {
     title: string | null;
     list: HomeWinners[] | null;
-    link: string;
+    link: string | null;
+  };
+  events: {
+    title: string | null;
+    text: string | null;
+    button: string | null;
+    link: string | null;
   };
 }

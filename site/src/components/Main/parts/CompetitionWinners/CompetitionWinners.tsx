@@ -24,7 +24,7 @@ const CompetitionWinners: FC = () => {
     <Box ref={ref}>
       <HomeSection
         title={title || ''}
-        link={link}
+        link={link || ''}
         linkTitle={t(`buttons.${Buttons.VIEW_ALL}`)}
       >
         {list && (

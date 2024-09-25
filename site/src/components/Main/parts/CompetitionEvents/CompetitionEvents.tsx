@@ -1,25 +1,21 @@
-import { Container, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { FC } from 'react';
 
 import { Link as RouterLink } from 'react-router-dom';
 import bg_image from '../../temp/CompetitionEvents_bg.jpg';
 import { DescriptionText, MainTitle, WatchButton, Wrapper } from './styled';
 
-import { MainPage, Buttons } from '@/types/translation.d';
+import { MainPage } from '@/types/translation.d';
+import { useHomeStore } from '@/store/homeStore';
 
-// !TEMP
 import { useTranslation } from 'react-i18next';
-import eventData from '../../temp/CompetitionEventsData.json';
 
 const CompetitionEvents: FC = () => {
-  const { breakpoints } = useTheme();
-  const isMobile = useMediaQuery(breakpoints.down('md'));
+  const {
+    events: { button, link, text, title },
+  } = useHomeStore();
 
   const { t } = useTranslation();
-
-  const buttonTitle = isMobile
-    ? [Buttons.WATCH_ONLINE_XS]
-    : [Buttons.WATCH_ONLINE];
 
   return (
     <Wrapper
@@ -41,13 +37,15 @@ const CompetitionEvents: FC = () => {
         >
           {t(`mainPage.${MainPage.COMP_EVENTS}`)}
         </Typography>
-        <MainTitle component={'h2'}>{eventData.title}</MainTitle>
+        <MainTitle component={'h2'}>{title || ''}</MainTitle>
         <DescriptionText component={'p'} variant="bodyRegular">
-          {eventData.description}
+          {text || ''}
         </DescriptionText>
-        <WatchButton component={RouterLink} to={eventData.link} target="_blank">
-          {t(`buttons.${buttonTitle}`)}
-        </WatchButton>
+        {button && link && (
+          <WatchButton component={RouterLink} to={link} target="_blank">
+            {button}
+          </WatchButton>
+        )}
       </Container>
     </Wrapper>
   );

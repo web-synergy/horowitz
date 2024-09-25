@@ -12,6 +12,13 @@ export const useHomeStore = create<HomeStoreState>((set) => ({
   winners: {
     list: null,
     title: null,
+    link: null,
+  },
+  events: {
+    title: null,
+    text: null,
+    button: null,
+    link: null,
   },
 
   fetchHome: async (language) => {
