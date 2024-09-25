@@ -174,4 +174,7 @@ export default {
   winners: {
     reject: 'Not awarded',
   },
+  masterClass: {
+    text: 'There are no active events at the moment. Check back for updates!',
+  },
 };

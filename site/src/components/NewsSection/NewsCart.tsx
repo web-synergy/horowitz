@@ -5,7 +5,7 @@ import { Buttons } from '@/types/translation.d';
 import { Box, Stack, Typography, TypographyProps, styled } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ShowMoreBtn } from './ShowMoreBtn';
+import LinkBtn from '../Common/LinkBtn';
 
 interface INewsCart {
   img: IImage;
@@ -19,8 +19,8 @@ const NewsCart: FC<INewsCart> = ({ img, title, slug }) => {
     <Stack
       sx={{
         gap: {
-          xs: 2,
-          md: 3,
+          xs: 1,
+          md: 2,
         },
         height: '100%',
         '& img': {
@@ -36,7 +36,7 @@ const NewsCart: FC<INewsCart> = ({ img, title, slug }) => {
       />
       <CardTitle variant="subhead">{title}</CardTitle>
       <Box>
-        <ShowMoreBtn title={t(`buttons.${Buttons.READ_MORE}`)} link={slug} />
+        <LinkBtn title={t(`buttons.${Buttons.READ_MORE}`)} link={slug} />
       </Box>
     </Stack>
   );

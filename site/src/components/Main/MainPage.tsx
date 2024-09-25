@@ -30,14 +30,6 @@ const MainPage: FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // useEffect(() => {
-  //   searchData();
-  // }, []);
-
-  // const searchData = async () => {
-  //   const result = await getSearchData('Мартінс', language);
-  //   console.log(result);
-  // };
   return (
     <>
       <SeoComponent />

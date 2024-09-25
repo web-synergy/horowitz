@@ -7,7 +7,7 @@ import './sliderSettings.css';
 import { sliceNewsTitle } from '@/utils/helpers';
 
 import NewsCart from './NewsCart';
-import { ShowMoreBtn } from './ShowMoreBtn';
+import LinkBtn from '../Common/LinkBtn';
 
 import { Buttons } from '@/types/translation.d';
 import { IImage } from '@/types/commonTypes';
@@ -43,7 +43,7 @@ const NewsSwiper = ({
           {title}
         </Typography>
         <Box>
-          <ShowMoreBtn
+          <LinkBtn
             title={t(`buttons.${Buttons.SHOW_ALL}`)}
             link={`/${link}`}
             isTitleVisible={!isMobile}

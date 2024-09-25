@@ -2,7 +2,8 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Stack, Typography } from '@mui/material';
 import PersonPhoto from '@/components/Templates/PersonPhoto/PersonPhoto';
-import ReadMoreBtn from '@/components/Common/ReadMoreBtn';
+import LinkBtn from '@/components/Common/LinkBtn';
+import { Buttons } from '@/types/translation.d';
 
 import { defineYearsText } from '@/utils/defineYearText';
 import { ParticipantType } from '@/types/groupTypes';
@@ -23,7 +24,7 @@ const ParticipantItem: FC<ParticipantItemProps> = ({ item }) => {
         <Typography variant="subhead">{name}</Typography>
         <Typography>{`${age} ${t(`age.${ageText}`)}`}</Typography>
       </Stack>
-      <ReadMoreBtn href={slug} />
+      <LinkBtn link={slug} title={t(`Buttons.${Buttons.READ_MORE}`)} />
     </Stack>
   );
 };

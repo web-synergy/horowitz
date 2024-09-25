@@ -18,6 +18,10 @@ export default defineType({
       name: 'videos',
       title: 'Відео',
     },
+    {
+      name: 'event',
+      title: 'Подія',
+    },
   ],
 
   fields: [
@@ -75,15 +79,78 @@ export default defineType({
         },
       ],
     },
-
     {
-      group: ['winners'],
-      name: 'winners',
-      title: 'Переможці',
-      type: 'array',
-      of: [{type: 'winner'}],
+      name: 'winnersTitle',
+      type: 'internationalizedArrayString',
+      title: 'Заголовок для секції Переможці',
+      group: 'winners',
     },
-
+    {
+      name: 'winnersLink',
+      type: 'string',
+      title: 'Посилання на сторінку з переможцями',
+      group: 'winners',
+    },
+    {
+      name: 'winners',
+      type: 'array',
+      title: 'Список переможців',
+      of: [
+        {
+          type: 'object',
+          title: 'Внесіть дані переможця',
+          fields: [
+            {
+              name: 'name',
+              type: 'internationalizedArrayString',
+              title: "Прізвище та ім'я",
+            },
+            {
+              name: 'title',
+              type: 'internationalizedArrayString',
+              title: 'Титул',
+            },
+            {
+              name: 'photo',
+              type: 'image',
+              title: 'Фото',
+            },
+          ],
+          preview: {
+            select: {
+              title: 'name[0].value',
+              subtitle: 'title[0].value',
+              media: 'photo',
+            },
+          },
+        },
+      ],
+      group: 'winners',
+    },
+    {
+      group: 'event',
+      name: 'eventsTitle',
+      type: 'internationalizedArrayString',
+      title: 'Заголовок для секції Події',
+    },
+    {
+      group: 'event',
+      name: 'eventsText',
+      type: 'internationalizedArrayText',
+      title: 'Текст для секції Події',
+    },
+    {
+      group: 'event',
+      name: 'eventsLink',
+      type: 'string',
+      title: 'Посилання на подію',
+    },
+    {
+      group: 'event',
+      name: 'eventsButtonText',
+      type: 'internationalizedArrayString',
+      title: 'Текст для кнопки',
+    },
     {
       group: ['videos'],
       name: 'videos',

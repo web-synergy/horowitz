@@ -12,6 +12,7 @@ import PaginationMasterClass from './parts/PaginationMasterClass';
 import { truncateDescription } from '@/utils/truncateDescription';
 import Loader from '../Common/Loader';
 import SeoComponent from '../Common/SEO';
+import StubPage from '../Stub/Stub';
 
 const MasterClassPage = () => {
   const [sortedMasterClasses, setSortedMasterClasses] = useState<
@@ -61,6 +62,11 @@ const MasterClassPage = () => {
   if (loading) return <Loader />;
 
   const title = t(`navigation.${Routes.MASTER_CLASS}`);
+  const text = t(`masterClass.text`);
+  if (sortedMasterClasses.length === 0) {
+    return <StubPage title={title} text={text} />;
+  }
+
   return (
     <>
       <SeoComponent canonicalUrl={Routes.MASTER_CLASS} title={title} />
@@ -98,13 +104,12 @@ const MasterClassPage = () => {
                 />
               ))}
             </List>
-            {masterClassesList.length > 0 && (
-              <PaginationMasterClass
-                pageQty={pageQty}
-                setSearchParams={setSearchParams}
-                urlPage={urlPage}
-              />
-            )}
+
+            <PaginationMasterClass
+              pageQty={pageQty}
+              setSearchParams={setSearchParams}
+              urlPage={urlPage}
+            />
           </Stack>
         </Container>
       </PageTemplate>
