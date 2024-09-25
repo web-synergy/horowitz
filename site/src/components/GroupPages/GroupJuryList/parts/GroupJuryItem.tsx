@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Stack, Box, Typography } from '@mui/material';
 import { JuryType } from '@/types/groupTypes';
 import PersonPhoto from '@/components/Templates/PersonPhoto/PersonPhoto';
-import ReadMoreBtn from '@/components/Common/ReadMoreBtn';
+import ReadMoreBtn from '@/components/Common/LinkBtn';
 
 interface GroupJuryItemProps {
   item: JuryType;

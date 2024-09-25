@@ -25,8 +25,9 @@ const CompetitionEvents: FC = () => {
     <Wrapper
       component={'section'}
       sx={{
-        background: `url(${bg_image}) center no-repeat`,
+        background: `url(${bg_image}) no-repeat`,
         backgroundSize: 'cover',
+        backgroundPosition: 'left bottom',
       }}
     >
       <Container>

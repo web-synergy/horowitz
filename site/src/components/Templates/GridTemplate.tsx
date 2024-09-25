@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Box } from '@mui/material';
 import GrowView from '../Common/GrowView';
+// import { useAnimationCard } from '@/hook/useAnimationCard';
 
 interface GridTemplateProps<T> {
   list: T[];
@@ -10,6 +11,7 @@ interface GridTemplateProps<T> {
 
 function GridTemplate<T>(props: GridTemplateProps<T>) {
   const { gridItem: GridItem, list, justify = 'left' } = props;
+  // const { isVisible, ref } = useAnimationCard();
 
   const isCentered = justify !== 'left';
 
@@ -31,6 +33,10 @@ function GridTemplate<T>(props: GridTemplateProps<T>) {
     >
       {list.map((item, index) => (
         <GrowView key={index}>
+          {/* <Zoom
+          in={isVisible}
+          style={{ transitionDelay: isVisible ? `${index + 2}00ms` : '0ms' }}
+        > */}
           <Box
             sx={{
               minWidth: { xs: 288, md: 332, lg: 357 },
@@ -41,6 +47,7 @@ function GridTemplate<T>(props: GridTemplateProps<T>) {
           >
             <GridItem item={item} />
           </Box>
+          {/* </Zoom> */}
         </GrowView>
       ))}
     </Box>

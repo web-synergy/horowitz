@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Stack, Typography } from '@mui/material';
 import PersonPhoto from '@/components/Templates/PersonPhoto/PersonPhoto';
-import ReadMoreBtn from '@/components/Common/ReadMoreBtn';
+import ReadMoreBtn from '@/components/Common/LinkBtn';
 
 import { defineYearsText } from '@/utils/defineYearText';
 import { ParticipantType } from '@/types/groupTypes';

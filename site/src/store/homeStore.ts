@@ -9,22 +9,20 @@ export const useHomeStore = create<HomeStoreState>((set) => ({
   news: [],
   videos: [],
   banner: null,
+  winners: {
+    list: null,
+    title: null,
+  },
 
   fetchHome: async (language) => {
     set({ loading: true, requestLang: language });
     try {
       const response = await getHomeData(language);
-      set({
-        news: response.news,
-        videos: response.videos,
-        banner: response.banner,
-      });
+      set(response);
 
       set({ loading: false });
     } catch (error) {
       set({ loading: false });
-
-      console.log(error);
     }
   },
 }));
