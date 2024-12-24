@@ -53,6 +53,11 @@ export default defineType({
       validation: (Rule) => Rule.required().error('Обовʼязкове поле'),
     },
     {
+      name: 'banner',
+      title: 'Додати зображення для списку',
+      type: 'image',
+    },
+    {
       name: 'img',
       title: 'Додати зображення',
       type: 'image',

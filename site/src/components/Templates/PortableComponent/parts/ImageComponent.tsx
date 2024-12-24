@@ -1,7 +1,7 @@
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage } from '@/types/commonTypes';
 import { IPortableImgGallery } from '@/types/newsTypes';
-import { Box,  useMediaQuery } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { PortableSwiper } from '../Swiper/Swiper';
 
@@ -46,6 +46,8 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
             md: isEmbed && position !== 'center' ? 'block' : 'flex',
           },
           justifyContent: { xs: 'center', md: position },
+          mb: 1,
+          flexDirection: 'column',
         }}
         ref={containerRef}
       >
@@ -81,6 +83,16 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
           alt={alt || 'foto'}
           loading="lazy"
         />
+        {alt && (
+          <Typography
+            component={'p'}
+            sx={{ mt: 1 }}
+            variant="smallText"
+            color={(theme) => theme.palette.neutral[60]}
+          >
+            {alt}
+          </Typography>
+        )}
       </Box>
     </GrowView>
   );

@@ -16,6 +16,7 @@ interface INews {
   title: string;
   slug: string;
   img: IImage;
+  banner: IImage | undefined | null;
 }
 const NewsSwiper = ({
   news,
@@ -66,12 +67,12 @@ const NewsSwiper = ({
         }}
       >
         {news.map((item) => {
-          const { slug, img, title } = item;
+          const { slug, img, banner, title } = item;
           return (
             <SwiperSlide key={slug} style={{ height: 'auto' }}>
               <NewsCart
                 title={sliceNewsTitle(title, 49)}
-                img={img}
+                img={banner || img}
                 slug={`/${link}/${slug}`}
               />
             </SwiperSlide>

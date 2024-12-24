@@ -4,6 +4,7 @@ export const homeQuery = groq`*[_type == 'home'][0]{
   'news':*[_type == 'news'  && length(title[_key ==$language].value) != 0]| order( dateTime(date)  desc) [0 ...3]{
         date,
         img,
+        banner, 
         'title':  title[_key ==$language ][0].value,
         'slug':slug.current,},
   'videos':videos[]{
@@ -40,7 +41,8 @@ export const settingsQuery = groq`*[_type == 'settings'][0]{
   "sociable": {
     facebook, 
     instagram, 
-    youTube
+    youTube, 
+    issuu
   }, 
   'contacts': {
     'about':about[_key ==$language].value,
@@ -74,6 +76,7 @@ export const newsQuery = groq`*[_type == 'news' && length(title[_key ==$language
   _createdAt,
    date,
    img,
+   banner,
    'title':  title[_key ==$language].value,
    'slug':slug.current,
    'shortDescription':shortDescription[_key ==$language].value,

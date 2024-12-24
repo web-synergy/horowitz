@@ -1,11 +1,13 @@
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage } from '@/types/commonTypes';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useMediaQuery, useTheme } from '@mui/material';
 import { Buttons } from '@/types/translation.d';
 import { Box, Stack, Typography, TypographyProps, styled } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import LinkBtn from '../Common/LinkBtn';
+import Image from '../Common/Image';
+import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 
 interface INewsCart {
   img: IImage;
@@ -15,6 +17,13 @@ interface INewsCart {
 
 const NewsCart: FC<INewsCart> = ({ img, title, slug }) => {
   const { t } = useTranslation();
+  const theme = useTheme();
+  const isMob = useMediaQuery(theme.breakpoints.down('md'));
+  const { containerRef, containerSize } = useWidthBlokSize();
+
+  const aspectRatio = isMob ? 1.34 : 1.44;
+  const imageHeight = Math.floor(containerSize / aspectRatio);
+
   return (
     <Stack
       sx={{
@@ -28,11 +37,22 @@ const NewsCart: FC<INewsCart> = ({ img, title, slug }) => {
           aspectRatio: { xs: 1.34, lg: 1.44 },
         },
       }}
+      ref={containerRef}
     >
-      <LazyLoadImage
-        src={urlFor(img).auto('format').width(400).fit('fill').url().toString()}
-        alt="news photo"
-        style={{ objectFit: 'cover' }}
+      <Image
+        src={urlFor(img)
+          .auto('format')
+          .width(containerSize)
+          .height(imageHeight)
+          .url()
+          .toString()}
+        alt={img.alt}
+        height={imageHeight}
+        width={containerSize}
+        isLazyLoading={true}
+        styles={{
+          objectFit: 'cover',
+        }}
       />
       <CardTitle variant="subhead">{title}</CardTitle>
       <Box>

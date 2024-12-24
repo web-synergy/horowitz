@@ -17,7 +17,9 @@ const LogotypesGallery: FC<LogotypesGalleryProps> = ({
 }) => {
   return (
     <Box>
-      <Typography variant="subhead">{title}</Typography>
+      <Typography variant="subhead" component={'p'}>
+        {title}
+      </Typography>
       <Stack
         sx={{
           flexDirection: 'row',
@@ -30,10 +32,7 @@ const LogotypesGallery: FC<LogotypesGalleryProps> = ({
             xs: 'wrap',
             lg: 'nowrap',
           },
-          marginTop: {
-            xs: '24px',
-            md: '28px',
-          },
+          marginTop: 3,
           alignItems: 'center',
         }}
       >

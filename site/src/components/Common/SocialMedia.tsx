@@ -25,7 +25,7 @@ interface SocialMediaProps {
 const SocialMedia: FC<SocialMediaProps> = ({ vertical }) => {
   const mediaLinks = useSettingsStore((state) => state.sociable);
   if (!mediaLinks) return null;
-  const { facebook, instagram, youTube } = mediaLinks;
+  const { facebook, instagram, youTube, issuu } = mediaLinks;
 
   return (
     <Stack
@@ -46,6 +46,12 @@ const SocialMedia: FC<SocialMediaProps> = ({ vertical }) => {
       <Box>
         <StyledLink component={RouterLink} to={youTube} target="_blank">
           <SvgSpriteIcon icon="youtube" />
+        </StyledLink>
+      </Box>
+
+      <Box>
+        <StyledLink component={RouterLink} to={issuu} target="_blank">
+          <SvgSpriteIcon icon="issuu" />
         </StyledLink>
       </Box>
     </Stack>
