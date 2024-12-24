@@ -4,6 +4,7 @@ import { BannerType } from './bannerType';
 
 type TArticle = {
   img: IImage;
+  banner: IImage | undefined | null;
   title: string;
   slug: string;
 };
