@@ -22,7 +22,7 @@ const NewsCart: FC<INewsCart> = ({ img, title, slug }) => {
   const { containerRef, containerSize } = useWidthBlokSize();
 
   const aspectRatio = isMob ? 1.54 : 1.44;
-  const imageHeight = Math.floor((containerSize * 1.3) / aspectRatio);
+  const imageHeight = Math.floor(containerSize / aspectRatio);
 
   return (
     <Stack
@@ -41,8 +41,8 @@ const NewsCart: FC<INewsCart> = ({ img, title, slug }) => {
       <Image
         src={urlFor(img)
           .auto('format')
-          .width(containerSize)
-          .height(imageHeight)
+          .width(Math.floor(containerSize * 1.3))
+          .height(Math.floor(imageHeight * 1.3))
           .url()
           .toString()}
         alt={img.alt}
