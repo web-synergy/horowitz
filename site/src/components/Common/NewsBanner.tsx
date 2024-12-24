@@ -1,10 +1,9 @@
-import { Box, useMediaQuery } from '@mui/material';
+import { Box } from '@mui/material';
 import GrowView from './GrowView';
 import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage } from '@/types/commonTypes';
 import { useEffect, useState } from 'react';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
-import { theme } from '@/theme';
 
 export default function NewsBanner({ img }: { img: IImage }) {
   const [imgSize, setImgSize] = useState<{
@@ -15,16 +14,12 @@ export default function NewsBanner({ img }: { img: IImage }) {
     height: 408,
   });
   const { containerSize, containerRef } = useWidthBlokSize();
-  const isMob = useMediaQuery(theme.breakpoints.down('md'));
 
   useEffect(() => {
     if (containerSize) {
       setImgSize({
         width: containerSize,
-        height: Math.min(
-          Math.floor(isMob ? containerSize / 0.93 : containerSize / 1.93),
-          408
-        ),
+        height: Math.min(Math.floor(containerSize / 1.93), 408),
       });
     }
   }, [img, containerSize]);

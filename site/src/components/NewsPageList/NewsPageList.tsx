@@ -42,6 +42,7 @@ const NewsPageList = () => {
 
   if (loading) return <Loader />;
 
+  console.log(newsList);
   const title = t(`navigation.${Routes.NEWS}`);
   return (
     <>
@@ -72,7 +73,7 @@ const NewsPageList = () => {
                     key={index}
                     date={news.date}
                     title={news.title}
-                    img={news.img}
+                    img={news.banner || news.img}
                     slug={news.slug}
                     shortDescription={news.shortDescription}
                   />

@@ -62,7 +62,7 @@ const NewsListItem = ({
           <Image
             src={imageUrl}
             alt={img.alt}
-            height={248}
+            height={imageHeight}
             width={imageWidth}
             isLazyLoading={false}
             styles={{
