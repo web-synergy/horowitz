@@ -21,8 +21,8 @@ const NewsCart: FC<INewsCart> = ({ img, title, slug }) => {
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
   const { containerRef, containerSize } = useWidthBlokSize();
 
-  const aspectRatio = isMob ? 1.34 : 1.44;
-  const imageHeight = Math.floor(containerSize / aspectRatio);
+  const aspectRatio = isMob ? 1.54 : 1.44;
+  const imageHeight = Math.floor((containerSize * 1.3) / aspectRatio);
 
   return (
     <Stack
@@ -34,7 +34,6 @@ const NewsCart: FC<INewsCart> = ({ img, title, slug }) => {
         height: '100%',
         '& img': {
           objectPosition: 'top',
-          aspectRatio: { xs: 1.34, lg: 1.44 },
         },
       }}
       ref={containerRef}

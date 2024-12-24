@@ -37,8 +37,8 @@ export default function NewsBanner({ img }: { img: IImage }) {
             img?.asset &&
             urlFor(img)
               .auto('format')
-              .width(imgSize.width)
-              .height(imgSize.height)
+              .width(Math.floor(imgSize.width * 1.3))
+              .height(Math.floor(imgSize.height * 1.3))
               .url()
               .toString()
           }

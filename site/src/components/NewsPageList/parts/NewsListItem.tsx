@@ -4,6 +4,7 @@ import { urlFor } from '@/config/sanity/imageUrl';
 import { IImage } from '@/types/commonTypes';
 import { parseAndFormatDate } from '@/utils/helpers';
 import { Buttons } from '@/types/translation.d';
+import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 
 import {
   Box,
@@ -37,17 +38,18 @@ const NewsListItem = ({
   const theme = useTheme();
   const isMob = useMediaQuery(theme.breakpoints.down('md'));
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const { containerRef, containerSize } = useWidthBlokSize();
 
-  const imageWidth = isMob ? 548 : isDesktop ? 357 : 332;
+  const imageWidth = isMob ? containerSize : isDesktop ? 357 : 332;
   const aspectRatio = 1.44;
 
   const imageHeight = Math.floor(imageWidth / aspectRatio);
+  console.log(imageHeight);
 
   const imageUrl = urlFor(img)
     .auto('format')
-    .width(imageWidth)
-    .height(imageHeight)
-    .fit('fill')
+    .width(Math.floor(imageWidth * 1.4))
+    .height(Math.floor(imageHeight * 1.4))
     .url()
     .toString();
 
@@ -66,12 +68,11 @@ const NewsListItem = ({
             width={imageWidth}
             isLazyLoading={false}
             styles={{
-              aspectRatio: aspectRatio,
               objectFit: 'cover',
             }}
           />
 
-          <Stack gap={2} sx={{ maxWidth: '548px' }}>
+          <Stack gap={2} sx={{ maxWidth: '548px' }} ref={containerRef}>
             <Typography
               sx={{ color: (theme) => theme.palette.neutral[50] }}
               variant="bodyLight"
