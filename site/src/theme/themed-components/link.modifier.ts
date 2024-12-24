@@ -31,12 +31,12 @@ export const MuiLink: Components<Theme>['MuiLink'] = {
     {
       props: { variant: 'linkBlock' },
       style: ({ theme }) => ({
-        color: theme.palette.secondary.main,
+        color: theme.palette.secondary.light,
         cursor: 'pointer',
         position: 'relative',
 
         '&:hover, &:focus-visible': {
-          color: theme.palette.secondary.light,
+          color: theme.palette.secondary.main,
           backgroundColor: 'transparent',
           '&::after': {
             content: '""',
@@ -45,7 +45,7 @@ export const MuiLink: Components<Theme>['MuiLink'] = {
             left: 0,
             height: 1,
             width: '100%',
-            backgroundColor: theme.palette.secondary.light,
+            backgroundColor: theme.palette.secondary.main,
           },
         },
 

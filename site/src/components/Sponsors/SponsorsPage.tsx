@@ -1,6 +1,6 @@
 import { usePartnersStore } from '@/store/partnersStore';
 import { Sponsors } from '@/types/translation.d';
-import { Container, Stack } from '@mui/material';
+import { Container } from '@mui/material';
 import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageTemplate from '../Common/PageTemplate';
@@ -12,6 +12,7 @@ import { MainTitle, TwoGalleryStack } from './styled';
 import { partners as partnersQuery } from '@/api/query';
 import { useLiveQuery } from '@sanity/preview-kit';
 import SeoComponent from '../Common/SEO';
+import CommonStackWrapper from '../Common/CommonStackWrapper';
 
 const SponsorsPage: FC = () => {
   const fetchData = usePartnersStore((state) => state.fetchPartners);
@@ -51,7 +52,7 @@ const SponsorsPage: FC = () => {
           <MainTitle component={'h1'}>
             {t(`sponsorsPage.${Sponsors.MAIN_TITLE}`)}
           </MainTitle>
-          <Stack spacing={6}>
+          <CommonStackWrapper>
             {organizers && (
               <LogotypesGallery
                 title={t(`sponsorsPage.${Sponsors.COMP_ORG}`)}
@@ -101,7 +102,7 @@ const SponsorsPage: FC = () => {
                 gallery={officialInfoPartners}
               />
             )}
-          </Stack>
+          </CommonStackWrapper>
         </Container>
       </PageTemplate>
     </>

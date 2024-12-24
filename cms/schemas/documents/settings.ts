@@ -52,6 +52,13 @@ export default defineType({
       group: ['socials'],
     }),
     defineField({
+      name: 'issuu',
+      title: 'Issuu',
+      type: 'url',
+      validation: (Rule) => Rule.error('Обовʼязкове поле').required(),
+      group: ['socials'],
+    }),
+    defineField({
       name: 'about',
       title: 'Про нас',
       type: 'internationalizedArrayArticle',

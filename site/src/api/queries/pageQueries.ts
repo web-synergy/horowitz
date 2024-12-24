@@ -40,7 +40,8 @@ export const settingsQuery = groq`*[_type == 'settings'][0]{
   "sociable": {
     facebook, 
     instagram, 
-    youTube
+    youTube, 
+    issuu
   }, 
   'contacts': {
     'about':about[_key ==$language].value,

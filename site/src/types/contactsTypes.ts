@@ -22,6 +22,7 @@ export interface SociableType {
   instagram: string;
   facebook: string;
   youTube: string;
+  issuu: string;
 }
 
 export interface ContactsDetailsProps {
