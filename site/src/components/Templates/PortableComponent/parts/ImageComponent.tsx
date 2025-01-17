@@ -41,10 +41,8 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
     <GrowView>
       <Box
         sx={{
-          display: {
-            xs: 'flex',
-            md: isEmbed && position !== 'center' ? 'block' : 'flex',
-          },
+          display: isEmbed && position !== 'center' ? 'block' : 'flex',
+
           justifyContent: { xs: 'center', md: position },
           mb: 1,
           flexDirection: 'column',
@@ -58,15 +56,15 @@ export const ImageComponent = ({ value }: { value: IImage }) => {
             justifyContent: { xs: 'center', md: position },
             width: `${width}%`,
             // minWidth: '260px',
-            ml: {
-              xs: 0,
-              md: position === 'left' || position === 'center' ? '0px' : '16px',
-            },
-            mr: {
-              xs: 0,
-              md:
-                position === 'right' || position === 'center' ? '0px' : '16px',
-            },
+            ml:
+              position === 'left' || position === 'center'
+                ? '0px'
+                : { xs: '8px', md: '16px' },
+
+            mr:
+              position === 'right' || position === 'center'
+                ? '0px'
+                : { xs: '8px', md: '16px' },
 
             mt: { xs: 0, md: '8px' },
             objectFit: 'cover',
