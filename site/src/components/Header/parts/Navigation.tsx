@@ -47,16 +47,20 @@ const Navigation: FC<NavigationProps> = ({ onCloseMobileMenu }) => {
 
   return (
     <NavList component="nav">
-      {navigationForRender.map((item) => (
-        <MainMenu
-          key={item.title}
-          title={item.title}
-          children={item.children}
-          activeMenu={activeMenu}
-          onOpenMenu={onOpenMenu}
-          onCloseMobileMenu={onCloseMobileMenu}
-        />
-      ))}
+      {navigationForRender.map((item) => {
+        if (!item) return null;
+
+        return (
+          <MainMenu
+            key={item.title}
+            title={item.title}
+            children={item.children}
+            activeMenu={activeMenu}
+            onOpenMenu={onOpenMenu}
+            onCloseMobileMenu={onCloseMobileMenu}
+          />
+        );
+      })}
     </NavList>
   );
 };

@@ -86,12 +86,13 @@ const MainMenu: FC<MainMenuProps> = ({
         onCloseMenu={onCloseMenu}
       >
         <SubMenuList>
-          {children.map(({ slug, title }) => (
+          {children.map(({ slug, title, onlyIn }) => (
             <Submenu
               key={slug}
               href={slug}
               title={title}
               onCloseMenu={onCloseMenu}
+              onlyIn={onlyIn}
             />
           ))}
         </SubMenuList>

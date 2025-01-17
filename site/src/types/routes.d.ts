@@ -60,13 +60,21 @@ export enum Routes {
   GROUP_GUESTS = 'guests',
   GROUP_BOOKLET = 'booklet',
   SEARCH = 'search',
+  GLIERS_ROUNDS = 'gliers-rounds',
 }
 
-export type NavigationType = { title: string; slug: string };
+export type NavigationType = {
+  title: string;
+  slug: string;
+  onlyIn?: 'ua' | 'en';
+};
 
 export type NavigationItemType = {
   title: Routes;
   children: NavigationType[] | null;
 };
 
-export type NavItemType = { title: string; isActive: boolean };
+export type NavItemType = {
+  title: string;
+  isActive: boolean;
+};
