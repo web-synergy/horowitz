@@ -2,7 +2,7 @@ import lyatoshinskiy from '@/assets/images/rounds/lyatoshinskiy.png';
 import revuckiy from '@/assets/images/rounds/revuckiy.jpg';
 export interface RoundMemberData {
   name: string;
-  group: 1 | 2;
+  group: 1 | 2 | 0;
   isBig?: boolean;
   years: string;
   image?: string;

@@ -1,7 +1,6 @@
 import { RoundMemberData } from '@/libs/mockedData';
 import { CirclesType } from '@/utils/arrangeCircles';
 import Image from '../Common/Image';
-import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 import { Box } from '@mui/material';
 import person from './person.png';
 

@@ -18,10 +18,10 @@ export const concatPositionWithData = (
   let secondGroupAddedMembers = 0;
 
   commonResult.push({
-    ...circles[0],
     name: 'Глієр',
     years: 'years',
-    color: '#e0e0e0',
+    group: 0,
+    ...circles[0],
   });
 
   for (let i = 1; i <= ROUNDS; i++) {
