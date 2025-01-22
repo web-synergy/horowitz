@@ -6,66 +6,27 @@ import PageTemplate from '../Common/PageTemplate';
 import SeoComponent from '../Common/SEO';
 import { Container, Typography, Box } from '@mui/material';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
-import { roundMemberData } from '@/libs/mockedData';
-import { lyatoshinskiyData, revuckiyData } from '@/libs/mockedData';
+import { concatPositionWithData } from '@/utils/concatPositionWithData';
+import { MainPerson } from './MainPerson';
+import { Member } from './Member';
 
-const FIRST_ROUND_PERSENT = 30;
-const SECOND_ROUND_PERSENT = 34;
+import { lyatoshinskiyData, revuckiyData } from '@/libs/mockedData';
+import { arrangeCircles } from '@/utils/arrangeCircles';
+
+export const ROUNDS = 4;
 
 const GliersRoundsPage: FC = () => {
   const { t } = useTranslation();
   const { containerRef, containerSize } = useWidthBlokSize();
   const title = t(`navigation.${Routes.GLIERS_ROUNDS}`);
 
-  const elementWidth = Math.floor(containerSize * 0.1);
-
-  const radiuses = [
-    containerSize / 3.5,
-    containerSize - 3.5 * elementWidth,
-    Math.floor(containerSize - elementWidth),
-  ];
-
-  const dividedIntoGroup = (
-    data: roundMemberData[],
-    first: number,
-    second: number
-  ) => {
-    const firstRoundCount = Math.round((data.length * first) / 100);
-    const secondRoundCount = Math.round((data.length * second) / 100);
-    const thirdRoundCount = data.length - firstRoundCount - secondRoundCount;
-
-    const firstRoundMember = data.slice(0, firstRoundCount);
-    const secondRoundMember = data.slice(
-      firstRoundCount,
-      firstRoundCount + secondRoundCount
-    );
-    const thirdRoundMember = data.slice(-thirdRoundCount);
-
-    return [firstRoundMember, secondRoundMember, thirdRoundMember];
-  };
-
-  const lyatshinskiy = dividedIntoGroup(
-    lyatoshinskiyData,
-
-    FIRST_ROUND_PERSENT,
-    SECOND_ROUND_PERSENT
-  );
-  const revuckiy = dividedIntoGroup(
-    revuckiyData,
-    FIRST_ROUND_PERSENT,
-    SECOND_ROUND_PERSENT
+  const result = arrangeCircles(
+    containerSize,
+    lyatoshinskiyData.length + revuckiyData.length,
+    ROUNDS
   );
 
-  const data = radiuses.map((radius, index) => {
-    const groupCount = lyatshinskiy[index].length + revuckiy[index].length;
-    const groupAngle = Math.round(360 / groupCount);
-
-    return {
-      radius: radius,
-      angle: groupAngle,
-      member: [...lyatshinskiy[index], ...revuckiy[index]],
-    };
-  });
+  const data = concatPositionWithData(result, lyatoshinskiyData, revuckiyData);
 
   return (
     <>
@@ -89,116 +50,18 @@ const GliersRoundsPage: FC = () => {
             {title}
           </Typography>
           <Box
-            sx={{
-              width: '100%',
-              aspectRatio: 1,
-              height: 'auto',
-
-              position: 'relative',
-              borderRadius: '50%',
-              border: '1px solid #000',
-            }}
             ref={containerRef}
+            sx={{
+              position: 'relative',
+              width: '100%',
+              height: 'auto',
+              aspectRatio: 1,
+            }}
           >
-            <Box
-              sx={{
-                aspectRatio: 1,
-                height: 'auto',
-                border: '1px solid #000',
-                borderRadius: '50%',
-                width: '20%',
-                backgroundColor: '#E0E0E0',
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                zIndex: 1000,
-              }}
-            />
-            <Box
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                width: data[0].radius,
-                height: data[0].radius,
-                borderRadius: '50%',
-                border: '1px solid grey',
-                transform: 'translate(-50%, -50%) rotate(50deg)',
-              }}
-            >
-              {data[0].member.map(({ color }, index) => (
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    width: elementWidth,
-                    height: elementWidth,
-                    margin: `-${elementWidth / 2}px`,
-
-                    backgroundColor: color,
-                    border: '1px solid #890973',
-                    borderRadius: '50%',
-                    transformOrigin: '50% 50%',
-                    transform: `rotate(${
-                      data[0].angle * (index + 2)
-                    }deg) translate(0, ${data[0].radius / 2}px ) rotate(${
-                      -data[0].angle * (index + 2) - 50
-                    }deg)`,
-                  }}
-                  key={index}
-                >
-                  {index}
-                </Box>
-              ))}
-            </Box>
-            {data.slice(1).map(({ angle, member, radius }, i) => {
-              const divider = i % 2 === 0 ? 3 : 6;
-              return (
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    width: radius,
-                    height: radius,
-                    borderRadius: '50%',
-                    border: '1px solid #ed42d0',
-                    transform: `translate(-50%, -50%) rotate(${30}deg)`,
-                  }}
-                  key={i}
-                >
-                  {member.map(({ color }, index) => (
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        width: elementWidth,
-                        height: elementWidth,
-                        margin: `-${elementWidth / 2}px`,
-
-                        backgroundColor: color,
-                        border: '1px solid #890973',
-                        borderRadius: '50%',
-                        transformOrigin: '50% 50%',
-                        transform: `rotate(${
-                          angle * (index + 2)
-                        }deg) translate(0, ${
-                          index % 2 === 0
-                            ? radius / 2 - elementWidth / divider
-                            : radius / 2 + elementWidth / divider
-                        }px ) rotate(${-angle * (index + 2) - 40}deg)`,
-                      }}
-                      key={index}
-                    >
-                      {index}
-                    </Box>
-                  ))}
-                </Box>
-              );
-            })}
+            <MainPerson {...data[0]} />
+            {data.slice(1).map((item, index) => (
+              <Member {...item} key={index} />
+            ))}
           </Box>
         </Container>
       </PageTemplate>
