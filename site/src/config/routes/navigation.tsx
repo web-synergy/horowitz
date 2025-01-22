@@ -29,6 +29,7 @@ export const navigation: NavigationItemType[] = [
       { title: Routes.MASTER_CLASS, slug: Routes.MASTER_CLASS },
       { title: Routes.SUMMER_SCHOOL, slug: Routes.SUMMER_SCHOOL },
       { title: Routes.VIRTUOSES, slug: Routes.VIRTUOSES },
+      { title: Routes.GLIERS_ROUNDS, slug: Routes.GLIERS_ROUNDS, onlyIn: 'ua' },
     ],
   },
   { title: Routes.NEWS, children: null },
