@@ -16,6 +16,7 @@
     "@mui/material": "^5.15.3",
     "@mui/x-date-pickers": "^7.1.0",
     "@portabletext/react": "^3.0.11",
+    "@sanity/asset-utils": "^2.2.1",
     "@sanity/client": "^6.10.0",
     "@sanity/image-url": "^1.0.2",
     "@sanity/preview-kit": "^5.0.7",
