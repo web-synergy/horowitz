@@ -19,7 +19,7 @@ export const MainPerson = ({ d }: MainPersonProps) => {
         height: d * 1.3,
         borderRadius: '50%',
         backgroundImage:
-          'linear-gradient(0deg, rgba(11,45,163,1) 0%, rgba(217,161,69,1) 100%)',
+          'linear-gradient(-15deg, rgba(11,45,163,1) 0%, rgba(217,161,69,1) 100%)',
         transform: 'translate(-50%, -50%)',
       }}
     >
@@ -55,7 +55,12 @@ export const MainPerson = ({ d }: MainPersonProps) => {
             height={containerSize}
             alt="Glier photo"
             src={glier}
-            styles={{ objectFit: 'cover', objectPosition: 'top' }}
+            styles={{
+              objectFit: 'cover',
+              objectPosition: 'top',
+              width: '100%',
+              height: '100%',
+            }}
             isLazyLoading={false}
           />
         </Box>

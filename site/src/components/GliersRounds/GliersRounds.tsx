@@ -10,7 +10,7 @@ import { concatPositionWithData } from '@/utils/concatPositionWithData';
 import { MainPerson } from './MainPerson';
 import { Member } from './Member';
 
-import { lyatoshinskiyData, revuckiyData } from '@/libs/mockedData';
+import { membersData } from '@/libs/mockedData';
 import { arrangeCircles } from '@/utils/arrangeCircles';
 
 export const ROUNDS = 4;
@@ -20,13 +20,9 @@ const GliersRoundsPage: FC = () => {
   const { containerRef, containerSize } = useWidthBlokSize();
   const title = t(`navigation.${Routes.GLIERS_ROUNDS}`);
 
-  const result = arrangeCircles(
-    containerSize,
-    lyatoshinskiyData.length + revuckiyData.length,
-    ROUNDS
-  );
+  const result = arrangeCircles(containerSize, membersData.length, ROUNDS);
 
-  const data = concatPositionWithData(result, lyatoshinskiyData, revuckiyData);
+  const data = concatPositionWithData(result, membersData);
 
   return (
     <>
