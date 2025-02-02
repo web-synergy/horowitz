@@ -1,51 +1,45 @@
+import { MouseEvent } from 'react';
+import Image from '@/components/Common/Image';
 import { Box } from '@mui/material';
-import Image from '../Common/Image';
-import person from './person.png';
+import person from '../person.png';
 
-interface CardProps {
-  itemShiftY: number;
-  itemShiftX: number;
-  ratio: number;
-  onClick: () => void;
-  x: number;
-  d: number;
-  y: number;
-  group: number;
-  name: string;
-  years: string;
+interface TeacherCardProps {
+  width: number;
+  left: number | string;
+  top: number;
+  onClick: (e: MouseEvent<HTMLDivElement>) => void;
+  group: 1 | 2;
+  name: string | undefined;
+  years: string | undefined;
   image: string | undefined;
+  id: number | undefined;
 }
 
-export const BigCard = ({
-  x,
-  d,
-  y,
-  itemShiftX,
-  itemShiftY,
-  ratio,
+export const MobileTeacherCard = ({
+  width,
+  top,
+  left,
+  onClick,
   group,
+  image,
   name,
   years,
-  image,
-  onClick,
-}: CardProps) => {
+  id,
+}: TeacherCardProps) => {
   return (
     <Box
       role="button"
       sx={{
         position: 'absolute',
-        top: '50%',
-        left: '50%',
-        width: d * 1.5,
-        height: d * 1.5,
+        top,
+        left,
+        width: width,
+        height: width,
         borderRadius: '50%',
         cursor: 'pointer',
-
-        transform: `translate(${x * ratio - (d * itemShiftX) / 2}px, ${
-          y * ratio - (d * itemShiftY) / 2
-        }px)`,
       }}
       onClick={onClick}
+      data-id={id}
     >
       <Box
         component="svg"
@@ -79,21 +73,33 @@ export const BigCard = ({
           position: 'absolute',
           top: '50%',
           left: '50%',
-          width: d * 1.05,
-          height: d * 1.05,
+          width: width * 0.7,
+          height: width * 0.7,
           transform: 'translate(-50%, -50%)',
           backgroundColor: '#efefef',
           borderRadius: '50%',
           overflow: 'clip',
+
+          border: '1px solid',
+          borderColor: (theme) =>
+            group === 1
+              ? theme.palette.primary.main
+              : theme.palette.secondary.main,
         }}
       >
         <Image
-          width={d * 1.05}
-          height={d * 1.05}
+          width={width}
+          height={width}
           src={image || person}
           isLazyLoading={false}
           alt={name}
-          styles={{ objectFit: 'cover', objectPosition: 'center' }}
+          styles={{
+            objectFit: 'cover',
+            objectPosition: 'center',
+            aspectRatio: 1,
+            width: '100%',
+            height: 'auto',
+          }}
         />
       </Box>
     </Box>

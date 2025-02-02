@@ -1,7 +1,7 @@
 import { RoundMemberData } from '@/libs/mockedData';
 import { CirclesType } from './arrangeCircles';
 
-interface ResultType extends RoundMemberData, CirclesType {}
+export interface ResultType extends RoundMemberData, CirclesType {}
 
 export const concatPositionWithData = (
   circles: CirclesType[],
@@ -12,6 +12,7 @@ export const concatPositionWithData = (
     years: 'years',
     group: 0,
     data: '',
+    id: 0,
   };
   const commonResult = [firstMember, ...data];
 

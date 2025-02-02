@@ -1,28 +1,30 @@
 import { FC } from 'react';
+import {
+  Container,
+  Typography,
+  Box,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 
 import { useTranslation } from 'react-i18next';
 import { Routes } from '@/types/routes.d';
 import PageTemplate from '../Common/PageTemplate';
 import SeoComponent from '../Common/SEO';
-import { Container, Typography, Box } from '@mui/material';
+
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
-import { concatPositionWithData } from '@/utils/concatPositionWithData';
-import { MainPerson } from './MainPerson';
-import { Member } from './Member';
+
+import { TabletLayout } from './tablet/TabletLayout';
+import { MobileLayout } from './mobile/MobileLayout';
 
 import { membersData } from '@/libs/mockedData';
-import { arrangeCircles } from '@/utils/arrangeCircles';
-
-export const ROUNDS = 4;
 
 const GliersRoundsPage: FC = () => {
   const { t } = useTranslation();
   const { containerRef, containerSize } = useWidthBlokSize();
   const title = t(`navigation.${Routes.GLIERS_ROUNDS}`);
-
-  const result = arrangeCircles(containerSize, membersData.length, ROUNDS);
-
-  const data = concatPositionWithData(result, membersData);
+  const theme = useTheme();
+  const isNotMobile = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
     <>
@@ -54,10 +56,11 @@ const GliersRoundsPage: FC = () => {
               aspectRatio: 1,
             }}
           >
-            <MainPerson {...data[0]} />
-            {data.slice(1).map((item, index) => (
-              <Member {...item} key={index} />
-            ))}
+            {isNotMobile ? (
+              <TabletLayout width={containerSize} members={membersData} />
+            ) : (
+              <MobileLayout width={containerSize} members={membersData} />
+            )}
           </Box>
         </Container>
       </PageTemplate>

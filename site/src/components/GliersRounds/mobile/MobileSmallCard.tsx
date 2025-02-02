@@ -1,45 +1,39 @@
+import { MouseEvent } from 'react';
 import { Box } from '@mui/material';
 
-interface CardProps {
-  itemShiftY: number;
-  itemShiftX: number;
-  ratio: number;
-  onClick: () => void;
-  x: number;
-  d: number;
-  y: number;
-  group: number;
+interface MobileSmallCardProps {
+  width: number;
+  onClick: (e: MouseEvent<HTMLDivElement>) => void;
+  top: number;
+  left: number;
   name: string;
   years: string;
+  group: 1 | 2;
+  id: number;
 }
 
-export const SmallCard = ({
-  x,
-  d,
-  y,
-  itemShiftX,
-  itemShiftY,
-  ratio,
-  group,
-  name,
-  years,
+export const MobileSmallCard = ({
+  left,
+  width,
+  top,
   onClick,
-}: CardProps) => {
+  name,
+  id,
+  years,
+  group,
+}: MobileSmallCardProps) => {
   return (
     <Box
       role="button"
+      data-id={id}
       sx={{
         position: 'absolute',
-        top: '50%',
-        left: '50%',
-        width: d * 1.1,
-        height: d * 1.1,
+        top,
+        left,
+        width: width * 1.08,
+        height: width * 1.08,
         borderRadius: '50%',
         cursor: 'pointer',
-
-        transform: `translate(${x * ratio - (d * itemShiftX) / 2}px, ${
-          y * ratio - (d * itemShiftY) / 2
-        }px)`,
       }}
       onClick={onClick}
     >
@@ -61,7 +55,7 @@ export const SmallCard = ({
           d="M 10, 50 a 40,40 0 1,1 80,0 40,40 0 1,1 -80,0"
         />
         <text width="100">
-          <textPath href="#circlePath" fontSize={'70%'} fontWeight="bold">
+          <textPath href="#circlePath" fontSize={'85%'} fontWeight="bold">
             {name}
           </textPath>
         </text>
