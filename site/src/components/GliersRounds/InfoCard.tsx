@@ -44,7 +44,7 @@ export const InfoCard = ({ person, onClose }: InfoCardProps) => {
         sx={{
           position: 'absolute',
           color: color,
-          top: { xs: '-7%', md: 0 },
+          top: { xs: '-50px', md: 0 },
           right: { xs: 0, md: '5%' },
           cursor: 'pointer',
         }}
