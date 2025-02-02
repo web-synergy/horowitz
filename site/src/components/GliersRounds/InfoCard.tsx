@@ -1,24 +1,26 @@
 import { Box, Typography, useTheme, IconButton } from '@mui/material';
 import SvgSpriteIcon from '../Common/SvgSpriteIcon';
+import { RoundMemberData } from '@/libs/mockedData';
 
 interface InfoCardProps {
-  name: string;
-  years: string;
-  data: string;
-  group: number;
+  person: RoundMemberData | undefined;
+
   onClose: () => void;
 }
 
-export const InfoCard = ({
-  data,
-  name,
-  years,
-  group,
-  onClose,
-}: InfoCardProps) => {
+export const InfoCard = ({ person, onClose }: InfoCardProps) => {
   const theme = useTheme();
+
+  if (!person) {
+    return;
+  }
+
   const color =
-    group === 1 ? theme.palette.primary.main : theme.palette.secondary.main;
+    person.group === 1
+      ? theme.palette.primary.main
+      : theme.palette.secondary.main;
+
+  const { data, name, years } = person;
   return (
     <Box
       sx={{

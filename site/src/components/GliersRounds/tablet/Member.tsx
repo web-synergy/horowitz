@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { MouseEvent } from 'react';
 import { RoundMemberData } from '@/libs/mockedData';
 import { CirclesType } from '@/utils/arrangeCircles';
 
-import { Modal } from '@mui/material';
-import { BigCard } from './BigCard';
-import { SmallCard } from './SmallCard';
-import { InfoCard } from './InfoCard';
+import { BigCard } from '../shared/BigCard';
+import { SmallCard } from '../shared/SmallCard';
 
-interface MemberProps extends RoundMemberData, CirclesType {}
+interface MemberProps extends RoundMemberData, CirclesType {
+  onClickCard: (e: MouseEvent<HTMLDivElement>) => void;
+}
 
 export const Member = ({
   l,
@@ -21,15 +21,12 @@ export const Member = ({
   shiftY,
   shiftX,
   image,
-  data,
+  id,
+  onClickCard,
 }: MemberProps) => {
   const ratio = l === 1 ? 1.08 : 1;
   const itemShiftY = shiftY || 1;
   const itemShiftX = shiftX || 1;
-  const [isOpen, setIsOpen] = useState(false);
-
-  const onOpenModal = () => setIsOpen(true);
-  const onCloseModal = () => setIsOpen(false);
 
   return (
     <>
@@ -45,7 +42,8 @@ export const Member = ({
           name={name}
           years={years}
           image={image}
-          onClick={onOpenModal}
+          onClick={onClickCard}
+          id={id}
         />
       ) : (
         <SmallCard
@@ -58,18 +56,10 @@ export const Member = ({
           group={group}
           name={name}
           years={years}
-          onClick={onOpenModal}
+          onClick={onClickCard}
+          id={id}
         />
       )}
-      <Modal open={isOpen} onClose={onCloseModal}>
-        <InfoCard
-          data={data}
-          name={name}
-          years={years}
-          group={group}
-          onClose={onCloseModal}
-        />
-      </Modal>
     </>
   );
 };

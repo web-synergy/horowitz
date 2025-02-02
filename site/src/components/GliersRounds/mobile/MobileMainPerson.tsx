@@ -1,26 +1,35 @@
-import { RoundMemberData } from '@/libs/mockedData';
-import { CirclesType } from '@/utils/arrangeCircles';
 import { Box } from '@mui/material';
-import Image from '../Common/Image';
+import Image from '../../Common/Image';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
-import glier from './glier.jpg';
+import glier from '../glier.jpg';
 
-interface MainPersonProps extends RoundMemberData, CirclesType {}
+interface MobileMainPersonProps {
+  width: number;
+  top: number;
+  left: number;
+  group: 1 | 2;
+}
 
-export const MainPerson = ({ d }: MainPersonProps) => {
+export const MobileMainPerson = ({
+  width,
+  group,
+  left,
+  top,
+}: MobileMainPersonProps) => {
   const { containerRef, containerSize } = useWidthBlokSize();
+  const color = group === 1 ? ' rgba(217,161,69,1)' : 'rgba(11,45,163,1)';
   return (
     <Box
       sx={{
         position: 'absolute',
-        top: '50%',
-        left: '50%',
-        width: d * 1.3,
-        height: d * 1.3,
+
+        left,
+        top,
+
+        width: width,
+        height: width,
         borderRadius: '50%',
-        backgroundImage:
-          'linear-gradient(-15deg, rgba(11,45,163,1) 0%, rgba(217,161,69,1) 100%)',
-        transform: 'translate(-50%, -50%)',
+        backgroundColor: color,
       }}
     >
       <Box
