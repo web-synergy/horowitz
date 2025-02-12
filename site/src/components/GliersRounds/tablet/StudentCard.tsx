@@ -1,48 +1,38 @@
 import { MouseEvent } from 'react';
 import { Box } from '@mui/material';
+import { CirclesType } from '@/utils/arrangeTabletCircles';
 
-interface CardProps {
-  itemShiftY: number;
-  itemShiftX: number;
-  ratio: number;
+interface StudentCardProps extends CirclesType {
   onClick: (e: MouseEvent<HTMLDivElement>) => void;
-  x: number;
-  d: number;
-  y: number;
-  group: number;
-  name: string;
-  years: string;
-  id: number;
 }
 
-export const SmallCard = ({
-  x,
-  d,
-  y,
-  itemShiftX,
-  itemShiftY,
-  ratio,
+export const StudentCard = ({
+  top,
+  width,
+  left,
   group,
   name,
   years,
   id,
   onClick,
-}: CardProps) => {
+}: StudentCardProps) => {
   return (
     <Box
       role="button"
       sx={{
         position: 'absolute',
-        top: '50%',
-        left: '50%',
-        width: d * 1.1,
-        height: d * 1.1,
+        top: `${top}px`,
+        left: `${left}px`,
+        width: width,
+        height: width,
         borderRadius: '50%',
         cursor: 'pointer',
-
-        transform: `translate(${x * ratio - (d * itemShiftX) / 2}px, ${
-          y * ratio - (d * itemShiftY) / 2
-        }px)`,
+        '&:hover': {
+          transform: 'scale(1.1)',
+        },
+        '&:active': {
+          transform: 'scale(1.1)',
+        },
       }}
       onClick={onClick}
       data-id={id}

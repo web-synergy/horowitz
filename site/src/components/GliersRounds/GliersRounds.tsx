@@ -5,7 +5,9 @@ import {
   Box,
   useMediaQuery,
   useTheme,
+  Grid,
 } from '@mui/material';
+import { Navigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 import { Routes } from '@/types/routes.d';
@@ -20,11 +22,18 @@ import { MobileLayout } from './mobile/MobileLayout';
 import { membersData } from '@/libs/mockedData';
 
 const GliersRoundsPage: FC = () => {
-  const { t } = useTranslation();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
   const { containerRef, containerSize } = useWidthBlokSize();
-  const title = t(`navigation.${Routes.GLIERS_ROUNDS}`);
+  const title = t(`glierRound.title`);
   const theme = useTheme();
   const isNotMobile = useMediaQuery(theme.breakpoints.up('md'));
+
+  if (language === 'en') {
+    return <Navigate to={'/'} />;
+  }
 
   return (
     <>
@@ -61,6 +70,10 @@ const GliersRoundsPage: FC = () => {
             ) : (
               <MobileLayout width={containerSize} members={membersData} />
             )}
+          </Box>
+
+          <Box>
+            <Grid></Grid>
           </Box>
         </Container>
       </PageTemplate>

@@ -37,6 +37,9 @@ export const MobileTeacherCard = ({
         height: width,
         borderRadius: '50%',
         cursor: 'pointer',
+        '&:active': {
+          transform: 'scale(1.1)',
+        },
       }}
       onClick={onClick}
       data-id={id}

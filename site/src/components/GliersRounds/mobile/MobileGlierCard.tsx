@@ -1,21 +1,28 @@
+import { MouseEvent } from 'react';
 import { Box } from '@mui/material';
 import Image from '../../Common/Image';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
-import glier from '../glier.jpg';
+import person from '../person.png';
 
-interface MobileMainPersonProps {
+interface MobileGlierCardProps {
   width: number;
   top: number;
   left: number;
   group: 1 | 2;
+  onClick: (e: MouseEvent<HTMLDivElement>) => void;
+  id: number;
+  image?: string;
 }
 
-export const MobileMainPerson = ({
+export const MobileGlierCard = ({
   width,
   group,
   left,
   top,
-}: MobileMainPersonProps) => {
+  onClick,
+  id,
+  image,
+}: MobileGlierCardProps) => {
   const { containerRef, containerSize } = useWidthBlokSize();
   const color = group === 1 ? ' rgba(217,161,69,1)' : 'rgba(11,45,163,1)';
   return (
@@ -30,7 +37,13 @@ export const MobileMainPerson = ({
         height: width,
         borderRadius: '50%',
         backgroundColor: color,
+        cursor: 'pointer',
+        '&:active': {
+          transform: 'scale(1.1)',
+        },
       }}
+      onClick={onClick}
+      data-id={id}
     >
       <Box
         sx={{
@@ -63,7 +76,7 @@ export const MobileMainPerson = ({
             width={containerSize}
             height={containerSize}
             alt="Glier photo"
-            src={glier}
+            src={image || person}
             styles={{
               objectFit: 'cover',
               objectPosition: 'top',
