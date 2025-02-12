@@ -1,33 +1,32 @@
 import { Modal, Box } from '@mui/material';
 import { useState, MouseEvent, useEffect } from 'react';
-import { arrangeCircles } from '@/utils/arrangeCircles';
-import { concatPositionWithData } from '@/utils/concatPositionWithData';
-import { MainPerson } from '../shared/MainPerson';
+import { arrangeCircles, CirclesType } from '@/utils/arrangeTabletCircles';
+
+import { ClierCard } from './GlierCard';
 import { Member } from './Member';
 import { RoundMemberData } from '@/libs/mockedData';
 import { InfoCard } from '../InfoCard';
-import { ResultType } from '@/utils/concatPositionWithData';
 
 interface TabletLayoutProps {
   width: number;
   members: RoundMemberData[];
 }
 
-export const ROUNDS = 4;
+const ROUNDS = 4;
 
 export const TabletLayout = ({ width, members }: TabletLayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [shownPerson, setShownPerson] = useState<number | null>(null);
-  const [membersData, setMembersData] = useState<ResultType[] | null>(null);
+  const [membersData, setMembersData] = useState<CirclesType[] | null>(null);
 
   useEffect(() => {
     if (!width) {
       return;
     }
-    const result = arrangeCircles(width, members.length, ROUNDS);
+    const result = arrangeCircles(width, members, ROUNDS);
 
-    const data = concatPositionWithData(result, members);
-    setMembersData(data);
+    if (!result) return;
+    setMembersData(result);
   }, [width, members]);
 
   const onClickCard = (e: MouseEvent<HTMLDivElement>) => {
@@ -44,14 +43,20 @@ export const TabletLayout = ({ width, members }: TabletLayoutProps) => {
     setShownPerson(null);
   };
 
+  if (!membersData) {
+    return null;
+  }
+
+  const glier =
+    membersData.find((member) => member.group === 0) || ({} as CirclesType);
   return (
     <>
-      {membersData && <MainPerson {...membersData[0]} />}
+      {membersData && <ClierCard {...glier} onClick={onClickCard} />}
       {membersData &&
         membersData
           .slice(1)
           .map((item, index) => (
-            <Member {...item} key={index} onClickCard={onClickCard} />
+            <Member {...item} key={index} onClick={onClickCard} />
           ))}
       <Modal open={isOpen} onClose={onCloseModal}>
         <Box>

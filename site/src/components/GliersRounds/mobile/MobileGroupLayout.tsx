@@ -1,8 +1,8 @@
 import { Box, Modal } from '@mui/material';
 import { useState, useEffect, MouseEvent } from 'react';
-import { MobileMainPerson } from './MobileMainPerson';
+import { MobileGlierCard } from './MobileGlierCard';
 import { MobileTeacherCard } from './MobileTeacherCard';
-import { MobileSmallCard } from './MobileSmallCard';
+import { MobileStudentCard } from './MobileStudentCard';
 import { RoundMemberData } from '@/libs/mockedData';
 import { InfoCard } from '../InfoCard';
 
@@ -10,6 +10,7 @@ interface MobileGroupLayoutProps {
   groupMember: RoundMemberData[];
   group: 1 | 2;
   width: number;
+  glierData: RoundMemberData;
 }
 
 interface LayoutStateType {
@@ -30,6 +31,7 @@ export const MobileGroupLayout = ({
   group,
   groupMember,
   width,
+  glierData,
 }: MobileGroupLayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [shownPerson, setShownPerson] = useState<null | number>(null);
@@ -39,8 +41,9 @@ export const MobileGroupLayout = ({
     {} as LayoutStateType
   );
 
-  const teacher = groupMember.find((member) => member.isBig);
+  const teacher = groupMember.find((member) => member.isTeacher);
   const isEven = group % 2 === 1;
+  const modalData = [glierData, ...groupMember];
 
   useEffect(() => {
     if (!width) {
@@ -53,10 +56,11 @@ export const MobileGroupLayout = ({
     const centerX = isEven
       ? smallCircleWidth / 2
       : width - smallCircleWidth / 2 - bigCircleWidth;
+
     const centerY = width / 2 - bigCircleWidth / 2;
     const gap = width * 0.01;
 
-    const membersArray = groupMember.filter((member) => !member.isBig);
+    const membersArray = groupMember.filter((member) => !member.isTeacher);
 
     let round = 1;
     const smallCircleArray = [];
@@ -147,6 +151,8 @@ export const MobileGroupLayout = ({
   } = layoutData;
 
   const ratio = isEven ? 3 : 10;
+  const glierShiftX = 0.1 * bigCircleWidth;
+  const glierShiftY = isEven ? -0.1 * bigCircleWidth : 0.1 * bigCircleWidth;
   return (
     <Box
       sx={{
@@ -155,11 +161,16 @@ export const MobileGroupLayout = ({
         height: height,
       }}
     >
-      <MobileMainPerson
+      <MobileGlierCard
         width={bigCircleWidth}
-        top={centerY}
-        left={centerX}
+        top={centerY + glierShiftX}
+        left={centerX + glierShiftY}
         group={group}
+        onClick={onOpenModal}
+        id={glierData.id}
+        image={glierData.image}
+        name={glierData.name}
+        years={glierData.years}
       />
       <MobileTeacherCard
         group={group}
@@ -175,7 +186,7 @@ export const MobileGroupLayout = ({
 
       {members &&
         members.map((el, i) => (
-          <MobileSmallCard
+          <MobileStudentCard
             width={smallCircleWidth}
             group={group}
             top={el.y}
@@ -190,7 +201,7 @@ export const MobileGroupLayout = ({
       <Modal open={isOpen} onClose={onCloseModal}>
         <Box>
           <InfoCard
-            person={groupMember.find((item) => item.id === shownPerson)}
+            person={modalData.find((item) => item.id === shownPerson)}
             onClose={onCloseModal}
           />
         </Box>

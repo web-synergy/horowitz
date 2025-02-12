@@ -2,51 +2,40 @@ import { MouseEvent } from 'react';
 import { Box } from '@mui/material';
 import Image from '../../Common/Image';
 import person from '../person.png';
+import { CirclesType } from '@/utils/arrangeTabletCircles';
 
-interface CardProps {
-  itemShiftY: number;
-  itemShiftX: number;
-  ratio: number;
+interface TeacherCardProps extends CirclesType {
   onClick: (e: MouseEvent<HTMLDivElement>) => void;
-  x: number;
-  d: number;
-  y: number;
-  group: number;
-  name: string;
-  years: string;
-  image: string | undefined;
-  id: number;
 }
 
-export const BigCard = ({
-  x,
-  d,
-  y,
-  itemShiftX,
-  itemShiftY,
-  ratio,
+export const TeacherCard = ({
+  top,
+  width,
+  left,
   group,
   name,
   years,
   image,
   onClick,
   id,
-}: CardProps) => {
+}: TeacherCardProps) => {
   return (
     <Box
       role="button"
       sx={{
         position: 'absolute',
-        top: '50%',
-        left: '50%',
-        width: d * 1.5,
-        height: d * 1.5,
+        top: `${top}px`,
+        left: `${left}px`,
+        width: width,
+        height: width,
         borderRadius: '50%',
         cursor: 'pointer',
-
-        transform: `translate(${x * ratio - (d * itemShiftX) / 2}px, ${
-          y * ratio - (d * itemShiftY) / 2
-        }px)`,
+        '&:hover': {
+          transform: 'scale(1.1)',
+        },
+        '&:active': {
+          transform: 'scale(1.1)',
+        },
       }}
       data-id={id}
       onClick={onClick}
@@ -83,8 +72,8 @@ export const BigCard = ({
           position: 'absolute',
           top: '50%',
           left: '50%',
-          width: d * 1.05,
-          height: d * 1.05,
+          width: width * 0.7,
+          height: width * 0.7,
           transform: 'translate(-50%, -50%)',
           backgroundColor: '#efefef',
           borderRadius: '50%',
@@ -92,8 +81,8 @@ export const BigCard = ({
         }}
       >
         <Image
-          width={d * 1.05}
-          height={d * 1.05}
+          width={width * 0.7}
+          height={width * 0.7}
           src={image || person}
           isLazyLoading={false}
           alt={name}

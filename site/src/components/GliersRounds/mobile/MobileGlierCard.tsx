@@ -1,21 +1,32 @@
+import { MouseEvent } from 'react';
 import { Box } from '@mui/material';
 import Image from '../../Common/Image';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
-import glier from '../glier.jpg';
+import person from '../person.png';
 
-interface MobileMainPersonProps {
+interface MobileGlierCardProps {
   width: number;
   top: number;
   left: number;
   group: 1 | 2;
+  onClick: (e: MouseEvent<HTMLDivElement>) => void;
+  id: number;
+  image?: string;
+  name: string;
+  years: string;
 }
 
-export const MobileMainPerson = ({
+export const MobileGlierCard = ({
   width,
   group,
   left,
   top,
-}: MobileMainPersonProps) => {
+  onClick,
+  id,
+  image,
+  name,
+  years,
+}: MobileGlierCardProps) => {
   const { containerRef, containerSize } = useWidthBlokSize();
   const color = group === 1 ? ' rgba(217,161,69,1)' : 'rgba(11,45,163,1)';
   return (
@@ -26,12 +37,45 @@ export const MobileMainPerson = ({
         left,
         top,
 
-        width: width,
-        height: width,
+        width: width * 0.9,
+        height: width * 0.9,
         borderRadius: '50%',
         backgroundColor: color,
+        cursor: 'pointer',
+        '&:active': {
+          transform: 'scale(1.1)',
+        },
       }}
+      onClick={onClick}
+      data-id={id}
     >
+      <Box
+        component="svg"
+        viewBox="0 0 100 100"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        sx={{
+          width: '130%',
+          height: '130%',
+          color: (theme) => theme.palette.primary.main,
+          transform: 'translate(-11%, -11%);',
+        }}
+      >
+        <path
+          id="circlePath"
+          fill="none"
+          d="M 10, 50 a 40,40 0 1,1 80,0 40,40 0 1,1 -80,0"
+        />
+        <text width="100">
+          <textPath href="#circlePath" fontSize={'70%'} fontWeight="bold">
+            {name + ' ' + years}
+          </textPath>
+        </text>
+        <path
+          d="M 15, 50 a 35,35 0 1,1 70,0 35,35 0 1,1 -70,0"
+          fill="transparent"
+        />
+      </Box>
       <Box
         sx={{
           position: 'absolute',
@@ -63,7 +107,7 @@ export const MobileMainPerson = ({
             width={containerSize}
             height={containerSize}
             alt="Glier photo"
-            src={glier}
+            src={image || person}
             styles={{
               objectFit: 'cover',
               objectPosition: 'top',

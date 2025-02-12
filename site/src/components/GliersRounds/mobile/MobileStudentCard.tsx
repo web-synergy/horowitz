@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react';
 import { Box } from '@mui/material';
 
-interface MobileSmallCardProps {
+interface MobileStudentCardProps {
   width: number;
   onClick: (e: MouseEvent<HTMLDivElement>) => void;
   top: number;
@@ -12,7 +12,7 @@ interface MobileSmallCardProps {
   id: number;
 }
 
-export const MobileSmallCard = ({
+export const MobileStudentCard = ({
   left,
   width,
   top,
@@ -21,7 +21,7 @@ export const MobileSmallCard = ({
   id,
   years,
   group,
-}: MobileSmallCardProps) => {
+}: MobileStudentCardProps) => {
   return (
     <Box
       role="button"
@@ -34,6 +34,9 @@ export const MobileSmallCard = ({
         height: width * 1.08,
         borderRadius: '50%',
         cursor: 'pointer',
+        '&:active': {
+          transform: 'scale(1.1)',
+        },
       }}
       onClick={onClick}
     >
