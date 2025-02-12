@@ -100,15 +100,15 @@ export function arrangeCircles(
         //Окреме позиціювання для картки вчителя, що знахиться зверху зліва
         const shiftX =
           item.isTeacher && item.group === 1
-            ? (maxDiameter / 2) * 1.3
+            ? (maxDiameter / 2) * 2.6
             : maxDiameter / 2;
         const shiftY =
           item.isTeacher && item.group === 1
-            ? (maxDiameter / 2) * 2.2
+            ? (maxDiameter / 2) * 1.4
             : maxDiameter / 2;
-        const top = Math.floor(startX + layerRadius * Math.cos(theta) - shiftX); // X-координата
+        const top = Math.floor(startX + layerRadius * Math.cos(theta) - shiftY); // X-координата
         const left = Math.floor(
-          startY + layerRadius * Math.sin(theta) - shiftY
+          startY + layerRadius * Math.sin(theta) - shiftX
         ); // Y-координата.
         return {
           ...item,

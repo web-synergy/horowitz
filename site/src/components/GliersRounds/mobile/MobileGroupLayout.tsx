@@ -56,6 +56,7 @@ export const MobileGroupLayout = ({
     const centerX = isEven
       ? smallCircleWidth / 2
       : width - smallCircleWidth / 2 - bigCircleWidth;
+
     const centerY = width / 2 - bigCircleWidth / 2;
     const gap = width * 0.01;
 
@@ -150,6 +151,8 @@ export const MobileGroupLayout = ({
   } = layoutData;
 
   const ratio = isEven ? 3 : 10;
+  const glierShiftX = 0.1 * bigCircleWidth;
+  const glierShiftY = isEven ? -0.1 * bigCircleWidth : 0.1 * bigCircleWidth;
   return (
     <Box
       sx={{
@@ -160,12 +163,14 @@ export const MobileGroupLayout = ({
     >
       <MobileGlierCard
         width={bigCircleWidth}
-        top={centerY}
-        left={centerX}
+        top={centerY + glierShiftX}
+        left={centerX + glierShiftY}
         group={group}
         onClick={onOpenModal}
         id={glierData.id}
         image={glierData.image}
+        name={glierData.name}
+        years={glierData.years}
       />
       <MobileTeacherCard
         group={group}
