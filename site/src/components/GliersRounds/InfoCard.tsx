@@ -31,11 +31,12 @@ export const InfoCard = ({ person, onClose }: InfoCardProps) => {
     <Box
       sx={{
         position: 'absolute',
-        width: { xs: '90%', md: '60%', lg: '50%' },
+        width: { xs: '90%', md: '60%', lg: '80vh' },
+        minHeight: { lg: '80vh' },
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        aspectRatio: 1,
+
         height: 'auto',
         borderRadius: { xs: '10%', md: '30%', lg: '50%' },
         backgroundImage:
@@ -43,7 +44,9 @@ export const InfoCard = ({ person, onClose }: InfoCardProps) => {
             ? 'linear-gradient(-35deg, rgba(11,45,163,1) 0%, rgba(217,161,69,1) 100%)'
             : 'none',
         backgroundColor: bgColor,
-        padding: '5%',
+        py: { xs: 4, md: 8 },
+        px: { xs: 4, md: 8, lg: 12 },
+
         display: 'flex',
         justifyItems: 'center',
         alignItems: 'center',
@@ -54,7 +57,7 @@ export const InfoCard = ({ person, onClose }: InfoCardProps) => {
         sx={{
           position: 'absolute',
           color: bgColor,
-          top: { xs: '-50px', md: 0 },
+          top: { xs: '-50px', md: '-20px' },
           right: { xs: 0, md: '5%' },
           cursor: 'pointer',
           '&:hover': {
@@ -70,6 +73,7 @@ export const InfoCard = ({ person, onClose }: InfoCardProps) => {
         <Typography
           sx={{
             textAlign: 'center',
+            fontWeight: 700,
           }}
           variant="h3"
         >

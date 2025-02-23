@@ -94,22 +94,25 @@ export function arrangeCircles(
     const angleStep = (2 * Math.PI) / membersForLayer.length;
 
     const membersWithPosition = membersForLayer.map((item, i) => {
+      //Позиціювання для всіх кругів окрім другого
       if (layer !== 2) {
         //Розміщення по всім кругам, окрім другого, де треба залишити місце під більшу картку для вчителя
         const theta = i * angleStep; // Кут
         //Окреме позиціювання для картки вчителя, що знахиться зверху зліва
         const shiftX =
           item.isTeacher && item.group === 1
-            ? (maxDiameter / 2) * 2.6
+            ? (maxDiameter / 2) * 2.2
             : maxDiameter / 2;
         const shiftY =
           item.isTeacher && item.group === 1
-            ? (maxDiameter / 2) * 1.4
+            ? (maxDiameter / 2) * 2.4
             : maxDiameter / 2;
-        const top = Math.floor(startX + layerRadius * Math.cos(theta) - shiftY); // X-координата
+        const top = Math.floor(startX + layerRadius * Math.cos(theta) - shiftY);
+        // X-координата
         const left = Math.floor(
           startY + layerRadius * Math.sin(theta) - shiftX
-        ); // Y-координата.
+        );
+        // Y-координата.
         return {
           ...item,
           top,
@@ -119,14 +122,17 @@ export function arrangeCircles(
             : Math.floor(maxDiameter),
         };
       } else {
+        //Окреме позиціювання для другого ряду
         const angleStep = (2 * Math.PI) / (membersForLayer.length + 3);
         const centerElement = membersForLayer.length / 2;
+        // Кут
         const theta =
           i < 2
             ? i * angleStep - 0.05 * Math.PI
-            : i < centerElement + 3
+            : i < centerElement + 2
             ? i * angleStep + 0.14 * Math.PI
-            : i * angleStep + 0.35 * Math.PI; // Кут
+            : i * angleStep + 0.35 * Math.PI;
+
         const shiftX =
           item.isTeacher && item.group === 1
             ? (maxDiameter / 2) * 1.7
