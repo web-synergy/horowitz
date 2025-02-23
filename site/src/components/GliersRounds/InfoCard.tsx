@@ -1,4 +1,5 @@
 import { Box, Typography, useTheme, IconButton, Link } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 import SvgSpriteIcon from '../Common/SvgSpriteIcon';
 import { RoundMemberData } from '@/libs/mockedData';
@@ -11,6 +12,8 @@ interface InfoCardProps {
 
 export const InfoCard = ({ person, onClose }: InfoCardProps) => {
   const theme = useTheme();
+  const { t } = useTranslation();
+  const linkText = t('glierRound.link');
 
   if (!person) {
     return;
@@ -136,7 +139,7 @@ export const InfoCard = ({ person, onClose }: InfoCardProps) => {
             }}
             target="_blank"
           >
-            Більше інформації по посиланню
+            {linkText}
           </Link>
         </Box>
       </Box>
