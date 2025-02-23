@@ -18,6 +18,7 @@ import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
 
 import { TabletLayout } from './tablet/TabletLayout';
 import { MobileLayout } from './mobile/MobileLayout';
+import TextBlockComponent from '../Templates/TextBlockComponent/TextBlockComponent';
 
 import { membersData } from '@/libs/mockedData';
 
@@ -28,6 +29,7 @@ const GliersRoundsPage: FC = () => {
   } = useTranslation();
   const { containerRef, containerSize } = useWidthBlokSize();
   const title = t(`glierRound.title`);
+  const text = t(`glierRound.text`);
   const theme = useTheme();
   const isNotMobile = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -56,6 +58,10 @@ const GliersRoundsPage: FC = () => {
           >
             {title}
           </Typography>
+          <Box sx={{ marginBottom: { xs: 3, md: 5, lg: 6 } }}>
+            <TextBlockComponent text={text} column={2} />
+          </Box>
+
           <Box
             ref={containerRef}
             sx={{
