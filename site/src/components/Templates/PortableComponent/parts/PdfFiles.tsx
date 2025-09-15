@@ -10,6 +10,5 @@ export default function PdfFile({
 }) {
   const url = fileUrl(value.asset._ref);
 
-  return <Box sx={{minWidth: "100%"}} >
-    <PDFReader URL={url} /></Box>
+  return <PDFReader URL={url} />
 }
