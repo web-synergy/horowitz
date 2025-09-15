@@ -1,5 +1,7 @@
 import { fileUrl } from '@/config/sanity/fileUrl';
 import PDFReader from '../../PdfComponent/PDFReader';
+import { Box} from '@mui/material'
+
 
 export default function PdfFile({
   value,
@@ -7,7 +9,7 @@ export default function PdfFile({
   value: { asset: { _ref: string } };
 }) {
   const url = fileUrl(value.asset._ref);
-  console.log(url);
 
-  return <PDFReader URL={url} />;
+  return <Box sx={{minWidth: "100%"}} >
+    <PDFReader URL={url} /></Box>
 }
