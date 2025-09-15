@@ -88,7 +88,7 @@ import LazyOtherGroupBookletPage from '@/components/OtherGroupPages/OtherGroupBo
 import LazyOtherGroupJuryProfilePage from '@/components/OtherGroupPages/OtherGroupJuryProfile/LazyOtherGroupJuryProfilePage';
 import LazyOtherGroupParticipantProfilePage from '@/components/OtherGroupPages/OtherGroupParticipantProfile/LazyOtherGroupParticipantProfilePage';
 import OtherGroupPreselectionJuryProfile from '@/components/OtherGroupPages/OtherGroupPreselectionJuryProfile/OtherGroupPreselectionJuryProfile';
-// import LazyGliersRoundPage from '@/components/GliersRounds/LazyGliersRounds';
+import LazyGliersRoundPage from '@/components/GliersRounds/LazyGliersRounds';
 
 import LazySearchPage from '@/components/Search/LazySearchPage';
 
@@ -420,10 +420,10 @@ const routes = createBrowserRouter([
         path: Routes.VIRTUOSES_CURRENT_ARTICLE,
         element: <LazyVirtuososCurrentArticle />,
       },
-      // {
-      //   path: Routes.GLIERS_ROUNDS,
-      //   element: <LazyGliersRoundPage />,
-      // },
+      {
+        path: Routes.GLIERS_ROUNDS,
+        element: <LazyGliersRoundPage />,
+      },
 
       { path: Routes.NEWS, element: <LazyNewsPageList /> },
       { path: Routes.CURRENT_NEWS, element: <LazyNewsCurrentPage /> },

@@ -1,6 +1,6 @@
 import { fileUrl } from '@/config/sanity/fileUrl';
 import PDFReader from '../../PdfComponent/PDFReader';
-import { Box} from '@mui/material'
+
 
 
 export default function PdfFile({
