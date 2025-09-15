@@ -28,6 +28,7 @@ import { MuiTypography } from './themed-components/typography.modifier';
 import { MuiBackdrop } from './themed-components/backdrop.modifier';
 
 import { MuiFab } from './themed-components/fab.modifier';
+import { MuiModal } from './themed-components/modal.modifier';
 
 import { Theme } from '@mui/material/styles';
 
@@ -54,4 +55,5 @@ export const components: Components<Theme> = {
   MuiAccordionSummary,
   MuiFab,
   MuiBackdrop,
+  MuiModal,
 };
