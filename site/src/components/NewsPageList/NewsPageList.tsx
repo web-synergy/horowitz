@@ -42,7 +42,6 @@ const NewsPageList = () => {
 
   if (loading) return <Loader />;
 
-  console.log(newsList);
   const title = t(`navigation.${Routes.NEWS}`);
   return (
     <>

@@ -1,6 +1,7 @@
 import { PortableTextComponents } from '@portabletext/react';
 import { ImageComponent, ImagesArray } from './ImageComponent';
 import { Typography } from '@mui/material';
+import PdfFile from './PdfFiles';
 
 import YouTube from './YouTube';
 import {
@@ -18,6 +19,7 @@ export const components: PortableTextComponents = {
     gallery: ImagesArray,
     youtube: YouTube,
     image: ImageComponent,
+    booklet: PdfFile,
   },
   marks: {
     nw: NowRap,

@@ -1,6 +1,7 @@
 import {defineType} from 'sanity'
 import NoWrap from '../../components/NoWrap'
 import {TbTextWrapDisabled} from 'react-icons/tb'
+import {PiFilePdf} from 'react-icons/pi'
 
 const content = defineType({
   name: 'content',
@@ -46,6 +47,16 @@ const content = defineType({
     },
     {type: 'gallery'},
 
+    {
+      name: 'booklet',
+      type: 'file',
+      title: 'PDF',
+      icon: PiFilePdf,
+
+      options: {
+        accept: 'application/pdf',
+      },
+    },
     {
       type: 'image',
       options: {
