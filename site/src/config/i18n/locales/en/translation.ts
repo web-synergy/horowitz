@@ -66,6 +66,8 @@ export default {
     [Routes.GROUP_WINNERS]: 'Prizewinners',
     [Routes.GROUP_BOOKLET]: 'Program book',
     [Routes.GLIERS_ROUNDS]: '',
+    
+    [Routes.HOROWITZ_THIRTY]: 'Horowitz Competition 30',
     [ETabs.JUNIOR]: 'Junior Group',
     [EDebut.GROUP_A]: 'The nomination “A” Elementary',
     [EDebut.GROUP_B]: 'The nomination “B” Elementary',

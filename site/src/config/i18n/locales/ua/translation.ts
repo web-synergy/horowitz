@@ -66,6 +66,7 @@ export default {
     [Routes.GROUP_WINNERS]: 'Переможці',
     [Routes.GROUP_BOOKLET]: 'Буклет',
     [Routes.GLIERS_ROUNDS]: 'Коло Глієра',
+    [Routes.HOROWITZ_THIRTY]: 'Horowitz Competition 30',
     [ETabs.JUNIOR]: 'Молодша Група',
     [EDebut.GROUP_A]: 'Номінація “А” Elementary',
     [EDebut.GROUP_B]: 'Номінація “B” Elementary',

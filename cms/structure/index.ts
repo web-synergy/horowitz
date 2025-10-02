@@ -40,7 +40,9 @@ const structure = (S: StructureBuilder) =>
       ),
       ...summerSchoolStructure(S),
       ...masterClassStructure(S),
-
+      singleDocument(S, 'horowitzThirty', 'Конкурсу 30 років', preview(S, 'horowitz-thirty')).icon(
+        FaPeopleGroup,
+      ),
       S.divider(),
       singleDocument(S, 'aboutHorowitzCompetition', 'Конкурс Горовиця', preview(S, 'details')).icon(
         MdOutlineSettingsBrightness,

@@ -89,6 +89,7 @@ import LazyOtherGroupJuryProfilePage from '@/components/OtherGroupPages/OtherGro
 import LazyOtherGroupParticipantProfilePage from '@/components/OtherGroupPages/OtherGroupParticipantProfile/LazyOtherGroupParticipantProfilePage';
 import OtherGroupPreselectionJuryProfile from '@/components/OtherGroupPages/OtherGroupPreselectionJuryProfile/OtherGroupPreselectionJuryProfile';
 import LazyGliersRoundPage from '@/components/GliersRounds/LazyGliersRounds';
+import LazyHorowitzThirtyPage from '@/components/Horowitz-Thirty/LazyHorowitzThirty';
 
 import LazySearchPage from '@/components/Search/LazySearchPage';
 
@@ -423,6 +424,10 @@ const routes = createBrowserRouter([
       {
         path: Routes.GLIERS_ROUNDS,
         element: <LazyGliersRoundPage />,
+      },
+      {
+        path: Routes.HOROWITZ_THIRTY,
+        element: <LazyHorowitzThirtyPage />,
       },
 
       { path: Routes.NEWS, element: <LazyNewsPageList /> },
