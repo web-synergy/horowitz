@@ -18,6 +18,7 @@ import {
 import { Routes } from './routes';
 import { IMasterClass } from './masterClassTypes';
 import { SearchResponse } from './searchType';
+import { IHorowitzThirtyData } from './horowitzThirtyTypes';
 
 export interface SearchStoreState {
   search: string;
@@ -217,4 +218,10 @@ export interface MasterClassStoreState {
   error: string | unknown;
   pageQty: number;
   fetchMasterClasses: (language: string, page: number) => Promise<void>;
+}
+
+export interface HorowitzThirtyState extends IHorowitzThirtyData {
+  isLoading: boolean;
+  requestLang: string;
+  fetchHorowitzThirtyData: (language: string) => Promise<void>;
 }

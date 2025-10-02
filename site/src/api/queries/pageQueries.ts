@@ -194,3 +194,9 @@ export const currentMasterClassQuery = groq`*[_type == 'masterClass'&& slug.curr
   'slug':slug.current,
   'description': coalesce(description[_key ==$language][0].value, description[][0].value)
 }`;
+
+export const horowitzThirtyPageQuery = groq`*[_type== "horowitzThirty"][0]{
+  _id, 
+  mainBanner, 
+  "content":  coalesce(content[_key ==$language][0].value, content[][0].value)
+}`;

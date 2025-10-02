@@ -1,3 +1,4 @@
+import { IHorowitzThirtyData } from '@/types/horowitzThirtyTypes';
 import { IMasterClass } from '@/types/masterClassTypes';
 import { sanityFetch } from '@/config/sanity/client';
 
@@ -25,6 +26,7 @@ import {
   virtuososArticleQuery,
   virtuososQuery,
   masterClassQuery,
+  horowitzThirtyPageQuery,
 } from '../query';
 
 export const getHomeData = async (language: string): Promise<HomeData> => {
@@ -102,4 +104,10 @@ export const getMasterClasses = async (
   lastEl: number
 ): Promise<IMasterClass[]> => {
   return sanityFetch(masterClassQuery, { language, firstEl, lastEl });
+};
+
+export const getHorowitzThirtyPage = async (
+  language: string
+): Promise<IHorowitzThirtyData> => {
+  return sanityFetch(horowitzThirtyPageQuery, { language });
 };

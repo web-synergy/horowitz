@@ -36,6 +36,7 @@ import masterClass from './documents/masterClass'
 import video from './objects/video'
 import reward from './objects/reward'
 import documentation from './documents/documentation'
+import {horowitzThirty} from './documents/horowitzThirty'
 
 export const schemaTypes = [
   //documents
@@ -57,6 +58,7 @@ export const schemaTypes = [
   jury,
   guest,
   documentation,
+  horowitzThirty,
 
   //objects
   winners,

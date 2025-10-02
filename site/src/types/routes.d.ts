@@ -61,6 +61,7 @@ export enum Routes {
   GROUP_BOOKLET = 'booklet',
   SEARCH = 'search',
   GLIERS_ROUNDS = 'gliers-rounds',
+  HOROWITZ_THIRTY = 'horowitz-thirty',
 }
 
 export type NavigationType = {
