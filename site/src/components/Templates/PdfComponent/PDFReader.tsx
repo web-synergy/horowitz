@@ -13,6 +13,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   import.meta.url
 ).toString();
 
+console.log(pdfjs.GlobalWorkerOptions.workerSrc);
+
 import Loader from '../../Common/Loader';
 import { getPgfSize } from './parts/helpers';
 import { useWidthBlokSize } from '@/hook/useWidthBlockSize';
