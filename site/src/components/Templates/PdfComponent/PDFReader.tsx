@@ -1,12 +1,17 @@
 import { useState, useEffect, useRef, TouchEvent } from 'react';
-import { Box, useTheme, useMediaQuery } from '@mui/material';
-import { Document, pdfjs } from 'react-pdf';
+import { Box, useTheme, useMediaQuery, Slide } from '@mui/material';
+import { Document, pdfjs, Page } from 'react-pdf';
 import { useDoubleTap } from 'use-double-tap';
-import PdfPage from './parts/PdfPage';
+// import PdfPage from './parts/PdfPage';
 
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url
+).toString();
 
 import Loader from '../../Common/Loader';
 import { getPgfSize } from './parts/helpers';
@@ -96,6 +101,7 @@ const PDFReader = ({ URL }: IFileResponse) => {
     setMoveStart({ x: 0, y: 0 });
   });
 
+  console.log(URL);
   const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
     const { clientX, clientY } = e.targetTouches[0];
     setIsMoving(true);
@@ -163,7 +169,7 @@ const PDFReader = ({ URL }: IFileResponse) => {
             onTouchEnd={onTouchEnd}
             onTouchMove={onTouchMove}
           >
-            <PdfPage
+            {/* <PdfPage
               animation={animation}
               currentPage={currentPage}
               direction={direction}
@@ -171,7 +177,33 @@ const PDFReader = ({ URL }: IFileResponse) => {
               pdfSize={pdfSize}
               position={position}
               slideRef={slideRef}
-            />
+            /> */}
+            <Box
+              sx={{
+                transform: `translate(${position.x}px, ${position.y}px) scale(${
+                  isZoomed ? 1.5 : 1
+                })`,
+                transformOrigin: '0 0',
+                transition: 'transform 0.3s',
+                touchAction: isZoomed ? 'none' : 'auto',
+              }}
+            >
+              <Slide
+                in={animation}
+                container={slideRef.current}
+                direction={direction}
+                appear={false}
+              >
+                <Box>
+                  <Page
+                    width={pdfSize.width}
+                    height={pdfSize.height}
+                    pageNumber={currentPage}
+                    loading={<Box />}
+                  />
+                </Box>
+              </Slide>
+            </Box>
           </Box>
         </Document>
       </Box>
