@@ -6,14 +6,12 @@ import { useDoubleTap } from 'use-double-tap';
 
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
-// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
-
-console.log(pdfjs.GlobalWorkerOptions.workerSrc);
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//   'pdfjs-dist/build/pdf.worker.min.mjs',
+//   import.meta.url
+// ).toString();
 
 import Loader from '../../Common/Loader';
 import { getPgfSize } from './parts/helpers';
@@ -103,7 +101,6 @@ const PDFReader = ({ URL }: IFileResponse) => {
     setMoveStart({ x: 0, y: 0 });
   });
 
-  console.log(URL);
   const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
     const { clientX, clientY } = e.targetTouches[0];
     setIsMoving(true);
